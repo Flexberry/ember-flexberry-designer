@@ -48,8 +48,14 @@ export default FdUmlElement.extend({
     @property attributes
     @type Array
   */
-  attributes: computed('primitive.AttributesTxt.Text', function() {
-    return this.get('primitive.AttributesTxt.Text').split('\n');
+  attributes: computed('primitive.AttributesTxt.Text', {
+    get(key) {
+      return this.get('primitive.AttributesTxt.Text').split('\n');
+    },
+    set(key, value) {
+      this.set('primitive.AttributesTxt.Text', value);
+      return value;
+    },
   }),
 
   /**
@@ -58,8 +64,51 @@ export default FdUmlElement.extend({
     @property methods
     @type Array
   */
-  methods: computed('primitive.MethodsTxt.Text', function() {
-    return this.get('primitive.MethodsTxt.Text').split('\n');
+
+  methods: computed('primitive.MethodsTxt.Text', {
+    get(key) {
+      return this.get('primitive.MethodsTxt.Text').split('\n');
+    },
+    set(key, value) {
+      this.set('primitive.MethodsTxt.Text', value);
+      return value;
+    },
+  }),
+
+  /**
+    Primitive position.
+
+    @property position
+    @type Object
+  */
+
+  position: computed('primitive.Location', {
+    get(key) {
+      return this.get('primitive.Location');
+    },
+    set(key, value) {
+      this.set('primitive.Location.X', value.x);
+      this.set('primitive.Location.Y', value.y);
+      return value;
+    },
+  }),
+
+  /**
+    Primitive size.
+
+    @property size
+    @type Object
+  */
+
+  size: computed('primitive.Size', {
+    get(key) {
+      return this.get('primitive.Size');
+    },
+    set(key, value) {
+      this.set('primitive.Size.Height', value.height);
+      this.set('primitive.Size.Width', value.width);
+      return value;
+    },
   }),
 
   /**
@@ -73,8 +122,7 @@ export default FdUmlElement.extend({
       return new ClassCollapsed(properties);
     }
 
-    return new Class(properties);
-
+    return new Class({ objectModel: this });
   },
 });
 
@@ -88,6 +136,9 @@ export default FdUmlElement.extend({
   @constructor
 */
 export let BaseClass = joint.shapes.basic.Generic.define('flexberry.uml.BaseClass', {
+
+  objectModel: null,
+
   attrs: {
     rect: { 'width': 200 },
 
@@ -276,7 +327,8 @@ joint.shapes.flexberry.uml.ClassView = joint.dia.ElementView.extend({
       let textareaText = $textarea.val();
       let rows = textareaText.split(/[\n\r|\r|\n]/);
       $textarea.prop('rows', rows.length);
-      this.model.set('attributes', rows);
+      let objectModel = this.model.get('objectModel');
+      objectModel.set('attributes', rows);
     }.bind(this));
 
     this.$box.find('.methods-input').on('change', function(evt) {
@@ -284,7 +336,8 @@ joint.shapes.flexberry.uml.ClassView = joint.dia.ElementView.extend({
       let textareaText = $textarea.val();
       let rows = textareaText.split(/[\n\r|\r|\n]/);
       $textarea.prop('rows', rows.length);
-      this.model.set('methods', rows);
+      let objectModel = this.model.get('objectModel');
+      objectModel.set('methods', rows);
     }.bind(this));
 
     this.$box.find('.class-name-input').on('change', function(evt) {
@@ -292,7 +345,8 @@ joint.shapes.flexberry.uml.ClassView = joint.dia.ElementView.extend({
       let textareaText = $textarea.val();
       let rows = textareaText.split(/[\n\r|\r|\n]/);
       $textarea.prop('rows', rows.length);
-      this.model.set('name', textareaText);
+      let objectModel = this.model.get('objectModel');
+      objectModel.set('name', textareaText);
     }.bind(this));
 
     this.$box.find('.class-stereotype-input').on('focus', function(evt) {
@@ -354,6 +408,19 @@ joint.shapes.flexberry.uml.ClassView = joint.dia.ElementView.extend({
       top: bbox.y,
       transform: 'rotate(' + (this.model.get('angle') || 0) + 'deg)'
     });
+
+    let objectModel = this.model.get('objectModel');
+    let bboxPosition = {
+      x: bbox.x,
+      y: bbox.y
+    }
+    objectModel.set('position', bboxPosition);
+
+    let bboxSize = {
+      height: bbox.height,
+      width: bbox.width
+    }
+    objectModel.set('size', bboxSize);
   },
 
   removeBox: function() {
