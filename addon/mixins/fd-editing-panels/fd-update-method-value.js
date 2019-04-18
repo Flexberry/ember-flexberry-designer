@@ -19,25 +19,21 @@ export default Mixin.create({
       columnCaption: 'components.fd-attribute-table.methods.name',
       columnProperty: 'name',
       attrPlaceholder: 'components.fd-attribute-table.methods.name-placeholder',
-      columnClass: 'three'
     },
     {
       columnCaption: 'components.fd-attribute-table.methods.caption',
       columnProperty: 'caption',
       attrPlaceholder: 'components.fd-attribute-table.methods.caption-placeholder',
-      columnClass: 'four'
     },
     {
       columnCaption: 'components.fd-attribute-table.methods.type',
       columnProperty: 'type',
       attrPlaceholder: 'components.fd-attribute-table.methods.type-placeholder',
-      columnClass: 'four'
     },
     {
       columnCaption: 'components.fd-attribute-table.methods.description',
       columnProperty: 'description',
       attrPlaceholder: 'components.fd-attribute-table.methods.description-placeholder',
-      columnClass: 'four'
     },
   ],
 
