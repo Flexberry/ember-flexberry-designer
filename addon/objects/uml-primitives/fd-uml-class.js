@@ -5,6 +5,7 @@
 import { computed } from '@ember/object';
 import $ from 'jquery';
 import { isBlank } from '@ember/utils';
+import { isArray } from '@ember/array';
 
 import joint from 'npm:jointjs';
 
@@ -53,7 +54,8 @@ export default FdUmlElement.extend({
       return this.get('primitive.AttributesTxt.Text').split('\n');
     },
     set(key, value) {
-      this.set('primitive.AttributesTxt.Text', value);
+      let attributesTxt = (isArray(value)) ? value.toString().replace(',', '\n') : value;
+      this.set('primitive.AttributesTxt.Text', attributesTxt);
       return value;
     },
   }),
@@ -70,43 +72,8 @@ export default FdUmlElement.extend({
       return this.get('primitive.MethodsTxt.Text').split('\n');
     },
     set(key, value) {
-      this.set('primitive.MethodsTxt.Text', value);
-      return value;
-    },
-  }),
-
-  /**
-    Primitive position.
-
-    @property position
-    @type Object
-  */
-
-  position: computed('primitive.Location', {
-    get(key) {
-      return this.get('primitive.Location');
-    },
-    set(key, value) {
-      this.set('primitive.Location.X', value.x);
-      this.set('primitive.Location.Y', value.y);
-      return value;
-    },
-  }),
-
-  /**
-    Primitive size.
-
-    @property size
-    @type Object
-  */
-
-  size: computed('primitive.Size', {
-    get(key) {
-      return this.get('primitive.Size');
-    },
-    set(key, value) {
-      this.set('primitive.Size.Height', value.height);
-      this.set('primitive.Size.Width', value.width);
+      let methodsTxt = (isArray(value)) ? value.toString().replace(',', '\n') : value;
+      this.set('primitive.MethodsTxt.Text', methodsTxt);
       return value;
     },
   }),
@@ -117,9 +84,8 @@ export default FdUmlElement.extend({
     @method JointJS
   */
   JointJS() {
-    let properties = this.getProperties('id', 'repositoryObject', 'name', 'stereotype', 'size', 'position', 'methods', 'attributes');
     if (this.get('collapsed')) {
-      return new ClassCollapsed(properties);
+      return new ClassCollapsed({ objectModel: this });
     }
 
     return new Class({ objectModel: this });
@@ -362,7 +328,8 @@ joint.shapes.flexberry.uml.ClassView = joint.dia.ElementView.extend({
       let $stereotypeInput = this.$box.find('.class-stereotype-input');
       $stereotypeInput.val(stereotype);
       $stereotypeInput.prop('rows', rows.length);
-      this.model.set('stereotype', stereotype.slice(1, -1));
+      let objectModel = this.model.get('objectModel');
+      objectModel.set('stereotype', stereotype.slice(1, -1));
       this.model.updateRectangles();
     }.bind(this));
 
@@ -410,17 +377,10 @@ joint.shapes.flexberry.uml.ClassView = joint.dia.ElementView.extend({
     });
 
     let objectModel = this.model.get('objectModel');
-    let bboxPosition = {
-      x: bbox.x,
-      y: bbox.y
-    }
-    objectModel.set('position', bboxPosition);
-
-    let bboxSize = {
-      height: bbox.height,
-      width: bbox.width
-    }
-    objectModel.set('size', bboxSize);
+    objectModel.set('x', bbox.x);
+    objectModel.set('y', bbox.y);
+    objectModel.set('height', bbox.height);
+    objectModel.set('width', bbox.width);
   },
 
   removeBox: function() {
