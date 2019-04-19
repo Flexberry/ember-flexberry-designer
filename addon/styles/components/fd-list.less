@@ -49,12 +49,21 @@
 		}
 	}
 	.flexberry-toggler {
-		.title.active {
-			margin-bottom: 2rem;
+		.title {
+			position: relative;
+			left: -1.6rem;
+			&.active {
+				margin-bottom: 2rem;
+			}
 		}
 		.flexberry-toggler-content {
-			.row > .column {
-				padding: @fdListColPadding 0;
+			.row {
+				&:last-child {
+					border-bottom: none;
+				}
+				& > .column {
+					padding: @fdListColPadding 0;
+				}
 			}
 		}
 	}
