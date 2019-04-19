@@ -33,7 +33,19 @@
 		padding: @fdListColPadding 0;
 
 		.fd-search-input {
-			margin-top: @fdListColPadding;
+			margin-top: -@fdListColPadding;
+		}
+	}
+
+	.ui.selection.dropdown {
+		padding: 0 1.975em 0 0;
+	
+		.menu {
+			width: auto;
+		}
+
+		> .dropdown.icon {
+			padding: 0 0.91666667em;
 		}
 	}
 }

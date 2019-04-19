@@ -1,4 +1,4 @@
-import { computed } from '@ember/object';
+import { computed, get } from '@ember/object';
 import { isArray } from '@ember/array';
 import { isNone } from '@ember/utils';
 import $ from 'jquery';
@@ -111,7 +111,7 @@ export let DescriptionView = joint.dia.LinkView.extend({
   },
 
   updateBox: function() {
-    this.updateInputsWidth(this.updateInputsArray);
+    this.updateInputsWidth(get(this, 'updateInputsArray'));
 
     // Update labels offset.
     let vertices = this.model.get('vertices') || [];

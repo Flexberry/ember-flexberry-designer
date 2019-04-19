@@ -112,12 +112,7 @@ FdActionsForUcdPrimitivesMixin, {
     return type.split('-').pop();
   }),
 
-  /**
-    See [EmberJS API](https://emberjs.com/).
-
-    @method didInsertElement
-  */
-  didInsertElement() {
+  init() {
     this._super(...arguments);
 
     next(() => {

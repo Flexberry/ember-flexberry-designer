@@ -33,6 +33,7 @@
   display: block;
   margin: 0 auto;
   background-color: transparent;
+  width: 0;
   &.class-name-input {
     font-weight: bold;
     text-align: center;
@@ -153,13 +154,14 @@
 
   .ui.button {
     background: @sidebarBg;
-    border-radius: 1rem;
+    border-radius: 0.9rem;
+    border: 4px solid transparent;
     margin: 5px;
     padding: 0.55em;
 
     &:hover,
     &.active {
-      background-color: fade(@sidebarBg, 20%);
+      border-color: @blue;
     }
   }
 }
