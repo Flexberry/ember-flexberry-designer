@@ -8,14 +8,14 @@
       {{flexberry-dropdown
         items=stageItems.names
         value=stageValue
-        class='fluid input'
+        class='compact'
         onChange=(if deactivateActions '' (action "changeStageValue"))
       }}
       {{#if stageValue}}
         {{flexberry-dropdown
           items=classItems.names
           value=classValue
-          class='fluid input'
+          class='compact'
           onChange=(if deactivateActions '' (action "changeClassValue"))
         }}
       {{/if}}
