@@ -19,7 +19,10 @@ export default FdUmlLink.extend({
   */
   JointJS() {
     let properties = this.getProperties('id', 'source', 'target', 'vertices', 'labels');
-    return new LinkInheritance(properties);
+    let ret = new LinkInheritance(properties);
+    ret.toolMarkup = "<g/>";
+    ret.arrowheadMarkup  = "<g/>";
+    return ret;
   },
 });
 
