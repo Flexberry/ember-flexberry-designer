@@ -25,7 +25,16 @@ export default FdUmlElement.extend({
     @property name
     @type String
   */
-  name: computed.alias('primitive.Name.Text'),
+  name: computed.alias('primitive.Name.Text', {
+    get() {
+      return this.get('primitive.Name.Text');
+    },
+    set(key, value) {
+      let nameTxt = (isArray(value)) ? value.join('\n') : value;
+      this.set('primitive.Name.Text', nameTxt);
+      return value;
+    },
+  }),
 
   /**
     Stereotype of the class.
@@ -33,7 +42,16 @@ export default FdUmlElement.extend({
     @property stereotype
     @type String
   */
-  stereotype: computed.alias('primitive.StereotypeTxt.Text'),
+  stereotype: computed('primitive.StereotypeTxt.Text', {
+    get() {
+      return this.get('primitive.StereotypeTxt.Text');
+    },
+    set(key, value) {
+      let stereotypeTxt = (isArray(value)) ? value.join('\n') : value;
+      this.set('primitive.StereotypeTxt.Text', stereotypeTxt);
+      return value;
+    },
+  }),
 
   /**
     Indicates that the class is in a collapsed state.
@@ -50,11 +68,11 @@ export default FdUmlElement.extend({
     @type Array
   */
   attributes: computed('primitive.AttributesTxt.Text', {
-    get(key) {
+    get() {
       return this.get('primitive.AttributesTxt.Text').split('\n');
     },
     set(key, value) {
-      let attributesTxt = (isArray(value)) ? value.toString().replace(',', '\n') : value;
+      let attributesTxt = (isArray(value)) ? value.join('\n') : value;
       this.set('primitive.AttributesTxt.Text', attributesTxt);
       return value;
     },
@@ -68,11 +86,11 @@ export default FdUmlElement.extend({
   */
 
   methods: computed('primitive.MethodsTxt.Text', {
-    get(key) {
+    get() {
       return this.get('primitive.MethodsTxt.Text').split('\n');
     },
     set(key, value) {
-      let methodsTxt = (isArray(value)) ? value.toString().replace(',', '\n') : value;
+      let methodsTxt = (isArray(value)) ? value.join('\n') : value;
       this.set('primitive.MethodsTxt.Text', methodsTxt);
       return value;
     },
