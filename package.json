@@ -1,6 +1,6 @@
 {
   "name": "ember-flexberry-designer",
-  "version": "0.3.0-beta.3",
+  "version": "0.6.0",
   "description": "CASE addon for ember-flexberry applications",
   "keywords": [
     "ember-addon",
