@@ -1,5 +1,6 @@
 @fdListColPadding: 0.5em;
-.ui.grid.fd-list {
+.ui.grid.fd-list,
+.ui.grid.fd-list-edited {
 	> .row {
 		border-bottom: @hr;
 		margin: 0 1rem;
@@ -36,4 +37,7 @@
 		}
 	}
 }
-  
+
+.ui.grid.fd-list-edited > .row:first-child {
+	border-top: @hr;
+}  
