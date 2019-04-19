@@ -102,11 +102,13 @@ export default FdUmlElement.extend({
     @method JointJS
   */
   JointJS() {
+    let properties = this.getProperties('id', 'size', 'position');
+    properties.objectModel = this;
     if (this.get('collapsed')) {
-      return new ClassCollapsed({ objectModel: this });
+      return new ClassCollapsed(properties);
     }
 
-    return new Class({ objectModel: this });
+    return new Class(properties);
   },
 });
 
@@ -151,6 +153,24 @@ export let BaseClass = joint.shapes.basic.Generic.define('flexberry.uml.BaseClas
     this.on('change:name change:stereotype change:attributes change:methods', function() {
       this.updateRectangles();
       this.trigger('uml-update');
+    }, this);
+
+    this.on('change:size', function(element, newSize) {
+      let objectModel = this.get('objectModel');
+      if (objectModel) {
+        objectModel.set('height', newSize.height);
+        objectModel.set('width', newSize.width);
+        this.trigger('uml-update');
+      }
+    }, this);
+
+    this.on('change:position', function(element, newPosition) {
+      let objectModel = this.get('objectModel');
+      if (objectModel) {
+        objectModel.set('x', newPosition.x);
+        objectModel.set('y', newPosition.y);
+        this.trigger('uml-update');
+      }
     }, this);
 
     joint.shapes.basic.Generic.prototype.initialize.apply(this, arguments);
@@ -393,12 +413,6 @@ joint.shapes.flexberry.uml.ClassView = joint.dia.ElementView.extend({
       top: bbox.y,
       transform: 'rotate(' + (this.model.get('angle') || 0) + 'deg)'
     });
-
-    let objectModel = this.model.get('objectModel');
-    objectModel.set('x', bbox.x);
-    objectModel.set('y', bbox.y);
-    objectModel.set('height', bbox.height);
-    objectModel.set('width', bbox.width);
   },
 
   removeBox: function() {
