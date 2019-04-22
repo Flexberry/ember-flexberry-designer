@@ -133,10 +133,6 @@ export let BaseClass = joint.shapes.basic.Generic.define('flexberry.uml.BaseClas
     '.flexberry-uml-footer-rect': { 'stroke': 'black', 'stroke-width': 1, 'fill': '#ffffff', 'fill-opacity': 0 },
   },
 
-  name: '',
-  attributes: [],
-  methods: [],
-
   // Inputs padding by X.
   widthPadding: 15,
 
@@ -150,11 +146,6 @@ export let BaseClass = joint.shapes.basic.Generic.define('flexberry.uml.BaseClas
   ].join(''),
 
   initialize() {
-    this.on('change:name change:stereotype change:attributes change:methods', function() {
-      this.updateRectangles();
-      this.trigger('uml-update');
-    }, this);
-
     this.on('change:size', function(element, newSize) {
       let objectModel = this.get('objectModel');
       if (objectModel) {
@@ -173,18 +164,19 @@ export let BaseClass = joint.shapes.basic.Generic.define('flexberry.uml.BaseClas
       }
     }, this);
 
+
     joint.shapes.basic.Generic.prototype.initialize.apply(this, arguments);
   },
 
   getClassName() {
-    return this.get('name');
+    return this.get('objectModel.name');
   },
 
   getRectangles() {
     return [
       { type: 'header', text: this.getClassName(), element: this },
-      { type: 'body', text: this.get('attributes'), element: this },
-      { type: 'footer', text: this.get('methods'), element: this }
+      { type: 'body', text: this.get('objectModel.attributes'), element: this },
+      { type: 'footer', text: this.get('objectModel.methods'), element: this }
     ];
   },
 
@@ -240,10 +232,8 @@ export let BaseClass = joint.shapes.basic.Generic.define('flexberry.uml.BaseClas
   @constructor
 */
 export let Class = BaseClass.define('flexberry.uml.Class', {
-  stereotype: '',
-}, {
   getClassName() {
-    return [this.get('name'), this.get('stereotype')];
+    return [this.get('objectModel.name'), this.get('objectModel.stereotype')];
   },
 });
 
@@ -371,19 +361,21 @@ joint.shapes.flexberry.uml.ClassView = joint.dia.ElementView.extend({
       this.model.updateRectangles();
     }.bind(this));
 
+    let objectModel = this.model.get('objectModel');
     let classNameInput = this.$box.find('.class-name-input');
     let classStereotypeInput = this.$box.find('.class-stereotype-input');
     let attributesInput = this.$box.find('.attributes-input');
     let methodsInput = this.$box.find('.methods-input');
-    classNameInput.prop('rows', this.model.get('name').split(/[\n\r|\r|\n]/).length || 1);
-    classNameInput.val(this.model.get('name'));
-    classStereotypeInput.prop('rows', this.model.get('stereotype').split(/[\n\r|\r|\n]/).length || 1);
-    classStereotypeInput.val(this.model.get('stereotype'));
 
-    attributesInput.prop('rows', this.model.get('attributes').length || 1);
-    attributesInput.val(this.model.get('attributes').join('\n'));
-    methodsInput.prop('rows', this.model.get('methods').length || 1);
-    methodsInput.val(this.model.get('methods').join('\n'));
+    classNameInput.prop('rows', objectModel.get('name').split(/[\n\r|\r|\n]/).length || 1);
+    classNameInput.val(objectModel.get('name'));
+    classStereotypeInput.prop('rows', objectModel.get('stereotype').split(/[\n\r|\r|\n]/).length || 1);
+    classStereotypeInput.val(objectModel.get('stereotype'));
+
+    attributesInput.prop('rows', objectModel.get('attributes').length || 1);
+    attributesInput.val(objectModel.get('attributes').join('\n'));
+    methodsInput.prop('rows', objectModel.get('methods').length || 1);
+    methodsInput.val(objectModel.get('methods').join('\n'));
 
     // Update the box position whenever the underlying model changes.
     this.model.on('change', this.updateBox, this);
