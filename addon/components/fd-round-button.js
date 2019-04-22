@@ -19,5 +19,11 @@ export default FlexberryButtonComponent.extend({
     next(() => {
       $(this.element).addClass(this.get('colorClass'));
     });
+  },
+
+  actions: {
+    buttonClicked(param) {
+      this.onButtonClicked(param);
+    }
   }
 });

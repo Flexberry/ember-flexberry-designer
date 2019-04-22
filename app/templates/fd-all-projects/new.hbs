@@ -52,12 +52,18 @@
   <div class="ui stackable grid">
     <div class="center aligned two column row">
       <div class="column">
-        {{#link-to "fd-all-projects"}}
-          {{t "forms.fd-all-projects.cancel"}}
-        {{/link-to}}
+        {{fd-round-button
+          iconClass="icon-fd-x-mark-thin" 
+          caption=(t "forms.fd-all-projects.cancel")
+          onButtonClicked=(action 'cancelButton')
+        }}
       </div>
       <div class="column">
-        {{fd-button caption=(t "forms.fd-all-projects.create-project")}}
+        {{fd-round-button 
+          iconClass="icon-fd-cloud-upload-thin" 
+          colorClass="blue" 
+          caption=(t "forms.fd-all-projects.create-project")
+        }}
       </div>
     </div>
   </div>

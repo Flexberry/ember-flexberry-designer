@@ -19,10 +19,12 @@
   </div>
   <div class="ui stackable grid">
     <div class="center aligned column">
-      <button class="ui icon basic button" {{action send "saveAndGenerate" settings}}>
-        <i class="stop icon-fd-shipping-box"></i>
-        {{t "forms.fd-generation.save-and-generate"}}
-      </button>
+      {{fd-round-button 
+        iconClass="icon-fd-shipping-box" 
+        colorClass="blue" 
+        caption=(t "forms.fd-generation.save-and-generate")
+        onButtonClicked=(action "saveAndGenerateClick" settings)
+      }}
     </div>
   </div>
 </div>
