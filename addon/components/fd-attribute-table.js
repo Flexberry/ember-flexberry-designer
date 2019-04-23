@@ -4,7 +4,7 @@ import layout from '../templates/components/fd-attribute-table';
 
 export default Component.extend({
   layout,
-  classNames: ['row'],
+  classNames: ['ui equal width grid fd-table'],
 
   /**
     Table headers.

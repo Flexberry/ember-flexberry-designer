@@ -1,5 +1,4 @@
 @selectionBorder: none;
-@selectionPadding: 0;
 @selectionMinHeight: 1em;
 
 /* Visible Hover */
