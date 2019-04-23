@@ -105,9 +105,11 @@ export default DS.Transform.extend({
       for (let baseLinkId in linkTree[parentClassId]) {
         let baseLink = elements[baseLinkId];
         let startMultText;
+        let endMultText;
         if ('StartMultTxt' in baseLink) {
           startMultText = baseLink.StartMultTxt.Text;
-          baseLink.StartMultTxt.Text = '';
+          endMultText = baseLink.EndMultTxt.Text;
+          baseLink.EndMultTxt.Text = '';
         }
 
         let EndPrimitiveRef = baseLink.EndPrimitive.$ref;
@@ -162,8 +164,8 @@ export default DS.Transform.extend({
         }
         baseLink.EndPrimitive.$ref = EndPrimitiveRef;
         baseLink.EndLE.Primitive.$ref = EndPrimitiveRef;
-        if (startMultText) {
-          baseLink.EndMultTxt.Text = startMultText;
+        if (endMultText) {
+          baseLink.EndMultTxt.Text = endMultText;
         }
         elements[baseLink.$id] = baseLink;
       }
