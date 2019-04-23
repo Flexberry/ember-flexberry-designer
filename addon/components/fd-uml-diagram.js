@@ -142,11 +142,11 @@ export default Component.extend({
         case 'flexberry.uml.Generalization':
         case 'flexberry.uml.LinkInheritance':
           if (this.indexOf(ret.attributes.source.id) >= 0) {
-            ret.attributes.attrs[".marker-arrowhead-group-source"]=  {"display":"none"};
+            ret.attributes.attrs[".marker-arrowhead-group-source"] = {"display":"none"};
           }
 
           if (this.indexOf(ret.attributes.target.id) >= 0) {
-            ret.attributes.attrs[".marker-arrowhead-group-target"]=  {"display":"none"};
+            ret.attributes.attrs[".marker-arrowhead-group-target"] = {"display":"none"};
           }
 
 
