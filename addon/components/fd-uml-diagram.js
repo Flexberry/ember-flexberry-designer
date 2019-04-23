@@ -149,7 +149,6 @@ export default Component.extend({
             ret.attributes.attrs[".marker-arrowhead-group-target"] = {"display":"none"};
           }
 
-
       }
       return ret;
     },
