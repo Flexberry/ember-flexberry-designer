@@ -125,10 +125,39 @@ export default Component.extend({
     paper.on('blank:pointerclick', this._blankPointerClick, this);
     paper.on('element:pointerclick', this._elementPointerClick, this);
     paper.on('blank:contextmenu', this._blankContextMenu, this);
-
     graph.addCells(elements.map(e => e.JointJS(graph)));
-    graph.addCells(links.map(l => l.JointJS(graph)));
+    let cells = graph.getCells();
+    let linkConnectorsIds = [];
+    for (let i = 0; i < cells.length; i++) {
+      let cell = cells[i];
+      if (cell.attributes.type == "flexberry.uml.LinkConnector") {
+        linkConnectorsIds.push(cell.attributes.id);
+      }
+    }
+    graph.addCells(links.map(function(l) {
+      let ret = l.JointJS(graph);
+      switch (ret.attributes.type) {
+        case 'flexberry.uml.Aggregation':
+        case 'flexberry.uml.Association':
+        case 'flexberry.uml.Generalization':
+        case 'flexberry.uml.LinkInheritance':
+          if (this.indexOf(ret.attributes.source.id) >= 0) {
+            ret.attributes.attrs[".marker-arrowhead-group-source"]=  {"display":"none"};
+          }
+
+          if (this.indexOf(ret.attributes.target.id) >= 0) {
+            ret.attributes.attrs[".marker-arrowhead-group-target"]=  {"display":"none"};
+          }
+
+
+      }
+      return ret;
+    },
+      linkConnectorsIds
+    )
+    );
   },
+
 
   /**
     Handler event 'blank:pointerclick'.
