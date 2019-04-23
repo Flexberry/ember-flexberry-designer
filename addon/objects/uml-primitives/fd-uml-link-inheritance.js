@@ -19,10 +19,8 @@ export default FdUmlLink.extend({
   */
   JointJS() {
     let properties = this.getProperties('id', 'source', 'target', 'vertices', 'labels');
-    let ret = new LinkInheritance(properties);
-    ret.toolMarkup = "<g/>";
-    return ret;
-  },
+    return new LinkInheritance(properties);
+  }
 });
 
 /**
@@ -36,6 +34,5 @@ export default FdUmlLink.extend({
 */
 export let LinkInheritance = LinkWithUnderline.define('flexberry.uml.LinkInheritance', {
   attrs: {
-//     '.marker-arrowhead-group-target': { display:"none" },
   }
 });

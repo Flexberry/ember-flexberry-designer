@@ -134,6 +134,7 @@ export default Component.extend({
         linkConnectorsIds.push(cell.attributes.id);
       }
     }
+
     graph.addCells(links.map(function(l) {
       let ret = l.JointJS(graph);
       switch (ret.attributes.type) {
@@ -143,18 +144,19 @@ export default Component.extend({
         case 'flexberry.uml.LinkInheritance':
           if (this.indexOf(ret.attributes.source.id) >= 0) {
             ret.attributes.attrs[".marker-arrowhead-group-source"] = {"display":"none"};
+            ret.toolMarkup = "<g/>";
           }
 
           if (this.indexOf(ret.attributes.target.id) >= 0) {
             ret.attributes.attrs[".marker-arrowhead-group-target"] = {"display":"none"};
+            ret.toolMarkup = "<g/>";
           }
-
       }
+
       return ret;
     },
       linkConnectorsIds
-    )
-    );
+    ));
   },
 
 
