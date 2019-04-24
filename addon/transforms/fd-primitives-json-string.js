@@ -142,9 +142,11 @@ export default DS.Transform.extend({
             linkConnector = this._linkConnector(X, Y);
             elements[linkConnector.$id] = linkConnector;
             baseLink.EndPrimitive.$ref = linkConnector.$id;
+            baseLink.EndPoint.X = X;
+            baseLink.EndPoint.Y = Y;
 //             baseLink.EndLE.Primitive.$ref = linkConnector.$id;
             elements[baseLink.$id] = baseLink;
-            baseLink = this._toConnectorLink(linkConnector.$id, EndPrimitiveRef);
+            baseLink = this._toConnectorLink(linkConnector.$id, EndPrimitiveRef, X, Y);
             baseLink.Points.push(crossPoint);
           }
 
@@ -167,6 +169,9 @@ export default DS.Transform.extend({
           baseLink.Points.push(baseLinkPoints[nextPointNo]);
           nextPointNo += 1;
         }
+        let lastPoint = baseLinkPoints[nextPointNo-1];
+        baseLink.EndPoint.X = lastPoint.X;
+        baseLink.EndPoint.Y = lastPoint.Y;
         baseLink.EndPrimitive.$ref = EndPrimitiveRef;
         baseLink.EndLE.Primitive.$ref = EndPrimitiveRef;
         if (endMultText) {
@@ -227,7 +232,7 @@ export default DS.Transform.extend({
     return linkConnector;
   },
 
-  _toConnectorLink(fromUuid, toUuid) {
+  _toConnectorLink(fromUuid, toUuid, startX, startY) {
     let toConnectorLinkUuid = '{' + uuid.v4() + '}';
     let toConnectorLink = {
       '$id': toConnectorLinkUuid,
@@ -265,7 +270,19 @@ export default DS.Transform.extend({
       "EndRoleTxt": {
         "$type": "STORMCASE.Primitives.TextBlock, Repository",
         "Text": "",
-      }
+      },
+      "StartPoint": {
+        "$type": "System.Drawing.Point, System.Drawing",
+        "IsEmpty": false,
+        "X": startX,
+        "Y": startY
+      },
+      "EndPoint": {
+        "$type": "System.Drawing.Point, System.Drawing",
+        "IsEmpty": false,
+        "X": startX,
+        "Y": startY
+      },
 
     };
     return toConnectorLink;
