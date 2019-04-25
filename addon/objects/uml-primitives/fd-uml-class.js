@@ -25,7 +25,7 @@ export default FdUmlElement.extend({
     @property name
     @type String
   */
-  name: computed.alias('primitive.Name.Text', {
+  name: computed('primitive.Name.Text', {
     get() {
       return this.get('primitive.Name.Text');
     },
@@ -84,7 +84,6 @@ export default FdUmlElement.extend({
     @property methods
     @type Array
   */
-
   methods: computed('primitive.MethodsTxt.Text', {
     get() {
       return this.get('primitive.MethodsTxt.Text').split('\n');
@@ -163,7 +162,6 @@ export let BaseClass = joint.shapes.basic.Generic.define('flexberry.uml.BaseClas
         this.trigger('uml-update');
       }
     }, this);
-
 
     joint.shapes.basic.Generic.prototype.initialize.apply(this, arguments);
   },

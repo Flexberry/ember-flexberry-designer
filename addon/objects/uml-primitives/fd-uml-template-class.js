@@ -3,6 +3,7 @@
 */
 
 import { computed } from '@ember/object';
+import { isArray } from '@ember/array';
 import $ from 'jquery';
 import joint from 'npm:jointjs';
 
@@ -23,7 +24,16 @@ export default FdUmlClass.extend({
     @property params
     @type String
   */
-  params: computed.alias('primitive.TemplateTxt.Text'),
+  params: computed('primitive.TemplateTxt.Text', {
+    get() {
+      return this.get('primitive.TemplateTxt.Text').split('\n');
+    },
+    set(key, value) {
+      let paramsTxt = (isArray(value)) ? value.join('\n') : value;
+      this.set('primitive.TemplateTxt.Text', paramsTxt);
+      return value;
+    },
+  }),
 
   /**
     See {{#crossLink "FdUmlPrimitive/JointJS:method"}}here{{/crossLink}}.
@@ -31,8 +41,8 @@ export default FdUmlClass.extend({
     @method JointJS
   */
   JointJS() {
-    let properties = this.getProperties('id', 'name', 'size', 'position', 'attributes', 'methods', 'params', 'stereotype');
-
+    let properties = this.getProperties('id', 'size', 'position');
+    properties.objectModel = this;
     return new TemplateClass(properties);
 
   },
@@ -74,8 +84,6 @@ export let TemplateClass = Class.define('flexberry.uml.TemplateClass', {
     '.view-rect': { 'x': -1, 'y': -1, 'fill': 'white' },
     '.not-view-rect': { 'x': -1, 'y': -1, 'fill': 'black' }
   },
-
-  params: [],
 }, {
   markup: [
     '<g class="rotatable">',
@@ -93,13 +101,13 @@ export let TemplateClass = Class.define('flexberry.uml.TemplateClass', {
   ].join(''),
 
   getRectangles() {
-    let params = this.get('params');
+    let params = this.get('objectModel.params');
     let lines = Array.isArray(params) ? params : [params];
     return [
       { type: 'params', text: lines, element: this },
       { type: 'header', text: this.getClassName(), element: this },
-      { type: 'body', text: this.get('attributes'), element: this },
-      { type: 'footer', text: this.get('methods'), element: this }
+      { type: 'body', text: this.get('objectModel.attributes'), element: this },
+      { type: 'footer', text: this.get('objectModel.methods'), element: this }
     ];
   },
 
@@ -184,12 +192,14 @@ joint.shapes.flexberry.uml.TemplateClassView = joint.shapes.flexberry.uml.ClassV
       let textareaText = $textarea.val();
       let rows = textareaText.split(/[\n\r|\r|\n]/);
       $textarea.prop('rows', rows.length);
-      this.model.set('params', textareaText);
+      let objectModel = this.model.get('objectModel');
+      objectModel.set('params', textareaText);
     }.bind(this));
 
+    let objectModel = this.model.get('objectModel');
     let paramsInput = this.$box.find('.params-input');
-    paramsInput.prop('rows', this.model.get('params').split(/[\n\r|\r|\n]/).length || 1);
-    paramsInput.val(this.model.get('params'));
+    paramsInput.prop('rows', objectModel.get('params').length || 1);
+    paramsInput.val(objectModel.get('params').join('\n'));
   },
 
   updateBox: function() {

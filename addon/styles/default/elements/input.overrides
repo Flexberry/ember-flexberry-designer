@@ -1,0 +1,3 @@
+.ui.dropdown.compact.input > input {
+  display: none !important;
+}

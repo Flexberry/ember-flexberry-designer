@@ -3,6 +3,7 @@
 */
 
 import { computed } from '@ember/object';
+import { isArray } from '@ember/array';
 import { isEmpty } from '@ember/utils';
 import joint from 'npm:jointjs';
 
