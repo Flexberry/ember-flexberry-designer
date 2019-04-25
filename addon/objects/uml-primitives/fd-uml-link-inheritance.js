@@ -4,8 +4,8 @@
 
 import FdUmlLink from './fd-uml-link';
 import { Link } from './fd-uml-link';
-// import { MultiplicityView } from './links-view/fd-multiplicity-view';
-// import joint from 'npm:jointjs';
+import { MultiplicityView } from './links-view/fd-multiplicity-view';
+import joint from 'npm:jointjs';
 
 /**
   An object that describes an aggregation link on the UML diagram.
@@ -37,5 +37,9 @@ export default FdUmlLink.extend({
 */
 export let LinkInheritance = Link.define('flexberry.uml.LinkInheritance', {
   attrs: {
+    text: { visibility: 'hidden' },
+    rect: { visibility: 'hidden' }
   }
 });
+
+joint.shapes.flexberry.uml.LinkInheritanceView = MultiplicityView;
