@@ -164,7 +164,6 @@ export default Controller.extend({
   savePrimitives() {
     let model = this.get('selectedElement.model');
     let primitives = model.get('primitives');
-    console.log(primitives);
     model.set('primitivesJsonString', JSON.stringify(primitives));
     let createdClasses = this.get('createdClasses');
     let promises = createdClasses.map(c => c.save());

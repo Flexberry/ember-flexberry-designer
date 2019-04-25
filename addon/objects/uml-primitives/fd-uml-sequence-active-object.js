@@ -83,7 +83,7 @@ export let SequenceDiagramActiveObject = SequenceDiagramObject.define('flexberry
   updateRectangles: function() {
     let attrs = this.get('attrs');
     let objName = this.getObjName();
-    let lines = Array.isArray(objName) ? objName : [objName];
+    let lines = isArray(objName) ? objName : [objName];
 
     let maxStringChars = 0;
     lines.forEach(function (line) {
