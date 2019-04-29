@@ -247,9 +247,7 @@ export let Class = BaseClass.define('flexberry.uml.Class', {
 export let ClassCollapsed = Class.define('flexberry.uml.ClassCollapsed', {}, {
   markup: [
     '<g class="rotatable">',
-    '<g class="scalable">',
     '<rect class="flexberry-uml-header-rect"/>',
-    '</g>',
     '</g>'
   ].join(''),
 
