@@ -19,7 +19,8 @@ export default FdUmlBaseLink.extend({
     @method JointJS
   */
   JointJS() {
-    let properties = this.getProperties('id', 'name', 'source', 'target', 'vertices', 'labels');
+    let properties = this.getProperties('id', 'name', 'source', 'target', 'vertices');
+    properties.objectModel = this;
     if (this.get('type') === 'STORMCASE.UML.ad.Transition, UMLAD') {
       return new Transition(properties);
     } else {

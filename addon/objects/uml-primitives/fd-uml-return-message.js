@@ -37,7 +37,8 @@ export default FdUmlLink.extend({
     @method JointJS
   */
   JointJS() {
-    let properties = this.getProperties('id', 'source', 'target', 'labels');
+    let properties = this.getProperties('id', 'source', 'target');
+    properties.objectModel = this;
     return new ReturnMessage(properties);
   },
 });

@@ -19,6 +19,7 @@ export default FdUmlLink.extend({
   */
   JointJS() {
     let properties = this.getProperties('id', 'source', 'target', 'vertices');
+    properties.objectModel = this;
     return new NoteConnector(properties);
   },
 });

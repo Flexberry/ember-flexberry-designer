@@ -142,7 +142,8 @@ export default FdUmlPrimitive.extend({
     @method JointJS
   */
   JointJS() {
-    let properties = this.getProperties('id', 'name', 'source', 'target', 'vertices', 'labels', 'startPoint', 'endPoint');
+    let properties = this.getProperties('id', 'name', 'source', 'target', 'vertices', 'startPoint', 'endPoint');
+    properties.objectModel = this;
     return new Link(properties);
   }
 });
@@ -157,6 +158,9 @@ export default FdUmlPrimitive.extend({
   @constructor
 */
 export let Link = joint.dia.Link.define('flexberry.uml.Link', {
+
+  objectModel: null,
+
   attrs: {
     text: { 'font-size': '12', 'font-family': 'Arial, helvetica, sans-serif' }
   },
@@ -182,6 +186,35 @@ export let Link = joint.dia.Link.define('flexberry.uml.Link', {
       let endPointA = vertices[vertices.lenght - 1] || this.get('startPoint');
       let endPointB = this.get('endPoint');
       this.updateLabelsPositions(endPointA, endPointB, true);
+
+      this.on('change:source', function(element, newSource) {
+        let objectModel = this.get('objectModel');
+        if (objectModel) {
+          if (!isNone(newSource.id)) {
+            objectModel.source.id = newSource.id;
+          } else {
+            objectModel.startPoint.x = newSource.x;
+            objectModel.startPoint.y = newSource.y;
+          }
+
+          this.trigger('uml-update');
+        }
+      }, this);
+
+      this.on('change:target', function(element, newTarget) {
+        let objectModel = this.get('objectModel');
+        if (objectModel) {
+          if (!isNone(newTarget.id)) {
+            objectModel.target.id = newTarget.id;
+          } else {
+            objectModel.endPoint.x = newTarget.x;
+            objectModel.endPoint.y = newTarget.y;
+          }
+
+          this.trigger('uml-update');
+        }
+      }, this);
+
       joint.dia.Link.prototype.initialize.apply(this, arguments);
     },
 
@@ -246,24 +279,25 @@ export let Link = joint.dia.Link.define('flexberry.uml.Link', {
     },
 
     setLabelText: function (label, text) {
+      let labelsFromModel = this.get('objectModel').labels;
       switch (label) {
         case 'startMultiplicity':
-          this.label(0, { attrs: { text: { text: text, 'font-size': '12', 'font-family': 'Arial, helvetica, sans-serif' } } });
+          labelsFromModel[0] = { attrs: { text: { text: text, 'font-size': '12', 'font-family': 'Arial, helvetica, sans-serif' } } };
           break;
         case 'endMultiplicity':
-          this.label(1, { attrs: { text: { text: text, 'font-size': '12', 'font-family': 'Arial, helvetica, sans-serif' } } });
+          labelsFromModel[1] = { attrs: { text: { text: text, 'font-size': '12', 'font-family': 'Arial, helvetica, sans-serif' } } };
           break;
         case 'description':
-          this.label(2, { attrs: { text: { text: text, 'font-size': '12', 'font-family': 'Arial, helvetica, sans-serif' } } });
+          labelsFromModel[2] = { attrs: { text: { text: text, 'font-size': '12', 'font-family': 'Arial, helvetica, sans-serif' } } };
           break;
         case 'startRole':
-          this.label(3, { attrs: { text: { text: text, 'font-size': '12', 'font-family': 'Arial, helvetica, sans-serif' } } });
+          labelsFromModel[3] = { attrs: { text: { text: text, 'font-size': '12', 'font-family': 'Arial, helvetica, sans-serif' } } };
           break;
         case 'endRole':
-          this.label(4, { attrs: { text: { text: text, 'font-size': '12', 'font-family': 'Arial, helvetica, sans-serif' } } });
+          labelsFromModel[4] = { attrs: { text: { text: text, 'font-size': '12', 'font-family': 'Arial, helvetica, sans-serif' } } };
           break;
         case 'qualified':
-          this.label(5, { attrs: { text: { text: text, 'font-size': '12', 'font-family': 'Arial, helvetica, sans-serif' } } });
+          labelsFromModel[5] = { attrs: { text: { text: text, 'font-size': '12', 'font-family': 'Arial, helvetica, sans-serif' } } };
           break;
         default:
           // eslint-disable-next-line no-console
@@ -275,32 +309,33 @@ export let Link = joint.dia.Link.define('flexberry.uml.Link', {
     },
 
     getLabelText: function (labelName) {
-      let label = {};
+      let labelsModel = this.get('objectModel').labels;
+      let labels = {};
       switch (labelName) {
         case 'startMultiplicity':
-          label = this.label(0);
+          labels = labelsModel[0];
           break;
         case 'endMultiplicity':
-          label = this.label(1);
+          labels = labelsModel[1];
           break;
         case 'description':
-          label = this.label(2);
+          labels = labelsModel[2];
           break;
         case 'startRole':
-          label = this.label(3);
+          labels = labelsModel[3];
           break;
         case 'endRole':
-          label = this.label(4);
+          labels = labelsModel[4];
           break;
         case 'qualified':
-          label = this.label(5);
+          labels = labelsModel[5];
           break;
         default:
           // eslint-disable-next-line no-console
           console.log('ERROR - choose correct label name');
       }
 
-      return get(label, 'attrs.text.text');
+      return get(labels, 'attrs.text.text');
     },
 
     getLabelDistance: function (labelName, isVertical) {
