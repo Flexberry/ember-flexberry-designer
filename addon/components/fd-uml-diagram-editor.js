@@ -93,14 +93,6 @@ FdActionsForUcdPrimitivesMixin, {
   */
   currentTargetElement: undefined,
 
-  /**
-    Stores classes that was created, but not yet saved, in the diagram.
-
-    @property createdClasses
-    @type Ember.Array
-  */
-  createdClasses: A(),
-
   classNames: ['fd-uml-diagram-editor'],
 
   diagramType: computed('model.constructor.modelName', function() {

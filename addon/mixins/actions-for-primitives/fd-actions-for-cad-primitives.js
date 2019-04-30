@@ -11,22 +11,22 @@ import { Composition } from '../../objects/uml-primitives/fd-uml-composition';
 import { Generalization } from '../../objects/uml-primitives/fd-uml-generalization';
 import { Realization } from '../../objects/uml-primitives/fd-uml-realization';
 import { NestedClassAssociation } from '../../objects/uml-primitives/fd-uml-nested-association';
-import { TemplateClass } from '../../objects/uml-primitives/fd-uml-template-class';
-import { Instance } from '../../objects/uml-primitives/fd-uml-instance';
-import { ActiveObject } from '../../objects/uml-primitives/fd-uml-active-object';
-import { MultiObject } from '../../objects/uml-primitives/fd-uml-multi-object';
-import { PropertyObject } from '../../objects/uml-primitives/fd-uml-property-object';
-import { NAryAssociation } from '../../objects/uml-primitives/fd-uml-naryassociation';
+import FdUmlTemplateClass from '../../objects/uml-primitives/fd-uml-template-class';
+import FdUmlInstance from '../../objects/uml-primitives/fd-uml-instance';
+import FdUmlActiveObject from '../../objects/uml-primitives/fd-uml-active-object';
+import FdUmlMultiObject from '../../objects/uml-primitives/fd-uml-multi-object';
+import FdUmlPropertyObject from '../../objects/uml-primitives/fd-uml-property-object';
+import FdUmlNAryAssociation from '../../objects/uml-primitives/fd-uml-naryassociation';
 import { QualifiedAssociation } from '../../objects/uml-primitives/fd-uml-qualified-association';
 import { QualifiedComposition } from '../../objects/uml-primitives/fd-uml-qualified-composition';
 import { QualifiedAggregation } from '../../objects/uml-primitives/fd-uml-qualified-aggregation';
-import { MoreClasses } from '../../objects/uml-primitives/fd-uml-more-classes';
-import { Package } from '../../objects/uml-primitives/fd-uml-package';
+import FdUmlMoreClasses from '../../objects/uml-primitives/fd-uml-more-classes';
+import FdUmlPackage from '../../objects/uml-primitives/fd-uml-package';
 import { ObjectAssociation } from '../../objects/uml-primitives/fd-uml-object-association';
 import { NAryAssociationConnector } from '../../objects/uml-primitives/fd-uml-naryassociation-connector';
 import { Dependency } from '../../objects/uml-primitives/fd-uml-dependency';
 import { findFreeNodeTreeNameIndex } from '../../utils/fd-metods-for-tree';
-import { getJsonForClass } from '../../utils/get-json-for-diagram';
+import { getJsonForClass, getJsonForElement } from '../../utils/get-json-for-diagram';
 
 /**
   Actions for creating joint js elements on cad diagrams.
@@ -43,6 +43,25 @@ export default Mixin.create({
    @default service()
   */
   currentProjectContext: service('fd-current-project-context'),
+
+  /**
+    Add new object to diagram's primitives.
+
+    @method _addToPrimitives
+    @param {Object} umlClass
+   */
+  _addToPrimitives(umlClass) {
+    if (!umlClass) {
+      return;
+    }
+
+    let primitives = this.get('model.primitives');
+    if (isArray(primitives)) {
+      primitives.pushObject(umlClass);
+    } else {
+      this.set('model.primitives', A([ umlClass ]));
+    }
+  },
 
   actions: {
     /**
@@ -71,9 +90,10 @@ export default Mixin.create({
           name: freeName,
           nameStr: freeName,
         });
+        newClass.incrementProperty('referenceCount');
         let umlClass = FdUmlClass.create({ primitive: getJsonForClass(newClass, null, 0, { location: { X, Y } }) });
 
-        this.get('createdClasses').pushObject(newClass);
+        this._addToPrimitives(umlClass);
 
         return umlClass.JointJS();
       }).bind(this), e);
@@ -274,16 +294,18 @@ export default Mixin.create({
      */
     addTemplateClass(e) {
       this.createObjectData((function(x, y) {
-        let newTemplateClassObject = new TemplateClass({
-          position: { x: x, y: y },
-          size: { width: 150, height: 40 },
-          name: '',
-          attributes: [],
-          methods: [],
-          params: ''
-        });
+        let jsonObject = getJsonForElement(
+          'STORMCASE.UML.cad.TemplateClass, UMLCAD',
+          { x, y },
+          { width: 150, height: 40 },
+          { Name: '', AttributesTxt: '', MethodsTxt: '', StereotypeTxt: '', TemplateTxt: '' },
+          { InitialFolded: false, Folded: false }
+        );
+        let templateClass = FdUmlTemplateClass.create({ primitive: jsonObject });
 
-        return newTemplateClassObject;
+        this._addToPrimitives(templateClass);
+
+        return templateClass.JointJS();
       }).bind(this), e);
     },
 
@@ -295,13 +317,17 @@ export default Mixin.create({
      */
     addInstance(e) {
       this.createObjectData((function(x, y) {
-        let newInstanceObject = new Instance({
-          position: { x: x, y: y },
-          size: { width: 80, height: 30 },
-          name: ''
-        });
+        let jsonObject = getJsonForElement(
+          'STORMCASE.UML.cad.Instance, UMLCAD',
+          { x, y },
+          { width: 80, height: 30 },
+          { Name: '' }
+        );
+        let instance = FdUmlInstance.create({ primitive: jsonObject });
 
-        return newInstanceObject;
+        this._addToPrimitives(instance);
+
+        return instance.JointJS();
       }).bind(this), e);
     },
 
@@ -313,13 +339,17 @@ export default Mixin.create({
      */
     addActiveObject(e) {
       this.createObjectData((function(x, y) {
-        let newActiveObject = new ActiveObject({
-          position: { x: x, y: y },
-          size: { width: 80, height: 30 },
-          name: ''
-        });
+        let jsonObject = getJsonForElement(
+          'STORMCASE.UML.cad.ActiveObject, UMLCAD',
+          { x, y },
+          { width: 80, height: 30 },
+          { Name: '' }
+        );
+        let activeObject = FdUmlActiveObject.create({ primitive: jsonObject });
 
-        return newActiveObject;
+        this._addToPrimitives(activeObject);
+
+        return activeObject.JointJS();
       }).bind(this), e);
     },
 
@@ -331,13 +361,17 @@ export default Mixin.create({
      */
     addMultiObject(e) {
       this.createObjectData((function(x, y) {
-        let newMultiObject = new MultiObject({
-          position: { x: x, y: y },
-          size: { width: 80, height: 30 },
-          name: ''
-        });
+        let jsonObject = getJsonForElement(
+          'STORMCASE.UML.cad.MultiObject, UMLCAD',
+          { x, y },
+          { width: 80, height: 30 },
+          { Name: '' }
+        );
+        let multiObject = FdUmlMultiObject.create({ primitive: jsonObject });
 
-        return newMultiObject;
+        this._addToPrimitives(multiObject);
+
+        return multiObject.JointJS();
       }).bind(this), e);
     },
 
@@ -349,13 +383,17 @@ export default Mixin.create({
      */
     addPropertyObject(e) {
       this.createObjectData((function(x, y) {
-        let newPropertyObject = new PropertyObject({
-          position: { x: x, y: y },
-          size: { width: 80, height: 40 },
-          name: ''
-        });
+        let jsonObject = getJsonForElement(
+          'STORMCASE.UML.cad.PropertyObject, UMLCAD',
+          { x, y },
+          { width: 80, height: 40 },
+          { Name: '', Prop: '' }
+        );
+        let propertyObject = FdUmlPropertyObject.create({ primitive: jsonObject });
 
-        return newPropertyObject;
+        this._addToPrimitives(propertyObject);
+
+        return propertyObject.JointJS();
       }).bind(this), e);
     },
 
@@ -367,13 +405,17 @@ export default Mixin.create({
      */
     addNaryAssociation(e) {
       this.createObjectData((function(x, y) {
-        let newNAryAssociationObject = new NAryAssociation({
-          position: { x: x, y: y },
-          size: { width: 40, height: 40 },
-          name: ''
-        });
+        let jsonObject = getJsonForElement(
+          'STORMCASE.UML.cad.NarLink, UMLCAD',
+          { x, y },
+          { width: 40, height: 40 },
+          { Name: '' }
+        );
+        let naryAssociation = FdUmlNAryAssociation.create({ primitive: jsonObject });
 
-        return newNAryAssociationObject;
+        this._addToPrimitives(naryAssociation);
+
+        return naryAssociation.JointJS();
       }).bind(this), e);
     },
 
@@ -476,11 +518,16 @@ export default Mixin.create({
      */
     addMoreClasses(e) {
       this.createObjectData((function(x, y) {
-        let newMoreClassesObject = new MoreClasses({
-          position: { x: x, y: y },
-        });
+        let jsonObject = getJsonForElement(
+          'STORMCASE.UML.cad.MoreClasses, UMLCAD',
+          { x, y },
+          { width: 50, height: 20 }
+        );
+        let moreClassesObject = FdUmlMoreClasses.create({ primitive: jsonObject });
 
-        return newMoreClassesObject;
+        this._addToPrimitives(moreClassesObject);
+
+        return moreClassesObject.JointJS();
       }).bind(this), e);
     },
 
@@ -508,21 +555,24 @@ export default Mixin.create({
     },
 
     /**
-      Handler for click on addPackege button.
+      Handler for click on addPackage button.
 
-      @method actions.addPackege
+      @method actions.addPackage
       @param {jQuery.Event} e event.
      */
-    addPackege(e) {
+    addPackage(e) {
       this.createObjectData((function(x, y) {
-        let newPackageObject = new Package({
-          position: { x: x, y: y },
-          size: { width: 60, height: 40 },
-          name: '',
-          attributes: ''
-        });
+        let jsonObject = getJsonForElement(
+          'STORMCASE.UML.cad.Package, UMLCAD',
+          { x, y },
+          { width: 60, height: 40 },
+          { Name: '', Prop: '' }
+        );
+        let packageObject = FdUmlPackage.create({ primitive: jsonObject });
 
-        return newPackageObject;
+        this._addToPrimitives(packageObject);
+
+        return packageObject.JointJS();
       }).bind(this), e);
     },
 

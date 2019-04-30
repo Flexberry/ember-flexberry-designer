@@ -166,15 +166,11 @@ export let BaseClass = joint.shapes.basic.Generic.define('flexberry.uml.BaseClas
     joint.shapes.basic.Generic.prototype.initialize.apply(this, arguments);
   },
 
-  getClassName() {
-    return this.get('objectModel.name');
-  },
-
   getRectangles() {
     return [
-      { type: 'header', text: this.getClassName(), element: this },
-      { type: 'body', text: this.get('objectModel.attributes'), element: this },
-      { type: 'footer', text: this.get('objectModel.methods'), element: this }
+      { type: 'header', element: this },
+      { type: 'body',  element: this },
+      { type: 'footer',  element: this }
     ];
   },
 
@@ -229,11 +225,7 @@ export let BaseClass = joint.shapes.basic.Generic.define('flexberry.uml.BaseClas
   @namespace flexberry.uml
   @constructor
 */
-export let Class = BaseClass.define('flexberry.uml.Class', {
-  getClassName() {
-    return [this.get('objectModel.name'), this.get('objectModel.stereotype')];
-  },
-});
+export let Class = BaseClass.define('flexberry.uml.Class', {});
 
 /**
   Defines the JointJS element, which represents the UML class in collapsed state.
@@ -253,7 +245,7 @@ export let ClassCollapsed = Class.define('flexberry.uml.ClassCollapsed', {}, {
 
   getRectangles() {
     return [
-      { type: 'header', text: this.getClassName(), element: this }
+      { type: 'header', element: this }
     ];
   },
 });
