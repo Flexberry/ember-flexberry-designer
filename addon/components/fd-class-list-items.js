@@ -18,5 +18,14 @@ export default Component.extend({
     @type Object
     @default undefined
   */
-  entity: undefined
+  entity: undefined,
+
+  /**
+    Flag: indicates whether to show class buttons.
+
+    @property isVisibleButton
+    @type Boolean
+    @default true
+  */
+  isVisibleButton: true,
 });

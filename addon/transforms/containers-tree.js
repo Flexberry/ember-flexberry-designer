@@ -1,4 +1,3 @@
-import { A } from '@ember/array';
 import { isNone } from '@ember/utils';
 import DS from 'ember-data';
 import FdAppStructTree from '../objects/fd-appstruct-tree';
@@ -34,7 +33,7 @@ export default DS.Transform.extend({
         }
       }
 
-      serialized = itemList ? this._getTree(itemList) : A();
+      serialized = itemList ? this._getTree(itemList) : [];
     }
 
     return serialized;
@@ -120,8 +119,8 @@ export default DS.Transform.extend({
   },
 
   _getTree: function(itemList) {
-    let rootTree = A();
-    let copyRootTree = A();
+    let rootTree = [];
+    let copyRootTree = [];
 
     let currentPath = '';
     let currentNodes = null;
@@ -136,7 +135,7 @@ export default DS.Transform.extend({
 
       let className =  item.getAttribute('ClassName') || item.getAttribute('classname');
       if (className !== this._emptyFolderClassName) {
-        currentNodes.nodes.pushObject(FdAppStructTree.create({
+        currentNodes.nodes.push(FdAppStructTree.create({
           text: item.getAttribute('Caption') || item.getAttribute('caption'),
           caption: item.getAttribute('Caption') || item.getAttribute('caption'),
           type: 'property',
@@ -145,7 +144,7 @@ export default DS.Transform.extend({
           id: 'p' + path.length + 'l' + currentNodes.nodes.length + 'i' + i,
           url: item.getAttribute('Url')
         }));
-        currentNodes.copyNodes.pushObject(FdAppStructTree.create({
+        currentNodes.copyNodes.push(FdAppStructTree.create({
           text: item.getAttribute('Caption') || item.getAttribute('caption'),
           caption: item.getAttribute('Caption') || item.getAttribute('caption'),
           type: 'property',
@@ -178,13 +177,13 @@ export default DS.Transform.extend({
     let node = FdAppStructTree.create({
       text: step,
       type: 'folder',
-      children: A(),
-      copyChildren: A(),
+      children: [],
+      copyChildren: [],
       id: 'p' + index + 'l' + nodes.length + 'i' + item
     });
 
-    nodes.pushObject(node);
-    copyNodes.pushObject(node);
+    nodes.push(node);
+    copyNodes.push(node);
     return this._findOrCreateCurrentNodes(node.children, node.copyChildren, steps, index + 1, item);
   }
 

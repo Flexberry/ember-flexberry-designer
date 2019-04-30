@@ -1,4 +1,3 @@
-import { A } from '@ember/array';
 import { moduleFor, test } from 'ember-qunit';
 import FdAppStructTree from 'ember-flexberry-designer/objects/fd-appstruct-tree';
 
@@ -7,7 +6,7 @@ moduleFor('transform:containers-tree', 'Unit | Transform | containers tree');
 // Replace this with your real tests.
 test('it exists', function(assert) {
 
-  let noteNoteObjectModel1 = A([
+  let noteNoteObjectModel1 = [
     FdAppStructTree.create({
       className: 'ПисьмоWebL',
       description: null,
@@ -17,9 +16,9 @@ test('it exists', function(assert) {
       id: 'p2l0i2',
       url: ''
     })
-  ]);
+  ];
 
-  let noteNoteObjectModel2 = A([
+  let noteNoteObjectModel2 = [
     FdAppStructTree.create({
       className: 'ЖурналИмпортаWebL',
       description: null,
@@ -29,14 +28,14 @@ test('it exists', function(assert) {
       id: 'p2l0i3',
       url: ''
     })
-  ]);
+  ];
 
-  let noteObjectModel1 = A([
+  let noteObjectModel1 = [
     FdAppStructTree.create({
       text: 'Настройки',
       type: 'folder',
-      children: A(),
-      copyChildren: A(),
+      children: [],
+      copyChildren: [],
       id: 'p1l0i1',
     }),
     FdAppStructTree.create({
@@ -53,9 +52,9 @@ test('it exists', function(assert) {
       copyChildren: noteNoteObjectModel2,
       id: 'p1l2i3',
     })
-  ]);
+  ];
 
-  let noteObjectModel2 = A([
+  let noteObjectModel2 = [
     FdAppStructTree.create({
       className: 'УчетРабочегоВремениWebL',
       description: 'test',
@@ -83,9 +82,9 @@ test('it exists', function(assert) {
       id: 'p1l2i6',
       url: 'Test'
     }),
-  ]);
+  ];
 
-  let objectModel = A([
+  let objectModel = [
     FdAppStructTree.create({
       text: 'Администрирование',
       type: 'folder',
@@ -100,7 +99,7 @@ test('it exists', function(assert) {
       copyChildren: noteObjectModel2,
       id: 'p0l1i4',
     })
-  ]);
+  ];
 
   let xml = '' +
   '<Containers>' +

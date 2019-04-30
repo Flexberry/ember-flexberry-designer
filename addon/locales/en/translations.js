@@ -36,6 +36,7 @@ import FdUserFormEditFormForm from './forms/fd-user-form-edit-form';
 import FdViewEditFormForm from './forms/fd-view-edit-form';
 import FdVisualEditFormForm from './forms/fd-visual-edit-form-form';
 import FdListformConstructor from './forms/fd-listform-constructor';
+import FdNavigation from './forms/fd-navigation';
 import FdGenerationProcessForm from './forms/fd-generation-process-form';
 import FdGeneration from './forms/fd-generation';
 import FdGenerationListForm from './forms/fd-generation-list-form';
@@ -395,6 +396,7 @@ $.extend(true, translations, {
     'fd-inheritance-edit-form': FdInheritanceEditFormForm,
     'fd-interface-edit-form': FdInterfaceEditFormForm,
     'fd-list-form-edit-form': FdListFormEditFormForm,
+    'fd-navigation': FdNavigation,
     'fd-stage-edit-form': FdStageEditFormForm,
     'fd-system-edit-form': FdSystemEditFormForm,
     'fd-type-edit-form': FdTypeEditFormForm,

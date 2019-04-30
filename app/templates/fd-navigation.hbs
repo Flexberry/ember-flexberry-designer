@@ -1,1 +1,107 @@
-{{outlet}}
+<h2 class='form-header'>
+  {{t "forms.fd-navigation.caption"}}
+</h2>
+
+<form class="ui form flexberry-vertical-form">
+  <div class="ui stackable grid fd-list">
+
+      {{#if (not-eq model.applicationContainers.length 0)}}
+      <div class="panel-wrapper">
+        <div class="closable panel-left">
+          <div class="ui segments">
+            {{
+              fd-ember-jstree
+              actionReceiver=jstreeActionReceiver
+              data=model.applicationContainers
+              searchTermPlaceholder=(t "forms.fd-navigation.tree-search")
+            }}
+          </div>
+        </div>
+      </div>
+      {{/if}}
+      <div class="right floated fourteen wide column">
+
+        <button class="ui basic button table-btn" {{action 'addPage'}}>
+          {{t "forms.fd-navigation.create-page-button"}}
+        </button>
+        <button class="ui basic button table-btn" {{action 'addFolder'}}>
+          {{t "forms.fd-navigation.create-folder-button"}}
+        </button>
+        {{!--{{
+          fd-button
+          caption=(t "forms.fd-navigation.create-page-button")
+          click=(action "addPage")
+        }}
+        {{
+          fd-button
+          caption=(t "forms.fd-navigation.create-folder-button")
+          click=(action "addFolder")
+        }}--}}
+      </div>
+
+  </div>
+</form>
+
+{{#fd-sheet
+  title=(t "forms.fd-navigation.create-page")
+  sheetComponentName=sheetComponentName
+  readonly=true
+}}
+<div class="ui stackable grid fd-list">
+  <div class="row">
+    <div class="five wide column">
+      {{t "forms.fd-navigation.name-custom-page"}}
+    </div>
+    <div class="eleven wide column light-text">
+      {{flexberry-textbox
+        value=model.description
+        class='fluid input'
+        placeholder=(t "forms.fd-navigation.name-custom-page-placeholder")
+      }}
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="five wide column">
+      <div>{{t "forms.fd-navigation.url-custom-page"}}</div>
+    </div>
+    <div class="eleven wide column light-text">
+      {{flexberry-textbox
+        value=model.packet
+        class='fluid input'
+        placeholder=(t "forms.fd-navigation.url-custom-page-placeholder")
+      }}
+    </div>
+  </div>
+
+  <a onclick={{action "addUrl"}}>
+    {{t "forms.fd-navigation.add-custom-page"}}
+  </a>
+</div>
+
+<div class="ui stackable grid fd-list">
+  <h2 class="form-header fluid">
+    <div>{{t "forms.fd-navigation.choose-page"}}</div>
+  </h2>
+
+  <div class="row">
+    <div class="two wide column light-text">
+      {{t "forms.fd-application-model.type-caption"}}
+    </div>
+    <div class="fourteen wide column">
+      {{
+        fd-search-input
+        value=searchValue
+      }}
+    </div>
+  </div>
+  {{#each filteredClasses as |class|}}
+    {{
+      fd-class-list-items
+      entity=class
+      sheetComponentName=sheetComponentName
+      isVisibleButton=false
+    }}
+  {{/each}}
+</div>
+{{/fd-sheet}}
