@@ -157,6 +157,10 @@ export default Controller.extend({
     let promises = A();
     let model = this.get('selectedElement.model');
     let primitives = model.get('primitives');
+    primitives.forEach((primitive) => {
+      primitive.set('isCreated', false);
+    });
+
     let repositoryObjects = primitives.filter(p => p.get('repositoryObject'));
     if (repositoryObjects.length > 0) {
       let store = this.get('store');

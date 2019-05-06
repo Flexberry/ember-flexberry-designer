@@ -96,6 +96,14 @@ export default FdUmlElement.extend({
   }),
 
   /**
+    Class is created.
+
+    @property isCreated
+    @type Boolean
+  */
+  isCreated: false,
+
+  /**
     See {{#crossLink "FdUmlPrimitive/JointJS:method"}}here{{/crossLink}}.
 
     @method JointJS
@@ -335,6 +343,13 @@ joint.shapes.flexberry.uml.ClassView = joint.dia.ElementView.extend({
       let stereotype = this.normalizeStereotype($(evt.target).val());
       this.$box.find('.class-stereotype-input').val(stereotype.slice(1, -1));
       this.model.updateRectangles();
+    }.bind(this));
+
+    this.$box.find('.class-name-input').on('focus', function(evt) {
+      let $textarea = $(evt.currentTarget);
+      let objectModel = this.model.get('objectModel');
+      let isCreated = objectModel.get('isCreated');
+      $textarea.attr('readonly', !isCreated);
     }.bind(this));
 
     this.$box.find('.class-stereotype-input').on('blur', function(evt) {

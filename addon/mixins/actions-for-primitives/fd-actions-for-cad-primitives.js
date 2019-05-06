@@ -91,7 +91,7 @@ export default Mixin.create({
           nameStr: freeName,
         });
         newClass.incrementProperty('referenceCount');
-        let umlClass = FdUmlClass.create({ primitive: getJsonForClass(newClass, null, 0, { location: { X, Y } }) });
+        let umlClass = FdUmlClass.create({ primitive: getJsonForClass(newClass, null, 0, { location: { X, Y } }), isCreated: true });
 
         this._addToPrimitives(umlClass);
 
