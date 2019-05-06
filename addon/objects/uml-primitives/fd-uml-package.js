@@ -3,6 +3,7 @@
 */
 
 import { computed } from '@ember/object';
+import { isArray } from '@ember/array';
 import $ from 'jquery';
 import joint from 'npm:jointjs';
 
@@ -23,16 +24,32 @@ export default FdUmlElement.extend({
     @property name
     @type String
   */
-  name: computed.alias('primitive.Name.Text'),
+  name: computed('primitive.Name.Text', {
+    get() {
+      return this.get('primitive.Name.Text');
+    },
+    set(key, value) {
+      let nameTxt = (isArray(value)) ? value.join('\n') : value;
+      this.set('primitive.Name.Text', nameTxt);
+      return value;
+    },
+  }),
 
   /**
     Package's attributes.
 
     @property attributes
-    @type String
+    @type Array
   */
-  attributes: computed('primitive.Prop.Text', function() {
-    return this.get('primitive.Prop.Text').split('\n');
+  attributes: computed('primitive.Prop.Text', {
+    get() {
+      return this.get('primitive.Prop.Text').split('\n');
+    },
+    set(key, value) {
+      let attributesTxt = (isArray(value)) ? value.join('\n') : value;
+      this.set('primitive.Prop.Text', attributesTxt);
+      return value;
+    },
   }),
 
   /**
@@ -41,8 +58,8 @@ export default FdUmlElement.extend({
     @method JointJS
   */
   JointJS() {
-    let properties = this.getProperties('id', 'name', 'size', 'position', 'attributes');
-
+    let properties = this.getProperties('id', 'size', 'position');
+    properties.objectModel = this;
     return new Package(properties);
 
   },
@@ -73,9 +90,7 @@ export let Package = BaseClass.define('flexberry.uml.Package', {
 }, {
   markup: [
     '<g class="rotatable">',
-    '<g class="scalable">',
     '<g transform="scale(0.8,1)"><rect class="flexberry-uml-header-rect" /></g><rect class="flexberry-uml-body-rect"/>',
-    '</g>',
     '</g>'
   ].join(''),
 
@@ -137,7 +152,7 @@ joint.shapes.flexberry.uml.PackageView = joint.shapes.flexberry.uml.BaseObjectVi
   getRectangles() {
     return [
       { type: 'header', text: this.getObjName(), element: this },
-      { type: 'body', text: this.get('attributes'), element: this },
+      { type: 'body', text: this.get('objectModel.attributes'), element: this },
     ];
   },
 
@@ -148,7 +163,8 @@ joint.shapes.flexberry.uml.PackageView = joint.shapes.flexberry.uml.BaseObjectVi
       let textareaText = $textarea.val();
       let rows = textareaText.split(/[\n\r|\r|\n]/);
       $textarea.prop('rows', rows.length);
-      this.model.set('name', textareaText);
+      let objectModel = this.model.get('objectModel');
+      objectModel.set('name', textareaText);
     }.bind(this));
 
     this.$box.find('.package-header-input').on('input', function (evt) {
@@ -159,8 +175,9 @@ joint.shapes.flexberry.uml.PackageView = joint.shapes.flexberry.uml.BaseObjectVi
       this.model.updateRectangles();
     }.bind(this));
 
+    let objectModel = this.model.get('objectModel');
     let upperInput = this.$box.find('.package-header-input');
-    upperInput.prop('rows', this.model.get('name').split(/[\n\r|\r|\n]/).length || 1);
-    upperInput.val(this.model.get('name'));
+    upperInput.prop('rows', objectModel.get('name').split(/[\n\r|\r|\n]/).length || 1);
+    upperInput.val(objectModel.get('name'));
   }
 });
