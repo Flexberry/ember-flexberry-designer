@@ -101,13 +101,11 @@ export let TemplateClass = Class.define('flexberry.uml.TemplateClass', {
   ].join(''),
 
   getRectangles() {
-    let params = this.get('objectModel.params');
-    let lines = Array.isArray(params) ? params : [params];
     return [
-      { type: 'params', text: lines, element: this },
-      { type: 'header', text: this.getClassName(), element: this },
-      { type: 'body', text: this.get('objectModel.attributes'), element: this },
-      { type: 'footer', text: this.get('objectModel.methods'), element: this }
+      { type: 'params', element: this },
+      { type: 'header', element: this },
+      { type: 'body', element: this },
+      { type: 'footer', element: this }
     ];
   },
 

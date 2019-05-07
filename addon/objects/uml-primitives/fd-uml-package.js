@@ -90,9 +90,7 @@ export let Package = BaseClass.define('flexberry.uml.Package', {
 }, {
   markup: [
     '<g class="rotatable">',
-    '<g class="scalable">',
     '<g transform="scale(0.8,1)"><rect class="flexberry-uml-header-rect" /></g><rect class="flexberry-uml-body-rect"/>',
-    '</g>',
     '</g>'
   ].join(''),
 

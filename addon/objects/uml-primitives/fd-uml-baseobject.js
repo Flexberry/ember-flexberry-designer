@@ -105,9 +105,7 @@ export let BaseObject = joint.shapes.basic.Generic.define('flexberry.uml.BaseObj
 }, {
   markup: [
     '<g class="rotatable">',
-    '<g class="scalable">',
     '<rect class="flexberry-uml-header-rect"/>',
-    '</g>',
     '<text class="flexberry-uml-header-text"/>',
     '</g>'
   ].join(''),

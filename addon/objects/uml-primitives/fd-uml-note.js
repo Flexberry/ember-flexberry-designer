@@ -79,9 +79,7 @@ export let Note = BaseObject.define('flexberry.uml.Note', {
 }, {
   markup: [
     '<g class="rotatable">',
-    '<g class="scalable">',
     '<rect class="flexberry-uml-header-rect"/>',
-    '</g>',
     '<rect class="corner-rect" width="10" height="10"/>',
     '<path class="corner"/>',
     '</g>'

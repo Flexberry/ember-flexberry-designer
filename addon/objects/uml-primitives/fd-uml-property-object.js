@@ -87,9 +87,7 @@ export let PropertyObject = BaseClass.define('flexberry.uml.PropertyObject', {
 }, {
     markup: [
       '<g class="rotatable">',
-      '<g class="scalable">',
       '<rect class="flexberry-uml-header-rect"/><rect class="flexberry-uml-body-rect"/>',
-      '</g>',
       '</g>'
     ].join('')
   });

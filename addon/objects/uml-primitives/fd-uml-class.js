@@ -96,6 +96,14 @@ export default FdUmlElement.extend({
   }),
 
   /**
+    Class is created.
+
+    @property isCreated
+    @type Boolean
+  */
+  isCreated: false,
+
+  /**
     See {{#crossLink "FdUmlPrimitive/JointJS:method"}}here{{/crossLink}}.
 
     @method JointJS
@@ -166,15 +174,11 @@ export let BaseClass = joint.shapes.basic.Generic.define('flexberry.uml.BaseClas
     joint.shapes.basic.Generic.prototype.initialize.apply(this, arguments);
   },
 
-  getClassName() {
-    return this.get('objectModel.name');
-  },
-
   getRectangles() {
     return [
-      { type: 'header', text: this.getClassName(), element: this },
-      { type: 'body', text: this.get('objectModel.attributes'), element: this },
-      { type: 'footer', text: this.get('objectModel.methods'), element: this }
+      { type: 'header', element: this },
+      { type: 'body',  element: this },
+      { type: 'footer',  element: this }
     ];
   },
 
@@ -229,11 +233,7 @@ export let BaseClass = joint.shapes.basic.Generic.define('flexberry.uml.BaseClas
   @namespace flexberry.uml
   @constructor
 */
-export let Class = BaseClass.define('flexberry.uml.Class', {
-  getClassName() {
-    return [this.get('objectModel.name'), this.get('objectModel.stereotype')];
-  },
-});
+export let Class = BaseClass.define('flexberry.uml.Class', {});
 
 /**
   Defines the JointJS element, which represents the UML class in collapsed state.
@@ -247,15 +247,13 @@ export let Class = BaseClass.define('flexberry.uml.Class', {
 export let ClassCollapsed = Class.define('flexberry.uml.ClassCollapsed', {}, {
   markup: [
     '<g class="rotatable">',
-    '<g class="scalable">',
     '<rect class="flexberry-uml-header-rect"/>',
-    '</g>',
     '</g>'
   ].join(''),
 
   getRectangles() {
     return [
-      { type: 'header', text: this.getClassName(), element: this }
+      { type: 'header', element: this }
     ];
   },
 });
@@ -345,6 +343,13 @@ joint.shapes.flexberry.uml.ClassView = joint.dia.ElementView.extend({
       let stereotype = this.normalizeStereotype($(evt.target).val());
       this.$box.find('.class-stereotype-input').val(stereotype.slice(1, -1));
       this.model.updateRectangles();
+    }.bind(this));
+
+    this.$box.find('.class-name-input').on('focus', function(evt) {
+      let $textarea = $(evt.currentTarget);
+      let objectModel = this.model.get('objectModel');
+      let isCreated = objectModel.get('isCreated');
+      $textarea.attr('readonly', !isCreated);
     }.bind(this));
 
     this.$box.find('.class-stereotype-input').on('blur', function(evt) {
