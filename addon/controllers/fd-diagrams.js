@@ -200,6 +200,12 @@ export default Controller.extend({
       this.get('appState').loading();
       this.savePrimitives().then(() => {
         model.save()
+        .then(() => {
+          this.set('isDiagramVisible', false);
+          schedule('afterRender', this, function() {
+            this.set('isDiagramVisible', true);
+          });
+        })
         .catch((error) => {
           this.set('error', error);
         })
