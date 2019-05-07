@@ -1,13 +1,10 @@
 import uuid from 'npm:node-uuid';
 
 /**
-  Get json for element without name.
+  Get json for base primitive.
 */
-let getJsonForBaseElement = function(typeName, location, size, defaultSize, repositoryObject) {
+let getJsonForBasePrimitive = function(typeName, repositoryObject) {
   let uuid1 = '{' + uuid.v4() + '}';
-  location = _normalizeLocation(location);
-  size = _normalizeSize(size, 100, 40);
-  defaultSize = _normalizeSize(defaultSize, 100, 40);
   typeName = typeName || '';
 
   if (repositoryObject) {
@@ -18,17 +15,11 @@ let getJsonForBaseElement = function(typeName, location, size, defaultSize, repo
     repositoryObject = null;
   }
 
-  let baseElementObject = {
+  let basePrimitiveObject = {
     $id: uuid1,
     $type: typeName,
-    CaseName: name,
+    CaseName: null,
     Changed: true,
-    DefaultSize: {
-      $type: 'System.Drawing.Size, System.Drawing',
-      IsEmpty: false,
-      Width: defaultSize.width,
-      Height: defaultSize.height
-    },
     DrawStyle: {
       $type: 'STORMCASE.Primitives.DrawStyle, Repository',
       TextColor: {
@@ -47,38 +38,42 @@ let getJsonForBaseElement = function(typeName, location, size, defaultSize, repo
     Highlighted: false,
     Key: 0,
     LinkedDiagramKeys: [],
-    Location: {
-      $type: 'System.Drawing.Point, System.Drawing',
-      IsEmpty: false,
-      X: location.x,
-      Y: location.y
-    },
-    NeedToDragOthersControls: false,
-    OldLocation: {
-      $type: 'System.Drawing.Point, System.Drawing',
-      IsEmpty: false,
-      X: location.x,
-      Y: location.y
-    },
-    OldSize: {
-      $type: 'System.Drawing.Size, System.Drawing',
-      IsEmpty: false,
-      Width: size.width,
-      Height: size.height
-    },
     RepositoryObject: repositoryObject,
     SelectInnerControls: false,
-    Size: {
-      $type: 'System.Drawing.Size, System.Drawing',
-      IsEmpty: false,
-      Width: size.width,
-      Height: size.height
-    },
     StopEvents: false,
     Valid: true,
     WithLinkedDiagrams: false,
     ZOrder: 1.0,
   };
+
+  return basePrimitiveObject;
+};
+
+/**
+  Get json for element without name.
+*/
+let getJsonForBaseElement = function(typeName, location, size, defaultSize, repositoryObject) {
+  location = _normalizeLocation(location);
+  size = _normalizeSize(size, 100, 40);
+  defaultSize = _normalizeSize(defaultSize, 100, 40);
+  typeName = typeName || '';
+
+  if (repositoryObject) {
+    if (repositoryObject[0] !== '{' || repositoryObject[length - 1] !== '}') {
+      repositoryObject = `{${repositoryObject}}`;
+    }
+  } else {
+    repositoryObject = null;
+  }
+
+  let baseElementObject = getJsonForBasePrimitive(typeName, repositoryObject);
+
+  Object.assign(baseElementObject, { NeedToDragOthersControls: false });
+  Object.assign(baseElementObject, _getJsonForPointBlock('Location', location.x, location.y));
+  Object.assign(baseElementObject, _getJsonForPointBlock('OldLocation', location.x, location.y));
+  Object.assign(baseElementObject, _getJsonForSizeBlock('Size', size.width, size.height));
+  Object.assign(baseElementObject, _getJsonForSizeBlock('OldSize', size.width, size.height));
+  Object.assign(baseElementObject, _getJsonForSizeBlock('DefaultSize', defaultSize.width, defaultSize.height));
 
   return baseElementObject;
 };
@@ -86,20 +81,62 @@ let getJsonForBaseElement = function(typeName, location, size, defaultSize, repo
 /**
   Get json for element with additional properties.
 */
-let getJsonForElement = function(typeName, location, size, blockProperties, properties, defaultSize, repositoryObject) {
+let getJsonForElement = function(typeName, location, size, textProperties, properties, defaultSize, repositoryObject) {
   location = _normalizeLocation(location);
   size = _normalizeSize(size, 100, 40);
   properties = properties || {};
-  blockProperties = blockProperties || {};
+  textProperties = textProperties || {};
   let elementObject = getJsonForBaseElement(typeName, location, size, defaultSize, repositoryObject);
 
-  for (let prop in blockProperties) {
-    Object.assign(elementObject, _getJsonForPropBlock(prop, blockProperties[prop], location, size));
+  for (let prop in textProperties) {
+    Object.assign(elementObject, _getJsonForPropBlock(prop, textProperties[prop], location, size));
   }
 
   Object.assign(elementObject, properties);
 
   return elementObject;
+};
+
+/**
+  Get json for base link.
+*/
+let getJsonForBaseLink = function(typeName, startPrimitive, startPoint, endPrimitive, endPoint, repositoryObject) {
+  startPoint = _normalizeLocation(startPoint);
+  endPoint = _normalizeLocation(endPoint);
+  startPrimitive = startPrimitive || '';
+  endPrimitive = endPrimitive || '';
+
+  let baseLinkObject = getJsonForBasePrimitive(typeName, repositoryObject);
+  let id = baseLinkObject.$id;
+
+  Object.assign(baseLinkObject, { Points: [], PointsIndexesToMove: null });
+  Object.assign(baseLinkObject, _getJsonForPointBlock('StartBorderPoint'));
+  Object.assign(baseLinkObject, _getJsonForPointBlock('EndBorderPoint'));
+  Object.assign(baseLinkObject, _getJsonForPointBlock('StartPoint', startPoint.x, startPoint.y));
+  Object.assign(baseLinkObject, _getJsonForPointBlock('EndPoint', endPoint.x, endPoint.y));
+  Object.assign(baseLinkObject, { StartPrimitive: { $ref: startPrimitive } });
+  Object.assign(baseLinkObject, { EndPrimitive: { $ref: endPrimitive } });
+  Object.assign(baseLinkObject, _getJsonForLEBlock('StartLE', id, startPrimitive, startPoint.x, startPoint.y, true));
+  Object.assign(baseLinkObject, _getJsonForLEBlock('EndLE', id, endPrimitive, endPoint.x, endPoint.y, false));
+
+  return baseLinkObject;
+};
+
+/**
+  Get json for link with additional properties.
+*/
+let getJsonForLink = function(typeName, startPrimitive, startPoint, endPrimitive, endPoint, textProperties, properties, repositoryObject) {
+  properties = properties || {};
+  textProperties = textProperties || {};
+  let linkObject = getJsonForBaseLink(typeName, startPrimitive, startPoint, endPrimitive, endPoint, repositoryObject);
+
+  for (let prop in textProperties) {
+    Object.assign(linkObject, _getJsonForPropBlock(prop, textProperties[prop]));
+  }
+
+  Object.assign(linkObject, properties);
+
+  return linkObject;
 };
 
 /**
@@ -1889,6 +1926,8 @@ let _normalizeSize = function(size, defaultWidth, defaultHeight) {
   Get JSON for property.
 */
 let _getJsonForPropBlock = function(propName, value, location, size) {
+  location = _normalizeLocation(location);
+  size = _normalizeLocation(size);
   let result = {};
   result[propName] =
     {
@@ -1916,18 +1955,6 @@ let _getJsonForPropBlock = function(propName, value, location, size) {
       IsBracket: false,
       IsEditMode: false,
       IsFolded: false,
-      Location: {
-        $type: 'System.Drawing.Point, System.Drawing',
-        IsEmpty: true,
-        X: 0,
-        Y: 0
-      },
-      OldLocation: {
-        $type: 'System.Drawing.Point, System.Drawing',
-        IsEmpty: false,
-        X: location.x,
-        Y: location.y
-      },
       OldRect: {
         $type: 'System.Drawing.RectangleF, System.Drawing',
         X: location.x,
@@ -1939,12 +1966,6 @@ let _getJsonForPropBlock = function(propName, value, location, size) {
         Right: location.x,
         Bottom: 125.0,
         IsEmpty: false
-      },
-      OldSize: {
-        $type: 'System.Drawing.Size, System.Drawing',
-        IsEmpty: false,
-        Width: 100,
-        Height: 15
       },
       Rect: {
         $type: 'System.Drawing.RectangleF, System.Drawing',
@@ -1958,22 +1979,79 @@ let _getJsonForPropBlock = function(propName, value, location, size) {
         Bottom: 0.0,
         IsEmpty: true
       },
-      Size: {
-        $type: 'System.Drawing.Size, System.Drawing',
-        IsEmpty: true,
-        Width: 0,
-        Height: 0
-      },
       StopEvents: false,
       Text: value,
       Visible: true
     };
+
+  Object.assign(result[propName], _getJsonForPointBlock('Location'));
+  Object.assign(result[propName], _getJsonForPointBlock('OldLocation', location.x, location.y));
+  Object.assign(result[propName], _getJsonForSizeBlock('Size'));
+  Object.assign(result[propName], _getJsonForSizeBlock('OldSize', 100, 15));
+
+  return result;
+};
+
+/*
+  Get JSON for LE block.
+*/
+let _getJsonForLEBlock = function(propName, id, primitiveId, x, y, isStart) {
+  x = x || 0;
+  y = y || 0;
+  let result = {};
+  result[propName] = {
+    $type: 'STORMCASE.Primitives.LEInformation, Repository',
+    DrawStyle: {},
+    IsStart: isStart,
+    Parent: { $ref: id },
+    Percent: isStart ? 0.25 : 0,
+    SegmNo: isStart ? 0 : -1,
+    Primitive: { $ref: primitiveId }
+  };
+
+  Object.assign(result[propName], _getJsonForPointBlock('BorderPoint'));
+  Object.assign(result[propName], _getJsonForPointBlock('Point', x, y));
+
+  return result;
+};
+
+/*
+  Get JSON for point block.
+*/
+let _getJsonForPointBlock = function(propName, x, y) {
+  x = x || 0;
+  y = y || 0;
+  let result = {};
+  result[propName] = {
+    $type: 'System.Drawing.Point, System.Drawing',
+    IsEmpty: x === 0 && y === 0,
+    X: x,
+    Y: y
+  };
+
+  return result;
+};
+
+/*
+  Get JSON for size block.
+*/
+let _getJsonForSizeBlock = function(propName, width, height) {
+  width = width || 0;
+  height = height || 0;
+  let result = {};
+  result[propName] = {
+    $type: 'System.Drawing.Size, System.Drawing',
+    IsEmpty: width === 0 && height === 0,
+    Width: width,
+    Height: height
+  };
 
   return result;
 };
 
 export {
   getJsonForElement,
+  getJsonForLink,
   getJsonForClass,
   getJsonForAssociation,
   getJsonForAggregation,
