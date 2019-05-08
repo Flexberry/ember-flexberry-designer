@@ -8,7 +8,7 @@ let getJsonForBasePrimitive = function(typeName, repositoryObject) {
   typeName = typeName || '';
 
   if (repositoryObject) {
-    if (repositoryObject[0] !== '{' || repositoryObject[length - 1] !== '}') {
+    if (repositoryObject[0] !== '{' || repositoryObject[repositoryObject.length - 1] !== '}') {
       repositoryObject = `{${repositoryObject}}`;
     }
   } else {
@@ -57,14 +57,6 @@ let getJsonForBaseElement = function(typeName, location, size, defaultSize, repo
   size = _normalizeSize(size, 100, 40);
   defaultSize = _normalizeSize(defaultSize, 100, 40);
   typeName = typeName || '';
-
-  if (repositoryObject) {
-    if (repositoryObject[0] !== '{' || repositoryObject[length - 1] !== '}') {
-      repositoryObject = `{${repositoryObject}}`;
-    }
-  } else {
-    repositoryObject = null;
-  }
 
   let baseElementObject = getJsonForBasePrimitive(typeName, repositoryObject);
 
