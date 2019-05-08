@@ -207,10 +207,12 @@ FdActionsForUcdPrimitivesMixin, {
       if (!isNone(type)) {
         let newLink = this.get('newLink');
         if (newLink.vertices().length === 0) {
+          let primitives = this.get('model.primitives');
+          let linkPrimitive = primitives.findBy('id', newLink.get('id'));
+          primitives.removeObject(linkPrimitive);
           this.clearData();
           return true;
         } else {
-          let newLink = this.get('newLink');
           newLink.removeVertex(-1);
         }
       }
