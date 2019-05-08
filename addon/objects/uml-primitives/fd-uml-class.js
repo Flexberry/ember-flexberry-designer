@@ -68,13 +68,8 @@ export default FdUmlElement.extend({
     @method JointJS
   */
   JointJS() {
-    let properties = this.getProperties('id', 'repositoryObject', 'name', 'stereotype', 'size', 'position', 'methods', 'attributes');
-    if (this.get('collapsed')) {
-      return new ClassCollapsed(properties);
-    }
-
+    let properties = this.getProperties('id', 'repositoryObject', 'name', 'stereotype', 'size', 'position', 'methods', 'collapsed', 'attributes');
     return new Class(properties);
-
   },
 });
 
@@ -94,6 +89,9 @@ export let BaseClass = joint.shapes.basic.Generic.define('flexberry.uml.BaseClas
     '.flexberry-uml-header-rect': { 'stroke': 'black', 'stroke-width': 1, 'fill': '#ffffff', 'fill-opacity': 0 },
     '.flexberry-uml-body-rect': { 'stroke': 'black', 'stroke-width': 1, 'fill': '#ffffff', 'fill-opacity': 0 },
     '.flexberry-uml-footer-rect': { 'stroke': 'black', 'stroke-width': 1, 'fill': '#ffffff', 'fill-opacity': 0 },
+    '.collapse-button': { 'ref-dx': -75,'ref-y': -10, 'ref': '.flexberry-uml-header-rect' },
+    '.collapse-button>circle': { r: 10, fill: 'transparent', stroke: '#333', 'stroke-width': 1 },
+    '.collapse-button>text': { fill: '#F00','font-size': 23, 'font-weight': 800, stroke: '#000', x: -6.5, y: 8, 'font-family': 'Times New Roman' },
   },
 
   name: '',
@@ -109,6 +107,7 @@ export let BaseClass = joint.shapes.basic.Generic.define('flexberry.uml.BaseClas
   markup: [
     '<g class="rotatable">',
     '<rect class="flexberry-uml-header-rect"/><rect class="flexberry-uml-body-rect"/><rect class="flexberry-uml-footer-rect"/>',
+    '<g class="collapse-button"><circle class="collapse-button"/><text class="collapse-button">+</text></g>',
     '</g>'
   ].join(''),
 
@@ -185,37 +184,12 @@ export let BaseClass = joint.shapes.basic.Generic.define('flexberry.uml.BaseClas
   @constructor
 */
 export let Class = BaseClass.define('flexberry.uml.Class', {
-  stereotype: '',
+  stereotype: ''
 }, {
   getClassName() {
     return [this.get('name'), this.get('stereotype')];
-  },
-});
-
-/**
-  Defines the JointJS element, which represents the UML class in collapsed state.
-
-  @for FdUmlClass
-  @class ClassCollapsed
-  @extends flexberry.uml.Class
-  @namespace flexberry.uml
-  @constructor
-*/
-export let ClassCollapsed = Class.define('flexberry.uml.ClassCollapsed', {}, {
-  markup: [
-    '<g class="rotatable">',
-    '<g class="scalable">',
-    '<rect class="flexberry-uml-header-rect"/>',
-    '</g>',
-    '</g>'
-  ].join(''),
-
-  getRectangles() {
-    return [
-      { type: 'header', text: this.getClassName(), element: this }
-    ];
-  },
-});
+  } 
+},);
 
 joint.shapes.flexberry.uml.ClassView = joint.dia.ElementView.extend({
   template: [
@@ -331,6 +305,9 @@ joint.shapes.flexberry.uml.ClassView = joint.dia.ElementView.extend({
 
     // Remove the box when the model gets removed from the graph.
     this.model.on('remove', this.removeBox, this);
+
+    //Hide or show body or footer rectangle depending collapse value
+    this.applyDisplayFromCollapseValue();
   },
 
   render: function() {
@@ -339,6 +316,12 @@ joint.shapes.flexberry.uml.ClassView = joint.dia.ElementView.extend({
     this.paper.on('blank:pointerdown link:pointerdown element:pointerdown', function() {
       this.$box.find('input, textarea').blur();
     }, this);
+
+    this.$el.find('.collapse-button').click(function(eventData) {
+      eventData.stopPropagation();
+      this.collapseElementView();
+    }.bind(this));
+
     this.updateBox();
     this.model.updateRectangles();
     return this;
@@ -358,6 +341,20 @@ joint.shapes.flexberry.uml.ClassView = joint.dia.ElementView.extend({
 
   removeBox: function() {
     this.$box.remove();
+  },
+
+  collapseElementView() {
+    let collapsedToggle = !this.model.get('collapsed');
+    this.model.set('collapsed', collapsedToggle);
+
+    this.applyDisplayFromCollapseValue();
+  },
+
+  applyDisplayFromCollapseValue() {    
+    let displayValue = (this.model.get('collapsed')) ? 'none' : 'table-cell';
+
+    this.model.attr('.flexberry-uml-body-rect/display', displayValue);
+    this.model.attr('.flexberry-uml-footer-rect/display', displayValue); 
   },
 
   normalizeStereotype(stereotype) {
