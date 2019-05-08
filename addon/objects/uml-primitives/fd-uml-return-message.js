@@ -2,9 +2,11 @@
   @module ember-flexberry-designer
 */
 import { computed } from '@ember/object';
+import joint from 'npm:jointjs';
 
 import FdUmlLink from './fd-uml-link';
 import { FlatMessage } from './fd-uml-flat-message';
+import { EmptyView } from './links-view/fd-empty-view';
 
 /**
   An object that describes a Return Message on the UML diagram.
@@ -37,7 +39,7 @@ export default FdUmlLink.extend({
     @method JointJS
   */
   JointJS() {
-    let properties = this.getProperties('id', 'source', 'target');
+    let properties = this.getProperties('id', 'source', 'target', 'labels');
     properties.objectModel = this;
     return new ReturnMessage(properties);
   },
@@ -59,3 +61,5 @@ export let ReturnMessage = FlatMessage.define('flexberry.uml.sequencediagramRetu
     '.connection': { stroke: 'black', 'stroke-width': 1, 'stroke-dasharray': '7 2' }
   }
 });
+
+joint.shapes.flexberry.uml.ReturnMessageView = EmptyView;

@@ -1,9 +1,11 @@
 /**
   @module ember-flexberry-designer
 */
+import joint from 'npm:jointjs';
 
 import FdUmlLink from './fd-uml-link';
 import { Link } from './fd-uml-link';
+import { EmptyView } from './links-view/fd-empty-view';
 
 /**
   An object that describes a link of the Directed Association type on the UML diagram.
@@ -18,7 +20,7 @@ export default FdUmlLink.extend({
     @method JointJS
   */
   JointJS() {
-    let properties = this.getProperties('id', 'repositoryObject', 'source', 'target', 'vertices');
+    let properties = this.getProperties('id', 'source', 'target', 'vertices', 'labels');
     properties.objectModel = this;
     return new DirectedAssociation(properties);
   },
@@ -36,3 +38,5 @@ export default FdUmlLink.extend({
 export let DirectedAssociation = Link.define('flexberry.uml.UseCaseGeneralization', {
   attrs: { '.marker-source': { d: 'M 20 0 L 0 10 L 20 20 z', fill: 'black' } },
 });
+
+joint.shapes.flexberry.uml.DirectedAssociationView = EmptyView;

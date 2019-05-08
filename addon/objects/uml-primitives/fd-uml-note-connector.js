@@ -1,9 +1,11 @@
 /**
   @module ember-flexberry-designer
 */
+import joint from 'npm:jointjs';
 
 import FdUmlLink from './fd-uml-link';
 import { Link } from './fd-uml-link';
+import { EmptyView } from './links-view/fd-empty-view';
 
 /**
   An object that describes a link of the note connector type on the UML diagram.
@@ -18,7 +20,7 @@ export default FdUmlLink.extend({
     @method JointJS
   */
   JointJS() {
-    let properties = this.getProperties('id', 'source', 'target', 'vertices');
+    let properties = this.getProperties('id', 'source', 'target', 'vertices', 'labels');
     properties.objectModel = this;
     return new NoteConnector(properties);
   },
@@ -39,3 +41,5 @@ export let NoteConnector = Link.define('flexberry.uml.NoteConnector', {
     '.connection': { stroke: 'black', 'stroke-width': 1, 'stroke-dasharray': '3 2' },
   },
 });
+
+joint.shapes.flexberry.uml.NoteConnectorView = EmptyView;

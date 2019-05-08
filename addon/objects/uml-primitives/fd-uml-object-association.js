@@ -3,10 +3,11 @@
 */
 
 import { computed } from '@ember/object';
+import joint from 'npm:jointjs';
+
 import FdUmlLink from './fd-uml-link';
 import { Association } from './fd-uml-association';
 import { RoleView } from './links-view/fd-role-view';
-import joint from 'npm:jointjs';
 
 /**
   An object that describes an object association link on the UML diagram.
@@ -38,7 +39,7 @@ export default FdUmlLink.extend({
     @method JointJS
   */
   JointJS() {
-    let properties = this.getProperties('id', 'source', 'target', 'vertices', 'startPoint', 'endPoint');
+    let properties = this.getProperties('id', 'source', 'target', 'vertices', 'labels');
     properties.objectModel = this;
     return new ObjectAssociation(properties);
   },
