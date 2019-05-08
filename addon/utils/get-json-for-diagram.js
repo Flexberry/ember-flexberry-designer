@@ -100,16 +100,17 @@ let getJsonForElement = function(typeName, location, size, textProperties, prope
 /**
   Get json for base link.
 */
-let getJsonForBaseLink = function(typeName, startPrimitive, startPoint, endPrimitive, endPoint, repositoryObject) {
+let getJsonForBaseLink = function(typeName, startPrimitive, startPoint, endPrimitive, endPoint, vertices, repositoryObject) {
   startPoint = _normalizeLocation(startPoint);
   endPoint = _normalizeLocation(endPoint);
   startPrimitive = startPrimitive || '';
   endPrimitive = endPrimitive || '';
+  vertices = _normalizeVertices(vertices);
 
   let baseLinkObject = getJsonForBasePrimitive(typeName, repositoryObject);
   let id = baseLinkObject.$id;
 
-  Object.assign(baseLinkObject, { Points: [], PointsIndexesToMove: null });
+  Object.assign(baseLinkObject, { Points: vertices, PointsIndexesToMove: null });
   Object.assign(baseLinkObject, _getJsonForPointBlock('StartBorderPoint'));
   Object.assign(baseLinkObject, _getJsonForPointBlock('EndBorderPoint'));
   Object.assign(baseLinkObject, _getJsonForPointBlock('StartPoint', startPoint.x, startPoint.y));
@@ -125,10 +126,10 @@ let getJsonForBaseLink = function(typeName, startPrimitive, startPoint, endPrimi
 /**
   Get json for link with additional properties.
 */
-let getJsonForLink = function(typeName, startPrimitive, startPoint, endPrimitive, endPoint, textProperties, properties, repositoryObject) {
+let getJsonForLink = function(typeName, startPrimitive, startPoint, endPrimitive, endPoint, vertices, textProperties, properties, repositoryObject) {
   properties = properties || {};
   textProperties = textProperties || {};
-  let linkObject = getJsonForBaseLink(typeName, startPrimitive, startPoint, endPrimitive, endPoint, repositoryObject);
+  let linkObject = getJsonForBaseLink(typeName, startPrimitive, startPoint, endPrimitive, endPoint, vertices, repositoryObject);
 
   for (let prop in textProperties) {
     Object.assign(linkObject, _getJsonForPropBlock(prop, textProperties[prop]));
@@ -1923,11 +1924,19 @@ let _normalizeSize = function(size, defaultWidth, defaultHeight) {
 };
 
 /*
+  Normalize vertices.
+*/
+let _normalizeVertices = function(vertices) {
+  // Todo
+  return vertices;
+}
+
+/*
   Get JSON for property.
 */
 let _getJsonForPropBlock = function(propName, value, location, size) {
   location = _normalizeLocation(location);
-  size = _normalizeLocation(size);
+  size = _normalizeSize(size);
   let result = {};
   result[propName] =
     {
