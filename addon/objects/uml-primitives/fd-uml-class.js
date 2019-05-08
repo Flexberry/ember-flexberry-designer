@@ -348,8 +348,10 @@ joint.shapes.flexberry.uml.ClassView = joint.dia.ElementView.extend({
     this.$box.find('.class-name-input').on('focus', function(evt) {
       let $textarea = $(evt.currentTarget);
       let objectModel = this.model.get('objectModel');
-      let isCreated = objectModel.get('isCreated');
-      $textarea.attr('readonly', !isCreated);
+      if (objectModel.get('primitive.$type') === 'STORMCASE.STORMNET.Repository.CADClass, STORM.NET Case Tool plugin') {
+        let isCreated = objectModel.get('isCreated');
+        $textarea.attr('readonly', !isCreated);
+      }
     }.bind(this));
 
     this.$box.find('.class-stereotype-input').on('blur', function(evt) {
@@ -360,7 +362,7 @@ joint.shapes.flexberry.uml.ClassView = joint.dia.ElementView.extend({
       $stereotypeInput.val(stereotype);
       $stereotypeInput.prop('rows', rows.length);
       let objectModel = this.model.get('objectModel');
-      objectModel.set('stereotype', stereotype.slice(1, -1));
+      objectModel.set('stereotype', stereotype);
       this.model.updateRectangles();
     }.bind(this));
 
