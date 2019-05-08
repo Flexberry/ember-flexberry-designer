@@ -158,7 +158,9 @@ export default Controller.extend({
     let model = this.get('selectedElement.model');
     let primitives = model.get('primitives');
     primitives.forEach((primitive) => {
-      primitive.set('isCreated', false);
+      if (!isNone(primitive.get('isCreated'))) {
+        primitive.set('isCreated', false);
+      }
     });
 
     let repositoryObjects = primitives.filter(p => p.get('repositoryObject'));
@@ -172,9 +174,17 @@ export default Controller.extend({
           return resolve();
         }
 
-        let props = p.getProperties('name', 'stereotype', 'attributes', 'methods');
+        if (repObject.get('isNew')) {
+          let propName = p.get('name');
+          if (isBlank(propName)) {
+            return repObject.rollbackAttributes();
+          } else {
+            repObject.set('nameStr', propName);
+          }
+        }
+
+        let props = p.getProperties('stereotype', 'attributes', 'methods');
         repObject.setProperties({
-          nameStr: props.name,
           stereotype: props.stereotype,
           attributesStr: props.attributes.join('\n'),
           methodsStr: props.methods.join('\n')
