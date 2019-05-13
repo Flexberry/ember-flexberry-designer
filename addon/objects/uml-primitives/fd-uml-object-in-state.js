@@ -3,6 +3,7 @@
 */
 
 import { computed } from '@ember/object';
+import { isArray } from '@ember/array';
 
 import { BaseObject } from './fd-uml-baseobject';
 
@@ -22,7 +23,16 @@ export default FdUmlElement.extend({
     @property name
     @type String
   */
-  name: computed.alias('primitive.Name.Text'),
+  name: computed('primitive.Name.Text', {
+    get() {
+      return this.get('primitive.Name.Text');
+    },
+    set(key, value) {
+      let nameTxt = (isArray(value)) ? value.join('\n') : value;
+      this.set('primitive.Name.Text', nameTxt);
+      return value;
+    },
+  }),
 
   /**
     The state of the ObjectInState.
@@ -38,7 +48,8 @@ export default FdUmlElement.extend({
     @method JointJS
   */
   JointJS() {
-    let properties = this.getProperties('id', 'name', 'state', 'size', 'position');
+    let properties = this.getProperties('id', 'size', 'position');
+    properties.objectModel = this;
     return new ObjectInState(properties);
 
   },
@@ -59,12 +70,11 @@ export let ObjectInState = BaseObject.define('flexberry.uml.ObjectInState', {
     'text tspan[x]': { 'font-weight': 'bold', 'text-decoration': 'none' },
     'text': { 'visibility': 'visible' },
   },
-  state: [],
 
 }, {
     getObjName: function () {
-      let state = this.get('state').length > 0 ? '[' + this.get('state') + ']' : '';
-      return [this.get('name'), state];
+      let state = this.get('objectModel.state').length > 0 ? '[' + this.get('objectModel.state') + ']' : '';
+      return [this.get('objectModel.name'), state];
     },
 
     updateRectangles: function () {

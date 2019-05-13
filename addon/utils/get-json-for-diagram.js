@@ -1,21 +1,122 @@
 import uuid from 'npm:node-uuid';
 
 /**
+  Get json for element without name.
+*/
+let getJsonForBaseElement = function(typeName, location, size, defaultSize, repositoryObject) {
+  let uuid1 = '{' + uuid.v4() + '}';
+  location = _normalizeLocation(location);
+  size = _normalizeSize(size, 100, 40);
+  defaultSize = _normalizeSize(defaultSize, 100, 40);
+  typeName = typeName || '';
+
+  if (repositoryObject) {
+    if (repositoryObject[0] !== '{' || repositoryObject[length - 1] !== '}') {
+      repositoryObject = `{${repositoryObject}}`;
+    }
+  } else {
+    repositoryObject = null;
+  }
+
+  let baseElementObject = {
+    $id: uuid1,
+    $type: typeName,
+    CaseName: name,
+    Changed: true,
+    DefaultSize: {
+      $type: 'System.Drawing.Size, System.Drawing',
+      IsEmpty: false,
+      Width: defaultSize.width,
+      Height: defaultSize.height
+    },
+    DrawStyle: {
+      $type: 'STORMCASE.Primitives.DrawStyle, Repository',
+      TextColor: {
+        $type: 'System.Drawing.Color, System.Drawing',
+        R: 0,
+        G: 0,
+        B: 0,
+        A: 255,
+        IsKnownColor: true,
+        IsEmpty: false,
+        IsNamedColor: true,
+        IsSystemColor: true,
+        Name: 'WindowText'
+      }
+    },
+    Highlighted: false,
+    Key: 0,
+    LinkedDiagramKeys: [],
+    Location: {
+      $type: 'System.Drawing.Point, System.Drawing',
+      IsEmpty: false,
+      X: location.x,
+      Y: location.y
+    },
+    NeedToDragOthersControls: false,
+    OldLocation: {
+      $type: 'System.Drawing.Point, System.Drawing',
+      IsEmpty: false,
+      X: location.x,
+      Y: location.y
+    },
+    OldSize: {
+      $type: 'System.Drawing.Size, System.Drawing',
+      IsEmpty: false,
+      Width: size.width,
+      Height: size.height
+    },
+    RepositoryObject: repositoryObject,
+    SelectInnerControls: false,
+    Size: {
+      $type: 'System.Drawing.Size, System.Drawing',
+      IsEmpty: false,
+      Width: size.width,
+      Height: size.height
+    },
+    StopEvents: false,
+    Valid: true,
+    WithLinkedDiagrams: false,
+    ZOrder: 1.0,
+  };
+
+  return baseElementObject;
+};
+
+/**
+  Get json for element with additional properties.
+*/
+let getJsonForElement = function(typeName, location, size, blockProperties, properties, defaultSize, repositoryObject) {
+  location = _normalizeLocation(location);
+  size = _normalizeSize(size, 100, 40);
+  properties = properties || {};
+  blockProperties = blockProperties || {};
+  let elementObject = getJsonForBaseElement(typeName, location, size, defaultSize, repositoryObject);
+
+  for (let prop in blockProperties) {
+    Object.assign(elementObject, _getJsonForPropBlock(prop, blockProperties[prop], location, size));
+  }
+
+  Object.assign(elementObject, properties);
+
+  return elementObject;
+};
+
+/**
   Get json for class.
 */
 let getJsonForClass = function(devClass, type, index, oldData) {
-  let uuid1 = '{' + uuid.v4() + '}';
-
   // Class properties.
-  let className = devClass.get('name');
-  let stereotype = devClass.get('stereotype');
+  let typeName = "STORMCASE.STORMNET.Repository.CADClass, STORM.NET Case Tool plugin"
+  let className = devClass.get('name') || '';
+  let stereotype = devClass.get('stereotype') || '';
   let pk = devClass.get('id');
 
   let attributesStr = devClass.get('attributesStr') || '';
-  let attributesStrArray = attributesStr ? attributesStr.split('\n') : [''];
+  let attributesStrArray = attributesStr.split('\n');
 
   let methodsStr = devClass.get('methodsStr') || '';
-  let methodsStrArray = methodsStr ? methodsStr.split('\n') : [''];
+  let methodsStrArray = methodsStr.split('\n');
 
   // Size class
   let attributesHeight = 15.0;
@@ -71,94 +172,24 @@ let getJsonForClass = function(devClass, type, index, oldData) {
 
   // Old data.
   if (oldData) {
-    uuid1 = oldData.uuid || uuid1;
     valueX = oldData.location.X || valueX;
     valueY = oldData.location.Y || valueY;
     folded = oldData.folded || folded;
   }
 
+  let classObject = getJsonForElement(
+    typeName,
+    { x: valueX, y: valueY },
+    { width: attributesWidth, height: classHeight },
+    { Name: className },
+    {},
+    { width: 100, height: 30 },
+    pk
+  );
+
   // Class JSON.
-  let classObject = {
-    $id: uuid1,
-    $type: 'STORMCASE.STORMNET.Repository.CADClass, STORM.NET Case Tool plugin',
+  Object.assign(classObject, {
     InitialFolded: false,
-    Name: {
-      $type: 'STORMCASE.Primitives.TextBlock, Repository',
-      Visible: true,
-      IsFolded: false,
-      CanShrink: false,
-      Text: className,
-      Rect: {
-        $type: 'System.Drawing.RectangleF, System.Drawing',
-        X: 0.0,
-        Y: 0.0,
-        Width: 0.0,
-        Height: 0.0,
-        Left: 0.0,
-        Top: 0.0,
-        Right: 0.0,
-        Bottom: 0.0,
-        IsEmpty: true
-      },
-      OldRect: {
-        $type: 'System.Drawing.RectangleF, System.Drawing',
-        X: valueX,
-        Y: valueY,
-        Width: attributesWidth,
-        Height: 15.0,
-        Left: valueX,
-        Top: valueY,
-        Right: attributesRight,
-        Bottom: 125.0,
-        IsEmpty: false
-      },
-      Location: {
-        $type: 'System.Drawing.Point, System.Drawing',
-        IsEmpty: true,
-        X: 0,
-        Y: 0
-      },
-      Size: {
-        $type: 'System.Drawing.Size, System.Drawing',
-        IsEmpty: true,
-        Width: 0,
-        Height: 0
-      },
-      OldLocation: {
-        $type: 'System.Drawing.Point, System.Drawing',
-        IsEmpty: false,
-        X: valueX,
-        Y: valueY
-      },
-      OldSize: {
-        $type: 'System.Drawing.Size, System.Drawing',
-        IsEmpty: false,
-        Width: 100,
-        Height: 15
-      },
-      BorderWidth: 0,
-      DrawEmpty: false,
-      IsEditMode: false,
-      IsBracket: false,
-      BracketStart: '[',
-      BracketEnd: ']',
-      DrawStyle: {
-        $type: 'STORMCASE.Primitives.DrawStyle, Repository',
-        TextColor: {
-          $type: 'System.Drawing.Color, System.Drawing',
-          R: 0,
-          G: 0,
-          B: 0,
-          A: 255,
-          IsKnownColor: true,
-          IsEmpty: false,
-          IsNamedColor: true,
-          IsSystemColor: true,
-          Name: 'WindowText'
-        }
-      },
-      StopEvents: false
-    },
     AttributesTxt: {
       $type: 'STORMCASE.Primitives.TextBlock, Repository',
       Visible: true,
@@ -390,65 +421,8 @@ let getJsonForClass = function(devClass, type, index, oldData) {
       },
       StopEvents: false
     },
-    CaseName: className,
     Folded: folded,
-    Location: {
-      $type: 'System.Drawing.Point, System.Drawing',
-      IsEmpty: false,
-      X: valueX,
-      Y: valueY
-    },
-    Size: {
-      $type: 'System.Drawing.Size, System.Drawing',
-      IsEmpty: false,
-      Width: Math.floor(attributesWidth),
-      Height: classHeight
-    },
-    Valid: true,
-    NeedToDragOthersControls: false,
-    OldLocation: {
-      $type: 'System.Drawing.Point, System.Drawing',
-      IsEmpty: false,
-      X: valueX,
-      Y: valueY
-    },
-    OldSize: {
-      $type: 'System.Drawing.Size, System.Drawing',
-      IsEmpty: false,
-      Width: Math.floor(attributesWidth),
-      Height: classHeight
-    },
-    DefaultSize: {
-      $type: 'System.Drawing.Size, System.Drawing',
-      IsEmpty: false,
-      Width: 100,
-      Height: classHeight
-    },
-    LinkedDiagramKeys: [],
-    SelectInnerControls: false,
-    WithLinkedDiagrams: false,
-    Changed: true,
-    Key: 0,
-    ZOrder: 1.0,
-    RepositoryObject: '{' + pk + '}',
-    Highlighted: false,
-    DrawStyle: {
-      $type: 'STORMCASE.Primitives.DrawStyle, Repository',
-      TextColor: {
-        $type: 'System.Drawing.Color, System.Drawing',
-        R: 0,
-        G: 0,
-        B: 0,
-        A: 255,
-        IsKnownColor: true,
-        IsEmpty: false,
-        IsNamedColor: true,
-        IsSystemColor: true,
-        Name: 'WindowText'
-      }
-    },
-    StopEvents: false
-  };
+  });
 
   return classObject;
 };
@@ -1889,7 +1863,117 @@ let getJsonForInheritance = function(parentObject, childObject, inheritance, cou
   return inheritanceObject;
 };
 
+/*
+  Normalize location.
+*/
+let _normalizeLocation = function(location) {
+  if (!location) {
+    location = {};
+  }
+
+  return { x: location.x || 0, y: location.y || 0 };
+};
+
+/*
+  Normalize size.
+*/
+let _normalizeSize = function(size, defaultWidth, defaultHeight) {
+  if (!size) {
+    size = {};
+  }
+
+  return { width: size.width || defaultWidth || 0, height: size.height || defaultHeight || 0 };
+};
+
+/*
+  Get JSON for property.
+*/
+let _getJsonForPropBlock = function(propName, value, location, size) {
+  let result = {};
+  result[propName] =
+    {
+      $type: 'STORMCASE.Primitives.TextBlock, Repository',
+      BorderWidth: 0,
+      BracketEnd: ']',
+      BracketStart: '[',
+      CanShrink: true,
+      DrawEmpty: false,
+      DrawStyle: {
+        $type: 'STORMCASE.Primitives.DrawStyle, Repository',
+        TextColor: {
+          $type: 'System.Drawing.Color, System.Drawing',
+          R: 0,
+          G: 0,
+          B: 0,
+          A: 255,
+          IsEmpty: false,
+          IsKnownColor: true,
+          IsNamedColor: true,
+          IsSystemColor: true,
+          Name: 'WindowText'
+        }
+      },
+      IsBracket: false,
+      IsEditMode: false,
+      IsFolded: false,
+      Location: {
+        $type: 'System.Drawing.Point, System.Drawing',
+        IsEmpty: true,
+        X: 0,
+        Y: 0
+      },
+      OldLocation: {
+        $type: 'System.Drawing.Point, System.Drawing',
+        IsEmpty: false,
+        X: location.x,
+        Y: location.y
+      },
+      OldRect: {
+        $type: 'System.Drawing.RectangleF, System.Drawing',
+        X: location.x,
+        Y: location.y,
+        Width: size.width,
+        Height: 15.0,
+        Left: location.x,
+        Top: location.y,
+        Right: location.x,
+        Bottom: 125.0,
+        IsEmpty: false
+      },
+      OldSize: {
+        $type: 'System.Drawing.Size, System.Drawing',
+        IsEmpty: false,
+        Width: 100,
+        Height: 15
+      },
+      Rect: {
+        $type: 'System.Drawing.RectangleF, System.Drawing',
+        X: 0.0,
+        Y: 0.0,
+        Width: 0.0,
+        Height: 0.0,
+        Left: 0.0,
+        Top: 0.0,
+        Right: 0.0,
+        Bottom: 0.0,
+        IsEmpty: true
+      },
+      Size: {
+        $type: 'System.Drawing.Size, System.Drawing',
+        IsEmpty: true,
+        Width: 0,
+        Height: 0
+      },
+      StopEvents: false,
+      Text: value,
+      Visible: true
+    };
+
+  return result;
+};
+
 export {
+  getJsonForElement,
   getJsonForClass,
   getJsonForAssociation,
   getJsonForAggregation,

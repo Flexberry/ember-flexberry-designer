@@ -3,6 +3,7 @@
 */
 
 import { computed } from '@ember/object';
+import { isArray } from '@ember/array';
 import { isEmpty } from '@ember/utils';
 
 import { BaseClass } from './fd-uml-class';
@@ -23,7 +24,16 @@ export default FdUmlElement.extend({
     @property name
     @type String
   */
-  name: computed.alias('primitive.Name.Text'),
+  name: computed('primitive.Name.Text', {
+    get() {
+      return this.get('primitive.Name.Text');
+    },
+    set(key, value) {
+      let nameTxt = (isArray(value)) ? value.join('\n') : value;
+      this.set('primitive.Name.Text', nameTxt);
+      return value;
+    },
+  }),
 
   /**
     List of PropertyObject's attributes.
@@ -31,12 +41,19 @@ export default FdUmlElement.extend({
     @property attributes
     @type Array
   */
-  attributes: computed('primitive.AttributesTxt.Text', function() {
-    if (!isEmpty(this.get('primitive.Prop.Text'))) {
-      return this.get('primitive.Prop.Text').split('\n');
-    }
+  attributes: computed('primitive.AttributesTxt.Text', {
+    get() {
+      if (!isEmpty(this.get('primitive.Prop.Text'))) {
+        return this.get('primitive.Prop.Text').split('\n');
+      }
 
-    return [];
+      return [];
+    },
+    set(key, value) {
+      let attributesTxt = (isArray(value)) ? value.join('\n') : value;
+      this.set('primitive.Prop.Text', attributesTxt);
+      return value;
+    },
   }),
 
   /**
@@ -45,8 +62,8 @@ export default FdUmlElement.extend({
     @method JointJS
   */
   JointJS() {
-    let properties = this.getProperties('id', 'name', 'size', 'position', 'attributes');
-
+    let properties = this.getProperties('id', 'size', 'position');
+    properties.objectModel = this;
     return new PropertyObject(properties);
 
   },
@@ -70,9 +87,7 @@ export let PropertyObject = BaseClass.define('flexberry.uml.PropertyObject', {
 }, {
     markup: [
       '<g class="rotatable">',
-      '<g class="scalable">',
       '<rect class="flexberry-uml-header-rect"/><rect class="flexberry-uml-body-rect"/>',
-      '</g>',
       '</g>'
     ].join('')
   });

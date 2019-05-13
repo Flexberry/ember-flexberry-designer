@@ -4,7 +4,7 @@ import { A } from '@ember/array';
 import { observer, computed } from '@ember/object';
 import { isBlank, isNone } from '@ember/utils';
 import { schedule } from '@ember/runloop';
-import { all } from 'rsvp';
+import { all, resolve } from 'rsvp';
 
 export default Controller.extend({
   /**
@@ -49,14 +49,6 @@ export default Controller.extend({
     @default ''
   */
   sheetComponentName: '',
-
-  /**
-    Stores classes that was created, but not yet saved, in the diagram.
-
-    @property createdClasses
-    @type Ember.Array
-  */
-  createdClasses: A(),
 
   /**
     Ember.observer, watching property `searchValue` and send action from 'fd-sheet' component.
@@ -162,12 +154,47 @@ export default Controller.extend({
     @method savePrimitives
   */
   savePrimitives() {
+    let promises = A();
     let model = this.get('selectedElement.model');
     let primitives = model.get('primitives');
+    primitives.forEach((primitive) => {
+      if (!isNone(primitive.get('isCreated'))) {
+        primitive.set('isCreated', false);
+      }
+    });
+
+    let repositoryObjects = primitives.filter(p => p.get('repositoryObject'));
+    if (repositoryObjects.length > 0) {
+      let store = this.get('store');
+      let allClasses = store.peekAll('fd-dev-class');
+      promises.pushObjects(repositoryObjects.map(p => {
+        let repId = p.get('repositoryObject').slice(1, -1);
+        let repObject = allClasses.findBy('id', repId);
+        if (isNone(repObject)) {
+          return resolve();
+        }
+
+        if (repObject.get('isNew')) {
+          let propName = p.get('name');
+          if (isBlank(propName)) {
+            return repObject.rollbackAttributes();
+          } else {
+            repObject.set('nameStr', propName);
+          }
+        }
+
+        let props = p.getProperties('stereotype', 'attributes', 'methods');
+        repObject.setProperties({
+          stereotype: props.stereotype,
+          attributesStr: props.attributes.join('\n'),
+          methodsStr: props.methods.join('\n')
+        });
+
+        return repObject.save();
+      }));
+    }
+
     model.set('primitivesJsonString', JSON.stringify(primitives));
-    let createdClasses = this.get('createdClasses');
-    let promises = createdClasses.map(c => c.save());
-    createdClasses.clear();
 
     return all(promises);
   },
@@ -183,6 +210,12 @@ export default Controller.extend({
       this.get('appState').loading();
       this.savePrimitives().then(() => {
         model.save()
+        .then(() => {
+          this.set('isDiagramVisible', false);
+          schedule('afterRender', this, function() {
+            this.set('isDiagramVisible', true);
+          });
+        })
         .catch((error) => {
           this.set('error', error);
         })
