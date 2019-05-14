@@ -35,7 +35,7 @@ export default EmberObject.extend({
     @property repositoryObject
     @type String
   */
-  repositoryObject: computed.readOnly('primitive.RepositoryObject'),
+  repositoryObject: computed.alias('primitive.RepositoryObject'),
 
   /**
     Returns the string representation of the primitive.

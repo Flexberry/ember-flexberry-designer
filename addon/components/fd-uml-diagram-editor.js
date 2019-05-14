@@ -46,6 +46,14 @@ FdActionsForUcdPrimitivesMixin, {
   interactionElements: A(),
 
   /**
+   Array items with empty reference count.
+
+   @property emptyReferenceCountItems
+   @type {Array}
+   */
+  emptyReferenceCountItems: A(),
+
+  /**
     Function for create element.
 
     @property jointjsCallback

@@ -5,8 +5,12 @@
 import Component from '@ember/component';
 import { computed } from '@ember/object';
 import { isNone } from '@ember/utils';
+import { inject as service } from '@ember/service';
+import { A } from '@ember/array';
+
 import $ from 'jquery';
 import joint from 'npm:jointjs';
+import uuid from 'npm:node-uuid';
 
 import FdUmlElement from '../objects/uml-primitives/fd-uml-element';
 import FdUmlLink from '../objects/uml-primitives/fd-uml-link';
@@ -18,6 +22,31 @@ import FdUmlLink from '../objects/uml-primitives/fd-uml-link';
   @extends <a href="http://emberjs.com/api/classes/Ember.Component.html">Ember.Component</a>
 */
 export default Component.extend({
+  /**
+    Store of current application.
+
+    @property store
+    @type DS.Store or subclass
+  */
+  store: service('store'),
+
+  /**
+   Service that get current project contexts.
+
+   @property currentProjectContext
+   @type {Class}
+   @default Ember.inject.service()
+   */
+  currentProjectContext: service('fd-current-project-context'),
+
+  /**
+   Array items with empty reference count.
+
+   @property emptyReferenceCountItems
+   @type {Array}
+   */
+  emptyReferenceCountItems: A(),
+
   /**
     Current paper
 
@@ -125,6 +154,9 @@ export default Component.extend({
     paper.on('blank:pointerclick', this._blankPointerClick, this);
     paper.on('element:pointerclick', this._elementPointerClick, this);
     paper.on('blank:contextmenu', this._blankContextMenu, this);
+
+    paper.on('class:updaterepobj', this._updateRepObj, this);
+    paper.on('class:checkexistname', this._checkExistNameClass, this);
 
     graph.addCells(elements.map(e => e.JointJS(graph)));
     graph.addCells(links.map(l => l.JointJS(graph)));
@@ -256,5 +288,115 @@ export default Component.extend({
     this.set('draggedLink', undefined);
     this.set('draggedLinkView', undefined);
     this.set('isLinkAdding', false);
+  },
+
+  /**
+    Update repositoryObject by objectModel.
+
+    @method _updateRepObj
+    @param {Boolean} objectModel model diagrams object.
+   */
+  _updateRepObj(objectModel) {
+    let store = this.get('store');
+    let allClasses = store.peekAll('fd-dev-class');
+    let repositoryObjectId = objectModel.get('repositoryObject');
+    if (isNone(repositoryObjectId)) {
+      return;
+    }
+
+    let repositoryObject = allClasses.findBy('id', repositoryObjectId.slice(1, -1));
+    if (isNone(repositoryObject)) {
+      return;
+    }
+
+    let props = objectModel.getProperties('name', 'stereotype', 'attributes', 'methods');
+    repositoryObject.setProperties({
+      name: props.name,
+      stereotype: props.stereotype,
+      attributesStr: props.attributes.join('\n'),
+      methodsStr: props.methods.join('\n')
+    });
+  },
+
+  /**
+    Find exist class by name.
+
+    @method _checkExistNameClass
+    @param {Boolean} objectModel model diagrams object.
+   */
+  _checkExistNameClass(objectModel) {
+    let store = this.get('store');
+    let stage = this.get('currentProjectContext').getCurrentStageModel();
+
+    let allClasses = store.peekAll('fd-dev-class');
+    let classesCurrentStage = allClasses.filterBy('stage.id', stage.get('id'));
+
+    let repositoryObjectId = objectModel.get('repositoryObject');
+    if (isNone(repositoryObjectId)) {
+      return;
+    }
+
+    let currentClass = allClasses.findBy('id', objectModel.get('repositoryObject').slice(1, -1));
+    if (isNone(currentClass)) {
+      return;
+    }
+
+    let objectModelName = objectModel.get('name');
+    let originalClass = classesCurrentStage.findBy('name', objectModelName);
+
+    if (!isNone(originalClass)) {
+      this._decrementPropertyReferenceCount(currentClass);
+      this._incrementPropertyReferenceCount(originalClass);
+
+      objectModel.set('repositoryObject', `{${originalClass.get('id')}}`);
+      objectModel.set('stereotype', originalClass.get('stereotype'));
+      objectModel.set('methods', originalClass.get('methodsStr').split('\n'));
+      objectModel.set('attributes', originalClass.get('attributesStr').split('\n'));
+    } else if (!currentClass.get('isNew') || currentClass.get('referenceCount') > 1) {
+      this._decrementPropertyReferenceCount(currentClass);
+      let newClass = store.createRecord('fd-dev-class', {
+        id: uuid.v4(),
+        stage: stage,
+        caption: objectModelName,
+        description: objectModelName,
+        name: objectModelName,
+        nameStr: objectModelName,
+      });
+
+      this._incrementPropertyReferenceCount(newClass);
+      objectModel.set('repositoryObject', `{${newClass.get('id')}}`);
+      objectModel.set('stereotype', '');
+      objectModel.set('methods', A(''));
+      objectModel.set('attributes', A(''));
+    } else {
+      currentClass.set('name', objectModelName);
+    }
+  },
+
+  /**
+    DecrementProperty for referenceCount property.
+
+    @method _decrementPropertyReferenceCount
+    @param {Object} item model class object.
+   */
+  _decrementPropertyReferenceCount(item) {
+    let newValue = item.decrementProperty('referenceCount');
+    if (newValue === 0) {
+      this.get('emptyReferenceCountItems').pushObject(item);
+    }
+  },
+
+  /**
+    IncrementProperty for referenceCount property.
+
+    @method _incrementPropertyReferenceCount
+    @param {Object} item model class object.
+   */
+  _incrementPropertyReferenceCount(item) {
+    let newValue = item.incrementProperty('referenceCount');
+    if (newValue === 1) {
+      let emptyReferenceCountItems = this.get('emptyReferenceCountItems');
+      emptyReferenceCountItems.removeObject(item);
+    }
   }
 });

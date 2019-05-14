@@ -51,6 +51,14 @@ export default Controller.extend({
   sheetComponentName: '',
 
   /**
+   Array items with empty reference count.
+
+   @property emptyReferenceCountItems
+   @type {Array}
+   */
+  emptyReferenceCountItems: A(),
+
+  /**
     Ember.observer, watching property `searchValue` and send action from 'fd-sheet' component.
 
     @method searchValueObserver
@@ -193,6 +201,10 @@ export default Controller.extend({
         return repObject.save();
       }));
     }
+
+    promises.pushObjects(this.get('emptyReferenceCountItems').map(item => {
+      return item.rollbackAttributes();
+    }));
 
     model.set('primitivesJsonString', JSON.stringify(primitives));
 
