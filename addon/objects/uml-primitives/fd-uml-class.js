@@ -271,8 +271,8 @@ joint.shapes.flexberry.uml.ClassView = joint.dia.ElementView.extend({
     '<div class="uml-class-inputs">',
     '<textarea class="class-name-input header-input" value="" rows="1" wrap="off"></textarea>',
     '<textarea class="class-stereotype-input header-input" value="" rows="1" wrap="off"></textarea>',
-    '<textarea class="attributes-input body-input" value="" rows="1" wrap="off"></textarea>',
-    '<textarea class="methods-input footer-input" value="" rows="1" wrap="off"></textarea>',
+    '<textarea class="attributes-input body-input" value="" rows="1" wrap="off" style="visibility: visible"></textarea>',
+    '<textarea class="methods-input footer-input" value="" rows="1" wrap="off" style="visibility: visible"></textarea>',
     '<div class="input-buffer"></div>',
     '</div>'
   ].join(''),
@@ -442,9 +442,12 @@ joint.shapes.flexberry.uml.ClassView = joint.dia.ElementView.extend({
 
   applyDisplayFromCollapseValue() {    
     let displayValue = (this.model.get('collapsed')) ? 'none' : 'table-cell';
-
     this.model.attr('.flexberry-uml-body-rect/display', displayValue);
-    this.model.attr('.flexberry-uml-footer-rect/display', displayValue); 
+    this.model.attr('.flexberry-uml-footer-rect/display', displayValue);
+  
+    let styleVisibilityValue = (this.model.get('collapsed')) ? 'hidden' : 'visible';
+    this.$box.find('.attributes-input').css('visibility', styleVisibilityValue);
+    this.$box.find('.methods-input').css('visibility', styleVisibilityValue);
   },
 
   normalizeStereotype(stereotype) {
