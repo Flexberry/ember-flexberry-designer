@@ -3,6 +3,9 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+### Changed
+* The diagram in the `{{fd-uml-diagram}}` component now has an infinite size.
+
 ## [0.6.0] - 2019-04-12
 ### Added
 * Edit form for the type map.

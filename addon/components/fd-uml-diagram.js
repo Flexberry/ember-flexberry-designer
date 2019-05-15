@@ -55,6 +55,7 @@ export default Component.extend({
 
     @property isLinkAdding
     @type Boolean
+    @default false
   */
   isLinkAdding: false,
 
@@ -101,33 +102,31 @@ export default Component.extend({
   didInsertElement() {
     this._super(...arguments);
 
+    let graph = this.get('graph');
+    let paper = this.set('paper', new joint.dia.Paper({
+      el: this.get('element'),
+      model: graph,
+      connectionStrategy: joint.connectionStrategies.pinAbsolute,
+      restrictTranslate: ({ paper }) => {
+        let area = paper.getArea();
+        return { x: 0, y: 0, width: area.width * 2, height: area.height * 2 };
+      },
+    }));
+
     let elements = this.get('elements');
     let links = this.get('links');
+    graph.addCells(elements.map(e => e.JointJS(graph)));
+    graph.addCells(links.map(l => l.JointJS(graph)));
 
-    let height = '100%';
-    let width = '100%';
-    if (this.get('notEmpty')) {
-      height = Math.max.apply(null, elements.map(e => e.get('y') + e.get('height'))) + 100;
-      width = Math.max.apply(null, elements.map(e => e.get('x') + e.get('width'))) + 100;
-    }
+    graph.on('add', paper.fitToContent, paper);
+    graph.on('change', paper.fitToContent, paper);
+    graph.on('remove', paper.fitToContent, paper);
 
-    let graph = this.get('graph');
-    let paper = new joint.dia.Paper({
-      el: this.get('element'),
-      height: height,
-      width: width,
-      model: graph,
-    });
+    paper.fitToContent();
 
-    this.set('isLinkAdding', false);
-    this.set('paper', paper);
-    paper.options.connectionStrategy = joint.connectionStrategies.pinAbsolute;
     paper.on('blank:pointerclick', this._blankPointerClick, this);
     paper.on('element:pointerclick', this._elementPointerClick, this);
     paper.on('blank:contextmenu', this._blankContextMenu, this);
-
-    graph.addCells(elements.map(e => e.JointJS(graph)));
-    graph.addCells(links.map(l => l.JointJS(graph)));
   },
 
   /**
