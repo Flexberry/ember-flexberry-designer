@@ -10,6 +10,7 @@ import joint from 'npm:jointjs';
 import { Class } from './fd-uml-class';
 
 import FdUmlClass from './fd-uml-class';
+import { setInputRectColors } from '../../utils/fd-uml-colors';
 
 /**
   An object that describes a TemplateClass on the UML diagram.
@@ -115,6 +116,7 @@ export let TemplateClass = Class.define('flexberry.uml.TemplateClass', {
     let newHeight = 0;
     let newWidth = 0;
     let paramHeight = 0;
+    setInputRectColors(this, rects);
     rects.forEach(function(rect) {
       if (this.markup.includes('flexberry-uml-' + rect.type + '-rect') && rect.element.inputElements) {
         let $buffer = rect.element.inputElements.find('.input-buffer');

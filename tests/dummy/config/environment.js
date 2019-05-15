@@ -1,29 +1,25 @@
-'use strict';
+/* jshint node: true */
 
 module.exports = function (environment) {
-  let backendUrl = 'https://ember-flexberry-designer-dummy.azurewebsites.net';
+  var backendUrl = 'http://rtc-web.ics.perm.ru:2018/';
 
   if (environment === 'development-loc') {
     // Use `ember s -e development-loc` command for local backend usage.
     backendUrl = 'http://localhost:8600';
   }
 
-  let ENV = {
+  var ENV = {
     repositoryName: 'ember-flexberry-designer/dummy',
     modulePrefix: 'dummy',
-    environment,
-    rootURL: '/',
+    environment: environment,
+    baseURL: '/',
     locationType: 'hash',
     EmberENV: {
-      LOG_STACKTRACE_ON_DEPRECATION: false,
+      LOG_STACKTRACE_ON_DEPRECATION: false,
 
       FEATURES: {
         // Here you can enable experimental features on an ember canary build
         // e.g. 'with-controller': true
-      },
-      EXTEND_PROTOTYPES: {
-        // Prevent Ember Data from overriding Date.parse.
-        Date: false
       }
     },
 
@@ -146,8 +142,8 @@ module.exports = function (environment) {
   }
 
   if (environment === 'test') {
-    ENV.rootURL = '/';
     // Testem prefers this...
+    ENV.baseURL = '/';
     ENV.locationType = 'none';
 
     // keep test console output quieter
@@ -155,11 +151,10 @@ module.exports = function (environment) {
     ENV.APP.LOG_VIEW_LOOKUPS = false;
 
     ENV.APP.rootElement = '#ember-testing';
-    ENV.APP.autoboot = false;
   }
 
   if (environment === 'production') {
-    // here you can enable a production-specific feature
+
   }
 
   // Change paths to application assets if build has been started with the following parameters:
@@ -175,8 +170,8 @@ module.exports = function (environment) {
       }
     });
 
-    // Change root URL to force paths to application assets be relative.
-    ENV.rootURL = '/' + ENV.repositoryName + '/' + branch + '/';
+    // Change base URL to force paths to application assets be relative.
+    ENV.baseURL = '/' + ENV.repositoryName + '/' + branch + '/';
     ENV.locationType = 'hash';
   }
 
