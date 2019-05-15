@@ -76,25 +76,6 @@ export default Component.extend({
   links: computed.filter('primitives', p => p instanceof FdUmlLink),
 
   /**
-    Indicates that the diagram has primitives.
-
-    @property notEmpty
-    @type Boolean
-  */
-  notEmpty: computed.notEmpty('primitives'),
-
-  /**
-    See [EmberJS API](https://emberjs.com/).
-
-    @method init
-  */
-  init() {
-    this._super(...arguments);
-
-    this.set('graph', new joint.dia.Graph());
-  },
-
-  /**
     See [EmberJS API](https://emberjs.com/).
 
     @method didInsertElement
@@ -102,7 +83,7 @@ export default Component.extend({
   didInsertElement() {
     this._super(...arguments);
 
-    let graph = this.get('graph');
+    let graph = this.set('graph', new joint.dia.Graph());
     let paper = this.set('paper', new joint.dia.Paper({
       el: this.get('element'),
       model: graph,
@@ -118,11 +99,15 @@ export default Component.extend({
     graph.addCells(elements.map(e => e.JointJS(graph)));
     graph.addCells(links.map(l => l.JointJS(graph)));
 
-    graph.on('add', paper.fitToContent, paper);
-    graph.on('change', paper.fitToContent, paper);
-    graph.on('remove', paper.fitToContent, paper);
+    let minWidth = $('.fd-uml-diagram-editor').width();
+    let minHeight = $('.fd-uml-diagram-editor').height() - $('.fd-uml-diagram-toolbar').height();
+    let fitPaperToContent = paper.fitToContent.bind(paper, { minWidth, minHeight });
 
-    paper.fitToContent();
+    graph.on('add', fitPaperToContent);
+    graph.on('change', fitPaperToContent);
+    graph.on('remove', fitPaperToContent);
+
+    fitPaperToContent();
 
     paper.on('blank:pointerclick', this._blankPointerClick, this);
     paper.on('element:pointerclick', this._elementPointerClick, this);
