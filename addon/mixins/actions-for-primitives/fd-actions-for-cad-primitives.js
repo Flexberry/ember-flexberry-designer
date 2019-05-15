@@ -1,14 +1,14 @@
 import Mixin from '@ember/object/mixin';
 import { inject as service } from '@ember/service';
-import { A } from '@ember/array';
-import { isArray } from '@ember/array';
+import { isNone } from '@ember/utils';
+import { A, isArray } from '@ember/array';
 import uuid from 'npm:node-uuid';
 
 import FdUmlClass from '../../objects/uml-primitives/fd-uml-class';
-import { Association } from '../../objects/uml-primitives/fd-uml-association';
+import FdUmlAssociation from '../../objects/uml-primitives/fd-uml-association';
 import FdUmlAggregation from '../../objects/uml-primitives/fd-uml-aggregation';
-import { Composition } from '../../objects/uml-primitives/fd-uml-composition';
-import { Generalization } from '../../objects/uml-primitives/fd-uml-generalization';
+import FdUmlComposition from '../../objects/uml-primitives/fd-uml-composition';
+import FdUmlGeneralization from '../../objects/uml-primitives/fd-uml-generalization';
 import FdUmlRealization from '../../objects/uml-primitives/fd-uml-realization';
 import FdUmlNestedClassAssociation from '../../objects/uml-primitives/fd-uml-nested-association';
 import FdUmlTemplateClass from '../../objects/uml-primitives/fd-uml-template-class';
@@ -109,33 +109,48 @@ export default Mixin.create({
      */
     addAssociation(e) {
       this.createLinkData((function(linkProperties) {
-        let newAssociationObject = new Association({
-          source: {
-            id: linkProperties.source
-          },
-          target: {
-            id: linkProperties.target
-          },
-          vertices: isArray(linkProperties.points) ? linkProperties.points.reverseObjects() : A()
-        });
-        newAssociationObject.setLabelText('startMultiplicity', '1');
-        newAssociationObject.setLabelText('endMultiplicity', '*');
+        let jsonObject = getJsonForLink(
+          'STORMCASE.UML.cad.Association, UMLCAD',
+          linkProperties.source,
+          null,
+          linkProperties.target,
+          null,
+          A(),
+          { Name: '', StartMultTxt: '', EndMultTxt: '', StartRoleTxt: '', EndRoleTxt: '' },
+          { NamePos: 0.0, InitialMultiplicity: 1.0 }
+        );
 
-        return newAssociationObject;
+        let associationObject = FdUmlAssociation.create({ primitive: jsonObject });
+        associationObject.set('vertices', linkProperties.points || A());
+
+        this._addToPrimitives(associationObject);
+
+        let newAssociation = associationObject.JointJS();
+        newAssociation.setLabelText('startMultiplicity', '1');
+        newAssociation.setLabelText('endMultiplicity', '*');
+
+        return newAssociation;
       }).bind(this), e, A(['flexberry.uml.Class', 'flexberry.uml.TemplateClass', 'flexberry.uml.ClassCollapsed']), function(linkProperties) {
         let store = this.get('store');
         let stage = this.get('currentProjectContext').getCurrentStageModel();
 
-        let endClass = this.getRepObj(store, stage, linkProperties.endClassRepObj, 'fd-dev-class');
-        let startClass = this.getRepObj(store, stage, linkProperties.startClassRepObj, 'fd-dev-class');
+        let endClass = this.getRepObj(store, stage, linkProperties.endClassRepObj.id, 'fd-dev-class');
+        let startClass = this.getRepObj(store, stage, linkProperties.startClassRepObj.id, 'fd-dev-class');
 
+        if (isNone(endClass) || isNone(startClass)) {
+          return null;
+        }
+
+        let id = uuid.v4();
         let newAssociation = store.createRecord('fd-dev-association', {
+          id: id,
           endClass: endClass,
           startClass: startClass,
           stage: stage,
           startMultiplicity: '1',
           endMultiplicity: '*'
         });
+        newAssociation.incrementProperty('referenceCount');
 
         return newAssociation;
       }.bind(this));
@@ -181,33 +196,48 @@ export default Mixin.create({
      */
     addComposition(e) {
       this.createLinkData((function(linkProperties) {
-        let newCompositionObject = new Composition({
-          source: {
-            id: linkProperties.source
-          },
-          target: {
-            id: linkProperties.target
-          },
-          vertices: linkProperties.points || A()
-        });
-        newCompositionObject.setLabelText('startMultiplicity', '1');
-        newCompositionObject.setLabelText('endMultiplicity', '*');
+        let jsonObject = getJsonForLink(
+          'STORMCASE.UML.cad.Composition, UMLCAD',
+          linkProperties.source,
+          null,
+          linkProperties.target,
+          null,
+          A(),
+          { Name: '', StartMultTxt: '', EndMultTxt: '', StartRoleTxt: '', EndRoleTxt: '' },
+          { NamePos: 0.0, InitialMultiplicity: 1.0 }
+        );
 
-        return newCompositionObject;
+        let compositionObject = FdUmlComposition.create({ primitive: jsonObject });
+        compositionObject.set('vertices', linkProperties.points || A());
+
+        this._addToPrimitives(compositionObject);
+
+        let newComposition = compositionObject.JointJS();
+        newComposition.setLabelText('startMultiplicity', '1');
+        newComposition.setLabelText('endMultiplicity', '*');
+
+        return newComposition;
       }).bind(this), e, A(['flexberry.uml.Class', 'flexberry.uml.TemplateClass']), function(linkProperties) {
         let store = this.get('store');
         let stage = this.get('currentProjectContext').getCurrentStageModel();
 
-        let endClass = this.getRepObj(store, stage, linkProperties.endClassRepObj, 'fd-dev-class');
-        let startClass = this.getRepObj(store, stage, linkProperties.startClassRepObj, 'fd-dev-class');
+        let endClass = this.getRepObj(store, stage, linkProperties.endClassRepObj.id, 'fd-dev-class');
+        let startClass = this.getRepObj(store, stage, linkProperties.startClassRepObj.id, 'fd-dev-class');
 
+        if (isNone(endClass) || isNone(startClass)) {
+          return null;
+        }
+
+        let id = uuid.v4();
         let newComposition = store.createRecord('fd-dev-aggregation', {
+          id: id,
           endClass: endClass,
           startClass: startClass,
           stage: stage,
           startMultiplicity: '1',
           endMultiplicity: '*'
         });
+        newComposition.incrementProperty('referenceCount');
 
         return newComposition;
       }.bind(this));
@@ -221,29 +251,42 @@ export default Mixin.create({
      */
     addInheritance(e) {
       this.createLinkData((function(linkProperties) {
-        let newInheritanceObject = new Generalization({
-          source: {
-            id: linkProperties.source
-          },
-          target: {
-            id: linkProperties.target
-          },
-          vertices: linkProperties.points || A()
-        });
+        let jsonObject = getJsonForLink(
+          'STORMCASE.UML.cad.Inheritance, UMLCAD',
+          linkProperties.source,
+          null,
+          linkProperties.target,
+          null,
+          A(),
+          { Name: '' },
+          { NamePos: 0.0 }
+        );
 
-        return newInheritanceObject;
+        let inheritanceObject = FdUmlGeneralization.create({ primitive: jsonObject });
+        inheritanceObject.set('vertices', linkProperties.points || A());
+
+        this._addToPrimitives(inheritanceObject);
+
+        return inheritanceObject.JointJS();
       }).bind(this), e, A(['flexberry.uml.Class', 'flexberry.uml.TemplateClass']), function(linkProperties) {
         let store = this.get('store');
         let stage = this.get('currentProjectContext').getCurrentStageModel();
 
-        let childClass = this.getRepObj(store, stage, linkProperties.endClassRepObj, 'fd-dev-class');
-        let parentClass = this.getRepObj(store, stage, linkProperties.startClassRepObj, 'fd-dev-class');
+        let childClass = this.getRepObj(store, stage, linkProperties.endClassRepObj.id, 'fd-dev-class');
+        let parentClass = this.getRepObj(store, stage, linkProperties.startClassRepObj.id, 'fd-dev-class');
 
-        let newInheritance = store.createRecord('fd-dev-aggregation', {
+        if (isNone(childClass) || isNone(parentClass)) {
+          return null;
+        }
+
+        let id = uuid.v4();
+        let newInheritance = store.createRecord('fd-dev-inheritance', {
+          id: id,
           child: childClass,
           parent: parentClass,
           stage: stage,
         });
+        newInheritance.incrementProperty('referenceCount');
 
         return newInheritance;
       }.bind(this));

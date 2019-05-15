@@ -246,6 +246,13 @@ export let Link = joint.dia.Link.define('flexberry.uml.Link', {
         }
       }, this);
 
+      this.on('change:repositoryObject', function(element, newRepository) {
+        let objectModel = this.get('objectModel');
+        if (objectModel) {
+          objectModel.set('repositoryObject', isNone(newRepository) ? null : `{${newRepository.get('id')}}`);
+        }
+      }, this);
+
       joint.dia.Link.prototype.initialize.apply(this, arguments);
     },
 

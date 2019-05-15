@@ -1,7 +1,7 @@
 import Component from '@ember/component';
 import { inject as service } from '@ember/service';
 import { A, isArray } from '@ember/array';
-import { computed } from '@ember/object';
+import { computed, get } from '@ember/object';
 import { isNone, isBlank } from '@ember/utils';
 import { next } from '@ember/runloop';
 import $ from 'jquery';
@@ -157,7 +157,8 @@ FdActionsForUcdPrimitivesMixin, {
         if ((isNone(interactionElements) || (isArray(interactionElements) && interactionElements.includes(type)) ||
          (isArray(interactionElements.start) && interactionElements.start.includes(type)))) {
           let jointjsCallback = this.get('jointjsCallback');
-          let newLink = jointjsCallback({ source: model.id, startClassRepObj: model.repositoryObject });
+          let newLink = jointjsCallback({ source: model.id });
+          newLink.set({ 'startClassRepObj': { id: get(model, 'objectModel.repositoryObject') } });
           this.set('newLink', newLink);
           return newLink;
         }
@@ -181,7 +182,7 @@ FdActionsForUcdPrimitivesMixin, {
         if ((isNone(interactionElements) || (isArray(interactionElements) && interactionElements.includes(type)) ||
          (isArray(interactionElements.start) && interactionElements.start.includes(type)))) {
           let newLink = this.get('newLink');
-          newLink.set({ 'target': { id: model.id }, 'endClassRepObj': { id: model.repositoryObject } });
+          newLink.set({ 'target': { id: model.id }, 'endClassRepObj': { id: get(model, 'objectModel.repositoryObject') } });
           let storeCallback = this.get('storeCallback');
           if (storeCallback) {
             let linkRecord = storeCallback({ startClassRepObj: newLink.get('startClassRepObj'), endClassRepObj: newLink.get('endClassRepObj') });

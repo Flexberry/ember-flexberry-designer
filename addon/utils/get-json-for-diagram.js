@@ -10,6 +10,7 @@ let getJsonForBasePrimitive = function(typeName, repositoryObject) {
   if (repositoryObject) {
     if (repositoryObject[0] !== '{' || repositoryObject[repositoryObject.length - 1] !== '}') {
       repositoryObject = `{${repositoryObject}}`;
+      uuid1 = repositoryObject;
     }
   } else {
     repositoryObject = null;
@@ -2002,7 +2003,21 @@ let _getJsonForLEBlock = function(propName, id, primitiveId, x, y, isStart) {
   let result = {};
   result[propName] = {
     $type: 'STORMCASE.Primitives.LEInformation, Repository',
-    DrawStyle: {},
+    DrawStyle: {
+      $type: 'STORMCASE.Primitives.DrawStyle, Repository',
+      TextColor: {
+        $type: 'System.Drawing.Color, System.Drawing',
+        R: 0,
+        G: 0,
+        B: 0,
+        A: 255,
+        IsKnownColor: true,
+        IsEmpty: false,
+        IsNamedColor: true,
+        IsSystemColor: true,
+        Name: 'WindowText'
+      }
+    },
     IsStart: isStart,
     Parent: { $ref: id },
     Percent: isStart ? 0.25 : 0,
