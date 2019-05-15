@@ -59,7 +59,15 @@ export default FdUmlElement.extend({
     @property collapsed
     @type Boolean
   */
-  collapsed: computed.alias('primitive.Folded'),
+  collapsed: computed('primitive.Folded', {
+    get() {
+      return this.get('primitive.Folded');
+    },
+    set(key, value) {
+      this.set('primitive.Folded', value);
+      return value;
+    },
+  }),
 
   /**
     List of attributes of the class.
@@ -109,7 +117,7 @@ export default FdUmlElement.extend({
     @method JointJS
   */
   JointJS() {
-    let properties = this.getProperties('id', 'repositoryObject', 'name', 'stereotype', 'size', 'position', 'methods', 'collapsed', 'attributes');
+    let properties = this.getProperties('id', 'repositoryObject', 'size', 'position');
     properties.objectModel = this;
     return new Class(properties);
   },
@@ -134,9 +142,9 @@ export let BaseClass = joint.shapes.basic.Generic.define('flexberry.uml.BaseClas
     '.flexberry-uml-header-rect': { 'stroke': 'black', 'stroke-width': 1, 'fill': '#ffffff', 'fill-opacity': 0 },
     '.flexberry-uml-body-rect': { 'stroke': 'black', 'stroke-width': 1, 'fill': '#ffffff', 'fill-opacity': 0 },
     '.flexberry-uml-footer-rect': { 'stroke': 'black', 'stroke-width': 1, 'fill': '#ffffff', 'fill-opacity': 0 },
-    '.collapse-button': { 'ref-dx': -75,'ref-y': -10, 'ref': '.flexberry-uml-header-rect' },
-    '.collapse-button>circle': { r: 10, fill: 'transparent', stroke: '#333', 'stroke-width': 1 },
-    '.collapse-button>text': { fill: '#F00','font-size': 23, 'font-weight': 800, stroke: '#000', x: -6.5, y: 8, 'font-family': 'Times New Roman' },
+    '.collapse-button': {'ref-dx': -78,'ref-y': 5, 'ref': '.flexberry-uml-header-rect' },
+    '.collapse-button>circle': { r: 6, fill: 'transparent', stroke: '#333', 'stroke-width': 1 },
+    '.collapse-button>text': { fill: '#F00','font-size': 16, 'font-weight': 800, stroke: '#000', x: -4.5, y: 5, 'font-family': 'Times New Roman' },
   },
 
   // Inputs padding by X.
@@ -234,37 +242,11 @@ export let BaseClass = joint.shapes.basic.Generic.define('flexberry.uml.BaseClas
   @constructor
 */
 export let Class = BaseClass.define('flexberry.uml.Class', {
-  stereotype: ''
 }, {
   getClassName() {
-    return [this.get('name'), this.get('stereotype')];
+    return [this.get('name'), this.objectModel.get('stereotype')];
   } 
 },);
-
-/**
-  Defines the JointJS element, which represents the UML class in collapsed state.
-
-  @for FdUmlClass
-  @class ClassCollapsed
-  @extends flexberry.uml.Class
-  @namespace flexberry.uml
-  @constructor
-*/
-export let ClassCollapsed = Class.define('flexberry.uml.ClassCollapsed', {}, {
-  markup: [
-    '<g class="rotatable">',
-    '<g class="scalable">',
-    '<rect class="flexberry-uml-header-rect"/>',
-    '</g>',
-    '</g>'
-  ].join(''),
-
-  getRectangles() {
-    return [
-      { type: 'header', text: this.getClassName(), element: this }
-    ];
-  },
-});
 
 joint.shapes.flexberry.uml.ClassView = joint.dia.ElementView.extend({
   template: [
@@ -434,18 +416,19 @@ joint.shapes.flexberry.uml.ClassView = joint.dia.ElementView.extend({
   },
 
   collapseElementView() {
-    let collapsedToggle = !this.model.get('collapsed');
-    this.model.set('collapsed', collapsedToggle);
-
+    let objectModel = this.model.get('objectModel');
+    let collapsedToggle = !objectModel.get('collapsed');
+    objectModel.set('collapsed', collapsedToggle);
     this.applyDisplayFromCollapseValue();
   },
 
-  applyDisplayFromCollapseValue() {    
-    let displayValue = (this.model.get('collapsed')) ? 'none' : 'table-cell';
+  applyDisplayFromCollapseValue() {
+    let objectModel = this.model.get('objectModel');  
+    let displayValue = (objectModel.get('collapsed')) ? 'none' : 'table-cell';
     this.model.attr('.flexberry-uml-body-rect/display', displayValue);
     this.model.attr('.flexberry-uml-footer-rect/display', displayValue);
   
-    let styleVisibilityValue = (this.model.get('collapsed')) ? 'hidden' : 'visible';
+    let styleVisibilityValue = (objectModel.get('collapsed')) ? 'hidden' : 'visible';
     this.$box.find('.attributes-input').css('visibility', styleVisibilityValue);
     this.$box.find('.methods-input').css('visibility', styleVisibilityValue);
   },
