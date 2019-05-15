@@ -3,6 +3,7 @@ import { inject as service } from '@ember/service';
 import { computed } from '@ember/object';
 import { A } from '@ember/array';
 import { isNone } from '@ember/utils';
+import { resolve } from 'rsvp';
 import layout from '../templates/components/fd-ember-jstree';
 
 export default Component.extend({
@@ -104,6 +105,20 @@ export default Component.extend({
   */
   loadDataNode: undefined,
 
+  /**
+    Flag: indicates whether reload data with close node.
+
+    @method reloadDataAtClose
+  */
+  reloadDataAtClose: false,
+
+  /**
+    Method for secect tree nodes.
+
+    @method selectNodeAction
+  */
+  selectNodeAction: undefined,
+
   actions: {
 
     /**
@@ -113,6 +128,15 @@ export default Component.extend({
     */
     handleTreeDidBecomeReady() {
       this.get('treeObject').on('load_node.jstree', this._loadNodeTree.bind(this));
+
+      if (this.get('reloadDataAtClose')) {
+        this.get('treeObject').on('close_node.jstree', this._closeNodeTree.bind(this));
+      }
+
+      let selectNodeAction = this.get('selectNodeAction');
+      if (selectNodeAction && typeof selectNodeAction === 'function') {
+        this.get('treeObject').on('select_node.jstree', this._selectNodeTree.bind(this));
+      }
     },
   },
 
@@ -125,13 +149,40 @@ export default Component.extend({
     if (!data.node.state.loaded) {
       let jstree = this.get('treeObject').jstree(true);
       let childrenNode = this.get('loadDataNode')(data.node.original, this.get('store'));
-      childrenNode.forEach((node) => {
-        jstree.create_node(data.node, node, 'last', null, true);
-      });
+      let promise = resolve(childrenNode);
+      promise.then((childrenNode)=> {
+        childrenNode.forEach((node) => {
+          jstree.create_node(data.node, node, 'last', null, true);
+        });
 
-      data.node.state.loaded = true;
-      jstree.open_node(data.node);
+        data.node.state.loaded = true;
+        jstree.open_node(data.node);
+      });
     }
+  },
+
+  /**
+    Overridden action for jsTree 'closeNode'.
+
+    @method _closeNodeTree
+  */
+  _closeNodeTree(e, data) {
+    data.node.state.loaded = false;
+    let jstree = this.get('treeObject').jstree(true);
+    let childrens = data.node.children.slice();
+    childrens.forEach((children) => {
+      let childrenObj = jstree.get_node(children);
+      jstree.delete_node(childrenObj);
+    });
+  },
+
+  /**
+    Overridden action for jsTree 'selectNode'.
+
+    @method _selectNodeTree
+  */
+  _selectNodeTree(e, data) {
+    this.get('selectNodeAction')(data.node.original, this.get('store'));
   },
 
   init() {
@@ -144,6 +195,8 @@ export default Component.extend({
     let treeObject = this.get('jstreeObject');
     if (!isNone(treeObject)) {
       treeObject.off('load_node.jstree', this._loadNodeTree.bind(this));
+      treeObject.off('close_node.jstree', this._closeNodeTree.bind(this));
+      treeObject.off('select_node.jstree', this._selectNodeTree.bind(this));
     }
   }
 });
