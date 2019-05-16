@@ -11,6 +11,8 @@ import joint from 'npm:jointjs';
 
 import FdUmlElement from './fd-uml-element';
 
+import { setInputRectColors } from '../../utils/fd-uml-colors';
+
 /**
   An object that describes an object on the UML diagram.
 
@@ -166,10 +168,10 @@ export let BaseObject = joint.shapes.basic.Generic.define('flexberry.uml.BaseObj
 
   updateRectangles: function () {
     let rects = this.getRectangles();
-
     let offsetY = 0;
     let newHeight = 0;
     let newWidth = 0;
+    setInputRectColors(this, rects);
     rects.forEach(function (rect) {
       if (this.markup.includes('flexberry-uml-' + rect.type + '-rect') && rect.element.inputElements) {
         let $buffer = rect.element.inputElements.find('.input-buffer');
