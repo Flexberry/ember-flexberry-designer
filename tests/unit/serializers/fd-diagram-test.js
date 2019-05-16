@@ -89,7 +89,9 @@ moduleForModel('fd-diagram', 'Unit | Serializer | fd-diagram', {
     'model:fd-user-auth-profile',
     'model:fd-user-in-stage',
     'model:fd-view',
-    'model:i-c-s-soft-s-t-o-r-m-n-e-t-security-agent'
+    'model:i-c-s-soft-s-t-o-r-m-n-e-t-security-agent',
+
+    'service:syncer'
   ]
 });
 

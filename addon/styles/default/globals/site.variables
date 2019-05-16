@@ -63,3 +63,10 @@
 @itemActiveBorderRadius: 0.5rem;
 
 @leftIndent: 2.5em;
+
+/*--------------
+   Form Input
+---------------*/
+
+/* This adjusts the default form input across all elements */
+@inputBackground        : transparent;

@@ -2,7 +2,8 @@
   @module ember-flexberry-designer
 */
 
-import Ember from 'ember';
+import Controller from '@ember/controller';
+import { inject as service } from '@ember/service';
 import FdPreloadStageMetadata from 'ember-flexberry-designer/utils/fd-preload-stage-metadata';
 
 /**
@@ -11,7 +12,7 @@ import FdPreloadStageMetadata from 'ember-flexberry-designer/utils/fd-preload-st
   @class FdAllProjectsIndexController
   @extends Ember.Controller
 */
-export default Ember.Controller.extend({
+export default Controller.extend({
   /**
     Set by the {{#crosslink "FdAllProjectsIndexRoute"}}route{{/crosslink}}, indicates that this controller is now active.
 
@@ -26,7 +27,7 @@ export default Ember.Controller.extend({
      @property appState
     @type AppStateService
   */
-  appState: Ember.inject.service(),
+  appState: service(),
 
   /**
     Link to {{#crossLink "FdCurrentProjectContextService"}}{{/crossLink}}.
@@ -34,7 +35,7 @@ export default Ember.Controller.extend({
     @property projectContext
     @type FdCurrentProjectContextService
   */
-  projectContext: Ember.inject.service('fd-current-project-context'),
+  projectContext: service('fd-current-project-context'),
 
   /**
     Request to search for projects.

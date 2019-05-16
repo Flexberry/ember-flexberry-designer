@@ -1,4 +1,4 @@
-import Ember from 'ember';
+import Mixin from '@ember/object/mixin';
 
 /**
   Mixin with the support `Method table` for controls in the edit form constructor.
@@ -6,7 +6,7 @@ import Ember from 'ember';
   @class FdUpdateMethodeValueMixin
   @uses <a href="http://emberjs.com/api/classes/Ember.Mixin.html">Ember.Mixin</a>
 */
-export default Ember.Mixin.create({
+export default Mixin.create({
 
   /**
     Table headers for method.
@@ -19,25 +19,21 @@ export default Ember.Mixin.create({
       columnCaption: 'components.fd-attribute-table.methods.name',
       columnProperty: 'name',
       attrPlaceholder: 'components.fd-attribute-table.methods.name-placeholder',
-      columnClass: 'three'
     },
     {
       columnCaption: 'components.fd-attribute-table.methods.caption',
       columnProperty: 'caption',
       attrPlaceholder: 'components.fd-attribute-table.methods.caption-placeholder',
-      columnClass: 'four'
     },
     {
       columnCaption: 'components.fd-attribute-table.methods.type',
       columnProperty: 'type',
       attrPlaceholder: 'components.fd-attribute-table.methods.type-placeholder',
-      columnClass: 'four'
     },
     {
       columnCaption: 'components.fd-attribute-table.methods.description',
       columnProperty: 'description',
       attrPlaceholder: 'components.fd-attribute-table.methods.description-placeholder',
-      columnClass: 'four'
     },
   ],
 

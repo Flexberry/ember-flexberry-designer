@@ -1,4 +1,4 @@
-import Ember from 'ember';
+import Mixin from '@ember/object/mixin';
 
 /**
   Add to form checking unsaved data when transition.
@@ -21,7 +21,7 @@ import Ember from 'ember';
   @class FdFormCheckTransitionMixin
   @extends <a href="http://emberjs.com/api/classes/Ember.Mixin.html">Ember.Mixin</a>
 */
-export default Ember.Mixin.create({
+export default Mixin.create({
   actions: {
     /**
       It sends message about transition to corresponding controller.

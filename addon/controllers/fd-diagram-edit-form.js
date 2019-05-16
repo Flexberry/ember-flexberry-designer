@@ -1,4 +1,8 @@
-import Ember from 'ember';
+import { A } from '@ember/array';
+import { isNone } from '@ember/utils';
+import { isArray } from '@ember/array';
+import { all } from 'rsvp';
+import $ from 'jquery';
 import EditFormController from 'ember-flexberry/controllers/edit-form';
 import FdWorkPanelToggler from '../mixins/fd-work-panel-toggler';
 import FdFormUnsavedData from '../mixins/fd-form-unsaved-data';
@@ -30,7 +34,7 @@ FdActionsForUcdPrimitivesMixin, {
     @property interactionElements
     @type Array
   */
-  interactionElements: Ember.A(),
+  interactionElements: A(),
 
   /**
     Function for create element.
@@ -86,7 +90,7 @@ FdActionsForUcdPrimitivesMixin, {
     @property createdClasses
     @type Ember.Array
   */
-  createdClasses: Ember.A(),
+  createdClasses: A(),
 
   actions: {
 
@@ -98,7 +102,7 @@ FdActionsForUcdPrimitivesMixin, {
     */
     blankPointerClick(options) {
       let type = this.get('type');
-      if (!Ember.isNone(type)) {
+      if (!isNone(type)) {
         let x = options.x;
         let y = options.y;
         if (type === 'Object') {
@@ -109,7 +113,7 @@ FdActionsForUcdPrimitivesMixin, {
           return newObject;
         } else {
           let newLink = this.get('newLink');
-          if (type === 'Link' && newLink && !Ember.isNone(newLink.getSourceElement())) {
+          if (type === 'Link' && newLink && !isNone(newLink.getSourceElement())) {
             newLink.insertVertex(-1, { x: x, y: y });
           }
         }
@@ -130,8 +134,8 @@ FdActionsForUcdPrimitivesMixin, {
         let type = model.type;
         let interactionElements = this.get('interactionElements');
 
-        if ((Ember.isNone(interactionElements) || (Ember.isArray(interactionElements) && interactionElements.includes(type)) ||
-         (Ember.isArray(interactionElements.start) && interactionElements.start.includes(type)))) {
+        if ((isNone(interactionElements) || (isArray(interactionElements) && interactionElements.includes(type)) ||
+         (isArray(interactionElements.start) && interactionElements.start.includes(type)))) {
           let jointjsCallback = this.get('jointjsCallback');
           let newLink = jointjsCallback({ source: model.id, startClassRepObj: model.repositoryObject });
           this.set('newLink', newLink);
@@ -154,8 +158,8 @@ FdActionsForUcdPrimitivesMixin, {
         let type = model.type;
         let interactionElements = this.get('interactionElements');
 
-        if ((Ember.isNone(interactionElements) || (Ember.isArray(interactionElements) && interactionElements.includes(type)) ||
-         (Ember.isArray(interactionElements.start) && interactionElements.start.includes(type)))) {
+        if ((isNone(interactionElements) || (isArray(interactionElements) && interactionElements.includes(type)) ||
+         (isArray(interactionElements.start) && interactionElements.start.includes(type)))) {
           let newLink = this.get('newLink');
           newLink.set({ 'target': { id: model.id }, 'endClassRepObj': { id: model.repositoryObject } });
           let storeCallback = this.get('storeCallback');
@@ -180,7 +184,7 @@ FdActionsForUcdPrimitivesMixin, {
     */
     blankContextMenu() {
       let type = this.get('type');
-      if (!Ember.isNone(type)) {
+      if (!isNone(type)) {
         let newLink = this.get('newLink');
         if (newLink.vertices().length === 0) {
           this.clearData();
@@ -219,7 +223,7 @@ FdActionsForUcdPrimitivesMixin, {
       let createdClasses = this.get('createdClasses');
       let promises = createdClasses.map(c => c.save());
       createdClasses.clear();
-      return Ember.RSVP.all(promises);
+      return all(promises);
     });
   },
 
@@ -279,7 +283,7 @@ FdActionsForUcdPrimitivesMixin, {
     this.set('jointjsCallback', undefined);
     this.set('storeCallback', undefined);
     this.set('type', undefined);
-    this.set('interactionElements', Ember.A());
+    this.set('interactionElements', A());
     this.set('newLink', undefined);
   },
 
@@ -291,9 +295,9 @@ FdActionsForUcdPrimitivesMixin, {
     @private
   */
   _changeCurrentTargetElement(e) {
-    let currentTargetElement = this.get('currentTargetElement') || Ember.$('#pointer');
+    let currentTargetElement = this.get('currentTargetElement') || $('#pointer');
     currentTargetElement.removeClass('active');
-    let newCurrentTargetElement = Ember.$(e.currentTarget);
+    let newCurrentTargetElement = $(e.currentTarget);
     newCurrentTargetElement.addClass('active');
     this.set('currentTargetElement', newCurrentTargetElement);
   },
@@ -305,9 +309,9 @@ FdActionsForUcdPrimitivesMixin, {
     @private
   */
   _resetCurrentTargetElement() {
-    let currentTargetElement = this.get('currentTargetElement') || Ember.$('#pointer');
+    let currentTargetElement = this.get('currentTargetElement') || $('#pointer');
     currentTargetElement.removeClass('active');
-    let pointer = Ember.$('#pointer');
+    let pointer = $('#pointer');
     pointer.addClass('active');
     this.set('currentTargetElement', pointer);
   },
@@ -323,7 +327,7 @@ FdActionsForUcdPrimitivesMixin, {
   */
   getRepObj(store, stage, value, modelObject) {
     let typeValue = typeof value;
-    if (typeValue === 'object' && !Ember.isNone(value)) {
+    if (typeValue === 'object' && !isNone(value)) {
       return value;
     } else if (typeValue === 'string') {
       let objectId = value.substr(1, value.length - 2);

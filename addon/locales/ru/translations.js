@@ -1,4 +1,5 @@
-import Ember from 'ember';
+import $ from 'jquery';
+
 import EmberFlexberryTranslations from 'ember-flexberry/locales/ru/translations';
 import FdAppstructListFormForm from './forms/fd-appstruct-form';
 import FdAggregationListFormForm from './forms/fd-aggregation-list-form';
@@ -35,6 +36,7 @@ import FdViewEditFormForm from './forms/fd-view-edit-form';
 import FdVisualEditFormForm from './forms/fd-visual-edit-form';
 import FdListformConstructor from './forms/fd-listform-constructor';
 import FdGenerationProcessForm from './forms/fd-generation-process-form';
+import FdGeneration from './forms/fd-generation';
 import FdGenerationListForm from './forms/fd-generation-list-form';
 import FdDataTypesMapForm from './forms/fd-data-types-map';
 import FdConfirmUnsavedFormModal from './forms/fd-confirm-unsaved-form-modal';
@@ -132,9 +134,9 @@ import FdSheet from './components/fd-sheet';
 import FdApplicationModelForm from './forms/fd-application-model';
 
 const translations = {};
-Ember.$.extend(true, translations, EmberFlexberryTranslations);
+$.extend(true, translations, EmberFlexberryTranslations);
 
-Ember.$.extend(true, translations, {
+$.extend(true, translations, {
   models: {
     'fd-ad': FdAdModel,
     'fd-aggregation': FdAggregationModel,
@@ -400,6 +402,7 @@ Ember.$.extend(true, translations, {
     'fd-visual-edit-form': FdVisualEditFormForm,
     'fd-listform-constructor': FdListformConstructor,
     'fd-generation-process-form': FdGenerationProcessForm,
+    'fd-generation': FdGeneration,
     'fd-generation-list-form': FdGenerationListForm,
     'fd-data-types-map': FdDataTypesMapForm,
     'fd-confirm-unsaved-form-modal': FdConfirmUnsavedFormModal,

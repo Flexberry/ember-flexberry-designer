@@ -1,0 +1,51 @@
+@fdListColPadding: 0.5em;
+.ui.grid.fd-list {
+	> .row {
+		border-bottom: @hr;
+		margin: 0 1rem;
+
+		.column {
+			> div:not(:first-child) {
+				margin: 1rem 0;
+			}
+
+			div:last-child {
+				margin-bottom: 0;
+			}
+		}
+	}
+
+	.fd-list-item span{
+		padding: @fdListColPadding @leftIndent;
+
+		&:hover {
+			cursor: pointer;
+		}
+
+		&.active {
+			background: @fdSheetBg;
+			border-radius: @itemActiveBorderRadius;
+		}
+	}
+
+	> .row > .column {
+		padding: @fdListColPadding 0;
+
+		.fd-search-input {
+			margin-top: -@fdListColPadding;
+		}
+	}
+
+	.ui.selection.dropdown {
+		padding: 0 1.975em 0 0;
+	
+		.menu {
+			width: auto;
+		}
+
+		> .dropdown.icon {
+			padding: 0 0.91666667em;
+		}
+	}
+}
+  

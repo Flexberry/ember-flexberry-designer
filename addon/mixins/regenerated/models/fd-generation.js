@@ -1,8 +1,10 @@
-import Ember from 'ember';
+import Mixin from '@ember/object/mixin';
+import $ from 'jquery';
 import DS from 'ember-data';
-import { Projection } from 'ember-flexberry-data';
+import { attr, belongsTo, hasMany } from 'ember-flexberry-data/utils/attributes';
 import GenerationStateEnum from '../../../enums/new-platform-flexberry-web-designer-generation-state';
-export let Model = Ember.Mixin.create({
+
+export let Model = Mixin.create({
   startTime: DS.attr('date', { defaultValue() { return new Date(); } }),
   endTime: DS.attr('date', { defaultValue() { return new Date(); } }),
   state: DS.attr('new-platform-flexberry-web-designer-generation-state', { defaultValue: GenerationStateEnum.Running }),
@@ -17,39 +19,39 @@ export let Model = Ember.Mixin.create({
     let thisValidations = {
       stage: { presence: true }
     };
-    return Ember.$.extend(true, {}, parentValidations, thisValidations);
+    return $.extend(true, {}, parentValidations, thisValidations);
   },
   init: function () {
     this.set('validations', this.getValidations());
-    this._super.apply(this, arguments);
+    this._super(...arguments);
   }
 });
 
 export let defineProjections = function (modelClass) {
   modelClass.defineProjection('EditFormView', 'fd-generation', {
-    startTime: Projection.attr('StartTime', { hidden: true }),
-    endTime: Projection.attr('EndTime', { hidden: true }),
-    state: Projection.attr('State', { hidden: true }),
-    generationReason: Projection.attr('GenerationReason', { hidden: true }),
-    userName: Projection.attr('UserName', { hidden: true }),
-    isRunning: Projection.attr('IsRunning', { hidden: true }),
-    percentComplete: Projection.attr('PercentComplete', { hidden: true }),
-    stepLogs: Projection.hasMany('fd-generation-step-log', '', {
-      time: Projection.attr(''),
-      thisIsError: Projection.attr(''),
-      isWarn: Projection.attr(''),
-      text: Projection.attr('')
+    startTime: attr('StartTime', { hidden: true }),
+    endTime: attr('EndTime', { hidden: true }),
+    state: attr('State', { hidden: true }),
+    generationReason: attr('GenerationReason', { hidden: true }),
+    userName: attr('UserName', { hidden: true }),
+    isRunning: attr('IsRunning', { hidden: true }),
+    percentComplete: attr('PercentComplete', { hidden: true }),
+    stepLogs: hasMany('fd-generation-step-log', '', {
+      time: attr(''),
+      thisIsError: attr(''),
+      isWarn: attr(''),
+      text: attr('')
     })
   });
   modelClass.defineProjection('ListFormView', 'fd-generation', {
-    userName: Projection.attr('Пользователь'),
-    state: Projection.attr('Состояние'),
-    startTime: Projection.attr('Время старта'),
-    percentComplete: Projection.attr('% выполнения'),
-    endTime: Projection.attr('Время окончания'),
-    stage: Projection.belongsTo('fd-dev-stage', 'Имя стадии', {
-      name: Projection.attr('Имя стадии')
+    userName: attr('Пользователь'),
+    state: attr('Состояние'),
+    startTime: attr('Время старта'),
+    percentComplete: attr('% выполнения'),
+    endTime: attr('Время окончания'),
+    stage: belongsTo('fd-dev-stage', 'Имя стадии', {
+      name: attr('Имя стадии')
     }),
-    generationReason: Projection.attr('Действие')
+    generationReason: attr('Действие')
   });
 };

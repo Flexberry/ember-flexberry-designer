@@ -1,8 +1,10 @@
+/* eslint-disable ember/no-side-effects */
 /**
   @module ember-flexberry-designer
 */
 
-import Ember from 'ember';
+import { computed } from '@ember/object';
+import { A } from '@ember/array';
 
 import StageModel from './fd-stage';
 import {
@@ -11,7 +13,7 @@ import {
   defineBaseModel,
 } from '../mixins/regenerated/models/fd-dev-stage';
 
-import { deserialize, serialize } from '../utils/fd-type-map-functions';
+import { deserialize, serialize } from '../utils/transforms-utils/fd-type-map-functions';
 
 /**
   Model for stage.
@@ -36,12 +38,12 @@ let Model = StageModel.extend(DevStageMixin, {
     @property typeMapCS
     @type Ember.NativeArray
   */
-  typeMapCS: Ember.computed('_typeMapCS.@each.{value,assemblyDll}', function() {
+  typeMapCS: computed('_typeMapCS.@each.{value,assemblyDll}', function() {
     let typeMapCS = this.get('_typeMapCS');
     if (typeMapCS) {
       this.set('typeMapCSStr', serialize(typeMapCS.toArray()));
     } else {
-      typeMapCS = Ember.A(deserialize(this.get('typeMapCSStr')));
+      typeMapCS = A(deserialize(this.get('typeMapCSStr')));
       this.set('_typeMapCS', typeMapCS);
     }
 
@@ -51,9 +53,9 @@ let Model = StageModel.extend(DevStageMixin, {
   /**
     See [EmberJS API](https://emberjs.com/).
 
-    @method rolledBack
+    @method rollbackAttributes
   */
-  rolledBack() {
+  rollbackAttributes() {
     this.set('_typeMapCS', undefined);
 
     return this._super(...arguments);

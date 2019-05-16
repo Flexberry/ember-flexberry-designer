@@ -2,7 +2,10 @@
   @module ember-flexberry-designer
 */
 
-import Ember from 'ember';
+import Component from '@ember/component';
+import { computed } from '@ember/object';
+import { isNone } from '@ember/utils';
+import $ from 'jquery';
 import joint from 'npm:jointjs';
 
 import FdUmlElement from '../objects/uml-primitives/fd-uml-element';
@@ -14,7 +17,7 @@ import FdUmlLink from '../objects/uml-primitives/fd-uml-link';
   @class FdUmlDiagramComponent
   @extends <a href="http://emberjs.com/api/classes/Ember.Component.html">Ember.Component</a>
 */
-export default Ember.Component.extend({
+export default Component.extend({
   /**
     Current paper
 
@@ -61,7 +64,7 @@ export default Ember.Component.extend({
     @property elements
     @type Ember.Array
   */
-  elements: Ember.computed.filter('primitives', p => p instanceof FdUmlElement),
+  elements: computed.filter('primitives', p => p instanceof FdUmlElement),
 
   /**
     All a links of the UML diagram.
@@ -69,7 +72,7 @@ export default Ember.Component.extend({
     @property links
     @type Ember.Array
   */
-  links: Ember.computed.filter('primitives', p => p instanceof FdUmlLink),
+  links: computed.filter('primitives', p => p instanceof FdUmlLink),
 
   /**
     Indicates that the diagram has primitives.
@@ -77,7 +80,7 @@ export default Ember.Component.extend({
     @property notEmpty
     @type Boolean
   */
-  notEmpty: Ember.computed.notEmpty('primitives'),
+  notEmpty: computed.notEmpty('primitives'),
 
   /**
     See [EmberJS API](https://emberjs.com/).
@@ -152,9 +155,9 @@ export default Ember.Component.extend({
   */
   _elementPointerClick(element, e, x, y) {
     let options = { element: element, e: e, x: x, y: y };
-    if (Ember.isNone(this.get('draggedLink'))) {
+    if (isNone(this.get('draggedLink'))) {
       let newElement = this.get('startDragLink')(options);
-      if (!Ember.isNone(newElement)) {
+      if (!isNone(newElement)) {
         this.set('draggedLink', newElement);
         let graph = this.get('graph');
         let paper = this.get('paper');
@@ -169,9 +172,9 @@ export default Ember.Component.extend({
           link.findView(paper).$el.addClass('edit-disabled');
         }, this);
 
-        Ember.$(paper.el).find('input,textarea').addClass('click-disabled');
+        $(paper.el).find('input,textarea').addClass('click-disabled');
 
-        Ember.$(document).on({
+        $(document).on({
           'mousemove.example': this._onDrag.bind(this)
         }, {
           paper: paper,
@@ -225,7 +228,7 @@ export default Ember.Component.extend({
     @param {Object} newElement joint js element.
    */
   _addNewElement(newElement) {
-    if (!Ember.isNone(newElement)) {
+    if (!isNone(newElement)) {
       let graph = this.get('graph');
       graph.addCell([newElement]);
     }
@@ -238,14 +241,14 @@ export default Ember.Component.extend({
     @param {Boolean} removeFromGraph If true, removes created link from graph.
    */
   _clearLinksData(removeFromGraph) {
-    Ember.$(document).off('mousemove.example');
+    $(document).off('mousemove.example');
     let graph = this.get('graph');
     let paper = this.get('paper');
     graph.getLinks().map(link => {
       link.findView(paper).$el.removeClass('edit-disabled');
     }, this);
 
-    Ember.$(paper.el).find('input,textarea').removeClass('click-disabled');
+    $(paper.el).find('input,textarea').removeClass('click-disabled');
     if (removeFromGraph) {
       this.get('draggedLink').remove();
     }

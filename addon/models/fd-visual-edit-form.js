@@ -1,13 +1,13 @@
 import DS from 'ember-data';
-import { Projection } from 'ember-flexberry-data';
+import model from 'ember-flexberry-data/models/model';
 
 /**
   Model to work with visual edit form.
 
   @class NewPlatformFlexberryFlexberryDesignerVisualEditForm
-  @extends Projection.Model
+  @extends model
 */
-let Model = Projection.Model.extend({
+let Model = model.extend({
   name: DS.attr('string'),
   description: DS.attr('string'),
 

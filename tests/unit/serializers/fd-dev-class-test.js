@@ -8,7 +8,6 @@ moduleForModel('fd-dev-class', 'Unit | Serializer | fd-dev-class', {
     'transform:decimal',
     'transform:guid',
 
-    'transform:fd-storeinstancesintype',
     'transform:containers-tree',
     'transform:fd-propertylookupstr',
     'transform:i-c-s-soft-s-t-o-r-m-n-e-t-access-type',
@@ -92,7 +91,9 @@ moduleForModel('fd-dev-class', 'Unit | Serializer | fd-dev-class', {
     'model:fd-user-auth-profile',
     'model:fd-user-in-stage',
     'model:fd-view',
-    'model:i-c-s-soft-s-t-o-r-m-n-e-t-security-agent'
+    'model:i-c-s-soft-s-t-o-r-m-n-e-t-security-agent',
+
+    'service:syncer'
   ]
 });
 

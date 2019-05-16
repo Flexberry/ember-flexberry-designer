@@ -74,7 +74,8 @@ moduleForModel('fd-repository-browser-data-object-with-a-c-l', 'Unit | Model | f
     'model:fd-user-auth-profile',
     'model:fd-user-in-stage',
     'model:fd-view',
-    'model:i-c-s-soft-s-t-o-r-m-n-e-t-security-agent'
+    'model:i-c-s-soft-s-t-o-r-m-n-e-t-security-agent',
+    'service:syncer'
   ]
 });
 

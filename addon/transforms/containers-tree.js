@@ -1,4 +1,5 @@
-import Ember from 'ember';
+import { A } from '@ember/array';
+import { isNone } from '@ember/utils';
 import DS from 'ember-data';
 import FdAppStructTree from '../objects/fd-appstruct-tree';
 
@@ -33,7 +34,7 @@ export default DS.Transform.extend({
         }
       }
 
-      serialized = itemList ? this._getTree(itemList) : Ember.A();
+      serialized = itemList ? this._getTree(itemList) : A();
     }
 
     return serialized;
@@ -46,7 +47,7 @@ export default DS.Transform.extend({
 
   _getXMLNodes(nodes, steps) {
     let ret = '';
-    if (!Ember.isNone(nodes) && nodes.length > 0) {
+    if (!isNone(nodes) && nodes.length > 0) {
       nodes.forEach((node) => {
         let currentPath = steps.join('\\');
         if (node.copyChildren) {
@@ -119,8 +120,8 @@ export default DS.Transform.extend({
   },
 
   _getTree: function(itemList) {
-    let rootTree = Ember.A();
-    let copyRootTree = Ember.A();
+    let rootTree = A();
+    let copyRootTree = A();
 
     let currentPath = '';
     let currentNodes = null;
@@ -177,8 +178,8 @@ export default DS.Transform.extend({
     let node = FdAppStructTree.create({
       text: step,
       type: 'folder',
-      children: Ember.A(),
-      copyChildren: Ember.A(),
+      children: A(),
+      copyChildren: A(),
       id: 'p' + index + 'l' + nodes.length + 'i' + item
     });
 

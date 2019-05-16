@@ -2,15 +2,15 @@
   @module ember-flexberry-designer
 */
 
-import Ember from 'ember';
+import Route from '@ember/routing/route';
 
 /**
   The route for the project creation form.
 
   @class FdAllProjectsNewRoute
-  @extends Ember.Route
+  @extends Route
 */
-export default Ember.Route.extend({
+export default Route.extend({
   /**
     See [EmberJS API](https://emberjs.com/api/).
 

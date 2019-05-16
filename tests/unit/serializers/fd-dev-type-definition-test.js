@@ -89,7 +89,9 @@ moduleForModel('fd-dev-type-definition', 'Unit | Serializer | fd-dev-type-defini
     'model:fd-user-auth-profile',
     'model:fd-user-in-stage',
     'model:fd-view',
-    'model:i-c-s-soft-s-t-o-r-m-n-e-t-security-agent'
+    'model:i-c-s-soft-s-t-o-r-m-n-e-t-security-agent',
+
+    'service:syncer'
   ]
 });
 

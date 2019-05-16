@@ -1,7 +1,9 @@
-import Ember from 'ember';
+import Mixin from '@ember/object/mixin';
+import $ from 'jquery';
 import DS from 'ember-data';
-import { Projection } from 'ember-flexberry-data';
-export let Model = Ember.Mixin.create({
+import { attr, belongsTo } from 'ember-flexberry-data/utils/attributes';
+
+export let Model = Mixin.create({
   child: DS.belongsTo('fd-class', { inverse: null, async: false, polymorphic: true }),
   parent: DS.belongsTo('fd-class', { inverse: null, async: false, polymorphic: true }),
   stage: DS.belongsTo('fd-stage', { inverse: 'inheritances', async: false, polymorphic: true }),
@@ -12,11 +14,11 @@ export let Model = Ember.Mixin.create({
       parent: { presence: true },
       stage: { presence: true }
     };
-    return Ember.$.extend(true, {}, parentValidations, thisValidations);
+    return $.extend(true, {}, parentValidations, thisValidations);
   },
   init: function () {
     this.set('validations', this.getValidations());
-    this._super.apply(this, arguments);
+    this._super(...arguments);
   }
 });
 export let defineBaseModel = function (modelClass) {
@@ -27,16 +29,16 @@ export let defineBaseModel = function (modelClass) {
 
 export let defineProjections = function (modelClass) {
   modelClass.defineProjection('Import', 'fd-inheritance', {
-    referenceCount: Projection.attr(''),
-    name: Projection.attr(''),
-    parent: Projection.belongsTo('fd-class', '', {
+    referenceCount: attr(''),
+    name: attr(''),
+    parent: belongsTo('fd-class', '', {
 
     }),
-    child: Projection.belongsTo('fd-class', '', {
+    child: belongsTo('fd-class', '', {
 
     })
   });
   modelClass.defineProjection('References', 'fd-inheritance', {
-    referenceCount: Projection.attr('')
+    referenceCount: attr('')
   });
 };

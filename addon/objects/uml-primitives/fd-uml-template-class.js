@@ -2,7 +2,9 @@
   @module ember-flexberry-designer
 */
 
-import Ember from 'ember';
+import { computed } from '@ember/object';
+import { isArray } from '@ember/array';
+import $ from 'jquery';
 import joint from 'npm:jointjs';
 
 import { Class } from './fd-uml-class';
@@ -22,7 +24,16 @@ export default FdUmlClass.extend({
     @property params
     @type String
   */
-  params: Ember.computed.alias('primitive.TemplateTxt.Text'),
+  params: computed('primitive.TemplateTxt.Text', {
+    get() {
+      return this.get('primitive.TemplateTxt.Text').split('\n');
+    },
+    set(key, value) {
+      let paramsTxt = (isArray(value)) ? value.join('\n') : value;
+      this.set('primitive.TemplateTxt.Text', paramsTxt);
+      return value;
+    },
+  }),
 
   /**
     See {{#crossLink "FdUmlPrimitive/JointJS:method"}}here{{/crossLink}}.
@@ -30,8 +41,8 @@ export default FdUmlClass.extend({
     @method JointJS
   */
   JointJS() {
-    let properties = this.getProperties('id', 'name', 'size', 'position', 'attributes', 'methods', 'params', 'stereotype');
-
+    let properties = this.getProperties('id', 'size', 'position');
+    properties.objectModel = this;
     return new TemplateClass(properties);
 
   },
@@ -73,8 +84,6 @@ export let TemplateClass = Class.define('flexberry.uml.TemplateClass', {
     '.view-rect': { 'x': -1, 'y': -1, 'fill': 'white' },
     '.not-view-rect': { 'x': -1, 'y': -1, 'fill': 'black' }
   },
-
-  params: [],
 }, {
   markup: [
     '<g class="rotatable">',
@@ -92,13 +101,11 @@ export let TemplateClass = Class.define('flexberry.uml.TemplateClass', {
   ].join(''),
 
   getRectangles() {
-    let params = this.get('params');
-    let lines = Array.isArray(params) ? params : [params];
     return [
-      { type: 'params', text: lines, element: this },
-      { type: 'header', text: this.getClassName(), element: this },
-      { type: 'body', text: this.get('attributes'), element: this },
-      { type: 'footer', text: this.get('methods'), element: this }
+      { type: 'params', element: this },
+      { type: 'header', element: this },
+      { type: 'body', element: this },
+      { type: 'footer', element: this }
     ];
   },
 
@@ -114,7 +121,7 @@ export let TemplateClass = Class.define('flexberry.uml.TemplateClass', {
         let rectHeight = 0;
         let inputs = rect.element.inputElements.find('.' + rect.type + '-input');
         inputs.each(function() {
-          let $input = Ember.$(this);
+          let $input = $(this);
           $buffer.css('font-weight', $input.css('font-weight'));
           $buffer.text($input.val());
           $input.width($buffer.width() + 1);
@@ -171,7 +178,7 @@ joint.shapes.flexberry.uml.TemplateClassView = joint.shapes.flexberry.uml.ClassV
   initialize: function() {
     joint.shapes.flexberry.uml.ClassView.prototype.initialize.apply(this, arguments);
     this.$box.find('.params-input').on('input', function (evt) {
-      let $textarea = Ember.$(evt.currentTarget);
+      let $textarea = $(evt.currentTarget);
       let textareaText = $textarea.val();
       let rows = textareaText.split(/[\n\r|\r|\n]/);
       $textarea.prop('rows', rows.length);
@@ -179,16 +186,18 @@ joint.shapes.flexberry.uml.TemplateClassView = joint.shapes.flexberry.uml.ClassV
     }.bind(this));
 
     this.$box.find('.params-input').on('change', function (evt) {
-      let $textarea = Ember.$(evt.currentTarget);
+      let $textarea = $(evt.currentTarget);
       let textareaText = $textarea.val();
       let rows = textareaText.split(/[\n\r|\r|\n]/);
       $textarea.prop('rows', rows.length);
-      this.model.set('params', textareaText);
+      let objectModel = this.model.get('objectModel');
+      objectModel.set('params', textareaText);
     }.bind(this));
 
+    let objectModel = this.model.get('objectModel');
     let paramsInput = this.$box.find('.params-input');
-    paramsInput.prop('rows', this.model.get('params').split(/[\n\r|\r|\n]/).length || 1);
-    paramsInput.val(this.model.get('params'));
+    paramsInput.prop('rows', objectModel.get('params').length || 1);
+    paramsInput.val(objectModel.get('params').join('\n'));
   },
 
   updateBox: function() {
@@ -214,7 +223,7 @@ joint.shapes.flexberry.uml.TemplateClassView = joint.shapes.flexberry.uml.ClassV
     joint.shapes.flexberry.uml.BaseObjectView.prototype.render.apply(this, arguments);
 
     let mask = document.getElementById('custom-mask');
-    let viewMaskId = Ember.$(mask).children('.view-rect').attr('id');
+    let viewMaskId = $(mask).children('.view-rect').attr('id');
     let maskId = 'mask_tc_' + viewMaskId;
     mask.setAttribute('id', maskId);
     let attrs = this.model.get('attrs');

@@ -2,9 +2,10 @@
   @module ember-flexberry-designer
 */
 
-import Ember from 'ember';
-import joint from 'npm:jointjs';
+import { computed, get } from '@ember/object';
+import { isNone } from '@ember/utils';
 
+import joint from 'npm:jointjs';
 import FdUmlPrimitive from './fd-uml-primitive';
 
 /**
@@ -21,7 +22,7 @@ export default FdUmlPrimitive.extend({
     @property source
     @type Object
   */
-  source: Ember.computed('primitive.StartPrimitive.$ref', function() {
+  source: computed('primitive.StartPrimitive.$ref', function() {
     return { id: this.get('primitive.StartPrimitive.$ref') };
   }),
 
@@ -31,7 +32,7 @@ export default FdUmlPrimitive.extend({
     @property target
     @type Object
   */
-  target: Ember.computed('primitive.EndPrimitive.$ref', function() {
+  target: computed('primitive.EndPrimitive.$ref', function() {
     return { id: this.get('primitive.EndPrimitive.$ref') };
   }),
 
@@ -41,7 +42,7 @@ export default FdUmlPrimitive.extend({
   @property startMultiplicity
   @type String
   */
-  startMultiplicity: Ember.computed.alias('primitive.StartMultTxt.Text'),
+  startMultiplicity: computed.alias('primitive.StartMultTxt.Text'),
 
   /**
     The end multiplicity of a link.
@@ -49,7 +50,7 @@ export default FdUmlPrimitive.extend({
     @property endMultiplicity
     @type String
   */
-  endMultiplicity: Ember.computed.alias('primitive.EndMultTxt.Text'),
+  endMultiplicity: computed.alias('primitive.EndMultTxt.Text'),
 
   /**
     End role text.
@@ -57,7 +58,7 @@ export default FdUmlPrimitive.extend({
     @property endRoleTxt
     @type String
   */
-  endRoleTxt: Ember.computed.alias('primitive.EndRoleTxt.Text'),
+  endRoleTxt: computed.alias('primitive.EndRoleTxt.Text'),
 
   /**
     Start role text.
@@ -65,7 +66,7 @@ export default FdUmlPrimitive.extend({
     @property startRoleTxt
     @type String
   */
-  startRoleTxt: Ember.computed.alias('primitive.StartRoleTxt.Text'),
+  startRoleTxt: computed.alias('primitive.StartRoleTxt.Text'),
 
   /**
     Link description.
@@ -73,7 +74,7 @@ export default FdUmlPrimitive.extend({
     @property description
     @type String
   */
-  description: Ember.computed.alias('primitive.Name.Text'),
+  description: computed.alias('primitive.Name.Text'),
 
   /**
     Link qualified.
@@ -81,7 +82,7 @@ export default FdUmlPrimitive.extend({
     @property qualified
     @type String
   */
-  qualified: Ember.computed.alias('primitive.QualifiedText.Text'),
+  qualified: computed.alias('primitive.QualifiedText.Text'),
 
   /**
     Link's start point.
@@ -89,7 +90,7 @@ export default FdUmlPrimitive.extend({
     @property startPoint
     @type Object
   */
-  startPoint: Ember.computed('primitive.StartPoint.X', 'primitive.StartPoint.Y', function() {
+  startPoint: computed('primitive.StartPoint.{X,Y}', function() {
     return { x: this.get('primitive.StartPoint.X'), y: this.get('primitive.StartPoint.Y') };
   }),
 
@@ -99,7 +100,7 @@ export default FdUmlPrimitive.extend({
     @property endPoint
     @type Object
   */
-  endPoint: Ember.computed('primitive.EndPoint.X', 'primitive.EndPoint.Y', function() {
+  endPoint: computed('primitive.EndPoint.{X,Y}', function() {
     return { x: this.get('primitive.EndPoint.X'), y: this.get('primitive.EndPoint.Y') };
   }),
 
@@ -109,7 +110,7 @@ export default FdUmlPrimitive.extend({
     @property labels
     @type Array
   */
-  labels: Ember.computed('startMultiplicity', 'endMultiplicity', 'startRoleTxt', 'endRoleTxt', 'description', 'qualified', function () {
+  labels: computed('startMultiplicity', 'endMultiplicity', 'startRoleTxt', 'endRoleTxt', 'description', 'qualified', function () {
     return [
       { attrs: { text: { text: this.get('startMultiplicity') } } },
       { attrs: { text: { text: this.get('endMultiplicity') } } },
@@ -126,10 +127,10 @@ export default FdUmlPrimitive.extend({
     @property vertices
     @type Array
   */
-  vertices: Ember.computed('primitive.Points', function() {
+  vertices: computed('primitive.Points', function() {
     let vertices = [];
     let points = this.get('primitive.Points');
-    for (let i = points.length - 2; i > 0; i--) {
+    for (let i = 1; i < points.length - 1; i++) {
       vertices.push({ x: points[i].X, y: points[i].Y });
     }
 
@@ -193,7 +194,7 @@ export let Link = joint.dia.Link.define('flexberry.uml.Link', {
       @param {Boolean} isEnd True when pointB is an end of the link.
     */
     updateLabelsPositions(pointA, pointB, isEnd) {
-      if (Ember.isNone(pointA) || Ember.isNone(pointB)) {
+      if (isNone(pointA) || isNone(pointB)) {
         return;
       }
 
@@ -265,6 +266,7 @@ export let Link = joint.dia.Link.define('flexberry.uml.Link', {
           this.label(5, { attrs: { text: { text: text, 'font-size': '12', 'font-family': 'Arial, helvetica, sans-serif' } } });
           break;
         default:
+          // eslint-disable-next-line no-console
           console.log('ERROR - choose correct label name');
           break;
       }
@@ -294,10 +296,11 @@ export let Link = joint.dia.Link.define('flexberry.uml.Link', {
           label = this.label(5);
           break;
         default:
+          // eslint-disable-next-line no-console
           console.log('ERROR - choose correct label name');
       }
 
-      return Ember.get(label, 'attrs.text.text');
+      return get(label, 'attrs.text.text');
     },
 
     getLabelDistance: function (labelName, isVertical) {
@@ -313,6 +316,7 @@ export let Link = joint.dia.Link.define('flexberry.uml.Link', {
         case 'qualified':
           return 0;
         default:
+          // eslint-disable-next-line no-console
           console.log('ERROR - choose correct label name');
       }
     },

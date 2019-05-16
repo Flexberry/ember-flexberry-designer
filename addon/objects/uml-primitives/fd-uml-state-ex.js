@@ -2,7 +2,8 @@
   @module ember-flexberry-designer
 */
 
-import Ember from 'ember';
+import { computed } from '@ember/object';
+import { isArray } from '@ember/array';
 import { BaseClass, Class } from './fd-uml-class';
 
 import FdUmlElement from './fd-uml-element';
@@ -21,7 +22,16 @@ export default FdUmlElement.extend({
     @property name
     @type String
   */
-  name: Ember.computed.alias('primitive.Name.Text'),
+  name: computed('primitive.Name.Text', {
+    get() {
+      return this.get('primitive.Name.Text');
+    },
+    set(key, value) {
+      let nameTxt = (isArray(value)) ? value.join('\n') : value;
+      this.set('primitive.Name.Text', nameTxt);
+      return value;
+    },
+  }),
 
   /**
     List of attributes of the states.
@@ -29,7 +39,16 @@ export default FdUmlElement.extend({
     @property attributes
     @type String
   */
-  attributes: Ember.computed.alias('primitive.Text.Text'),
+  attributes: computed('primitive.AttributesTxt.Text', {
+    get() {
+      return this.get('primitive.AttributesTxt.Text').split('\n');
+    },
+    set(key, value) {
+      let attributesTxt = (isArray(value)) ? value.join('\n') : value;
+      this.set('primitive.AttributesTxt.Text', attributesTxt);
+      return value;
+    },
+  }),
 
   /**
     Type of primitive.
@@ -37,7 +56,7 @@ export default FdUmlElement.extend({
     @property type
     @type String
   */
-  type: Ember.computed.alias('primitive.$type'),
+  type: computed.alias('primitive.$type'),
 
   /**
     See {{#crossLink "FdUmlPrimitive/JointJS:method"}}here{{/crossLink}}.
@@ -45,7 +64,8 @@ export default FdUmlElement.extend({
     @method JointJS
   */
   JointJS() {
-    let properties = this.getProperties('id', 'name', 'size', 'position', 'attributes');
+    let properties = this.getProperties('id', 'size', 'position');
+    properties.objectModel = this;
     if (this.get('type') === 'STORMCASE.UML.std.CompositeState, UMLSTD') {
       return new CompositeState(properties);
     } else {

@@ -1,10 +1,10 @@
 import DS from 'ember-data';
-import Ember from 'ember';
+import { A } from '@ember/array';
 import FdClassExternalStoreInstancesInType from '../objects/fd-storeinstancesintype';
 
 export default DS.Transform.extend({
   deserialize(storeInstancesInType) {
-    let ret = Ember.A();
+    let ret = A();
     let parser = new DOMParser();
     let xmlDoc = parser.parseFromString(storeInstancesInType, 'text/xml');
     if (xmlDoc) {

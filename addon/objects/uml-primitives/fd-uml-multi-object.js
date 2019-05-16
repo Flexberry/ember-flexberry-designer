@@ -2,7 +2,9 @@
   @module ember-flexberry-designer
 */
 
-import Ember from 'ember';
+import { computed } from '@ember/object';
+import { isArray } from '@ember/array';
+import $ from 'jquery';
 import joint from 'npm:jointjs';
 
 import FdUmlElement from './fd-uml-element';
@@ -22,14 +24,24 @@ export default FdUmlElement.extend({
     @property name
     @type String
   */
-  name: Ember.computed.alias('primitive.Name.Text'),
+  name: computed('primitive.Name.Text', {
+    get() {
+      return this.get('primitive.Name.Text');
+    },
+    set(key, value) {
+      let nameTxt = (isArray(value)) ? value.join('\n') : value;
+      this.set('primitive.Name.Text', nameTxt);
+      return value;
+    },
+  }),
 
   /**See {{#crossLink "FdUmlPrimitive/JointJS:method"}}here{{/crossLink}}.
 
     @method JointJS
   */
   JointJS() {
-    let properties = this.getProperties('id', 'name', 'size', 'position');
+    let properties = this.getProperties('id', 'size', 'position');
+    properties.objectModel = this;
     return new MultiObject(properties);
   },
 });
@@ -95,7 +107,7 @@ joint.shapes.flexberry.uml.MultiObjectView = joint.shapes.flexberry.uml.BaseObje
     joint.shapes.flexberry.uml.BaseObjectView.prototype.render.apply(this, arguments);
 
     let mask = document.getElementById('custom-mask');
-    let viewMaskId = Ember.$(mask).children('.view-rect').attr('id');
+    let viewMaskId = $(mask).children('.view-rect').attr('id');
     let maskId = 'mask_mo_' + viewMaskId;
     mask.setAttribute('id', maskId);
     let attrs = this.model.get('attrs');

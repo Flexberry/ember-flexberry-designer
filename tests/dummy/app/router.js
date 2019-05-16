@@ -1,10 +1,9 @@
-import Ember from 'ember';
-import 'ember-flexberry-designer/utils/fd-sequence-diagram-primitives';
-
+import EmberRouter from '@ember/routing/router';
 import config from './config/environment';
 
-const Router = Ember.Router.extend({
-  location: config.locationType
+const Router = EmberRouter.extend({
+  location: config.locationType,
+  rootURL: config.rootURL
 });
 
 Router.map(function () {
@@ -124,7 +123,13 @@ Router.map(function () {
   this.route('fd-application-model');
   this.route('fd-diagrams');
   this.route('fd-navigation');
-  this.route('fd-generation');
+  this.route('fd-generation', { path: 'generation' }, function() {
+    this.route('first');
+    this.route('list', { path: '' }, function() {
+      this.route('log', { path: ':generation_id' });
+    });
+  });
+
   this.route('fd-setting');
   this.route('fd-architecture');
   this.route('fd-all-projects', { path: 'all-projects' }, function() {

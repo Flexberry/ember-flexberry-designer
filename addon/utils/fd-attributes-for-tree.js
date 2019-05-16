@@ -1,4 +1,6 @@
-import Ember from 'ember';
+import { isNone } from '@ember/utils';
+import { A } from '@ember/array';
+
 import FdAttributesTree from '../objects/fd-attributes-tree';
 import FdViewAttributesMaster from '../objects/fd-view-attributes-master';
 import FdViewAttributesDetail from '../objects/fd-view-attributes-detail';
@@ -30,7 +32,7 @@ let getDataForBuildTree = function(store, id) {
     for (let i = 0; i < inheritanceData.length; i++) {
       let inheritance = inheritanceData[i];
       let parentStereotype = inheritance.get('parent.stereotype');
-      if (Ember.isNone(parentStereotype)) {
+      if (isNone(parentStereotype)) {
         parentID = inheritance.get('parent.id');
         classData.pushObjects(recordsDevClass.filterBy('id', parentID));
         associationData.pushObjects(recordsAssociation.filterBy('endClass.id', parentID));
@@ -39,10 +41,10 @@ let getDataForBuildTree = function(store, id) {
       } //TODO else if (parentStereotype === '«external»') {}
     }
 
-    if (!Ember.isNone(parentID)) {
+    if (!isNone(parentID)) {
       inheritanceData = recordsInheritance.filterBy('child.id', parentID);
     } else {
-      inheritanceData = Ember.A();
+      inheritanceData = A();
     }
   }
 
@@ -61,13 +63,13 @@ let getClassTreeNode = function (tree, classData, rootId, addInText) {
     let attributes = dClass.get('attributes');
     let idClass = dClass.get('id');
     let own = true;
-    if (Ember.isNone(rootId) || idClass !== rootId) {
+    if (isNone(rootId) || idClass !== rootId) {
       own = false;
     }
 
     attributes.forEach((attribute) => {
       let text = attribute.get('name');
-      if (!Ember.isNone(addInText)) {
+      if (!isNone(addInText)) {
         text += ' (' + attribute.get(`${addInText}`) + ')';
       }
 
@@ -94,12 +96,12 @@ let getAssociationTreeNode = function (tree, associationData, jsTreeId, rootId, 
     let masterName = master.get('startRole') || startClass.get('name');
     let idMaster = startClass.get('id');
     let own = true;
-    if (Ember.isNone(rootId) || master.get('endClass.id') !== rootId) {
+    if (isNone(rootId) || master.get('endClass.id') !== rootId) {
       own = false;
     }
 
     let text = masterName;
-    if (!Ember.isNone(addInText)) {
+    if (!isNone(addInText)) {
       text += ' (' + startClass.get(`${addInText}`) + ')';
     }
 
@@ -129,12 +131,12 @@ let getAggregationTreeNode = function (tree, aggregationData, rootId, addInText)
     let detailName = detail.get('endRole') || endClass.get('name');
     let idDetail = endClass.get('id');
     let own = true;
-    if (Ember.isNone(rootId) || detail.get('startClass.id') !== rootId) {
+    if (isNone(rootId) || detail.get('startClass.id') !== rootId) {
       own = false;
     }
 
     let text = detailName;
-    if (!Ember.isNone(addInText)) {
+    if (!isNone(addInText)) {
       text += ' (' + endClass.get(`${addInText}`) + ')';
     }
 
@@ -157,7 +159,7 @@ let getAggregationTreeNode = function (tree, aggregationData, rootId, addInText)
 let getDetailView = function (aggregationData) {
 
   // Array detail view.
-  let detailView = Ember.A();
+  let detailView = A();
   aggregationData.forEach((detail) => {
     let endClass = detail.get('endClass');
     let detailViews = endClass.get('views');
@@ -179,7 +181,7 @@ let getDetailView = function (aggregationData) {
 let getTreeNodeByNotUsedAttributes = function (store, classData, view, addInText) {
   let definition = view.get('definition');
   let dataObject = view.get('class');
-  let tree = Ember.A();
+  let tree = A();
   classData.forEach((dClass) => {
     let attributes = dClass.get('attributes');
     let idClass = dClass.get('id');
@@ -192,7 +194,7 @@ let getTreeNodeByNotUsedAttributes = function (store, classData, view, addInText
         (idClass === idClassPropertyName);
     });
 
-    let namesPropertyDefinition = Ember.A(filterDefinition).map(function(item) {
+    let namesPropertyDefinition = A(filterDefinition).map(function(item) {
       let itemName = item.get('name');
       let itemPath = itemName.split('.');
       let indexPropertyName = itemPath.length - 1;
@@ -200,12 +202,12 @@ let getTreeNodeByNotUsedAttributes = function (store, classData, view, addInText
     });
 
     let notUsedAttributes = attributes.filter(function(item) {
-      return Ember.A(namesPropertyDefinition).indexOf(item.get('name')) === -1;
+      return A(namesPropertyDefinition).indexOf(item.get('name')) === -1;
     });
 
     notUsedAttributes.forEach((attribute) => {
       let text = attribute.get('name');
-      if (!Ember.isNone(addInText)) {
+      if (!isNone(addInText)) {
         text += ' (' + attribute.get(`${addInText}`) + ')';
       }
 
@@ -229,7 +231,7 @@ let getTreeNodeByNotUsedAssociation = function (store, associationData, jsTreeId
   let definition = view.get('definition');
   let dataObject = view.get('class');
   let currentClassId = associationData.length > 0 ? associationData.get('firstObject.endClass.id') : null;
-  let tree = Ember.A();
+  let tree = A();
 
   let filterDefinition = definition.filter(function(item) {
     let itemSplit = item.get('name').split('.');
@@ -237,7 +239,7 @@ let getTreeNodeByNotUsedAssociation = function (store, associationData, jsTreeId
     return (item instanceof FdViewAttributesMaster) && (currentClassId === idClassPropertyName);
   });
 
-  let namesPropertyDefinition = Ember.A(filterDefinition).map(function(item) {
+  let namesPropertyDefinition = A(filterDefinition).map(function(item) {
     let itemName = item.get('name');
     let itemPath = itemName.split('.');
     let indexPropertyName = itemPath.length - 1;
@@ -246,7 +248,7 @@ let getTreeNodeByNotUsedAssociation = function (store, associationData, jsTreeId
 
   let notUsedAssociation = associationData.filter(function(item) {
     let endClass = item.get('startClass');
-    return Ember.A(namesPropertyDefinition).indexOf(endClass.get('name')) === -1;
+    return A(namesPropertyDefinition).indexOf(endClass.get('name')) === -1;
   });
 
   notUsedAssociation.forEach((master, index) => {
@@ -255,7 +257,7 @@ let getTreeNodeByNotUsedAssociation = function (store, associationData, jsTreeId
     let idMaster = startClass.get('id');
 
     let text = masterName;
-    if (!Ember.isNone(addInText)) {
+    if (!isNone(addInText)) {
       text += ' (' + startClass.get(`${addInText}`) + ')';
     }
 
@@ -277,16 +279,16 @@ let getTreeNodeByNotUsedAssociation = function (store, associationData, jsTreeId
 */
 let getTreeNodeByNotUsedAggregation = function (aggregationData, view, addInText) {
   let definition = view.get('definition');
-  let tree = Ember.A();
+  let tree = A();
 
   let filterDefinition = definition.filter(function(item) {
     return (item instanceof FdViewAttributesDetail);
   });
 
   let notUsedAggregation = aggregationData.filter(function(item) {
-    let filterDefinitionArray = Ember.A(filterDefinition);
+    let filterDefinitionArray = A(filterDefinition);
     let checkValue = item.get('endRole') || item.get('endClass.name');
-    return Ember.isNone(filterDefinitionArray.findBy('name', checkValue));
+    return isNone(filterDefinitionArray.findBy('name', checkValue));
   });
 
   notUsedAggregation.forEach((detail) => {
@@ -295,7 +297,7 @@ let getTreeNodeByNotUsedAggregation = function (aggregationData, view, addInText
     let idDetail = endClass.get('id');
 
     let text = detailName;
-    if (!Ember.isNone(addInText)) {
+    if (!isNone(addInText)) {
       text += ' (' + endClass.get(`${addInText}`) + ')';
     }
 
@@ -329,9 +331,10 @@ let parsingPropertyName = function (store, dataObject, propertyName) {
       endRoleData = getDataForBuildTree(store, endRoleID);
       let associationFilteByRealRole = endRoleData.associations.filterBy('realStartRole', startRole);
       let associationFilteByRole = endRoleData.associations.filterBy('startRole', startRole);
-      associationSelectedClass = Ember.A(associationFilteByRealRole).addObjects(associationFilteByRole);
+      associationSelectedClass = A(associationFilteByRealRole).addObjects(associationFilteByRole);
     }
   } else if (propertyName.length > 1) {
+    // eslint-disable-next-line no-console
     console.error('Not found association with name:' + startRole);
     endRoleID = null;
   }

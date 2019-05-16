@@ -1,6 +1,6 @@
 import { module, test } from 'qunit';
 
-import { deserialize, serialize } from 'ember-flexberry-designer/utils/fd-type-map-functions';
+import { deserialize, serialize } from 'ember-flexberry-designer/utils/transforms-utils/fd-type-map-functions';
 
 module('Unit | Utility | fd-type-map-functions');
 

@@ -1,4 +1,7 @@
-import Ember from 'ember';
+import { computed, set } from '@ember/object';
+import { isNone } from '@ember/utils';
+import { A } from '@ember/array';
+
 import EditFormController from 'ember-flexberry/controllers/edit-form';
 import FdFormUnsavedData from '../mixins/fd-form-unsaved-data';
 import { updateAssociationOnDiagram } from '../utils/fd-update-class-diagram';
@@ -13,7 +16,7 @@ export default EditFormController.extend(FdFormUnsavedData, {
     @type Array
     @default []
    */
-  implementations: Ember.A(),
+  implementations: A(),
 
   /**
       Array name all classes.
@@ -22,7 +25,7 @@ export default EditFormController.extend(FdFormUnsavedData, {
     @type Array
     @default []
    */
-  implementationsName: Ember.A(),
+  implementationsName: A(),
 
   /**
       Name start class.
@@ -58,7 +61,11 @@ export default EditFormController.extend(FdFormUnsavedData, {
     @type Array
     @default ['+', '-', '#']
    */
-  itemsAccessModifier: ['+', '-', '#'],
+  itemsAccessModifier: computed(() => [
+    '+',
+    '-',
+    '#'
+  ]).readOnly(),
 
   /**
     Overridden metod 'Save'.
@@ -81,10 +88,10 @@ export default EditFormController.extend(FdFormUnsavedData, {
       if (!this.get('readonlyClass')) {
         let startClass = this.get('implementations').find(i => i.get('name') === value || i.get('nameStr') === value);
         let model = this.get('model');
-        Ember.set(model, 'startClass', startClass);
-        Ember.set(this, 'startClassName', startClass.get('name'));
-        if (Ember.isNone(model.get('startRole')) || model.get('startRole') === '') {
-          Ember.set(model, 'startRole', startClass.get('name'));
+        set(model, 'startClass', startClass);
+        set(this, 'startClassName', startClass.get('name'));
+        if (isNone(model.get('startRole')) || model.get('startRole') === '') {
+          set(model, 'startRole', startClass.get('name'));
         }
       }
     },
@@ -98,10 +105,10 @@ export default EditFormController.extend(FdFormUnsavedData, {
       if (!this.get('readonlyClass')) {
         let endClass = this.get('implementations').find(i => i.get('name') === value || i.get('nameStr') === value);
         let model = this.get('model');
-        Ember.set(model, 'endClass', endClass);
-        Ember.set(this, 'endClassName', endClass.get('name'));
-        if (Ember.isNone(model.get('endRole')) || model.get('endRole') === '') {
-          Ember.set(model, 'endRole', endClass.get('name'));
+        set(model, 'endClass', endClass);
+        set(this, 'endClassName', endClass.get('name'));
+        if (isNone(model.get('endRole')) || model.get('endRole') === '') {
+          set(model, 'endRole', endClass.get('name'));
         }
       }
     }

@@ -2,6 +2,8 @@
 All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
+
+## [0.6.0] - 2019-04-12
 ### Added
 * Edit form for the type map.
 * The application structure constructor:
@@ -25,6 +27,7 @@ All notable changes to this project will be documented in this file.
 * Edit form for classes with `typemap` stereotype.
 * Buttons for adding ucd diagram primitives.
 * Forms of projects for new design.
+* Forms of generation for new design.
 * Current project name view.
 
 ### Changed

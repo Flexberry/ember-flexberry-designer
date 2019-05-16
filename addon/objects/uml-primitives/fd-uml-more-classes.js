@@ -21,7 +21,7 @@ export default FdUmlElement.extend({
   */
   JointJS() {
     let properties = this.getProperties('id', 'position');
-
+    properties.objectModel = this;
     return new MoreClasses(properties);
   },
 });
@@ -36,6 +36,9 @@ export default FdUmlElement.extend({
   @constructor
 */
 export let MoreClasses = joint.shapes.basic.Generic.define('flexberry.uml.MoreClasses', {
+  
+  objectModel: null,
+
   size: { width: 50, height: 10 },
   attrs: {
     circle: { fill: 'black', r: '10' },
@@ -48,4 +51,17 @@ export let MoreClasses = joint.shapes.basic.Generic.define('flexberry.uml.MoreCl
       '</g>',
       '</g>'
   ].join(''),
+
+  initialize() {
+    this.on('change:position', function(element, newPosition) {
+      let objectModel = this.get('objectModel');
+      if (objectModel) {
+        objectModel.set('x', newPosition.x);
+        objectModel.set('y', newPosition.y);
+        this.trigger('uml-update');
+      }
+    }, this);
+
+    joint.shapes.basic.Generic.prototype.initialize.apply(this, arguments);
+  }
 });
