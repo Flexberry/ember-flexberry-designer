@@ -5,6 +5,7 @@
 import Component from '@ember/component';
 import { computed } from '@ember/object';
 import { isNone } from '@ember/utils';
+import { A } from '@ember/array';
 import $ from 'jquery';
 import joint from 'npm:jointjs';
 
@@ -125,10 +126,40 @@ export default Component.extend({
     paper.on('blank:pointerclick', this._blankPointerClick, this);
     paper.on('element:pointerclick', this._elementPointerClick, this);
     paper.on('blank:contextmenu', this._blankContextMenu, this);
+    let linkConnectorsIds = A();
+    graph.addCells(elements.map(e => {
+      let element = e.JointJS();
+      if (element.prop('type') === 'flexberry.uml.LinkConnector') {
+        linkConnectorsIds.addObject(element.prop('id'));
+      }
 
-    graph.addCells(elements.map(e => e.JointJS(graph)));
-    graph.addCells(links.map(l => l.JointJS(graph)));
+      return element;
+    }));
+
+    graph.addCells(links.map(function(l) {
+      let link = l.JointJS();
+      switch (link.prop('type')) {
+        case 'flexberry.uml.Aggregation':
+        case 'flexberry.uml.Association':
+        case 'flexberry.uml.Generalization':
+        case 'flexberry.uml.LinkInheritance':
+          if (this.includes(link.prop('source/id'))) {
+            link.attr('.marker-arrowhead-group-source', {'display':'none'});
+            link.attr('.tool-remove', {'display':'none'});
+          }
+
+          if (this.includes(link.prop('target/id'))) {
+            link.attr('.marker-arrowhead-group-target', {'display':'none'});
+            link.attr('.tool-remove', {'display':'none'});
+          }
+      }
+
+      return link;
+    },
+      linkConnectorsIds
+    ));
   },
+
 
   /**
     Handler event 'blank:pointerclick'.
