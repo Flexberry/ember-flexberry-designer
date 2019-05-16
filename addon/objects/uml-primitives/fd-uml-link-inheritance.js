@@ -6,7 +6,6 @@ import joint from 'npm:jointjs';
 import FdUmlLink from './fd-uml-link';
 import { Link } from './fd-uml-link';
 import { MultiplicityView } from './links-view/fd-multiplicity-view';
-import joint from 'npm:jointjs';
 
 /**
   An object that describes an aggregation link on the UML diagram.
