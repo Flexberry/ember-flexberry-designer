@@ -5,6 +5,7 @@
 import Component from '@ember/component';
 import { computed } from '@ember/object';
 import { isNone } from '@ember/utils';
+import { A } from '@ember/array';
 import $ from 'jquery';
 import joint from 'npm:jointjs';
 
@@ -125,36 +126,35 @@ export default Component.extend({
     paper.on('blank:pointerclick', this._blankPointerClick, this);
     paper.on('element:pointerclick', this._elementPointerClick, this);
     paper.on('blank:contextmenu', this._blankContextMenu, this);
-    graph.addCells(elements.map(e => e.JointJS(graph)));
-    let cells = graph.getCells();
-    let linkConnectorsIds = [];
-    for (let i = 0; i < cells.length; i++) {
-      let cell = cells[i];
-      if (cell.attributes.type == "flexberry.uml.LinkConnector") {
-        linkConnectorsIds.push(cell.attributes.id);
+    let linkConnectorsIds = A();
+    graph.addCells(elements.map(e => {
+      let element = e.JointJS();
+      if (element.prop('type') === 'flexberry.uml.LinkConnector') {
+        linkConnectorsIds.addObject(element.prop('id'));
       }
-    }
+
+      return element;
+    }));
 
     graph.addCells(links.map(function(l) {
-      let ret = l.JointJS(graph);
-      switch (ret.attributes.type) {
+      let link = l.JointJS();
+      switch (link.prop('type')) {
         case 'flexberry.uml.Aggregation':
         case 'flexberry.uml.Association':
         case 'flexberry.uml.Generalization':
         case 'flexberry.uml.LinkInheritance':
-          if (this.indexOf(ret.attributes.source.id) >= 0) {
-            ret.attributes.attrs[".marker-arrowhead-group-source"] = {"display":"none"};
-            ret.attributes.attrs[".tool-remove"] = {"display":"none"};
+          if (this.includes(link.prop('source/id'))) {
+            link.attr('.marker-arrowhead-group-source', {'display':'none'});
+            link.attr('.tool-remove', {'display':'none'});
           }
 
-          if (this.indexOf(ret.attributes.target.id) >= 0) {
-            ret.attributes.attrs[".marker-arrowhead-group-target"] = {"display":"none"};
-            ret.attributes.attrs[".tool-remove"] = {"display":"none"};
+          if (this.includes(link.prop('target/id'))) {
+            link.attr('.marker-arrowhead-group-target', {'display':'none'});
+            link.attr('.tool-remove', {'display':'none'});
           }
-
       }
 
-      return ret;
+      return link;
     },
       linkConnectorsIds
     ));
