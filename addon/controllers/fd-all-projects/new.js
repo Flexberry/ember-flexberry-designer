@@ -49,4 +49,10 @@ export default Controller.extend({
     @property queryParams
   */
   queryParams: ['nameFromSearch'],
+
+  actions: {
+    cancelButton() {
+      this.transitionToRoute('fd-all-projects');
+    }
+  }
 });
