@@ -93,6 +93,14 @@ FdActionsForUcdPrimitivesMixin, {
   */
   currentTargetElement: undefined,
 
+  /**
+    Сurrent diagram's paper.
+
+    @property paper
+    @type joint.dia.Paper
+  */
+  paper: undefined,
+
   classNames: ['fd-uml-diagram-editor'],
 
   diagramType: computed('model.constructor.modelName', function() {
@@ -113,6 +121,18 @@ FdActionsForUcdPrimitivesMixin, {
   },
 
   actions: {
+    /**
+      Normalize paper's size
+
+      @method actions.fitToContent
+    */
+    fitToContent() {
+      let paper = this.get('paper');
+
+      let minWidth = this.$().width();
+      let minHeight = this.$().height() - this.$('.fd-uml-diagram-toolbar').height();
+      paper.fitToContent({ minWidth, minHeight, padding: 10 });
+    },
 
     /**
       Handler event blankPointerClick

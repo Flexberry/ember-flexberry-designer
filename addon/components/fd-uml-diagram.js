@@ -131,12 +131,16 @@ export default Component.extend({
       linkConnectorsIds
     ));
 
-    let minWidth = $('.fd-uml-diagram-editor').width();
-    let minHeight = $('.fd-uml-diagram-editor').height() - $('.fd-uml-diagram-toolbar').height();
-    let fitPaperToContent = paper.fitToContent.bind(paper, { minWidth, minHeight });
+    let fitPaperToContent = function() {
+      this.get('fitToContent')();
+    }.bind(this);
 
     graph.on('add', fitPaperToContent);
-    graph.on('change', fitPaperToContent);
+    graph.on('change:position', fitPaperToContent);
+    graph.on('change:size', fitPaperToContent);
+    graph.on('change:source', fitPaperToContent);
+    graph.on('change:target', fitPaperToContent);
+    graph.on('change:vertices', fitPaperToContent);
     graph.on('remove', fitPaperToContent);
 
     fitPaperToContent();

@@ -4,6 +4,7 @@ All notable changes to this project will be documented in this file.
 ## [Unreleased]
 ### Changed
 * The diagram in the `{{fd-uml-diagram}}` component now has an infinite size.
+* Links can't have empty source or target.
 
 ## [0.7.0-beta.1] - 2019-05-17
 ### Added
