@@ -132,7 +132,10 @@ export default Component.extend({
     ));
 
     let fitPaperToContent = function() {
-      this.get('fitToContent')();
+      let fitToContent = this.get('fitToContent');
+      if (!isNone(fitToContent)) {
+        fitToContent();
+      }
     }.bind(this);
 
     graph.on('add', fitPaperToContent);

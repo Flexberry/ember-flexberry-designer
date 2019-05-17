@@ -164,6 +164,7 @@ export default Service.extend(Evented, {
     later(function() {
       $(`.fd-sheet.${sheetName} .content-mini`).css({ opacity: '', width: contentWidth });
       _this.toolbarDiagramPosition();
+      _this.trigger('diagramResizeTriggered', sheetName);
     }, speed);
   }
 });

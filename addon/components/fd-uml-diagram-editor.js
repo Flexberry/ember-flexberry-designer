@@ -115,10 +115,22 @@ FdActionsForUcdPrimitivesMixin, {
   init() {
     this._super(...arguments);
 
+    this.get('fdSheetService').on('diagramResizeTriggered', this, this._fitToContent);
+
     next(() => {
       this.get('fdSheetService').toolbarDiagramPosition();
     });
   },
+
+  /**
+   Called when the element of the view is going to be destroyed.
+   For more information see [willDestroyElement](http://emberjs.com/api/classes/Ember.Component.html#event_willDestroyElement) event of [Ember.Component](http://emberjs.com/api/classes/Ember.Component.html).
+ */
+ willDestroyElement() {
+   this._super(...arguments);
+
+   this.get('fdSheetService').off('diagramResizeTriggered', this, this._fitToContent);
+ },
 
   actions: {
     /**
@@ -128,6 +140,9 @@ FdActionsForUcdPrimitivesMixin, {
     */
     fitToContent() {
       let paper = this.get('paper');
+      if (isNone(paper)) {
+        return;
+      }
 
       let minWidth = this.$().width();
       let minHeight = this.$().height() - this.$('.fd-uml-diagram-toolbar').height();
@@ -352,6 +367,18 @@ FdActionsForUcdPrimitivesMixin, {
     let pointer = this.$('.pointer-button');
     pointer.addClass('active');
     this.set('currentTargetElement', pointer);
+  },
+
+  /**
+    Resize diagram.
+
+    @method _resetCurrentTargetElement
+    @private
+  */
+  _fitToContent(sheetName) {
+    if (this.get('sheetComponentName') === sheetName) {
+      this.actions.fitToContent.bind(this)();
+    }
   },
 
   /**
