@@ -375,8 +375,9 @@ FdActionsForUcdPrimitivesMixin, {
     @method _resetCurrentTargetElement
     @private
   */
-  _fitToContent(sheetName) {
-    if (this.get('sheetComponentName') === sheetName) {
+  _fitToContent(sheetName, containsName) {
+    let sheetComponentName = this.get('sheetComponentName');
+    if (containsName ? sheetName.includes(sheetComponentName) : sheetComponentName === sheetName) {
       this.actions.fitToContent.bind(this)();
     }
   },
