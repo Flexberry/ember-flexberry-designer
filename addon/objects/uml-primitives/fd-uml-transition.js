@@ -1,9 +1,12 @@
 /**
   @module ember-flexberry-designer
 */
+import joint from 'npm:jointjs';
+
 import FdUmlBaseLink from './fd-uml-link';
 import { Connection } from './fd-uml-connection';
 import { Dependency } from './fd-uml-dependency';
+import { EmptyView } from './links-view/fd-empty-view';
 
 /**
   An object that defines Transition link on the UML diagram.
@@ -19,7 +22,8 @@ export default FdUmlBaseLink.extend({
     @method JointJS
   */
   JointJS() {
-    let properties = this.getProperties('id', 'name', 'source', 'target', 'vertices', 'labels');
+    let properties = this.getProperties('id', 'source', 'target', 'vertices', 'labels');
+    properties.objectModel = this;
     if (this.get('type') === 'STORMCASE.UML.ad.Transition, UMLAD') {
       return new Transition(properties);
     } else {
@@ -54,3 +58,5 @@ export let Transition = Connection.define('flexberry.uml.Transition', {
     }
   },
 });
+
+joint.shapes.flexberry.uml.TransitionView = EmptyView;

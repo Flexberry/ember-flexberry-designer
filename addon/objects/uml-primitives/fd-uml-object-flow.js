@@ -1,9 +1,11 @@
 /**
   @module ember-flexberry-designer
 */
+import joint from 'npm:jointjs';
 
 import FdUmlBaseLink from './fd-uml-link';
 import { Dependency } from './fd-uml-dependency';
+import { EmptyView } from './links-view/fd-empty-view';
 
 /**
   An object that defines ObjectFlow on the UML diagram.
@@ -20,6 +22,7 @@ export default FdUmlBaseLink.extend({
   */
   JointJS() {
     let properties = this.getProperties('id', 'source', 'target', 'vertices', 'labels');
+    properties.objectModel = this;
     return new ObjectFlow(properties);
   }
 });
@@ -52,3 +55,5 @@ export let ObjectFlow = Dependency.define('flexberry.uml.ObjectFlow', {
     }
   },
 });
+
+joint.shapes.flexberry.uml.ObjectFlowView = EmptyView;
