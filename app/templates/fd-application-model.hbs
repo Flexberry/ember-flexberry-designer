@@ -5,10 +5,10 @@
 <form class="ui form flexberry-vertical-form">
   <div class="ui stackable grid fd-list">
     <div class="row">
-      <div class="two wide column light-text">
+      <div class="three wide column light-text">
         {{t "forms.fd-application-model.type-caption"}}
       </div>
-      <div class="fourteen wide column">
+      <div class="thirteen wide column">
         {{
           fd-search-input
           value=searchValue
@@ -28,10 +28,10 @@
     {{!-- Enums --}}
     {{#if (not-eq filteredModel.enums.length 0)}}
     <div class="row">
-      <div class="two wide column light-text">
+      <div class="three wide column light-text">
         {{t "forms.fd-application-model.enum-caption"}}
       </div>
-      <div class="fourteen wide column">
+      <div class="thirteen wide column">
         {{#each filteredModel.enums as |enum|}}
           {{
             fd-list-item
@@ -41,7 +41,7 @@
           }}
         {{/each}}
       </div>
-      <div class="right floated fourteen wide column">
+      <div class="right floated thirteen wide column">
         {{
           fd-button
           caption=(t "forms.fd-application-model.enum-caption")
@@ -53,10 +53,10 @@
     {{!-- Type --}}
     {{#if (not-eq filteredModel.types.length 0)}}
     <div class="row">
-      <div class="two wide column light-text">
+      <div class="three wide column light-text">
         {{t "forms.fd-application-model.type-content-caption"}}
       </div>
-      <div class="fourteen wide column">
+      <div class="thirteen wide column">
         {{#each filteredModel.types as |type|}}
           {{
             fd-list-item
@@ -66,7 +66,7 @@
           }}
         {{/each}}
       </div>
-      <div class="right floated fourteen wide column">
+      <div class="right floated thirteen wide column">
         {{
           fd-button
           caption=(t "forms.fd-application-model.type-content-caption")
@@ -78,10 +78,10 @@
     {{!-- Typedef --}}
     {{#if (not-eq filteredModel.typedefs.length 0)}}
     <div class="row">
-      <div class="two wide column light-text">
+      <div class="three wide column light-text">
         {{t "forms.fd-application-model.typedef-caption"}}
       </div>
-      <div class="fourteen wide column">
+      <div class="thirteen wide column">
         {{#each filteredModel.typedefs as |typedef|}}
           {{
             fd-list-item
@@ -91,7 +91,7 @@
           }}
         {{/each}}
       </div>
-      <div class="right floated fourteen wide column">
+      <div class="right floated thirteen wide column">
         {{
           fd-button
           caption=(t "forms.fd-application-model.typedef-caption")
@@ -103,10 +103,10 @@
     {{!-- BS --}}
     {{#if (not-eq filteredModel.bs.length 0)}}
     <div class="row">
-      <div class="two wide column light-text">
+      <div class="three wide column light-text">
         {{t "forms.fd-application-model.bs-caption"}}
       </div>
-      <div class="fourteen wide column">
+      <div class="thirteen wide column">
         {{#each filteredModel.bs as |bs|}}
           {{
             fd-list-item
@@ -116,7 +116,7 @@
           }}
         {{/each}}
       </div>
-      <div class="right floated fourteen wide column">
+      <div class="right floated thirteen wide column">
         {{
           fd-button
           caption=(t "forms.fd-application-model.bs-caption")
@@ -128,10 +128,10 @@
     {{!-- Interface --}}
     {{#if (not-eq filteredModel.interfaces.length 0)}}
     <div class="row">
-      <div class="two wide column light-text">
+      <div class="three wide column light-text">
         {{t "forms.fd-application-model.interface-caption"}}
       </div>
-      <div class="fourteen wide column">
+      <div class="thirteen wide column">
         {{#each filteredModel.interfaces as |interface|}}
           {{
             fd-list-item
@@ -141,7 +141,7 @@
           }}
         {{/each}}
       </div>
-      <div class="right floated fourteen wide column">
+      <div class="right floated thirteen wide column">
         {{
           fd-button
           caption=(t "forms.fd-application-model.interface-caption")
@@ -153,10 +153,10 @@
     {{!-- External --}}
     {{#if (not-eq filteredModel.externals.length 0)}}
     <div class="row">
-      <div class="two wide column light-text">
+      <div class="three wide column light-text">
         {{t "forms.fd-application-model.external-caption"}}
       </div>
-      <div class="fourteen wide column">
+      <div class="thirteen wide column">
         {{#each filteredModel.externals as |external|}}
           {{
             fd-list-item
@@ -166,7 +166,7 @@
           }}
         {{/each}}
       </div>
-      <div class="right floated fourteen wide column">
+      <div class="right floated thirteen wide column">
         {{
           fd-button
           caption=(t "forms.fd-application-model.external-caption")
@@ -178,10 +178,10 @@
     {{!-- Extinterface --}}
     {{#if (not-eq filteredModel.extinterfaces.length 0)}}
     <div class="row">
-      <div class="two wide column light-text">
+      <div class="three wide column light-text">
         {{t "forms.fd-application-model.extinterface-caption"}}
       </div>
-      <div class="fourteen wide column">
+      <div class="thirteen wide column">
         {{#each filteredModel.extinterfaces as |extinterface|}}
           {{
             fd-list-item
@@ -191,7 +191,7 @@
           }}
         {{/each}}
       </div>
-      <div class="right floated fourteen wide column">
+      <div class="right floated thirteen wide column">
         {{
           fd-button
           caption=(t "forms.fd-application-model.extinterface-caption")
@@ -203,10 +203,10 @@
     {{!-- Applications --}}
     {{#if (not-eq filteredModel.applications.length 0)}}
     <div class="row">
-      <div class="two wide column light-text">
+      <div class="three wide column light-text">
         {{t "forms.fd-application-model.application-caption"}}
       </div>
-      <div class="fourteen wide column">
+      <div class="thirteen wide column">
         {{#each filteredModel.applications as |application|}}
           {{
             fd-list-item
@@ -216,7 +216,7 @@
           }}
         {{/each}}
       </div>
-      <div class="right floated fourteen wide column">
+      <div class="right floated thirteen wide column">
         {{
           fd-button
           caption=(t "forms.fd-application-model.application-caption")
@@ -228,10 +228,10 @@
     {{!-- Userforms --}}
     {{#if (not-eq filteredModel.userforms.length 0)}}
     <div class="row">
-      <div class="two wide column light-text">
+      <div class="three wide column light-text">
         {{t "forms.fd-application-model.userform-caption"}}
       </div>
-      <div class="fourteen wide column">
+      <div class="thirteen wide column">
         {{#each filteredModel.userforms as |userform|}}
           {{
             fd-list-item
@@ -241,7 +241,7 @@
           }}
         {{/each}}
       </div>
-      <div class="right floated fourteen wide column">
+      <div class="right floated thirteen wide column">
         {{
           fd-button
           caption=(t "forms.fd-application-model.userform-caption")
@@ -253,10 +253,10 @@
     {{!-- Userstereotypes --}}
     {{#if (not-eq filteredModel.userstereotypes.length 0)}}
     <div class="row">
-      <div class="two wide column light-text">
+      <div class="three wide column light-text">
         {{t "forms.fd-application-model.userstereotype-caption"}}
       </div>
-      <div class="fourteen wide column">
+      <div class="thirteen wide column">
         {{#each filteredModel.userstereotypes as |userstereotype|}}
           {{
             fd-list-item
@@ -266,7 +266,7 @@
           }}
         {{/each}}
       </div>
-      <div class="right floated fourteen wide column">
+      <div class="right floated thirteen wide column">
         {{
           fd-button
           caption=(t "forms.fd-application-model.userstereotype-caption")

@@ -1,8 +1,11 @@
 /**
   @module ember-flexberry-designer
 */
+import joint from 'npm:jointjs';
 
-import FdUmlLink, { LinkWithUnderline } from './fd-uml-link';
+import FdUmlLink from './fd-uml-link';
+import { Link } from './fd-uml-link';
+import { MultiplicityView } from './links-view/fd-multiplicity-view';
 
 /**
   An object that describes an aggregation link on the UML diagram.
@@ -19,8 +22,9 @@ export default FdUmlLink.extend({
   */
   JointJS() {
     let properties = this.getProperties('id', 'source', 'target', 'vertices', 'labels');
+    properties.objectModel = this;
     return new LinkInheritance(properties);
-  },
+  }
 });
 
 /**
@@ -32,6 +36,11 @@ export default FdUmlLink.extend({
   @namespace flexberry.uml
   @constructor
 */
-export let LinkInheritance = LinkWithUnderline.define('flexberry.uml.LinkInheritance', {
-  attrs: { },
+export let LinkInheritance = Link.define('flexberry.uml.LinkInheritance', {
+  attrs: {
+    text: { visibility: 'hidden' },
+    rect: { visibility: 'hidden' }
+  }
 });
+
+joint.shapes.flexberry.uml.LinkInheritanceView = MultiplicityView;

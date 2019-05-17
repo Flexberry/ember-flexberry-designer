@@ -1,9 +1,11 @@
 /**
   @module ember-flexberry-designer
 */
+import joint from 'npm:jointjs';
 
 import FdUmlLink from './fd-uml-link';
 import { Link } from './fd-uml-link';
+import { EmptyView } from './links-view/fd-empty-view';
 
 /**
   An object that describes a link of the Realization type on the UML diagram.
@@ -20,6 +22,7 @@ export default FdUmlLink.extend({
   */
   JointJS() {
     let properties = this.getProperties('id', 'source', 'target', 'vertices', 'labels');
+    properties.objectModel = this;
     return new Realization(properties);
   },
 });
@@ -39,3 +42,5 @@ export let Realization = Link.define('flexberry.uml.Realization', {
     '.connection': { stroke: 'black', 'stroke-width': 1, 'stroke-dasharray': '7 2' },
   },
 });
+
+joint.shapes.flexberry.uml.RealizationView = EmptyView;

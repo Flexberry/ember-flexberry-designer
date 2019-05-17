@@ -1,11 +1,12 @@
 import { computed, get } from '@ember/object';
 import { isArray } from '@ember/array';
 import { isNone } from '@ember/utils';
+import joint from 'npm:jointjs';
 import $ from 'jquery';
 
-import joint from 'npm:jointjs';
+import { EmptyView } from './fd-empty-view';
 
-export let DescriptionView = joint.dia.LinkView.extend({
+export let DescriptionView = EmptyView.extend({
   template: [
     '<div class="input-buffer"></div>',
     '<div class="uml-link-inputs">',
@@ -34,7 +35,7 @@ export let DescriptionView = joint.dia.LinkView.extend({
   targetElement: undefined,
 
   initialize: function() {
-    joint.dia.LinkView.prototype.initialize.apply(this, arguments);
+    EmptyView.prototype.initialize.apply(this, arguments);
 
     this.$box = $(this.template);
     this.model.inputElements = this.$box;

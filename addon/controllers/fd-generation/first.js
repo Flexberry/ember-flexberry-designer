@@ -39,4 +39,16 @@ export default Controller.extend({
 
     return settings;
   }),
+
+  actions: {
+    /**
+      Saves settings for generation and runs generation.
+
+      @method actions.saveAndGenerate
+      @param {Object} settings Object with settings for generation.
+    */
+    saveAndGenerateClick(settings) {
+      this.send('saveAndGenerate', settings);
+    },
+  },
 });

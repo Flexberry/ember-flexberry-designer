@@ -5,6 +5,7 @@
 import Component from '@ember/component';
 import { computed } from '@ember/object';
 import { isNone } from '@ember/utils';
+import { A } from '@ember/array';
 import $ from 'jquery';
 import joint from 'npm:jointjs';
 
@@ -92,12 +93,43 @@ export default Component.extend({
         let area = paper.getArea();
         return { x: 0, y: 0, width: area.width * 2, height: area.height * 2 };
       },
+      linkPinning: false,
     }));
 
     let elements = this.get('elements');
     let links = this.get('links');
-    graph.addCells(elements.map(e => e.JointJS(graph)));
-    graph.addCells(links.map(l => l.JointJS(graph)));
+    let linkConnectorsIds = A();
+    graph.addCells(elements.map(e => {
+      let element = e.JointJS();
+      if (element.prop('type') === 'flexberry.uml.LinkConnector') {
+        linkConnectorsIds.addObject(element.prop('id'));
+      }
+
+      return element;
+    }));
+
+    graph.addCells(links.map(function(l) {
+      let link = l.JointJS();
+      switch (link.prop('type')) {
+        case 'flexberry.uml.Aggregation':
+        case 'flexberry.uml.Association':
+        case 'flexberry.uml.Generalization':
+        case 'flexberry.uml.LinkInheritance':
+          if (this.includes(link.prop('source/id'))) {
+            link.attr('.marker-arrowhead-group-source', {'display':'none'});
+            link.attr('.tool-remove', {'display':'none'});
+          }
+
+          if (this.includes(link.prop('target/id'))) {
+            link.attr('.marker-arrowhead-group-target', {'display':'none'});
+            link.attr('.tool-remove', {'display':'none'});
+          }
+      }
+
+      return link;
+    },
+      linkConnectorsIds
+    ));
 
     let minWidth = $('.fd-uml-diagram-editor').width();
     let minHeight = $('.fd-uml-diagram-editor').height() - $('.fd-uml-diagram-toolbar').height();
@@ -113,6 +145,7 @@ export default Component.extend({
     paper.on('element:pointerclick', this._elementPointerClick, this);
     paper.on('blank:contextmenu', this._blankContextMenu, this);
   },
+
 
   /**
     Handler event 'blank:pointerclick'.

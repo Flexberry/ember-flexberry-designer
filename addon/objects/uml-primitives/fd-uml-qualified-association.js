@@ -3,8 +3,8 @@
 */
 
 import { computed } from '@ember/object';
-
 import joint from 'npm:jointjs';
+
 import FdUmlLink from './fd-uml-link';
 import { Link } from './fd-uml-link';
 import { QualifiedView } from './links-view/fd-qualified-view';
@@ -38,7 +38,8 @@ export default FdUmlLink.extend({
     @method JointJS
   */
   JointJS() {
-    let properties = this.getProperties('id', 'source', 'target', 'vertices', 'labels', 'startPoint', 'endPoint');
+    let properties = this.getProperties('id', 'source', 'target', 'vertices', 'labels');
+    properties.objectModel = this;
     return new QualifiedAssociation(properties);
   },
 });
