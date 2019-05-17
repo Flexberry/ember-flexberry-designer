@@ -3,6 +3,23 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+## [0.7.0-beta.1] - 2019-05-17
+### Added
+* Added json update when editing diagrams.
+* Added styles for the application generation page.
+* Added component "Round button".
+* Implemented join to connections for other primitives.
+
+### Changed
+* Corrected the error when restarting the project.
+* Removed the ability to detach intermediate links from link-connectors.
+* Different stylistic edits.
+
+### Fixed
+* Textarea size in elements cad diagram.
+* Fixed save cad diagram.
+* Fixed styles of the component "Table".
+
 ## [0.6.0] - 2019-04-12
 ### Added
 * Edit form for the type map.
