@@ -2,6 +2,8 @@
 All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
+### Added
+* Collapse button for class primitives.
 
 ## [0.6.0] - 2019-04-12
 ### Added

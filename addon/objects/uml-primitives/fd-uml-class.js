@@ -59,15 +59,7 @@ export default FdUmlElement.extend({
     @property collapsed
     @type Boolean
   */
-  collapsed: computed('primitive.Folded', {
-    get() {
-      return this.get('primitive.Folded');
-    },
-    set(key, value) {
-      this.set('primitive.Folded', value);
-      return value;
-    },
-  }),
+  collapsed: computed.alias('primitive.Folded'),
 
   /**
     List of attributes of the class.
@@ -117,7 +109,7 @@ export default FdUmlElement.extend({
     @method JointJS
   */
   JointJS() {
-    let properties = this.getProperties('id', 'repositoryObject', 'size', 'position');
+    let properties = this.getProperties('id', 'size', 'position');
     properties.objectModel = this;
     return new Class(properties);
   },
@@ -142,9 +134,9 @@ export let BaseClass = joint.shapes.basic.Generic.define('flexberry.uml.BaseClas
     '.flexberry-uml-header-rect': { 'stroke': 'black', 'stroke-width': 1, 'fill': '#ffffff', 'fill-opacity': 0 },
     '.flexberry-uml-body-rect': { 'stroke': 'black', 'stroke-width': 1, 'fill': '#ffffff', 'fill-opacity': 0 },
     '.flexberry-uml-footer-rect': { 'stroke': 'black', 'stroke-width': 1, 'fill': '#ffffff', 'fill-opacity': 0 },
-    '.collapse-button': {'ref-dx': -78,'ref-y': 5, 'ref': '.flexberry-uml-header-rect' },
-    '.collapse-button>circle': { r: 6, fill: 'transparent', stroke: '#333', 'stroke-width': 1 },
-    '.collapse-button>text': { fill: '#F00','font-size': 16, 'font-weight': 800, stroke: '#000', x: -4.5, y: 5, 'font-family': 'Times New Roman' },
+    '.collapse-button': {'ref-x': 4,'ref-y': 4, 'ref': '.flexberry-uml-header-rect' },
+    '.collapse-button>circle': { r: 6, fill: '#FFF', stroke: '#333', 'stroke-width': 1 },
+    '.collapse-button>text': { fill: '#F00','font-size': 15, 'font-weight': 800, 'text-anchor': 'middle', stroke: '#000', x: 0, y: 5, 'font-family': 'Times New Roman' },
   },
 
   // Inputs padding by X.
@@ -156,7 +148,7 @@ export let BaseClass = joint.shapes.basic.Generic.define('flexberry.uml.BaseClas
   markup: [
     '<g class="rotatable">',
     '<rect class="flexberry-uml-header-rect"/><rect class="flexberry-uml-body-rect"/><rect class="flexberry-uml-footer-rect"/>',
-    '<g class="collapse-button"><circle class="collapse-button"/><text class="collapse-button">+</text></g>',
+    '<g class="collapse-button"><circle class="collapse-button"/><text class="collapse-button">-</text></g>',
     '</g>'
   ].join(''),
 
@@ -241,12 +233,7 @@ export let BaseClass = joint.shapes.basic.Generic.define('flexberry.uml.BaseClas
   @namespace flexberry.uml
   @constructor
 */
-export let Class = BaseClass.define('flexberry.uml.Class', {
-}, {
-  getClassName() {
-    return [this.get('name'), this.objectModel.get('stereotype')];
-  } 
-},);
+export let Class = BaseClass.define('flexberry.uml.Class', {});
 
 joint.shapes.flexberry.uml.ClassView = joint.dia.ElementView.extend({
   template: [
@@ -423,14 +410,19 @@ joint.shapes.flexberry.uml.ClassView = joint.dia.ElementView.extend({
   },
 
   applyDisplayFromCollapseValue() {
-    let objectModel = this.model.get('objectModel');  
-    let displayValue = (objectModel.get('collapsed')) ? 'none' : 'table-cell';
+    let objectModel = this.model.get('objectModel');
+    let collapsed = objectModel.get('collapsed');
+
+    let displayValue = (collapsed) ? 'none' : 'table-cell';
     this.model.attr('.flexberry-uml-body-rect/display', displayValue);
     this.model.attr('.flexberry-uml-footer-rect/display', displayValue);
-  
-    let styleVisibilityValue = (objectModel.get('collapsed')) ? 'hidden' : 'visible';
+
+    let styleVisibilityValue = (collapsed) ? 'hidden' : 'visible';
     this.$box.find('.attributes-input').css('visibility', styleVisibilityValue);
     this.$box.find('.methods-input').css('visibility', styleVisibilityValue);
+
+    let collapseButtonText = (collapsed) ? '+' : '-';
+    this.model.attr('.collapse-button>text/text', collapseButtonText);
   },
 
   normalizeStereotype(stereotype) {
