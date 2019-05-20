@@ -7,6 +7,8 @@ import { isNone } from '@ember/utils';
 
 import joint from 'npm:jointjs';
 import FdUmlPrimitive from './fd-uml-primitive';
+import { setLinkColors } from '../../utils/fd-uml-colors';
+
 
 /**
   An object that defines any link on the UML diagram.
@@ -174,7 +176,8 @@ export let Link = joint.dia.Link.define('flexberry.uml.Link', {
     position: { distance: 5, offset: 0 }, attrs: { text: { text: '' } } //QualifiedText
   }]
 }, {
-    initialize: function () {
+    initialize: function (properties) {
+      setLinkColors(properties.primitive, this);
       let vertices = this.get('vertices') || [];
       let startPointA = this.get('startPoint');
       let startPointB = vertices[0] || this.get('endPoint');

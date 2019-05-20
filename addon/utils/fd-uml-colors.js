@@ -33,6 +33,31 @@ let setInputRectColors = function(jointElement, rects) {
 };
 
 
+let setLinkColors = function(primitive, link) {
+  if (!primitive) {
+    return;
+  }
+  let textColor = primitive.DrawStyle.TextColor;
+  let r = textColor.R;
+  let g = textColor.G;
+  let b = textColor.B;
+  let color = "#" + ((1 << 24) + (r << 16) + (g << 8) + b).toString(16).slice(1);
+  let bgColor = '#eeffee';
+  if (!('.connection' in link.attributes.attrs)) {
+    link.attributes.attrs['.connection'] = {};
+  }
+  link.attributes.attrs['.connection'].stroke=color;
+  if (!('.marker-source' in link.attributes.attrs)) {
+    link.attributes.attrs['.marker-source'] = {};
+  }
+  link.attributes.attrs['.marker-source'].stroke=color;
+  if (!('.marker-target' in link.attributes.attrs)) {
+    link.attributes.attrs['.marker-target'] = {};
+  }
+  link.attributes.attrs['.marker-target'].stroke=color;
+};
+
 export {
-  setInputRectColors
+  setInputRectColors,
+  setLinkColors
 };

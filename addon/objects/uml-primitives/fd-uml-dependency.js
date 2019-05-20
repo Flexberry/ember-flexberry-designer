@@ -6,6 +6,7 @@ import FdUmlLink from './fd-uml-link';
 import { Link } from './fd-uml-link';
 import { DescriptionView } from './links-view/fd-description-view';
 import joint from 'npm:jointjs';
+import { setLinkColors } from '../../utils/fd-uml-colors';
 
 /**
   An object that describes a link of the dependency type on the UML diagram.
@@ -21,7 +22,7 @@ export default FdUmlLink.extend({
     @method JointJS
   */
   JointJS() {
-    let properties = this.getProperties('id', 'source', 'target', 'vertices', 'description', 'labels', 'startPoint', 'endPoint');
+    let properties = this.getProperties('id', 'source', 'target', 'vertices', 'description', 'labels', 'startPoint', 'endPoint', 'primitive');
     return new Dependency(properties);
   },
 });
@@ -42,6 +43,13 @@ export let Dependency = Link.define('flexberry.uml.Dependency', {
     '.connection': { stroke: 'black', 'stroke-width': 1, 'stroke-dasharray': '7 2' },
     rect: { visibility: 'hidden' }
   },
-});
+
+}, {
+  initialize(properties) {
+    setLinkColors(properties.primitive, this);
+  }
+}
+
+);
 
 joint.shapes.flexberry.uml.DependencyView = DescriptionView;

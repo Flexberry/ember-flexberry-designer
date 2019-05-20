@@ -38,7 +38,7 @@ export default FdUmlLink.extend({
     @method JointJS
   */
   JointJS() {
-    let properties = this.getProperties('id', 'source', 'target', 'vertices', 'labels', 'startPoint', 'endPoint');
+    let properties = this.getProperties('id', 'source', 'target', 'vertices', 'labels', 'startPoint', 'endPoint', 'primitive');
     return new ObjectAssociation(properties);
   },
 });
