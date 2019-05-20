@@ -158,9 +158,40 @@ export default Component.extend({
     paper.on('class:updaterepobj', this._updateRepObj, this);
     paper.on('class:checkexistname', this._checkExistNameClass, this);
 
-    graph.addCells(elements.map(e => e.JointJS(graph)));
-    graph.addCells(links.map(l => l.JointJS(graph)));
+    let linkConnectorsIds = A();
+    graph.addCells(elements.map(e => {
+      let element = e.JointJS();
+      if (element.prop('type') === 'flexberry.uml.LinkConnector') {
+        linkConnectorsIds.addObject(element.prop('id'));
+      }
+
+      return element;
+    }));
+
+    graph.addCells(links.map(function(l) {
+      let link = l.JointJS();
+      switch (link.prop('type')) {
+        case 'flexberry.uml.Aggregation':
+        case 'flexberry.uml.Association':
+        case 'flexberry.uml.Generalization':
+        case 'flexberry.uml.LinkInheritance':
+          if (this.includes(link.prop('source/id'))) {
+            link.attr('.marker-arrowhead-group-source', {'display':'none'});
+            link.attr('.tool-remove', {'display':'none'});
+          }
+
+          if (this.includes(link.prop('target/id'))) {
+            link.attr('.marker-arrowhead-group-target', {'display':'none'});
+            link.attr('.tool-remove', {'display':'none'});
+          }
+      }
+
+      return link;
+    },
+      linkConnectorsIds
+    ));
   },
+
 
   /**
     Handler event 'blank:pointerclick'.

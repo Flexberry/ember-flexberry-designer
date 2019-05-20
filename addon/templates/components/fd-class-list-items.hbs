@@ -1,8 +1,8 @@
 <div class="row">
-  <div class="two wide column light-text">
+  <div class="three wide column light-text">
     {{t "forms.fd-application-model.entity-caption"}}
   </div>
-  <div class="fourteen wide column">
+  <div class="thirteen wide column">
     {{
       fd-list-item
       model=entity.settings
@@ -13,10 +13,10 @@
 
   {{!-- EForm --}}
   {{#if (not-eq entity.editForms.length 0)}}
-    <div class="two wide column light-text">
+    <div class="three wide column light-text">
       {{t "forms.fd-application-model.editor-caption"}}
     </div>
-    <div class="fourteen wide column">
+    <div class="thirteen wide column">
       {{#each entity.editForms as |editForm|}}
         {{
           fd-list-item
@@ -30,10 +30,10 @@
 
   {{!-- LForm --}}
   {{#if (not-eq entity.listForms.length 0)}}
-    <div class="two wide column light-text">
+    <div class="three wide column light-text">
       {{t "forms.fd-application-model.list-caption"}}
     </div>
-    <div class="fourteen wide column">
+    <div class="thirteen wide column">
       {{#each entity.listForms as |listForm|}}
         {{
           fd-list-item
@@ -47,10 +47,10 @@
 
   {{!-- BS --}}
   {{#if (not-eq entity.bs null)}}
-    <div class="two wide column light-text">
+    <div class="three wide column light-text">
       {{t "forms.fd-application-model.bs-caption"}}
     </div>
-    <div class="fourteen wide column">
+    <div class="thirteen wide column">
       {{
         fd-list-item
         model=entity.bs
@@ -62,10 +62,10 @@
 
   {{!-- Parents --}}
   {{#if (not-eq entity.parents.length 0)}}
-    <div class="two wide column light-text">
+    <div class="three wide column light-text">
       {{t "forms.fd-application-model.parent-caption"}}
     </div>
-    <div class="fourteen wide column">
+    <div class="thirteen wide column">
       {{#each entity.parents as |parent|}}
         {{
           fd-list-item
@@ -77,7 +77,7 @@
     </div>
   {{/if}}
 
-  <div class="right floated fourteen wide column">
+  <div class="right floated thirteen wide column">
     {{
       fd-button
       caption=(t "forms.fd-application-model.editor-caption")

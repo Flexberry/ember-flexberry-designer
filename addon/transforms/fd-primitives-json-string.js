@@ -104,10 +104,16 @@ export default DS.Transform.extend({
     for (let parentClassId in linkTree) {
       for (let baseLinkId in linkTree[parentClassId]) {
         let baseLink = elements[baseLinkId];
-        let startMultText;
-        if ('StartMultTxt' in baseLink) {
-          startMultText = baseLink.StartMultTxt.Text;
-          baseLink.StartMultTxt.Text = '';
+        let endMultText;
+        if ('EndMultTxt' in baseLink) {
+          endMultText = baseLink.EndMultTxt.Text;
+          baseLink.EndMultTxt.Text = '';
+        }
+
+        let endRoleText;
+        if ('EndRoleTxt' in baseLink) {
+          endRoleText = baseLink.EndRoleTxt.Text;
+          baseLink.EndRoleTxt.Text = '';
         }
 
         let EndPrimitiveRef = baseLink.EndPrimitive.$ref;
@@ -136,9 +142,11 @@ export default DS.Transform.extend({
             linkConnector = this._linkConnector(X, Y);
             elements[linkConnector.$id] = linkConnector;
             baseLink.EndPrimitive.$ref = linkConnector.$id;
+            baseLink.EndPoint.X = X;
+            baseLink.EndPoint.Y = Y;
 //             baseLink.EndLE.Primitive.$ref = linkConnector.$id;
             elements[baseLink.$id] = baseLink;
-            baseLink = this._toConnectorLink(linkConnector.$id, EndPrimitiveRef);
+            baseLink = this._toConnectorLink(linkConnector.$id, EndPrimitiveRef, X, Y);
             baseLink.Points.push(crossPoint);
           }
 
@@ -152,6 +160,7 @@ export default DS.Transform.extend({
             connectedLink.EndPrimitive.$ref = linkConnector.$id;
             connectedLink.EndLE.Primitive.$ref = linkConnector.$id;
           }
+
           prevX = X;
           prevY = Y;
         }
@@ -160,11 +169,19 @@ export default DS.Transform.extend({
           baseLink.Points.push(baseLinkPoints[nextPointNo]);
           nextPointNo += 1;
         }
+        let lastPoint = baseLinkPoints[nextPointNo-1];
+        baseLink.EndPoint.X = lastPoint.X;
+        baseLink.EndPoint.Y = lastPoint.Y;
         baseLink.EndPrimitive.$ref = EndPrimitiveRef;
         baseLink.EndLE.Primitive.$ref = EndPrimitiveRef;
-        if (startMultText) {
-          baseLink.EndMultTxt.Text = startMultText;
+        if (endMultText) {
+          baseLink.EndMultTxt.Text = endMultText;
         }
+
+        if (endRoleText) {
+          baseLink.EndRoleTxt.Text = endRoleText;
+        }
+
         elements[baseLink.$id] = baseLink;
       }
     }
@@ -215,7 +232,7 @@ export default DS.Transform.extend({
     return linkConnector;
   },
 
-  _toConnectorLink(fromUuid, toUuid) {
+  _toConnectorLink(fromUuid, toUuid, startX, startY) {
     let toConnectorLinkUuid = '{' + uuid.v4() + '}';
     let toConnectorLink = {
       '$id': toConnectorLinkUuid,
@@ -245,7 +262,28 @@ export default DS.Transform.extend({
       "EndMultTxt": {
         "$type": "STORMCASE.Primitives.TextBlock, Repository",
         "Text": "",
-      }
+      },
+      "StartRoleTxt": {
+        "$type": "STORMCASE.Primitives.TextBlock, Repository",
+        "Text": "",
+      },
+      "EndRoleTxt": {
+        "$type": "STORMCASE.Primitives.TextBlock, Repository",
+        "Text": "",
+      },
+      "StartPoint": {
+        "$type": "System.Drawing.Point, System.Drawing",
+        "IsEmpty": false,
+        "X": startX,
+        "Y": startY
+      },
+      "EndPoint": {
+        "$type": "System.Drawing.Point, System.Drawing",
+        "IsEmpty": false,
+        "X": startX,
+        "Y": startY
+      },
+
     };
     return toConnectorLink;
   },
