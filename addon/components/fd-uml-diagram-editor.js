@@ -372,13 +372,13 @@ FdActionsForUcdPrimitivesMixin, {
   /**
     Resize diagram.
 
-    @method _resetCurrentTargetElement
+    @method _fitToContent
     @private
   */
   _fitToContent(sheetName, containsName) {
     let sheetComponentName = this.get('sheetComponentName');
     if (containsName ? sheetName.includes(sheetComponentName) : sheetComponentName === sheetName) {
-      this.actions.fitToContent.bind(this)();
+      this.get('actions.fitToContent').bind(this)();
     }
   },
 
