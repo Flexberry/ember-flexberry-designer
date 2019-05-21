@@ -157,13 +157,14 @@ export default Service.extend(Evented, {
      @method expand
      @param {String} sheetName Sheet's component name
   */
-  animatingSheetContent(sheetName, contentWidth, speed) {
+  animatingSheetContent(sheetName, contentWidth, speed, containsName) {
     $(`.fd-sheet.${sheetName} .content-mini`).css({ opacity: 0.2 });
 
     let _this = this;
     later(function() {
       $(`.fd-sheet.${sheetName} .content-mini`).css({ opacity: '', width: contentWidth });
       _this.toolbarDiagramPosition();
+      _this.trigger('diagramResizeTriggered', sheetName, containsName);
     }, speed);
   }
 });

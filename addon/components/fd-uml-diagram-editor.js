@@ -93,6 +93,14 @@ FdActionsForUcdPrimitivesMixin, {
   */
   currentTargetElement: undefined,
 
+  /**
+    Сurrent diagram's paper.
+
+    @property paper
+    @type joint.dia.Paper
+  */
+  paper: undefined,
+
   classNames: ['fd-uml-diagram-editor'],
 
   diagramType: computed('model.constructor.modelName', function() {
@@ -107,12 +115,39 @@ FdActionsForUcdPrimitivesMixin, {
   init() {
     this._super(...arguments);
 
+    this.get('fdSheetService').on('diagramResizeTriggered', this, this._fitToContent);
+
     next(() => {
       this.get('fdSheetService').toolbarDiagramPosition();
     });
   },
 
+  /**
+   Called when the element of the view is going to be destroyed.
+   For more information see [willDestroyElement](http://emberjs.com/api/classes/Ember.Component.html#event_willDestroyElement) event of [Ember.Component](http://emberjs.com/api/classes/Ember.Component.html).
+ */
+ willDestroyElement() {
+   this._super(...arguments);
+
+   this.get('fdSheetService').off('diagramResizeTriggered', this, this._fitToContent);
+ },
+
   actions: {
+    /**
+      Normalize paper's size
+
+      @method actions.fitToContent
+    */
+    fitToContent() {
+      let paper = this.get('paper');
+      if (isNone(paper)) {
+        return;
+      }
+
+      let minWidth = this.$().width();
+      let minHeight = this.$().height() - this.$('.fd-uml-diagram-toolbar').height();
+      paper.fitToContent({ minWidth, minHeight, padding: 10 });
+    },
 
     /**
       Handler event blankPointerClick
@@ -332,6 +367,19 @@ FdActionsForUcdPrimitivesMixin, {
     let pointer = this.$('.pointer-button');
     pointer.addClass('active');
     this.set('currentTargetElement', pointer);
+  },
+
+  /**
+    Resize diagram.
+
+    @method _fitToContent
+    @private
+  */
+  _fitToContent(sheetName, containsName) {
+    let sheetComponentName = this.get('sheetComponentName');
+    if (containsName ? sheetName.includes(sheetComponentName) : sheetComponentName === sheetName) {
+      this.get('actions.fitToContent').bind(this)();
+    }
   },
 
   /**

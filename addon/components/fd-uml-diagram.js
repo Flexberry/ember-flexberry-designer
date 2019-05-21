@@ -56,6 +56,7 @@ export default Component.extend({
 
     @property isLinkAdding
     @type Boolean
+    @default false
   */
   isLinkAdding: false,
 
@@ -76,25 +77,6 @@ export default Component.extend({
   links: computed.filter('primitives', p => p instanceof FdUmlLink),
 
   /**
-    Indicates that the diagram has primitives.
-
-    @property notEmpty
-    @type Boolean
-  */
-  notEmpty: computed.notEmpty('primitives'),
-
-  /**
-    See [EmberJS API](https://emberjs.com/).
-
-    @method init
-  */
-  init() {
-    this._super(...arguments);
-
-    this.set('graph', new joint.dia.Graph());
-  },
-
-  /**
     See [EmberJS API](https://emberjs.com/).
 
     @method didInsertElement
@@ -102,30 +84,20 @@ export default Component.extend({
   didInsertElement() {
     this._super(...arguments);
 
+    let graph = this.set('graph', new joint.dia.Graph());
+    let paper = this.set('paper', new joint.dia.Paper({
+      el: this.get('element'),
+      model: graph,
+      connectionStrategy: joint.connectionStrategies.pinAbsolute,
+      restrictTranslate: ({ paper }) => {
+        let area = paper.getArea();
+        return { x: 0, y: 0, width: area.width * 2, height: area.height * 2 };
+      },
+      linkPinning: false,
+    }));
+
     let elements = this.get('elements');
     let links = this.get('links');
-
-    let height = '100%';
-    let width = '100%';
-    if (this.get('notEmpty')) {
-      height = Math.max.apply(null, elements.map(e => e.get('y') + e.get('height'))) + 100;
-      width = Math.max.apply(null, elements.map(e => e.get('x') + e.get('width'))) + 100;
-    }
-
-    let graph = this.get('graph');
-    let paper = new joint.dia.Paper({
-      el: this.get('element'),
-      height: height,
-      width: width,
-      model: graph,
-    });
-
-    this.set('isLinkAdding', false);
-    this.set('paper', paper);
-    paper.options.connectionStrategy = joint.connectionStrategies.pinAbsolute;
-    paper.on('blank:pointerclick', this._blankPointerClick, this);
-    paper.on('element:pointerclick', this._elementPointerClick, this);
-    paper.on('blank:contextmenu', this._blankContextMenu, this);
     let linkConnectorsIds = A();
     graph.addCells(elements.map(e => {
       let element = e.JointJS();
@@ -158,6 +130,27 @@ export default Component.extend({
     },
       linkConnectorsIds
     ));
+
+    let fitPaperToContent = function() {
+      let fitToContent = this.get('fitToContent');
+      if (!isNone(fitToContent)) {
+        fitToContent();
+      }
+    }.bind(this);
+
+    graph.on('add', fitPaperToContent);
+    graph.on('change:position', fitPaperToContent);
+    graph.on('change:size', fitPaperToContent);
+    graph.on('change:source', fitPaperToContent);
+    graph.on('change:target', fitPaperToContent);
+    graph.on('change:vertices', fitPaperToContent);
+    graph.on('remove', fitPaperToContent);
+
+    fitPaperToContent();
+
+    paper.on('blank:pointerclick', this._blankPointerClick, this);
+    paper.on('element:pointerclick', this._elementPointerClick, this);
+    paper.on('blank:contextmenu', this._blankContextMenu, this);
   },
 
 
