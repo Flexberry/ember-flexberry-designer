@@ -77,6 +77,14 @@ export default Component.extend({
   links: computed.filter('primitives', p => p instanceof FdUmlLink),
 
   /**
+    Current highligted element.
+
+    @property highlightedElement
+    @type Object
+  */
+  highlightedElement: undefined,
+
+  /**
     See [EmberJS API](https://emberjs.com/).
 
     @method didInsertElement
@@ -94,6 +102,21 @@ export default Component.extend({
         return { x: 0, y: 0, width: area.width * 2, height: area.height * 2 };
       },
       linkPinning: false,
+      clickThreshold: 3,
+      highlighting: {
+        'default': {
+          name: 'strokeAndButtons',
+          options: {
+            attrs: {
+              'stroke-width': 3,
+              stroke: '#007aff'
+            }
+          }
+        },
+        connecting: {
+          name: 'stroke'
+        }
+      }
     }));
 
     let elements = this.get('elements');
@@ -151,6 +174,7 @@ export default Component.extend({
     paper.on('blank:pointerclick', this._blankPointerClick, this);
     paper.on('element:pointerclick', this._elementPointerClick, this);
     paper.on('blank:contextmenu', this._blankContextMenu, this);
+    paper.on('cell:highlight', this._highlighted, this);
   },
 
 
@@ -164,6 +188,12 @@ export default Component.extend({
    */
   _blankPointerClick(e, x, y) {
     let options = { e: e, x: x, y: y };
+    let highlightedElement = this.get('highlightedElement');
+    if (highlightedElement) {
+      highlightedElement.unhighlight();
+      this.set('highlightedElement', null);
+    }
+
     let newElement = this.get('blankPointerClick')(options);
     this._addNewElement(newElement);
   },
@@ -181,7 +211,9 @@ export default Component.extend({
     let options = { element: element, e: e, x: x, y: y };
     if (isNone(this.get('draggedLink'))) {
       let newElement = this.get('startDragLink')(options);
-      if (!isNone(newElement)) {
+      if (isNone(newElement)) {
+        element.highlight();
+      } else {
         this.set('draggedLink', newElement);
         let graph = this.get('graph');
         let paper = this.get('paper');
@@ -256,6 +288,21 @@ export default Component.extend({
       let graph = this.get('graph');
       graph.addCell([newElement]);
     }
+  },
+
+  /**
+    Handles cell:highlight action.
+
+    @method _highlighted
+    @param {Object} cellView joint js element.
+   */
+  _highlighted(cellView) {
+    let highlightedElement = this.get('highlightedElement');
+    if (highlightedElement && highlightedElement !== cellView) {
+      highlightedElement.unhighlight();
+    }
+
+    this.set('highlightedElement', cellView);
   },
 
   /**

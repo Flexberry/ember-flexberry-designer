@@ -3,7 +3,8 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 ### Added
-* Collapse button for class primitives.
+* Added collapse button for class primitives.
+* Added highlight feature for cad elements.
 
 ### Changed
 * The diagram in the `{{fd-uml-diagram}}` component now has an infinite size.

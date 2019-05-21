@@ -62,26 +62,6 @@ export let MultiObject = BaseObject.define('flexberry.uml.MultiObject', {
     '.not-view-rect': { 'x': -3, 'y': -6, 'fill': 'black' }
   }
 }, {
-  updateRectangles: function () {
-    BaseObject.prototype.updateRectangles.apply(this, arguments);
-
-    let attrs = this.get('attrs');
-    let backRectTransY = 6;
-    attrs['.back-rect'].transform = 'translate(3, ' + backRectTransY + ')';
-    attrs['.back-rect'].height = this.size().height;
-    attrs['.back-rect'].width = this.size().width;
-
-    attrs['.view-rect'].height = this.size().height + 2;
-    attrs['.view-rect'].width = this.size().width + 2;
-
-    attrs['.not-view-rect'].height = this.size().height;
-    attrs['.not-view-rect'].width = this.size().width;
-
-    let newWidth = this.size().width;
-    let newHeight = this.size().height + backRectTransY;
-    this.resize(newWidth, newHeight);
-  },
-
   markup: [
     '<g class="rotatable">',
     '<defs>',
@@ -112,8 +92,32 @@ joint.shapes.flexberry.uml.MultiObjectView = joint.shapes.flexberry.uml.BaseObje
     mask.setAttribute('id', maskId);
     let attrs = this.model.get('attrs');
     attrs['.back-rect'].mask = 'url(#' + maskId + ')';
-    this.model.updateRectangles();
+    this.updateRectangles();
 
     return this;
+  },
+
+  updateRectangles: function () {
+    joint.shapes.flexberry.uml.BaseObjectView.prototype.updateRectangles.apply(this, arguments);
+
+    let attrs = this.model.get('attrs');
+    let backRectTransY = 6;
+    attrs['.back-rect'].transform = 'translate(3, ' + backRectTransY + ')';
+    attrs['.back-rect'].height = this.model.size().height;
+    attrs['.back-rect'].width = this.model.size().width;
+
+    attrs['.view-rect'].height = this.model.size().height + 2;
+    attrs['.view-rect'].width = this.model.size().width + 2;
+
+    attrs['.not-view-rect'].height = this.model.size().height;
+    attrs['.not-view-rect'].width = this.model.size().width;
+
+    let newWidth = this.model.size().width;
+    let newHeight = this.model.size().height + backRectTransY;
+    this.model.resize(newWidth, newHeight);
+    if (this.model.get('highlighted')) {
+      this.unhighlight();
+      this.highlight();
+    }
   },
 });

@@ -105,7 +105,7 @@ export let DescriptionView = EmptyView.extend({
     joint.dia.LinkView.prototype.render.apply(this, arguments);
     this.paper.$el.prepend(this.$box);
     this.paper.on('blank:pointerdown link:pointerdown element:pointerdown', function() {
-      this.$box.find('input').blur();
+      this.$box.find('input:focus').blur();
     }, this);
     this.updateBox();
     return this;
