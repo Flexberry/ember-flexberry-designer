@@ -42,7 +42,7 @@ let setLinkColors = function(primitive, link) {
   let g = textColor.G;
   let b = textColor.B;
   let color = "#" + ((1 << 24) + (r << 16) + (g << 8) + b).toString(16).slice(1);
-//   let bgColor = '#eeffee';
+  let bgColor = '#aaffaa';
   if (!('.connection' in link.attributes.attrs)) {
     link.attributes.attrs['.connection'] = {};
   }
@@ -51,17 +51,22 @@ let setLinkColors = function(primitive, link) {
     link.attributes.attrs['.marker-source'] = {};
   }
   link.attributes.attrs['.marker-source'].stroke=color;
-  link.attributes.attrs['.marker-source'].fill=color;
   if (!('.marker-target' in link.attributes.attrs)) {
     link.attributes.attrs['.marker-target'] = {};
   }
   link.attributes.attrs['.marker-target'].stroke=color;
-  link.attributes.attrs['.marker-target'].fill=color;
-
-  if (!('text' in link.attributes.attrs)) {
-    link.attributes.attrs['text'] = {};
+  switch (link.attributes.type) {
+    case 'flexberry.uml.Composition':
+    case 'flexberry.uml.QualifiedComposition':
+    case 'flexberry.uml.ObjectAssociation':
+      link.attributes.attrs['.marker-source'].fill=color;
+      link.attributes.attrs['.marker-target'].fill=color;
+    break;
+    default:
+      link.attributes.attrs['.marker-source'].fill=bgColor;
+      link.attributes.attrs['.marker-target'].fill=bgColor;
+      break;
   }
-  link.attributes.attrs['text'].color = color;
 
 };
 
