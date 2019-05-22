@@ -172,7 +172,7 @@ export default Controller.extend({
       }
     });
 
-    let repositoryObjects = primitives.filter(p => p.get('repositoryObject'));
+    let repositoryObjects = primitives.uniqBy('repositoryObject').filter(p => p.get('repositoryObject'));
     if (repositoryObjects.length > 0) {
       let store = this.get('store');
       promises.pushObjects(repositoryObjects.map(p => {

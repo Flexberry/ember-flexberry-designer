@@ -5,7 +5,7 @@
 import { computed } from '@ember/object';
 import $ from 'jquery';
 import { isBlank } from '@ember/utils';
-import { isArray } from '@ember/array';
+import { isArray, A } from '@ember/array';
 
 import joint from 'npm:jointjs';
 
@@ -134,9 +134,6 @@ export let BaseClass = joint.shapes.basic.Generic.define('flexberry.uml.BaseClas
     '.flexberry-uml-header-rect': { 'stroke': 'black', 'stroke-width': 1, 'fill': '#ffffff', 'fill-opacity': 0 },
     '.flexberry-uml-body-rect': { 'stroke': 'black', 'stroke-width': 1, 'fill': '#ffffff', 'fill-opacity': 0 },
     '.flexberry-uml-footer-rect': { 'stroke': 'black', 'stroke-width': 1, 'fill': '#ffffff', 'fill-opacity': 0 },
-    '.collapse-button': {'ref-x': 4,'ref-y': 4, 'ref': '.flexberry-uml-header-rect' },
-    '.collapse-button>circle': { r: 6, fill: '#FFF', stroke: '#333', 'stroke-width': 1 },
-    '.collapse-button>text': { fill: '#F00','font-size': 15, 'font-weight': 800, 'text-anchor': 'middle', stroke: '#000', x: 0, y: 5, 'font-family': 'Times New Roman' },
   },
 
   // Inputs padding by X.
@@ -144,11 +141,16 @@ export let BaseClass = joint.shapes.basic.Generic.define('flexberry.uml.BaseClas
 
   // Inputs bottom padding by Y.
   heightBottomPadding: 4,
+
+  // Indicates when element is highlighted.
+  highlighted: false,
+
+  // Text of the collapse button
+  collapseButtonText: '-',
 }, {
   markup: [
     '<g class="rotatable">',
     '<rect class="flexberry-uml-header-rect"/><rect class="flexberry-uml-body-rect"/><rect class="flexberry-uml-footer-rect"/>',
-    '<g class="collapse-button"><circle class="collapse-button"/><text class="collapse-button">-</text></g>',
     '</g>'
   ].join(''),
 
@@ -175,52 +177,17 @@ export let BaseClass = joint.shapes.basic.Generic.define('flexberry.uml.BaseClas
   },
 
   getRectangles() {
-    return [
+    let objectModel = this.get('objectModel');
+
+    return objectModel.get('collapsed') ?
+    [
+      { type: 'header', element: this }
+    ] :
+    [
       { type: 'header', element: this },
       { type: 'body',  element: this },
       { type: 'footer',  element: this }
     ];
-  },
-
-  updateRectangles() {
-    let rects = this.getRectangles();
-
-    let offsetY = 0;
-    let newHeight = 0;
-    let newWidth = 0;
-    rects.forEach(function(rect) {
-      if (this.markup.includes('flexberry-uml-' + rect.type + '-rect') && rect.element.inputElements) {
-        let $buffer = rect.element.inputElements.find('.input-buffer');
-        let rectHeight = 0;
-        let inputs = rect.element.inputElements.find('.' + rect.type + '-input');
-        inputs.each(function() {
-          let $input = $(this);
-          $buffer.css('font-weight', $input.css('font-weight'));
-          $buffer.text($input.val());
-          $input.width($buffer.width() + 1);
-          if ($input.width() > newWidth) {
-            newWidth = $input.width();
-          }
-
-          rectHeight += $input.height();
-        });
-
-        rectHeight += rect.element.get('heightBottomPadding') || 0;
-        newHeight += rectHeight;
-        rect.element.attr('.flexberry-uml-' + rect.type + '-rect/height', rectHeight);
-
-        rect.element.attr('.flexberry-uml-' + rect.type + '-rect/transform', 'translate(0,' + offsetY + ')');
-
-        offsetY += rectHeight;
-      }
-    }, this);
-
-    newWidth += (this.get('widthPadding') || 0) * 2;
-    rects.forEach(function(rect) {
-      rect.element.attr('.flexberry-uml-' + rect.type + '-rect/width', newWidth);
-    });
-
-    this.resize(newWidth, newHeight);
   }
 });
 
@@ -251,10 +218,12 @@ joint.shapes.flexberry.uml.ClassView = joint.dia.ElementView.extend({
 
     this.$box = $(this.template);
     this.model.inputElements = this.$box;
+    let _this = this;
 
     // Prevent paper from handling pointerdown.
     this.$box.find('input, textarea').on('mousedown click', function(evt) {
       evt.stopPropagation();
+      _this.highlight();
     });
 
     this.$box.find('.attributes-input').on('input', function(evt) {
@@ -262,7 +231,7 @@ joint.shapes.flexberry.uml.ClassView = joint.dia.ElementView.extend({
       let textareaText = $textarea.val();
       let rows = textareaText.split(/[\n\r|\r|\n]/);
       $textarea.prop('rows', rows.length);
-      this.model.updateRectangles();
+      this.updateRectangles();
     }.bind(this));
 
     this.$box.find('.methods-input').on('input', function(evt) {
@@ -270,7 +239,7 @@ joint.shapes.flexberry.uml.ClassView = joint.dia.ElementView.extend({
       let textareaText = $textarea.val();
       let rows = textareaText.split(/[\n\r|\r|\n]/);
       $textarea.prop('rows', rows.length);
-      this.model.updateRectangles();
+      this.updateRectangles();
     }.bind(this));
 
     this.$box.find('.class-name-input').on('input', function(evt) {
@@ -278,7 +247,7 @@ joint.shapes.flexberry.uml.ClassView = joint.dia.ElementView.extend({
       let textareaText = $textarea.val();
       let rows = textareaText.split(/[\n\r|\r|\n]/);
       $textarea.prop('rows', rows.length);
-      this.model.updateRectangles();
+      this.updateRectangles();
     }.bind(this));
 
     this.$box.find('.class-stereotype-input').on('input', function(evt) {
@@ -286,7 +255,7 @@ joint.shapes.flexberry.uml.ClassView = joint.dia.ElementView.extend({
       let textareaText = $textarea.val();
       let rows = textareaText.split(/[\n\r|\r|\n]/);
       $textarea.prop('rows', rows.length);
-      this.model.updateRectangles();
+      this.updateRectangles();
     }.bind(this));
 
     this.$box.find('.attributes-input').on('change', function(evt) {
@@ -323,7 +292,7 @@ joint.shapes.flexberry.uml.ClassView = joint.dia.ElementView.extend({
     this.$box.find('.class-stereotype-input').on('focus', function(evt) {
       let stereotype = this.normalizeStereotype($(evt.target).val());
       this.$box.find('.class-stereotype-input').val(stereotype.slice(1, -1));
-      this.model.updateRectangles();
+      this.updateRectangles();
     }.bind(this));
 
     this.$box.find('.class-name-input').on('focus', function(evt) {
@@ -345,7 +314,7 @@ joint.shapes.flexberry.uml.ClassView = joint.dia.ElementView.extend({
       let objectModel = this.model.get('objectModel');
       objectModel.set('stereotype', stereotype);
       this.paper.trigger('updaterepobj', objectModel, 'stereotype', stereotypeText);
-      this.model.updateRectangles();
+      this.updateRectangles();
     }.bind(this));
 
     let objectModel = this.model.get('objectModel');
@@ -381,13 +350,9 @@ joint.shapes.flexberry.uml.ClassView = joint.dia.ElementView.extend({
       this.$box.find('input:focus, textarea:focus').blur();
     }, this);
 
-    this.$el.find('.collapse-button').click(function(eventData) {
-      eventData.stopPropagation();
-      this.collapseElementView();
-    }.bind(this));
-
     this.updateBox();
-    this.model.updateRectangles();
+    this.updateRectangles();
+
     return this;
   },
 
@@ -407,7 +372,66 @@ joint.shapes.flexberry.uml.ClassView = joint.dia.ElementView.extend({
     this.$box.remove();
   },
 
-  collapseElementView() {
+  updateRectangles() {
+    let rects = this.model.getRectangles();
+
+    let offsetY = 0;
+    let newHeight = 0;
+    let newWidth = 0;
+    rects.forEach(function(rect) {
+      if (this.markup.includes('flexberry-uml-' + rect.type + '-rect') && rect.element.inputElements) {
+        let $buffer = rect.element.inputElements.find('.input-buffer');
+        let rectHeight = 0;
+        let inputs = rect.element.inputElements.find('.' + rect.type + '-input');
+        inputs.each(function() {
+          let $input = $(this);
+          $buffer.css('font-weight', $input.css('font-weight'));
+          $buffer.text($input.val());
+          $input.width($buffer.width() + 1);
+          if ($input.width() > newWidth) {
+            newWidth = $input.width();
+          }
+
+          rectHeight += $input.height();
+        });
+
+        rectHeight += rect.element.get('heightBottomPadding') || 0;
+        newHeight += rectHeight;
+        rect.element.attr('.flexberry-uml-' + rect.type + '-rect/height', rectHeight);
+
+        rect.element.attr('.flexberry-uml-' + rect.type + '-rect/transform', 'translate(0,' + offsetY + ')');
+
+        offsetY += rectHeight;
+      }
+    }, this.model);
+
+    newWidth += (this.model.get('widthPadding') || 0) * 2;
+    rects.forEach(function(rect) {
+      rect.element.attr('.flexberry-uml-' + rect.type + '-rect/width', newWidth);
+    });
+
+    this.model.resize(newWidth, newHeight);
+    if (this.model.get('highlighted')) {
+      this.unhighlight();
+      this.highlight();
+    }
+  },
+
+  getButtons() {
+    return A([{
+      name: 'collapse-button',
+      text: this.model.get('collapseButtonText'),
+      handler: this.collapseElementView.bind(this),
+      attrs: {
+        'element': {'ref-x': 4,'ref-y': 4, 'ref': '.flexberry-uml-header-rect' },
+        'circle': { r: 6, fill: '#007aff', stroke: '#007aff', 'stroke-width': 1 },
+        'text': { fill: '#ffffff','font-size': 15, 'font-weight': 800, 'text-anchor': 'middle', stroke: '#ffffff', x: 0, y: 5, 'font-family': 'Times New Roman' },
+      }
+    }]);
+  },
+
+  collapseElementView(e) {
+    e.stopPropagation();
     let objectModel = this.model.get('objectModel');
     let collapsedToggle = !objectModel.get('collapsed');
     objectModel.set('collapsed', collapsedToggle);
@@ -418,16 +442,17 @@ joint.shapes.flexberry.uml.ClassView = joint.dia.ElementView.extend({
     let objectModel = this.model.get('objectModel');
     let collapsed = objectModel.get('collapsed');
 
-    let displayValue = (collapsed) ? 'none' : 'table-cell';
+    let displayValue = collapsed ? 'none' : 'table-cell';
     this.model.attr('.flexberry-uml-body-rect/display', displayValue);
     this.model.attr('.flexberry-uml-footer-rect/display', displayValue);
 
-    let styleVisibilityValue = (collapsed) ? 'hidden' : 'visible';
+    let styleVisibilityValue = collapsed ? 'hidden' : 'visible';
     this.$box.find('.attributes-input').css('visibility', styleVisibilityValue);
     this.$box.find('.methods-input').css('visibility', styleVisibilityValue);
 
-    let collapseButtonText = (collapsed) ? '+' : '-';
-    this.model.attr('.collapse-button>text/text', collapseButtonText);
+    this.model.set('collapseButtonText', collapsed ? '+' : '-');
+    this.updateBox();
+    this.updateRectangles();
   },
 
   normalizeStereotype(stereotype) {
@@ -444,14 +469,4 @@ joint.shapes.flexberry.uml.ClassView = joint.dia.ElementView.extend({
 
     return stereotype;
   }
-});
-
-joint.shapes.flexberry.uml.ClassCollapsedView = joint.shapes.flexberry.uml.ClassView.extend({
-  template: [
-    '<div class="uml-class-inputs">',
-    '<textarea class="class-name-input header-input" value="" rows="1" wrap="off"></textarea>',
-    '<textarea class="class-stereotype-input header-input" value="" rows="1" wrap="off"></textarea>',
-    '<div class="input-buffer"></div>',
-    '</div>'
-  ].join(''),
 });
