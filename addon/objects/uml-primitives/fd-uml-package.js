@@ -95,8 +95,50 @@ export let Package = BaseClass.define('flexberry.uml.Package', {
     '</g>'
   ].join(''),
 
+  getRectangles() {
+    return [
+      { type: 'header', element: this },
+      { type: 'body', element: this },
+    ];
+  },
+});
+
+joint.shapes.flexberry.uml.PackageView = joint.shapes.flexberry.uml.BaseObjectView.extend({
+  template: [
+    '<div class="uml-class-inputs">',
+    '<textarea class="package-header-input header-input" value="" rows="1" wrap="off"></textarea>',
+    '<textarea class="attributes-input body-input" value="" rows="1" wrap="off"></textarea>',
+    '<div class="input-buffer"></div>',
+    '</div>'
+  ].join(''),
+
+  initialize: function () {
+    joint.shapes.flexberry.uml.BaseObjectView.prototype.initialize.apply(this, arguments);
+    this.$box.find('.package-header-input').on('change', function (evt) {
+      let $textarea = $(evt.currentTarget);
+      let textareaText = $textarea.val();
+      let rows = textareaText.split(/[\n\r|\r|\n]/);
+      $textarea.prop('rows', rows.length);
+      let objectModel = this.model.get('objectModel');
+      objectModel.set('name', textareaText);
+    }.bind(this));
+
+    this.$box.find('.package-header-input').on('input', function (evt) {
+      let $textarea = $(evt.currentTarget);
+      let textareaText = $textarea.val();
+      let rows = textareaText.split(/[\n\r|\r|\n]/);
+      $textarea.prop('rows', rows.length);
+      this.updateRectangles();
+    }.bind(this));
+
+    let objectModel = this.model.get('objectModel');
+    let upperInput = this.$box.find('.package-header-input');
+    upperInput.prop('rows', objectModel.get('name').split(/[\n\r|\r|\n]/).length || 1);
+    upperInput.val(objectModel.get('name'));
+  },
+
   updateRectangles: function () {
-    let rects = this.getRectangles();
+    let rects = this.model.getRectangles();
     let offsetY = 0;
     let newHeight = 0;
     let newWidth = 0;
@@ -130,55 +172,17 @@ export let Package = BaseClass.define('flexberry.uml.Package', {
 
         offsetY += rectHeight;
       }
-    }, this);
+    }, this.model);
 
-    newWidth += (this.get('widthPadding') || 0) * 2;
+    newWidth += (this.model.get('widthPadding') || 0) * 2;
     rects.forEach(function (rect) {
       rect.element.attr('.flexberry-uml-' + rect.type + '-rect/width', newWidth);
     });
 
-    this.resize(newWidth, newHeight);
-  }
-});
-
-joint.shapes.flexberry.uml.PackageView = joint.shapes.flexberry.uml.BaseObjectView.extend({
-  template: [
-    '<div class="uml-class-inputs">',
-    '<textarea class="package-header-input header-input" value="" rows="1" wrap="off"></textarea>',
-    '<textarea class="attributes-input body-input" value="" rows="1" wrap="off"></textarea>',
-    '<div class="input-buffer"></div>',
-    '</div>'
-  ].join(''),
-
-  getRectangles() {
-    return [
-      { type: 'header', text: this.getObjName(), element: this },
-      { type: 'body', text: this.get('objectModel.attributes'), element: this },
-    ];
-  },
-
-  initialize: function () {
-    joint.shapes.flexberry.uml.BaseObjectView.prototype.initialize.apply(this, arguments);
-    this.$box.find('.package-header-input').on('change', function (evt) {
-      let $textarea = $(evt.currentTarget);
-      let textareaText = $textarea.val();
-      let rows = textareaText.split(/[\n\r|\r|\n]/);
-      $textarea.prop('rows', rows.length);
-      let objectModel = this.model.get('objectModel');
-      objectModel.set('name', textareaText);
-    }.bind(this));
-
-    this.$box.find('.package-header-input').on('input', function (evt) {
-      let $textarea = $(evt.currentTarget);
-      let textareaText = $textarea.val();
-      let rows = textareaText.split(/[\n\r|\r|\n]/);
-      $textarea.prop('rows', rows.length);
-      this.model.updateRectangles();
-    }.bind(this));
-
-    let objectModel = this.model.get('objectModel');
-    let upperInput = this.$box.find('.package-header-input');
-    upperInput.prop('rows', objectModel.get('name').split(/[\n\r|\r|\n]/).length || 1);
-    upperInput.val(objectModel.get('name'));
+    this.model.resize(newWidth, newHeight);
+    if (this.model.get('highlighted')) {
+      this.unhighlight();
+      this.highlight();
+    }
   }
 });

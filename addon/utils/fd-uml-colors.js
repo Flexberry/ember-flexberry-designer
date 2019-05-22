@@ -1,7 +1,7 @@
 import $ from 'jquery';
 
 let setInputRectColors = function(jointElement, rects) {
-  let primitive = jointElement.attributes.objectModel.primitive;
+  let primitive = jointElement.model.attributes.objectModel.primitive;
   let textColor = primitive.DrawStyle.TextColor;
   let color = "#" + ((1 << 24) + ( textColor.R << 16) + (textColor.G << 8) + textColor.B).toString(16).slice(1);
   let brushColor = primitive.DrawStyle.DrawBrush.Color;
@@ -10,11 +10,11 @@ let setInputRectColors = function(jointElement, rects) {
     let className = 'flexberry-uml-' + rect.type + '-rect';
     let cssName = '.' + className;
     if (cssName in rect.element.attributes.attrs) {
-      let attr = jointElement.attributes.attrs[cssName];
+      let attr = jointElement.model.attributes.attrs[cssName];
       attr['fill-opacity'] = 0.7;
       attr['fill'] = bgColor;
       attr['stroke'] = color;
-      if (jointElement.markup.includes(className) && rect.element.inputElements) {
+      if (jointElement.model.markup.includes(className) && rect.element.inputElements) {
         let $buffer = rect.element.inputElements.find('.input-buffer');
         let inputs = rect.element.inputElements.find('.' + rect.type + '-input');
         inputs.each(function() {

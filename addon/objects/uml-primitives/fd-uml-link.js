@@ -24,8 +24,15 @@ export default FdUmlPrimitive.extend({
     @property source
     @type Object
   */
-  source: computed('primitive.StartPrimitive.$ref', function() {
-    return { id: this.get('primitive.StartPrimitive.$ref') };
+  source: computed('primitive.StartPrimitive.$ref', {
+    get() {
+      return { id: this.get('primitive.StartPrimitive.$ref') };
+    },
+    set(key, value) {
+      this.set('primitive.StartPrimitive.$ref', value.id);
+      this.set('primitive.StartLE.Primitive.$ref', value.id);
+      return value;
+    },
   }),
 
   /**
@@ -34,8 +41,15 @@ export default FdUmlPrimitive.extend({
     @property target
     @type Object
   */
-  target: computed('primitive.EndPrimitive.$ref', function() {
-    return { id: this.get('primitive.EndPrimitive.$ref') };
+  target: computed('primitive.EndPrimitive.$ref', {
+    get() {
+      return { id: this.get('primitive.EndPrimitive.$ref') };
+    },
+    set(key, value) {
+      this.set('primitive.EndPrimitive.$ref', value.id);
+      this.set('primitive.EndLE.Primitive.$ref', value.id);
+      return value;
+    },
   }),
 
   /**
@@ -92,8 +106,17 @@ export default FdUmlPrimitive.extend({
     @property startPoint
     @type Object
   */
-  startPoint: computed('primitive.StartPoint.{X,Y}', function() {
-    return { x: this.get('primitive.StartPoint.X'), y: this.get('primitive.StartPoint.Y') };
+  startPoint: computed('primitive.StartPoint.{X,Y}', {
+    get() {
+      return { x: this.get('primitive.StartPoint.X'), y: this.get('primitive.StartPoint.Y') };
+    },
+    set(key, value) {
+      this.set('primitive.StartLE.Point.X', value.x);
+      this.set('primitive.StartLE.Point.Y', value.y);
+      this.set('primitive.StartPoint.X', value.x);
+      this.set('primitive.StartPoint.Y', value.y);
+      return value;
+    },
   }),
 
   /**
@@ -102,8 +125,17 @@ export default FdUmlPrimitive.extend({
     @property endPoint
     @type Object
   */
-  endPoint: computed('primitive.EndPoint.{X,Y}', function() {
-    return { x: this.get('primitive.EndPoint.X'), y: this.get('primitive.EndPoint.Y') };
+  endPoint: computed('primitive.EndPoint.{X,Y}', {
+    get() {
+      return { x: this.get('primitive.EndPoint.X'), y: this.get('primitive.EndPoint.Y') };
+    },
+    set(key, value) {
+      this.set('primitive.EndLE.Point.X', value.x);
+      this.set('primitive.EndLE.Point.Y', value.y);
+      this.set('primitive.EndPoint.X', value.x);
+      this.set('primitive.EndPoint.Y', value.y);
+      return value;
+    },
   }),
 
   /**
@@ -129,14 +161,33 @@ export default FdUmlPrimitive.extend({
     @property vertices
     @type Array
   */
-  vertices: computed('primitive.Points', function() {
-    let vertices = [];
-    let points = this.get('primitive.Points');
-    for (let i = 1; i < points.length - 1; i++) {
-      vertices.push({ x: points[i].X, y: points[i].Y });
-    }
+  vertices: computed('primitive.Points', {
+    get() {
+      let vertices = [];
+      let points = this.get('primitive.Points');
+      for (let i = 1; i < points.length - 1; i++) {
+        vertices.push({ x: points[i].X, y: points[i].Y });
+      }
 
-    return vertices;
+      return vertices;
+    },
+    set(key, value) {
+      let points = [this.get('primitive.StartPoint')];
+
+      for (let i = 0; i < value.length; i++) {
+        points.push({
+          $type: 'System.Drawing.Point, System.Drawing',
+          IsEmpty: false,
+          X: value[i].x,
+          Y: value[i].y
+        });
+      }
+
+      points.push(this.get('primitive.EndPoint'));
+
+      this.set('primitive.Points', points);
+      return value;
+    },
   }),
   /**
     See {{#crossLink "FdUmlPrimitive/JointJS:method"}}here{{/crossLink}}.
@@ -144,7 +195,8 @@ export default FdUmlPrimitive.extend({
     @method JointJS
   */
   JointJS() {
-    let properties = this.getProperties('id', 'name', 'source', 'target', 'vertices', 'labels', 'startPoint', 'endPoint');
+    let properties = this.getProperties('id', 'source', 'target', 'vertices', 'labels');
+    properties.objectModel = this;
     return new Link(properties);
   }
 });
@@ -159,6 +211,9 @@ export default FdUmlPrimitive.extend({
   @constructor
 */
 export let Link = joint.dia.Link.define('flexberry.uml.Link', {
+
+  objectModel: null,
+
   attrs: {
     text: { 'font-size': '12', 'font-family': 'Arial, helvetica, sans-serif' }
   },
@@ -177,7 +232,7 @@ export let Link = joint.dia.Link.define('flexberry.uml.Link', {
   }]
 }, {
     initialize: function (properties) {
-      setLinkColors(properties.primitive, this);
+      setLinkColors(properties.objectModel.primitive, this);
       let vertices = this.get('vertices') || [];
       let startPointA = this.get('startPoint');
       let startPointB = vertices[0] || this.get('endPoint');
@@ -185,6 +240,22 @@ export let Link = joint.dia.Link.define('flexberry.uml.Link', {
       let endPointA = vertices[vertices.lenght - 1] || this.get('startPoint');
       let endPointB = this.get('endPoint');
       this.updateLabelsPositions(endPointA, endPointB, true);
+
+      this.on('change:vertices', function(element, newVertices) {
+        let objectModel = this.get('objectModel');
+        if (objectModel) {
+          objectModel.set('vertices', newVertices);
+          this.trigger('uml-update');
+        }
+      }, this);
+
+      this.on('change:repositoryObject', function(element, newRepository) {
+        let objectModel = this.get('objectModel');
+        if (objectModel) {
+          objectModel.set('repositoryObject', isNone(newRepository) ? null : `{${newRepository.get('id')}}`);
+        }
+      }, this);
+
       joint.dia.Link.prototype.initialize.apply(this, arguments);
     },
 
@@ -249,24 +320,31 @@ export let Link = joint.dia.Link.define('flexberry.uml.Link', {
     },
 
     setLabelText: function (label, text) {
+      let objectModel = this.get('objectModel');
       switch (label) {
         case 'startMultiplicity':
           this.label(0, { attrs: { text: { text: text, 'font-size': '12', 'font-family': 'Arial, helvetica, sans-serif' } } });
+          objectModel.set('startMultiplicity', text);
           break;
         case 'endMultiplicity':
           this.label(1, { attrs: { text: { text: text, 'font-size': '12', 'font-family': 'Arial, helvetica, sans-serif' } } });
+          objectModel.set('endMultiplicity', text);
           break;
         case 'description':
           this.label(2, { attrs: { text: { text: text, 'font-size': '12', 'font-family': 'Arial, helvetica, sans-serif' } } });
+          objectModel.set('description', text);
           break;
         case 'startRole':
           this.label(3, { attrs: { text: { text: text, 'font-size': '12', 'font-family': 'Arial, helvetica, sans-serif' } } });
+          objectModel.set('startRoleTxt', text);
           break;
         case 'endRole':
           this.label(4, { attrs: { text: { text: text, 'font-size': '12', 'font-family': 'Arial, helvetica, sans-serif' } } });
+          objectModel.set('endRoleTxt', text);
           break;
         case 'qualified':
           this.label(5, { attrs: { text: { text: text, 'font-size': '12', 'font-family': 'Arial, helvetica, sans-serif' } } });
+          objectModel.set('qualified', text);
           break;
         default:
           // eslint-disable-next-line no-console
@@ -296,7 +374,7 @@ export let Link = joint.dia.Link.define('flexberry.uml.Link', {
           label = this.label(4);
           break;
         case 'qualified':
-          label = this.label(5);
+          label =  this.label(5);
           break;
         default:
           // eslint-disable-next-line no-console

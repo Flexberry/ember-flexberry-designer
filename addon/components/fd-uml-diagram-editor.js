@@ -1,7 +1,7 @@
 import Component from '@ember/component';
 import { inject as service } from '@ember/service';
 import { A, isArray } from '@ember/array';
-import { computed } from '@ember/object';
+import { computed, get } from '@ember/object';
 import { isNone, isBlank } from '@ember/utils';
 import { next } from '@ember/runloop';
 import $ from 'jquery';
@@ -44,6 +44,14 @@ FdActionsForUcdPrimitivesMixin, {
     @type Array
   */
   interactionElements: A(),
+
+  /**
+   Array items with empty reference count.
+
+   @property emptyReferenceCountItems
+   @type {Array}
+   */
+  emptyReferenceCountItems: A(),
 
   /**
     Function for create element.
@@ -93,6 +101,14 @@ FdActionsForUcdPrimitivesMixin, {
   */
   currentTargetElement: undefined,
 
+  /**
+    Сurrent diagram's paper.
+
+    @property paper
+    @type joint.dia.Paper
+  */
+  paper: undefined,
+
   classNames: ['fd-uml-diagram-editor'],
 
   diagramType: computed('model.constructor.modelName', function() {
@@ -107,12 +123,39 @@ FdActionsForUcdPrimitivesMixin, {
   init() {
     this._super(...arguments);
 
+    this.get('fdSheetService').on('diagramResizeTriggered', this, this._fitToContent);
+
     next(() => {
       this.get('fdSheetService').toolbarDiagramPosition();
     });
   },
 
+  /**
+   Called when the element of the view is going to be destroyed.
+   For more information see [willDestroyElement](http://emberjs.com/api/classes/Ember.Component.html#event_willDestroyElement) event of [Ember.Component](http://emberjs.com/api/classes/Ember.Component.html).
+ */
+ willDestroyElement() {
+   this._super(...arguments);
+
+   this.get('fdSheetService').off('diagramResizeTriggered', this, this._fitToContent);
+ },
+
   actions: {
+    /**
+      Normalize paper's size
+
+      @method actions.fitToContent
+    */
+    fitToContent() {
+      let paper = this.get('paper');
+      if (isNone(paper)) {
+        return;
+      }
+
+      let minWidth = this.$().width();
+      let minHeight = this.$().height() - this.$('.fd-uml-diagram-toolbar').height();
+      paper.fitToContent({ minWidth, minHeight, padding: 10 });
+    },
 
     /**
       Handler event blankPointerClick
@@ -157,7 +200,8 @@ FdActionsForUcdPrimitivesMixin, {
         if ((isNone(interactionElements) || (isArray(interactionElements) && interactionElements.includes(type)) ||
          (isArray(interactionElements.start) && interactionElements.start.includes(type)))) {
           let jointjsCallback = this.get('jointjsCallback');
-          let newLink = jointjsCallback({ source: model.id, startClassRepObj: model.repositoryObject });
+          let newLink = jointjsCallback({ source: model.id });
+          newLink.set({ 'startClassRepObj': { id: get(model, 'objectModel.repositoryObject') } });
           this.set('newLink', newLink);
           return newLink;
         }
@@ -181,7 +225,7 @@ FdActionsForUcdPrimitivesMixin, {
         if ((isNone(interactionElements) || (isArray(interactionElements) && interactionElements.includes(type)) ||
          (isArray(interactionElements.start) && interactionElements.start.includes(type)))) {
           let newLink = this.get('newLink');
-          newLink.set({ 'target': { id: model.id }, 'endClassRepObj': { id: model.repositoryObject } });
+          newLink.set({ 'target': { id: model.id }, 'endClassRepObj': { id: get(model, 'objectModel.repositoryObject') } });
           let storeCallback = this.get('storeCallback');
           if (storeCallback) {
             let linkRecord = storeCallback({ startClassRepObj: newLink.get('startClassRepObj'), endClassRepObj: newLink.get('endClassRepObj') });
@@ -207,10 +251,12 @@ FdActionsForUcdPrimitivesMixin, {
       if (!isNone(type)) {
         let newLink = this.get('newLink');
         if (newLink.vertices().length === 0) {
+          let primitives = this.get('model.primitives');
+          let linkPrimitive = primitives.findBy('id', newLink.get('id'));
+          primitives.removeObject(linkPrimitive);
           this.clearData();
           return true;
         } else {
-          let newLink = this.get('newLink');
           newLink.removeVertex(-1);
         }
       }
@@ -329,6 +375,19 @@ FdActionsForUcdPrimitivesMixin, {
     let pointer = this.$('.pointer-button');
     pointer.addClass('active');
     this.set('currentTargetElement', pointer);
+  },
+
+  /**
+    Resize diagram.
+
+    @method _fitToContent
+    @private
+  */
+  _fitToContent(sheetName, containsName) {
+    let sheetComponentName = this.get('sheetComponentName');
+    if (containsName ? sheetName.includes(sheetComponentName) : sheetComponentName === sheetName) {
+      this.get('actions.fitToContent').bind(this)();
+    }
   },
 
   /**

@@ -1,8 +1,8 @@
 import Mixin from '@ember/object/mixin';
 import { A, isArray } from '@ember/array';
 import FdUmlNote from '../../objects/uml-primitives/fd-uml-note';
-import { NoteConnector } from '../../objects/uml-primitives/fd-uml-note-connector';
-import { getJsonForElement } from '../../utils/get-json-for-diagram';
+import FdUmlNoteConnector from '../../objects/uml-primitives/fd-uml-note-connector';
+import { getJsonForElement, getJsonForLink } from '../../utils/get-json-for-diagram';
 
 /**
   Actions for creating joint js elements on diagrams.
@@ -61,17 +61,20 @@ export default Mixin.create({
      */
     addNoteConnector(e) {
       this.createLinkData((function(linkProperties) {
-        let newNoteConnectorObject = new NoteConnector({
-          source: {
-            id: linkProperties.source
-          },
-          target: {
-            id: linkProperties.target
-          },
-          vertices: linkProperties.points || A()
-        });
+        let jsonObject = getJsonForLink(
+          'STORMCASE.UML.Common.NoteConnector, UMLCommon',
+          linkProperties.source,
+          null,
+          linkProperties.target,
+          null
+        );
 
-        return newNoteConnectorObject;
+        let noteConnectorObject = FdUmlNoteConnector.create({ primitive: jsonObject });
+        noteConnectorObject.set('vertices', linkProperties.points || A());
+
+        this._addToPrimitives(noteConnectorObject);
+
+        return noteConnectorObject.JointJS();
       }).bind(this), e);
     }
   }

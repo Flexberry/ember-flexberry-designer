@@ -5,7 +5,7 @@
 import { computed } from '@ember/object';
 import $ from 'jquery';
 import { isBlank } from '@ember/utils';
-import { isArray } from '@ember/array';
+import { isArray, A } from '@ember/array';
 
 import joint from 'npm:jointjs';
 
@@ -114,10 +114,6 @@ export default FdUmlElement.extend({
   JointJS() {
     let properties = this.getProperties('id', 'size', 'position');
     properties.objectModel = this;
-    if (this.get('collapsed')) {
-      return new ClassCollapsed(properties);
-    }
-
     return new Class(properties);
   },
 });
@@ -148,6 +144,12 @@ export let BaseClass = joint.shapes.basic.Generic.define('flexberry.uml.BaseClas
 
   // Inputs bottom padding by Y.
   heightBottomPadding: 4,
+
+  // Indicates when element is highlighted.
+  highlighted: false,
+
+  // Text of the collapse button
+  collapseButtonText: '-',
 }, {
   markup: [
     '<g class="rotatable">',
@@ -178,19 +180,207 @@ export let BaseClass = joint.shapes.basic.Generic.define('flexberry.uml.BaseClas
   },
 
   getRectangles() {
-    return [
+    let objectModel = this.get('objectModel');
+
+    return objectModel.get('collapsed') ?
+    [
+      { type: 'header', element: this }
+    ] :
+    [
       { type: 'header', element: this },
       { type: 'body',  element: this },
       { type: 'footer',  element: this }
     ];
+  }
+});
+
+/**
+  Defines the JointJS element, which represents the UML class in the diagram.
+
+  @for FdUmlClass
+  @class Class
+  @extends flexberry.uml.BaseClass
+  @namespace flexberry.uml
+  @constructor
+*/
+export let Class = BaseClass.define('flexberry.uml.Class', {});
+
+joint.shapes.flexberry.uml.ClassView = joint.dia.ElementView.extend({
+  template: [
+    '<div class="uml-class-inputs">',
+    '<textarea class="class-name-input header-input" value="" rows="1" wrap="off"></textarea>',
+    '<textarea class="class-stereotype-input header-input" value="" rows="1" wrap="off"></textarea>',
+    '<textarea class="attributes-input body-input" value="" rows="1" wrap="off" style="visibility: visible"></textarea>',
+    '<textarea class="methods-input footer-input" value="" rows="1" wrap="off" style="visibility: visible"></textarea>',
+    '<div class="input-buffer"></div>',
+    '</div>'
+  ].join(''),
+
+  initialize: function() {
+    joint.dia.ElementView.prototype.initialize.apply(this, arguments);
+
+    this.$box = $(this.template);
+    this.model.inputElements = this.$box;
+    let _this = this;
+
+    // Prevent paper from handling pointerdown.
+    this.$box.find('input, textarea').on('mousedown click', function(evt) {
+      evt.stopPropagation();
+      _this.highlight();
+    });
+
+    this.$box.find('.attributes-input').on('input', function(evt) {
+      let $textarea = $(evt.currentTarget);
+      let textareaText = $textarea.val();
+      let rows = textareaText.split(/[\n\r|\r|\n]/);
+      $textarea.prop('rows', rows.length);
+      this.updateRectangles();
+    }.bind(this));
+
+    this.$box.find('.methods-input').on('input', function(evt) {
+      let $textarea = $(evt.currentTarget);
+      let textareaText = $textarea.val();
+      let rows = textareaText.split(/[\n\r|\r|\n]/);
+      $textarea.prop('rows', rows.length);
+      this.updateRectangles();
+    }.bind(this));
+
+    this.$box.find('.class-name-input').on('input', function(evt) {
+      let $textarea = $(evt.currentTarget);
+      let textareaText = $textarea.val();
+      let rows = textareaText.split(/[\n\r|\r|\n]/);
+      $textarea.prop('rows', rows.length);
+      this.updateRectangles();
+    }.bind(this));
+
+    this.$box.find('.class-stereotype-input').on('input', function(evt) {
+      let $textarea = $(evt.currentTarget);
+      let textareaText = $textarea.val();
+      let rows = textareaText.split(/[\n\r|\r|\n]/);
+      $textarea.prop('rows', rows.length);
+      this.updateRectangles();
+    }.bind(this));
+
+    this.$box.find('.attributes-input').on('change', function(evt) {
+      let $textarea = $(evt.currentTarget);
+      let textareaText = $textarea.val();
+      let rows = textareaText.split(/[\n\r|\r|\n]/);
+      $textarea.prop('rows', rows.length);
+      let objectModel = this.model.get('objectModel');
+      objectModel.set('attributes', rows);
+      this.paper.trigger('updaterepobj', objectModel, 'attributesStr', textareaText);
+    }.bind(this));
+
+    this.$box.find('.methods-input').on('change', function(evt) {
+      let $textarea = $(evt.currentTarget);
+      let textareaText = $textarea.val();
+      let rows = textareaText.split(/[\n\r|\r|\n]/);
+      $textarea.prop('rows', rows.length);
+      let objectModel = this.model.get('objectModel');
+      objectModel.set('methods', rows);
+      this.paper.trigger('updaterepobj', objectModel, 'methodsStr', textareaText);
+    }.bind(this));
+
+    this.$box.find('.class-name-input').on('change', function(evt) {
+      let $textarea = $(evt.currentTarget);
+      let textareaText = $textarea.val();
+      let rows = textareaText.split(/[\n\r|\r|\n]/);
+      $textarea.prop('rows', rows.length);
+      let objectModel = this.model.get('objectModel');
+      objectModel.set('name', textareaText);
+
+      this.paper.trigger('checkexistelements', objectModel, this);
+    }.bind(this));
+
+    this.$box.find('.class-stereotype-input').on('focus', function(evt) {
+      let stereotype = this.normalizeStereotype($(evt.target).val());
+      this.$box.find('.class-stereotype-input').val(stereotype.slice(1, -1));
+      this.updateRectangles();
+    }.bind(this));
+
+    this.$box.find('.class-name-input').on('focus', function(evt) {
+      let $textarea = $(evt.currentTarget);
+      let objectModel = this.model.get('objectModel');
+      if (objectModel.get('primitive.$type') === 'STORMCASE.STORMNET.Repository.CADClass, STORM.NET Case Tool plugin') {
+        let isCreated = objectModel.get('isCreated');
+        $textarea.attr('readonly', !isCreated);
+      }
+    }.bind(this));
+
+    this.$box.find('.class-stereotype-input').on('blur', function(evt) {
+      let stereotypeText = $(evt.target).val();
+      let stereotype = this.normalizeStereotype(stereotypeText);
+      let rows = stereotypeText.split(/[\n\r|\r|\n]/);
+      let $stereotypeInput = this.$box.find('.class-stereotype-input');
+      $stereotypeInput.val(stereotype);
+      $stereotypeInput.prop('rows', rows.length);
+      let objectModel = this.model.get('objectModel');
+      objectModel.set('stereotype', stereotype);
+      this.paper.trigger('updaterepobj', objectModel, 'stereotype', stereotypeText);
+      this.updateRectangles();
+    }.bind(this));
+
+    let objectModel = this.model.get('objectModel');
+    let classNameInput = this.$box.find('.class-name-input');
+    let classStereotypeInput = this.$box.find('.class-stereotype-input');
+    let attributesInput = this.$box.find('.attributes-input');
+    let methodsInput = this.$box.find('.methods-input');
+
+    classNameInput.prop('rows', objectModel.get('name').split(/[\n\r|\r|\n]/).length || 1);
+    classNameInput.val(objectModel.get('name'));
+    classStereotypeInput.prop('rows', objectModel.get('stereotype').split(/[\n\r|\r|\n]/).length || 1);
+    classStereotypeInput.val(objectModel.get('stereotype'));
+
+    attributesInput.prop('rows', objectModel.get('attributes').length || 1);
+    attributesInput.val(objectModel.get('attributes').join('\n'));
+    methodsInput.prop('rows', objectModel.get('methods').length || 1);
+    methodsInput.val(objectModel.get('methods').join('\n'));
+
+    // Update the box position whenever the underlying model changes.
+    this.model.on('change', this.updateBox, this);
+
+    // Remove the box when the model gets removed from the graph.
+    this.model.on('remove', this.removeBox, this);
+
+    //Hide or show body or footer rectangle depending collapse value
+    this.applyDisplayFromCollapseValue();
+  },
+
+  render: function() {
+    joint.dia.ElementView.prototype.render.apply(this, arguments);
+    this.paper.$el.prepend(this.$box);
+    this.paper.on('blank:pointerdown link:pointerdown element:pointerdown', function() {
+      this.$box.find('input:focus, textarea:focus').blur();
+    }, this);
+
+    this.updateBox();
+    this.updateRectangles();
+
+    return this;
+  },
+
+  updateBox: function() {
+    // Set the position and dimension of the box so that it covers the JointJS element.
+    let bbox = this.model.getBBox();
+    this.$box.css({
+      width: bbox.width,
+      height: bbox.height,
+      left: bbox.x,
+      top: bbox.y,
+      transform: 'rotate(' + (this.model.get('angle') || 0) + 'deg)'
+    });
+  },
+
+  removeBox: function() {
+    this.$box.remove();
   },
 
   updateRectangles() {
-    let rects = this.getRectangles();
+    let rects = this.model.getRectangles();
+    setInputRectColors(this, rects);
     let offsetY = 0;
     let newHeight = 0;
     let newWidth = 0;
-    setInputRectColors(this, rects);
     rects.forEach(function(rect) {
       if (this.markup.includes('flexberry-uml-' + rect.type + '-rect') && rect.element.inputElements) {
         let $buffer = rect.element.inputElements.find('.input-buffer');
@@ -216,207 +406,56 @@ export let BaseClass = joint.shapes.basic.Generic.define('flexberry.uml.BaseClas
 
         offsetY += rectHeight;
       }
-    }, this);
+    }, this.model);
 
-    newWidth += (this.get('widthPadding') || 0) * 2;
+    newWidth += (this.model.get('widthPadding') || 0) * 2;
     rects.forEach(function(rect) {
       rect.element.attr('.flexberry-uml-' + rect.type + '-rect/width', newWidth);
     });
 
-    this.resize(newWidth, newHeight);
-  }
-});
-
-/**
-  Defines the JointJS element, which represents the UML class in the diagram.
-
-  @for FdUmlClass
-  @class Class
-  @extends flexberry.uml.BaseClass
-  @namespace flexberry.uml
-  @constructor
-*/
-export let Class = BaseClass.define('flexberry.uml.Class', {});
-
-/**
-  Defines the JointJS element, which represents the UML class in collapsed state.
-
-  @for FdUmlClass
-  @class ClassCollapsed
-  @extends flexberry.uml.Class
-  @namespace flexberry.uml
-  @constructor
-*/
-export let ClassCollapsed = Class.define('flexberry.uml.ClassCollapsed', {}, {
-  markup: [
-    '<g class="rotatable">',
-    '<rect class="flexberry-uml-header-rect"/>',
-    '</g>'
-  ].join(''),
-
-  getRectangles() {
-    return [
-      { type: 'header', element: this }
-    ];
+    this.model.resize(newWidth, newHeight);
+    if (this.model.get('highlighted')) {
+      this.unhighlight();
+      this.highlight();
+    }
   },
-});
 
-joint.shapes.flexberry.uml.ClassView = joint.dia.ElementView.extend({
-  template: [
-    '<div class="uml-class-inputs">',
-    '<textarea class="class-name-input header-input" value="" rows="1" wrap="off"></textarea>',
-    '<textarea class="class-stereotype-input header-input" value="" rows="1" wrap="off"></textarea>',
-    '<textarea class="attributes-input body-input" value="" rows="1" wrap="off"></textarea>',
-    '<textarea class="methods-input footer-input" value="" rows="1" wrap="off"></textarea>',
-    '<div class="input-buffer"></div>',
-    '</div>'
-  ].join(''),
-
-  initialize: function() {
-    joint.dia.ElementView.prototype.initialize.apply(this, arguments);
-
-    this.$box = $(this.template);
-    this.model.inputElements = this.$box;
-
-    // Prevent paper from handling pointerdown.
-    this.$box.find('input, textarea').on('mousedown click', function(evt) {
-      evt.stopPropagation();
-    });
-
-    this.$box.find('.attributes-input').on('input', function(evt) {
-      let $textarea = $(evt.currentTarget);
-      let textareaText = $textarea.val();
-      let rows = textareaText.split(/[\n\r|\r|\n]/);
-      $textarea.prop('rows', rows.length);
-      this.model.updateRectangles();
-    }.bind(this));
-
-    this.$box.find('.methods-input').on('input', function(evt) {
-      let $textarea = $(evt.currentTarget);
-      let textareaText = $textarea.val();
-      let rows = textareaText.split(/[\n\r|\r|\n]/);
-      $textarea.prop('rows', rows.length);
-      this.model.updateRectangles();
-    }.bind(this));
-
-    this.$box.find('.class-name-input').on('input', function(evt) {
-      let $textarea = $(evt.currentTarget);
-      let textareaText = $textarea.val();
-      let rows = textareaText.split(/[\n\r|\r|\n]/);
-      $textarea.prop('rows', rows.length);
-      this.model.updateRectangles();
-    }.bind(this));
-
-    this.$box.find('.class-stereotype-input').on('input', function(evt) {
-      let $textarea = $(evt.currentTarget);
-      let textareaText = $textarea.val();
-      let rows = textareaText.split(/[\n\r|\r|\n]/);
-      $textarea.prop('rows', rows.length);
-      this.model.updateRectangles();
-    }.bind(this));
-
-    this.$box.find('.attributes-input').on('change', function(evt) {
-      let $textarea = $(evt.currentTarget);
-      let textareaText = $textarea.val();
-      let rows = textareaText.split(/[\n\r|\r|\n]/);
-      $textarea.prop('rows', rows.length);
-      let objectModel = this.model.get('objectModel');
-      objectModel.set('attributes', rows);
-    }.bind(this));
-
-    this.$box.find('.methods-input').on('change', function(evt) {
-      let $textarea = $(evt.currentTarget);
-      let textareaText = $textarea.val();
-      let rows = textareaText.split(/[\n\r|\r|\n]/);
-      $textarea.prop('rows', rows.length);
-      let objectModel = this.model.get('objectModel');
-      objectModel.set('methods', rows);
-    }.bind(this));
-
-    this.$box.find('.class-name-input').on('change', function(evt) {
-      let $textarea = $(evt.currentTarget);
-      let textareaText = $textarea.val();
-      let rows = textareaText.split(/[\n\r|\r|\n]/);
-      $textarea.prop('rows', rows.length);
-      let objectModel = this.model.get('objectModel');
-      objectModel.set('name', textareaText);
-    }.bind(this));
-
-    this.$box.find('.class-stereotype-input').on('focus', function(evt) {
-      let stereotype = this.normalizeStereotype($(evt.target).val());
-      this.$box.find('.class-stereotype-input').val(stereotype.slice(1, -1));
-      this.model.updateRectangles();
-    }.bind(this));
-
-    this.$box.find('.class-name-input').on('focus', function(evt) {
-      let $textarea = $(evt.currentTarget);
-      let objectModel = this.model.get('objectModel');
-      if (objectModel.get('primitive.$type') === 'STORMCASE.STORMNET.Repository.CADClass, STORM.NET Case Tool plugin') {
-        let isCreated = objectModel.get('isCreated');
-        $textarea.attr('readonly', !isCreated);
+  getButtons() {
+    return A([{
+      name: 'collapse-button',
+      text: this.model.get('collapseButtonText'),
+      handler: this.collapseElementView.bind(this),
+      attrs: {
+        'element': {'ref-x': 4,'ref-y': 4, 'ref': '.flexberry-uml-header-rect' },
+        'circle': { r: 6, fill: '#007aff', stroke: '#007aff', 'stroke-width': 1 },
+        'text': { fill: '#ffffff','font-size': 15, 'font-weight': 800, 'text-anchor': 'middle', stroke: '#ffffff', x: 0, y: 5, 'font-family': 'Times New Roman' },
       }
-    }.bind(this));
+    }]);
+  },
 
-    this.$box.find('.class-stereotype-input').on('blur', function(evt) {
-      let stereotypeText = $(evt.target).val();
-      let stereotype = this.normalizeStereotype(stereotypeText);
-      let rows = stereotypeText.split(/[\n\r|\r|\n]/);
-      let $stereotypeInput = this.$box.find('.class-stereotype-input');
-      $stereotypeInput.val(stereotype);
-      $stereotypeInput.prop('rows', rows.length);
-      let objectModel = this.model.get('objectModel');
-      objectModel.set('stereotype', stereotype);
-      this.model.updateRectangles();
-    }.bind(this));
-
+  collapseElementView(e) {
+    e.stopPropagation();
     let objectModel = this.model.get('objectModel');
-    let classNameInput = this.$box.find('.class-name-input');
-    let classStereotypeInput = this.$box.find('.class-stereotype-input');
-    let attributesInput = this.$box.find('.attributes-input');
-    let methodsInput = this.$box.find('.methods-input');
-
-    classNameInput.prop('rows', objectModel.get('name').split(/[\n\r|\r|\n]/).length || 1);
-    classNameInput.val(objectModel.get('name'));
-    classStereotypeInput.prop('rows', objectModel.get('stereotype').split(/[\n\r|\r|\n]/).length || 1);
-    classStereotypeInput.val(objectModel.get('stereotype'));
-
-    attributesInput.prop('rows', objectModel.get('attributes').length || 1);
-    attributesInput.val(objectModel.get('attributes').join('\n'));
-    methodsInput.prop('rows', objectModel.get('methods').length || 1);
-    methodsInput.val(objectModel.get('methods').join('\n'));
-
-    // Update the box position whenever the underlying model changes.
-    this.model.on('change', this.updateBox, this);
-
-    // Remove the box when the model gets removed from the graph.
-    this.model.on('remove', this.removeBox, this);
+    let collapsedToggle = !objectModel.get('collapsed');
+    objectModel.set('collapsed', collapsedToggle);
+    this.applyDisplayFromCollapseValue();
   },
 
-  render: function() {
-    joint.dia.ElementView.prototype.render.apply(this, arguments);
-    this.paper.$el.prepend(this.$box);
-    this.paper.on('blank:pointerdown link:pointerdown element:pointerdown', function() {
-      this.$box.find('input, textarea').blur();
-    }, this);
+  applyDisplayFromCollapseValue() {
+    let objectModel = this.model.get('objectModel');
+    let collapsed = objectModel.get('collapsed');
+
+    let displayValue = collapsed ? 'none' : 'table-cell';
+    this.model.attr('.flexberry-uml-body-rect/display', displayValue);
+    this.model.attr('.flexberry-uml-footer-rect/display', displayValue);
+
+    let styleVisibilityValue = collapsed ? 'hidden' : 'visible';
+    this.$box.find('.attributes-input').css('visibility', styleVisibilityValue);
+    this.$box.find('.methods-input').css('visibility', styleVisibilityValue);
+
+    this.model.set('collapseButtonText', collapsed ? '+' : '-');
     this.updateBox();
-    this.model.updateRectangles();
-    return this;
-  },
-
-  updateBox: function() {
-    // Set the position and dimension of the box so that it covers the JointJS element.
-    let bbox = this.model.getBBox();
-    this.$box.css({
-      width: bbox.width,
-      height: bbox.height,
-      left: bbox.x,
-      top: bbox.y,
-      transform: 'rotate(' + (this.model.get('angle') || 0) + 'deg)'
-    });
-  },
-
-  removeBox: function() {
-    this.$box.remove();
+    this.updateRectangles();
   },
 
   normalizeStereotype(stereotype) {
@@ -433,14 +472,4 @@ joint.shapes.flexberry.uml.ClassView = joint.dia.ElementView.extend({
 
     return stereotype;
   }
-});
-
-joint.shapes.flexberry.uml.ClassCollapsedView = joint.shapes.flexberry.uml.ClassView.extend({
-  template: [
-    '<div class="uml-class-inputs">',
-    '<textarea class="class-name-input header-input" value="" rows="1" wrap="off"></textarea>',
-    '<textarea class="class-stereotype-input header-input" value="" rows="1" wrap="off"></textarea>',
-    '<div class="input-buffer"></div>',
-    '</div>'
-  ].join(''),
 });

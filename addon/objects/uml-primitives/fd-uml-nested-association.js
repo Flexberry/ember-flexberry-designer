@@ -1,11 +1,12 @@
 /**
   @module ember-flexberry-designer
 */
+import joint from 'npm:jointjs';
 
 import FdUmlLink from './fd-uml-link';
 import { Link } from './fd-uml-link';
 import { DescriptionView } from './links-view/fd-description-view';
-import joint from 'npm:jointjs';
+
 /**
   An object that describes a link of the association type on the UML diagram.
 
@@ -20,7 +21,8 @@ export default FdUmlLink.extend({
     @method JointJS
   */
   JointJS() {
-    let properties = this.getProperties('id', 'source', 'target', 'vertices', 'labels', 'startPoint', 'endPoint', 'primitive');
+    let properties = this.getProperties('id', 'source', 'target', 'vertices', 'labels');
+    properties.objectModel = this;
     return new NestedClassAssociation(properties);
   },
 });

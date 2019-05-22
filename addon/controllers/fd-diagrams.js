@@ -5,6 +5,7 @@ import { observer, computed } from '@ember/object';
 import { isBlank, isNone } from '@ember/utils';
 import { schedule } from '@ember/runloop';
 import { all, resolve } from 'rsvp';
+import hasChanges from '../utils/model-has-changes';
 
 export default Controller.extend({
   /**
@@ -49,6 +50,14 @@ export default Controller.extend({
     @default ''
   */
   sheetComponentName: '',
+
+  /**
+   Array items with empty reference count.
+
+   @property emptyReferenceCountItems
+   @type {Array}
+   */
+  emptyReferenceCountItems: A(),
 
   /**
     Ember.observer, watching property `searchValue` and send action from 'fd-sheet' component.
@@ -163,36 +172,85 @@ export default Controller.extend({
       }
     });
 
-    let repositoryObjects = primitives.filter(p => p.get('repositoryObject'));
+    let repositoryObjects = primitives.uniqBy('repositoryObject').filter(p => p.get('repositoryObject'));
     if (repositoryObjects.length > 0) {
       let store = this.get('store');
-      let allClasses = store.peekAll('fd-dev-class');
       promises.pushObjects(repositoryObjects.map(p => {
         let repId = p.get('repositoryObject').slice(1, -1);
-        let repObject = allClasses.findBy('id', repId);
-        if (isNone(repObject)) {
-          return resolve();
+        let type = p.get('primitive.$type');
+        let repObject;
+        let allRepObjects;
+
+        switch (type) {
+          case 'STORMCASE.STORMNET.Repository.CADClass, STORM.NET Case Tool plugin':
+            allRepObjects = store.peekAll('fd-dev-class');
+            repObject = allRepObjects.findBy('id', repId);
+            if (repObject) {
+              if (repObject.get('isNew')) {
+                let propName = p.get('name');
+                if (isBlank(propName)) {
+                  return repObject.rollbackAttributes();
+                } else {
+                  repObject.set('nameStr', propName);
+                }
+              }
+
+              let props = p.getProperties('stereotype', 'attributes', 'methods');
+              repObject.setProperties({
+                stereotype: props.stereotype,
+                attributesStr: props.attributes.join('\n'),
+                methodsStr: props.methods.join('\n')
+              });
+            }
+
+            break;
+          case 'STORMCASE.UML.cad.Inheritance, UMLCAD':
+            allRepObjects = store.peekAll('fd-dev-inheritance');
+            repObject = allRepObjects.findBy('id', repId);
+            if (repObject) {
+              let props = p.getProperties('description');
+              repObject.setProperties({
+                nameStr: props.description
+              });
+            }
+
+            break;
+          case 'STORMCASE.UML.cad.Composition, UMLCAD':
+            allRepObjects = store.peekAll('fd-dev-aggregation');
+          // eslint-disable-next-line no-fallthrough
+          case 'STORMCASE.UML.cad.Association, UMLCAD':
+            if (isNone(allRepObjects)) {
+              allRepObjects = store.peekAll('fd-dev-association');
+            }
+
+            repObject = allRepObjects.findBy('id', repId);
+
+            if (repObject) {
+              let props = p.getProperties('startMultiplicity', 'endMultiplicity', 'endRoleTxt', 'startRoleTxt', 'description');
+              repObject.setProperties({
+                nameStr: props.description,
+                startMultiplicity: props.startMultiplicity,
+                endMultiplicity: props.endMultiplicity,
+                endRoleStr: props.endRoleTxt,
+                startRoleStr: props.startRoleTxt
+              });
+            }
+
+            break;
         }
 
-        if (repObject.get('isNew')) {
-          let propName = p.get('name');
-          if (isBlank(propName)) {
-            return repObject.rollbackAttributes();
-          } else {
-            repObject.set('nameStr', propName);
-          }
-        }
-
-        let props = p.getProperties('stereotype', 'attributes', 'methods');
-        repObject.setProperties({
-          stereotype: props.stereotype,
-          attributesStr: props.attributes.join('\n'),
-          methodsStr: props.methods.join('\n')
-        });
-
-        return repObject.save();
+        return hasChanges(repObject) ? repObject.save() : resolve();
       }));
     }
+
+    promises.pushObjects(this.get('emptyReferenceCountItems').map(item => {
+      if (item.get('isNew')) {
+        return item.rollbackAttributes();
+      } else {
+        return item.destroyRecord();
+      }
+    }));
+    this.get('emptyReferenceCountItems').clear();
 
     model.set('primitivesJsonString', JSON.stringify(primitives));
 

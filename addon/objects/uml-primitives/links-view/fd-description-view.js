@@ -1,11 +1,12 @@
 import { computed, get } from '@ember/object';
 import { isArray } from '@ember/array';
 import { isNone } from '@ember/utils';
+import joint from 'npm:jointjs';
 import $ from 'jquery';
 
-import joint from 'npm:jointjs';
+import { EmptyView } from './fd-empty-view';
 
-export let DescriptionView = joint.dia.LinkView.extend({
+export let DescriptionView = EmptyView.extend({
   template: [
     '<div class="input-buffer"></div>',
     '<div class="uml-link-inputs">',
@@ -34,7 +35,7 @@ export let DescriptionView = joint.dia.LinkView.extend({
   targetElement: undefined,
 
   initialize: function() {
-    joint.dia.LinkView.prototype.initialize.apply(this, arguments);
+    EmptyView.prototype.initialize.apply(this, arguments);
 
     this.$box = $(this.template);
     this.model.inputElements = this.$box;
@@ -50,6 +51,7 @@ export let DescriptionView = joint.dia.LinkView.extend({
 
     this.$box.find('.description-input').on('change', function(evt) {
       this.model.setLabelText('description', $(evt.target).val());
+      this.paper.trigger('checkexistelements', this.model.get('objectModel'), this);
     }.bind(this));
 
     // Initialize inputs values.
@@ -104,7 +106,7 @@ export let DescriptionView = joint.dia.LinkView.extend({
     joint.dia.LinkView.prototype.render.apply(this, arguments);
     this.paper.$el.prepend(this.$box);
     this.paper.on('blank:pointerdown link:pointerdown element:pointerdown', function() {
-      this.$box.find('input').blur();
+      this.$box.find('input:focus, textarea:focus').blur();
     }, this);
     this.updateBox();
     return this;

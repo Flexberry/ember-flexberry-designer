@@ -33,20 +33,13 @@ export default FdUmlLink.extend({
   startRoleTxt: computed.alias('primitive.LeftText.Text'),
 
   /**
-    Link description.
-
-    @property description
-    @type String
-  */
-  description: computed.alias('primitive.Name.Text'),
-
-  /**
     See {{#crossLink "FdUmlPrimitive/JointJS:method"}}here{{/crossLink}}.
 
     @method JointJS
   */
   JointJS() {
-    let properties = this.getProperties('id', 'source', 'target', 'vertices', 'labels', 'startPoint', 'endPoint', 'primitive');
+    let properties = this.getProperties('id', 'source', 'target', 'vertices', 'labels');
+    properties.objectModel = this;
     return new QualifiedComposition(properties);
   },
 });
@@ -66,17 +59,11 @@ export let QualifiedComposition = Link.define('flexberry.uml.QualifiedCompositio
     text: { visibility: 'hidden' },
     rect: { visibility: 'hidden' }
   },
-  linkInitialize: Link.prototype.initialize
 }, {
 
   initialize: function() {
     // called from Backbone constructor
-    // call base initialize()
-    joint.dia.Link.prototype.initialize.apply(this, arguments);
-    this.attributes.linkInitialize.apply(this, arguments);
-//     flexberry.uml.Link.prototype.initialize.apply(this, arguments);
-
-    this.label(2, { attrs: { text: { 'text-decoration': 'underline', } } });
+    Link.prototype.initialize.apply(this, arguments);
 
     // link markup is so complex that we need to fetch its definition
     var markup = (this.markup || this.get('markup'));

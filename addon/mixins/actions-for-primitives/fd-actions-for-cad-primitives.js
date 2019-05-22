@@ -1,32 +1,32 @@
 import Mixin from '@ember/object/mixin';
 import { inject as service } from '@ember/service';
-import { A } from '@ember/array';
-import { isArray } from '@ember/array';
+import { isNone } from '@ember/utils';
+import { A, isArray } from '@ember/array';
 import uuid from 'npm:node-uuid';
 
 import FdUmlClass from '../../objects/uml-primitives/fd-uml-class';
-import { Association } from '../../objects/uml-primitives/fd-uml-association';
-import { Aggregation } from '../../objects/uml-primitives/fd-uml-aggregation';
-import { Composition } from '../../objects/uml-primitives/fd-uml-composition';
-import { Generalization } from '../../objects/uml-primitives/fd-uml-generalization';
-import { Realization } from '../../objects/uml-primitives/fd-uml-realization';
-import { NestedClassAssociation } from '../../objects/uml-primitives/fd-uml-nested-association';
+import FdUmlAssociation from '../../objects/uml-primitives/fd-uml-association';
+import FdUmlAggregation from '../../objects/uml-primitives/fd-uml-aggregation';
+import FdUmlComposition from '../../objects/uml-primitives/fd-uml-composition';
+import FdUmlGeneralization from '../../objects/uml-primitives/fd-uml-generalization';
+import FdUmlRealization from '../../objects/uml-primitives/fd-uml-realization';
+import FdUmlNestedClassAssociation from '../../objects/uml-primitives/fd-uml-nested-association';
 import FdUmlTemplateClass from '../../objects/uml-primitives/fd-uml-template-class';
 import FdUmlInstance from '../../objects/uml-primitives/fd-uml-instance';
 import FdUmlActiveObject from '../../objects/uml-primitives/fd-uml-active-object';
 import FdUmlMultiObject from '../../objects/uml-primitives/fd-uml-multi-object';
 import FdUmlPropertyObject from '../../objects/uml-primitives/fd-uml-property-object';
 import FdUmlNAryAssociation from '../../objects/uml-primitives/fd-uml-naryassociation';
-import { QualifiedAssociation } from '../../objects/uml-primitives/fd-uml-qualified-association';
-import { QualifiedComposition } from '../../objects/uml-primitives/fd-uml-qualified-composition';
-import { QualifiedAggregation } from '../../objects/uml-primitives/fd-uml-qualified-aggregation';
+import FdUmlQualifiedAssociation from '../../objects/uml-primitives/fd-uml-qualified-association';
+import FdUmlQualifiedComposition from '../../objects/uml-primitives/fd-uml-qualified-composition';
+import FdUmlQualifiedAggregation from '../../objects/uml-primitives/fd-uml-qualified-aggregation';
 import FdUmlMoreClasses from '../../objects/uml-primitives/fd-uml-more-classes';
 import FdUmlPackage from '../../objects/uml-primitives/fd-uml-package';
-import { ObjectAssociation } from '../../objects/uml-primitives/fd-uml-object-association';
-import { NAryAssociationConnector } from '../../objects/uml-primitives/fd-uml-naryassociation-connector';
-import { Dependency } from '../../objects/uml-primitives/fd-uml-dependency';
+import FdUmlObjectAssociation from '../../objects/uml-primitives/fd-uml-object-association';
+import FdUmlNAryAssociationConnector from '../../objects/uml-primitives/fd-uml-naryassociation-connector';
+import FdUmlDependency from '../../objects/uml-primitives/fd-uml-dependency';
 import { findFreeNodeTreeNameIndex } from '../../utils/fd-metods-for-tree';
-import { getJsonForClass, getJsonForElement } from '../../utils/get-json-for-diagram';
+import { getJsonForClass, getJsonForElement, getJsonForLink } from '../../utils/get-json-for-diagram';
 
 /**
   Actions for creating joint js elements on cad diagrams.
@@ -89,6 +89,8 @@ export default Mixin.create({
           description: freeName,
           name: freeName,
           nameStr: freeName,
+          attributesStr: '',
+          methodsStr: '',
         });
         newClass.incrementProperty('referenceCount');
         let umlClass = FdUmlClass.create({ primitive: getJsonForClass(newClass, null, 0, { location: { X, Y } }), isCreated: true });
@@ -107,33 +109,48 @@ export default Mixin.create({
      */
     addAssociation(e) {
       this.createLinkData((function(linkProperties) {
-        let newAssociationObject = new Association({
-          source: {
-            id: linkProperties.source
-          },
-          target: {
-            id: linkProperties.target
-          },
-          vertices: isArray(linkProperties.points) ? linkProperties.points.reverseObjects() : A()
-        });
-        newAssociationObject.setLabelText('startMultiplicity', '1');
-        newAssociationObject.setLabelText('endMultiplicity', '*');
+        let jsonObject = getJsonForLink(
+          'STORMCASE.UML.cad.Association, UMLCAD',
+          linkProperties.source,
+          null,
+          linkProperties.target,
+          null,
+          A(),
+          { Name: '', StartMultTxt: '', EndMultTxt: '', StartRoleTxt: '', EndRoleTxt: '' },
+          { NamePos: 0.0, InitialMultiplicity: 1.0 }
+        );
 
-        return newAssociationObject;
+        let associationObject = FdUmlAssociation.create({ primitive: jsonObject });
+        associationObject.set('vertices', linkProperties.points || A());
+
+        this._addToPrimitives(associationObject);
+
+        let newAssociation = associationObject.JointJS();
+        newAssociation.setLabelText('startMultiplicity', '1');
+        newAssociation.setLabelText('endMultiplicity', '*');
+
+        return newAssociation;
       }).bind(this), e, A(['flexberry.uml.Class', 'flexberry.uml.TemplateClass', 'flexberry.uml.ClassCollapsed']), function(linkProperties) {
         let store = this.get('store');
         let stage = this.get('currentProjectContext').getCurrentStageModel();
 
-        let endClass = this.getRepObj(store, stage, linkProperties.endClassRepObj, 'fd-dev-class');
-        let startClass = this.getRepObj(store, stage, linkProperties.startClassRepObj, 'fd-dev-class');
+        let endClass = this.getRepObj(store, stage, linkProperties.endClassRepObj.id, 'fd-dev-class');
+        let startClass = this.getRepObj(store, stage, linkProperties.startClassRepObj.id, 'fd-dev-class');
 
+        if (isNone(endClass) || isNone(startClass)) {
+          return null;
+        }
+
+        let id = uuid.v4();
         let newAssociation = store.createRecord('fd-dev-association', {
+          id: id,
           endClass: endClass,
           startClass: startClass,
           stage: stage,
           startMultiplicity: '1',
           endMultiplicity: '*'
         });
+        newAssociation.incrementProperty('referenceCount');
 
         return newAssociation;
       }.bind(this));
@@ -147,19 +164,27 @@ export default Mixin.create({
      */
     addAggregation(e) {
       this.createLinkData((function(linkProperties) {
-        let newAggregationObject = new Aggregation({
-          source: {
-            id: linkProperties.source
-          },
-          target: {
-            id: linkProperties.target
-          },
-          vertices: linkProperties.points || A()
-        });
-        newAggregationObject.setLabelText('startMultiplicity', '1');
-        newAggregationObject.setLabelText('endMultiplicity', '*');
+        let jsonObject = getJsonForLink(
+          'STORMCASE.UML.cad.Aggregation, UMLCAD',
+          linkProperties.source,
+          null,
+          linkProperties.target,
+          null,
+          A(),
+          { Name: '', StartMultTxt: '', EndMultTxt: '', StartRoleTxt: '', EndRoleTxt: '' },
+          { NamePos: 0.0 }
+        );
 
-        return newAggregationObject;
+        let aggregationObject = FdUmlAggregation.create({ primitive: jsonObject });
+        aggregationObject.set('vertices', linkProperties.points || A());
+
+        this._addToPrimitives(aggregationObject);
+
+        let newAggregation = aggregationObject.JointJS();
+        newAggregation.setLabelText('startMultiplicity', '1');
+        newAggregation.setLabelText('endMultiplicity', '*');
+
+        return newAggregation;
       }).bind(this), e, A(['flexberry.uml.Class', 'flexberry.uml.TemplateClass']));
     },
 
@@ -171,33 +196,48 @@ export default Mixin.create({
      */
     addComposition(e) {
       this.createLinkData((function(linkProperties) {
-        let newCompositionObject = new Composition({
-          source: {
-            id: linkProperties.source
-          },
-          target: {
-            id: linkProperties.target
-          },
-          vertices: linkProperties.points || A()
-        });
-        newCompositionObject.setLabelText('startMultiplicity', '1');
-        newCompositionObject.setLabelText('endMultiplicity', '*');
+        let jsonObject = getJsonForLink(
+          'STORMCASE.UML.cad.Composition, UMLCAD',
+          linkProperties.source,
+          null,
+          linkProperties.target,
+          null,
+          A(),
+          { Name: '', StartMultTxt: '', EndMultTxt: '', StartRoleTxt: '', EndRoleTxt: '' },
+          { NamePos: 0.0, InitialMultiplicity: 1.0 }
+        );
 
-        return newCompositionObject;
+        let compositionObject = FdUmlComposition.create({ primitive: jsonObject });
+        compositionObject.set('vertices', linkProperties.points || A());
+
+        this._addToPrimitives(compositionObject);
+
+        let newComposition = compositionObject.JointJS();
+        newComposition.setLabelText('startMultiplicity', '1');
+        newComposition.setLabelText('endMultiplicity', '*');
+
+        return newComposition;
       }).bind(this), e, A(['flexberry.uml.Class', 'flexberry.uml.TemplateClass']), function(linkProperties) {
         let store = this.get('store');
         let stage = this.get('currentProjectContext').getCurrentStageModel();
 
-        let endClass = this.getRepObj(store, stage, linkProperties.endClassRepObj, 'fd-dev-class');
-        let startClass = this.getRepObj(store, stage, linkProperties.startClassRepObj, 'fd-dev-class');
+        let endClass = this.getRepObj(store, stage, linkProperties.endClassRepObj.id, 'fd-dev-class');
+        let startClass = this.getRepObj(store, stage, linkProperties.startClassRepObj.id, 'fd-dev-class');
 
+        if (isNone(endClass) || isNone(startClass)) {
+          return null;
+        }
+
+        let id = uuid.v4();
         let newComposition = store.createRecord('fd-dev-aggregation', {
+          id: id,
           endClass: endClass,
           startClass: startClass,
           stage: stage,
           startMultiplicity: '1',
           endMultiplicity: '*'
         });
+        newComposition.incrementProperty('referenceCount');
 
         return newComposition;
       }.bind(this));
@@ -211,29 +251,42 @@ export default Mixin.create({
      */
     addInheritance(e) {
       this.createLinkData((function(linkProperties) {
-        let newInheritanceObject = new Generalization({
-          source: {
-            id: linkProperties.source
-          },
-          target: {
-            id: linkProperties.target
-          },
-          vertices: linkProperties.points || A()
-        });
+        let jsonObject = getJsonForLink(
+          'STORMCASE.UML.cad.Inheritance, UMLCAD',
+          linkProperties.source,
+          null,
+          linkProperties.target,
+          null,
+          A(),
+          { Name: '' },
+          { NamePos: 0.0 }
+        );
 
-        return newInheritanceObject;
+        let inheritanceObject = FdUmlGeneralization.create({ primitive: jsonObject });
+        inheritanceObject.set('vertices', linkProperties.points || A());
+
+        this._addToPrimitives(inheritanceObject);
+
+        return inheritanceObject.JointJS();
       }).bind(this), e, A(['flexberry.uml.Class', 'flexberry.uml.TemplateClass']), function(linkProperties) {
         let store = this.get('store');
         let stage = this.get('currentProjectContext').getCurrentStageModel();
 
-        let childClass = this.getRepObj(store, stage, linkProperties.endClassRepObj, 'fd-dev-class');
-        let parentClass = this.getRepObj(store, stage, linkProperties.startClassRepObj, 'fd-dev-class');
+        let childClass = this.getRepObj(store, stage, linkProperties.endClassRepObj.id, 'fd-dev-class');
+        let parentClass = this.getRepObj(store, stage, linkProperties.startClassRepObj.id, 'fd-dev-class');
 
-        let newInheritance = store.createRecord('fd-dev-aggregation', {
+        if (isNone(childClass) || isNone(parentClass)) {
+          return null;
+        }
+
+        let id = uuid.v4();
+        let newInheritance = store.createRecord('fd-dev-inheritance', {
+          id: id,
           child: childClass,
           parent: parentClass,
           stage: stage,
         });
+        newInheritance.incrementProperty('referenceCount');
 
         return newInheritance;
       }.bind(this));
@@ -247,17 +300,20 @@ export default Mixin.create({
      */
     addRealization(e) {
       this.createLinkData((function(linkProperties) {
-        let newRealizationObject = new Realization({
-          source: {
-            id: linkProperties.source
-          },
-          target: {
-            id: linkProperties.target
-          },
-          vertices: linkProperties.points || A()
-        });
+        let jsonObject = getJsonForLink(
+          'STORMCASE.UML.cad.Realization, UMLCAD',
+          linkProperties.source,
+          null,
+          linkProperties.target,
+          null
+        );
 
-        return newRealizationObject;
+        let realizationObject = FdUmlRealization.create({ primitive: jsonObject });
+        realizationObject.set('vertices', linkProperties.points || A());
+
+        this._addToPrimitives(realizationObject);
+
+        return realizationObject.JointJS();
       }).bind(this), e, {
         start: A(['flexberry.uml.NAryAssociation']),
         end: A(['flexberry.uml.Class', 'flexberry.uml.TemplateClass'])
@@ -272,17 +328,23 @@ export default Mixin.create({
      */
     addNestedClassAssociation(e) {
       this.createLinkData((function(linkProperties) {
-        let newNestedClassAssociationObject = new NestedClassAssociation({
-          source: {
-            id: linkProperties.source
-          },
-          target: {
-            id: linkProperties.target
-          },
-          vertices: linkProperties.points || A()
-        });
+        let jsonObject = getJsonForLink(
+          'STORMCASE.UML.cad.NestedClassAssoc, UMLCAD',
+          linkProperties.source,
+          null,
+          linkProperties.target,
+          null,
+          A(),
+          { Name: '' },
+          { NamePos: 0.0 }
+        );
 
-        return newNestedClassAssociationObject;
+        let nestedClassAssociationObject = FdUmlNestedClassAssociation.create({ primitive: jsonObject });
+        nestedClassAssociationObject.set('vertices', linkProperties.points || A());
+
+        this._addToPrimitives(nestedClassAssociationObject);
+
+        return nestedClassAssociationObject.JointJS();
       }).bind(this), e, A(['flexberry.uml.Class', 'flexberry.uml.TemplateClass']));
     },
 
@@ -427,17 +489,22 @@ export default Mixin.create({
      */
     addNaryAssociationConnector(e) {
       this.createLinkData((function(linkProperties) {
-        let newNaryAssociationConnectorObject = new NAryAssociationConnector({
-          source: {
-            id: linkProperties.source
-          },
-          target: {
-            id: linkProperties.target
-          },
-          vertices: linkProperties.points || A()
-        });
+        let jsonObject = getJsonForLink(
+          'STORMCASE.UML.cad.NaryLink, UMLCAD',
+          linkProperties.source,
+          null,
+          linkProperties.target,
+          null,
+          A(),
+          { Name: '' }
+        );
 
-        return newNaryAssociationConnectorObject;
+        let naryAssociationConnectorObject = FdUmlNAryAssociationConnector.create({ primitive: jsonObject });
+        naryAssociationConnectorObject.set('vertices', linkProperties.points || A());
+
+        this._addToPrimitives(naryAssociationConnectorObject);
+
+        return naryAssociationConnectorObject.JointJS();
       }).bind(this), e, {
         start: A(['flexberry.uml.NAryAssociation']),
         end: A(['flexberry.uml.Class', 'flexberry.uml.TemplateClass', 'flexberry.uml.Instance'])
@@ -452,17 +519,23 @@ export default Mixin.create({
      */
     addQualifiedLink(e) {
       this.createLinkData((function(linkProperties) {
-        let newQualifiedAssociationObject = new QualifiedAssociation({
-          source: {
-            id: linkProperties.source
-          },
-          target: {
-            id: linkProperties.target
-          },
-          vertices: linkProperties.points || A()
-        });
+        let jsonObject = getJsonForLink(
+          'STORMCASE.UML.cad.QualifiedLink, UMLCAD',
+          linkProperties.source,
+          null,
+          linkProperties.target,
+          null,
+          A(),
+          { Name: '', LeftText: '', RightText: '', QualifiedText: '' },
+          { NamePos: 0.0 }
+        );
 
-        return newQualifiedAssociationObject;
+        let qualifiedAssociationObject = FdUmlQualifiedAssociation.create({ primitive: jsonObject });
+        qualifiedAssociationObject.set('vertices', linkProperties.points || A());
+
+        this._addToPrimitives(qualifiedAssociationObject);
+
+        return qualifiedAssociationObject.JointJS();
       }).bind(this), e, A(['flexberry.uml.Class', 'flexberry.uml.TemplateClass']));
     },
 
@@ -474,17 +547,23 @@ export default Mixin.create({
      */
     addQualifiedCompositionLink(e) {
       this.createLinkData((function(linkProperties) {
-        let newQualifiedCompositionObject = new QualifiedComposition({
-          source: {
-            id: linkProperties.source
-          },
-          target: {
-            id: linkProperties.target
-          },
-          vertices: linkProperties.points || A()
-        });
+        let jsonObject = getJsonForLink(
+          'STORMCASE.UML.cad.QualifiedCompositionLink, UMLCAD',
+          linkProperties.source,
+          null,
+          linkProperties.target,
+          null,
+          A(),
+          { Name: '', LeftText: '', RightText: '', QualifiedText: '' },
+          { NamePos: 0.0 }
+        );
 
-        return newQualifiedCompositionObject;
+        let qualifiedCompositionObject = FdUmlQualifiedComposition.create({ primitive: jsonObject });
+        qualifiedCompositionObject.set('vertices', linkProperties.points || A());
+
+        this._addToPrimitives(qualifiedCompositionObject);
+
+        return qualifiedCompositionObject.JointJS();
       }).bind(this), e, A(['flexberry.uml.Class', 'flexberry.uml.TemplateClass']));
     },
 
@@ -496,17 +575,23 @@ export default Mixin.create({
      */
     addQualifiedAggregationLink(e) {
       this.createLinkData((function(linkProperties) {
-        let newQualifiedAggregationObject = new QualifiedAggregation({
-          source: {
-            id: linkProperties.source
-          },
-          target: {
-            id: linkProperties.target
-          },
-          vertices: linkProperties.points || A()
-        });
+        let jsonObject = getJsonForLink(
+          'STORMCASE.UML.cad.QualifiedAggregationLink, UMLCAD',
+          linkProperties.source,
+          null,
+          linkProperties.target,
+          null,
+          A(),
+          { Name: '', LeftText: '', RightText: '', QualifiedText: '' },
+          { NamePos: 0.0 }
+        );
 
-        return newQualifiedAggregationObject;
+        let qualifiedAggregationObject = FdUmlQualifiedAggregation.create({ primitive: jsonObject });
+        qualifiedAggregationObject.set('vertices', linkProperties.points || A());
+
+        this._addToPrimitives(qualifiedAggregationObject);
+
+        return qualifiedAggregationObject.JointJS();
       }).bind(this), e, A(['flexberry.uml.Class', 'flexberry.uml.TemplateClass']));
     },
 
@@ -539,17 +624,23 @@ export default Mixin.create({
      */
     addDependency(e) {
       this.createLinkData((function(linkProperties) {
-        let newDependencyObject = new Dependency({
-          source: {
-            id: linkProperties.source
-          },
-          target: {
-            id: linkProperties.target
-          },
-          vertices: linkProperties.points || A()
-        });
+        let jsonObject = getJsonForLink(
+          'STORMCASE.UML.cad.Dependency, UMLCAD',
+          linkProperties.source,
+          null,
+          linkProperties.target,
+          null,
+          A(),
+          { Name: '' },
+          { NamePos: 0.0 }
+        );
 
-        return newDependencyObject;
+        let dependencyObject = FdUmlDependency.create({ primitive: jsonObject });
+        dependencyObject.set('vertices', linkProperties.points || A());
+
+        this._addToPrimitives(dependencyObject);
+
+        return dependencyObject.JointJS();
       }).bind(this), e, A(['flexberry.uml.Class', 'flexberry.uml.TemplateClass', 'flexberry.uml.Instance',
        'flexberry.uml.ActiveObject', 'flexberry.uml.PropertyObject', 'flexberry.uml.MultiObject', 'flexberry.uml.Package']));
     },
@@ -584,17 +675,23 @@ export default Mixin.create({
      */
     addObjectAssociation(e) {
       this.createLinkData((function(linkProperties) {
-        let newObjectAssociationObject = new ObjectAssociation({
-          source: {
-            id: linkProperties.source
-          },
-          target: {
-            id: linkProperties.target
-          },
-          vertices: linkProperties.points || A()
-        });
+        let jsonObject = getJsonForLink(
+          'STORMCASE.UML.cad.ObjectAssociation, UMLCAD',
+          linkProperties.source,
+          null,
+          linkProperties.target,
+          null,
+          A(),
+          { Name: '', LeftText: '', RightText: '' },
+          { NamePos: 0.0 }
+        );
 
-        return newObjectAssociationObject;
+        let objectAssociationObject = FdUmlObjectAssociation.create({ primitive: jsonObject });
+        objectAssociationObject.set('vertices', linkProperties.points || A());
+
+        this._addToPrimitives(objectAssociationObject);
+
+        return objectAssociationObject.JointJS();
       }).bind(this), e, A(['flexberry.uml.Instance', 'flexberry.uml.PropertyObject']));
     }
   }
