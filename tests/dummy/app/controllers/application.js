@@ -221,7 +221,7 @@ export default Controller.extend({
       let visibleSheets = $('.fd-sheet.visible').toArray();
       visibleSheets.forEach((item) => {
         if ($(item).hasClass('expand')) {
-          this.get('fdSheetService').animatingSheetContent($(item).attr('class').replace(/ /g, '.'), contentWidth, 250);
+          this.get('fdSheetService').animatingSheetContent($(item).attr('class').replace(/ /g, '.'), contentWidth, 250, true);
         } else {
 
           // That the sheet remained in its place and did not go along with the content.
