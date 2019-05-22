@@ -66,12 +66,15 @@ export let QualifiedComposition = Link.define('flexberry.uml.QualifiedCompositio
     text: { visibility: 'hidden' },
     rect: { visibility: 'hidden' }
   },
+  linkInitialize: Link.prototype.initialize
 }, {
 
   initialize: function() {
     // called from Backbone constructor
     // call base initialize()
     joint.dia.Link.prototype.initialize.apply(this, arguments);
+    this.attributes.linkInitialize.apply(this, arguments);
+//     flexberry.uml.Link.prototype.initialize.apply(this, arguments);
 
     this.label(2, { attrs: { text: { 'text-decoration': 'underline', } } });
 
