@@ -162,47 +162,6 @@ export let BaseObject = joint.shapes.basic.Generic.define('flexberry.uml.BaseObj
     attrs['.flexberry-uml-header-text'].text = lines.join('\n');
     attrs['.flexberry-uml-header-rect'].height = rectHeight;
     attrs['.flexberry-uml-header-rect'].width = rectWidth;
-  },
-
-  updateRectangles: function () {
-    let rects = this.getRectangles();
-
-    let offsetY = 0;
-    let newHeight = 0;
-    let newWidth = 0;
-    rects.forEach(function (rect) {
-      if (this.markup.includes('flexberry-uml-' + rect.type + '-rect') && rect.element.inputElements) {
-        let $buffer = rect.element.inputElements.find('.input-buffer');
-        let rectHeight = 0;
-        let inputs = rect.element.inputElements.find('.' + rect.type + '-input');
-        inputs.each(function () {
-          let $input = $(this);
-          $buffer.css('font-weight', $input.css('font-weight'));
-          $buffer.text($input.val());
-          $input.width($buffer.width() + 1);
-          if ($input.width() > newWidth) {
-            newWidth = $input.width();
-          }
-
-          rectHeight += $input.height();
-        });
-
-        rectHeight += rect.element.get('heightBottomPadding') || 0;
-        newHeight += rectHeight;
-        rect.element.attr('.flexberry-uml-' + rect.type + '-rect/height', rectHeight);
-
-        rect.element.attr('.flexberry-uml-' + rect.type + '-rect/transform', 'translate(0,' + offsetY + ')');
-
-        offsetY += rectHeight;
-      }
-    }, this);
-
-    newWidth += (this.get('widthPadding') || 0) * 2;
-    rects.forEach(function (rect) {
-      rect.element.attr('.flexberry-uml-' + rect.type + '-rect/width', newWidth);
-    });
-
-    this.resize(newWidth, newHeight);
   }
 });
 
@@ -220,10 +179,12 @@ joint.shapes.flexberry.uml.BaseObjectView = joint.dia.ElementView.extend({
 
     this.$box = $(this.template);
     this.model.inputElements = this.$box;
+    let _this = this;
 
     // Prevent paper from handling pointerdown.
-    this.$box.find('input, textarea').on('mousedown click', function (evt) {
+    this.$box.find('input, textarea').on('mousedown click', function(evt) {
       evt.stopPropagation();
+      _this.highlight();
     });
 
     this.$box.find('.attributes-input').on('input', function (evt) {
@@ -231,7 +192,7 @@ joint.shapes.flexberry.uml.BaseObjectView = joint.dia.ElementView.extend({
       let textareaText = $textarea.val();
       let rows = textareaText.split(/[\n\r|\r|\n]/);
       $textarea.prop('rows', rows.length);
-      this.model.updateRectangles();
+      this.updateRectangles();
     }.bind(this));
 
     this.$box.find('.class-name-input').on('input', function (evt) {
@@ -239,7 +200,7 @@ joint.shapes.flexberry.uml.BaseObjectView = joint.dia.ElementView.extend({
       let textareaText = $textarea.val();
       let rows = textareaText.split(/[\n\r|\r|\n]/);
       $textarea.prop('rows', rows.length);
-      this.model.updateRectangles();
+      this.updateRectangles();
     }.bind(this));
 
     this.$box.find('.attributes-input').on('change', function (evt) {
@@ -284,10 +245,10 @@ joint.shapes.flexberry.uml.BaseObjectView = joint.dia.ElementView.extend({
     joint.dia.ElementView.prototype.render.apply(this, arguments);
     this.paper.$el.prepend(this.$box);
     this.paper.on('blank:pointerdown link:pointerdown element:pointerdown', function () {
-      this.$box.find('input, textarea').blur();
+      this.$box.find('input:focus, textarea:focus').blur();
     }, this);
     this.updateBox();
-    this.model.updateRectangles();
+    this.updateRectangles();
     return this;
   },
 
@@ -306,4 +267,49 @@ joint.shapes.flexberry.uml.BaseObjectView = joint.dia.ElementView.extend({
   removeBox: function () {
     this.$box.remove();
   },
+
+  updateRectangles: function () {
+    let rects = this.model.getRectangles();
+
+    let offsetY = 0;
+    let newHeight = 0;
+    let newWidth = 0;
+    rects.forEach(function (rect) {
+      if (this.markup.includes('flexberry-uml-' + rect.type + '-rect') && rect.element.inputElements) {
+        let $buffer = rect.element.inputElements.find('.input-buffer');
+        let rectHeight = 0;
+        let inputs = rect.element.inputElements.find('.' + rect.type + '-input');
+        inputs.each(function () {
+          let $input = $(this);
+          $buffer.css('font-weight', $input.css('font-weight'));
+          $buffer.text($input.val());
+          $input.width($buffer.width() + 1);
+          if ($input.width() > newWidth) {
+            newWidth = $input.width();
+          }
+
+          rectHeight += $input.height();
+        });
+
+        rectHeight += rect.element.get('heightBottomPadding') || 0;
+        newHeight += rectHeight;
+        rect.element.attr('.flexberry-uml-' + rect.type + '-rect/height', rectHeight);
+
+        rect.element.attr('.flexberry-uml-' + rect.type + '-rect/transform', 'translate(0,' + offsetY + ')');
+
+        offsetY += rectHeight;
+      }
+    }, this.model);
+
+    newWidth += (this.model.get('widthPadding') || 0) * 2;
+    rects.forEach(function (rect) {
+      rect.element.attr('.flexberry-uml-' + rect.type + '-rect/width', newWidth);
+    });
+
+    this.model.resize(newWidth, newHeight);
+    if (this.model.get('highlighted')) {
+      this.unhighlight();
+      this.highlight();
+    }
+  }
 });

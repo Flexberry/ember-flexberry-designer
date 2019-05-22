@@ -84,14 +84,14 @@ export let Note = BaseObject.define('flexberry.uml.Note', {
     '<path class="corner"/>',
     '</g>'
   ].join(''),
-
-  updateRectangles() {
-    BaseObject.prototype.updateRectangles.apply(this, arguments);
-    let transX = this.size().width - 8;
-
-    this.attr('.corner-rect/transform', `translate(${transX}, 0)`);
-    this.attr('.corner/transform', `translate(${transX}, 0)`);
-  },
 });
 
-joint.shapes.flexberry.uml.NoteView = joint.shapes.flexberry.uml.BaseObjectView.extend({});
+joint.shapes.flexberry.uml.NoteView = joint.shapes.flexberry.uml.BaseObjectView.extend({
+  updateRectangles() {
+    joint.shapes.flexberry.uml.BaseObjectView.prototype.updateRectangles.apply(this, arguments);
+    let transX = this.model.size().width - 8;
+
+    this.model.attr('.corner-rect/transform', `translate(${transX}, 0)`);
+    this.model.attr('.corner/transform', `translate(${transX}, 0)`);
+  },
+});

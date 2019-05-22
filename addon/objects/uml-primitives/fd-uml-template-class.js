@@ -108,59 +108,6 @@ export let TemplateClass = Class.define('flexberry.uml.TemplateClass', {
       { type: 'footer', element: this }
     ];
   },
-
-  updateRectangles() {
-    let rects = this.getRectangles();
-    let offsetY = 0;
-    let newHeight = 0;
-    let newWidth = 0;
-    let paramHeight = 0;
-    rects.forEach(function(rect) {
-      if (this.markup.includes('flexberry-uml-' + rect.type + '-rect') && rect.element.inputElements) {
-        let $buffer = rect.element.inputElements.find('.input-buffer');
-        let rectHeight = 0;
-        let inputs = rect.element.inputElements.find('.' + rect.type + '-input');
-        inputs.each(function() {
-          let $input = $(this);
-          $buffer.css('font-weight', $input.css('font-weight'));
-          $buffer.text($input.val());
-          $input.width($buffer.width() + 1);
-          if (rect.type === 'params') {
-            paramHeight = $input.height() + 4;
-            rect.element.attr('.flexberry-uml-params-rect/width', $input.width() + 20);
-            rect.element.attr('.not-view-rect/width', $input.width() + 20);
-            rect.element.attr('.not-view-rect/height', paramHeight);
-          } else if ($input.width() > newWidth) {
-            newWidth = $input.width();
-          }
-
-          rectHeight += $input.height();
-        });
-
-        rectHeight += rect.element.get('heightBottomPadding') || 0;
-        newHeight += rectHeight;
-        rect.element.attr('.flexberry-uml-' + rect.type + '-rect/height', rectHeight);
-        rect.element.attr('.flexberry-uml-' + rect.type + '-rect/transform', 'translate(0,' + offsetY + ')');
-
-        offsetY += rectHeight;
-      }
-    }, this);
-
-    newWidth += (this.get('widthPadding') || 0) * 2;
-    rects.forEach(function(rect) {
-      if (rect.type === 'params') {
-        rect.element.attr('.flexberry-uml-params-rect/transform', 'translate(' + (newWidth - 10) + ',15)');
-        rect.element.attr('.not-view-rect/transform', 'translate(' + (newWidth - 10) + ',' + (15 - paramHeight) + ')');
-      } else {
-        rect.element.attr('.flexberry-uml-' + rect.type + '-rect/width', newWidth);
-      }
-    });
-
-    this.attr('.view-rect/width', newWidth + 2);
-    this.attr('.view-rect/height', newHeight + 2);
-
-    this.resize(newWidth, newHeight);
-  }
 });
 
 joint.shapes.flexberry.uml.TemplateClassView = joint.shapes.flexberry.uml.ClassView.extend({
@@ -182,7 +129,7 @@ joint.shapes.flexberry.uml.TemplateClassView = joint.shapes.flexberry.uml.ClassV
       let textareaText = $textarea.val();
       let rows = textareaText.split(/[\n\r|\r|\n]/);
       $textarea.prop('rows', rows.length);
-      this.model.updateRectangles();
+      this.updateRectangles();
     }.bind(this));
 
     this.$box.find('.params-input').on('change', function (evt) {
@@ -228,8 +175,65 @@ joint.shapes.flexberry.uml.TemplateClassView = joint.shapes.flexberry.uml.ClassV
     mask.setAttribute('id', maskId);
     let attrs = this.model.get('attrs');
     attrs['.flexberry-uml-header-rect'].mask = 'url(#' + maskId + ')';
-    this.model.updateRectangles();
+    this.updateRectangles();
 
     return this;
   },
+
+  updateRectangles() {
+    let rects = this.model.getRectangles();
+    let offsetY = 0;
+    let newHeight = 0;
+    let newWidth = 0;
+    let paramHeight = 0;
+    rects.forEach(function(rect) {
+      if (this.markup.includes('flexberry-uml-' + rect.type + '-rect') && rect.element.inputElements) {
+        let $buffer = rect.element.inputElements.find('.input-buffer');
+        let rectHeight = 0;
+        let inputs = rect.element.inputElements.find('.' + rect.type + '-input');
+        inputs.each(function() {
+          let $input = $(this);
+          $buffer.css('font-weight', $input.css('font-weight'));
+          $buffer.text($input.val());
+          $input.width($buffer.width() + 1);
+          if (rect.type === 'params') {
+            paramHeight = $input.height() + 4;
+            rect.element.attr('.flexberry-uml-params-rect/width', $input.width() + 20);
+            rect.element.attr('.not-view-rect/width', $input.width() + 20);
+            rect.element.attr('.not-view-rect/height', paramHeight);
+          } else if ($input.width() > newWidth) {
+            newWidth = $input.width();
+          }
+
+          rectHeight += $input.height();
+        });
+
+        rectHeight += rect.element.get('heightBottomPadding') || 0;
+        newHeight += rectHeight;
+        rect.element.attr('.flexberry-uml-' + rect.type + '-rect/height', rectHeight);
+        rect.element.attr('.flexberry-uml-' + rect.type + '-rect/transform', 'translate(0,' + offsetY + ')');
+
+        offsetY += rectHeight;
+      }
+    }, this.model);
+
+    newWidth += (this.model.get('widthPadding') || 0) * 2;
+    rects.forEach(function(rect) {
+      if (rect.type === 'params') {
+        rect.element.attr('.flexberry-uml-params-rect/transform', 'translate(' + (newWidth - 10) + ',15)');
+        rect.element.attr('.not-view-rect/transform', 'translate(' + (newWidth - 10) + ',' + (15 - paramHeight) + ')');
+      } else {
+        rect.element.attr('.flexberry-uml-' + rect.type + '-rect/width', newWidth);
+      }
+    });
+
+    this.model.attr('.view-rect/width', newWidth + 2);
+    this.model.attr('.view-rect/height', newHeight + 2);
+
+    this.model.resize(newWidth, newHeight);
+    if (this.model.get('highlighted')) {
+      this.unhighlight();
+      this.highlight();
+    }
+  }
 });
