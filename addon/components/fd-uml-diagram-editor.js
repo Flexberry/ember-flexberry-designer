@@ -27,7 +27,7 @@ FdActionsForUcdPrimitivesMixin, {
 
   layout,
 
-  store: service(),
+  store: service(),  
 
   /**
     Service for managing the state of the component.
@@ -36,6 +36,16 @@ FdActionsForUcdPrimitivesMixin, {
     @type FdSheetService
   */
   fdSheetService: service(),
+
+  /**
+    Flag indicates when edit panel toolbar is collapsed.
+
+    @property _collapseEditPanelToolbar
+    @type Boolean
+    @default false
+    @private
+  */
+  _collapseEditPanelToolbar: false,
 
   /**
     Array elements to interact.
@@ -277,6 +287,15 @@ FdActionsForUcdPrimitivesMixin, {
       if (!isBlank(buttonName)) {
         this.send(buttonName, e);
       }
+    },
+
+    /**
+      Handler for click on toolbar collapse edit panel button.
+
+      @method actions.collapseEditPanelToolbar
+     */
+    collapseEditPanelToolbar() {
+      this.toggleProperty('_collapseEditPanelToolbar');      
     }
   },
 

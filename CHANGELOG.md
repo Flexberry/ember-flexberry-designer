@@ -4,6 +4,7 @@ All notable changes to this project will be documented in this file.
 ## [Unreleased]
 ### Added
 * Collapse button for class primitives.
+* Collapse button for diagram edit panel toolbar.
 
 ### Changed
 * The diagram in the `{{fd-uml-diagram}}` component now has an infinite size.
