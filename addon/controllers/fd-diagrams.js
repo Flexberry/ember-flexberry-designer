@@ -220,7 +220,7 @@ export default Controller.extend({
           // eslint-disable-next-line no-fallthrough
           case 'STORMCASE.UML.cad.Association, UMLCAD':
             if (isNone(allRepObjects)) {
-              allRepObjects = store.peekAll('fd-dev-association')
+              allRepObjects = store.peekAll('fd-dev-association');
             }
 
             repObject = allRepObjects.findBy('id', repId);
@@ -244,8 +244,13 @@ export default Controller.extend({
     }
 
     promises.pushObjects(this.get('emptyReferenceCountItems').map(item => {
-      return item.rollbackAttributes();
+      if (item.get('isNew')) {
+        return item.rollbackAttributes();
+      } else {
+        return item.destroyRecord();
+      }
     }));
+    this.get('emptyReferenceCountItems').clear();
 
     model.set('primitivesJsonString', JSON.stringify(primitives));
 

@@ -319,7 +319,7 @@ joint.shapes.flexberry.uml.ClassView = joint.dia.ElementView.extend({
       $textarea.prop('rows', rows.length);
       let objectModel = this.model.get('objectModel');
       objectModel.set('attributes', rows);
-      this.paper.trigger('class:updaterepobj', objectModel);
+      this.paper.trigger('updaterepobj', objectModel, 'attributesStr', textareaText);
     }.bind(this));
 
     this.$box.find('.methods-input').on('change', function(evt) {
@@ -329,7 +329,7 @@ joint.shapes.flexberry.uml.ClassView = joint.dia.ElementView.extend({
       $textarea.prop('rows', rows.length);
       let objectModel = this.model.get('objectModel');
       objectModel.set('methods', rows);
-      this.paper.trigger('class:updaterepobj', objectModel);
+      this.paper.trigger('updaterepobj', objectModel, 'methodsStr', textareaText);
     }.bind(this));
 
     this.$box.find('.class-name-input').on('change', function(evt) {
@@ -340,32 +340,7 @@ joint.shapes.flexberry.uml.ClassView = joint.dia.ElementView.extend({
       let objectModel = this.model.get('objectModel');
       objectModel.set('name', textareaText);
 
-      this.paper.trigger('class:checkexistname', objectModel);
-
-      let classStereotypeInput = this.$box.find('.class-stereotype-input');
-      let attributesInput = this.$box.find('.attributes-input');
-      let methodsInput = this.$box.find('.methods-input');
-
-      let stereotype = objectModel.get('stereotype');
-      if (classStereotypeInput.val() !== stereotype) {
-        classStereotypeInput.val(stereotype);
-        classStereotypeInput.prop('rows', stereotype.split(/[\n\r|\r|\n]/).length);
-        this.model.updateRectangles();
-      }
-
-      let attributes = objectModel.get('attributes');
-      if (attributesInput.val() !== attributes.join('\n')) {
-        attributesInput.val(attributes.join('\n'));
-        attributesInput.prop('rows', attributes.length);
-        this.model.updateRectangles();
-      }
-
-      let methods = objectModel.get('methods');
-      if (methodsInput.val() !== methods.join('\n')) {
-        methodsInput.val(methods.join('\n'));
-        methodsInput.prop('rows', methods.length);
-        this.model.updateRectangles();
-      }
+      this.paper.trigger('checkexistelements', objectModel, this);
     }.bind(this));
 
     this.$box.find('.class-stereotype-input').on('focus', function(evt) {
@@ -392,7 +367,7 @@ joint.shapes.flexberry.uml.ClassView = joint.dia.ElementView.extend({
       $stereotypeInput.prop('rows', rows.length);
       let objectModel = this.model.get('objectModel');
       objectModel.set('stereotype', stereotype);
-      this.paper.trigger('class:updaterepobj', objectModel);
+      this.paper.trigger('updaterepobj', objectModel, 'stereotype', stereotypeText);
       this.model.updateRectangles();
     }.bind(this));
 
@@ -423,7 +398,7 @@ joint.shapes.flexberry.uml.ClassView = joint.dia.ElementView.extend({
     joint.dia.ElementView.prototype.render.apply(this, arguments);
     this.paper.$el.prepend(this.$box);
     this.paper.on('blank:pointerdown link:pointerdown element:pointerdown', function() {
-      this.$box.find('input, textarea').blur();
+      this.$box.find('input:focus, textarea:focus').blur();
     }, this);
     this.updateBox();
     this.model.updateRectangles();

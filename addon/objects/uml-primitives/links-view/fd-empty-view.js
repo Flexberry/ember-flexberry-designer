@@ -12,11 +12,8 @@ export let EmptyView = joint.dia.LinkView.extend({
         if (!isNone(newSource.id)) {
           objectModel.set('source', newSource);
           objectModel.set('startPoint', this.sourcePoint);
-        } else {
-          objectModel.set('startPoint', newSource);
+          this.paper.trigger('checkexistelements', objectModel, this, true);
         }
-
-        this.model.trigger('uml-update');
       }
     }, this);
 
@@ -26,11 +23,8 @@ export let EmptyView = joint.dia.LinkView.extend({
         if (!isNone(newTarget.id)) {
           objectModel.set('target', newTarget);
           objectModel.set('endPoint', this.targetPoint);
-        } else {
-          objectModel.set('endPoint', newTarget);
+          this.paper.trigger('checkexistelements', objectModel, this, false);
         }
-
-        this.model.trigger('uml-update');
       }
     }, this);
   }
