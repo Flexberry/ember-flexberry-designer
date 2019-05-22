@@ -44,11 +44,15 @@ export let MultiplicityView = RoleView.extend({
     }.bind(this));
 
     this.$box.find('.start-multiplicity-input').on('change', function(evt) {
-      this.model.setLabelText('startMultiplicity', $(evt.target).val());
+      let startMultiplicityText = $(evt.target).val();
+      this.model.setLabelText('startMultiplicity', startMultiplicityText);
+      this.paper.trigger('updaterepobj', this.model.get('objectModel'), 'startMultiplicity', startMultiplicityText);
     }.bind(this));
 
     this.$box.find('.end-multiplicity-input').on('change', function(evt) {
-      this.model.setLabelText('endMultiplicity', $(evt.target).val());
+      let endMultiplicityText = $(evt.target).val();
+      this.model.setLabelText('endMultiplicity', endMultiplicityText);
+      this.paper.trigger('updaterepobj', this.model.get('objectModel'), 'endMultiplicity', endMultiplicityText);
     }.bind(this));
 
     // Initialize inputs values.

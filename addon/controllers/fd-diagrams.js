@@ -52,6 +52,14 @@ export default Controller.extend({
   sheetComponentName: '',
 
   /**
+   Array items with empty reference count.
+
+   @property emptyReferenceCountItems
+   @type {Array}
+   */
+  emptyReferenceCountItems: A(),
+
+  /**
     Ember.observer, watching property `searchValue` and send action from 'fd-sheet' component.
 
     @method searchValueObserver
@@ -164,7 +172,7 @@ export default Controller.extend({
       }
     });
 
-    let repositoryObjects = primitives.filter(p => p.get('repositoryObject'));
+    let repositoryObjects = primitives.uniqBy('repositoryObject').filter(p => p.get('repositoryObject'));
     if (repositoryObjects.length > 0) {
       let store = this.get('store');
       promises.pushObjects(repositoryObjects.map(p => {
@@ -212,7 +220,7 @@ export default Controller.extend({
           // eslint-disable-next-line no-fallthrough
           case 'STORMCASE.UML.cad.Association, UMLCAD':
             if (isNone(allRepObjects)) {
-              allRepObjects = store.peekAll('fd-dev-association')
+              allRepObjects = store.peekAll('fd-dev-association');
             }
 
             repObject = allRepObjects.findBy('id', repId);
@@ -234,6 +242,15 @@ export default Controller.extend({
         return hasChanges(repObject) ? repObject.save() : resolve();
       }));
     }
+
+    promises.pushObjects(this.get('emptyReferenceCountItems').map(item => {
+      if (item.get('isNew')) {
+        return item.rollbackAttributes();
+      } else {
+        return item.destroyRecord();
+      }
+    }));
+    this.get('emptyReferenceCountItems').clear();
 
     model.set('primitivesJsonString', JSON.stringify(primitives));
 

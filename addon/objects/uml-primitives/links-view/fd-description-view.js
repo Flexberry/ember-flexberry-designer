@@ -51,6 +51,7 @@ export let DescriptionView = EmptyView.extend({
 
     this.$box.find('.description-input').on('change', function(evt) {
       this.model.setLabelText('description', $(evt.target).val());
+      this.paper.trigger('checkexistelements', this.model.get('objectModel'), this);
     }.bind(this));
 
     // Initialize inputs values.
@@ -105,7 +106,7 @@ export let DescriptionView = EmptyView.extend({
     joint.dia.LinkView.prototype.render.apply(this, arguments);
     this.paper.$el.prepend(this.$box);
     this.paper.on('blank:pointerdown link:pointerdown element:pointerdown', function() {
-      this.$box.find('input:focus').blur();
+      this.$box.find('input:focus, textarea:focus').blur();
     }, this);
     this.updateBox();
     return this;

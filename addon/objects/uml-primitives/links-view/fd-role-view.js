@@ -39,12 +39,14 @@ export let RoleView = DescriptionView.extend({
       let inputText = this.normalizeRoleText($(evt.target).val());
       $(evt.target).val(inputText);
       this.model.setLabelText('startRole', inputText);
+      this.paper.trigger('checkexistelements', this.model.get('objectModel'), this);
     }.bind(this));
 
     this.$box.find('.end-role-input').on('change', function(evt) {
       let inputText = this.normalizeRoleText($(evt.target).val());
       $(evt.target).val(inputText);
       this.model.setLabelText('endRole', inputText);
+      this.paper.trigger('checkexistelements', this.model.get('objectModel'), this);
     }.bind(this));
 
     // Initialize inputs values.

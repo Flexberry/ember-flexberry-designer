@@ -145,7 +145,7 @@ joint.shapes.flexberry.uml.NAryAssociationView = joint.dia.ElementView.extend({
     joint.dia.ElementView.prototype.render.apply(this, arguments);
     this.paper.$el.prepend(this.$box);
     this.paper.on('blank:pointerdown link:pointerdown element:pointerdown', function() {
-      this.$box.find('input:focus').blur();
+      this.$box.find('input:focus, textarea:focus').blur();
     }, this);
     this.updateBox();
     this.updateRectangles();
