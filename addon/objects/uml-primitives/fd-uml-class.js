@@ -419,7 +419,7 @@ joint.shapes.flexberry.uml.ClassView = joint.shapes.flexberry.uml.PrimitiveEleme
 
   getButtons() {
     let buttons = joint.shapes.flexberry.uml.PrimitiveElementView.prototype.getButtons.apply(this, arguments);
-    /*buttons.pushObject({
+    buttons.pushObject({
       name: 'collapse-button',
       handler: this.collapseElementView.bind(this),
       attrs: {
@@ -427,7 +427,7 @@ joint.shapes.flexberry.uml.ClassView = joint.shapes.flexberry.uml.PrimitiveEleme
         'circle': { r: 6, fill: '#007aff', stroke: '#007aff', 'stroke-width': 1 },
         'text': { text: this.model.get('collapseButtonText'), fill: '#ffffff','font-size': 15, 'font-weight': 800, 'text-anchor': 'middle', stroke: '#ffffff', x: 0, y: 5, 'font-family': 'Times New Roman' },
       }
-    });*/
+    });
 
     return A(buttons);
   },
