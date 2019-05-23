@@ -420,12 +420,11 @@ joint.shapes.flexberry.uml.ClassView = joint.dia.ElementView.extend({
   getButtons() {
     return A([{
       name: 'collapse-button',
-      text: this.model.get('collapseButtonText'),
       handler: this.collapseElementView.bind(this),
       attrs: {
-        'element': {'ref-x': 4,'ref-y': 4, 'ref': '.flexberry-uml-header-rect' },
+        'element': {'ref-x': 0,'ref-y': 0, 'ref': '.joint-highlight-stroke' },
         'circle': { r: 6, fill: '#007aff', stroke: '#007aff', 'stroke-width': 1 },
-        'text': { fill: '#ffffff','font-size': 15, 'font-weight': 800, 'text-anchor': 'middle', stroke: '#ffffff', x: 0, y: 5, 'font-family': 'Times New Roman' },
+        'text': { text: this.model.get('collapseButtonText'), fill: '#ffffff','font-size': 15, 'font-weight': 800, 'text-anchor': 'middle', stroke: '#ffffff', x: 0, y: 5, 'font-family': 'Times New Roman' },
       }
     }]);
   },
