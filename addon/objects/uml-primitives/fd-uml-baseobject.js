@@ -79,8 +79,6 @@ export let BaseObject = joint.shapes.basic.Generic.define('flexberry.uml.BaseObj
   objectModel: null,
 
   attrs: {
-    text: { 'visibility': 'hidden' },
-
     '.flexberry-uml-header-rect': { 'stroke': 'black', 'stroke-width': 1, 'fill': '#ffffff', 'fill-opacity': 0 },
 
     '.flexberry-uml-header-text': {

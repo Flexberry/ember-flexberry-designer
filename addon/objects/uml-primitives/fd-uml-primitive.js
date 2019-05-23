@@ -216,11 +216,12 @@ joint.shapes.flexberry.uml.PrimitiveElementView = joint.dia.ElementView.extend({
   getButtons() {
     return A([{
       name: 'remove-button',
+      text: '&#xf00d',
       handler: this.removeElement.bind(this),
       attrs: {
         'element': {'ref-dx': 0,'ref-y': 0, 'ref': '.joint-highlight-stroke' },
         'circle': { r: 6, fill: '#007aff', stroke: '#007aff', 'stroke-width': 1 },
-        'text': { text: 'X', fill: '#ffffff','font-size': 15, 'font-weight': 400, 'text-anchor': 'middle', stroke: '#ffffff', x: 0, y: 5, 'font-family': 'Arial' },
+        'text': { fill: '#ffffff','font-size': 10, 'text-anchor': 'middle', x: 0, y: 3, 'font-family': 'Icons' },
       }
     }]);
   },
