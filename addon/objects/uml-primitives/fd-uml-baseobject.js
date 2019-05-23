@@ -165,7 +165,7 @@ export let BaseObject = joint.shapes.basic.Generic.define('flexberry.uml.BaseObj
   }
 });
 
-joint.shapes.flexberry.uml.BaseObjectView = joint.dia.ElementView.extend({
+joint.shapes.flexberry.uml.BaseObjectView = joint.shapes.flexberry.uml.PrimitiveElementView.extend({
   template: [
     '<div class="uml-class-inputs">',
     '<textarea class="class-name-input header-input" value="" rows="1" wrap="off"></textarea>',

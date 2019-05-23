@@ -196,6 +196,7 @@ export default Component.extend({
     graph.on('change:target', fitPaperToContent);
     graph.on('change:vertices', fitPaperToContent);
     graph.on('remove', fitPaperToContent);
+    graph.on('remove', this._removeElements, this);
 
     fitPaperToContent();
 
@@ -525,15 +526,15 @@ export default Component.extend({
 
       } else if (modelName === 'fd-dev-class') {
 
-        let stereotype = newRepObj.get('stereotype');
+        let stereotype = newRepObj.get('stereotype') || '';
         objectModel.set('stereotype', stereotype);
         this._updateInputValue('.class-stereotype-input', stereotype, view);
 
-        let attributes = newRepObj.get('attributesStr');
+        let attributes = newRepObj.get('attributesStr') || '';
         objectModel.set('attributes', attributes.split('\n'));
         this._updateInputValue('.attributes-input', attributes, view);
 
-        let methods = newRepObj.get('methodsStr');
+        let methods = newRepObj.get('methodsStr') || '';
         objectModel.set('methods', methods.split('\n'));
         this._updateInputValue('.methods-input', methods, view);
       }
@@ -632,7 +633,7 @@ export default Component.extend({
     let input = view.$box.find(`${path}`);
     if (input.val() !== value) {
       input.val(value);
-      input.prop('rows', value.split(/[\n\r|\r|\n]/).length);
+      input.prop('rows', value.split(/[\n\r|\r|\n]/).length || 1);
     }
   },
 
@@ -684,8 +685,31 @@ export default Component.extend({
   _incrementPropertyReferenceCount(item) {
     let newValue = item.incrementProperty('referenceCount');
     if (newValue === 1) {
-      let emptyReferenceCountItems = this.get('emptyReferenceCountItems');
-      emptyReferenceCountItems.removeObject(item);
+      this.get('emptyReferenceCountItems').removeObject(item);
     }
+  },
+
+  /**
+    Delete primitive and repositoryObject.
+
+    @method _removeElements
+    @param {Object} object remove object.
+   */
+  _removeElements(object) {
+    let primitives = this.get('primitives');
+    let removeObject = primitives.findBy('id', object.id);
+
+    let repositoryObject = removeObject.get('repositoryObject');
+    if (!isNone(repositoryObject)) {
+      let store = this.get('store');
+      let modelName = this._getModelName(removeObject.get('primitive.$type'));
+      let allModels = store.peekAll(`${modelName}`);
+      let currentRepObj = allModels.findBy('id', repositoryObject.slice(1, -1));
+      if (!isNone(currentRepObj)) {
+        this._decrementPropertyReferenceCount(currentRepObj);
+      }
+    }
+
+    primitives.removeObject(removeObject);
   }
 });

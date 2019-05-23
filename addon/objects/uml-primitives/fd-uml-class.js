@@ -202,7 +202,7 @@ export let BaseClass = joint.shapes.basic.Generic.define('flexberry.uml.BaseClas
 */
 export let Class = BaseClass.define('flexberry.uml.Class', {});
 
-joint.shapes.flexberry.uml.ClassView = joint.dia.ElementView.extend({
+joint.shapes.flexberry.uml.ClassView = joint.shapes.flexberry.uml.PrimitiveElementView.extend({
   template: [
     '<div class="uml-class-inputs">',
     '<textarea class="class-name-input header-input" value="" rows="1" wrap="off"></textarea>',
@@ -418,7 +418,8 @@ joint.shapes.flexberry.uml.ClassView = joint.dia.ElementView.extend({
   },
 
   getButtons() {
-    return A([{
+    let buttons = joint.shapes.flexberry.uml.PrimitiveElementView.prototype.getButtons.apply(this, arguments);
+    /*buttons.pushObject({
       name: 'collapse-button',
       text: this.model.get('collapseButtonText'),
       handler: this.collapseElementView.bind(this),
@@ -427,7 +428,9 @@ joint.shapes.flexberry.uml.ClassView = joint.dia.ElementView.extend({
         'circle': { r: 6, fill: '#007aff', stroke: '#007aff', 'stroke-width': 1 },
         'text': { fill: '#ffffff','font-size': 15, 'font-weight': 800, 'text-anchor': 'middle', stroke: '#ffffff', x: 0, y: 5, 'font-family': 'Times New Roman' },
       }
-    }]);
+    });*/
+
+    return A(buttons);
   },
 
   collapseElementView(e) {
