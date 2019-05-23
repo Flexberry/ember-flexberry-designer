@@ -182,6 +182,7 @@ joint.highlighters.strokeAndButtons = {
       g.setAttributeNS(null, 'class', name || '');
       let circle = document.createElementNS(svgNS, 'circle');
       let text = document.createElementNS(svgNS, 'text');
+      text.innerHTML = get(button, 'text');
       g.appendChild(circle);
       g.appendChild(text);
       g.onclick = get(button, 'handler');

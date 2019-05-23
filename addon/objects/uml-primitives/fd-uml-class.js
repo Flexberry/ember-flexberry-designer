@@ -418,13 +418,17 @@ joint.shapes.flexberry.uml.ClassView = joint.dia.ElementView.extend({
   },
 
   getButtons() {
+    let objectModel = this.model.get('objectModel');
+    let collapsed = objectModel.get('collapsed');
+
     return A([{
       name: 'collapse-button',
+      text: collapsed ? '&#xf065' : '&#xf066',
       handler: this.collapseElementView.bind(this),
       attrs: {
         'element': {'ref-x': 0,'ref-y': 0, 'ref': '.joint-highlight-stroke' },
         'circle': { r: 6, fill: '#007aff', stroke: '#007aff', 'stroke-width': 1 },
-        'text': { text: this.model.get('collapseButtonText'), fill: '#ffffff','font-size': 15, 'font-weight': 800, 'text-anchor': 'middle', stroke: '#ffffff', x: 0, y: 5, 'font-family': 'Times New Roman' },
+        'text': { fill: '#ffffff', 'font-size': 10, 'text-anchor': 'middle', x: 0, y: 3, 'font-family': 'Icons' },
       }
     }]);
   },
@@ -449,7 +453,6 @@ joint.shapes.flexberry.uml.ClassView = joint.dia.ElementView.extend({
     this.$box.find('.attributes-input').css('visibility', styleVisibilityValue);
     this.$box.find('.methods-input').css('visibility', styleVisibilityValue);
 
-    this.model.set('collapseButtonText', collapsed ? '+' : '-');
     this.updateBox();
     this.updateRectangles();
   },
