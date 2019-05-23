@@ -57,7 +57,7 @@ let setLinkColors = function(primitive, link) {
     case 'flexberry.uml.ObjectAssociation':
       link.attributes.attrs['.marker-source'].fill=color;
       link.attributes.attrs['.marker-target'].fill=color;
-    break;
+      break;
     default:
       link.attributes.attrs['.marker-source'].fill=bgColor;
       link.attributes.attrs['.marker-target'].fill=bgColor;
