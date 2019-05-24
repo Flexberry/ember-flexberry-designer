@@ -79,8 +79,6 @@ export let BaseObject = joint.shapes.basic.Generic.define('flexberry.uml.BaseObj
   objectModel: null,
 
   attrs: {
-    text: { 'visibility': 'hidden' },
-
     '.flexberry-uml-header-rect': { 'stroke': 'black', 'stroke-width': 1, 'fill': '#ffffff', 'fill-opacity': 0 },
 
     '.flexberry-uml-header-text': {
@@ -165,7 +163,7 @@ export let BaseObject = joint.shapes.basic.Generic.define('flexberry.uml.BaseObj
   }
 });
 
-joint.shapes.flexberry.uml.BaseObjectView = joint.dia.ElementView.extend({
+joint.shapes.flexberry.uml.BaseObjectView = joint.shapes.flexberry.uml.PrimitiveElementView.extend({
   template: [
     '<div class="uml-class-inputs">',
     '<textarea class="class-name-input header-input" value="" rows="1" wrap="off"></textarea>',

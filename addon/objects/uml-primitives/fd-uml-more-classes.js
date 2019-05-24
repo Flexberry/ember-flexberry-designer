@@ -36,7 +36,7 @@ export default FdUmlElement.extend({
   @constructor
 */
 export let MoreClasses = joint.shapes.basic.Generic.define('flexberry.uml.MoreClasses', {
-  
+
   objectModel: null,
 
   size: { width: 50, height: 10 },
@@ -65,3 +65,5 @@ export let MoreClasses = joint.shapes.basic.Generic.define('flexberry.uml.MoreCl
     joint.shapes.basic.Generic.prototype.initialize.apply(this, arguments);
   }
 });
+
+joint.shapes.flexberry.uml.MoreClassesView = joint.shapes.flexberry.uml.PrimitiveElementView.extend({});

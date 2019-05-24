@@ -71,3 +71,5 @@ export let LinkConnector = joint.shapes.basic.Generic.define('flexberry.uml.Link
   },
 
 });
+
+joint.shapes.flexberry.uml.LinkConnectorView = joint.shapes.flexberry.uml.PrimitiveElementView.extend({});

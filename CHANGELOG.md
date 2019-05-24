@@ -6,6 +6,7 @@ All notable changes to this project will be documented in this file.
 * Added collapse button for class primitives.
 * Added highlight feature for cad elements.
 * Added check on exist diagram elements.
+* Added delete button for class primitives.
 
 ### Changed
 * The diagram in the `{{fd-uml-diagram}}` component now has an infinite size.

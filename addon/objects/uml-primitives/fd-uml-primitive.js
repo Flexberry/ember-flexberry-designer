@@ -210,3 +210,24 @@ joint.highlighters.strokeAndButtons = {
     this._buttons[id] = null;
   }
 };
+
+joint.shapes.basic.Generic.define('flexberry.uml.PrimitiveElementView');
+joint.shapes.flexberry.uml.PrimitiveElementView = joint.dia.ElementView.extend({
+  getButtons() {
+    return A([{
+      name: 'remove-button',
+      text: '&#xf00d',
+      handler: this.removeElement.bind(this),
+      attrs: {
+        'element': {'ref-dx': 0,'ref-y': 0, 'ref': '.joint-highlight-stroke' },
+        'circle': { r: 6, fill: '#007aff', stroke: '#007aff', 'stroke-width': 1 },
+        'text': { fill: '#ffffff','font-size': 10, 'text-anchor': 'middle', x: 0, y: 3, 'font-family': 'Icons' },
+      }
+    }]);
+  },
+
+  removeElement(e) {
+    e.stopPropagation();
+    this.model.remove();
+  },
+});
