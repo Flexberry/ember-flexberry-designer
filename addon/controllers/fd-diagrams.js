@@ -267,8 +267,6 @@ export default Controller.extend({
           }));
         }
 
-        model.set('primitivesJsonString', JSON.stringify(primitives));
-
         return all(promises).then(() => {
           promises.clear();
 
@@ -296,6 +294,8 @@ export default Controller.extend({
             }
 
             emptyReferenceCountItems.clear();
+
+            model.set('primitivesJsonString', JSON.stringify(primitives));
             return all(promises);
           });
         });
