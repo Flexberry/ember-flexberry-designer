@@ -3,14 +3,19 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 ### Added
+* Added collapse button for diagram edit panel toolbar.
 * Added collapse button for class primitives.
 * Added highlight feature for cad elements.
 * Added check on exist diagram elements.
+* Added delete button for class primitives.
 * Button to open the object edit form from the diagram.
 
 ### Changed
 * The diagram in the `{{fd-uml-diagram}}` component now has an infinite size.
 * Links can't have empty source or target.
+
+### Fixed
+* Saving unchanged objects on diagrams.
 
 ## [0.7.0-beta.1] - 2019-05-17
 ### Added

@@ -5,7 +5,7 @@
 import { computed } from '@ember/object';
 import $ from 'jquery';
 import { isBlank } from '@ember/utils';
-import { isArray, A } from '@ember/array';
+import { isArray } from '@ember/array';
 
 import joint from 'npm:jointjs';
 
@@ -202,7 +202,7 @@ export let BaseClass = joint.shapes.basic.Generic.define('flexberry.uml.BaseClas
 */
 export let Class = BaseClass.define('flexberry.uml.Class', {});
 
-joint.shapes.flexberry.uml.ClassView = joint.dia.ElementView.extend({
+joint.shapes.flexberry.uml.ClassView = joint.shapes.flexberry.uml.PrimitiveElementView.extend({
   template: [
     '<div class="uml-class-inputs">',
     '<textarea class="class-name-input header-input" value="" rows="1" wrap="off"></textarea>',
@@ -418,10 +418,11 @@ joint.shapes.flexberry.uml.ClassView = joint.dia.ElementView.extend({
   },
 
   getButtons() {
+    let buttons = joint.shapes.flexberry.uml.PrimitiveElementView.prototype.getButtons.apply(this, arguments);
     let objectModel = this.model.get('objectModel');
     let collapsed = objectModel.get('collapsed');
 
-    return A([{
+    buttons.pushObject({
       name: 'collapse-button',
       text: collapsed ? '&#xf065' : '&#xf066',
       handler: this.collapseElementView.bind(this),
@@ -438,7 +439,9 @@ joint.shapes.flexberry.uml.ClassView = joint.dia.ElementView.extend({
         'circle': { r: 8, fill: '#007aff', stroke: '#007aff', 'stroke-width': 1 },
         'text': { fill: '#ffffff', x: 0, y: 3, 'font-size': 10, 'text-anchor': 'middle' },
       }
-    }]);
+    });
+
+    return buttons;
   },
 
   collapseElementView(e) {

@@ -59,14 +59,6 @@ Defines the JointJS object, which represents a 'NAryAssociation' object in the U
 */
 export let NAryAssociation = BaseObject.define('flexberry.uml.NAryAssociation', {
   attrs: {
-    text: {
-      'text-decoration': 'underline',
-      'font-size': '12',
-      'visibility': 'hidden'
-    },
-    path: {
-      'd': 'M 0 20 L 50 0 100 20 50 40 Z'
-    }
   },
 
   // Inputs padding by X.
@@ -79,7 +71,7 @@ export let NAryAssociation = BaseObject.define('flexberry.uml.NAryAssociation', 
   markup: [
       '<g class="rotatable">',
       '<g class="scalable">',
-      '<path class="flexberry-uml-header-rect"/>',
+      '<path class="flexberry-uml-header-rect" d="M 0 20 L 50 0 100 20 50 40 Z"/>',
       '</g>',
       '</g>'
   ].join(''),
@@ -91,7 +83,7 @@ export let NAryAssociation = BaseObject.define('flexberry.uml.NAryAssociation', 
   },
 });
 
-joint.shapes.flexberry.uml.NAryAssociationView = joint.dia.ElementView.extend({
+joint.shapes.flexberry.uml.NAryAssociationView = joint.shapes.flexberry.uml.PrimitiveElementView.extend({
   template: [
     '<div class="uml-class-inputs">',
       '<div class="input-buffer nary-buffer"></div>',
