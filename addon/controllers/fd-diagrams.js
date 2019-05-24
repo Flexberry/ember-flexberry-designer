@@ -7,6 +7,10 @@ import { schedule } from '@ember/runloop';
 import { all, resolve } from 'rsvp';
 import hasChanges from '../utils/model-has-changes';
 
+const getActualValue = (value, currentValue) => {
+  return isBlank(value) && isBlank(currentValue) ? currentValue : value;
+};
+
 export default Controller.extend({
   /**
     Service for managing the state of the application.
@@ -50,6 +54,14 @@ export default Controller.extend({
     @default ''
   */
   sheetComponentName: '',
+
+  /**
+   Array items with empty reference count.
+
+   @property emptyReferenceCountItems
+   @type {Array}
+   */
+  emptyReferenceCountItems: A(),
 
   /**
     Ember.observer, watching property `searchValue` and send action from 'fd-sheet' component.
@@ -164,7 +176,7 @@ export default Controller.extend({
       }
     });
 
-    let repositoryObjects = primitives.filter(p => p.get('repositoryObject'));
+    let repositoryObjects = primitives.uniqBy('repositoryObject').filter(p => p.get('repositoryObject'));
     if (repositoryObjects.length > 0) {
       let store = this.get('store');
       promises.pushObjects(repositoryObjects.map(p => {
@@ -187,11 +199,14 @@ export default Controller.extend({
                 }
               }
 
-              let props = p.getProperties('stereotype', 'attributes', 'methods');
+              let stereotype = p.getWithDefault('stereotype', '').trim();
+              let attributes = p.getWithDefault('attributes', []).join('\n').trim();
+              let methods = p.getWithDefault('methods', []).join('\n').trim();
+              let currentValues = repObject.getProperties('stereotype', 'attributesStr', 'methodsStr');
               repObject.setProperties({
-                stereotype: props.stereotype,
-                attributesStr: props.attributes.join('\n'),
-                methodsStr: props.methods.join('\n')
+                stereotype: getActualValue(stereotype, currentValues.stereotype),
+                attributesStr: getActualValue(attributes, currentValues.attributesStr),
+                methodsStr: getActualValue(methods, currentValues.methodsStr),
               });
             }
 
@@ -200,10 +215,8 @@ export default Controller.extend({
             allRepObjects = store.peekAll('fd-dev-inheritance');
             repObject = allRepObjects.findBy('id', repId);
             if (repObject) {
-              let props = p.getProperties('description');
-              repObject.setProperties({
-                nameStr: props.description
-              });
+              let description = p.getWithDefault('description', '').trim();
+              repObject.set('nameStr', getActualValue(description, repObject.get('nameStr')));
             }
 
             break;
@@ -212,19 +225,24 @@ export default Controller.extend({
           // eslint-disable-next-line no-fallthrough
           case 'STORMCASE.UML.cad.Association, UMLCAD':
             if (isNone(allRepObjects)) {
-              allRepObjects = store.peekAll('fd-dev-association')
+              allRepObjects = store.peekAll('fd-dev-association');
             }
 
             repObject = allRepObjects.findBy('id', repId);
 
             if (repObject) {
-              let props = p.getProperties('startMultiplicity', 'endMultiplicity', 'endRoleTxt', 'startRoleTxt', 'description');
+              let startMultiplicity = p.getWithDefault('startMultiplicity', '').trim();
+              let endMultiplicity = p.getWithDefault('endMultiplicity', '').trim();
+              let endRoleTxt = p.getWithDefault('endRoleTxt', '').trim();
+              let startRoleTxt = p.getWithDefault('startRoleTxt', '').trim();
+              let description = p.getWithDefault('description', '').trim();
+              let currentValues = repObject.getProperties('nameStr', 'startMultiplicity', 'endMultiplicity', 'endRoleStr', 'startRoleStr');
               repObject.setProperties({
-                nameStr: props.description,
-                startMultiplicity: props.startMultiplicity,
-                endMultiplicity: props.endMultiplicity,
-                endRoleStr: props.endRoleTxt,
-                startRoleStr: props.startRoleTxt
+                nameStr: getActualValue(description, currentValues.nameStr),
+                startMultiplicity: getActualValue(startMultiplicity, currentValues.startMultiplicity),
+                endMultiplicity: getActualValue(endMultiplicity, currentValues.endMultiplicity),
+                endRoleStr: getActualValue(endRoleTxt, currentValues.endRoleStr),
+                startRoleStr: getActualValue(startRoleTxt, currentValues.startRoleStr),
               });
             }
 
@@ -234,6 +252,15 @@ export default Controller.extend({
         return hasChanges(repObject) ? repObject.save() : resolve();
       }));
     }
+
+    promises.pushObjects(this.get('emptyReferenceCountItems').map(item => {
+      if (item.get('isNew')) {
+        return item.rollbackAttributes();
+      } else {
+        return item.destroyRecord();
+      }
+    }));
+    this.get('emptyReferenceCountItems').clear();
 
     model.set('primitivesJsonString', JSON.stringify(primitives));
 

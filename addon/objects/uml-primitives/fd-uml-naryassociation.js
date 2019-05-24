@@ -59,14 +59,6 @@ Defines the JointJS object, which represents a 'NAryAssociation' object in the U
 */
 export let NAryAssociation = BaseObject.define('flexberry.uml.NAryAssociation', {
   attrs: {
-    text: {
-      'text-decoration': 'underline',
-      'font-size': '12',
-      'visibility': 'hidden'
-    },
-    path: {
-      'd': 'M 0 20 L 50 0 100 20 50 40 Z'
-    }
   },
 
   // Inputs padding by X.
@@ -79,7 +71,7 @@ export let NAryAssociation = BaseObject.define('flexberry.uml.NAryAssociation', 
   markup: [
       '<g class="rotatable">',
       '<g class="scalable">',
-      '<path class="flexberry-uml-header-rect"/>',
+      '<path class="flexberry-uml-header-rect" d="M 0 20 L 50 0 100 20 50 40 Z"/>',
       '</g>',
       '</g>'
   ].join(''),
@@ -89,9 +81,87 @@ export let NAryAssociation = BaseObject.define('flexberry.uml.NAryAssociation', 
       { type: 'header', text: this.getObjName(), element: this },
     ];
   },
+});
+
+joint.shapes.flexberry.uml.NAryAssociationView = joint.shapes.flexberry.uml.PrimitiveElementView.extend({
+  template: [
+    '<div class="uml-class-inputs">',
+      '<div class="input-buffer nary-buffer"></div>',
+      '<textarea type="text" class="class-name-input nary-assoc-name header-input" value="" rows="1" wrap="off"></textarea>',
+    '</div>'
+  ].join(''),
+
+  initialize: function() {
+    joint.dia.ElementView.prototype.initialize.apply(this, arguments);
+
+    this.$box = $(this.template);
+    this.model.inputElements = this.$box;
+    let _this = this;
+
+    // Prevent paper from handling pointerdown.
+    this.$box.find('input, textarea').on('mousedown click', function(evt) {
+      evt.stopPropagation();
+      _this.highlight();
+    });
+
+    this.$box.find('.nary-assoc-name').on('input', function(evt) {
+      let $textarea = $(evt.currentTarget);
+      let textareaText = $textarea.val();
+      let rows = textareaText.split(/[\n\r|\r|\n]/);
+      $textarea.prop('rows', rows.length);
+      this.updateRectangles();
+    }.bind(this));
+
+    this.$box.find('.nary-assoc-name').on('change', function(evt) {
+      let $textarea = $(evt.currentTarget);
+      let textareaText = $textarea.val();
+      let rows = textareaText.split(/[\n\r|\r|\n]/);
+      $textarea.prop('rows', rows.length);
+      let objectModel = this.model.get('objectModel');
+      objectModel.set('name', textareaText);
+    }.bind(this));
+
+    let objectModel = this.model.get('objectModel');
+    let instanceInput = this.$box.find('.nary-assoc-name');
+    instanceInput.prop('rows', objectModel.get('name').split(/[\n\r|\r|\n]/).length || 1);
+    instanceInput.val(objectModel.get('name'));
+
+    // Update the box position whenever the underlying model changes.
+    this.model.on('change', this.updateBox, this);
+
+    // Remove the box when the model gets removed from the graph.
+    this.model.on('remove', this.removeBox, this);
+  },
+
+  render: function() {
+    joint.dia.ElementView.prototype.render.apply(this, arguments);
+    this.paper.$el.prepend(this.$box);
+    this.paper.on('blank:pointerdown link:pointerdown element:pointerdown', function() {
+      this.$box.find('input:focus, textarea:focus').blur();
+    }, this);
+    this.updateBox();
+    this.updateRectangles();
+    return this;
+  },
+
+  updateBox: function() {
+    // Set the position and dimension of the box so that it covers the JointJS element.
+    let bbox = this.model.getBBox();
+    this.$box.css({
+      width: bbox.width,
+      height: bbox.height,
+      left: bbox.x,
+      top: bbox.y,
+      transform: 'rotate(' + (this.model.get('angle') || 0) + 'deg)'
+    });
+  },
+
+  removeBox: function() {
+    this.$box.remove();
+  },
 
   updateRectangles: function() {
-    let rects = this.getRectangles();
+    let rects = this.model.getRectangles();
 
     let offsetY = 0;
     let newHeight = 0;
@@ -120,9 +190,9 @@ export let NAryAssociation = BaseObject.define('flexberry.uml.NAryAssociation', 
 
         offsetY += rectHeight;
       }
-    }, this);
+    }, this.model);
 
-    newWidth += (this.get('widthPadding') || 0) * 2;
+    newWidth += (this.model.get('widthPadding') || 0) * 2;
     rects.forEach(function(rect) {
       rect.element.attr('.flexberry-uml-' + rect.type + '-rect/width', newWidth);
     });
@@ -131,82 +201,10 @@ export let NAryAssociation = BaseObject.define('flexberry.uml.NAryAssociation', 
       newHeight = 50;
     }
 
-    this.resize(newWidth, newHeight);
+    this.model.resize(newWidth, newHeight);
+    if (this.model.get('highlighted')) {
+      this.unhighlight();
+      this.highlight();
+    }
   }
-});
-
-joint.shapes.flexberry.uml.NAryAssociationView = joint.dia.ElementView.extend({
-  template: [
-    '<div class="uml-class-inputs">',
-      '<div class="input-buffer nary-buffer"></div>',
-      '<textarea type="text" class="class-name-input nary-assoc-name header-input" value="" rows="1" wrap="off"></textarea>',
-    '</div>'
-  ].join(''),
-
-  initialize: function() {
-    joint.dia.ElementView.prototype.initialize.apply(this, arguments);
-
-    this.$box = $(this.template);
-    this.model.inputElements = this.$box;
-
-    // Prevent paper from handling pointerdown.
-    this.$box.find('input').on('mousedown click', function(evt) {
-      evt.stopPropagation();
-    });
-
-    this.$box.find('.nary-assoc-name').on('input', function(evt) {
-      let $textarea = $(evt.currentTarget);
-      let textareaText = $textarea.val();
-      let rows = textareaText.split(/[\n\r|\r|\n]/);
-      $textarea.prop('rows', rows.length);
-      this.model.updateRectangles();
-    }.bind(this));
-
-    this.$box.find('.nary-assoc-name').on('change', function(evt) {
-      let $textarea = $(evt.currentTarget);
-      let textareaText = $textarea.val();
-      let rows = textareaText.split(/[\n\r|\r|\n]/);
-      $textarea.prop('rows', rows.length);
-      let objectModel = this.model.get('objectModel');
-      objectModel.set('name', textareaText);
-    }.bind(this));
-
-    let objectModel = this.model.get('objectModel');
-    let instanceInput = this.$box.find('.nary-assoc-name');
-    instanceInput.prop('rows', objectModel.get('name').split(/[\n\r|\r|\n]/).length || 1);
-    instanceInput.val(objectModel.get('name'));
-
-    // Update the box position whenever the underlying model changes.
-    this.model.on('change', this.updateBox, this);
-
-    // Remove the box when the model gets removed from the graph.
-    this.model.on('remove', this.removeBox, this);
-  },
-
-  render: function() {
-    joint.dia.ElementView.prototype.render.apply(this, arguments);
-    this.paper.$el.prepend(this.$box);
-    this.paper.on('blank:pointerdown link:pointerdown element:pointerdown', function() {
-      this.$box.find('input').blur();
-    }, this);
-    this.updateBox();
-    this.model.updateRectangles();
-    return this;
-  },
-
-  updateBox: function() {
-    // Set the position and dimension of the box so that it covers the JointJS element.
-    let bbox = this.model.getBBox();
-    this.$box.css({
-      width: bbox.width,
-      height: bbox.height,
-      left: bbox.x,
-      top: bbox.y,
-      transform: 'rotate(' + (this.model.get('angle') || 0) + 'deg)'
-    });
-  },
-
-  removeBox: function() {
-    this.$box.remove();
-  },
 });

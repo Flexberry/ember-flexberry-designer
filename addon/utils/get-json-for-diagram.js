@@ -23,6 +23,21 @@ let getJsonForBasePrimitive = function(typeName, repositoryObject) {
     Changed: true,
     DrawStyle: {
       $type: 'STORMCASE.Primitives.DrawStyle, Repository',
+      DrawBrush: {
+        $type: 'System.Drawing.SolidBrush, System.Drawing',
+        Color: {
+          $type: 'System.Drawing.Color, System.Drawing',
+          R: 255,
+          G: 255,
+          B: 255,
+          A: 255,
+          IsKnownColor: false,
+          IsEmpty: false,
+          IsNamedColor: false,
+          IsSystemColor: false,
+          Name: 'ffffffff'
+        }
+      },
       TextColor: {
         $type: 'System.Drawing.Color, System.Drawing',
         R: 0,
@@ -283,6 +298,21 @@ let getJsonForClass = function(devClass, type, index, oldData) {
       BracketEnd: ']',
       DrawStyle: {
         $type: 'STORMCASE.Primitives.DrawStyle, Repository',
+        DrawBrush: {
+          $type: 'System.Drawing.SolidBrush, System.Drawing',
+          Color: {
+            $type: 'System.Drawing.Color, System.Drawing',
+            R: 255,
+            G: 255,
+            B: 255,
+            A: 255,
+            IsKnownColor: false,
+            IsEmpty: false,
+            IsNamedColor: false,
+            IsSystemColor: false,
+            Name: 'ffffffff'
+          }
+        },
         TextColor: {
           $type: 'System.Drawing.Color, System.Drawing',
           R: 0,
@@ -360,6 +390,21 @@ let getJsonForClass = function(devClass, type, index, oldData) {
       BracketEnd: ']',
       DrawStyle: {
         $type: 'STORMCASE.Primitives.DrawStyle, Repository',
+        DrawBrush: {
+          $type: 'System.Drawing.SolidBrush, System.Drawing',
+          Color: {
+            $type: 'System.Drawing.Color, System.Drawing',
+            R: 255,
+            G: 255,
+            B: 255,
+            A: 255,
+            IsKnownColor: false,
+            IsEmpty: false,
+            IsNamedColor: false,
+            IsSystemColor: false,
+            Name: 'ffffffff'
+          }
+        },
         TextColor: {
           $type: 'System.Drawing.Color, System.Drawing',
           R: 0,
@@ -437,6 +482,21 @@ let getJsonForClass = function(devClass, type, index, oldData) {
       BracketEnd: '»',
       DrawStyle: {
         $type: 'STORMCASE.Primitives.DrawStyle, Repository',
+        DrawBrush: {
+          $type: 'System.Drawing.SolidBrush, System.Drawing',
+          Color: {
+            $type: 'System.Drawing.Color, System.Drawing',
+            R: 255,
+            G: 255,
+            B: 255,
+            A: 255,
+            IsKnownColor: false,
+            IsEmpty: false,
+            IsNamedColor: false,
+            IsSystemColor: false,
+            Name: 'ffffffff'
+          }
+        },
         TextColor: {
           $type: 'System.Drawing.Color, System.Drawing',
           R: 0,
@@ -1941,6 +2001,21 @@ let _getJsonForPropBlock = function(propName, value, location, size) {
       DrawEmpty: false,
       DrawStyle: {
         $type: 'STORMCASE.Primitives.DrawStyle, Repository',
+        DrawBrush: {
+          $type: 'System.Drawing.SolidBrush, System.Drawing',
+          Color: {
+            $type: 'System.Drawing.Color, System.Drawing',
+            R: 255,
+            G: 255,
+            B: 255,
+            A: 255,
+            IsKnownColor: false,
+            IsEmpty: false,
+            IsNamedColor: false,
+            IsSystemColor: false,
+            Name: 'ffffffff'
+          }
+        },
         TextColor: {
           $type: 'System.Drawing.Color, System.Drawing',
           R: 0,
@@ -2005,6 +2080,21 @@ let _getJsonForLEBlock = function(propName, id, primitiveId, x, y, isStart) {
     $type: 'STORMCASE.Primitives.LEInformation, Repository',
     DrawStyle: {
       $type: 'STORMCASE.Primitives.DrawStyle, Repository',
+      DrawBrush: {
+        $type: 'System.Drawing.SolidBrush, System.Drawing',
+        Color: {
+          $type: 'System.Drawing.Color, System.Drawing',
+          R: 255,
+          G: 255,
+          B: 255,
+          A: 255,
+          IsKnownColor: false,
+          IsEmpty: false,
+          IsNamedColor: false,
+          IsSystemColor: false,
+          Name: 'ffffffff'
+        }
+      },
       TextColor: {
         $type: 'System.Drawing.Color, System.Drawing',
         R: 0,
