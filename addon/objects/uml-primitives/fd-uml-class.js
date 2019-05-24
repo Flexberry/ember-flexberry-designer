@@ -433,7 +433,7 @@ joint.shapes.flexberry.uml.ClassView = joint.shapes.flexberry.uml.PrimitiveEleme
       }
     });
 
-    return A(buttons);
+    return buttons;
   },
 
   collapseElementView(e) {
