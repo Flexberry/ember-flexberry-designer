@@ -3,6 +3,7 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 ### Added
+* Added collapse button for diagram edit panel toolbar.
 * Added collapse button for class primitives.
 * Added highlight feature for cad elements.
 * Added check on exist diagram elements.
