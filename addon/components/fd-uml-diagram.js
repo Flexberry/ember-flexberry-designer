@@ -144,7 +144,10 @@ export default Component.extend({
         connecting: {
           name: 'stroke'
         }
-      }
+      },
+      interactive: {
+        elementMove: false
+      },
     }));
 
     let elements = this.get('elements');
@@ -207,8 +210,11 @@ export default Component.extend({
     paper.on('updaterepobj', this._updateRepObj, this);
     paper.on('checkexistelements', this._checkOnExistElements, this);
     paper.on('cell:highlight', this._highlighted, this);
-  },
 
+    // Ghost element mode.
+    paper.on('element:pointermove', this._ghostElementMove);
+    paper.on('element:pointerup', this._ghostElementRemove);
+  },
 
   /**
     Handler event 'blank:pointerclick'.
@@ -359,6 +365,54 @@ export default Component.extend({
     this.set('draggedLink', undefined);
     this.set('draggedLinkView', undefined);
     this.set('isLinkAdding', false);
+  },
+
+  /**
+    Handler event 'element:pointermove', create and mode ghost element.
+
+    @method actions._ghostElementMove
+    @param {Object} view this JoinJS object.
+    @param {jQuery.Event} evt event.
+    @param {Number} x coordinate x.
+    @param {Number} y coordinate y.
+  */
+  _ghostElementMove(view, evt, x, y) {
+    let data = evt.data;
+    if (data.ghost) {
+      data.ghost.attr({ 'x': x - data.dx, 'y': y - data.dy });
+    } else {
+      let bbox = view.model.getBBox();
+      let ghost = joint.Vectorizer('rect');
+      ghost.attr(bbox);
+      ghost.attr({ 'fill': 'transparent', 'stroke': '#5755a1', 'stroke-dasharray': '4,4', 'stroke-width': 2 });
+      ghost.appendTo(this.viewport);
+      evt.data.ghost = ghost;
+      evt.data.dx = x - bbox.x;
+      evt.data.dy = y - bbox.y;
+    }
+  },
+
+  /**
+    Handler event 'element:pointerup', delete ghost element and update link view.
+
+    @method actions._ghostElementRemove
+    @param {Object} view this JoinJS object.
+    @param {jQuery.Event} evt event.
+    @param {Number} x coordinate x.
+    @param {Number} y coordinate y.
+  */
+  _ghostElementRemove(view, evt, x, y) {
+    let data = evt.data;
+    if (data.ghost) {
+      data.ghost.remove();
+      view.model.position(x - data.dx, y - data.dy);
+      let paper = view.paper;
+      let links = paper.model.getConnectedLinks(view.model);
+      links.forEach((link)=> {
+        let linkView = paper.findViewByModel(link);
+        linkView.updateBox();
+      });
+    }
   },
 
   /**
