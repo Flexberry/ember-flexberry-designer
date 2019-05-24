@@ -66,7 +66,32 @@ let setLinkColors = function(primitive, link) {
 
 };
 
+let setLinkViewColors = function(linkView) {
+  let objectModel = linkView.model.get('objectModel');
+  if (!objectModel || !('primitive' in objectModel)) {
+    return;
+  }
+  let primitive = objectModel.primitive;
+  let textColor = primitive.DrawStyle.TextColor;
+  let color = "#" + ((1 << 24) + ( textColor.R << 16) + (textColor.G << 8) + textColor.B).toString(16).slice(1);
+  let brushColor = primitive.DrawStyle.DrawBrush.Color;
+  let bgColor = "#" + ((1 << 24) + ( brushColor.R << 16) + (brushColor.G << 8) + brushColor.B).toString(16).slice(1);
+
+  for (let i = 0; i < linkView.model.inputElements.length; i++) {
+    let divInputs = linkView.model.inputElements[i];
+    if (divInputs.className.indexOf('uml-link-inputs') >= 0) {
+      $(divInputs).css('backgroundColor', bgColor);
+      let inputs = divInputs.getElementsByTagName('input');
+      for (let n = 0; n < inputs.length; n++) {
+        let input = inputs[n];
+        input.style.color = color;
+      }
+    }
+  }
+}
+
 export {
   setInputRectColors,
-  setLinkColors
+  setLinkColors,
+  setLinkViewColors
 };

@@ -2,6 +2,7 @@ import { computed } from '@ember/object';
 import $ from 'jquery';
 
 import { DescriptionView } from './fd-description-view';
+import { setLinkViewColors } from '../../../utils/fd-uml-colors';
 
 export let RoleView = DescriptionView.extend({
   template: [
@@ -74,5 +75,7 @@ export let RoleView = DescriptionView.extend({
       top: endRolePosition.y - 10,
       transform: 'rotate(' + (this.model.get('angle') || 0) + 'deg)'
     });
+    setLinkViewColors(this);
+
   }
 });

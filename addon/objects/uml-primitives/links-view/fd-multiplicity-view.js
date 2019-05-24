@@ -2,6 +2,7 @@ import { computed } from '@ember/object'
 import $ from 'jquery';
 
 import { RoleView } from './fd-role-view';
+import { setLinkViewColors } from '../../../utils/fd-uml-colors';
 
 export let MultiplicityView = RoleView.extend({
   template: [
@@ -80,5 +81,6 @@ export let MultiplicityView = RoleView.extend({
       top: endMultiplicityPosition.y - 10,
       transform: 'rotate(' + (this.model.get('angle') || 0) + 'deg)'
     });
+    setLinkViewColors(this);
   }
 });

@@ -5,6 +5,8 @@ import joint from 'npm:jointjs';
 import $ from 'jquery';
 
 import { EmptyView } from './fd-empty-view';
+import { setLinkViewColors } from '../../../utils/fd-uml-colors';
+
 
 export let DescriptionView = EmptyView.extend({
   template: [
@@ -132,6 +134,7 @@ export let DescriptionView = EmptyView.extend({
       top: descriptionPosition.y - 10,
       transform: 'rotate(' + (this.model.get('angle') || 0) + 'deg)'
     });
+    setLinkViewColors(this);
   },
 
   removeBox: function() {
