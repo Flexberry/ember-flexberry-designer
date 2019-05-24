@@ -206,6 +206,7 @@ export default Component.extend({
     paper.on('updaterepobj', this._updateRepObj, this);
     paper.on('checkexistelements', this._checkOnExistElements, this);
     paper.on('cell:highlight', this._highlighted, this);
+    paper.on('element:openeditform', this._elementOpenEditForm, this);
   },
 
 
@@ -275,6 +276,19 @@ export default Component.extend({
         this._clearLinksData();
       }
     }
+  },
+
+  /**
+    Handler custom event `element:openeditform`.
+    Invokes the action specified in the `openEditFormAction` property, passing it the UML-element model.
+
+    @private
+    @method _elementOpenEditForm
+    @param {joint.dia.CellView} cellView
+    @param {joint.dia.Element} cellView.model
+  */
+  _elementOpenEditForm({ model }) {
+    this.get('openEditFormAction')(model.get('objectModel'));
   },
 
   /**

@@ -430,6 +430,14 @@ joint.shapes.flexberry.uml.ClassView = joint.dia.ElementView.extend({
         'circle': { r: 6, fill: '#007aff', stroke: '#007aff', 'stroke-width': 1 },
         'text': { fill: '#ffffff', 'font-size': 10, 'text-anchor': 'middle', x: 0, y: 3, 'font-family': 'Icons' },
       }
+    }, {
+      name: 'open-edit-form-button',
+      text: '⌘',
+      attrs: {
+        'element': { 'ref-x': '100%', 'ref-y': 0, 'ref': '.joint-highlight-stroke', event: 'element:openeditform' },
+        'circle': { r: 8, fill: '#007aff', stroke: '#007aff', 'stroke-width': 1 },
+        'text': { fill: '#ffffff', x: 0, y: 3, 'font-size': 10, 'text-anchor': 'middle' },
+      }
     }]);
   },
 
