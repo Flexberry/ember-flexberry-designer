@@ -330,7 +330,7 @@ export default Controller.extend({
     */
     saveEditableObject() {
       this.get('appState').loading();
-      this.get('editingObject').save().finally(() => {
+      this.get('editableObject').save().finally(() => {
         this.get('appState').reset();
       });
     },
