@@ -55,6 +55,12 @@ let Model = CADModel.extend(DevUMLCADMixin, {
           result.pushObject(FdUmlNote.create({ primitive }));
           break;
 
+        case 'STORMCASE.UML.cad.Class, UMLCAD': {
+          let classObject = FdUmlClass.create({ primitive });
+          classObject.set('primitive.$type', 'STORMCASE.STORMNET.Repository.CADClass, STORM.NET Case Tool plugin');
+          result.pushObject(classObject);
+          break;
+        }
         case 'STORMCASE.STORMNET.Repository.CADClass, STORM.NET Case Tool plugin':
           result.pushObject(FdUmlClass.create({ primitive }));
           break;
