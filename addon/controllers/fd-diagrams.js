@@ -271,8 +271,8 @@ export default Controller.extend({
           promises.clear();
 
           let emptyReferenceCountItems = this.get('emptyReferenceCountItems');
-          let removeClass = emptyReferenceCountItems.filterBy('constructor.modelName', 'fd-dev-class');
-          emptyReferenceCountItems.removeObjects(removeClass);
+          let removeClasses = emptyReferenceCountItems.filterBy('constructor.modelName', 'fd-dev-class');
+          emptyReferenceCountItems.removeObjects(removeClasses);
 
           let mapFunction = function(item) {
             if (item.get('isNew')) {
@@ -289,8 +289,8 @@ export default Controller.extend({
           return all(promises).then(() => {
             promises.clear();
 
-            if (removeClass.length > 0) {
-              promises.pushObjects(removeClass.map(mapFunction));
+            if (removeClasses.length > 0) {
+              promises.pushObjects(removeClasses.map(mapFunction));
             }
 
             emptyReferenceCountItems.clear();

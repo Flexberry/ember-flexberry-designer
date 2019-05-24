@@ -76,7 +76,7 @@ export default Component.extend(
         class: model
       });
 
-      this.send('openViewSheet', view);
+      /*this.send('openViewSheet', view);*/
     },
 
     /**
