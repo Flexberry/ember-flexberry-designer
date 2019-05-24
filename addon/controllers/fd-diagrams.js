@@ -38,6 +38,14 @@ export default Controller.extend({
   selectedElement: undefined,
 
   /**
+    The object to edit.
+
+    @property editableObject
+    @type FdDevClassModel
+  */
+  editableObject: undefined,
+
+  /**
     Value search input.
 
     @property searchValue
@@ -54,6 +62,23 @@ export default Controller.extend({
     @default ''
   */
   sheetComponentName: '',
+
+  /**
+    Name for sheet with object edit form.
+
+    @property objectEditFormSheet
+    @type String
+    @default 'objectEditFormSheet'
+  */
+  objectEditFormSheet: 'objectEditFormSheet',
+
+  /**
+    The part of the name for the component with the object edit form, corresponds to the stereotype.
+
+    @property objectEditFormNamePart
+    @type String
+  */
+  objectEditFormNamePart: undefined,
 
   /**
    Array items with empty reference count.
@@ -154,10 +179,12 @@ export default Controller.extend({
      @param {String} sheetName Sheet's dbName
   */
   closeSheet(sheetName) {
-    let sheetComponentName = this.get('sheetComponentName');
-    if (sheetComponentName === sheetName) {
+    if (this.get('sheetComponentName') === sheetName) {
       this.deactivateListItem();
       this.set('selectedElement', undefined);
+    } else if (this.get('objectEditFormSheet') === sheetName) {
+      this.set('objectEditFormNamePart', undefined);
+      this.set('editableObject', undefined);
     }
   },
 
@@ -294,6 +321,34 @@ export default Controller.extend({
         this.set('error', error);
         this.get('appState').reset();
       });
-    }
+    },
+
+    /**
+      Saves the editable object.
+
+      @method actions.saveEditableObject
+    */
+    saveEditableObject() {
+      this.get('appState').loading();
+      this.get('editableObject').save().finally(() => {
+        this.get('appState').reset();
+      });
+    },
+
+    /**
+      Opens the edit form with the passed object.
+
+      @method actions.openObjectEditForm
+      @param {FdUmlClass} object The object to edit.
+    */
+    openObjectEditForm(object) {
+      let objectId = object.get('repositoryObject').slice(1, -1);
+      let stereotype = object.getWithDefault('stereotype', '').trim().slice(1, -1);
+
+      this.set('editableObject', this.get('store').peekRecord('fd-dev-class', objectId));
+      this.set('objectEditFormNamePart', stereotype || 'implementation');
+
+      this.get('fdSheetService').openSheet(this.get('objectEditFormSheet'));
+    },
   }
 });

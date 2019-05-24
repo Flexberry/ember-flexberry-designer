@@ -422,7 +422,7 @@ joint.shapes.flexberry.uml.ClassView = joint.shapes.flexberry.uml.PrimitiveEleme
     let objectModel = this.model.get('objectModel');
     let collapsed = objectModel.get('collapsed');
 
-    buttons.pushObject({
+    buttons.pushObjects([{
       name: 'collapse-button',
       text: collapsed ? '&#xf065' : '&#xf066',
       handler: this.collapseElementView.bind(this),
@@ -431,7 +431,15 @@ joint.shapes.flexberry.uml.ClassView = joint.shapes.flexberry.uml.PrimitiveEleme
         'circle': { r: 6, fill: '#007aff', stroke: '#007aff', 'stroke-width': 1 },
         'text': { fill: '#ffffff', 'font-size': 10, 'text-anchor': 'middle', x: 0, y: 3, 'font-family': 'Icons' },
       }
-    });
+    }, {
+      name: 'open-edit-form-button',
+      text: '&#xf013',
+      attrs: {
+        'element': { 'ref-dx': -14, 'ref-y': 0, 'ref': '.joint-highlight-stroke', event: 'element:openeditform' },
+        'circle': { r: 6, fill: '#007aff', stroke: '#007aff', 'stroke-width': 1 },
+        'text': { fill: '#ffffff', x: 0, y: 3, 'font-size': 10, 'text-anchor': 'middle', 'font-family': 'Icons' },
+      }
+    }]);
 
     return buttons;
   },

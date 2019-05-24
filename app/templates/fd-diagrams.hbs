@@ -206,7 +206,25 @@
     model=selectedElement.model
     emptyReferenceCountItems=emptyReferenceCountItems
     sheetComponentName=sheetComponentName
+    openEditFormAction=(action "openObjectEditForm")
   }}
 {{/if}}
 
+{{/fd-sheet}}
+
+{{#fd-sheet
+  title=editableObject.name
+  saveController=(action "saveEditableObject")
+  sheetComponentName=objectEditFormSheet
+  readonly=true
+}}
+  {{#if (known-for-type (concat "fd-editing-panels/fd-" objectEditFormNamePart "-editing-panel"))}}
+    {{component (concat "fd-editing-panels/fd-" objectEditFormNamePart "-editing-panel")
+      model=editableObject
+    }}
+  {{else}}
+    {{fd-editing-panels/fd-custom-editing-panel
+      model=editableObject
+    }}
+  {{/if}}
 {{/fd-sheet}}

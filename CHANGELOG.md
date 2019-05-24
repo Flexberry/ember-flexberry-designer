@@ -8,6 +8,7 @@ All notable changes to this project will be documented in this file.
 * Added highlight feature for cad elements.
 * Added check on exist diagram elements.
 * Added delete button for class primitives.
+* Button to open the object edit form from the diagram.
 
 ### Changed
 * The diagram in the `{{fd-uml-diagram}}` component now has an infinite size.
