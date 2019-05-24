@@ -5,7 +5,7 @@
 import { computed } from '@ember/object';
 import $ from 'jquery';
 import { isBlank } from '@ember/utils';
-import { isArray, A } from '@ember/array';
+import { isArray } from '@ember/array';
 
 import joint from 'npm:jointjs';
 
