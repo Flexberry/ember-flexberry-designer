@@ -3,9 +3,11 @@ import $ from 'jquery';
 let setInputRectColors = function(jointElement, rects) {
   let primitive = jointElement.model.attributes.objectModel.primitive;
   let textColor = primitive.DrawStyle.TextColor;
-  let color = "#" + ((1 << 24) + ( textColor.R << 16) + (textColor.G << 8) + textColor.B).toString(16).slice(1);
+//   let color = "#" + ((1 << 24) + ( textColor.R << 16) + (textColor.G << 8) + textColor.B).toString(16).slice(1);
+  let color = 'rgba('+[textColor.R,textColor.G,textColor.B,textColor.A].join(',')+')';
   let brushColor = primitive.DrawStyle.DrawBrush.Color;
-  let bgColor = "#" + ((1 << 24) + ( brushColor.R << 16) + (brushColor.G << 8) + brushColor.B).toString(16).slice(1);
+//   let bgColor = "#" + ((1 << 24) + ( brushColor.R << 16) + (brushColor.G << 8) + brushColor.B).toString(16).slice(1);
+  let bgColor = 'rgba('+[brushColor.R,brushColor.G,brushColor.B,brushColor.A].join(',')+')';  
   rects.forEach(function(rect) {
     let className = 'flexberry-uml-' + rect.type + '-rect';
     let cssName = '.' + className;
@@ -36,9 +38,11 @@ let setLinkColors = function(primitive, link) {
     return;
   }
   let textColor = primitive.DrawStyle.TextColor;
-  let color = "#" + ((1 << 24) + ( textColor.R << 16) + (textColor.G << 8) + textColor.B).toString(16).slice(1);
+//   let color = "#" + ((1 << 24) + ( textColor.R << 16) + (textColor.G << 8) + textColor.B).toString(16).slice(1);
+    let color = 'rgba('+[textColor.R,textColor.G,textColor.B,textColor.A].join(',')+')';
   let brushColor = primitive.DrawStyle.DrawBrush.Color;
-  let bgColor = "#" + ((1 << 24) + ( brushColor.R << 16) + (brushColor.G << 8) + brushColor.B).toString(16).slice(1);
+//   let bgColor = "#" + ((1 << 24) + ( brushColor.R << 16) + (brushColor.G << 8) + brushColor.B).toString(16).slice(1);
+  let bgColor = 'rgba('+[brushColor.R,brushColor.G,brushColor.B,brushColor.A].join(',')+')';  
   if (!('.connection' in link.attributes.attrs)) {
     link.attributes.attrs['.connection'] = {};
   }
@@ -73,9 +77,11 @@ let setLinkViewColors = function(linkView) {
   }
   let primitive = objectModel.primitive;
   let textColor = primitive.DrawStyle.TextColor;
-  let color = "#" + ((1 << 24) + ( textColor.R << 16) + (textColor.G << 8) + textColor.B).toString(16).slice(1);
+//   let color = "#" + ((1 << 24) + ( textColor.R << 16) + (textColor.G << 8) + textColor.B).toString(16).slice(1);
+    let color = 'rgba('+[textColor.R,textColor.G,textColor.B,textColor.A].join(',')+')';
   let brushColor = primitive.DrawStyle.DrawBrush.Color;
-  let bgColor = "#" + ((1 << 24) + ( brushColor.R << 16) + (brushColor.G << 8) + brushColor.B).toString(16).slice(1);
+//   let bgColor = "#" + ((1 << 24) + ( brushColor.R << 16) + (brushColor.G << 8) + brushColor.B).toString(16).slice(1);
+  let bgColor = 'rgba('+[brushColor.R,brushColor.G,brushColor.B,brushColor.A].join(',')+')';  
 
   for (let i = 0; i < linkView.model.inputElements.length; i++) {
     let divInputs = linkView.model.inputElements[i];
