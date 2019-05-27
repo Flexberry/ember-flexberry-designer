@@ -137,6 +137,8 @@ Router.map(function () {
     this.route('empty');
     this.route('new');
   });
+
+  this.route('mobile/sidebar');
 });
 
 export default Router;

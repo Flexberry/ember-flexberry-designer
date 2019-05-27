@@ -32,10 +32,10 @@ export default Service.extend(Evented, {
   openSheet(sheetName, currentItem) {
     this.trigger('openSheetTriggered', sheetName, currentItem);
     this.set(`sheetSettings.visibility.${sheetName}`, true);
-    $('.pushable').addClass('fade');
+    $('body > div').addClass('fade');
     $('.fd-sheet.visible.expand .content-mini').addClass('fade');
 
-    let sidebarWidth = $('.ui.sidebar.main.menu').width();
+    let sidebarWidth = $('.ui.sidebar.main.menu').width() == undefined ? 0 : $('.ui.sidebar.main.menu').width();
 
     let sheetTranslate = `translate3d(calc(50% - ${sidebarWidth}px), 0, 0)`;
     $(`.fd-sheet.${sheetName}`).css({ 'transform': sheetTranslate });
@@ -57,7 +57,7 @@ export default Service.extend(Evented, {
     let currentSheet = $(`.fd-sheet.${sheetName}`);
 
     if ($('.fd-sheet.visible').length < 2) {
-      $('.pushable').removeClass('fade');
+      $('body > div').removeClass('fade');
 
       // Сбрасываем стиль с кнопки сайдбара.
       $('.toggle-sidebar').removeClass('expanded');

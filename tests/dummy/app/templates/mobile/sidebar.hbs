@@ -1,0 +1,20 @@
+
+<div class="mobile vertical main menu visible uncover ui sidebar">
+  {{#if currentProjectName}}
+    <div class="item current-project-name-header">
+      <div>
+        <i class="icon"></i>
+        {{t 'forms.application.sitemap.root.fd-current-project-name-header.caption'}}
+      </div>
+    </div>
+     <div class="item current-project-name">
+      <div>
+        <i class="icon"></i>
+        {{currentProjectName}}
+      </div>
+    </div>
+  {{/if}}
+  {{flexberry-sitemap sitemap=sitemap}}
+  {{flexberry-sitemap sitemap=sitemapBottom}}
+</div>
+
