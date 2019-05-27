@@ -144,7 +144,10 @@ export default Component.extend({
         connecting: {
           name: 'stroke'
         }
-      }
+      },
+      interactive: {
+        elementMove: false
+      },
     }));
 
     let elements = this.get('elements');
@@ -196,6 +199,7 @@ export default Component.extend({
     graph.on('change:target', fitPaperToContent);
     graph.on('change:vertices', fitPaperToContent);
     graph.on('remove', fitPaperToContent);
+    graph.on('remove', this._removeElements, this);
 
     fitPaperToContent();
 
@@ -206,8 +210,12 @@ export default Component.extend({
     paper.on('updaterepobj', this._updateRepObj, this);
     paper.on('checkexistelements', this._checkOnExistElements, this);
     paper.on('cell:highlight', this._highlighted, this);
-  },
+    paper.on('element:openeditform', this._elementOpenEditForm, this);
 
+    // Ghost element mode.
+    paper.on('element:pointermove', this._ghostElementMove);
+    paper.on('element:pointerup', this._ghostElementRemove);
+  },
 
   /**
     Handler event 'blank:pointerclick'.
@@ -275,6 +283,19 @@ export default Component.extend({
         this._clearLinksData();
       }
     }
+  },
+
+  /**
+    Handler custom event `element:openeditform`.
+    Invokes the action specified in the `openEditFormAction` property, passing it the UML-element model.
+
+    @private
+    @method _elementOpenEditForm
+    @param {joint.dia.CellView} cellView
+    @param {joint.dia.Element} cellView.model
+  */
+  _elementOpenEditForm({ model }) {
+    this.get('openEditFormAction')(model.get('objectModel'));
   },
 
   /**
@@ -358,6 +379,54 @@ export default Component.extend({
     this.set('draggedLink', undefined);
     this.set('draggedLinkView', undefined);
     this.set('isLinkAdding', false);
+  },
+
+  /**
+    Handler event 'element:pointermove', create and mode ghost element.
+
+    @method actions._ghostElementMove
+    @param {Object} view this JoinJS object.
+    @param {jQuery.Event} evt event.
+    @param {Number} x coordinate x.
+    @param {Number} y coordinate y.
+  */
+  _ghostElementMove(view, evt, x, y) {
+    let data = evt.data;
+    if (data.ghost) {
+      data.ghost.attr({ 'x': x - data.dx, 'y': y - data.dy });
+    } else {
+      let bbox = view.model.getBBox();
+      let ghost = joint.Vectorizer('rect');
+      ghost.attr(bbox);
+      ghost.attr({ 'fill': 'transparent', 'stroke': '#5755a1', 'stroke-dasharray': '4,4', 'stroke-width': 2 });
+      ghost.appendTo(this.viewport);
+      evt.data.ghost = ghost;
+      evt.data.dx = x - bbox.x;
+      evt.data.dy = y - bbox.y;
+    }
+  },
+
+  /**
+    Handler event 'element:pointerup', delete ghost element and update link view.
+
+    @method actions._ghostElementRemove
+    @param {Object} view this JoinJS object.
+    @param {jQuery.Event} evt event.
+    @param {Number} x coordinate x.
+    @param {Number} y coordinate y.
+  */
+  _ghostElementRemove(view, evt, x, y) {
+    let data = evt.data;
+    if (data.ghost) {
+      data.ghost.remove();
+      view.model.position(x - data.dx, y - data.dy);
+      let paper = view.paper;
+      let links = paper.model.getConnectedLinks(view.model);
+      links.forEach((link)=> {
+        let linkView = paper.findViewByModel(link);
+        linkView.updateBox();
+      });
+    }
   },
 
   /**
@@ -525,15 +594,15 @@ export default Component.extend({
 
       } else if (modelName === 'fd-dev-class') {
 
-        let stereotype = newRepObj.get('stereotype');
+        let stereotype = newRepObj.get('stereotype') || '';
         objectModel.set('stereotype', stereotype);
         this._updateInputValue('.class-stereotype-input', stereotype, view);
 
-        let attributes = newRepObj.get('attributesStr');
+        let attributes = newRepObj.get('attributesStr') || '';
         objectModel.set('attributes', attributes.split('\n'));
         this._updateInputValue('.attributes-input', attributes, view);
 
-        let methods = newRepObj.get('methodsStr');
+        let methods = newRepObj.get('methodsStr') || '';
         objectModel.set('methods', methods.split('\n'));
         this._updateInputValue('.methods-input', methods, view);
       }
@@ -632,7 +701,7 @@ export default Component.extend({
     let input = view.$box.find(`${path}`);
     if (input.val() !== value) {
       input.val(value);
-      input.prop('rows', value.split(/[\n\r|\r|\n]/).length);
+      input.prop('rows', value.split(/[\n\r|\r|\n]/).length || 1);
     }
   },
 
@@ -684,8 +753,31 @@ export default Component.extend({
   _incrementPropertyReferenceCount(item) {
     let newValue = item.incrementProperty('referenceCount');
     if (newValue === 1) {
-      let emptyReferenceCountItems = this.get('emptyReferenceCountItems');
-      emptyReferenceCountItems.removeObject(item);
+      this.get('emptyReferenceCountItems').removeObject(item);
     }
+  },
+
+  /**
+    Delete primitive and repositoryObject.
+
+    @method _removeElements
+    @param {Object} object remove object.
+   */
+  _removeElements(object) {
+    let primitives = this.get('primitives');
+    let removeObject = primitives.findBy('id', object.id);
+
+    let repositoryObject = removeObject.get('repositoryObject');
+    if (!isNone(repositoryObject)) {
+      let store = this.get('store');
+      let modelName = this._getModelName(removeObject.get('primitive.$type'));
+      let allModels = store.peekAll(`${modelName}`);
+      let currentRepObj = allModels.findBy('id', repositoryObject.slice(1, -1));
+      if (!isNone(currentRepObj)) {
+        this._decrementPropertyReferenceCount(currentRepObj);
+      }
+    }
+
+    primitives.removeObject(removeObject);
   }
 });

@@ -5,7 +5,7 @@
 import { computed } from '@ember/object';
 import $ from 'jquery';
 import { isBlank } from '@ember/utils';
-import { isArray, A } from '@ember/array';
+import { isArray } from '@ember/array';
 
 import joint from 'npm:jointjs';
 
@@ -205,7 +205,7 @@ export let BaseClass = joint.shapes.basic.Generic.define('flexberry.uml.BaseClas
 */
 export let Class = BaseClass.define('flexberry.uml.Class', {});
 
-joint.shapes.flexberry.uml.ClassView = joint.dia.ElementView.extend({
+joint.shapes.flexberry.uml.ClassView = joint.shapes.flexberry.uml.PrimitiveElementView.extend({
   template: [
     '<div class="uml-class-inputs">',
     '<textarea class="class-name-input header-input" value="" rows="1" wrap="off"></textarea>',
@@ -421,16 +421,30 @@ joint.shapes.flexberry.uml.ClassView = joint.dia.ElementView.extend({
   },
 
   getButtons() {
-    return A([{
+    let buttons = joint.shapes.flexberry.uml.PrimitiveElementView.prototype.getButtons.apply(this, arguments);
+    let objectModel = this.model.get('objectModel');
+    let collapsed = objectModel.get('collapsed');
+
+    buttons.pushObjects([{
       name: 'collapse-button',
-      text: this.model.get('collapseButtonText'),
+      text: collapsed ? '&#xf065' : '&#xf066',
       handler: this.collapseElementView.bind(this),
       attrs: {
-        'element': {'ref-x': 4,'ref-y': 4, 'ref': '.flexberry-uml-header-rect' },
+        'element': {'ref-x': 0,'ref-y': 0, 'ref': '.joint-highlight-stroke' },
         'circle': { r: 6, fill: '#007aff', stroke: '#007aff', 'stroke-width': 1 },
-        'text': { fill: '#ffffff','font-size': 15, 'font-weight': 800, 'text-anchor': 'middle', stroke: '#ffffff', x: 0, y: 5, 'font-family': 'Times New Roman' },
+        'text': { fill: '#ffffff', 'font-size': 10, 'text-anchor': 'middle', x: 0, y: 3, 'font-family': 'Icons' },
+      }
+    }, {
+      name: 'open-edit-form-button',
+      text: '&#xf013',
+      attrs: {
+        'element': { 'ref-dx': -14, 'ref-y': 0, 'ref': '.joint-highlight-stroke', event: 'element:openeditform' },
+        'circle': { r: 6, fill: '#007aff', stroke: '#007aff', 'stroke-width': 1 },
+        'text': { fill: '#ffffff', x: 0, y: 3, 'font-size': 10, 'text-anchor': 'middle', 'font-family': 'Icons' },
       }
     }]);
+
+    return buttons;
   },
 
   collapseElementView(e) {
@@ -453,7 +467,6 @@ joint.shapes.flexberry.uml.ClassView = joint.dia.ElementView.extend({
     this.$box.find('.attributes-input').css('visibility', styleVisibilityValue);
     this.$box.find('.methods-input').css('visibility', styleVisibilityValue);
 
-    this.model.set('collapseButtonText', collapsed ? '+' : '-');
     this.updateBox();
     this.updateRectangles();
   },

@@ -9,12 +9,27 @@
   endDragLink=(action "endDragLink")
   emptyReferenceCountItems=emptyReferenceCountItems
   fitToContent=(action "fitToContent")
+  openEditFormAction=openEditFormAction
 }}
 
 {{#if (known-for-type (concat "fd-uml-diagram-toolbars/fd-" diagramType "-toolbar"))}}
   <div class="fd-uml-diagram-toolbar">
-    {{component (concat "fd-uml-diagram-toolbars/fd-" diagramType "-toolbar")
-      toolbarButtonClicked=(action "toolbarButtonClicked")
-    }}
+    {{#if (not _collapseEditPanelToolbar)}}
+      <div class="row">
+        <button class="ui button" onclick={{action 'collapseEditPanelToolbar'}}>
+          <i class="caret down icon"></i>
+        </button>
+      </div>
+      <div class="row">
+        {{component (concat "fd-uml-diagram-toolbars/fd-" diagramType "-toolbar")
+        toolbarButtonClicked=(action "toolbarButtonClicked")}}
+      </div>
+    {{else}}
+      <div class="row">
+        <button class="ui button" onclick={{action 'collapseEditPanelToolbar'}}>
+          <i class="caret up icon"></i>
+        </button>
+      </div>
+    {{/if}}
   </div>
 {{/if}}

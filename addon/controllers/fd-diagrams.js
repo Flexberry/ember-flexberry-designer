@@ -7,6 +7,13 @@ import { schedule } from '@ember/runloop';
 import { all, resolve } from 'rsvp';
 import hasChanges from '../utils/model-has-changes';
 
+import FdUmlElement from '../objects/uml-primitives/fd-uml-element';
+import FdUmlLink from '../objects/uml-primitives/fd-uml-link';
+
+const getActualValue = (value, currentValue) => {
+  return isBlank(value) && isBlank(currentValue) ? currentValue : value;
+};
+
 export default Controller.extend({
   /**
     Service for managing the state of the application.
@@ -34,6 +41,14 @@ export default Controller.extend({
   selectedElement: undefined,
 
   /**
+    The object to edit.
+
+    @property editableObject
+    @type FdDevClassModel
+  */
+  editableObject: undefined,
+
+  /**
     Value search input.
 
     @property searchValue
@@ -50,6 +65,23 @@ export default Controller.extend({
     @default ''
   */
   sheetComponentName: '',
+
+  /**
+    Name for sheet with object edit form.
+
+    @property objectEditFormSheet
+    @type String
+    @default 'objectEditFormSheet'
+  */
+  objectEditFormSheet: 'objectEditFormSheet',
+
+  /**
+    The part of the name for the component with the object edit form, corresponds to the stereotype.
+
+    @property objectEditFormNamePart
+    @type String
+  */
+  objectEditFormNamePart: undefined,
 
   /**
    Array items with empty reference count.
@@ -150,10 +182,12 @@ export default Controller.extend({
      @param {String} sheetName Sheet's dbName
   */
   closeSheet(sheetName) {
-    let sheetComponentName = this.get('sheetComponentName');
-    if (sheetComponentName === sheetName) {
+    if (this.get('sheetComponentName') === sheetName) {
       this.deactivateListItem();
       this.set('selectedElement', undefined);
+    } else if (this.get('objectEditFormSheet') === sheetName) {
+      this.set('objectEditFormNamePart', undefined);
+      this.set('editableObject', undefined);
     }
   },
 
@@ -175,86 +209,125 @@ export default Controller.extend({
     let repositoryObjects = primitives.uniqBy('repositoryObject').filter(p => p.get('repositoryObject'));
     if (repositoryObjects.length > 0) {
       let store = this.get('store');
-      promises.pushObjects(repositoryObjects.map(p => {
-        let repId = p.get('repositoryObject').slice(1, -1);
-        let type = p.get('primitive.$type');
-        let repObject;
-        let allRepObjects;
-
-        switch (type) {
-          case 'STORMCASE.STORMNET.Repository.CADClass, STORM.NET Case Tool plugin':
-            allRepObjects = store.peekAll('fd-dev-class');
-            repObject = allRepObjects.findBy('id', repId);
-            if (repObject) {
-              if (repObject.get('isNew')) {
-                let propName = p.get('name');
-                if (isBlank(propName)) {
-                  return repObject.rollbackAttributes();
-                } else {
-                  repObject.set('nameStr', propName);
-                }
+      let elements = repositoryObjects.filter(p => p instanceof FdUmlElement);
+      if (elements.length > 0) {
+        promises.pushObjects(elements.map(p => {
+          let repId = p.get('repositoryObject').slice(1, -1);
+          let allRepObjects = store.peekAll('fd-dev-class');
+          let repObject = allRepObjects.findBy('id', repId);
+          if (repObject) {
+            if (repObject.get('isNew')) {
+              let propName = p.get('name');
+              if (isBlank(propName)) {
+                return repObject.rollbackAttributes();
+              } else {
+                repObject.set('nameStr', propName);
               }
-
-              let props = p.getProperties('stereotype', 'attributes', 'methods');
-              repObject.setProperties({
-                stereotype: props.stereotype,
-                attributesStr: props.attributes.join('\n'),
-                methodsStr: props.methods.join('\n')
-              });
             }
 
-            break;
-          case 'STORMCASE.UML.cad.Inheritance, UMLCAD':
-            allRepObjects = store.peekAll('fd-dev-inheritance');
-            repObject = allRepObjects.findBy('id', repId);
-            if (repObject) {
-              let props = p.getProperties('description');
-              repObject.setProperties({
-                nameStr: props.description
-              });
+            let stereotype = p.getWithDefault('stereotype', '').trim();
+            let attributes = p.getWithDefault('attributes', []).join('\n').trim();
+            let methods = p.getWithDefault('methods', []).join('\n').trim();
+            let currentValues = repObject.getProperties('stereotype', 'attributesStr', 'methodsStr');
+            repObject.setProperties({
+              stereotype: getActualValue(stereotype, currentValues.stereotype),
+              attributesStr: getActualValue(attributes, currentValues.attributesStr),
+              methodsStr: getActualValue(methods, currentValues.methodsStr),
+            });
+          }
+
+          return hasChanges(repObject) ? repObject.save() : resolve();
+        }));
+      }
+
+      return all(promises).then(() => {
+        promises.clear();
+
+        let links = repositoryObjects.filter(p => p instanceof FdUmlLink);
+        if (links.length > 0) {
+          promises.pushObjects(links.map(p => {
+            let repId = p.get('repositoryObject').slice(1, -1);
+            let type = p.get('primitive.$type');
+            let repObject;
+            let allRepObjects;
+
+            switch (type) {
+              case 'STORMCASE.UML.cad.Inheritance, UMLCAD':
+                allRepObjects = store.peekAll('fd-dev-inheritance');
+                repObject = allRepObjects.findBy('id', repId);
+                if (repObject) {
+                  let description = p.getWithDefault('description', '').trim();
+                  repObject.set('nameStr', getActualValue(description, repObject.get('nameStr')));
+                }
+
+                break;
+              case 'STORMCASE.UML.cad.Composition, UMLCAD':
+                allRepObjects = store.peekAll('fd-dev-aggregation');
+              // eslint-disable-next-line no-fallthrough
+              case 'STORMCASE.UML.cad.Association, UMLCAD':
+                if (isNone(allRepObjects)) {
+                  allRepObjects = store.peekAll('fd-dev-association');
+                }
+
+                repObject = allRepObjects.findBy('id', repId);
+
+                if (repObject) {
+                  let startMultiplicity = p.getWithDefault('startMultiplicity', '').trim();
+                  let endMultiplicity = p.getWithDefault('endMultiplicity', '').trim();
+                  let endRoleTxt = p.getWithDefault('endRoleTxt', '').trim();
+                  let startRoleTxt = p.getWithDefault('startRoleTxt', '').trim();
+                  let description = p.getWithDefault('description', '').trim();
+                  let currentValues = repObject.getProperties('nameStr', 'startMultiplicity', 'endMultiplicity', 'endRoleStr', 'startRoleStr');
+                  repObject.setProperties({
+                    nameStr: getActualValue(description, currentValues.nameStr),
+                    startMultiplicity: getActualValue(startMultiplicity, currentValues.startMultiplicity),
+                    endMultiplicity: getActualValue(endMultiplicity, currentValues.endMultiplicity),
+                    endRoleStr: getActualValue(endRoleTxt, currentValues.endRoleStr),
+                    startRoleStr: getActualValue(startRoleTxt, currentValues.startRoleStr),
+                  });
+                }
+
+                break;
             }
 
-            break;
-          case 'STORMCASE.UML.cad.Composition, UMLCAD':
-            allRepObjects = store.peekAll('fd-dev-aggregation');
-          // eslint-disable-next-line no-fallthrough
-          case 'STORMCASE.UML.cad.Association, UMLCAD':
-            if (isNone(allRepObjects)) {
-              allRepObjects = store.peekAll('fd-dev-association');
-            }
-
-            repObject = allRepObjects.findBy('id', repId);
-
-            if (repObject) {
-              let props = p.getProperties('startMultiplicity', 'endMultiplicity', 'endRoleTxt', 'startRoleTxt', 'description');
-              repObject.setProperties({
-                nameStr: props.description,
-                startMultiplicity: props.startMultiplicity,
-                endMultiplicity: props.endMultiplicity,
-                endRoleStr: props.endRoleTxt,
-                startRoleStr: props.startRoleTxt
-              });
-            }
-
-            break;
+            return hasChanges(repObject) ? repObject.save() : resolve();
+          }));
         }
 
-        return hasChanges(repObject) ? repObject.save() : resolve();
-      }));
+        return all(promises).then(() => {
+          promises.clear();
+
+          let emptyReferenceCountItems = this.get('emptyReferenceCountItems');
+          let removeClasses = emptyReferenceCountItems.filterBy('constructor.modelName', 'fd-dev-class');
+          emptyReferenceCountItems.removeObjects(removeClasses);
+
+          let mapFunction = function(item) {
+            if (item.get('isNew')) {
+              return item.rollbackAttributes();
+            } else {
+              return item.destroyRecord();
+            }
+          };
+
+          if (emptyReferenceCountItems.length > 0) {
+            promises.pushObjects(emptyReferenceCountItems.map(mapFunction));
+          }
+
+          return all(promises).then(() => {
+            promises.clear();
+
+            if (removeClasses.length > 0) {
+              promises.pushObjects(removeClasses.map(mapFunction));
+            }
+
+            emptyReferenceCountItems.clear();
+
+            model.set('primitivesJsonString', JSON.stringify(primitives));
+            return all(promises);
+          });
+        });
+      });
     }
-
-    promises.pushObjects(this.get('emptyReferenceCountItems').map(item => {
-      if (item.get('isNew')) {
-        return item.rollbackAttributes();
-      } else {
-        return item.destroyRecord();
-      }
-    }));
-    this.get('emptyReferenceCountItems').clear();
-
-    model.set('primitivesJsonString', JSON.stringify(primitives));
-
-    return all(promises);
   },
 
   actions: {
@@ -284,6 +357,34 @@ export default Controller.extend({
         this.set('error', error);
         this.get('appState').reset();
       });
-    }
+    },
+
+    /**
+      Saves the editable object.
+
+      @method actions.saveEditableObject
+    */
+    saveEditableObject() {
+      this.get('appState').loading();
+      this.get('editableObject').save().finally(() => {
+        this.get('appState').reset();
+      });
+    },
+
+    /**
+      Opens the edit form with the passed object.
+
+      @method actions.openObjectEditForm
+      @param {FdUmlClass} object The object to edit.
+    */
+    openObjectEditForm(object) {
+      let objectId = object.get('repositoryObject').slice(1, -1);
+      let stereotype = object.getWithDefault('stereotype', '').trim().slice(1, -1);
+
+      this.set('editableObject', this.get('store').peekRecord('fd-dev-class', objectId));
+      this.set('objectEditFormNamePart', stereotype || 'implementation');
+
+      this.get('fdSheetService').openSheet(this.get('objectEditFormSheet'));
+    },
   }
 });

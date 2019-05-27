@@ -158,7 +158,7 @@ joint.highlighters.strokeAndButtons = {
 
     cellView.vel.append(highlightVel);
     if (cellView.getButtons instanceof Function) {
-      this.addButtons(cellView.vel, cellView.getButtons(), id);
+      this.addButtons(cellView, id);
     }
 
     cellView.model.set('highlighted', true);
@@ -173,29 +173,16 @@ joint.highlighters.strokeAndButtons = {
     cellView.model.set('highlighted', false);
   },
 
-  addButtons(element, buttons, id) {
+  addButtons(cellView, id) {
+    let buttons = cellView.getButtons();
     buttons.forEach(button => {
       let svgNS = 'http://www.w3.org/2000/svg';
       let g = document.createElementNS(svgNS, 'g');
-      g.setAttributeNS(null, 'class', get(button, 'name') || '');
-      g.setAttributeNS(null, 'ref-x', get(button, 'attrs.element.ref-x') || 0);
-      g.setAttributeNS(null, 'ref-y', get(button, 'attrs.element.ref-y') || 0);
-      g.setAttributeNS(null, 'ref', get(button, 'attrs.element.ref') || '');
+      let name = get(button, 'name');
+      g.setAttributeNS(null, 'class', name || '');
       let circle = document.createElementNS(svgNS, 'circle');
-      circle.setAttributeNS(null, 'r', get(button, 'attrs.circle.r') || 6);
-      circle.setAttributeNS(null, 'fill', get(button, 'attrs.circle.fill') || '#007aff');
-      circle.setAttributeNS(null, 'stroke', get(button, 'attrs.circle.stroke') || '#007aff');
-      circle.setAttributeNS(null, 'stroke-width', get(button, 'attrs.circle.stroke-width') || 1);
       let text = document.createElementNS(svgNS, 'text');
-      text.setAttributeNS(null, 'font-size', get(button, 'attrs.text.font-size') || 15);
-      text.setAttributeNS(null, 'fill', get(button, 'attrs.text.fill') || '#ffffff');
-      text.setAttributeNS(null, 'stroke', get(button, 'attrs.text.stroke') || '#ffffff');
-      text.setAttributeNS(null, 'font-weight', get(button, 'attrs.text.font-weight') || 800);
-      text.setAttributeNS(null, 'text-anchor', get(button, 'attrs.text.text-anchor') || 'middle');
-      text.setAttributeNS(null, 'x', get(button, 'attrs.text.x') || 0);
-      text.setAttributeNS(null, 'y', get(button, 'attrs.text.y') || 5);
-      text.setAttributeNS(null, 'font-family', get(button, 'attrs.text.font-family') || 'Times New Roman');
-      text.textContent = get(button, 'text');
+      text.innerHTML = get(button, 'text');
       g.appendChild(circle);
       g.appendChild(text);
       g.onclick = get(button, 'handler');
@@ -204,8 +191,13 @@ joint.highlighters.strokeAndButtons = {
       }
 
       this._buttons[id].addObject(g);
-      element.append(g);
+      cellView.vel.append(g);
+      cellView.model.attr(`.${name}`, get(button, 'attrs.element'));
+      cellView.model.attr(`.${name}>circle`, get(button, 'attrs.circle'));
+      cellView.model.attr(`.${name}>text`, get(button, 'attrs.text'));
     }, this);
+
+    cellView.update();
   },
 
   removeButtons(id) {
@@ -218,3 +210,24 @@ joint.highlighters.strokeAndButtons = {
     this._buttons[id] = null;
   }
 };
+
+joint.shapes.basic.Generic.define('flexberry.uml.PrimitiveElementView');
+joint.shapes.flexberry.uml.PrimitiveElementView = joint.dia.ElementView.extend({
+  getButtons() {
+    return A([{
+      name: 'remove-button',
+      text: '&#xf00d',
+      handler: this.removeElement.bind(this),
+      attrs: {
+        'element': {'ref-dx': 0,'ref-y': 0, 'ref': '.joint-highlight-stroke' },
+        'circle': { r: 6, fill: '#007aff', stroke: '#007aff', 'stroke-width': 1 },
+        'text': { fill: '#ffffff','font-size': 10, 'text-anchor': 'middle', x: 0, y: 3, 'font-family': 'Icons' },
+      }
+    }]);
+  },
+
+  removeElement(e) {
+    e.stopPropagation();
+    this.model.remove();
+  },
+});
