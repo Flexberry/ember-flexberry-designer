@@ -180,6 +180,14 @@ joint.shapes.flexberry.uml.TemplateClassView = joint.shapes.flexberry.uml.ClassV
     return this;
   },
 
+  getButtons() {
+    let buttons = joint.shapes.flexberry.uml.ClassView.prototype.getButtons.apply(this, arguments);
+    let openEditFormButton = buttons.findBy('name', 'open-edit-form-button');
+    buttons.removeObject(openEditFormButton);
+
+    return buttons;
+  },
+
   updateRectangles() {
     let rects = this.model.getRectangles();
     let offsetY = 0;
