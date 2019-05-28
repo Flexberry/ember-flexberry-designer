@@ -161,6 +161,7 @@ joint.highlighters.strokeAndButtons = {
       this.addButtons(cellView, id);
     }
 
+    $(magnetEl.firstChild.children).attr({'fill-opacity':'1'});
     cellView.model.set('highlighted', true);
   },
 
@@ -169,6 +170,7 @@ joint.highlighters.strokeAndButtons = {
     let stroke = joint.highlighters.stroke;
     let id = stroke.getHighlighterId(magnetEl, opt);
     this.removeButtons(id);
+    $(magnetEl.firstChild.children).attr({'fill-opacity':'0'});
 
     cellView.model.set('highlighted', false);
   },
