@@ -1,5 +1,18 @@
 .ui.form {
-  .uml-class-inputs, .uml-link-inputs {
+  .uml-link-inputs {
+    textarea, input {
+      position: absolute;
+      pointer-events: none;
+      -webkit-user-select: none;
+      padding: 2px 7px;
+      box-sizing: border-box;
+      z-index: 2;
+    }
+  }
+}
+
+.ui.form {
+  .uml-class-inputs {
     position: absolute;
     pointer-events: none;
     -webkit-user-select: none;
