@@ -352,6 +352,7 @@ export default DS.Transform.extend({
     }
 
     let primitives = JSON.parse(deserialized) || [];
+    let linkTypes = this._linkTypes();
     let elements = {};
     let linksIds = [];
     let linkConnectorsIds = [];
@@ -359,16 +360,12 @@ export default DS.Transform.extend({
       let primitive = primitives[i];
       let primitiveId = primitive.$id;
       elements[primitiveId] = primitive;
-      switch (primitive.$type) {
-        case 'STORMCASE.UML.cad.Inheritance, UMLCAD':
-          linksIds.push(primitiveId);
-          break;
-        case 'STORMCASE.UML.cad.LinkInheritance, UMLCAD':
-          linksIds.push(primitiveId);
-          break;
-        case 'STORMCASE.UML.cad.LinkConnector, UMLCAD':
-          linkConnectorsIds.push(primitiveId);
-          break;
+      if (primitive.$type == 'STORMCASE.UML.cad.LinkConnector, UMLCAD') {
+        linkConnectorsIds.push(primitiveId);
+        continue;
+      }
+      if (primitive.$type in linkTypes || primitive.$type== 'STORMCASE.UML.cad.LinkInheritance, UMLCAD') {
+        linksIds.push(primitiveId);
       }
     }
 
