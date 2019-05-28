@@ -1,3 +1,5 @@
+@import '../cross-browser-mixins';
+
 .joint-paper.joint-theme-default {
   background-color: transparent;
 }
@@ -134,10 +136,16 @@
   width: auto;
   max-width: 90%;
   left: 50%;
-  transform: translateX(-50%);
   z-index: 2;
+  .transform(translate(-50%, 0));
+  .transition(transform 0.5s);
 
-  &:before {
+  &.hidden{
+    .transform(translate(-50%, 100%));
+  }
+
+  &::before,
+  &::after {
     background: @sidebarBg;
     border-radius: inherit;
     content: '';
@@ -149,7 +157,13 @@
     z-index: -1;
   }
 
-  .ui.button {
+  &::after {
+    background: @overlayColor;
+    .opacity(0);
+    .transition(opacity 1s);
+  }
+
+  .ui.button:not(.toggle-diagram-toolbar) {
     background: @sidebarBg;
     border-radius: 0.9rem;
     border: 4px solid transparent;
@@ -161,4 +175,20 @@
       border-color: @blue;
     }
   }
+}
+
+.content-mini.fade .fd-uml-diagram-toolbar::after {
+  .opacity(1);
+}
+
+.ui.button.toggle-diagram-toolbar {
+  background: @sidebarBg;
+  border-radius: @itemActiveBorderRadius;
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+  padding: 5px 15px;
+  padding-bottom: 0;
+  position: absolute;
+  top: -21px;
+  left: 0.86rem;
 }
