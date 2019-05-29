@@ -58,18 +58,11 @@ export let ObjectAssociation = Association.define('flexberry.uml.ObjectAssociati
 
 joint.shapes.flexberry.uml.ObjectAssociationView = RoleView.extend({
   template: [
-    '<div class="input-buffer"></div>',
     '<div class="uml-link-inputs">',
     '<input type="text" class="description-input underline-text" value="" />',
-    '</div>',
-    '<div class="uml-link-inputs">',
     '<input type="text" class="start-role-input" value="" />',
-    '</div>',
-    '<div class="uml-link-inputs">',
     '<input type="text" class="end-role-input" value="" />',
-    '</div>',
-    '<div class="uml-link-inputs">',
-    '<input type="text" class="qualified-input" value="" />',
+    '<div class="input-buffer"></div>',
     '</div>'
   ].join(''),
 });
