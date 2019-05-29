@@ -150,8 +150,37 @@ export default Controller.extend({
   deactivateListItem() {
     let selectedElement = this.get('selectedElement');
     if (!isNone(selectedElement)) {
+      let store = this.get('store');
       let model = selectedElement.get('model');
-      model.rollbackAll();
+      let primitives = A(model.get('primitives').filterBy('repositoryObject'));
+
+      // Recompute `primitives` property.
+      model.notifyPropertyChange('primitivesJsonString');
+
+      primitives.pushObjects(model.get('primitives').filterBy('repositoryObject'));
+      primitives.uniqBy('repositoryObject').forEach((primitive) => {
+        let id = primitive.get('repositoryObject').slice(1, -1);
+        let modelName;
+        switch (primitive.get('primitive.$type')) {
+          case 'STORMCASE.STORMNET.Repository.CADClass, STORM.NET Case Tool plugin':
+            modelName = 'fd-dev-class';
+            break;
+          case 'STORMCASE.UML.cad.Inheritance, UMLCAD':
+            modelName = 'fd-dev-inheritance';
+            break;
+          case 'STORMCASE.UML.cad.Composition, UMLCAD':
+            modelName = 'fd-dev-aggregation';
+            break;
+          case 'STORMCASE.UML.cad.Association, UMLCAD':
+            modelName = 'fd-dev-association';
+            break;
+          default:
+            throw new Error(`Unsupported type: '${primitive.get('primitive.$type')}'.`);
+        }
+
+        store.peekRecord(modelName, id).rollbackAll();
+      });
+
       this.set('isDiagramVisible', false);
       selectedElement.set('fdListItemActive', false);
     }
