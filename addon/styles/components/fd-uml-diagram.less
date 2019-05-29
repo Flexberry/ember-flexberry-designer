@@ -140,27 +140,14 @@
   .transform(translate(-50%, 0));
   .transition(transform 0.5s);
 
-  &.hidden{
-    .transform(translate(-50%, 100%));
-  }
-
   &::before,
   &::after {
-    background: @sidebarBg;
-    border-radius: inherit;
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    right: 0;
     z-index: -1;
   }
 
-  &::after {
-    background: @overlayColor;
-    .opacity(0);
-    .transition(opacity 1s);
+  &.hidden {
+    .transform(translate(-50%, 100%));
+    bottom: 0!important;
   }
 
   .ui.button:not(.toggle-diagram-toolbar) {
@@ -177,12 +164,29 @@
   }
 }
 
-.content-mini.fade .fd-uml-diagram-toolbar::after {
-  .opacity(1);
+.fd-uml-diagram-toolbar,
+.ui.button.toggle-diagram-toolbar {
+  &::before,
+  &::after {
+    background: @sidebarBg;
+    border-radius: inherit;
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+  }
+
+  &::after {
+    background: @overlayColor;
+    .opacity(0);
+    .transition(opacity 1s);
+  }
 }
 
 .ui.button.toggle-diagram-toolbar {
-  background: @sidebarBg;
+  background: @fdSheetBg;
   border-radius: @itemActiveBorderRadius;
   border-bottom-right-radius: 0;
   border-bottom-left-radius: 0;
@@ -191,4 +195,23 @@
   position: absolute;
   top: -21px;
   left: 0.86rem;
+}
+
+.content-mini.fade {
+  .fd-uml-diagram-toolbar,
+  .toggle-diagram-toolbar {
+    &::after {
+      .opacity(1);
+    }
+  }
+}
+
+.joint-element {
+  cursor: default;
+
+  .remove-button,
+  .collapse-button,
+  .open-edit-form-button {
+    cursor: pointer;
+  }
 }

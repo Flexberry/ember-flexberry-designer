@@ -111,11 +111,13 @@ export default Service.extend(Evented, {
   */
   toolbarDiagramPosition() {
     let diagramToolbar = $('.fd-uml-diagram-toolbar');
-    let jointPaper = $('.joint-paper');
-    jointPaper.css('margin-bottom', diagramToolbar.height());
-    let diagramToolbarBottom = jointPaper.width() <= $('.fd-uml-diagram-editor').width() ? 0 : this.getScrollbarWidth();
-    diagramToolbar.css('bottom', diagramToolbarBottom);
-    jointPaper.css('margin-bottom', diagramToolbar.height());
+    if (diagramToolbar.length > 0) {
+      let jointPaper = $('.joint-paper');
+      jointPaper.css('margin-bottom', diagramToolbar.height());
+      let diagramToolbarBottom = jointPaper.width() <= $('.fd-uml-diagram-editor').width() ? 0 : this.getScrollbarWidth();
+      diagramToolbar.css('bottom', diagramToolbarBottom);
+      jointPaper.css('margin-bottom', diagramToolbar.height());
+    }
   },
 
   /**
