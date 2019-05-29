@@ -53,9 +53,6 @@ export let Aggregation = Link.define('flexberry.uml.Aggregation', {
         return isVertical ? -10 : -5;
       case 'description':
         return 0.5;
-      default:
-        // eslint-disable-next-line no-console
-        console.log('ERROR - choose correct label name');
     }
   },
 });
