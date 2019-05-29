@@ -313,25 +313,11 @@ joint.shapes.flexberry.uml.ClassView = joint.shapes.flexberry.uml.PrimitiveEleme
       $stereotypeInput.prop('rows', rows.length);
       let objectModel = this.model.get('objectModel');
       objectModel.set('stereotype', stereotype);
-      this.paper.trigger('updaterepobj', objectModel, 'stereotype', stereotypeText);
+      this.paper.trigger('updaterepobj', objectModel, 'stereotype', stereotype);
       this.updateRectangles();
     }.bind(this));
 
-    let objectModel = this.model.get('objectModel');
-    let classNameInput = this.$box.find('.class-name-input');
-    let classStereotypeInput = this.$box.find('.class-stereotype-input');
-    let attributesInput = this.$box.find('.attributes-input');
-    let methodsInput = this.$box.find('.methods-input');
-
-    classNameInput.prop('rows', objectModel.get('name').split(/[\n\r|\r|\n]/).length || 1);
-    classNameInput.val(objectModel.get('name'));
-    classStereotypeInput.prop('rows', objectModel.get('stereotype').split(/[\n\r|\r|\n]/).length || 1);
-    classStereotypeInput.val(objectModel.get('stereotype'));
-
-    attributesInput.prop('rows', objectModel.get('attributes').length || 1);
-    attributesInput.val(objectModel.get('attributes').join('\n'));
-    methodsInput.prop('rows', objectModel.get('methods').length || 1);
-    methodsInput.val(objectModel.get('methods').join('\n'));
+    this.updateInputValue();
 
     // Update the box position whenever the underlying model changes.
     this.model.on('change', this.updateBox, this);
@@ -417,6 +403,24 @@ joint.shapes.flexberry.uml.ClassView = joint.shapes.flexberry.uml.PrimitiveEleme
     }
   },
 
+  updateInputValue() {
+    let objectModel = this.model.get('objectModel');
+    let classNameInput = this.$box.find('.class-name-input');
+    let classStereotypeInput = this.$box.find('.class-stereotype-input');
+    let attributesInput = this.$box.find('.attributes-input');
+    let methodsInput = this.$box.find('.methods-input');
+
+    classNameInput.prop('rows', objectModel.get('name').split(/[\n\r|\r|\n]/).length || 1);
+    classNameInput.val(objectModel.get('name'));
+    classStereotypeInput.prop('rows', objectModel.get('stereotype').split(/[\n\r|\r|\n]/).length || 1);
+    classStereotypeInput.val(objectModel.get('stereotype'));
+
+    attributesInput.prop('rows', objectModel.get('attributes').length || 1);
+    attributesInput.val(objectModel.get('attributes').join('\n'));
+    methodsInput.prop('rows', objectModel.get('methods').length || 1);
+    methodsInput.val(objectModel.get('methods').join('\n'));
+  },
+
   getButtons() {
     let buttons = joint.shapes.flexberry.uml.PrimitiveElementView.prototype.getButtons.apply(this, arguments);
     let objectModel = this.model.get('objectModel');
@@ -434,8 +438,9 @@ joint.shapes.flexberry.uml.ClassView = joint.shapes.flexberry.uml.PrimitiveEleme
     }, {
       name: 'open-edit-form-button',
       text: '&#xf013',
+      handler: this.openEditForm.bind(this),
       attrs: {
-        'element': { 'ref-dx': -14, 'ref-y': 0, 'ref': '.joint-highlight-stroke', event: 'element:openeditform' },
+        'element': { 'ref-dx': -14, 'ref-y': 0, 'ref': '.joint-highlight-stroke' },
         'circle': { r: 6, fill: '#007aff', stroke: '#007aff', 'stroke-width': 1 },
         'text': { fill: '#ffffff', x: 0, y: 3, 'font-size': 10, 'text-anchor': 'middle', 'font-family': 'Icons' },
       }
@@ -450,6 +455,11 @@ joint.shapes.flexberry.uml.ClassView = joint.shapes.flexberry.uml.PrimitiveEleme
     let collapsedToggle = !objectModel.get('collapsed');
     objectModel.set('collapsed', collapsedToggle);
     this.applyDisplayFromCollapseValue();
+  },
+
+  openEditForm(e) {
+    e.stopPropagation();
+    this.paper.trigger('element:openeditform', this);
   },
 
   applyDisplayFromCollapseValue() {

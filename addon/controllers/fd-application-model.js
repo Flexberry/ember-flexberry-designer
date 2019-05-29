@@ -3,9 +3,11 @@ import { computed, observer, set } from '@ember/object';
 import { isBlank, isNone } from '@ember/utils';
 import { A } from '@ember/array';
 import { inject as service } from '@ember/service';
-import { all } from 'rsvp';
+import { updateStrByObjects } from '../utils/fd-update-str-value';
 
-export default Controller.extend({
+import FdSaveHasManyRelationshipsMixin from '../mixins/fd-save-has-many-relationships';
+
+export default Controller.extend(FdSaveHasManyRelationshipsMixin, {
 
   /**
     Service for managing the state of the application.
@@ -229,28 +231,6 @@ export default Controller.extend({
     }
   },
 
-  /**
-    Save dirty hasMany relationships in the `model`.
-    This method invokes by `save` method.
-
-    @method saveHasManyRelationships
-    @param {DS.Model} model Record with hasMany relationships.
-    @return {Promise} A promise that will be resolved to array of saved records.
-  */
-  saveHasManyRelationships(model) {
-    let promises = [];
-    model.eachRelationship((name, desc) => {
-      if (desc.kind === 'hasMany') {
-        model.get(name).filterBy('hasDirtyAttributes', true).forEach((record) => {
-          let promise = record.save();
-          promises.push(promise);
-        });
-      }
-    });
-
-    return all(promises);
-  },
-
   actions: {
 
     /**
@@ -261,6 +241,7 @@ export default Controller.extend({
     save() {
       let model = this.get('selectedElement.model');
       this.get('appState').loading();
+      updateStrByObjects(model);
       model.save()
       .then(() => this.saveHasManyRelationships(model))
       .then(() => {

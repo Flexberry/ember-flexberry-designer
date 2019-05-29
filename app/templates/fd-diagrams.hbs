@@ -228,3 +228,16 @@
     }}
   {{/if}}
 {{/fd-sheet}}
+
+{{#if _showLookupDialog}}
+  {{#modal-dialog
+    title=_classErrors
+    useOkButton=false
+    useCloseButton=false
+    settings=(hash
+      onHidden=(action set "_showLookupDialog" false)
+      context=".pusher:first"
+    )
+  }}
+  {{/modal-dialog}}
+{{/if}}
