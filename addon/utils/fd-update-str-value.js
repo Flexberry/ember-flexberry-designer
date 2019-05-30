@@ -47,7 +47,7 @@ let updateAttributes = function(classObject, store) {
 
         attribute.set('stored', stored === '');
         attribute.set('type', attrType);
-        attribute.set('defaultValue', defaultVal);
+        attribute.set('defaultValue', defaultVal || null);
 
         switch (modifier) {
           case '':

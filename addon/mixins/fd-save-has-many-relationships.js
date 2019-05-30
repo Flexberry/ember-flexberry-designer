@@ -51,5 +51,7 @@ export default Mixin.create({
         return record.destroyRecord();
       }
     }
+
+    return record.save();
   }
 });
