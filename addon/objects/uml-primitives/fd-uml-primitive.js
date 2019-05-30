@@ -6,6 +6,7 @@ import EmberObject from '@ember/object';
 import { computed, get } from '@ember/object';
 import { A, isArray } from '@ember/array';
 import joint from 'npm:jointjs';
+import $ from 'jquery';
 
 /**
   An object that defines any primitive on the UML diagram.
