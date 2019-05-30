@@ -395,7 +395,6 @@ export default Component.extend({
     if (data.ghost) {
       let shift = evt.data.shift;
       data.ghost.position(x + shift.x, y + shift.y);
-      evt.target.style.cursor = 'move';
     } else {
       let bbox = view.model.getBBox();
       let ghost = new joint.shapes.basic.Rect();
@@ -404,7 +403,6 @@ export default Component.extend({
       ghost.size({height: bbox.height, width: bbox.width});
       ghost.position(bbox.x, bbox.y);
 
-      this.get('primitives').pushObject(ghost);
       view.model.graph.addCell(ghost);
       evt.data.ghost = ghost;
       evt.data.shift = { x: bbox.x - x, y: bbox.y - y};
@@ -774,6 +772,9 @@ export default Component.extend({
   _removeElements(object) {
     let primitives = this.get('primitives');
     let removeObject = primitives.findBy('id', object.id);
+    if (isNone(removeObject)) {
+      return;
+    }
 
     let repositoryObject = removeObject.get('repositoryObject');
     if (!isNone(repositoryObject)) {
