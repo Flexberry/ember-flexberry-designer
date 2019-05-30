@@ -24,7 +24,7 @@ export default Mixin.create({
     model.eachRelationship((name, desc) => {
       if (desc.kind === 'hasMany') {
         model.get(name).filterBy('hasDirtyAttributes', true).forEach((record) => {
-          let promise = this._checkRecordOnChenges(record);
+          let promise = this._checkRecordOnChanges(record);
           promises.push(promise);
         });
       }
@@ -36,10 +36,10 @@ export default Mixin.create({
   /**
     Save record from hasMany relationships.
 
-    @method _checkRecordOnChenges
+    @method _checkRecordOnChanges
     @param {DS.Model} record Record from hasMany relationships.
   */
-  _checkRecordOnChenges(record) {
+  _checkRecordOnChanges(record) {
     if (record.constructor.modelName !== 'fd-dev-attribute' && record.constructor.modelName !== 'fd-dev-method') {
       return record.save();
     }

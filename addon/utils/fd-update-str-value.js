@@ -18,8 +18,7 @@ let updateAttributes = function(classObject, store) {
   if (classObject.get('stereotype') === '«enumeration»') {
     regexStr = /()()(\w+)()(\s*=\s*(.+))?/i;
   } else {
-    // eslint-disable-next-line no-useless-escape
-    regexStr = /([\/]?)([\+\-\#]?)(\w+)\s*:\s*([\wа-яА-Я]+)(\s*=\s*(.+))?/i;
+    regexStr = /([/]?)([+\-#]?)(\w+)\s*:\s*([\wа-яА-Я]+)(\s*=\s*(.+))?/i;
   }
 
   let attributesStrArray = attributesStr.split('\n');
@@ -32,23 +31,23 @@ let updateAttributes = function(classObject, store) {
       resultMatch.forEach((result) => {
         let stored = result[1];
         let modifier = result[2];
-        let attrname = result[3];
-        let attrtype = result[4];
-        let defaultval = result[6];
+        let attrName = result[3];
+        let attrType = result[4];
+        let defaultVal = result[6];
 
-        let attribute = attributes.findBy('name', attrname);
+        let attribute = attributes.findBy('name', attrName);
         if (isNone(attribute)) {
           attribute = store.createRecord('fd-dev-attribute', {
             class: classObject,
-            name: attrname
+            name: attrName
           });
         } else {
           attribute.rollbackAttributes();
         }
 
         attribute.set('stored', stored === '');
-        attribute.set('type', attrtype);
-        attribute.set('defaultValue', defaultval);
+        attribute.set('type', attrType);
+        attribute.set('defaultValue', defaultVal);
 
         switch (modifier) {
           case '':
@@ -80,8 +79,7 @@ let updateMethods = function(classObject, store) {
     delMethod.deleteRecord();
   });
 
-  // eslint-disable-next-line no-useless-escape
-  let regexStr = /([\/]?)([\+\-\#]?)(\w+)(<([\w:,;]+)>)?\((.+)?\)(\s*:\s*(\w+))?/i;
+  let regexStr = /([/]?)([+\-#]?)(\w+)(<([\w:,;]+)>)?\((.+)?\)(\s*:\s*(\w+))?/i;
   let methodsStrArray = methodsStr.split('\n');
   let resultMatch = methodsStrArray.map((methStr) => {
     return methStr.match(regexStr);
@@ -90,12 +88,12 @@ let updateMethods = function(classObject, store) {
   let errorMatch = resultMatch.indexOf(null);
   if (errorMatch === -1) {
       resultMatch.forEach((result) => {
-        let methevent = result[1];
+        let methEvent = result[1];
         let modifier = result[2];
-        let methname = result[3];
-        let methparams = result[6];
-        let methtype = result[8];
-        let methtypeparams = result[5];
+        let methName = result[3];
+        let methParams = result[6];
+        let methType = result[8];
+        let methTypeParams = result[5];
 
         let sortMethParams = function(str) {
           if (!isBlank(str)) {
@@ -108,11 +106,11 @@ let updateMethods = function(classObject, store) {
           return str;
         };
 
-        let methparamsSort = sortMethParams(methparams);
+        let methParamsSort = sortMethParams(methParams);
         let method = methods.find(function(meth) {
           let name = meth.get('name');
           let params = sortMethParams(meth.get('parametersStr'));
-          if (name === methname && params === methparamsSort) {
+          if (name === methName && params === methParamsSort) {
             return meth;
           }
         });
@@ -120,16 +118,16 @@ let updateMethods = function(classObject, store) {
         if (isNone(method)) {
           method = store.createRecord('fd-dev-method', {
             class: classObject,
-            name: methname
+            name: methName
           });
         } else {
           method.rollbackAttributes();
         }
 
-        method.set('isEvent', methevent === '/');
-        method.set('parametersStr', methparamsSort);
-        method.set('type', methtype);
-        method.set('typeParametersStr', methtypeparams);
+        method.set('isEvent', methEvent === '/');
+        method.set('parametersStr', methParamsSort);
+        method.set('type', methType);
+        method.set('typeParametersStr', methTypeParams);
 
         switch (modifier) {
           case '':

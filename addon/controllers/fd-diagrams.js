@@ -115,11 +115,11 @@ export default Controller.extend(FdSaveHasManyRelationshipsMixin, {
     Flag: indicates whether to show modal dialog.
 
     @private
-    @property _showLookupDialog
+    @property _showErrorDialog
     @type Boolean
     @default false
   */
-  _showLookupDialog: false,
+  _showErrorDialog: false,
 
   /**
     Class errors text.
@@ -440,7 +440,7 @@ export default Controller.extend(FdSaveHasManyRelationshipsMixin, {
         this.get('fdSheetService').openSheet(this.get('objectEditFormSheet'));
       } else {
         this.set('_classErrors', objectsIsUpdate);
-        this.set('_showLookupDialog', true);
+        this.set('_showErrorDialog', true);
       }
     },
   }
