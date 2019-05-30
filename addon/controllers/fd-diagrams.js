@@ -16,6 +16,24 @@ const getActualValue = (value, currentValue) => {
 
 export default Controller.extend({
   /**
+    Stores the value of the `attributesStr` property from the `editableObject`, before opening the edit form.
+
+    @private
+    @property _attributesStr
+    @type String
+  */
+  _attributesStr: undefined,
+
+  /**
+    Stores the value of the `methodsStr` property from the `editableObject`, before opening the edit form.
+
+    @private
+    @property _methodsStr
+    @type String
+  */
+  _methodsStr: undefined,
+
+  /**
     Service for managing the state of the application.
 
     @property appState
@@ -215,8 +233,18 @@ export default Controller.extend({
       this.deactivateListItem();
       this.set('selectedElement', undefined);
     } else if (this.get('objectEditFormSheet') === sheetName) {
+      let editableObject = this.get('editableObject');
+      if (!editableObject.get('isNew')) {
+        editableObject.rollbackAll();
+      }
+
+      editableObject.set('attributesStr', this.get('_attributesStr'));
+      editableObject.set('methodsStr', this.get('_methodsStr'));
+
       this.set('objectEditFormNamePart', undefined);
       this.set('editableObject', undefined);
+      this.set('_attributesStr', undefined);
+      this.set('_methodsStr', undefined);
     }
   },
 
@@ -395,7 +423,10 @@ export default Controller.extend({
     */
     saveEditableObject() {
       this.get('appState').loading();
-      this.get('editableObject').save().finally(() => {
+      let editableObject = this.get('editableObject');
+      editableObject.save().finally(() => {
+        this.set('_attributesStr', editableObject.get('attributesStr'));
+        this.set('_methodsStr', editableObject.get('methodsStr'));
         this.get('appState').reset();
       });
     },
@@ -410,7 +441,12 @@ export default Controller.extend({
       let objectId = object.get('repositoryObject').slice(1, -1);
       let stereotype = object.getWithDefault('stereotype', '').trim().slice(1, -1);
 
-      this.set('editableObject', this.get('store').peekRecord('fd-dev-class', objectId));
+      let editableObject = this.get('store').peekRecord('fd-dev-class', objectId);
+
+      this.set('_attributesStr', editableObject.get('attributesStr'));
+      this.set('_methodsStr', editableObject.get('methodsStr'));
+
+      this.set('editableObject', editableObject);
       this.set('objectEditFormNamePart', stereotype || 'implementation');
 
       this.get('fdSheetService').openSheet(this.get('objectEditFormSheet'));
