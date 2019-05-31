@@ -15,6 +15,5 @@
 
 @ind: (@rowSpacing / 2);
 .ui.cards.fd-projects {
-  margin-top: 3em;
   margin-left: calc(~'-@{leftIndent} - @{ind}');
 }

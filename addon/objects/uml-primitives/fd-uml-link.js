@@ -144,11 +144,11 @@ export default FdUmlPrimitive.extend({
   */
   labels: computed('startMultiplicity', 'endMultiplicity', 'startRoleTxt', 'endRoleTxt', 'description', 'qualified', function () {
     return [
-      { attrs: { text: { text: this.get('startMultiplicity') } } },
-      { attrs: { text: { text: this.get('endMultiplicity') } } },
       { attrs: { text: { text: this.get('description') } } },
       { attrs: { text: { text: this.get('startRoleTxt') } } },
       { attrs: { text: { text: this.get('endRoleTxt') } } },
+      { attrs: { text: { text: this.get('startMultiplicity') } } },
+      { attrs: { text: { text: this.get('endMultiplicity') } } },
       { attrs: { text: { text: this.get('qualified') } } },
     ];
   }),
@@ -216,15 +216,15 @@ export let Link = joint.dia.Link.define('flexberry.uml.Link', {
     text: { 'font-size': '12', 'font-family': 'Arial, helvetica, sans-serif' }
   },
   labels: [{
-    position: { distance: 5, offset: 12 }, attrs: { text: { text: '' } } //startMultiplicity
-  }, {
-    position: { distance: -5, offset: 12 }, attrs: { text: { text: '' } } //endMultiplicity
-  }, {
     position: { distance: 0.5, offset: 0 }, attrs: { text: { text: '' } } //description
   }, {
     position: { distance: 5, offset: -12 }, attrs: { text: { text: '' } } //startRoleTxt
   }, {
     position: { distance: -5, offset: -12 }, attrs: { text: { text: '' } } //endRoleTxt
+  }, {
+    position: { distance: 5, offset: 12 }, attrs: { text: { text: '' } } //startMultiplicity
+  }, {
+    position: { distance: -5, offset: 12 }, attrs: { text: { text: '' } } //endMultiplicity
   }, {
     position: { distance: 5, offset: 0 }, attrs: { text: { text: '' } } //QualifiedText
   }]
@@ -269,48 +269,48 @@ export let Link = joint.dia.Link.define('flexberry.uml.Link', {
         return;
       }
 
-      this.label(2, { position: { distance: this.getLabelDistance('description') } });
+      this.label(0, { position: { distance: this.getLabelDistance('description') }, inverseTextDirection: true });
       let angle = 180 * Math.atan2(pointA.y - pointB.y, pointA.x - pointB.x) / Math.PI;
       if (angle >= -45 && angle <= 45) {
         if (isEnd) {
-          this.label(1, { position: { distance: this.getLabelDistance('endMultiplicity'), offset: 12 }, inverseTextDirection: false });
-          this.label(4, { position: { distance: this.getLabelDistance('endRole'), offset: -12 }, inverseTextDirection: false });
+          this.label(4, { position: { distance: this.getLabelDistance('endMultiplicity'), offset: 12 }, inverseTextDirection: false });
+          this.label(2, { position: { distance: this.getLabelDistance('endRole'), offset: -12 }, inverseTextDirection: false });
         } else {
-          this.label(0, { position: { distance: this.getLabelDistance('startMultiplicity'), offset: 12 }, inverseTextDirection: true });
-          this.label(3, { position: { distance: this.getLabelDistance('startRole'), offset: -12 }, inverseTextDirection: true });
+          this.label(3, { position: { distance: this.getLabelDistance('startMultiplicity'), offset: 12 }, inverseTextDirection: true });
+          this.label(2, { position: { distance: this.getLabelDistance('startRole'), offset: -12 }, inverseTextDirection: true });
           this.label(5, { position: { distance: this.getLabelDistance('qualified'), offset: 12 }, inverseTextDirection: true });
         }
       }
 
       if (angle >= -135 && angle < -45) {
         if (isEnd) {
-          this.label(1, { position: { distance: this.getLabelDistance('endMultiplicity', true), offset: 6 }, inverseTextDirection: true });
-          this.label(4, { position: { distance: this.getLabelDistance('endRole', true), offset: -6 }, inverseTextDirection: false });
+          this.label(4, { position: { distance: this.getLabelDistance('endMultiplicity', true), offset: 6 }, inverseTextDirection: true });
+          this.label(2, { position: { distance: this.getLabelDistance('endRole', true), offset: -6 }, inverseTextDirection: false });
         } else {
-          this.label(0, { position: { distance: this.getLabelDistance('startMultiplicity', true), offset: 6 }, inverseTextDirection: true });
-          this.label(3, { position: { distance: this.getLabelDistance('startRole', true), offset: -6 }, inverseTextDirection: false });
+          this.label(3, { position: { distance: this.getLabelDistance('startMultiplicity', true), offset: 6 }, inverseTextDirection: true });
+          this.label(1, { position: { distance: this.getLabelDistance('startRole', true), offset: -6 }, inverseTextDirection: false });
           this.label(5, { position: { distance: this.getLabelDistance('qualified', true), offset: -6 }, inverseTextDirection: true });
         }
       }
 
       if (angle > 45 && angle <= 135) {
         if (isEnd) {
-          this.label(1, { position: { distance: this.getLabelDistance('endMultiplicity', true), offset: -6 }, inverseTextDirection: true });
-          this.label(4, { position: { distance: this.getLabelDistance('endRole', true), offset: 6 }, inverseTextDirection: false });
+          this.label(4, { position: { distance: this.getLabelDistance('endMultiplicity', true), offset: -6 }, inverseTextDirection: true });
+          this.label(2, { position: { distance: this.getLabelDistance('endRole', true), offset: 6 }, inverseTextDirection: false });
         } else {
-          this.label(0, { position: { distance: this.getLabelDistance('startMultiplicity', true), offset: -6 }, inverseTextDirection: true });
-          this.label(3, { position: { distance: this.getLabelDistance('startRole', true), offset: 6 }, inverseTextDirection: false });
+          this.label(3, { position: { distance: this.getLabelDistance('startMultiplicity', true), offset: -6 }, inverseTextDirection: true });
+          this.label(1, { position: { distance: this.getLabelDistance('startRole', true), offset: 6 }, inverseTextDirection: false });
           this.label(5, { position: { distance: this.getLabelDistance('qualified', true), offset: -6 }, inverseTextDirection: true });
         }
       }
 
       if (angle < -135 || angle > 135) {
         if (isEnd) {
-          this.label(1, { position: { distance: this.getLabelDistance('endMultiplicity'), offset: -12 }, inverseTextDirection: true });
-          this.label(4, { position: { distance: this.getLabelDistance('endRole'), offset: 12 }, inverseTextDirection: true });
+          this.label(4, { position: { distance: this.getLabelDistance('endMultiplicity'), offset: -12 }, inverseTextDirection: true });
+          this.label(2, { position: { distance: this.getLabelDistance('endRole'), offset: 12 }, inverseTextDirection: true });
         } else {
-          this.label(0, { position: { distance: this.getLabelDistance('startMultiplicity'), offset: -12 }, inverseTextDirection: false });
-          this.label(3, { position: { distance: this.getLabelDistance('startRole'), offset: 12 }, inverseTextDirection: false });
+          this.label(3, { position: { distance: this.getLabelDistance('startMultiplicity'), offset: -12 }, inverseTextDirection: false });
+          this.label(1, { position: { distance: this.getLabelDistance('startRole'), offset: 12 }, inverseTextDirection: false });
           this.label(5, { position: { distance: this.getLabelDistance('qualified'), offset: -12 }, inverseTextDirection: false });
         }
       }
@@ -320,32 +320,28 @@ export let Link = joint.dia.Link.define('flexberry.uml.Link', {
       let objectModel = this.get('objectModel');
       switch (label) {
         case 'startMultiplicity':
-          this.label(0, { attrs: { text: { text: text, 'font-size': '12', 'font-family': 'Arial, helvetica, sans-serif' } } });
+          this.label(3, { attrs: { text: { text: text, 'font-size': '12', 'font-family': 'Arial, helvetica, sans-serif' } } });
           objectModel.set('startMultiplicity', text);
           break;
         case 'endMultiplicity':
-          this.label(1, { attrs: { text: { text: text, 'font-size': '12', 'font-family': 'Arial, helvetica, sans-serif' } } });
+          this.label(4, { attrs: { text: { text: text, 'font-size': '12', 'font-family': 'Arial, helvetica, sans-serif' } } });
           objectModel.set('endMultiplicity', text);
           break;
         case 'description':
-          this.label(2, { attrs: { text: { text: text, 'font-size': '12', 'font-family': 'Arial, helvetica, sans-serif' } } });
+          this.label(0, { attrs: { text: { text: text, 'font-size': '12', 'font-family': 'Arial, helvetica, sans-serif' } } });
           objectModel.set('description', text);
           break;
         case 'startRole':
-          this.label(3, { attrs: { text: { text: text, 'font-size': '12', 'font-family': 'Arial, helvetica, sans-serif' } } });
+          this.label(1, { attrs: { text: { text: text, 'font-size': '12', 'font-family': 'Arial, helvetica, sans-serif' } } });
           objectModel.set('startRoleTxt', text);
           break;
         case 'endRole':
-          this.label(4, { attrs: { text: { text: text, 'font-size': '12', 'font-family': 'Arial, helvetica, sans-serif' } } });
+          this.label(2, { attrs: { text: { text: text, 'font-size': '12', 'font-family': 'Arial, helvetica, sans-serif' } } });
           objectModel.set('endRoleTxt', text);
           break;
         case 'qualified':
           this.label(5, { attrs: { text: { text: text, 'font-size': '12', 'font-family': 'Arial, helvetica, sans-serif' } } });
           objectModel.set('qualified', text);
-          break;
-        default:
-          // eslint-disable-next-line no-console
-          console.log('ERROR - choose correct label name');
           break;
       }
 
@@ -356,19 +352,19 @@ export let Link = joint.dia.Link.define('flexberry.uml.Link', {
       let label = {};
       switch (labelName) {
         case 'startMultiplicity':
-          label = this.label(0);
-          break;
-        case 'endMultiplicity':
-          label = this.label(1);
-          break;
-        case 'description':
-          label = this.label(2);
-          break;
-        case 'startRole':
           label = this.label(3);
           break;
-        case 'endRole':
+        case 'endMultiplicity':
           label = this.label(4);
+          break;
+        case 'description':
+          label = this.label(0);
+          break;
+        case 'startRole':
+          label = this.label(1);
+          break;
+        case 'endRole':
+          label = this.label(2);
           break;
         case 'qualified':
           label =  this.label(5);
@@ -412,7 +408,7 @@ export let Link = joint.dia.Link.define('flexberry.uml.Link', {
 export let LinkWithUnderline = Link.define('flexberry.uml.BaseLinkWithUnderline', {
 }, {
     initialize: function () {
-      this.label(2, { attrs: { text: { 'text-decoration': 'underline', } } });
+      this.label(0, { attrs: { text: { 'text-decoration': 'underline', } } });
       joint.dia.Link.prototype.initialize.apply(this, arguments);
     },
   });

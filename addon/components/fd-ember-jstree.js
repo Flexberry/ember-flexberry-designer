@@ -9,6 +9,8 @@ import layout from '../templates/components/fd-ember-jstree';
 export default Component.extend({
   layout,
 
+  classNames: ['fd-ember-jstree'],
+
   /**
     @property store
     @type Service
