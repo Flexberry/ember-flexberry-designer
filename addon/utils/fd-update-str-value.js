@@ -148,9 +148,9 @@ let updateMethods = function(classObject, store) {
   Update repositoryObjects by str properties.
 */
 let updateObjectByStr = function(classObject, store) {
-  let attrMassage = updateAttributes(classObject, store);
-  let methMassage = updateMethods(classObject, store);
-  return attrMassage + methMassage;
+  let attrMessage = updateAttributes(classObject, store);
+  let methMessage = updateMethods(classObject, store);
+  return attrMessage + methMessage;
 };
 
 /**
