@@ -389,17 +389,17 @@ export default DS.Transform.extend({
         }
 
         inConnectorsLinksTree[linkConnectorId].push(linkId);
-      } else {
-        if (endPrimitive.$type === 'STORMCASE.UML.cad.LinkConnector, UMLCAD') {
-          outConnectorsLinksIds.push(linkId);
-          linkConnectorId = endPrimitive.$id;
-          if (linkConnectorId in outConnectorsLinksTree) {
-            throw new Error(`linkConnector: '$linkConnectorId' has more, then one parent Class`);
-          }
-
-          outConnectorsLinksTree[linkConnectorId] = linkId;
-        }
       }
+      if (endPrimitive.$type === 'STORMCASE.UML.cad.LinkConnector, UMLCAD') {
+        outConnectorsLinksIds.push(linkId);
+        linkConnectorId = endPrimitive.$id;
+        if (linkConnectorId in outConnectorsLinksTree) {
+          throw new Error(`linkConnector: '$linkConnectorId' has more, then one parent Class`);
+        }
+
+        outConnectorsLinksTree[linkConnectorId] = linkId;
+      }
+
     }
 
     for (let linkConnectorId in inConnectorsLinksTree) {
