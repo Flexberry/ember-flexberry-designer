@@ -327,6 +327,9 @@ export default Controller.extend({
           });
         });
       });
+    } else {
+      model.set('primitivesJsonString', JSON.stringify(primitives));
+      return resolve();
     }
   },
 
