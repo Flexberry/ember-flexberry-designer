@@ -489,7 +489,7 @@ export default Controller.extend(FdSaveHasManyRelationshipsMixin, {
       let store = this.get('store');
       let objectId = object.get('repositoryObject').slice(1, -1);
       let stereotype = object.getWithDefault('stereotype', '').trim().slice(1, -1);
-      let editableObject = this.get('store').peekRecord('fd-dev-class', objectId);
+      let editableObject = store.peekRecord('fd-dev-class', objectId);
 
       let objectsIsUpdate = updateObjectByStr(editableObject, store);
       if (isBlank(objectsIsUpdate)) {
