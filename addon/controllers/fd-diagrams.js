@@ -19,6 +19,24 @@ const getActualValue = (value, currentValue) => {
 
 export default Controller.extend(FdSaveHasManyRelationshipsMixin, {
   /**
+    Stores the value of the `attributesStr` property from the `editableObject`, before opening the edit form.
+
+    @private
+    @property _attributesStr
+    @type String
+  */
+  _attributesStr: undefined,
+
+  /**
+    Stores the value of the `methodsStr` property from the `editableObject`, before opening the edit form.
+
+    @private
+    @property _methodsStr
+    @type String
+  */
+  _methodsStr: undefined,
+
+  /**
     Service for managing the state of the application.
 
     @property appState
@@ -189,8 +207,37 @@ export default Controller.extend(FdSaveHasManyRelationshipsMixin, {
   deactivateListItem() {
     let selectedElement = this.get('selectedElement');
     if (!isNone(selectedElement)) {
+      let store = this.get('store');
       let model = selectedElement.get('model');
-      model.rollbackAll();
+      let primitives = A(model.get('primitives').filterBy('repositoryObject'));
+
+      // Recompute `primitives` property.
+      model.notifyPropertyChange('primitivesJsonString');
+
+      primitives.pushObjects(model.get('primitives').filterBy('repositoryObject'));
+      primitives.uniqBy('repositoryObject').forEach((primitive) => {
+        let id = primitive.get('repositoryObject').slice(1, -1);
+        let modelName;
+        switch (primitive.get('primitive.$type')) {
+          case 'STORMCASE.STORMNET.Repository.CADClass, STORM.NET Case Tool plugin':
+            modelName = 'fd-dev-class';
+            break;
+          case 'STORMCASE.UML.cad.Inheritance, UMLCAD':
+            modelName = 'fd-dev-inheritance';
+            break;
+          case 'STORMCASE.UML.cad.Composition, UMLCAD':
+            modelName = 'fd-dev-aggregation';
+            break;
+          case 'STORMCASE.UML.cad.Association, UMLCAD':
+            modelName = 'fd-dev-association';
+            break;
+          default:
+            throw new Error(`Unsupported type: '${primitive.get('primitive.$type')}'.`);
+        }
+
+        store.peekRecord(modelName, id).rollbackAll();
+      });
+
       this.set('isDiagramVisible', false);
       selectedElement.set('fdListItemActive', false);
     }
@@ -225,9 +272,19 @@ export default Controller.extend(FdSaveHasManyRelationshipsMixin, {
       this.deactivateListItem();
       this.set('selectedElement', undefined);
     } else if (this.get('objectEditFormSheet') === sheetName) {
+      let editableObject = this.get('editableObject');
+      if (!editableObject.get('isNew')) {
+        editableObject.rollbackAll();
+      }
+
+      editableObject.set('attributesStr', this.get('_attributesStr'));
+      editableObject.set('methodsStr', this.get('_methodsStr'));
+
       this.set('objectEditFormNamePart', undefined);
       this.set('editableObject', undefined);
       this.set('editableObjectModel', undefined);
+      this.set('_attributesStr', undefined);
+      this.set('_methodsStr', undefined);
     }
   },
 
@@ -405,17 +462,20 @@ export default Controller.extend(FdSaveHasManyRelationshipsMixin, {
       @method actions.saveEditableObject
     */
     saveEditableObject() {
-      let model = this.get('editableObject');
+      let editableObject = this.get('editableObject');
       let objectModel = this.get('editableObjectModel');
       this.get('appState').loading();
-      updateStrByObjects(model);
-      objectModel.set('attributes', model.get('attributesStr').split('\n'));
-      objectModel.set('methods', model.get('methodsStr').split('\n'));
+
+      updateStrByObjects(editableObject);
+      objectModel.set('attributes', editableObject.get('attributesStr').split('\n'));
+      objectModel.set('methods', editableObject.get('methodsStr').split('\n'));
       this.get('fdDiagramService').updateJointObjectOnDiagram(objectModel.get('id'));
-      model.save()
-      .then(() => this.saveHasManyRelationships(model))
+      editableObject.save()
+      .then(() => this.saveHasManyRelationships(editableObject))
       .finally(() => {
         this.get('appState').reset();
+        this.set('_attributesStr', editableObject.get('attributesStr'));
+        this.set('_methodsStr', editableObject.get('methodsStr'));
       });
     },
 
@@ -433,6 +493,9 @@ export default Controller.extend(FdSaveHasManyRelationshipsMixin, {
 
       let objectsIsUpdate = updateObjectByStr(editableObject, store);
       if (isBlank(objectsIsUpdate)) {
+        this.set('_attributesStr', editableObject.get('attributesStr'));
+        this.set('_methodsStr', editableObject.get('methodsStr'));
+
         this.set('editableObject', editableObject);
         this.set('objectEditFormNamePart', stereotype || 'implementation');
         this.set('editableObjectModel', object);
