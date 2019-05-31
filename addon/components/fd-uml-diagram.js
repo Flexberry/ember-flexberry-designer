@@ -40,6 +40,15 @@ export default Component.extend({
   currentProjectContext: service('fd-current-project-context'),
 
   /**
+   Service for managing objects diagram.
+
+   @property fdDiagramService
+   @type {Class}
+   @default Ember.inject.service()
+   */
+  fdDiagramService: service('fd-diagram-service'),
+
+  /**
    Array items with empty reference count.
 
    @property emptyReferenceCountItems
@@ -213,8 +222,10 @@ export default Component.extend({
     paper.on('element:openeditform', this._elementOpenEditForm, this);
 
     // Ghost element mode.
-    paper.on('element:pointermove', this._ghostElementMove);
-    paper.on('element:pointerup', this._ghostElementRemove);
+    paper.on('element:pointermove', this._ghostElementMove, this);
+    paper.on('element:pointerup', this._ghostElementRemove, this);
+
+    this.get('fdDiagramService').on('updateJointObjectViewTriggered', this, this._updateJointObjectView);
   },
 
   /**
@@ -393,16 +404,19 @@ export default Component.extend({
   _ghostElementMove(view, evt, x, y) {
     let data = evt.data;
     if (data.ghost) {
-      data.ghost.attr({ 'x': x - data.dx, 'y': y - data.dy });
+      let shift = evt.data.shift;
+      data.ghost.position(x + shift.x, y + shift.y);
     } else {
       let bbox = view.model.getBBox();
-      let ghost = joint.Vectorizer('rect');
-      ghost.attr(bbox);
-      ghost.attr({ 'fill': 'transparent', 'stroke': '#5755a1', 'stroke-dasharray': '4,4', 'stroke-width': 2 });
-      ghost.appendTo(this.viewport);
+      let ghost = new joint.shapes.basic.Rect();
+
+      ghost.attr({ rect: { 'fill': 'transparent', 'stroke': '#5755a1', 'stroke-dasharray': '4,4', 'stroke-width': 2 }});
+      ghost.size({height: bbox.height, width: bbox.width});
+      ghost.position(bbox.x, bbox.y);
+
+      view.model.graph.addCell(ghost);
       evt.data.ghost = ghost;
-      evt.data.dx = x - bbox.x;
-      evt.data.dy = y - bbox.y;
+      evt.data.shift = { x: bbox.x - x, y: bbox.y - y};
     }
   },
 
@@ -418,8 +432,11 @@ export default Component.extend({
   _ghostElementRemove(view, evt, x, y) {
     let data = evt.data;
     if (data.ghost) {
+      let shift = evt.data.shift;
+      let valueX = x + shift.x < 0 ? 0 : x + shift.x;
+      let valueY = y + shift.y < 0 ? 0 : y + shift.y;
       data.ghost.remove();
-      view.model.position(x - data.dx, y - data.dy);
+      view.model.position(valueX, valueY);
       let paper = view.paper;
       let links = paper.model.getConnectedLinks(view.model);
       links.forEach((link)=> {
@@ -605,6 +622,8 @@ export default Component.extend({
         let methods = newRepObj.get('methodsStr') || '';
         objectModel.set('methods', methods.split('\n'));
         this._updateInputValue('.methods-input', methods, view);
+
+        view.updateRectangles();
       }
 
     } else if (currentRepObj.get('referenceCount') > 1) {
@@ -652,6 +671,8 @@ export default Component.extend({
         newElement.set('description', objectModelName);
         newElement.set('name', objectModelName);
         newElement.set('nameStr', objectModelName);
+        newElement.set('attributesStr', '');
+        newElement.set('methodsStr', '');
 
         objectModel.set('stereotype', '');
         this._updateInputValue('.class-stereotype-input', '', view);
@@ -661,6 +682,8 @@ export default Component.extend({
 
         objectModel.set('methods', A(''));
         this._updateInputValue('.methods-input', '', view);
+
+        view.updateRectangles();
 
       } else if (modelName === 'fd-dev-inheritance') {
 
@@ -766,6 +789,9 @@ export default Component.extend({
   _removeElements(object) {
     let primitives = this.get('primitives');
     let removeObject = primitives.findBy('id', object.id);
+    if (isNone(removeObject)) {
+      return;
+    }
 
     let repositoryObject = removeObject.get('repositoryObject');
     if (!isNone(repositoryObject)) {
@@ -779,5 +805,23 @@ export default Component.extend({
     }
 
     primitives.removeObject(removeObject);
+  },
+
+  /**
+    find and update view joint object.
+
+    @method _updateJointObjectView
+    @param {String} id id joint object.
+   */
+  _updateJointObjectView(id) {
+    let paper = this.get('paper');
+    let model = paper.model.getCell(id);
+    if (isNone(model)) {
+      return;
+    }
+
+    let view = paper.findViewByModel(model);
+    view.updateInputValue();
+    view.updateRectangles();
   }
 });

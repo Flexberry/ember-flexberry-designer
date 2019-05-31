@@ -1,4 +1,5 @@
 import Mixin from '@ember/object/mixin';
+import RepositoryAccessModifier  from '../../enums/s-t-o-r-m-c-a-s-e-repository-access-modifier';
 
 /**
   Mixin with the support `Attribute table` for controls in the edit form constructor.
@@ -59,7 +60,9 @@ export default Mixin.create({
       let store = this.get('store');
       let model = this.get('model');
       store.createRecord('fd-dev-attribute', {
-        class: model
+        class: model,
+        stored: true,
+        accessModifier: RepositoryAccessModifier.Public
       });
     }
   }
