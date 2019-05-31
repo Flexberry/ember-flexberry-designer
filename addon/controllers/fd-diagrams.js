@@ -10,11 +10,14 @@ import hasChanges from '../utils/model-has-changes';
 import FdUmlElement from '../objects/uml-primitives/fd-uml-element';
 import FdUmlLink from '../objects/uml-primitives/fd-uml-link';
 
+import FdSaveHasManyRelationshipsMixin from '../mixins/fd-save-has-many-relationships';
+import { updateObjectByStr, updateStrByObjects } from '../utils/fd-update-str-value';
+
 const getActualValue = (value, currentValue) => {
   return isBlank(value) && isBlank(currentValue) ? currentValue : value;
 };
 
-export default Controller.extend({
+export default Controller.extend(FdSaveHasManyRelationshipsMixin, {
   /**
     Service for managing the state of the application.
 
@@ -32,6 +35,15 @@ export default Controller.extend({
   fdSheetService: service(),
 
   /**
+   Service for managing objects diagram.
+
+   @property fdDiagramService
+   @type {Class}
+   @default Ember.inject.service()
+   */
+  fdDiagramService: service('fd-diagram-service'),
+
+  /**
     Value selected entity.
 
     @property selectedElement
@@ -47,6 +59,14 @@ export default Controller.extend({
     @type FdDevClassModel
   */
   editableObject: undefined,
+
+  /**
+    The uml object to edit.
+
+    @property editableObjectModel
+    @type FdUmlClass
+  */
+  editableObjectModel: undefined,
 
   /**
     Value search input.
@@ -90,6 +110,25 @@ export default Controller.extend({
    @type {Array}
    */
   emptyReferenceCountItems: A(),
+
+  /**
+    Flag: indicates whether to show modal dialog.
+
+    @private
+    @property _showErrorDialog
+    @type Boolean
+    @default false
+  */
+  _showErrorDialog: false,
+
+  /**
+    Class errors text.
+
+    @private
+    @property _classErrors
+    @type String
+  */
+  _classErrors: undefined,
 
   /**
     Ember.observer, watching property `searchValue` and send action from 'fd-sheet' component.
@@ -188,6 +227,7 @@ export default Controller.extend({
     } else if (this.get('objectEditFormSheet') === sheetName) {
       this.set('objectEditFormNamePart', undefined);
       this.set('editableObject', undefined);
+      this.set('editableObjectModel', undefined);
     }
   },
 
@@ -365,8 +405,16 @@ export default Controller.extend({
       @method actions.saveEditableObject
     */
     saveEditableObject() {
+      let model = this.get('editableObject');
+      let objectModel = this.get('editableObjectModel');
       this.get('appState').loading();
-      this.get('editableObject').save().finally(() => {
+      updateStrByObjects(model);
+      objectModel.set('attributes', model.get('attributesStr').split('\n'));
+      objectModel.set('methods', model.get('methodsStr').split('\n'));
+      this.get('fdDiagramService').updateJointObjectOnDiagram(objectModel.get('id'));
+      model.save()
+      .then(() => this.saveHasManyRelationships(model))
+      .finally(() => {
         this.get('appState').reset();
       });
     },
@@ -378,13 +426,22 @@ export default Controller.extend({
       @param {FdUmlClass} object The object to edit.
     */
     openObjectEditForm(object) {
+      let store = this.get('store');
       let objectId = object.get('repositoryObject').slice(1, -1);
       let stereotype = object.getWithDefault('stereotype', '').trim().slice(1, -1);
+      let editableObject = store.peekRecord('fd-dev-class', objectId);
 
-      this.set('editableObject', this.get('store').peekRecord('fd-dev-class', objectId));
-      this.set('objectEditFormNamePart', stereotype || 'implementation');
+      let objectsIsUpdate = updateObjectByStr(editableObject, store);
+      if (isBlank(objectsIsUpdate)) {
+        this.set('editableObject', editableObject);
+        this.set('objectEditFormNamePart', stereotype || 'implementation');
+        this.set('editableObjectModel', object);
 
-      this.get('fdSheetService').openSheet(this.get('objectEditFormSheet'));
+        this.get('fdSheetService').openSheet(this.get('objectEditFormSheet'));
+      } else {
+        this.set('_classErrors', objectsIsUpdate);
+        this.set('_showErrorDialog', true);
+      }
     },
   }
 });

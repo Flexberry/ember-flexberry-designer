@@ -40,6 +40,15 @@ export default Component.extend({
   currentProjectContext: service('fd-current-project-context'),
 
   /**
+   Service for managing objects diagram.
+
+   @property fdDiagramService
+   @type {Class}
+   @default Ember.inject.service()
+   */
+  fdDiagramService: service('fd-diagram-service'),
+
+  /**
    Array items with empty reference count.
 
    @property emptyReferenceCountItems
@@ -215,6 +224,8 @@ export default Component.extend({
     // Ghost element mode.
     paper.on('element:pointermove', this._ghostElementMove, this);
     paper.on('element:pointerup', this._ghostElementRemove, this);
+
+    this.get('fdDiagramService').on('updateJointObjectViewTriggered', this, this._updateJointObjectView);
   },
 
   /**
@@ -611,6 +622,8 @@ export default Component.extend({
         let methods = newRepObj.get('methodsStr') || '';
         objectModel.set('methods', methods.split('\n'));
         this._updateInputValue('.methods-input', methods, view);
+
+        view.updateRectangles();
       }
 
     } else if (currentRepObj.get('referenceCount') > 1) {
@@ -658,6 +671,8 @@ export default Component.extend({
         newElement.set('description', objectModelName);
         newElement.set('name', objectModelName);
         newElement.set('nameStr', objectModelName);
+        newElement.set('attributesStr', '');
+        newElement.set('methodsStr', '');
 
         objectModel.set('stereotype', '');
         this._updateInputValue('.class-stereotype-input', '', view);
@@ -667,6 +682,8 @@ export default Component.extend({
 
         objectModel.set('methods', A(''));
         this._updateInputValue('.methods-input', '', view);
+
+        view.updateRectangles();
 
       } else if (modelName === 'fd-dev-inheritance') {
 
@@ -788,5 +805,23 @@ export default Component.extend({
     }
 
     primitives.removeObject(removeObject);
+  },
+
+  /**
+    find and update view joint object.
+
+    @method _updateJointObjectView
+    @param {String} id id joint object.
+   */
+  _updateJointObjectView(id) {
+    let paper = this.get('paper');
+    let model = paper.model.getCell(id);
+    if (isNone(model)) {
+      return;
+    }
+
+    let view = paper.findViewByModel(model);
+    view.updateInputValue();
+    view.updateRectangles();
   }
 });
