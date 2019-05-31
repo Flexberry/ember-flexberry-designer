@@ -103,7 +103,7 @@ let updateMethods = function(classObject, store) {
             return newArray.join(',');
           }
 
-          return str;
+          return '';
         };
 
         let methParamsSort = sortMethParams(methParams);
@@ -127,7 +127,7 @@ let updateMethods = function(classObject, store) {
         method.set('isEvent', methEvent === '/');
         method.set('parametersStr', methParamsSort);
         method.set('type', methType);
-        method.set('typeParametersStr', methTypeParams);
+        method.set('typeParametersStr', methTypeParams || '');
 
         switch (modifier) {
           case '':

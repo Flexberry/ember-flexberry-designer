@@ -1273,12 +1273,16 @@ export let defineProjections = function (modelClass) {
       notNull: attr(''),
       defaultValue: attr(''),
       description: attr(''),
-      accessModifier: attr('')
+      accessModifier: attr(''),
+      stored: attr(''),
     }),
     methods: hasMany('fd-dev-method', '', {
       accessModifier: attr(''),
       type: attr(''),
-      name: attr('')
+      name: attr(''),
+      isEvent: attr(''),
+      parametersStr: attr(''),
+      typeParametersStr:attr(''),
     })
   });
   modelClass.defineProjection('Generator', 'fd-dev-class', {
