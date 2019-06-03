@@ -466,7 +466,7 @@ export default Controller.extend(FdSaveHasManyRelationshipsMixin, {
       let objectModel = this.get('editableObjectModel');
       this.get('appState').loading();
 
-      updateStrByObjects(editableObject, this.get('i18n'));
+      updateStrByObjects(editableObject);
       objectModel.set('attributes', editableObject.get('attributesStr').split('\n'));
       objectModel.set('methods', editableObject.get('methodsStr').split('\n'));
       this.get('fdDiagramService').updateJointObjectOnDiagram(objectModel.get('id'));
