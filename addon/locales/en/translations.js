@@ -430,8 +430,15 @@ $.extend(true, translations, {
     'fd-enumeration-editing-panel': FdEnumEditingPanel,
     'fd-create-view': FdCreateView,
     'fd-sheet': FdSheet,
-  }
+  },
 
+  utils:{
+    'update-str-value':{
+      'fd-invalid-attribute':'Invalid attribute',
+      'fd-invalid-method':'Invalid method',
+    }
+  }
+  
 });
 
 export default translations;

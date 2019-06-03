@@ -4,7 +4,7 @@ import RepositoryAccessModifier  from '../enums/s-t-o-r-m-c-a-s-e-repository-acc
 /**
   Update Attributes.
 */
-let updateAttributes = function(classObject, store) {
+let updateAttributes = function(classObject, store, i18n) {
   let attributesStr = classObject.get('attributesStr');
   if (isNone(attributesStr) || isBlank(attributesStr.trim())) {
     return '';
@@ -60,14 +60,14 @@ let updateAttributes = function(classObject, store) {
 
       return '';
   } else {
-    return 'Invalid attribute:' + attributesStrArray[errorMatch] + '. ';
+    return i18n.t('utils.update-str-value.fd-invalid-attribute').toString() + ': ' + attributesStrArray[errorMatch] + '. ';
   }
 };
 
 /**
   Update Methods.
 */
-let updateMethods = function(classObject, store) {
+let updateMethods = function(classObject, store, i18n) {
   let methodsStr = classObject.get('methodsStr');
   if (isNone(methodsStr) || isBlank(methodsStr.trim())) {
     return '';
@@ -140,16 +140,16 @@ let updateMethods = function(classObject, store) {
 
       return '';
   } else {
-    return 'Invalid method: ' + methodsStrArray[errorMatch] + '.';
+    return i18n.t('utils.update-str-value.fd-invalid-method').toString() + ': ' + methodsStrArray[errorMatch] + '. ';
   }
 };
 
 /**
   Update repositoryObjects by str properties.
 */
-let updateObjectByStr = function(classObject, store) {
-  let attrMessage = updateAttributes(classObject, store);
-  let methMessage = updateMethods(classObject, store);
+let updateObjectByStr = function(classObject, store, i18n) {
+  let attrMessage = updateAttributes(classObject, store, i18n);
+  let methMessage = updateMethods(classObject, store, i18n);
   return attrMessage + methMessage;
 };
 

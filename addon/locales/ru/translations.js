@@ -429,6 +429,13 @@ $.extend(true, translations, {
     'fd-enumeration-editing-panel': FdEnumEditingPanel,
     'fd-create-view': FdCreateView,
     'fd-sheet': FdSheet,
+  },
+
+  utils:{
+    'update-str-value':{
+      'fd-invalid-attribute':'Неверный атрибут',
+      'fd-invalid-method':'Неверный метод',
+    }
   }
 
 });

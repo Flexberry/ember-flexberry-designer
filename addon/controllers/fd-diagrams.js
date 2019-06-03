@@ -466,7 +466,7 @@ export default Controller.extend(FdSaveHasManyRelationshipsMixin, {
       let objectModel = this.get('editableObjectModel');
       this.get('appState').loading();
 
-      updateStrByObjects(editableObject);
+      updateStrByObjects(editableObject, this.get('i18n'));
       objectModel.set('attributes', editableObject.get('attributesStr').split('\n'));
       objectModel.set('methods', editableObject.get('methodsStr').split('\n'));
       this.get('fdDiagramService').updateJointObjectOnDiagram(objectModel.get('id'));
@@ -491,7 +491,7 @@ export default Controller.extend(FdSaveHasManyRelationshipsMixin, {
       let stereotype = object.getWithDefault('stereotype', '').trim().slice(1, -1);
       let editableObject = store.peekRecord('fd-dev-class', objectId);
 
-      let objectsIsUpdate = updateObjectByStr(editableObject, store);
+      let objectsIsUpdate = updateObjectByStr(editableObject, store, this.get('i18n'));
       if (isBlank(objectsIsUpdate)) {
         this.set('_attributesStr', editableObject.get('attributesStr'));
         this.set('_methodsStr', editableObject.get('methodsStr'));

@@ -241,7 +241,7 @@ export default Controller.extend(FdSaveHasManyRelationshipsMixin, {
     save() {
       let model = this.get('selectedElement.model');
       this.get('appState').loading();
-      updateStrByObjects(model);
+      updateStrByObjects(model, this.get('i18n'));
       model.save()
       .then(() => this.saveHasManyRelationships(model))
       .then(() => {
