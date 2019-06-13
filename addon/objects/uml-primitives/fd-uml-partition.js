@@ -70,7 +70,7 @@ export let Partition = BaseObject.define('flexberry.uml.Partition', {
       'stroke': 'black',
       'stroke-width': 1,
       'fill': '#ffffff',
-      'fill-opacity': '0.0'
+      'fill-opacity': 0
     },
   },
   heightPadding: 60
@@ -83,7 +83,14 @@ export let Partition = BaseObject.define('flexberry.uml.Partition', {
     '<text class="flexberry-uml-header-text"/>',
     '</g>'
   ].join(''),
+
   initialize: function () {
+    let objectModel = this.get('objectModel');
+    this.attributes.attrs['.flexberry-uml-header-rect'].width = objectModel.primitive.DefaultSize.Width;
+    this.attributes.attrs['.flexberry-uml-header-rect'].height = objectModel.primitive.DefaultSize.Height
+    this.attributes.attrs['.flexberry-uml-header-rect'].x = objectModel.primitive.Location.X;
+    this.attributes.attrs['.flexberry-uml-header-rect'].y = objectModel.primitive.Location.Y;
+    this.attributes.attrs.text.text = objectModel.primitive.Name.Text;
     BaseObject.prototype.initialize.apply(this, arguments);
     this.on('change', function() {
       this.toBack({ deep: true });
