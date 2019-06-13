@@ -13,6 +13,32 @@
     color: @sidebarIconColor;
 }
 
+.ui.card.dashed {
+    border: 1px dashed @sidebarBg;
+    box-shadow: none;
+    margin: 1.2em auto 1em auto;
+
+    &:hover {
+        border: 1px dashed @solidSelectedBorderColor;
+    }
+
+    .fd-round-button {
+        margin: 1em auto;
+    }
+
+    label.ui.basic.button.circular.icon {
+        box-shadow: none !important;
+
+        &:hover {
+            box-shadow: none !important;
+        }
+
+        &:active {
+            box-shadow: none !important;
+        }
+    }
+}
+
 @ind: (@rowSpacing / 2);
 .ui.cards.fd-projects {
   margin-left: calc(~'-@{leftIndent} - @{ind}');
