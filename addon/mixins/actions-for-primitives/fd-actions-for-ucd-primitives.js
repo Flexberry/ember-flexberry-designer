@@ -3,7 +3,7 @@ import { A } from '@ember/array';
 import fdUmlUseCase from 'ember-flexberry-designer/objects/uml-primitives/fd-uml-use-case';
 import { Association } from '../../objects/uml-primitives/fd-uml-association';
 import fdUseCaseActor from 'ember-flexberry-designer/objects/uml-primitives/fd-uml-usecase-actor';
-import { Partition } from 'ember-flexberry-designer/objects/uml-primitives/fd-uml-partition';
+import fdPartition from 'ember-flexberry-designer/objects/uml-primitives/fd-uml-partition';
 import { DirectedAssociation } from 'ember-flexberry-designer/objects/uml-primitives/fd-uml-usecase-directed-association';
 import { UseCaseGeneralization } from 'ember-flexberry-designer/objects/uml-primitives/fd-uml-usecase-generalization';
 import { Dependency } from '../../objects/uml-primitives/fd-uml-dependency';
@@ -57,13 +57,6 @@ export default Mixin.create({
         this._addToPrimitives(usecaseActorObject);
 
         return usecaseActorObject.JointJS();
-/*
-        let newUseCaseActorObject = new fdUseCaseActor({
-          position: { x: x, y: y },
-          name: ''
-        });
-
-        return newUseCaseActorObject;*/
       }).bind(this), e);
     },
 
@@ -74,13 +67,24 @@ export default Mixin.create({
     */
     addBoundary(e) {
       this.createObjectData((function(x, y) {
-        let newUsecaseBoundaryObject = new Partition({
-          position: { x: x, y: y },
-          size: { width: 70, height: 50 },
-          name: ''
-        });
+        let jsonObject = getJsonForElement(
+          'STORMCASE.UML.ucd.Boundary, UMLUCD',
+          { x, y },
+          { width: 20, height: 13 },
+          { Name: '' }
+        );
+        let usecasePartitionObject = fdPartition.create({ primitive: jsonObject });
 
-        return newUsecaseBoundaryObject;
+        this._addToPrimitives(usecasePartitionObject);
+
+        return usecasePartitionObject.JointJS();
+//         let newUsecaseBoundaryObject = new Partition({
+//           position: { x: x, y: y },
+//           size: { width: 70, height: 50 },
+//           name: ''
+//         });
+//
+//         return newUsecaseBoundaryObject;
       }).bind(this), e);
     },
 
