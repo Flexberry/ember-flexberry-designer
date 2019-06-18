@@ -1,12 +1,13 @@
 import Mixin from '@ember/object/mixin';
 import { A } from '@ember/array';
-import { UseCase } from 'ember-flexberry-designer/objects/uml-primitives/fd-uml-use-case';
+import fdUmlUseCase from 'ember-flexberry-designer/objects/uml-primitives/fd-uml-use-case';
 import { Association } from '../../objects/uml-primitives/fd-uml-association';
 import { UseCaseActor } from 'ember-flexberry-designer/objects/uml-primitives/fd-uml-usecase-actor';
 import { Partition } from 'ember-flexberry-designer/objects/uml-primitives/fd-uml-partition';
 import { DirectedAssociation } from 'ember-flexberry-designer/objects/uml-primitives/fd-uml-usecase-directed-association';
 import { UseCaseGeneralization } from 'ember-flexberry-designer/objects/uml-primitives/fd-uml-usecase-generalization';
 import { Dependency } from '../../objects/uml-primitives/fd-uml-dependency';
+import { getJsonForElement, getJsonForLink } from '../../utils/get-json-for-diagram';
 
 /**
   Actions for creating joint js elements on ucd diagrams.
@@ -24,12 +25,17 @@ export default Mixin.create({
      */
     addUseCase(e) {
       this.createObjectData((function(x, y) {
-        let newUseCaseObject = new UseCase({
-          position: { x: x, y: y },
-          name: ''
-        });
+        let jsonObject = getJsonForElement(
+          'STORMCASE.UML.ucd.UseCase, UMLUCD',
+          { x, y },
+          { width: 100, height: 40 },
+          { Name: '' }
+        );
+        let usecaseObject = fdUmlUseCase.create({ primitive: jsonObject });
 
-        return newUseCaseObject;
+        this._addToPrimitives(usecaseObject);
+
+        return usecaseObject.JointJS();
       }).bind(this), e);
     },
 
