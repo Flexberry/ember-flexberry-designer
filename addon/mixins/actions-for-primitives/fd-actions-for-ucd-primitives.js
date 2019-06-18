@@ -2,7 +2,7 @@ import Mixin from '@ember/object/mixin';
 import { A } from '@ember/array';
 import fdUmlUseCase from 'ember-flexberry-designer/objects/uml-primitives/fd-uml-use-case';
 import { Association } from '../../objects/uml-primitives/fd-uml-association';
-import { UseCaseActor } from 'ember-flexberry-designer/objects/uml-primitives/fd-uml-usecase-actor';
+import fdUseCaseActor from 'ember-flexberry-designer/objects/uml-primitives/fd-uml-usecase-actor';
 import { Partition } from 'ember-flexberry-designer/objects/uml-primitives/fd-uml-partition';
 import { DirectedAssociation } from 'ember-flexberry-designer/objects/uml-primitives/fd-uml-usecase-directed-association';
 import { UseCaseGeneralization } from 'ember-flexberry-designer/objects/uml-primitives/fd-uml-usecase-generalization';
@@ -46,12 +46,24 @@ export default Mixin.create({
     */
     addActor(e) {
       this.createObjectData((function(x, y) {
-        let newUseCaseActorObject = new UseCaseActor({
+        let jsonObject = getJsonForElement(
+          'STORMCASE.UML.ucd.Actor, UMLUCD',
+          { x, y },
+          { width: 30, height: 50 },
+          { Name: '' }
+        );
+        let usecaseActorObject = fdUseCaseActor.create({ primitive: jsonObject });
+
+        this._addToPrimitives(usecaseActorObject);
+
+        return usecaseActorObject.JointJS();
+/*
+        let newUseCaseActorObject = new fdUseCaseActor({
           position: { x: x, y: y },
           name: ''
         });
 
-        return newUseCaseActorObject;
+        return newUseCaseActorObject;*/
       }).bind(this), e);
     },
 
