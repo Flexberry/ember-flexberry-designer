@@ -4,6 +4,7 @@
 
 import { computed } from '@ember/object';
 import { isArray } from '@ember/array';
+import joint from 'npm:jointjs';
 
 import FdUmlElement from './fd-uml-element';
 import { BaseObject } from './fd-uml-baseobject';
@@ -85,19 +86,16 @@ export let Partition = BaseObject.define('flexberry.uml.Partition', {
   ].join(''),
 
   initialize: function () {
-    let objectModel = this.get('objectModel');
-    this.attributes.attrs['.flexberry-uml-header-rect'].width = objectModel.primitive.DefaultSize.Width;
-    this.attributes.attrs['.flexberry-uml-header-rect'].height = objectModel.primitive.DefaultSize.Height
-    this.attributes.attrs['.flexberry-uml-header-rect'].x = objectModel.primitive.Location.X;
-    this.attributes.attrs['.flexberry-uml-header-rect'].y = objectModel.primitive.Location.Y;
-    this.attributes.attrs.text.text = objectModel.primitive.Name.Text;
     BaseObject.prototype.initialize.apply(this, arguments);
     this.on('change', function() {
       this.toBack({ deep: true });
     });
-  },
-
-  updateRectangles: function () {
-    this.updateRectanglesOld();
   }
+
+});
+
+joint.shapes.flexberry.uml.PartitionView = joint.shapes.flexberry.uml.BaseObjectView.extend({
+  updateRectangles() {
+    joint.shapes.flexberry.uml.BaseObjectView.prototype.updateRectangles.apply(this, arguments);
+  },
 });
