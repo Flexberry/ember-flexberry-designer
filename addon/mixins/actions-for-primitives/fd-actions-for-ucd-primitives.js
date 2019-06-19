@@ -4,9 +4,9 @@ import fdUmlUseCase from 'ember-flexberry-designer/objects/uml-primitives/fd-uml
 import FdAssociation from '../../objects/uml-primitives/fd-uml-association';
 import fdUseCaseActor from 'ember-flexberry-designer/objects/uml-primitives/fd-uml-usecase-actor';
 import fdPartition from 'ember-flexberry-designer/objects/uml-primitives/fd-uml-partition';
-import { DirectedAssociation } from 'ember-flexberry-designer/objects/uml-primitives/fd-uml-usecase-directed-association';
+import FdDirectedAssociation from 'ember-flexberry-designer/objects/uml-primitives/fd-uml-usecase-directed-association';
 import FdUseCaseGeneralization from 'ember-flexberry-designer/objects/uml-primitives/fd-uml-usecase-generalization';
-import { Dependency } from '../../objects/uml-primitives/fd-uml-dependency';
+import FdDependency from '../../objects/uml-primitives/fd-uml-dependency';
 import { getJsonForElement, getJsonForLink } from '../../utils/get-json-for-diagram';
 
 /**
@@ -32,9 +32,7 @@ export default Mixin.create({
           { Name: '' }
         );
         let usecaseObject = fdUmlUseCase.create({ primitive: jsonObject });
-
         this._addToPrimitives(usecaseObject);
-
         return usecaseObject.JointJS();
       }).bind(this), e);
     },
@@ -53,9 +51,7 @@ export default Mixin.create({
           { Name: '' }
         );
         let usecaseActorObject = fdUseCaseActor.create({ primitive: jsonObject });
-
         this._addToPrimitives(usecaseActorObject);
-
         return usecaseActorObject.JointJS();
       }).bind(this), e);
     },
@@ -74,9 +70,7 @@ export default Mixin.create({
           { Name: '' }
         );
         let usecasePartitionObject = fdPartition.create({ primitive: jsonObject });
-
         this._addToPrimitives(usecasePartitionObject);
-
         return usecasePartitionObject.JointJS();
       }).bind(this), e);
     },
@@ -98,7 +92,6 @@ export default Mixin.create({
           },
           vertices: linkProperties.points || A()
         });
-
         return newAssociationObject;
       }).bind(this), e/*, A(['flexberry.uml.Usecase', 'flexberry.uml.UsecaseActor'])*/);
     },
@@ -118,10 +111,8 @@ export default Mixin.create({
           linkProperties.target,
           null
         );
-
-        let associationObject = FdAssociation.create({ primitive: jsonObject });
+        let associationObject = FdDirectedAssociation.create({ primitive: jsonObject });
         associationObject.set('vertices', linkProperties.points || A());
-
         this._addToPrimitives(associationObject);
         return associationObject.JointJS();
       }).bind(this), e/*, A(['flexberry.uml.Usecase', 'flexberry.uml.UsecaseActor'])*/);
@@ -142,46 +133,33 @@ export default Mixin.create({
           linkProperties.target,
           null
         );
-
         let generalitionObject = FdUseCaseGeneralization.create({ primitive: jsonObject });
         generalitionObject.set('vertices', linkProperties.points || A());
-
         this._addToPrimitives(generalitionObject);
         return generalitionObject.JointJS();
-//         let newGeneralizationObject = new UseCaseGeneralization({
-//           source: {
-//             id: linkProperties.source
-//           },
-//           target: {
-//             id: linkProperties.target
-//           },
-//           vertices: linkProperties.points || A()
-//         });
-//
-//         return newGeneralizationObject;
       }).bind(this), e/*, A(['flexberry.uml.Usecase', 'flexberry.uml.UsecaseActor'])*/);
     },
 
     /**
-      Handler for click on addDependency button.
+     Handler for click on addUCDDependency* button.
 
-      @method actions.addDependency
+     @method actions.addUCDDependency
       @param {jQuery.Event} e event.
     */
-    addDependency(e) {
+    addUCDDependency(e) {
       this.createLinkData((function(linkProperties) {
-        let newDependencyObject = new Dependency({
-          source: {
-            id: linkProperties.source
-          },
-          target: {
-            id: linkProperties.target
-          },
-          vertices: linkProperties.points || A()
-        });
-
-        return newDependencyObject;
-      }).bind(this), e, A(['flexberry.uml.Usecase']));
+        let jsonObject = getJsonForLink(
+          'STORMCASE.UML.ucd.Dependency, UMLUCD',
+          linkProperties.source,
+          null,
+          linkProperties.target,
+          null
+        );
+        let depencyObject = FdDependency.create({ primitive: jsonObject });
+        depencyObject.set('vertices', linkProperties.points || A());
+        this._addToPrimitives(depencyObject);
+        return depencyObject.JointJS();
+      }).bind(this), e/*, A(['flexberry.uml.Usecase'])*/);
     },
   }
 });
