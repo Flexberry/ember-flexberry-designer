@@ -36,7 +36,7 @@ export default FdUmlLink.extend({
   @constructor
 */
 export let UseCaseGeneralization = Link.define('flexberry.uml.UseCaseGeneralization', {
-  attrs: { '.marker-source': { d: 'M 20 0 L 0 10 L 20 20 z', fill: 'white' } },
+  attrs: { '.marker-target': { d: 'M 20 0 L 0 10 L 20 20 z', fill: 'white' } },
 });
 
 joint.shapes.flexberry.uml.UseCaseGeneralizationView = EmptyView;

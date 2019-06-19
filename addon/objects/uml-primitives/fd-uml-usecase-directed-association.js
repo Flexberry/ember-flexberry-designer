@@ -36,7 +36,7 @@ export default FdUmlLink.extend({
   @constructor
 */
 export let DirectedAssociation = Link.define('flexberry.uml.UseCaseGeneralization', {
-  attrs: { '.marker-source': { d: 'M 20 0 L 0 10 L 20 20 z', fill: 'black' } },
+  attrs: { '.marker-target': { d: 'M 20 0 L 0 10 L 20 20 z', fill: 'black' } },
 });
 
 joint.shapes.flexberry.uml.DirectedAssociationView = EmptyView;
