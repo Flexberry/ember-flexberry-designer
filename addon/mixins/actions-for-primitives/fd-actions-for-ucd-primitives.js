@@ -1,10 +1,11 @@
 import Mixin from '@ember/object/mixin';
 import { A } from '@ember/array';
 import fdUmlUseCase from 'ember-flexberry-designer/objects/uml-primitives/fd-uml-use-case';
-import FdAssociation from '../../objects/uml-primitives/fd-uml-association';
+// import FdAssociation from '../../objects/uml-primitives/fd-uml-association';
 import fdUseCaseActor from 'ember-flexberry-designer/objects/uml-primitives/fd-uml-usecase-actor';
 import fdPartition from 'ember-flexberry-designer/objects/uml-primitives/fd-uml-partition';
 import FdDirectedAssociation from 'ember-flexberry-designer/objects/uml-primitives/fd-uml-usecase-directed-association';
+import FdUnDirectedAssociation from 'ember-flexberry-designer/objects/uml-primitives/fd-uml-usecase-undirected-association';
 import FdUseCaseGeneralization from 'ember-flexberry-designer/objects/uml-primitives/fd-uml-usecase-generalization';
 import FdDependency from '../../objects/uml-primitives/fd-uml-dependency';
 import { getJsonForElement, getJsonForLink } from '../../utils/get-json-for-diagram';
@@ -83,16 +84,17 @@ export default Mixin.create({
     */
     addUndirAssociation(e) {
       this.createLinkData((function(linkProperties) {
-        let newAssociationObject = new Association({
-          source: {
-            id: linkProperties.source
-          },
-          target: {
-            id: linkProperties.target
-          },
-          vertices: linkProperties.points || A()
-        });
-        return newAssociationObject;
+        let jsonObject = getJsonForLink(
+          'STORMCASE.UML.ucd.UndirectedAssoc, UMLUCD',
+          linkProperties.source,
+          null,
+          linkProperties.target,
+          null
+        );
+        let undirAssociationObject = FdUnDirectedAssociation.create({ primitive: jsonObject });
+        undirAssociationObject.set('vertices', linkProperties.points || A());
+        this._addToPrimitives(undirAssociationObject);
+        return undirAssociationObject.JointJS();
       }).bind(this), e/*, A(['flexberry.uml.Usecase', 'flexberry.uml.UsecaseActor'])*/);
     },
 
@@ -105,7 +107,7 @@ export default Mixin.create({
     addDirAssociation(e) {
       this.createLinkData((function(linkProperties) {
         let jsonObject = getJsonForLink(
-          'STORMCASE.UML.cad.Association, UMLCAD',
+          'STORMCASE.UML.ucd.DirectedAssoc, UMLUCD',
           linkProperties.source,
           null,
           linkProperties.target,
