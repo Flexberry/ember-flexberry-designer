@@ -5,7 +5,7 @@ import FdAssociation from '../../objects/uml-primitives/fd-uml-association';
 import fdUseCaseActor from 'ember-flexberry-designer/objects/uml-primitives/fd-uml-usecase-actor';
 import fdPartition from 'ember-flexberry-designer/objects/uml-primitives/fd-uml-partition';
 import { DirectedAssociation } from 'ember-flexberry-designer/objects/uml-primitives/fd-uml-usecase-directed-association';
-import { UseCaseGeneralization } from 'ember-flexberry-designer/objects/uml-primitives/fd-uml-usecase-generalization';
+import FdUseCaseGeneralization from 'ember-flexberry-designer/objects/uml-primitives/fd-uml-usecase-generalization';
 import { Dependency } from '../../objects/uml-primitives/fd-uml-dependency';
 import { getJsonForElement, getJsonForLink } from '../../utils/get-json-for-diagram';
 
@@ -123,7 +123,6 @@ export default Mixin.create({
         associationObject.set('vertices', linkProperties.points || A());
 
         this._addToPrimitives(associationObject);
-
         return associationObject.JointJS();
       }).bind(this), e/*, A(['flexberry.uml.Usecase', 'flexberry.uml.UsecaseActor'])*/);
     },
@@ -136,18 +135,31 @@ export default Mixin.create({
     */
     addGeneralization(e) {
       this.createLinkData((function(linkProperties) {
-        let newGeneralizationObject = new UseCaseGeneralization({
-          source: {
-            id: linkProperties.source
-          },
-          target: {
-            id: linkProperties.target
-          },
-          vertices: linkProperties.points || A()
-        });
+        let jsonObject = getJsonForLink(
+          'STORMCASE.UML.ucd.Generalization, UMLUCD',
+          linkProperties.source,
+          null,
+          linkProperties.target,
+          null
+        );
 
-        return newGeneralizationObject;
-      }).bind(this), e, A(['flexberry.uml.Usecase', 'flexberry.uml.UsecaseActor']));
+        let generalitionObject = FdUseCaseGeneralization.create({ primitive: jsonObject });
+        generalitionObject.set('vertices', linkProperties.points || A());
+
+        this._addToPrimitives(generalitionObject);
+        return generalitionObject.JointJS();
+//         let newGeneralizationObject = new UseCaseGeneralization({
+//           source: {
+//             id: linkProperties.source
+//           },
+//           target: {
+//             id: linkProperties.target
+//           },
+//           vertices: linkProperties.points || A()
+//         });
+//
+//         return newGeneralizationObject;
+      }).bind(this), e/*, A(['flexberry.uml.Usecase', 'flexberry.uml.UsecaseActor'])*/);
     },
 
     /**
