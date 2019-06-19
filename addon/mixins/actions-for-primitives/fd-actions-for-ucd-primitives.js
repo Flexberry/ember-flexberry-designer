@@ -1,7 +1,6 @@
 import Mixin from '@ember/object/mixin';
 import { A } from '@ember/array';
 import fdUmlUseCase from 'ember-flexberry-designer/objects/uml-primitives/fd-uml-use-case';
-// import FdAssociation from '../../objects/uml-primitives/fd-uml-association';
 import fdUseCaseActor from 'ember-flexberry-designer/objects/uml-primitives/fd-uml-usecase-actor';
 import fdPartition from 'ember-flexberry-designer/objects/uml-primitives/fd-uml-partition';
 import FdDirectedAssociation from 'ember-flexberry-designer/objects/uml-primitives/fd-uml-usecase-directed-association';
