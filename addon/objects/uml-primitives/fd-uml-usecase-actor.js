@@ -7,6 +7,7 @@ import { isArray } from '@ember/array';
 
 import FdUmlElement from './fd-uml-element';
 import { BaseObject } from './fd-uml-baseobject';
+import joint from 'npm:jointjs';
 
 /**
   An object that describes a UsecaseActor on the UML diagram.
@@ -88,7 +89,15 @@ export let UsecaseActor = BaseObject.define('flexberry.uml.UsecaseActor', {
     '</g>'
   ].join(''),
 
-  updateRectangles: function () {
-    this.updateRectanglesOld();
+  initialize: function () {
+    BaseObject.prototype.initialize.apply(this, arguments);
+
   }
+
+});
+
+joint.shapes.flexberry.uml.UsecaseActorView = joint.shapes.flexberry.uml.BaseObjectView.extend({
+  updateRectangles() {
+    joint.shapes.flexberry.uml.BaseObjectView.prototype.updateRectangles.apply(this, arguments);
+  },
 });
