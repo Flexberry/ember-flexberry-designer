@@ -96,7 +96,7 @@ export default Mixin.create({
         undirAssociationObject.set('vertices', linkProperties.points || A());
         this._addToPrimitives(undirAssociationObject);
         return undirAssociationObject.JointJS();
-      }).bind(this), e/*, A(['flexberry.uml.Usecase', 'flexberry.uml.UsecaseActor'])*/);
+      }).bind(this), e, A(['flexberry.uml.UseCase', 'flexberry.uml.UsecaseActor']));
     },
 
     /**
@@ -120,7 +120,7 @@ export default Mixin.create({
         associationObject.set('vertices', linkProperties.points || A());
         this._addToPrimitives(associationObject);
         return associationObject.JointJS();
-      }).bind(this), e/*, A(['flexberry.uml.Usecase', 'flexberry.uml.UsecaseActor'])*/);
+      }).bind(this), e, A(['flexberry.uml.UseCase', 'flexberry.uml.UsecaseActor']));
     },
 
     /**
@@ -144,7 +144,7 @@ export default Mixin.create({
         generalitionObject.set('vertices', linkProperties.points || A());
         this._addToPrimitives(generalitionObject);
         return generalitionObject.JointJS();
-      }).bind(this), e/*, A(['flexberry.uml.Usecase', 'flexberry.uml.UsecaseActor'])*/);
+      }).bind(this), e, A(['flexberry.uml.UseCase', 'flexberry.uml.UsecaseActor']));
     },
 
     /**
@@ -168,7 +168,7 @@ export default Mixin.create({
         depencyObject.set('vertices', linkProperties.points || A());
         this._addToPrimitives(depencyObject);
         return depencyObject.JointJS();
-      }).bind(this), e/*, A(['flexberry.uml.Usecase'])*/);
+      }).bind(this), e, A(['flexberry.uml.UseCase']));
     },
   }
 });
