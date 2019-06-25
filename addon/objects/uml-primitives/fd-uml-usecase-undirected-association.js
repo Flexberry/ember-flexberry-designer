@@ -5,7 +5,8 @@ import joint from 'npm:jointjs';
 
 import FdUmlLink from './fd-uml-link';
 import { Link } from './fd-uml-link';
-import { EmptyView } from './links-view/fd-empty-view';
+import { DescriptionView } from './links-view/fd-description-view';
+
 
 /**
   An object that describes a link of the Directed Association type on the UML diagram.
@@ -35,7 +36,11 @@ export default FdUmlLink.extend({
   @namespace flexberry.uml
   @constructor
 */
-export let UnDirectedAssociation = Link.define('flexberry.uml.UseCaseGeneralization', {
+export let UnDirectedAssociation = Link.define('flexberry.uml.UnDirectedAssociation', {
+  attrs: {
+    text: { 'font-size': '12', 'font-family': 'Arial, helvetica, sans-serif', visibility: 'hidden' },
+    rect: { visibility: 'hidden' }
+  }
 });
 
-joint.shapes.flexberry.uml.UnDirectedAssociationView = EmptyView;
+joint.shapes.flexberry.uml.UnDirectedAssociationView = DescriptionView;

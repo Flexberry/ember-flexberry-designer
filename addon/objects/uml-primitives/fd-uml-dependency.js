@@ -42,7 +42,7 @@ export let Dependency = Link.define('flexberry.uml.Dependency', {
     '.marker-target': { d: 'M 0 10 L 13 17 L 0 10 L 13 3 z', fill: 'black' },
     '.connection': { stroke: 'black', 'stroke-width': 1, 'stroke-dasharray': '7 2' },
     rect: { visibility: 'hidden' }
-  },
+  }
 });
 
 joint.shapes.flexberry.uml.DependencyView = DescriptionView;
