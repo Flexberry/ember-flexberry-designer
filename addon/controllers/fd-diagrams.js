@@ -424,6 +424,9 @@ export default Controller.extend(FdSaveHasManyRelationshipsMixin, {
           });
         });
       });
+    } else {
+      model.set('primitivesJsonString', JSON.stringify(primitives));
+      return resolve();
     }
   },
 
