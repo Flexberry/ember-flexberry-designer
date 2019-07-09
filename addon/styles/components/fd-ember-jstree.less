@@ -1,0 +1,52 @@
+@itemHeight: 41px;
+
+.jstree-default .jstree-anchor {
+  height: @itemHeight;
+  line-height: @itemHeight;
+}
+
+.jstree-default .jstree-node {
+  line-height: @itemHeight;
+  margin-left: @itemHeight;
+  min-height: @itemHeight;
+  min-width: @itemHeight;
+}
+
+.jstree-default .jstree-wholerow {
+  height: @itemHeight;
+}
+
+.jstree-default .jstree-icon:empty {
+  height: @itemHeight;
+}
+
+.jstree-default .jstree-wholerow-clicked,
+.jstree-default .jstree-wholerow-hovered {
+  background: rgba(0, 0, 0, 0.1);
+  border-radius: 0.5rem;
+}
+
+.jstree-default .jstree-themeicon-custom {
+  background-size: 100%!important;
+  margin-right: 0.5em;
+}
+
+.jstree-default > .jstree-no-dots .jstree-closed > .jstree-ocl::before {
+  border-left: 15px solid #c0c0c0;
+}
+
+.jstree-default > .jstree-no-dots .jstree-open > .jstree-ocl::before {
+  border-top: 15px solid #c0c0c0;
+}
+
+.jstree-icon.jstree-ocl {
+  background-image: none;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: calc(~'50% - 7px');
+    border: 7px solid transparent;
+    left: 0;
+  }
+}
