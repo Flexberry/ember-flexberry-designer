@@ -44,6 +44,7 @@ import FdEditForm from './forms/fd-edit-form';
 import NewPlatformFlexberryWebDesignerGenerationEForm from './forms/new-platform-flexberry-web-designer-generation-e';
 import NewPlatformFlexberryWebDesignerStorageTypeEForm from './forms/new-platform-flexberry-web-designer-storage-type-e';
 import FdDiagramForm from './forms/fd-diagrams';
+import FdNavigationForm from './forms/fd-navigation';
 import FdAdModel from './models/fd-ad';
 import FdAggregationModel from './models/fd-aggregation';
 import FdApplicationUserModel from './models/fd-application-user';
@@ -131,6 +132,9 @@ import FdBsEditingPanel from './components/fd-businessserver-editing-panel';
 import FdEnumEditingPanel from './components/fd-enumeration-editing-panel';
 import FdCreateView from './components/fd-create-view';
 import FdSheet from './components/fd-sheet';
+import FdCreateNodeEditingPanel from './components/fd-create-node-editing-panel';
+import FdFolderEditingPanel from './components/fd-folder-editing-panel';
+import FdPropertyEditingPanel from './components/fd-property-editing-panel';
 import FdApplicationModelForm from './forms/fd-application-model';
 
 const translations = {};
@@ -411,6 +415,7 @@ $.extend(true, translations, {
     'new-platform-flexberry-web-designer-storage-type-e': NewPlatformFlexberryWebDesignerStorageTypeEForm,
     'fd-application-model': FdApplicationModelForm,
     'fd-diagrams': FdDiagramForm,
+    'fd-navigation': FdNavigationForm,
   },
 
   components: {
@@ -429,6 +434,9 @@ $.extend(true, translations, {
     'fd-enumeration-editing-panel': FdEnumEditingPanel,
     'fd-create-view': FdCreateView,
     'fd-sheet': FdSheet,
+    'fd-create-node-editing-panel': FdCreateNodeEditingPanel,
+    'fd-folder-editing-panel': FdFolderEditingPanel,
+    'fd-property-editing-panel': FdPropertyEditingPanel,
   }
 
 });

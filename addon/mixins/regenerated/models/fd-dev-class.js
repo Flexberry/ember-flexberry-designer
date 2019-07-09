@@ -135,7 +135,7 @@ export let Model = Mixin.create({
     let result = (this.containersCompute && typeof this.containersCompute === 'function') ? this.containersCompute() : null;
     this.set('containers', result);
   },
-  containersStr: DS.attr('containers-tree'),
+  containersStr: DS.attr('string'),
   /**
     Non-stored property.
 

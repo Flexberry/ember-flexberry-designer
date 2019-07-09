@@ -121,6 +121,13 @@ export default Component.extend({
   */
   selectNodeAction: undefined,
 
+  /**
+    Method for move tree nodes.
+
+    @method moveNodeAction
+  */
+  moveNodeAction: undefined,
+
   actions: {
 
     /**
@@ -134,10 +141,29 @@ export default Component.extend({
       if (this.get('reloadDataAtClose')) {
         this.get('treeObject').on('close_node.jstree', this._closeNodeTree.bind(this));
       }
+    },
 
+    /**
+      Handles selectNode jsTree.
+
+      @method actions.handleTreeDidSelectNode
+    */
+    handleTreeDidSelectNode(node) {
       let selectNodeAction = this.get('selectNodeAction');
       if (selectNodeAction && typeof selectNodeAction === 'function') {
-        this.get('treeObject').on('select_node.jstree', this._selectNodeTree.bind(this));
+        selectNodeAction(node, this.get('store'));
+      }
+    },
+
+    /**
+      Handles moveNode jsTree.
+
+      @method actions.handleTreeDidMoveNode
+    */
+    handleTreeDidMoveNode(node) {
+      let moveNodeAction = this.get('moveNodeAction');
+      if (moveNodeAction && typeof moveNodeAction === 'function') {
+        moveNodeAction(node);
       }
     },
   },
