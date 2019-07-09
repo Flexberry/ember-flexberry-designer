@@ -61,7 +61,7 @@
     "ember-link-action": "0.0.36",
     "ember-load-initializers": "^1.0.0",
     "ember-moment": "7.7.0",
-    "ember-promise-helpers": "^1.0.6",
+    "ember-promise-helpers": "1.0.6",
     "ember-prop-types": "4.0.0",
     "ember-resolver": "^4.0.0",
     "ember-source": "~3.1.0",
@@ -79,8 +79,5 @@
   },
   "ember-addon": {
     "configPath": "tests/dummy/config"
-  },
-  "resolutions": {
-    "resolve": "1.11.0"
   }
 }
