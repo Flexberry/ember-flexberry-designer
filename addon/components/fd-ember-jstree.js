@@ -162,7 +162,7 @@ export default Component.extend({
     */
     handleTreeDidMoveNode(node) {
       let moveNodeAction = this.get('moveNodeAction');
-      if (moveNodeAction && typeof moveNodeAction === 'function') {
+      if (typeof moveNodeAction === 'function') {
         moveNodeAction(node);
       }
     },

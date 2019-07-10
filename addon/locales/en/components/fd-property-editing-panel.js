@@ -4,6 +4,6 @@ export default {
   'description-caption': 'Description',
   'description-placeholder': 'Enter description',
   'url-caption': 'URL',
-  'url-placeholder': 'Enter URL on page',
+  'url-placeholder': 'Enter URL of page',
   'class-name-caption': 'Container'
 };
