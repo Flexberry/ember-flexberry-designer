@@ -176,7 +176,7 @@ export default Controller.extend(FdSaveHasManyRelationshipsMixin, {
 
     searchStr = searchStr.trim().toLocaleLowerCase();
     let filterFunction = function(item) {
-      let name = item.get('name');
+      let name = item.data.get('name');
       if (!isNone(name) && name.toLocaleLowerCase().indexOf(searchStr) !== -1) {
         return item;
       }
@@ -208,7 +208,7 @@ export default Controller.extend(FdSaveHasManyRelationshipsMixin, {
     let selectedElement = this.get('selectedElement');
     if (!isNone(selectedElement)) {
       let store = this.get('store');
-      let model = selectedElement.get('model');
+      let model = selectedElement.get('model.data');
       let primitives = A(model.get('primitives').filterBy('repositoryObject'));
 
       // Recompute `primitives` property.
@@ -239,7 +239,7 @@ export default Controller.extend(FdSaveHasManyRelationshipsMixin, {
       });
 
       this.set('isDiagramVisible', false);
-      selectedElement.set('fdListItemActive', false);
+      selectedElement.set('model.active', false);
     }
   },
 
@@ -295,7 +295,7 @@ export default Controller.extend(FdSaveHasManyRelationshipsMixin, {
   */
   savePrimitives() {
     let promises = A();
-    let model = this.get('selectedElement.model');
+    let model = this.get('selectedElement.model.data');
     let primitives = model.get('primitives');
     primitives.forEach((primitive) => {
       if (!isNone(primitive.get('isCreated'))) {
@@ -437,7 +437,7 @@ export default Controller.extend(FdSaveHasManyRelationshipsMixin, {
        @method actions.save
     */
     save() {
-      let model = this.get('selectedElement.model');
+      let model = this.get('selectedElement.model.data');
       this.get('appState').loading();
       this.savePrimitives().then(() => {
         model.save()

@@ -1,5 +1,6 @@
 import Component from '@ember/component';
 import { inject as service } from '@ember/service';
+import { computed } from '@ember/object';
 import layout from '../templates/components/fd-list-item';
 
 export default Component.extend({
@@ -28,9 +29,10 @@ export default Component.extend({
 
     @property fdListItemActive
     @type Boolean
-    @default false
   */
-  fdListItemActive: false,
+  fdListItemActive: computed('model.active', function() {
+    return this.get('model.active')
+  }).readOnly(),
 
   /**
     Sheet component name.
@@ -58,7 +60,7 @@ export default Component.extend({
     */
     openSheet(currentItem) {
       this.get('fdSheetService').openSheet(this.get('sheetComponentName'), currentItem);
-      this.set('fdListItemActive', true);
+      this.set('model.active', true);
     }
   }
 });

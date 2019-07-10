@@ -36,7 +36,7 @@
           {{
             fd-list-item
             model=enum
-            caption=enum.name
+            caption=enum.data.name
             sheetComponentName=sheetComponentName
           }}
         {{/each}}
@@ -61,7 +61,7 @@
           {{
             fd-list-item
             model=type
-            caption=type.name
+            caption=type.data.name
             sheetComponentName=sheetComponentName
           }}
         {{/each}}
@@ -86,7 +86,7 @@
           {{
             fd-list-item
             model=typedef
-            caption=typedef.name
+            caption=typedef.data.name
             sheetComponentName=sheetComponentName
           }}
         {{/each}}
@@ -111,7 +111,7 @@
           {{
             fd-list-item
             model=bs
-            caption=bs.name
+            caption=bs.data.name
             sheetComponentName=sheetComponentName
           }}
         {{/each}}
@@ -136,7 +136,7 @@
           {{
             fd-list-item
             model=interface
-            caption=interface.name
+            caption=interface.data.name
             sheetComponentName=sheetComponentName
           }}
         {{/each}}
@@ -161,7 +161,7 @@
           {{
             fd-list-item
             model=external
-            caption=external.name
+            caption=external.data.name
             sheetComponentName=sheetComponentName
           }}
         {{/each}}
@@ -186,7 +186,7 @@
           {{
             fd-list-item
             model=extinterface
-            caption=extinterface.name
+            caption=extinterface.data.name
             sheetComponentName=sheetComponentName
           }}
         {{/each}}
@@ -211,7 +211,7 @@
           {{
             fd-list-item
             model=application
-            caption=application.name
+            caption=application.data.name
             sheetComponentName=sheetComponentName
           }}
         {{/each}}
@@ -236,7 +236,7 @@
           {{
             fd-list-item
             model=userform
-            caption=userform.name
+            caption=userform.data.name
             sheetComponentName=sheetComponentName
           }}
         {{/each}}
@@ -261,7 +261,7 @@
           {{
             fd-list-item
             model=userstereotype
-            caption=userstereotype.name
+            caption=userstereotype.data.name
             sheetComponentName=sheetComponentName
           }}
         {{/each}}
@@ -278,19 +278,19 @@
   </div>
 </form>
 {{#fd-sheet
-  title=selectedElement.model.name
+  title=selectedElement.model.data.name
   saveController=(action 'save')
   sheetComponentName=sheetComponentName
   readonly=true
 }}
   {{#if (known-for-type (concat "fd-editing-panels/fd-" componentNamePart "-editing-panel"))}}
     {{component (concat "fd-editing-panels/fd-" componentNamePart "-editing-panel")
-      model=selectedElement.model
+      model=selectedElement.model.data
       openViewSheetController=(action 'openViewSheet')
     }}
   {{else}}
     {{fd-editing-panels/fd-custom-editing-panel
-      model=selectedElement.model
+      model=selectedElement.model.data
     }}
   {{/if}}
 
@@ -303,7 +303,7 @@
   readonly=false
 }}
   {{!--{{fd-editing-panels/fd-create-view
-    model=selectedElement.model
+    model=selectedElement.model.name
     view=selectedView
   }}--}}
 

@@ -91,7 +91,7 @@ export default Controller.extend(FdSaveHasManyRelationshipsMixin, {
   componentNamePart: computed('selectedElement', function() {
     let selectedElement = this.get('selectedElement');
     if (!isNone(selectedElement)) {
-      let stereotype = selectedElement.get('model.stereotype');
+      let stereotype = selectedElement.get('model.data.stereotype');
       if (isNone(stereotype)) {
         return 'implementation';
       }
@@ -115,7 +115,7 @@ export default Controller.extend(FdSaveHasManyRelationshipsMixin, {
 
     searchStr = searchStr.trim().toLocaleLowerCase();
     let filterFunction = function(item) {
-      let name = item.get('name');
+      let name = item.data.get('name');
       if (!isNone(name) && name.toLocaleLowerCase().indexOf(searchStr) !== -1) {
         return item;
       }
@@ -166,9 +166,9 @@ export default Controller.extend(FdSaveHasManyRelationshipsMixin, {
   deactivateListItem() {
     let selectedElement = this.get('selectedElement');
     if (!isNone(selectedElement)) {
-      let model = selectedElement.get('model');
+      let model = selectedElement.get('model.data');
       model.rollbackAll();
-      selectedElement.set('fdListItemActive', false);
+      selectedElement.set('model.active', false);
     }
   },
 
@@ -181,7 +181,7 @@ export default Controller.extend(FdSaveHasManyRelationshipsMixin, {
     let stereotype = modelSelectedElement.get('stereotype');
     if (stereotype === '«implementation»' || stereotype === null) {
       let model = this.get('model');
-      let classObj = model.classes.findBy('settings.id', modelSelectedElement.id);
+      let classObj = model.classes.findBy('settings.data.id', modelSelectedElement.id);
       set(classObj, 'bs', modelSelectedElement.get('businessServerClass'));
     }
   },
@@ -239,7 +239,7 @@ export default Controller.extend(FdSaveHasManyRelationshipsMixin, {
        @method actions.save
     */
     save() {
-      let model = this.get('selectedElement.model');
+      let model = this.get('selectedElement.model.data');
       this.get('appState').loading();
       updateStrByObjects(model);
       model.save()
