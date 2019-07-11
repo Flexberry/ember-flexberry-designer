@@ -5,6 +5,8 @@ import { A } from '@ember/array';
 import { inject as service } from '@ember/service';
 import { updateStrByObjects } from '../utils/fd-update-str-value';
 import { translationMacro as t } from 'ember-i18n';
+import { resolve } from 'rsvp';
+import $ from 'jquery';
 
 import FdSaveHasManyRelationshipsMixin from '../mixins/fd-save-has-many-relationships';
 
@@ -107,7 +109,7 @@ export default Controller.extend(FdSaveHasManyRelationshipsMixin, {
 
     @method computedTitle
   */
-  computedTitle: computed('isAddMode', 'i18n.locale', {
+  computedTitle: computed('isAddMode', 'i18n.locale', 'selectedElement', {
     get() {
       return this.get('isAddMode') ? t('components.fd-create-entity.caption') : this.get('selectedElement.model.data.name');
     },
@@ -274,43 +276,77 @@ export default Controller.extend(FdSaveHasManyRelationshipsMixin, {
   },
 
   /**
+    Find array in model.
+
+     @method getModelArrayByStereotype
+     @param {Object} model model object
+  */
+  getModelArrayByStereotype(model) {
+    let findArray;
+    switch (model.get('stereotype')) {
+      case null:
+      case '«implementation»':
+        findArray = this.get('model.classes');
+        break;
+      case '«listform»': {
+        let dataObjectId = model.get('formViews.firstObject.view.class.id');
+        let classArray = this.get('model.classes').findBy('settings.data.id', dataObjectId);
+        findArray = classArray.listForms;
+        break;
+      }
+      case '«editform»': {
+        let dataObjectId = model.get('formViews.firstObject.view.class.id');
+        let classArray = this.get('model.classes').findBy('settings.data.id', dataObjectId);
+        findArray = classArray.editForms;
+        break;
+      }
+      case '«enumeration»':
+        findArray = this.get('model.enums');
+        break;
+      case '«typedef»':
+        findArray = this.get('model.typedefs');
+        break;
+      case '«type»':
+        findArray = this.get('model.types');
+        break;
+      case '«application»':
+        findArray = this.get('model.applications');
+        break;
+      case '«businessserver»':
+        findArray = this.get('model.bs');
+        break;
+      case '«external»':
+        findArray = this.get('model.externals');
+        break;
+      case '«externalinterface»':
+        findArray = this.get('model.externalinterface');
+        break;
+      case '«interface»':
+        findArray = this.get('model.interfaces');
+        break;
+      case '«userform»':
+        findArray = this.get('model.userforms');
+        break;
+      default:
+        findArray = this.get('model.userstereotypes');
+    }
+
+    return findArray;
+  },
+
+  /**
     Add in model new classes.
 
      @method addNewClassInModel
   */
   addNewClassInModel() {
     let model = this.get('selectedElement.model');
-    switch (model.data.get('stereotype')) {
-      case '«implementation»':
-        this.get('model.classes').push({ settings: model, editForms: A(), listForms: A(), parents: A(), bs: null });
-        break;
-      case '«enumeration»':
-        this.get('model.enums').push(model);
-        break;
-      case '«typedef»':
-        this.get('model.typedefs').push(model);
-        break;
-      case '«type»':
-        this.get('model.types').push(model);
-        break;
-      case '«application»':
-        this.get('model.applications').push(model);
-        break;
-      case '«businessserver»':
-        this.get('model.bs').push(model);
-        break;
-      case '«external»':
-        this.get('model.externals').push(model);
-        break;
-      case '«externalinterface»':
-        this.get('model.externalinterface').push(model);
-        break;
-      case '«interface»':
-        this.get('model.interfaces').push(model);
-        break;
-      case '«userform»':
-        this.get('model.userforms').push(model);
-        break;
+    let modelHash = this.getModelArrayByStereotype(model.data);
+
+    if (model.data.get('stereotype') === '«implementation»') {
+      modelHash.pushObject({ settings: model, editForms: A(), listForms: A(), parents: A(), bs: null });
+    } else {
+      modelHash.pushObject(model);
     }
 
     this.notifyPropertyChange('model');
@@ -333,6 +369,14 @@ export default Controller.extend(FdSaveHasManyRelationshipsMixin, {
       }
 
       model.save()
+      .then(() => {
+        let stereotype = model.get('stereotype');
+        if (stereotype === '«editform»' || stereotype === '«listform»') {
+          return model.get('formViews.firstObject.view').save();
+        }
+
+        return resolve();
+      })
       .then(() => this.saveHasManyRelationships(model))
       .then(() => {
         this.updateClassModel(model);
@@ -349,6 +393,7 @@ export default Controller.extend(FdSaveHasManyRelationshipsMixin, {
       Opening sheet 'view-sheet'.
 
        @method actions.openViewSheet
+       @param {Object} view view
     */
     openViewSheet(view) {
       this.set('selectedView', view);
@@ -370,9 +415,11 @@ export default Controller.extend(FdSaveHasManyRelationshipsMixin, {
 
        @method actions.createClass
        @param {String} stereotype stereotype
+       @param {Object} dataobject dataobject for list and edit form.
     */
-    createClass(stereotype) {
+    createClass(stereotype, dataobject) {
       this.deactivateListItem();
+      this.set('selectedElement', undefined);
       let store = this.get('store');
       let currentStage = this.get('currentProjectContext').getCurrentStageModel();
       let newClass = store.createRecord('fd-dev-class', {
@@ -383,6 +430,22 @@ export default Controller.extend(FdSaveHasManyRelationshipsMixin, {
         nameStr: '',
         stereotype: stereotype
       });
+
+      if (!isBlank(dataobject) && !(dataobject instanceof $.Event)) {
+        let view = store.createRecord('fd-dev-view', {
+          class: dataobject,
+          name: '',
+          definition: A()
+        });
+
+        let formView = store.createRecord('fd-dev-form-view', {
+          class: dataobject,
+          view: view,
+          orderNum: 1
+        });
+
+        newClass.set('formViews', [formView]);
+      }
 
       let model = { data: newClass, active: true };
 
@@ -396,7 +459,40 @@ export default Controller.extend(FdSaveHasManyRelationshipsMixin, {
        @method actions.delete
     */
     delete() {
+      let selectedElement = this.get('selectedElement.model.data');
+      let modelHash = this.getModelArrayByStereotype(selectedElement);
 
+      let deleteObject;
+      let deleteModels = A();
+      let stereotype = selectedElement.get('stereotype');
+      if (stereotype === '«businessserver»') {
+        let bsInClass = this.get('model.classes').filterBy('bs.data.id', selectedElement.id);
+        if (bsInClass > 0) {
+          throw new Error('BusinessServer используется другими классами: ');
+        }
+      }
+
+      if (stereotype === '«implementation»' || stereotype === null) {
+        deleteObject = modelHash.findBy('settings.data.id', selectedElement.id);
+        deleteModels.pushObjects(deleteObject.listForms);
+        deleteModels.pushObjects(deleteObject.editForms);
+      } else {
+        deleteObject = modelHash.findBy('data.id', selectedElement.id);
+      }
+
+      modelHash.removeObject(deleteObject);
+
+      this.get('appState').loading();
+      /*deleteModels.pushObject(selectedElement);
+      this.get('store').batchUpdate(deleteModels.map(a => a.data.deleteRecord()))*/
+      deleteObject.data.destroyRecord() // TODO убрать при появлении batchUpdate.
+      .then(() => {
+        this.set('selectedElement', undefined);
+        this.get('fdSheetService').closeSheet(this.get('sheetComponentName'));
+      })
+      .finally(() => {
+        this.get('appState').reset();
+      });
     },
   }
 });

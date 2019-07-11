@@ -81,12 +81,12 @@
     {{
       fd-button
       caption=(t "forms.fd-application-model.editor-caption")
-      click=(action createClassAction '«editform»')
+      click=(action createClassAction '«editform»' entity.settings.data)
     }}
     {{
       fd-button
       caption=(t "forms.fd-application-model.list-caption")
-      click=(action createClassAction '«listform»')
+      click=(action createClassAction '«listform»' entity.settings.data)
     }}
   </div>
 </div>
