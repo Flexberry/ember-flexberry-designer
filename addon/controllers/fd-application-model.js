@@ -1,13 +1,23 @@
 import Controller from '@ember/controller';
-import { computed, observer, set } from '@ember/object';
+import EmberObject, { computed, observer, set } from '@ember/object';
 import { isBlank, isNone } from '@ember/utils';
 import { A } from '@ember/array';
 import { inject as service } from '@ember/service';
 import { updateStrByObjects } from '../utils/fd-update-str-value';
+import { translationMacro as t } from 'ember-i18n';
 
 import FdSaveHasManyRelationshipsMixin from '../mixins/fd-save-has-many-relationships';
 
 export default Controller.extend(FdSaveHasManyRelationshipsMixin, {
+
+  /**
+   Service that get current project contexts.
+
+   @property currentProjectContext
+   @type {Class}
+   @default service()
+   */
+  currentProjectContext: service('fd-current-project-context'),
 
   /**
     Service for managing the state of the application.
@@ -69,6 +79,15 @@ export default Controller.extend(FdSaveHasManyRelationshipsMixin, {
   sheetViewName: '',
 
   /**
+    Flag: indicates whether to show create editing panel.
+
+    @property isAddMode
+    @type Bool
+    @default false
+  */
+  isAddMode: false,
+
+  /**
     Ember.observer, watching property `searchValue` and send action from 'fd-sheet' component.
 
     @method searchValueObserver
@@ -81,6 +100,24 @@ export default Controller.extend(FdSaveHasManyRelationshipsMixin, {
     }
 
     this.closeViewSheet();
+  }),
+
+  /**
+    Sheet title value.
+
+    @method computedTitle
+  */
+  computedTitle: computed('isAddMode', 'i18n.locale', {
+    get() {
+      return this.get('isAddMode') ? t('components.fd-create-entity.caption') : this.get('selectedElement.model.data.name');
+    },
+    set(key, value) {
+      if (!this.get('isAddMode')) {
+        this.set('selectedElement.model.data.name', value);
+      }
+
+      return value;
+    }
   }),
 
   /**
@@ -182,7 +219,9 @@ export default Controller.extend(FdSaveHasManyRelationshipsMixin, {
     if (stereotype === '«implementation»' || stereotype === null) {
       let model = this.get('model');
       let classObj = model.classes.findBy('settings.data.id', modelSelectedElement.id);
-      set(classObj, 'bs', modelSelectedElement.get('businessServerClass'));
+      let bs = modelSelectedElement.get('businessServerClass');
+      let bsModel = isNone(bs) ? null : { data: bs, active: false };
+      set(classObj, 'bs', bsModel);
     }
   },
 
@@ -199,6 +238,9 @@ export default Controller.extend(FdSaveHasManyRelationshipsMixin, {
       this.deactivateListItem();
       this.closeViewSheet();
       this.set('selectedElement', currentItem);
+      if (!isNone(currentItem)) {
+        this.set('isAddMode', false);
+      }
     }
   },
 
@@ -231,6 +273,49 @@ export default Controller.extend(FdSaveHasManyRelationshipsMixin, {
     }
   },
 
+  /**
+    Add in model new classes.
+
+     @method addNewClassInModel
+  */
+  addNewClassInModel() {
+    let model = this.get('selectedElement.model');
+    switch (model.data.get('stereotype')) {
+      case '«implementation»':
+        this.get('model.classes').push({ settings: model, editForms: A(), listForms: A(), parents: A(), bs: null });
+        break;
+      case '«enumeration»':
+        this.get('model.enums').push(model);
+        break;
+      case '«typedef»':
+        this.get('model.typedefs').push(model);
+        break;
+      case '«type»':
+        this.get('model.types').push(model);
+        break;
+      case '«application»':
+        this.get('model.applications').push(model);
+        break;
+      case '«businessserver»':
+        this.get('model.bs').push(model);
+        break;
+      case '«external»':
+        this.get('model.externals').push(model);
+        break;
+      case '«externalinterface»':
+        this.get('model.externalinterface').push(model);
+        break;
+      case '«interface»':
+        this.get('model.interfaces').push(model);
+        break;
+      case '«userform»':
+        this.get('model.userforms').push(model);
+        break;
+    }
+
+    this.notifyPropertyChange('model');
+  },
+
   actions: {
 
     /**
@@ -242,6 +327,11 @@ export default Controller.extend(FdSaveHasManyRelationshipsMixin, {
       let model = this.get('selectedElement.model.data');
       this.get('appState').loading();
       updateStrByObjects(model);
+
+      if (model.get('isNew')) {
+        this.addNewClassInModel();
+      }
+
       model.save()
       .then(() => this.saveHasManyRelationships(model))
       .then(() => {
@@ -263,6 +353,50 @@ export default Controller.extend(FdSaveHasManyRelationshipsMixin, {
     openViewSheet(view) {
       this.set('selectedView', view);
       this.get('fdSheetService').openSheet(this.get('sheetViewName'));
-    }
+    },
+
+    /**
+      Open create class edit panel.
+
+       @method actions.openCreateClassEditPanel
+    */
+    openCreateClassEditPanel() {
+      this.set('isAddMode', true);
+      this.get('fdSheetService').openSheet(this.get('sheetComponentName'));
+    },
+
+    /**
+      Create new class.
+
+       @method actions.createClass
+       @param {String} stereotype stereotype
+    */
+    createClass(stereotype) {
+      this.deactivateListItem();
+      let store = this.get('store');
+      let currentStage = this.get('currentProjectContext').getCurrentStageModel();
+      let newClass = store.createRecord('fd-dev-class', {
+        stage: currentStage,
+        caption: '',
+        description: '',
+        name: '',
+        nameStr: '',
+        stereotype: stereotype
+      });
+
+      let model = { data: newClass, active: true };
+
+      this.set('isAddMode', false);
+      this.get('fdSheetService').openSheet(this.get('sheetComponentName'), EmberObject.create({ model: model }));
+    },
+
+    /**
+      Delete selected class.
+
+       @method actions.delete
+    */
+    delete() {
+
+    },
   }
 });

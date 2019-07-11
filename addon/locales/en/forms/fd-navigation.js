@@ -3,4 +3,5 @@ export default {
   'caption-sheet': 'Tree node: ',
   search: 'Search',
   'root-folder': 'Root folder',
+  cancel: 'Cancel',
 };

@@ -3,4 +3,5 @@ export default {
   'caption-sheet': 'Вершина дерева: ',
   search: 'Поиск',
   'root-folder': 'Корневая папка',
+  cancel: 'Отменить',
 };
