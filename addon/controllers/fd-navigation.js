@@ -63,9 +63,9 @@ export default Controller.extend({
 
     @property customButtonTitle
     @type String
-    @default 'forms.fd-all-projects.cancel'
+    @default 'forms.fd-navigation.cancel'
   */
-  customButtonTitle: 'forms.fd-all-projects.cancel',
+  customButtonTitle: 'forms.fd-navigation.cancel',
 
   /**
     Type settings for jsTree.

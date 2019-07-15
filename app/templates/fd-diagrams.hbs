@@ -27,7 +27,7 @@
           {{
             fd-list-item
             model=ad
-            caption=ad.name
+            caption=ad.data.name
             sheetComponentName=sheetComponentName
           }}
         {{/each}}
@@ -52,7 +52,7 @@
           {{
             fd-list-item
             model=cad
-            caption=cad.name
+            caption=cad.data.name
             sheetComponentName=sheetComponentName
           }}
         {{/each}}
@@ -77,7 +77,7 @@
           {{
             fd-list-item
             model=cod
-            caption=cod.name
+            caption=cod.data.name
             sheetComponentName=sheetComponentName
           }}
         {{/each}}
@@ -102,7 +102,7 @@
           {{
             fd-list-item
             model=dpd
-            caption=dpd.name
+            caption=dpd.data.name
             sheetComponentName=sheetComponentName
           }}
         {{/each}}
@@ -127,7 +127,7 @@
           {{
             fd-list-item
             model=sd
-            caption=sd.name
+            caption=sd.data.name
             sheetComponentName=sheetComponentName
           }}
         {{/each}}
@@ -152,7 +152,7 @@
           {{
             fd-list-item
             model=std
-            caption=std.name
+            caption=std.data.name
             sheetComponentName=sheetComponentName
           }}
         {{/each}}
@@ -177,7 +177,7 @@
           {{
             fd-list-item
             model=ucd
-            caption=ucd.name
+            caption=ucd.data.name
             sheetComponentName=sheetComponentName
           }}
         {{/each}}
@@ -196,14 +196,14 @@
 
 
 {{#fd-sheet
-  title=selectedElement.model.name
+  title=selectedElement.model.data.name
   saveController=(action 'save')
   sheetComponentName=sheetComponentName
 }}
 {{#if isDiagramVisible}}
   {{
     fd-uml-diagram-editor
-    model=selectedElement.model
+    model=selectedElement.model.data
     emptyReferenceCountItems=emptyReferenceCountItems
     sheetComponentName=sheetComponentName
     openEditFormAction=(action "openObjectEditForm")
