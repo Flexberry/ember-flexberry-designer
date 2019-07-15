@@ -473,9 +473,10 @@ export default Controller.extend(FdSaveHasManyRelationshipsMixin, {
       }
 
       if (stereotype === '«implementation»' || stereotype === null) {
-        deleteObject = modelHash.findBy('settings.data.id', selectedElement.id);
-        deleteModels.pushObjects(deleteObject.listForms);
-        deleteModels.pushObjects(deleteObject.editForms);
+        let deleteObjectClass = modelHash.findBy('settings.data.id', selectedElement.id);
+        deleteModels.pushObjects(deleteObjectClass.listForms);
+        deleteModels.pushObjects(deleteObjectClass.editForms);
+        deleteObject = deleteObjectClass.settings;
       } else {
         deleteObject = modelHash.findBy('data.id', selectedElement.id);
       }
