@@ -1,4 +1,4 @@
 export default {
-  'placeholder-caption': 'Имя сущности',
+  'placeholder-caption': 'Введите имя',
   'save-caption': 'Сохранить'
 };

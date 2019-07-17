@@ -3,7 +3,10 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 ### Added
-* Navigation tree.
+* Added navigation tree.
+* Added logic for create new class button.
+* Added logic for create new diagram button.
+* Added logic for delete class button.
 
 ## [0.7.0] - 2019-05-31
 ### Added
