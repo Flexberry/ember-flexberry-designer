@@ -474,9 +474,9 @@ export default Controller.extend(FdSaveHasManyRelationshipsMixin, {
 
       if (stereotype === '«implementation»' || stereotype === null) {
         let deleteObjectClass = modelHash.findBy('settings.data.id', selectedElement.id);
-        deleteModels.pushObjects(deleteObjectClass.listForms);
-        deleteModels.pushObjects(deleteObjectClass.editForms);
-        deleteObject = deleteObjectClass.settings;
+        deleteModels.pushObjects(deleteObjectClass.listForms.map(p => p.data));
+        deleteModels.pushObjects(deleteObjectClass.editForms.map(p => p.data));
+        deleteObject = deleteObjectClass;
       } else {
         deleteObject = modelHash.findBy('data.id', selectedElement.id);
       }
@@ -484,9 +484,10 @@ export default Controller.extend(FdSaveHasManyRelationshipsMixin, {
       modelHash.removeObject(deleteObject);
 
       this.get('appState').loading();
-      /*deleteModels.pushObject(selectedElement);
-      this.get('store').batchUpdate(deleteModels.map(a => a.data.deleteRecord()))*/
-      deleteObject.data.destroyRecord() // TODO убрать при появлении batchUpdate.
+
+      deleteModels.pushObject(selectedElement);
+      deleteModels.forEach((attr) => attr.deleteRecord());
+      this.get('store').batchUpdate(deleteModels)
       .then(() => {
         this.set('selectedElement', undefined);
         this.get('fdSheetService').closeSheet(this.get('sheetComponentName'));
