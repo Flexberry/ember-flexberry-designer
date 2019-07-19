@@ -58,6 +58,15 @@ export default Component.extend({
    */
   readonly: false,
 
+  /**
+    Flag: indicates whether show edit button in row.
+
+    @property editButtonInRow
+    @type Boolean
+    @default false
+   */
+  editButtonInRow: false,
+
   init() {
     this._super(...arguments);
 
@@ -108,6 +117,19 @@ export default Component.extend({
         selectedValues.removeObject(value);
       } else {
         selectedValues.pushObject(value);
+      }
+    },
+
+    /**
+      Method edit value from table.
+
+      @method editButtonInRowAction
+      @param {Object} value value.
+    */
+    editButtonInRowAction(value) {
+      let editAction = this.get('edit');
+      if (!isNone(editAction)) {
+        editAction(value);
       }
     }
   }

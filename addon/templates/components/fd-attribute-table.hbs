@@ -24,6 +24,11 @@
         }}
       </div>
     {{/each}}
+    {{#if editButtonInRow}}
+      <button class="ui basic button icon circular" {{action 'editButtonInRowAction' value}}>
+        <i class="icon edit"></i>
+      </button>
+    {{/if}}
   </div>
   {{/if}}
 {{/each}}

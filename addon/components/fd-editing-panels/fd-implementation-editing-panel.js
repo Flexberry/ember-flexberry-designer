@@ -80,6 +80,15 @@ export default Component.extend(
     },
 
     /**
+      Method edit view.
+
+      @method actions.createView
+    */
+    editView(view) {
+
+    },
+
+    /**
       Method open view sheet.
 
       @method actions.openViewSheet
