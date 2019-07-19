@@ -4,11 +4,8 @@ import { A } from '@ember/array';
 import { observer, computed } from '@ember/object';
 import { isBlank, isNone } from '@ember/utils';
 import { schedule } from '@ember/runloop';
-import { all, resolve } from 'rsvp';
+import { Promise, resolve } from 'rsvp';
 import hasChanges from '../utils/model-has-changes';
-
-import FdUmlElement from '../objects/uml-primitives/fd-uml-element';
-import FdUmlLink from '../objects/uml-primitives/fd-uml-link';
 
 import FdSaveHasManyRelationshipsMixin from '../mixins/fd-save-has-many-relationships';
 import { updateObjectByStr, updateStrByObjects } from '../utils/fd-update-str-value';
@@ -294,7 +291,7 @@ export default Controller.extend(FdSaveHasManyRelationshipsMixin, {
     @method savePrimitives
   */
   savePrimitives() {
-    let promises = A();
+    let updatePrimitives = A();
     let model = this.get('selectedElement.model.data');
     let primitives = model.get('primitives');
     primitives.forEach((primitive) => {
@@ -306,123 +303,101 @@ export default Controller.extend(FdSaveHasManyRelationshipsMixin, {
     let repositoryObjects = primitives.uniqBy('repositoryObject').filter(p => p.get('repositoryObject'));
     if (repositoryObjects.length > 0) {
       let store = this.get('store');
-      let elements = repositoryObjects.filter(p => p instanceof FdUmlElement);
-      if (elements.length > 0) {
-        promises.pushObjects(elements.map(p => {
-          let repId = p.get('repositoryObject').slice(1, -1);
-          let allRepObjects = store.peekAll('fd-dev-class');
-          let repObject = allRepObjects.findBy('id', repId);
-          if (repObject) {
-            if (repObject.get('isNew')) {
-              let propName = p.get('name');
-              if (isBlank(propName)) {
-                return repObject.rollbackAttributes();
-              } else {
-                repObject.set('nameStr', propName);
+      updatePrimitives.pushObjects(repositoryObjects.map(p => {
+        let repId = p.get('repositoryObject').slice(1, -1);
+        let type = p.get('primitive.$type');
+        let repObject;
+        let allRepObjects;
+
+        switch (type) {
+          case 'STORMCASE.STORMNET.Repository.CADClass, STORM.NET Case Tool plugin':
+            allRepObjects = store.peekAll('fd-dev-class');
+            repObject = allRepObjects.findBy('id', repId);
+            if (repObject) {
+              if (repObject.get('isNew')) {
+                let propName = p.get('name');
+                if (isBlank(propName)) {
+                  return repObject.rollbackAttributes();
+                } else {
+                  repObject.set('nameStr', propName);
+                }
               }
+
+              let stereotype = p.getWithDefault('stereotype', '').trim();
+              let attributes = p.getWithDefault('attributes', []).join('\n').trim();
+              let methods = p.getWithDefault('methods', []).join('\n').trim();
+              let currentValues = repObject.getProperties('stereotype', 'attributesStr', 'methodsStr');
+              repObject.setProperties({
+                stereotype: getActualValue(stereotype, currentValues.stereotype),
+                attributesStr: getActualValue(attributes, currentValues.attributesStr),
+                methodsStr: getActualValue(methods, currentValues.methodsStr),
+              });
+            }
+            break;
+          case 'STORMCASE.UML.cad.Inheritance, UMLCAD':
+            allRepObjects = store.peekAll('fd-dev-inheritance');
+            repObject = allRepObjects.findBy('id', repId);
+            if (repObject) {
+              let description = p.getWithDefault('description', '').trim();
+              repObject.set('nameStr', getActualValue(description, repObject.get('nameStr')));
             }
 
-            let stereotype = p.getWithDefault('stereotype', '').trim();
-            let attributes = p.getWithDefault('attributes', []).join('\n').trim();
-            let methods = p.getWithDefault('methods', []).join('\n').trim();
-            let currentValues = repObject.getProperties('stereotype', 'attributesStr', 'methodsStr');
-            repObject.setProperties({
-              stereotype: getActualValue(stereotype, currentValues.stereotype),
-              attributesStr: getActualValue(attributes, currentValues.attributesStr),
-              methodsStr: getActualValue(methods, currentValues.methodsStr),
-            });
-          }
+            break;
+          case 'STORMCASE.UML.cad.Composition, UMLCAD':
+            allRepObjects = store.peekAll('fd-dev-aggregation');
+          // eslint-disable-next-line no-fallthrough
+          case 'STORMCASE.UML.cad.Association, UMLCAD':
+            if (isNone(allRepObjects)) {
+              allRepObjects = store.peekAll('fd-dev-association');
+            }
 
-          return hasChanges(repObject) ? repObject.save() : resolve();
+            repObject = allRepObjects.findBy('id', repId);
+
+            if (repObject) {
+              let startMultiplicity = p.getWithDefault('startMultiplicity', '').trim();
+              let endMultiplicity = p.getWithDefault('endMultiplicity', '').trim();
+              let endRoleTxt = p.getWithDefault('endRoleTxt', '').trim();
+              let startRoleTxt = p.getWithDefault('startRoleTxt', '').trim();
+              let description = p.getWithDefault('description', '').trim();
+              let currentValues = repObject.getProperties('nameStr', 'startMultiplicity', 'endMultiplicity', 'endRoleStr', 'startRoleStr');
+              repObject.setProperties({
+                nameStr: getActualValue(description, currentValues.nameStr),
+                startMultiplicity: getActualValue(startMultiplicity, currentValues.startMultiplicity),
+                endMultiplicity: getActualValue(endMultiplicity, currentValues.endMultiplicity),
+                endRoleStr: getActualValue(endRoleTxt, currentValues.endRoleStr),
+                startRoleStr: getActualValue(startRoleTxt, currentValues.startRoleStr),
+              });
+            }
+
+            break;
+        }
+
+        return hasChanges(repObject) ? repObject : undefined;
+      }));
+
+      let emptyReferenceCountItems = this.get('emptyReferenceCountItems');
+      if (emptyReferenceCountItems.length > 0) {
+        updatePrimitives.pushObjects(emptyReferenceCountItems.map(function(item) {
+          if (item.get('isNew')) {
+            return item.rollbackAttributes();
+          } else {
+            return item.deleteRecord();
+          }
         }));
       }
 
-      return all(promises).then(() => {
-        promises.clear();
+      emptyReferenceCountItems.clear();
 
-        let links = repositoryObjects.filter(p => p instanceof FdUmlLink);
-        if (links.length > 0) {
-          promises.pushObjects(links.map(p => {
-            let repId = p.get('repositoryObject').slice(1, -1);
-            let type = p.get('primitive.$type');
-            let repObject;
-            let allRepObjects;
-
-            switch (type) {
-              case 'STORMCASE.UML.cad.Inheritance, UMLCAD':
-                allRepObjects = store.peekAll('fd-dev-inheritance');
-                repObject = allRepObjects.findBy('id', repId);
-                if (repObject) {
-                  let description = p.getWithDefault('description', '').trim();
-                  repObject.set('nameStr', getActualValue(description, repObject.get('nameStr')));
-                }
-
-                break;
-              case 'STORMCASE.UML.cad.Composition, UMLCAD':
-                allRepObjects = store.peekAll('fd-dev-aggregation');
-              // eslint-disable-next-line no-fallthrough
-              case 'STORMCASE.UML.cad.Association, UMLCAD':
-                if (isNone(allRepObjects)) {
-                  allRepObjects = store.peekAll('fd-dev-association');
-                }
-
-                repObject = allRepObjects.findBy('id', repId);
-
-                if (repObject) {
-                  let startMultiplicity = p.getWithDefault('startMultiplicity', '').trim();
-                  let endMultiplicity = p.getWithDefault('endMultiplicity', '').trim();
-                  let endRoleTxt = p.getWithDefault('endRoleTxt', '').trim();
-                  let startRoleTxt = p.getWithDefault('startRoleTxt', '').trim();
-                  let description = p.getWithDefault('description', '').trim();
-                  let currentValues = repObject.getProperties('nameStr', 'startMultiplicity', 'endMultiplicity', 'endRoleStr', 'startRoleStr');
-                  repObject.setProperties({
-                    nameStr: getActualValue(description, currentValues.nameStr),
-                    startMultiplicity: getActualValue(startMultiplicity, currentValues.startMultiplicity),
-                    endMultiplicity: getActualValue(endMultiplicity, currentValues.endMultiplicity),
-                    endRoleStr: getActualValue(endRoleTxt, currentValues.endRoleStr),
-                    startRoleStr: getActualValue(startRoleTxt, currentValues.startRoleStr),
-                  });
-                }
-
-                break;
-            }
-
-            return hasChanges(repObject) ? repObject.save() : resolve();
-          }));
+      let updatePrimitivesForBatch = updatePrimitives.filter((a) => !isNone(a));
+      return new Promise(function(resolve) {
+        if (updatePrimitivesForBatch.length > 0) {
+          resolve(store.batchUpdate(updatePrimitivesForBatch));
+        } else {
+          resolve();
         }
-
-        return all(promises).then(() => {
-          promises.clear();
-
-          let emptyReferenceCountItems = this.get('emptyReferenceCountItems');
-          let removeClasses = emptyReferenceCountItems.filterBy('constructor.modelName', 'fd-dev-class');
-          emptyReferenceCountItems.removeObjects(removeClasses);
-
-          let mapFunction = function(item) {
-            if (item.get('isNew')) {
-              return item.rollbackAttributes();
-            } else {
-              return item.destroyRecord();
-            }
-          };
-
-          if (emptyReferenceCountItems.length > 0) {
-            promises.pushObjects(emptyReferenceCountItems.map(mapFunction));
-          }
-
-          return all(promises).then(() => {
-            promises.clear();
-
-            if (removeClasses.length > 0) {
-              promises.pushObjects(removeClasses.map(mapFunction));
-            }
-
-            emptyReferenceCountItems.clear();
-
-            model.set('primitivesJsonString', JSON.stringify(primitives));
-            return all(promises);
-          });
-        });
+      }).then(() => {
+        model.set('primitivesJsonString', JSON.stringify(primitives));
+        return resolve();
       });
     } else {
       model.set('primitivesJsonString', JSON.stringify(primitives));
