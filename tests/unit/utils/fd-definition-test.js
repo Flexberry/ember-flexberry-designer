@@ -1,10 +1,11 @@
 import { A } from '@ember/array';
-import { moduleFor, test } from 'ember-qunit';
+import { module, test } from 'qunit';
 import FdViewAttributesProperty from 'ember-flexberry-designer/objects/fd-view-attributes-property';
 import FdViewAttributesMaster from 'ember-flexberry-designer/objects/fd-view-attributes-master';
 import FdViewAttributesDetail from 'ember-flexberry-designer/objects/fd-view-attributes-detail';
+import { deserialize, serialize } from 'ember-flexberry-designer/utils/transforms-utils/fd-definition';
 
-moduleFor('transform:fd-definition', 'Unit | Transform | fd definition');
+module('Unit | Utility | fd definition');
 
 test('it exists', function(assert) {
 
@@ -47,12 +48,9 @@ test('it exists', function(assert) {
   '</ViewDetailsList>' +
   '</View>';
 
-  let transform = this.subject();
-  assert.ok(transform);
-
-  let deserializeResult = transform.deserialize(xml);
+  let deserializeResult = deserialize(xml);
   assert.deepEqual(deserializeResult, objectModel, 'Definition deserialize does not work');
 
-  let serializeResult = transform.serialize(deserializeResult);
+  let serializeResult = serialize(deserializeResult);
   assert.equal(serializeResult, xml, 'Definition serialize does not work');
 });
