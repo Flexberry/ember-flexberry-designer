@@ -3,9 +3,8 @@
 */
 import joint from 'npm:jointjs';
 
-import FdUmlLink from './fd-uml-link';
-import { Link } from './fd-uml-link';
-import { DescriptionView } from './links-view/fd-description-view';
+import FdUmlLink, { Link } from './fd-uml-link';
+import { EmptyView } from './links-view/fd-empty-view';
 
 /**
   An object that describes a link of the inheritance type on the UML diagram.
@@ -37,9 +36,12 @@ export default FdUmlLink.extend({
 */
 export let Generalization = Link.define('flexberry.uml.Generalization', {
   attrs: { '.marker-source': { d: 'M 20 0 L 0 10 L 20 20 z', fill: 'white' },
-  text: { visibility: 'hidden' },
+  text: { 'font-size': '12', 'font-family': 'Arial, helvetica, sans-serif' },
   rect: { visibility: 'hidden' }
- }
+ },
+ labels: [{
+   position: { distance: 50 }, attrs: { text: { text: '' } }
+ }]
 });
 
-joint.shapes.flexberry.uml.GeneralizationView = DescriptionView;
+joint.shapes.flexberry.uml.GeneralizationView = EmptyView;
