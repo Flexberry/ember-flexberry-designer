@@ -4,6 +4,7 @@
 
 import { computed } from '@ember/object';
 import { isArray } from '@ember/array';
+import joint from 'npm:jointjs';
 
 import FdUmlElement from './fd-uml-element';
 import { BaseObject } from './fd-uml-baseobject';
@@ -55,14 +56,15 @@ export default FdUmlElement.extend({
 */
 export let DesignPattern = BaseObject.define('flexberry.uml.DesignPattern', {
   attrs: {
-    text: {
-      'visibility': 'visible'
-    },
+    '.flexberry-uml-header-rect': { 'rx': '120', 'ry': '120', 'stroke': 'black', 'strokeDasharray': '10,2', 'stroke-width': '1', 'fill': '#ffffff' }
+  }
+});
 
-    '.flexberry-uml-header-rect': { 'rx': '120', 'ry': '120', 'stroke': 'black', 'strokeDasharray': '10,2', 'strokeWidth': '1', 'fill': '#ffffff' }
-  }
-}, {
-  updateRectangles: function () {
-    this.updateRectanglesOld();
-  }
+joint.shapes.flexberry.uml.DesignPatternView = joint.shapes.flexberry.uml.BaseObjectView.extend({
+  template: [
+    '<div class="uml-class-inputs">',
+    '<textarea class="instance-input class-name-input header-input" value="" rows="1" wrap="off"></textarea>',
+    '<div class="input-buffer"></div>',
+    '</div>'
+  ].join(''),
 });
