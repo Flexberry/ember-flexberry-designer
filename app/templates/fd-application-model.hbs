@@ -320,14 +320,15 @@
 {{/fd-sheet}}
 
 {{#fd-sheet
-  title=selectedElement.model.name
+  title=selectedView.name
   saveController=(action 'save')
   sheetComponentName=sheetViewName
   readonly=false
 }}
-  {{!--{{fd-editing-panels/fd-create-view
-    model=selectedElement.model.name
+
+  {{fd-editing-panels/fd-create-view
+    model=selectedElement.model.data
     view=selectedView
-  }}--}}
+  }}
 
 {{/fd-sheet}}

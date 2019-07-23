@@ -5,6 +5,7 @@ import { A } from '@ember/array';
 import { isNone } from '@ember/utils';
 import { resolve } from 'rsvp';
 import layout from '../templates/components/fd-ember-jstree';
+import { next } from "@ember/runloop";
 
 export default Component.extend({
   layout,
@@ -110,7 +111,9 @@ export default Component.extend({
   /**
     Flag: indicates whether reload data with close node.
 
-    @method reloadDataAtClose
+    @property reloadDataAtClose
+    @type Bool
+    @default false
   */
   reloadDataAtClose: false,
 
@@ -127,6 +130,13 @@ export default Component.extend({
     @method moveNodeAction
   */
   moveNodeAction: undefined,
+
+  /**
+    Handles click button in jsTree node.
+
+    @method handleButtonInNode
+  */
+  handleButtonInNode: undefined,
 
   actions: {
 
@@ -150,7 +160,7 @@ export default Component.extend({
     */
     handleTreeDidSelectNode(node) {
       let selectNodeAction = this.get('selectNodeAction');
-      if (selectNodeAction && typeof selectNodeAction === 'function') {
+      if (typeof selectNodeAction === 'function') {
         selectNodeAction(node, this.get('store'));
       }
     },
@@ -185,6 +195,21 @@ export default Component.extend({
 
         data.node.state.loaded = true;
         jstree.open_node(data.node);
+      });
+    }
+
+    let handleButtonInNode = this.get('handleButtonInNode');
+    if (typeof handleButtonInNode === 'function')  {
+      next(this, function() {
+        let jstree = this.get('treeObject').jstree(true);
+        data.node.children.forEach((child) => {
+          let $childrenObj = jstree.get_node(child, true);
+          let $node = $childrenObj.children('a.jstree-anchor');
+          let $button = $node.children('button.button-in-jstree-node');
+          if ($button.length !== 0) {
+            $button.on('click', { id:child }, handleButtonInNode);
+          }
+        });
       });
     }
   },

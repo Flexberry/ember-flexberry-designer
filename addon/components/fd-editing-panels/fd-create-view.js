@@ -1,6 +1,6 @@
 import Component from '@ember/component';
 import { inject as service } from '@ember/service';
-import { computed } from '@ember/object';
+import { computed, get } from '@ember/object';
 import { isNone } from '@ember/utils';
 import { A } from '@ember/array';
 import FdAttributesTree from '../../objects/fd-attributes-tree';
@@ -67,10 +67,10 @@ export default Component.extend({
       })
     ]);
 
-    let treeAttributes = getClassTreeNode(treeEmpty, dataForBuildTree.classes);
-    let treeMasters = getAssociationTreeNode(treeAttributes, dataForBuildTree.associations, 'node_');
-    let treeDetails = getAggregationTreeNode(treeMasters, dataForBuildTree.aggregations);
-    let tree = A([
+    let treeAttributes = getClassTreeNode(treeEmpty, dataForBuildTree.classes, null, null, true);
+    let treeMasters = getAssociationTreeNode(treeAttributes, dataForBuildTree.associations, 'node_', null, null, true);
+    let treeDetails = getAggregationTreeNode(treeMasters, dataForBuildTree.aggregations, null, null, true);
+    let tree = [
       FdAttributesTree.create({
         text: model.get('name'),
         type: 'class',
@@ -81,11 +81,11 @@ export default Component.extend({
           opened: true
         }
       })
-    ]);
+    ];
 
     this.get('appState').reset();
 
-    return tree;
+    return [].concat(treeDetails);
   }),
 
   /**
@@ -94,10 +94,20 @@ export default Component.extend({
     @method loadDataNode
   */
   loadDataNode: function(node, store) {
-    let dataForBuildTree = getDataForBuildTree(store, node.get('idNode'));
-    let childrenAttributes = getClassTreeNode(A(), dataForBuildTree.classes);
-    let childrenNode = getAssociationTreeNode(childrenAttributes, dataForBuildTree.associations, node.get('id'));
+    let dataForBuildTree = getDataForBuildTree(store, get(node, 'idNode'));
+    let childrenAttributes = getClassTreeNode(A(), dataForBuildTree.classes, null, null, true);
+    let childrenNode = getAssociationTreeNode(childrenAttributes, dataForBuildTree.associations, get(node, 'id'), null, null, true);
 
     return childrenNode;
+  },
+
+  /**
+    Handle click button in node.
+
+    @method handleButtonInNode
+    @param {JQuery.Event} event
+  */
+  handleButtonInNode: function(event) {
+    let idNode = get(event, 'data.id');
   }
 });
