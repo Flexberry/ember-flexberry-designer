@@ -53,7 +53,6 @@ export default FdUmlLink.extend({
 */
 export let AssociationLink = LinkWithUnderline.define('flexberry.uml.AssociationLink', {
   attrs: {
-    '.marker-source': { d: 'M 26 10 L 13 17 L 0 10 L 13 3 z', fill: 'black' },
     text: { visibility: 'hidden' },
     rect: { visibility: 'hidden' }
   }
