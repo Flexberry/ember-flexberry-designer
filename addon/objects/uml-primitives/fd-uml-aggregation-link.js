@@ -52,8 +52,7 @@ export default FdUmlLink.extend({
   @constructor
 */
 export let AggregationLink = LinkWithUnderline.define('flexberry.uml.AggregationLink', {
-  attrs: {
-    '.marker-source': { d: 'M 26 10 L 13 17 L 0 10 L 13 3 z', fill: 'black' },
+  attrs: { '.marker-target': { d: 'M 26 10 L 13 17 L 0 10 L 13 3 z', fill: 'white' },
     text: { visibility: 'hidden' },
     rect: { visibility: 'hidden' }
   }
