@@ -79,5 +79,16 @@ export let CollMessageBase = joint.shapes.basic.Generic.define('flexberry.uml.Co
     '<text class="uml-base-text"/>',
     '<path class="arrow"/>',
     '</g>'
-  ].join('')
+  ].join(''),
+
+  getRectangles() {
+    return [
+      { type: 'header', text: this.getObjName(), element: this },
+      { type: 'body', text: this.get('objectModel.attributes'), element: this },
+    ];
+  },
+
+  getObjName: function () {
+    return this.get('objectModel.name');
+  },
 });
