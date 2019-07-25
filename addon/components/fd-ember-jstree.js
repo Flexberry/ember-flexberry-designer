@@ -5,7 +5,6 @@ import { A } from '@ember/array';
 import { isNone } from '@ember/utils';
 import { resolve } from 'rsvp';
 import layout from '../templates/components/fd-ember-jstree';
-import { next } from "@ember/runloop";
 
 export default Component.extend({
   layout,
@@ -131,13 +130,6 @@ export default Component.extend({
   */
   moveNodeAction: undefined,
 
-  /**
-    Handles click button in jsTree node.
-
-    @method handleButtonInNode
-  */
-  handleButtonInNode: undefined,
-
   actions: {
 
     /**
@@ -195,21 +187,6 @@ export default Component.extend({
 
         data.node.state.loaded = true;
         jstree.open_node(data.node);
-      });
-    }
-
-    let handleButtonInNode = this.get('handleButtonInNode');
-    if (typeof handleButtonInNode === 'function')  {
-      next(this, function() {
-        let jstree = this.get('treeObject').jstree(true);
-        data.node.children.forEach((child) => {
-          let $childrenObj = jstree.get_node(child, true);
-          let $node = $childrenObj.children('a.jstree-anchor');
-          let $button = $node.children('button.button-in-jstree-node');
-          if ($button.length !== 0) {
-            $button.on('click', { id:child }, handleButtonInNode);
-          }
-        });
       });
     }
   },

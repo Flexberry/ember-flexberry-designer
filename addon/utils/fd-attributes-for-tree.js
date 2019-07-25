@@ -6,12 +6,6 @@ import FdViewAttributesMaster from '../objects/fd-view-attributes-master';
 import FdViewAttributesDetail from '../objects/fd-view-attributes-detail';
 
 /**
-   Htmp button in tree node.
-
- */
-let htmlButton = ` <button class="ui basic button icon circular button-in-jstree-node"><i class="icon plus circle"></i></button>`;
-
-/**
   Get attributes tree.
 */
 let getDataForBuildTree = function(store, id) {
@@ -64,8 +58,7 @@ let getDataForBuildTree = function(store, id) {
 /**
   Create tree node by class.
 */
-let getClassTreeNode = function (tree, classData, rootId, addInText, addHtmlButton = false) {
-  let button = addHtmlButton ? htmlButton : '';
+let getClassTreeNode = function (tree, classData, rootId, addInText) {
   classData.forEach((dClass) => {
     let attributes = dClass.get('attributes');
     let idClass = dClass.get('id');
@@ -80,8 +73,8 @@ let getClassTreeNode = function (tree, classData, rootId, addInText, addHtmlButt
         text += ' (' + attribute.get(`${addInText}`) + ')';
       }
 
-      tree.addObject(FdAttributesTree.create({
-        text: text + button,
+      tree.push(FdAttributesTree.create({
+        text: text,
         name: attribute.get('name'),
         type: 'property',
         typeNode: attribute.get('type'),
@@ -97,8 +90,7 @@ let getClassTreeNode = function (tree, classData, rootId, addInText, addHtmlButt
 /**
   Create tree node by association.
 */
-let getAssociationTreeNode = function (tree, associationData, jsTreeId, rootId, addInText, addHtmlButton = false) {
-  let button = addHtmlButton ? htmlButton : '';
+let getAssociationTreeNode = function (tree, associationData, jsTreeId, rootId, addInText) {
   associationData.forEach((master, index) => {
     let startClass = master.get('startClass');
     let masterName = master.get('startRole') || startClass.get('name');
@@ -113,8 +105,8 @@ let getAssociationTreeNode = function (tree, associationData, jsTreeId, rootId, 
       text += ' (' + startClass.get(`${addInText}`) + ')';
     }
 
-    tree.addObject(FdAttributesTree.create({
-      text: text + button,
+    tree.push(FdAttributesTree.create({
+      text: text,
       name: masterName,
       type: 'master',
       typeNode: 'master',
@@ -133,8 +125,7 @@ let getAssociationTreeNode = function (tree, associationData, jsTreeId, rootId, 
 /**
   Create tree node by aggregation.
 */
-let getAggregationTreeNode = function (tree, aggregationData, rootId, addInText, addHtmlButton = false) {
-  let button = addHtmlButton ? htmlButton : '';
+let getAggregationTreeNode = function (tree, aggregationData, rootId, addInText) {
   aggregationData.forEach((detail) => {
     let endClass = detail.get('endClass');
     let detailName = detail.get('endRole') || endClass.get('name');
@@ -149,8 +140,8 @@ let getAggregationTreeNode = function (tree, aggregationData, rootId, addInText,
       text += ' (' + endClass.get(`${addInText}`) + ')';
     }
 
-    tree.addObject(FdAttributesTree.create({
-      text: text + button,
+    tree.push(FdAttributesTree.create({
+      text: text,
       name: detailName,
       type: 'detail',
       typeNode: 'detail',
@@ -176,7 +167,7 @@ let getDetailView = function (aggregationData) {
 
     detailView.pushObject({
       detailName: endClass.get('name'),
-      detailRole: detail.get('startRole'),
+      detailRole: detail.get('endRole'),
       detailViewNameItems: detailViewsItems
     });
   });

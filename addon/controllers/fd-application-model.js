@@ -254,10 +254,17 @@ export default Controller.extend(FdSaveHasManyRelationshipsMixin, {
   */
   closeSheet(sheetName) {
     let sheetComponentName = this.get('sheetComponentName');
+    let sheetViewName = this.get('sheetViewName');
     if (sheetComponentName === sheetName) {
       this.deactivateListItem();
       this.closeViewSheet();
       this.set('selectedElement', undefined);
+    } else if (sheetViewName === sheetName) {
+      let selectedView = this.get('selectedView');
+      if (!isNone(selectedView)) {
+        selectedView.rollbackAll();
+        this.set('selectedView', undefined);
+      }
     }
   },
 
@@ -271,7 +278,6 @@ export default Controller.extend(FdSaveHasManyRelationshipsMixin, {
     let fdSheetService = this.get('fdSheetService');
     if (fdSheetService.isVisible(sheetViewName)) {
       fdSheetService.closeSheet(sheetViewName);
-      this.set('selectedView', undefined);
     }
   },
 
@@ -387,6 +393,15 @@ export default Controller.extend(FdSaveHasManyRelationshipsMixin, {
       .finally(() => {
         this.get('appState').reset();
       });
+    },
+
+    /**
+      Save 'selectedView'.
+
+       @method actions.saveView
+    */
+    saveView() {
+
     },
 
     /**
