@@ -5,12 +5,19 @@
         data=tree
         selectedNodes=selectedNodes
         loadDataNode=loadDataNode
+        searchTerm=searchTerm
         treeObject=treeObject
       }}
     </div>
     <div class="one wide field">
       <button class="ui basic button table-btn icon {{if selectedNode '' 'disabled'}}" {{action 'addNodeInDefinition'}}>
         <i class="arrow right icon"></i>
+      </button>
+      <button class="ui basic button table-btn icon {{if selectedPropery '' 'disabled'}}" {{action 'changeOrderDefinition' true}}>
+        <i class="arrow up icon"></i>
+      </button>
+      <button class="ui basic button table-btn icon {{if selectedPropery '' 'disabled'}}" {{action 'changeOrderDefinition' false}}>
+        <i class="arrow down icon"></i>
       </button>
     </div>
     <div class="field">
@@ -23,6 +30,7 @@
             definition=definition
             filterValue=searchValue
             selectedPropery=selectedPropery
+            selectedProperyType=selectedProperyType
             delete=(action 'deleteDefinitionItem')
           }}
         {{/each}}
@@ -46,7 +54,7 @@
         </div>
       </div>
 
-      {{#if (eq propertyType 'isMaster')}}
+      {{#if (eq selectedProperyType 'isMaster')}}
         <div class="row">
           <div class="five wide column">
             {{t "components.fd-create-view.settings-master.lookup-type"}}
@@ -89,7 +97,7 @@
         {{/if}}
       {{/if}}
 
-      {{#if (eq propertyType 'isDetail')}}
+      {{#if (eq selectedProperyType 'isDetail')}}
         <div class="row">
           <div class="five wide column">
             {{t "components.fd-create-view.settings-detail.view"}}
@@ -114,15 +122,6 @@
           </div>
         </div>
       {{/if}}
-
-      <div class="sixteen wide column buttons-row">
-        <button class="ui basic button table-btn icon" {{action 'changeOrderDefinition' true}}>
-          <i class="arrow up icon"></i>
-        </button>
-        <button class="ui basic button table-btn icon" {{action 'changeOrderDefinition' false}}>
-          <i class="arrow down icon"></i>
-        </button>
-      </div>
     </div>
   {{/if}}
 </div>

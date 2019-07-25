@@ -1,6 +1,8 @@
 import Component from '@ember/component';
 import { isNone, isBlank } from '@ember/utils';
 import { computed } from '@ember/object';
+import FdViewAttributesMaster from '../objects/fd-view-attributes-master';
+import FdViewAttributesDetail from '../objects/fd-view-attributes-detail';
 import layout from '../templates/components/fd-view-definition-item';
 
 export default Component.extend({
@@ -24,6 +26,14 @@ export default Component.extend({
   selectedPropery: undefined,
 
   /**
+    Type selected definition property.
+
+    @property selectedProperyType
+    @type Object
+  */
+  selectedProperyType: undefined,
+
+  /**
     Value search input.
 
     @property filterValue
@@ -31,6 +41,23 @@ export default Component.extend({
     @default ''
   */
   filterValue: '',
+
+  /**
+    Type definition property.
+
+    @property type
+    @type Object
+  */
+  type: computed('definition', function() {
+    let definition = this.get('definition');
+    if (definition instanceof FdViewAttributesDetail) {
+      return 'isDetail';
+    } else if (definition instanceof FdViewAttributesMaster) {
+      return 'isMaster';
+    } else {
+      return 'isProperty';
+    }
+  }),
 
   /**
     Сhecks for matching the desired string
@@ -88,8 +115,10 @@ export default Component.extend({
       let selectedPropery = this.get('selectedPropery');
       if (selectedPropery !== property) {
         this.set('selectedPropery', property);
+        this.set('selectedProperyType', this.get('type'));
       } else {
         this.set('selectedPropery', undefined);
+        this.set('selectedProperyType', undefined);
       }
     },
   }

@@ -401,7 +401,12 @@ export default Controller.extend(FdSaveHasManyRelationshipsMixin, {
        @method actions.saveView
     */
     saveView() {
-
+      let view = this.get('selectedView');
+      this.get('appState').loading();
+      view.save()
+      .finally(() => {
+        this.get('appState').reset();
+      });
     },
 
     /**
@@ -510,5 +515,24 @@ export default Controller.extend(FdSaveHasManyRelationshipsMixin, {
         this.get('appState').reset();
       });
     },
+
+    /**
+      Delete selected view.
+
+       @method actions.deleteView
+    */
+    deleteView() {
+      let view = this.get('selectedView');
+
+      this.get('appState').loading();
+      view.destroyRecord()
+      .then(() => {
+        this.set('selectedView', undefined);
+        this.get('fdSheetService').closeSheet(this.get('sheetViewName'));
+      })
+      .finally(() => {
+        this.get('appState').reset();
+      });
+    }
   }
 });

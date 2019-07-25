@@ -1,6 +1,6 @@
 import Component from '@ember/component';
 import { inject as service } from '@ember/service';
-import { computed, get } from '@ember/object';
+import { computed, get, observer } from '@ember/object';
 import { isNone } from '@ember/utils';
 import { A } from '@ember/array';
 import FdAttributesTree from '../../objects/fd-attributes-tree';
@@ -53,6 +53,15 @@ export default Component.extend({
   searchValue: '',
 
   /**
+    Value search input for tree.
+
+    @property searchTerm
+    @type String
+    @default ''
+  */
+  searchTerm: '',
+
+  /**
     Value selected node.
 
     @property selectedNode
@@ -69,29 +78,20 @@ export default Component.extend({
   selectedPropery: undefined,
 
   /**
+    Type selected attribute for editing.
+
+    @property selectedProperyType
+    @type Object
+  */
+  selectedProperyType: undefined,
+
+  /**
     View for details.
 
     @property detailsViewArray
     @type Array
   */
   detailsViewArray: undefined,
-
-  /**
-    Type selected attribute for editing.
-
-    @property propertyType
-    @type Object
-  */
-  propertyType: computed('selectedPropery', function() {
-    let selectedPropery = this.get('selectedPropery');
-    if (selectedPropery instanceof FdViewAttributesDetail) {
-      return 'isDetail';
-    } else if (selectedPropery instanceof FdViewAttributesMaster) {
-      return 'isMaster';
-    } else {
-      return null;
-    }
-  }),
 
   /**
     Array View selectedPropery.
@@ -101,7 +101,7 @@ export default Component.extend({
   */
   detailView: computed('selectedPropery', function() {
     let selectedPropery = this.get('selectedPropery');
-    if (!isNone(selectedPropery) && this.get('propertyType') === 'isDetail') {
+    if (!isNone(selectedPropery) && this.get('selectedProperyType') === 'isDetail') {
       let detailsViewArray = this.get('detailsViewArray');
       let detailViewByName = detailsViewArray.findBy('detailName', selectedPropery.name);
       let detailViewByRole = detailsViewArray.findBy('detailRole', selectedPropery.name);
@@ -150,6 +150,23 @@ export default Component.extend({
     this.get('appState').reset();
 
     return treeDetails;
+  }),
+
+  /**
+    Clear propertys.
+
+    @method viewObserver
+  */
+  viewObserver: observer('view', function() {
+    this.set('selectedPropery', undefined);
+    this.set('searchTerm', '');
+    this.set('searchValue', '');
+    let treeObject = this.get('treeObject');
+    if (!isNone(treeObject)) {
+      let tree = treeObject.jstree(true);
+      tree.deselect_all();
+      tree.close_all();
+    }
   }),
 
   /**
@@ -204,7 +221,7 @@ export default Component.extend({
   actions: {
 
     /**
-      Handle click button in node.
+      Handle click button add node in definition.
 
       @method actions.addNodeInDefinition
     */

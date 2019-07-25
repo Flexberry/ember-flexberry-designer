@@ -50,6 +50,15 @@ export default Component.extend({
   toolbarVisible: true,
 
   /**
+    Flag: indicates whether button is readonly.
+
+    @property readonlyButton
+    @type Bool
+    @default false
+  */
+  readonlyButton: false,
+
+  /**
     Flag: indicates whether property is readonly.
 
     @property readonly
