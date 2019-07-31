@@ -71,6 +71,8 @@ export default EmberObject.extend({
   },
 });
 
+
+
 joint.highlighters.strokeAndButtons = {
   _buttons: {},
 
@@ -214,7 +216,10 @@ joint.highlighters.strokeAndButtons = {
   }
 };
 
-joint.shapes.basic.Generic.define('flexberry.uml.PrimitiveElementView');
+
+export let primitiveElementViewCell = joint.shapes.basic.Generic.define('flexberry.uml.PrimitiveElementView');
+joint.util.setByPath(joint.shapes, 'flexberry.uml.PrimitiveElementView', primitiveElementViewCell, '.');
+
 joint.shapes.flexberry.uml.PrimitiveElementView = joint.dia.ElementView.extend({
   getButtons() {
     return A([{
@@ -234,3 +239,4 @@ joint.shapes.flexberry.uml.PrimitiveElementView = joint.dia.ElementView.extend({
     this.model.remove();
   },
 });
+
