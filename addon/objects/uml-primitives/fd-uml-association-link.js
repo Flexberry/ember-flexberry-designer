@@ -4,6 +4,7 @@
 
 import { computed } from '@ember/object';
 import joint from 'npm:jointjs';
+import { BaseClass } from './fd-uml-class';
 
 import FdUmlLink, { LinkWithUnderline } from './fd-uml-link';
 import { QualifiedView } from './links-view/fd-qualified-view';

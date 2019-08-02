@@ -19,6 +19,11 @@ import QualifiedAssociation from 'ember-flexberry-designer/objects/uml-primitive
 import QualifiedComposition from 'ember-flexberry-designer/objects/uml-primitives/fd-uml-qualified-composition';
 import QualifiedAggregation from 'ember-flexberry-designer/objects/uml-primitives/fd-uml-qualified-aggregation';
 
+import Instance from 'ember-flexberry-designer/objects/uml-primitives/fd-uml-instance';
+import ActiveObject from 'ember-flexberry-designer/objects/uml-primitives/fd-uml-active-object';
+import MultiObject from 'ember-flexberry-designer/objects/uml-primitives/fd-uml-multi-object';
+import NAryAssociation from 'ember-flexberry-designer/objects/uml-primitives/fd-uml-naryassociation';
+
 import { getJsonForElement, getJsonForLink } from '../../utils/get-json-for-diagram';
 
 /**
@@ -29,11 +34,11 @@ import { getJsonForElement, getJsonForLink } from '../../utils/get-json-for-diag
 export default Mixin.create({
   actions: {
     /**
-      Handler for click on addActor button.
-      @method actions.addActor
+      Handler for click on addOnCodActor button.
+      @method actions.addOnCodActor
       @param {jQuery.Event} e event.
     */
-    addCodActor(e) {
+    addOnCodActor(e) {
       this.createObjectData((function(x, y) {
         let jsonObject = getJsonForElement(
           'STORMCASE.UML.cod.Actor, UMLCOD',
@@ -48,11 +53,11 @@ export default Mixin.create({
     },
 
     /**
-      Handler for click on addDesignPattern button.
-      @method actions.addDesignPattern
+      Handler for click on addOnCodDesignPattern button.
+      @method actions.addOnCodDesignPattern
       @param {jQuery.Event} e event.
      */
-    addDesignPattern(e) {
+    addOnCodDesignPattern(e) {
       this.createObjectData((function(x, y) {
         let jsonObject = getJsonForElement(
           'STORMCASE.UML.cod.DesignPattern, UMLCOD',
@@ -94,11 +99,11 @@ export default Mixin.create({
     },
 
     /**
-      Handler for click on addAssociationLink button.
-      @method actions.addAssociationLink
+      Handler for click on addOnCodAssociationLink button.
+      @method actions.addOnCodAssociationLink
       @param {jQuery.Event} e event.
      */
-    addAssociationLink(e) {
+    addOnCodAssociationLink(e) {
       this.createLinkData((function(linkProperties) {
         let jsonObject = getJsonForLink(
           'STORMCASE.UML.cod.Link, UMLCOD',
@@ -142,11 +147,11 @@ export default Mixin.create({
     },
 
     /**
-      Handler for click on addAggregationLink button.
-      @method actions.addAggregationLink
+      Handler for click on addOnCodAggregationLink button.
+      @method actions.addOnCodAggregationLink
       @param {jQuery.Event} e event.
     */
-    addAggregationLink(e) {
+    addOnCodAggregationLink(e) {
       this.createLinkData((function(linkProperties) {
         let jsonObject = getJsonForLink(
           'STORMCASE.UML.cod.AggregationLink, UMLCOD',
@@ -188,11 +193,11 @@ export default Mixin.create({
     },
 
     /**
-      Handler for click on addCompositionLink button.
-      @method actions.addCompositionLink
+      Handler for click on addOnCodCompositionLink button.
+      @method actions.addOnCodCompositionLink
       @param {jQuery.Event} e event.
      */
-    addCompositionLink(e) {
+    addOnCodCompositionLink(e) {
       this.createLinkData((function(linkProperties) {
         let jsonObject = getJsonForLink(
           'STORMCASE.UML.cod.CompositionLink, UMLCOD',
@@ -234,11 +239,11 @@ export default Mixin.create({
     },
 
     /**
-      Handler for click on addDesignPatternConnector button.
-      @method actions.addDesignPatternConnector
+      Handler for click on addOnCodDesignPatternConnector button.
+      @method actions.addOnCodDesignPatternConnector
       @param {jQuery.Event} e event.
     */
-    addDesignPatternConnector(e) {
+    addOnCodDesignPatternConnector(e) {
       this.createLinkData((function(linkProperties) {
         let jsonObject = getJsonForLink(
           'STORMCASE.UML.cod.DesignPatternConnector, UMLCOD',
@@ -260,7 +265,7 @@ export default Mixin.create({
     },
 
     /**
-      Handler for click on addInheritanceLink button.
+      Handler for click on addOnCodInheritance button.
       @method actions.addOnCodInheritance
       @param {jQuery.Event} e event.
      */
@@ -286,11 +291,11 @@ export default Mixin.create({
     },
 
     /**
-      Handler for click on addBackwardNestedMessage button.
-      @method actions.addBackwardNestedMessage
+      Handler for click on addOnCodBackwardNestedMessage button.
+      @method actions.addOnCodBackwardNestedMessage
       @param {jQuery.Event} e event.
      */
-    addBackwardNestedMessage(e) {
+    addOnCodBackwardNestedMessage(e) {
       this.createObjectData((function(x, y) {
         let jsonObject = getJsonForElement(
           'STORMCASE.UML.cod.BackwardNestedMessage, UMLCOD',
@@ -305,11 +310,11 @@ export default Mixin.create({
     },
 
     /**
-      Handler for click on addForwardNestedMessage button.
-      @method actions.addForwardNestedMessage
+      Handler for click on addOnCodForwardNestedMessage button.
+      @method actions.addOnCodForwardNestedMessage
       @param {jQuery.Event} e event.
      */
-    addForwardNestedMessage(e) {
+    addOnCodForwardNestedMessage(e) {
       this.createObjectData((function(x, y) {
         let jsonObject = getJsonForElement(
           'STORMCASE.UML.cod.ForwardNestedMessage, UMLCOD',
@@ -324,11 +329,11 @@ export default Mixin.create({
     },
 
     /**
-      Handler for click on addBackwardFlatMessage button.
-      @method actions.addBackwardFlatMessage
+      Handler for click on addOnCodBackwardFlatMessage button.
+      @method actions.addOnCodBackwardFlatMessage
       @param {jQuery.Event} e event.
      */
-    addBackwardFlatMessage(e) {
+    addOnCodBackwardFlatMessage(e) {
       this.createObjectData((function(x, y) {
         let jsonObject = getJsonForElement(
           'STORMCASE.UML.cod.BackwardFlatMessage, UMLCOD',
@@ -343,11 +348,11 @@ export default Mixin.create({
     },
 
     /**
-      Handler for click on addForwardFlatMessage button.
-      @method actions.addForwardFlatMessage
+      Handler for click on addOnCodForwardFlatMessage button.
+      @method actions.addOnCodForwardFlatMessage
       @param {jQuery.Event} e event.
      */
-    addForwardFlatMessage(e) {
+    addOnCodForwardFlatMessage(e) {
       this.createObjectData((function(x, y) {
         let jsonObject = getJsonForElement(
           'STORMCASE.UML.cod.ForwardFlatMessage, UMLCOD',
@@ -362,11 +367,11 @@ export default Mixin.create({
     },
 
     /**
-      Handler for click on addBackwardAsyncMessage button.
-      @method actions.addBackwardAsyncMessage
+      Handler for click on addOnCodBackwardAsyncMessage button.
+      @method actions.addOnCodBackwardAsyncMessage
       @param {jQuery.Event} e event.
      */
-    addBackwardAsyncMessage(e) {
+    addOnCodBackwardAsyncMessage(e) {
       this.createObjectData((function(x, y) {
         let jsonObject = getJsonForElement(
           'STORMCASE.UML.cod.BackwardAsyncMessage, UMLCOD',
@@ -381,11 +386,11 @@ export default Mixin.create({
     },
 
     /**
-      Handler for click on addForwardAsyncMessage button.
-      @method actions.addForwardAsyncMessage
+      Handler for click on addOnCodForwardAsyncMessage button.
+      @method actions.addOnCodForwardAsyncMessage
       @param {jQuery.Event} e event.
      */
-    addForwardAsyncMessage(e) {
+    addOnCodForwardAsyncMessage(e) {
       this.createObjectData((function(x, y) {
         let jsonObject = getJsonForElement(
           'STORMCASE.UML.cod.ForwardAsyncMessage, UMLCOD',
@@ -398,5 +403,97 @@ export default Mixin.create({
         return codObject.JointJS();
       }).bind(this), e);
     },
+
+    
+    /**
+      Handler for click on addOnCodInstance button.
+
+      @method actions.addOnCodInstance
+      @param {jQuery.Event} e event.
+     */
+    addOnCodInstance(e) {
+      this.createObjectData((function(x, y) {
+        let jsonObject = getJsonForElement(
+          'STORMCASE.UML.cod.Instance, UMLCOD',
+          { x, y },
+          { width: 80, height: 30 },
+          { Name: '' }
+        );
+        let instance = Instance.create({ primitive: jsonObject });
+
+        this._addToPrimitives(instance);
+
+        return instance.JointJS();
+      }).bind(this), e);
+    },
+
+
+    /**
+      Handler for click on addOnCodMultiObject button.
+
+      @method actions.addOnCodMultiObject
+      @param {jQuery.Event} e event.
+     */
+    addOnCodMultiObject(e) {
+      this.createObjectData((function(x, y) {
+        let jsonObject = getJsonForElement(
+          'STORMCASE.UML.cod.MultiObject, UMLCOD',
+          { x, y },
+          { width: 100, height: 40 },
+          { Name: '' }
+        );
+        let multiObject = MultiObject.create({ primitive: jsonObject });
+
+        this._addToPrimitives(multiObject);
+
+        return multiObject.JointJS();
+      }).bind(this), e);
+    },
+
+    /**
+      Handler for click on addOnCodActiveObject button.
+
+      @method actions.addOnCodActiveObject
+      @param {jQuery.Event} e event.
+     */
+    addOnCodActiveObject(e) {
+      this.createObjectData((function(x, y) {
+        let jsonObject = getJsonForElement(
+          'STORMCASE.UML.cod.ActiveObject, UMLCOD',
+          { x, y },
+          { width: 80, height: 30 },
+          { Name: '' }
+        );
+        let activeObject = ActiveObject.create({ primitive: jsonObject });
+
+        this._addToPrimitives(activeObject);
+
+        return activeObject.JointJS();
+      }).bind(this), e);
+    },
+
+    /**
+      Handler for click on addOnCodNaryAssociation button.
+
+      @method actions.addOnCodNaryAssociation
+      @param {jQuery.Event} e event.
+     */
+    addOnCodNaryAssociation(e) {
+      this.createObjectData((function(x, y) {
+        let jsonObject = getJsonForElement(
+          'STORMCASE.UML.cod.NarLink, UMLCOD',
+          { x, y },
+          { width: 40, height: 40 },
+          { Name: '' }
+        );
+        let naryAssociation = NAryAssociation.create({ primitive: jsonObject });
+
+        this._addToPrimitives(naryAssociation);
+
+        return naryAssociation.JointJS();
+      }).bind(this), e);
+    },
+
+    //addAggregationLink
   }
 });
