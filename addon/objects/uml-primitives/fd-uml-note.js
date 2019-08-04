@@ -87,6 +87,12 @@ export let Note = BaseObject.define('flexberry.uml.Note', {
 });
 
 joint.shapes.flexberry.uml.NoteView = joint.shapes.flexberry.uml.BaseObjectView.extend({
+  template: [
+    '<div class="uml-class-inputs" style="display: inline-block">',
+    '<textarea class="class-name-input header-input" value="" rows="1" wrap="off"></textarea>',
+    '<div class="input-buffer"></div>',
+    '</div>'
+  ].join(''),
   updateRectangles() {
     joint.shapes.flexberry.uml.BaseObjectView.prototype.updateRectangles.apply(this, arguments);
     let transX = this.model.size().width - 8;
