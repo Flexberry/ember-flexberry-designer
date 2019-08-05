@@ -31,11 +31,8 @@ import FdUmlQComposition from '../objects/uml-primitives/fd-uml-qualified-compos
 import FdUmlRealization from '../objects/uml-primitives/fd-uml-realization';
 import FdUmlObjectAssociation from '../objects/uml-primitives/fd-uml-object-association';
 import FdUmlNAryAssociationConnector from '../objects/uml-primitives/fd-uml-naryassociation-connector';
-import FdUmlLinkConnector from '../objects/uml-primitives/fd-uml-link-connector';
-import DS from 'ember-data';
 
 let Model = CADModel.extend(DevUMLCADMixin, {
-  primitivesJsonString: DS.attr('fd-primitives-json-string'),
 
   /**
     The array of primitives of this diagram.
@@ -146,10 +143,6 @@ let Model = CADModel.extend(DevUMLCADMixin, {
 
         case 'STORMCASE.UML.cad.Realization, UMLCAD':
           result.pushObject(FdUmlRealization.create({ primitive }));
-          break;
-
-        case 'STORMCASE.UML.cad.LinkConnector, UMLCAD':
-          result.pushObject(FdUmlLinkConnector.create({ primitive }));
           break;
 
         default:
