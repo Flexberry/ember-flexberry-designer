@@ -193,6 +193,8 @@ export let BaseClass = joint.shapes.basic.Generic.define('flexberry.uml.BaseClas
 joint.util.setByPath(joint.shapes, 'flexberry.uml.BaseClass', BaseClass, '.');
 
 
+joint.util.setByPath(joint.shapes, 'flexberry.uml.BaseClass', BaseClass, '.');
+
 /**
   Defines the JointJS element, which represents the UML class in the diagram.
 
@@ -205,6 +207,8 @@ joint.util.setByPath(joint.shapes, 'flexberry.uml.BaseClass', BaseClass, '.');
 export let Class = BaseClass.define('flexberry.uml.Class', {});
 joint.util.setByPath(joint.shapes, 'flexberry.uml.Class', Class, '.');
 
+
+joint.util.setByPath(joint.shapes, 'flexberry.uml.BaseClass', BaseClass, '.');
 
 joint.shapes.flexberry.uml.ClassView = joint.shapes.flexberry.uml.PrimitiveElementView.extend({
   template: [
