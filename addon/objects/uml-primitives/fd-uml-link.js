@@ -32,6 +32,21 @@ export default FdUmlPrimitive.extend({
       return value;
     },
   }),
+  
+  sourceConnectionPoint: computed('primitive.StartLE.Primitive', {
+    get() {
+      let ret = {
+        SegmNo:  this.get('primitive.StartLE.SegmNo'), 
+        Percent: this.get('primitive.StartLE.Percent')
+      };
+      return ret;
+    },
+    set(key, value) {
+      this.set('primitive.StartLE.SegmNo', value.SegmNo); 
+      this.set('primitive.StartLE.Percent', value.Percent); 
+      return value;
+    }
+  }),
 
   /**
     An object with an `id` of another UML primitive, which is the target, for example `{ id: '1' }`.
@@ -48,6 +63,21 @@ export default FdUmlPrimitive.extend({
       this.set('primitive.EndLE.Primitive.$ref', value.id);
       return value;
     },
+  }),
+  
+  targetConnectionPoint: computed('primitive.EndLE.Primitive', {
+    get() {
+      let ret = {
+        SegmNo:  this.get('primitive.EndLE.SegmNo'), 
+        Percent: this.get('primitive.EndLE.Percent')
+      };
+      return ret;
+    },
+    set(key, value) {
+      this.set('primitive.EndLE.SegmNo', value.SegmNo); 
+      this.set('primitive.EndLE.Percent', value.Percent); 
+      return value;
+    }
   }),
 
   /**
