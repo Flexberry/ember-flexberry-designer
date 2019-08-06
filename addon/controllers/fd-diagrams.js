@@ -231,6 +231,8 @@ export default Controller.extend(FdSaveHasManyRelationshipsMixin, {
           case 'STORMCASE.UML.cad.Association, UMLCAD':
             modelName = 'fd-dev-association';
             break;
+          case 'STORMCASE.UML.cad.LinkInheritance, UMLCAD':
+            break;
           default:
             throw new Error(`Unsupported type: '${primitive.get('primitive.$type')}'.`);
         }
