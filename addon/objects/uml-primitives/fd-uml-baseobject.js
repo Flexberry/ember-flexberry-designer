@@ -162,6 +162,8 @@ export let BaseObject = joint.shapes.basic.Generic.define('flexberry.uml.BaseObj
     attrs['.flexberry-uml-header-rect'].width = rectWidth;
   }
 });
+joint.util.setByPath(joint.shapes, 'flexberry.uml.BaseObject', BaseObject, '.');
+
 
 joint.shapes.flexberry.uml.BaseObjectView = joint.shapes.flexberry.uml.PrimitiveElementView.extend({
   template: [
