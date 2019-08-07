@@ -4,8 +4,10 @@
 
 import { computed } from '@ember/object';
 import { isArray } from '@ember/array';
+import joint from 'npm:jointjs';
 
 import { ActiveObject } from './fd-uml-active-object';
+import { BaseObject } from './fd-uml-baseobject';
 import FdUmlElement from './fd-uml-element';
 
 /**
@@ -54,15 +56,20 @@ export default FdUmlElement.extend({
   @namespace flexberry.uml
   @constructor
 */
-export let DeploymentActiveObject = ActiveObject.define('flexberry.uml.DeploymentActiveObject', {
+export let DeploymentActiveObject = BaseObject.define('flexberry.uml.DeploymentActiveObject', {
   attrs: {
     text: {
       'visibility': 'visible',
     },
-    '.flexberry-uml-header-rect': { 'stroke-width': 2 },
+    '.flexberry-uml-header-rect': { 'stroke-width': 3 },
   }
-}, {
-  updateRectangles: function() {
-    this.updateRectanglesOld();
-  }
+});
+
+joint.shapes.flexberry.uml.DeploymentActiveObjectView = joint.shapes.flexberry.uml.BaseObjectView.extend({
+  template: [
+    '<div class="uml-class-inputs">',
+    '<textarea class="instance-input class-name-input header-input" value="" rows="1" wrap="off"></textarea>',
+    '<div class="input-buffer"></div>',
+    '</div>'
+  ].join(''),
 });

@@ -6,6 +6,7 @@ import { computed } from '@ember/object';
 import { isArray } from '@ember/array';
 import { BaseObject } from './fd-uml-baseobject';
 import FdUmlElement from './fd-uml-element';
+import joint from 'npm:jointjs';
 
 /**
   An object that describes an Component element on the UML diagram.
@@ -56,8 +57,8 @@ export default FdUmlElement.extend({
 export let Component = BaseObject.define('flexberry.uml.Component', {
   attrs: {
     'text': { 'font-weight': 'bold', 'visibility': 'visible' },
-    '.firstRect': { 'y-alignment': 'middle', 'ref-y': 0.5, 'fill': 'white', 'stroke': 'black', 'stroke-width': 1 },
-    '.secondRect': { 'y-alignment': 'middle', 'ref-y': 0.5, 'fill': 'white', 'stroke': 'black', 'stroke-width': 1 }
+    '.firstRect': {'refY': '50%', 'refY2': '-8', 'fill': 'white', 'stroke': 'black', 'stroke-width': 1 },
+    '.secondRect': { 'refY': '50%', 'refY2': '2', 'fill': 'white', 'stroke': 'black', 'stroke-width': 1 }
   },
   heightPadding: 20
 }, {
@@ -65,8 +66,8 @@ export let Component = BaseObject.define('flexberry.uml.Component', {
     '<g class="rotatable">',
     '<g class="scalable">',
     '<rect class="flexberry-uml-header-rect"/>',
-    '<rect class="firstRect" width="10" height="5"/>',
-    '<rect class="secondRect" width="10" height="5"/>',
+    '<rect class="firstRect" width="10" height="5" x="-5"/>',
+    '<rect class="secondRect" width="10" height="5" x="-5"/>',
     '</g>',
     '<text class="flexberry-uml-header-text"/>',
     '</g>'
@@ -79,4 +80,13 @@ export let Component = BaseObject.define('flexberry.uml.Component', {
     attrs['.firstRect'].transform = 'translate(-5, -8)';
     attrs['.secondRect'].transform = 'translate(-5, 8)';
   }
+});
+
+joint.shapes.flexberry.uml.ComponentView = joint.shapes.flexberry.uml.BaseObjectView.extend({
+  template: [
+    '<div class="uml-class-inputs">',
+    '<textarea type="text" class="active-object-input class-name-input header-input" value="" rows="1" wrap="off"></textarea>',
+    '<div class="input-buffer"></div>',
+    '</div>'
+  ].join(''),
 });

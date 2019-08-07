@@ -6,6 +6,7 @@ import joint from 'npm:jointjs';
 import FdUmlBaseLink from './fd-uml-link';
 import { Dependency } from './fd-uml-dependency';
 import { EmptyView } from './links-view/fd-empty-view';
+import { DescriptionView } from './links-view/fd-description-view';
 
 /**
   An object that defines Connection link on the UML diagram.
@@ -40,4 +41,4 @@ export let Connection = Dependency.define('flexberry.uml.Connection', {
   attrs: { '.connection': { 'stroke-dasharray': 0 } }
 });
 
-joint.shapes.flexberry.uml.ConnectionView = EmptyView;
+joint.shapes.flexberry.uml.ConnectionView = DescriptionView;
