@@ -24,7 +24,15 @@ export default FdUmlPrimitive.extend({
   */
   source: computed('primitive.StartPrimitive.$ref', {
     get() {
-      return { id: this.get('primitive.StartPrimitive.$ref') };
+      let ret = { id: this.get('primitive.StartPrimitive.$ref') };
+      let segmNo = this.get('primitive.StartLE.SegmNo');
+      if (segmNo >= 0) {
+        let ratio = this.get('primitive.StartLE.Percent');
+        ret.selector = "root";
+        ret.anchor = {"name":"connectionRatio", "args":{}};
+        ret.anchor.args.ratio = ratio; 
+      }
+      return ret;
     },
     set(key, value) {
       this.set('primitive.StartPrimitive.$ref', value.id);
@@ -56,7 +64,15 @@ export default FdUmlPrimitive.extend({
   */
   target: computed('primitive.EndPrimitive.$ref', {
     get() {
-      return { id: this.get('primitive.EndPrimitive.$ref') };
+      let ret = { id: this.get('primitive.EndPrimitive.$ref') };
+      let segmNo = this.get('primitive.EndLE.SegmNo');
+      if (segmNo >= 0) {
+        let ratio = this.get('primitive.EndLE.Percent');
+        ret.selector = "root";
+        ret.anchor = {"name":"connectionRatio", "args":{}};
+        ret.anchor.args.ratio = ratio; 
+      }
+      return ret;
     },
     set(key, value) {
       this.set('primitive.EndPrimitive.$ref', value.id);
