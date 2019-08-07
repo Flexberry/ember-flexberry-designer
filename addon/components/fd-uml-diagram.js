@@ -129,7 +129,7 @@ export default Component.extend({
   didInsertElement() {
     this._super(...arguments);
     const namespace = joint.shapes;
-    let graph = this.set('graph', new joint.dia.Graph({}, { cellNamespace: namespace }));
+    let graph = this.set('graph', new joint.dia.Graph({}, { cellNamespace: namespace , cellViewNamespace: namespace}));
     let paper = this.set('paper', new joint.dia.Paper({
       el: this.get('element'),
       model: graph,
@@ -157,7 +157,8 @@ export default Component.extend({
       interactive: {
         elementMove: false
       },
-      cellNamespace: namespace
+      cellNamespace: namespace,
+      cellViewNamespace: namespace
     }));
 
     let elements = this.get('elements');
