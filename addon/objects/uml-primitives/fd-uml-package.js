@@ -134,6 +134,7 @@ joint.shapes.flexberry.uml.PackageView = joint.shapes.flexberry.uml.BaseObjectVi
     let upperInput = this.$box.find('.package-header-input');
     upperInput.prop('rows', objectModel.get('name').split(/[\n\r|\r|\n]/).length || 1);
     upperInput.val(objectModel.get('name'));
+    this.updateRectangles();
   },
 
   updateRectangles: function () {
@@ -142,12 +143,17 @@ joint.shapes.flexberry.uml.PackageView = joint.shapes.flexberry.uml.BaseObjectVi
     let offsetY = 0;
     let newHeight = 0;
     let newWidth = 0;
-    rects.forEach(function (rect) {
+    rects.forEach(function(rect) {
       if (this.markup.includes('flexberry-uml-' + rect.type + '-rect') && rect.element.inputElements) {
-        let $buffer = rect.element.inputElements.find('.input-buffer');
         let rectHeight = 0;
         let inputs = rect.element.inputElements.find('.' + rect.type + '-input');
-        inputs.each(function () {
+        let inputsDiv = inputs[0].parentElement;
+        if (! inputsDiv.parentElement || ! inputsDiv.parentElement.className.includes('joint-paper')) {
+          let jointPaper = $('.joint-paper')[0];
+          jointPaper.appendChild(inputsDiv);
+        }
+        let $buffer = rect.element.inputElements.find('.input-buffer');
+        inputs.each(function() {
           let $input = $(this);
           $buffer.css('font-weight', $input.css('font-weight'));
           $buffer.text($input.val());
@@ -155,7 +161,7 @@ joint.shapes.flexberry.uml.PackageView = joint.shapes.flexberry.uml.BaseObjectVi
           if (rect.type === 'header') {
             newWidth = $input.width() / 0.8;
           }
-
+          
           if ($input.width() > newWidth) {
             newWidth = $input.width();
           }
@@ -174,7 +180,7 @@ joint.shapes.flexberry.uml.PackageView = joint.shapes.flexberry.uml.BaseObjectVi
     }, this.model);
 
     newWidth += (this.model.get('widthPadding') || 0) * 2;
-    rects.forEach(function (rect) {
+    rects.forEach(function(rect) {
       rect.element.attr('.flexberry-uml-' + rect.type + '-rect/width', newWidth);
     });
 
@@ -184,4 +190,5 @@ joint.shapes.flexberry.uml.PackageView = joint.shapes.flexberry.uml.BaseObjectVi
       this.highlight();
     }
   }
+  
 });
