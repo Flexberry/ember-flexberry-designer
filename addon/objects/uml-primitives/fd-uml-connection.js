@@ -5,7 +5,6 @@ import joint from 'npm:jointjs';
 
 import FdUmlBaseLink from './fd-uml-link';
 import { Dependency } from './fd-uml-dependency';
-import { EmptyView } from './links-view/fd-empty-view';
 import { DescriptionView } from './links-view/fd-description-view';
 
 /**

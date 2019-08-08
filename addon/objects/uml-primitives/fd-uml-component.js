@@ -56,11 +56,9 @@ export default FdUmlElement.extend({
 */
 export let Component = BaseObject.define('flexberry.uml.Component', {
   attrs: {
-    'text': { 'font-weight': 'bold', 'visibility': 'visible' },
     '.firstRect': {'refY': '50%', 'refY2': '-8', 'fill': 'white', 'stroke': 'black', 'stroke-width': 1 },
     '.secondRect': { 'refY': '50%', 'refY2': '2', 'fill': 'white', 'stroke': 'black', 'stroke-width': 1 }
-  },
-  heightPadding: 20
+  }
 }, {
   markup: [
     '<g class="rotatable">',
@@ -71,15 +69,7 @@ export let Component = BaseObject.define('flexberry.uml.Component', {
     '</g>',
     '<text class="flexberry-uml-header-text"/>',
     '</g>'
-  ].join(''),
-
-  updateRectangles: function() {
-    this.updateRectanglesOld();
-
-    let attrs = this.get('attrs');
-    attrs['.firstRect'].transform = 'translate(-5, -8)';
-    attrs['.secondRect'].transform = 'translate(-5, 8)';
-  }
+  ].join('')
 });
 
 joint.shapes.flexberry.uml.ComponentView = joint.shapes.flexberry.uml.BaseObjectView.extend({
