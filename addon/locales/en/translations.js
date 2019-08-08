@@ -133,6 +133,7 @@ import FdBsEditingPanel from './components/fd-businessserver-editing-panel';
 import FdEnumEditingPanel from './components/fd-enumeration-editing-panel';
 import FdCreateView from './components/fd-create-view';
 import FdCreateEntity from './components/fd-create-entity';
+import FdCreateDiagrams from './components/fd-create-diagrams';
 import FdSheet from './components/fd-sheet';
 import FdCreateNodeEditingPanel from './components/fd-create-node-editing-panel';
 import FdFolderEditingPanel from './components/fd-folder-editing-panel';
@@ -440,6 +441,7 @@ $.extend(true, translations, {
     'fd-folder-editing-panel': FdFolderEditingPanel,
     'fd-property-editing-panel': FdPropertyEditingPanel,
     'fd-create-entity': FdCreateEntity,
+    'fd-create-diagrams': FdCreateDiagrams,
   }
 
 });
