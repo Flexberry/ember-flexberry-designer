@@ -9,6 +9,7 @@ import FdUmlElement from './fd-uml-element';
 import { BaseObject } from './fd-uml-baseobject';
 
 import joint from 'npm:jointjs';
+import $ from 'jquery';
 
 /**
   An object that describes a Node on the UML diagram.
