@@ -4,6 +4,7 @@ moduleFor('route:fd-application-edit-form', 'Unit | Route | fd application edit 
   // Specify the other units that are required for this test.
   // needs: ['controller:foo']
   needs: [
+    'service:cols-config-menu',
     'service:objectlistview-events',
     'service:appState',
     'service:detail-interaction',

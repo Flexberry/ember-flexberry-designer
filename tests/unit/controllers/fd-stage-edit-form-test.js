@@ -5,6 +5,7 @@ moduleFor('controller:fd-stage-edit-form', 'Unit | Controller | fd stage edit fo
   // needs: ['controller:foo']
   needs: [
     'controller:advlimit-dialog',
+    'controller:colsconfig-dialog',
     'service:objectlistviewEvents',
     'controller:lookup-dialog',
     'controller:flexberry-file-view-dialog',

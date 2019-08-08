@@ -4,6 +4,7 @@ moduleFor('route:new-platform-flexberry-web-designer-generation-e', 'Unit | Rout
   // Specify the other units that are required for this test.
   // needs: ['controller:foo']
   needs: [
+    'service:cols-config-menu',
     'service:objectlistview-events',
     'service:appState',
     'service:detail-interaction',

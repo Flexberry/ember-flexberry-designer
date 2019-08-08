@@ -4,6 +4,7 @@ moduleFor('route:fd-inheritance-edit-form', 'Unit | Route | fd inheritance edit 
   // Specify the other units that are required for this test.
   // needs: ['controller:foo']
   needs: [
+    'service:cols-config-menu',
     'service:fd-current-project-context',
     'service:objectlistview-events',
     'service:appState',

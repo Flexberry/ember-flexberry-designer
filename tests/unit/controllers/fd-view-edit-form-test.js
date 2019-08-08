@@ -5,6 +5,7 @@ moduleFor('controller:fd-view-edit-form', 'Unit | Controller | fd view edit form
   // needs: ['controller:foo']
   needs: [
     'controller:advlimit-dialog',
+    'controller:colsconfig-dialog',
     'service:appState',
     'service:objectlistviewEvents',
     'controller:lookup-dialog',

@@ -5,6 +5,7 @@ moduleFor('controller:fd-inheritance-edit-form', 'Unit | Controller | fd inherit
   // needs: ['controller:foo']
   needs: [
     'controller:advlimit-dialog',
+    'controller:colsconfig-dialog',
     'service:fd-current-project-context',
     'service:objectlistviewEvents',
     'controller:lookup-dialog',

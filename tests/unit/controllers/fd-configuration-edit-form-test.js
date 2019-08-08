@@ -5,6 +5,7 @@ moduleFor('controller:fd-configuration-edit-form', 'Unit | Controller | fd confi
   // needs: ['controller:foo']
   needs: [
     'controller:advlimit-dialog',
+    'controller:colsconfig-dialog',
     'service:objectlistviewEvents',
     'controller:lookup-dialog',
     'controller:flexberry-file-view-dialog',
