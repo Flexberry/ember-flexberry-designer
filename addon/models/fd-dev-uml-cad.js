@@ -31,10 +31,8 @@ import FdUmlQComposition from '../objects/uml-primitives/fd-uml-qualified-compos
 import FdUmlRealization from '../objects/uml-primitives/fd-uml-realization';
 import FdUmlObjectAssociation from '../objects/uml-primitives/fd-uml-object-association';
 import FdUmlNAryAssociationConnector from '../objects/uml-primitives/fd-uml-naryassociation-connector';
-import DS from 'ember-data';
 
 let Model = CADModel.extend(DevUMLCADMixin, {
- primitivesJsonString: DS.attr('fd-primitives-json-string'),
 
   /**
     The array of primitives of this diagram.

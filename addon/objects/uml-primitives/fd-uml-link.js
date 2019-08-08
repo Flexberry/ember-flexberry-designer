@@ -27,10 +27,14 @@ export default FdUmlPrimitive.extend({
       let ret = { id: this.get('primitive.StartPrimitive.$ref') };
       let segmNo = this.get('primitive.StartLE.SegmNo');
       if (segmNo >= 0) {
-        let ratio = this.get('primitive.StartLE.ratio');
-        ret.selector = "root";
-        ret.anchor = {"name":"connectionRatio", "args":{}};
-        ret.anchor.args.ratio = ratio; 
+        let percent = this.get('primitive.StartLE.Percent');
+        ret.anchor = {
+          name: 'connectionSegmRatio',
+          args: {
+            segmNo: segmNo,
+            percent: percent
+          }
+        };
       }
       return ret;
     },
@@ -39,21 +43,6 @@ export default FdUmlPrimitive.extend({
       this.set('primitive.StartLE.Primitive.$ref', value.id);
       return value;
     },
-  }),
-  
-  sourceConnectionPoint: computed('primitive.StartLE.Primitive', {
-    get() {
-      let ret = {
-        SegmNo:  this.get('primitive.StartLE.SegmNo'), 
-        Percent: this.get('primitive.StartLE.Percent')
-      };
-      return ret;
-    },
-    set(key, value) {
-      this.set('primitive.StartLE.SegmNo', value.SegmNo); 
-      this.set('primitive.StartLE.Percent', value.Percent); 
-      return value;
-    }
   }),
 
   /**
@@ -67,11 +56,15 @@ export default FdUmlPrimitive.extend({
       let ret = { id: this.get('primitive.EndPrimitive.$ref') };
       let segmNo = this.get('primitive.EndLE.SegmNo');
       if (segmNo >= 0) {
-        let ratio = this.get('primitive.EndLE.ratio');
-        ret.selector = "root";
-        ret.anchor = {"name":"connectionRatio", "args":{}};
-        ret.anchor.args.ratio = ratio; 
-      }
+        let percent = this.get('primitive.StartLE.Percent');
+        ret.anchor = {
+          name: 'connectionSegmRatio',
+          args: {
+            segmNo: segmNo,
+            percent: percent
+          }
+        };
+    }
       return ret;
     },
     set(key, value) {
@@ -79,21 +72,6 @@ export default FdUmlPrimitive.extend({
       this.set('primitive.EndLE.Primitive.$ref', value.id);
       return value;
     },
-  }),
-  
-  targetConnectionPoint: computed('primitive.EndLE.Primitive', {
-    get() {
-      let ret = {
-        SegmNo:  this.get('primitive.EndLE.SegmNo'), 
-        Percent: this.get('primitive.EndLE.Percent')
-      };
-      return ret;
-    },
-    set(key, value) {
-      this.set('primitive.EndLE.SegmNo', value.SegmNo); 
-      this.set('primitive.EndLE.Percent', value.Percent); 
-      return value;
-    }
   }),
 
   /**
@@ -464,3 +442,25 @@ export let LinkWithUnderline = Link.define('flexberry.uml.BaseLinkWithUnderline'
 
 joint.util.setByPath(joint.shapes, 'flexberry.uml.BaseLinkWithUnderline', LinkWithUnderline, '.');
 
+let Point = joint.g.Point;
+
+joint.linkAnchors.connectionSegmRatio = function(endView, endMagnet, anchorReference, args) {
+  let segments=endView.path.segments;
+  let segmNo = args.segmNo;
+  let percent = args.percent;
+  if (percent > 1.0) percent = 1.0;
+  if (percent < 0.0) percent = 0.0;
+  let pathNo;
+  for (pathNo = 0; segments[pathNo].isSubpathStart; pathNo+=1);
+  for (let tailSegNo = segmNo; tailSegNo > 0 ; tailSegNo -=1) {
+    pathNo +=1;
+  }
+  let x0 = segments[pathNo].start.x;
+  let y0 = segments[pathNo].start.y;
+  let x1 = segments[pathNo].end.x;
+  let y1 = segments[pathNo].end.y;
+  let x = x0 + (x1 - x0) * percent;
+  let y = y0 + (y1 - y0) * percent;
+  let ret = new Point({x: x, y: y});
+  return ret;
+};
