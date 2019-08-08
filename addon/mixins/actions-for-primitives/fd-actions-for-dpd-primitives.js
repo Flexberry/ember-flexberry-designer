@@ -1,11 +1,11 @@
 import Mixin from '@ember/object/mixin';
 import { A } from '@ember/array';
 
-import { Component } from '../../objects/uml-primitives/fd-uml-component';
-import { UmlNode } from '../../objects/uml-primitives/fd-uml-node';
-import { DeploymentActiveObject } from '../../objects/uml-primitives/fd-uml-deployment-active-object';
-import { Dependency } from '../../objects/uml-primitives/fd-uml-dependency';
-import { Connection } from '../../objects/uml-primitives/fd-uml-connection';
+import Component from '../../objects/uml-primitives/fd-uml-component';
+import UmlNode from '../../objects/uml-primitives/fd-uml-node';
+import DeploymentActiveObject from '../../objects/uml-primitives/fd-uml-deployment-active-object';
+import Dependency from '../../objects/uml-primitives/fd-uml-dependency';
+import Connection from '../../objects/uml-primitives/fd-uml-connection';
 
 import { getJsonForElement, getJsonForLink } from '../../utils/get-json-for-diagram';
 /**
@@ -54,13 +54,15 @@ export default Mixin.create({
      */
     addOnDpdUmlNode(e) {
       this.createObjectData((function(x, y) {
-        let newUmlNodeObject = new UmlNode({
-          position: { x: x, y: y },
-          size: { width: 80, height: 40 },
-          name: ''
-        });
-
-        return newUmlNodeObject;
+        let jsonObject = getJsonForElement(
+          'STORMCASE.UML.dpd.Node, UMLDPD',
+          { x, y },
+          { width: 80, height: 40 },
+          { Name: '' }
+        );
+        let newUmlNodeObject = UmlNode.create({ primitive: jsonObject });
+        this._addToPrimitives(newUmlNodeObject);
+        return newUmlNodeObject.JointJS();
       }).bind(this), e);
     },
 
@@ -72,13 +74,15 @@ export default Mixin.create({
      */
     addDeploymentActiveObject(e) {
       this.createObjectData((function(x, y) {
-        let newDeploymentActiveObject = new DeploymentActiveObject({
-          position: { x: x, y: y },
-          size: { width: 80, height: 40 },
-          name: ''
-        });
-
-        return newDeploymentActiveObject;
+        let jsonObject = getJsonForElement(
+          'STORMCASE.UML.dpd.Node, UMLDPD',
+          { x, y },
+          { width: 80, height: 40 },
+          { Name: '' }
+        );
+        let newDeploymentActiveObject = DeploymentActiveObject.create({ primitive: jsonObject });
+        this._addToPrimitives(newDeploymentActiveObject);
+        return newDeploymentActiveObject.JointJS();
       }).bind(this), e);
     },
 
@@ -90,17 +94,23 @@ export default Mixin.create({
      */
     addOnDpdDependency(e) {
       this.createLinkData((function(linkProperties) {
-        let newDependencyObject = new Dependency({
-          source: {
-            id: linkProperties.source
-          },
-          target: {
-            id: linkProperties.target
-          },
-          vertices: linkProperties.points || A()
-        });
+        let jsonObject = getJsonForLink(
+          'STORMCASE.UML.dpd.Dependency, UMLDPD',
+          linkProperties.source,
+          null,
+          linkProperties.target,
+          null,
+          A(),
+          { Name: '' },
+          { NamePos: 0.0 }
+        );
 
-        return newDependencyObject;
+        let nestedOnDpdDependencObject = Dependency.create({ primitive: jsonObject });
+        nestedOnDpdDependencObject.set('vertices', linkProperties.points || A());
+
+        this._addToPrimitives(nestedOnDpdDependencObject);
+
+        return nestedOnDpdDependencObject.JointJS();
       }).bind(this), e, A(['flexberry.uml.Component', 'flexberry.uml.UmlNode']));
     },
 
@@ -112,17 +122,23 @@ export default Mixin.create({
      */
     addOnDpdConnection(e) {
       this.createLinkData((function(linkProperties) {
-        let newConnectionObject = new Connection({
-          source: {
-            id: linkProperties.source
-          },
-          target: {
-            id: linkProperties.target
-          },
-          vertices: linkProperties.points || A()
-        });
+        let jsonObject = getJsonForLink(
+          'STORMCASE.UML.dpd.Connection, UMLDPD',
+          linkProperties.source,
+          null,
+          linkProperties.target,
+          null,
+          A(),
+          { Name: '' },
+          { NamePos: 0.0 }
+        );
 
-        return newConnectionObject;
+        let nestedOnDpdConnectionObject = Connection.create({ primitive: jsonObject });
+        nestedOnDpdConnectionObject.set('vertices', linkProperties.points || A());
+
+        this._addToPrimitives(nestedOnDpdConnectionObject);
+
+        return nestedOnDpdConnectionObject.JointJS();
       }).bind(this), e, A(['flexberry.uml.Component', 'flexberry.uml.UmlNode', 'flexberry.uml.Instance', 'flexberry.uml.DeploymentActiveObject']));
     }
   }
