@@ -2331,6 +2331,7 @@ define('dummy/tests/unit/controllers/fd-all-projects/new-test', ['ember-qunit'],
   (0, _emberQunit.moduleFor)('controller:fd-all-projects/new', 'Unit | Controller | fd all projects/new', {
     // Specify the other units that are required for this test.
     // needs: ['controller:foo']
+    needs: ['service:appState', 'service:fd-current-project-context']
   });
 
   // Replace this with your real tests.
@@ -2345,7 +2346,7 @@ define('dummy/tests/unit/controllers/fd-application-edit-form-test', ['ember-qun
   (0, _emberQunit.moduleFor)('controller:fd-application-edit-form', 'Unit | Controller | fd application edit form', {
     // Specify the other units that are required for this test.
     // needs: ['controller:foo']
-    needs: ['service:objectlistviewEvents', 'controller:lookup-dialog', 'controller:flexberry-file-view-dialog', 'service:user-settings', 'service:appState', 'service:detail-interaction']
+    needs: ['controller:advlimit-dialog', 'controller:colsconfig-dialog', 'service:objectlistviewEvents', 'controller:lookup-dialog', 'controller:flexberry-file-view-dialog', 'service:user-settings', 'service:appState', 'service:detail-interaction', 'service:adv-limit']
   });
 
   // Replace this with your real tests.
@@ -2360,7 +2361,7 @@ define('dummy/tests/unit/controllers/fd-appstruct-form-test', ['ember-qunit'], f
   (0, _emberQunit.moduleFor)('controller:fd-appstruct-form', 'Unit | Controller | new platform flexberry web designer appstruct form', {
     // Specify the other units that are required for this test.
     // needs: ['controller:foo']
-    needs: ['service:fd-current-project-context', 'service:appState', 'service:objectlistviewEvents', 'controller:lookup-dialog', 'controller:flexberry-file-view-dialog', 'service:user-settings', 'service:detail-interaction']
+    needs: ['controller:advlimit-dialog', 'controller:colsconfig-dialog', 'service:fd-current-project-context', 'service:appState', 'service:objectlistviewEvents', 'controller:lookup-dialog', 'controller:flexberry-file-view-dialog', 'service:user-settings', 'service:detail-interaction', 'service:adv-limit']
   });
 
   // Replace this with your real tests.
@@ -2375,7 +2376,7 @@ define('dummy/tests/unit/controllers/fd-association-edit-form-test', ['ember-qun
   (0, _emberQunit.moduleFor)('controller:fd-association-edit-form', 'Unit | Controller | fd association edit form', {
     // Specify the other units that are required for this test.
     // needs: ['controller:foo']
-    needs: ['service:objectlistviewEvents', 'controller:lookup-dialog', 'controller:flexberry-file-view-dialog', 'service:user-settings', 'service:appState', 'service:detail-interaction']
+    needs: ['controller:advlimit-dialog', 'controller:colsconfig-dialog', 'service:objectlistviewEvents', 'controller:lookup-dialog', 'controller:flexberry-file-view-dialog', 'service:user-settings', 'service:appState', 'service:detail-interaction', 'service:adv-limit']
   });
 
   // Replace this with your real tests.
@@ -2390,7 +2391,7 @@ define('dummy/tests/unit/controllers/fd-association-list-form-test', ['ember-qun
   (0, _emberQunit.moduleFor)('controller:fd-association-list-form', 'Unit | Controller | fd association list form', {
     // Specify the other units that are required for this test.
     // needs: ['controller:foo']
-    needs: ['service:user-settings', 'service:objectlistview-events', 'controller:colsconfig-dialog']
+    needs: ['controller:advlimit-dialog', 'service:user-settings', 'service:objectlistview-events', 'controller:colsconfig-dialog', 'service:adv-limit']
   });
 
   // Replace this with your real tests.
@@ -2405,7 +2406,7 @@ define('dummy/tests/unit/controllers/fd-business-server-edit-form-test', ['ember
   (0, _emberQunit.moduleFor)('controller:fd-business-server-edit-form', 'Unit | Controller | fd business server edit form', {
     // Specify the other units that are required for this test.
     // needs: ['controller:foo']
-    needs: ['service:objectlistviewEvents', 'controller:lookup-dialog', 'controller:flexberry-file-view-dialog', 'service:user-settings', 'service:appState', 'service:detail-interaction']
+    needs: ['controller:advlimit-dialog', 'controller:colsconfig-dialog', 'service:objectlistviewEvents', 'controller:lookup-dialog', 'controller:flexberry-file-view-dialog', 'service:user-settings', 'service:appState', 'service:detail-interaction', 'service:adv-limit']
   });
 
   // Replace this with your real tests.
@@ -2420,7 +2421,7 @@ define('dummy/tests/unit/controllers/fd-class-edit-form-test', ['ember-qunit'], 
   (0, _emberQunit.moduleFor)('controller:fd-class-edit-form', 'Unit | Controller | fd class edit form', {
     // Specify the other units that are required for this test.
     // needs: ['controller:foo']
-    needs: ['service:fd-current-project-context', 'service:objectlistviewEvents', 'controller:lookup-dialog', 'controller:flexberry-file-view-dialog', 'service:user-settings', 'service:appState', 'service:detail-interaction']
+    needs: ['controller:advlimit-dialog', 'controller:colsconfig-dialog', 'service:fd-current-project-context', 'service:objectlistviewEvents', 'controller:lookup-dialog', 'controller:flexberry-file-view-dialog', 'service:user-settings', 'service:appState', 'service:detail-interaction', 'service:adv-limit']
   });
 
   // Replace this with your real tests.
@@ -2435,7 +2436,7 @@ define('dummy/tests/unit/controllers/fd-class-list-form-test', ['ember-qunit'], 
   (0, _emberQunit.moduleFor)('controller:fd-class-list-form', 'Unit | Controller | fd class list form', {
     // Specify the other units that are required for this test.
     // needs: ['controller:foo']
-    needs: ['service:user-settings', 'service:objectlistview-events', 'controller:colsconfig-dialog']
+    needs: ['controller:advlimit-dialog', 'service:user-settings', 'service:objectlistview-events', 'controller:colsconfig-dialog', 'service:adv-limit']
   });
 
   // Replace this with your real tests.
@@ -2450,7 +2451,7 @@ define('dummy/tests/unit/controllers/fd-configuration-edit-form-test', ['ember-q
   (0, _emberQunit.moduleFor)('controller:fd-configuration-edit-form', 'Unit | Controller | fd configuration edit form', {
     // Specify the other units that are required for this test.
     // needs: ['controller:foo']
-    needs: ['service:objectlistviewEvents', 'controller:lookup-dialog', 'controller:flexberry-file-view-dialog', 'service:user-settings', 'service:appState', 'service:detail-interaction']
+    needs: ['controller:advlimit-dialog', 'controller:colsconfig-dialog', 'service:objectlistviewEvents', 'controller:lookup-dialog', 'controller:flexberry-file-view-dialog', 'service:user-settings', 'service:appState', 'service:detail-interaction', 'service:adv-limit']
   });
 
   // Replace this with your real tests.
@@ -2465,7 +2466,7 @@ define('dummy/tests/unit/controllers/fd-configuration-list-form-test', ['ember-q
   (0, _emberQunit.moduleFor)('controller:fd-configuration-list-form', 'Unit | Controller | fd configuration list form', {
     // Specify the other units that are required for this test.
     // needs: ['controller:foo']
-    needs: ['service:user-settings', 'service:objectlistview-events', 'controller:colsconfig-dialog']
+    needs: ['controller:advlimit-dialog', 'service:user-settings', 'service:objectlistview-events', 'controller:colsconfig-dialog', 'service:adv-limit']
   });
 
   // Replace this with your real tests.
@@ -2495,7 +2496,7 @@ define('dummy/tests/unit/controllers/fd-diagram-edit-form-test', ['ember-qunit']
   (0, _emberQunit.moduleFor)('controller:fd-diagram-edit-form', 'Unit | Controller | fd diagram edit form', {
     // Specify the other units that are required for this test.
     // needs: ['controller:foo']
-    needs: ['service:fd-current-project-context', 'service:objectlistviewEvents', 'controller:lookup-dialog', 'controller:flexberry-file-view-dialog', 'service:user-settings', 'service:appState', 'service:detail-interaction']
+    needs: ['controller:advlimit-dialog', 'controller:colsconfig-dialog', 'service:fd-current-project-context', 'service:objectlistviewEvents', 'controller:lookup-dialog', 'controller:flexberry-file-view-dialog', 'service:user-settings', 'service:appState', 'service:detail-interaction', 'service:adv-limit']
   });
 
   // Replace this with your real tests.
@@ -2510,7 +2511,7 @@ define('dummy/tests/unit/controllers/fd-diagram-list-form-test', ['ember-qunit']
   (0, _emberQunit.moduleFor)('controller:fd-diagram-list-form', 'Unit | Controller | fd diagram list form', {
     // Specify the other units that are required for this test.
     // needs: ['controller:foo']
-    needs: ['service:user-settings', 'service:objectlistview-events', 'controller:colsconfig-dialog']
+    needs: ['controller:advlimit-dialog', 'service:user-settings', 'service:objectlistview-events', 'controller:colsconfig-dialog', 'service:adv-limit']
   });
 
   // Replace this with your real tests.
@@ -2525,7 +2526,7 @@ define('dummy/tests/unit/controllers/fd-edit-form-edit-form-test', ['ember-qunit
   (0, _emberQunit.moduleFor)('controller:fd-edit-form-edit-form', 'Unit | Controller | fd edit form edit form', {
     // Specify the other units that are required for this test.
     // needs: ['controller:foo']
-    needs: ['service:objectlistviewEvents', 'controller:lookup-dialog', 'controller:flexberry-file-view-dialog', 'service:user-settings', 'service:appState', 'service:detail-interaction']
+    needs: ['controller:advlimit-dialog', 'controller:colsconfig-dialog', 'service:objectlistviewEvents', 'controller:lookup-dialog', 'controller:flexberry-file-view-dialog', 'service:user-settings', 'service:appState', 'service:detail-interaction', 'service:adv-limit']
   });
 
   // Replace this with your real tests.
@@ -2687,7 +2688,7 @@ define('dummy/tests/unit/controllers/fd-enum-edit-form-test', ['ember-qunit'], f
   (0, _emberQunit.moduleFor)('controller:fd-enum-edit-form', 'Unit | Controller | fd enum edit form', {
     // Specify the other units that are required for this test.
     // needs: ['controller:foo']
-    needs: ['service:objectlistviewEvents', 'controller:lookup-dialog', 'controller:flexberry-file-view-dialog', 'service:user-settings', 'service:appState', 'service:detail-interaction']
+    needs: ['controller:advlimit-dialog', 'controller:colsconfig-dialog', 'service:objectlistviewEvents', 'controller:lookup-dialog', 'controller:flexberry-file-view-dialog', 'service:user-settings', 'service:appState', 'service:detail-interaction', 'service:adv-limit']
   });
 
   // Replace this with your real tests.
@@ -2702,7 +2703,7 @@ define('dummy/tests/unit/controllers/fd-external-edit-form-test', ['ember-qunit'
   (0, _emberQunit.moduleFor)('controller:fd-external-edit-form', 'Unit | Controller | fd external edit form', {
     // Specify the other units that are required for this test.
     // needs: ['controller:foo']
-    needs: ['service:objectlistviewEvents', 'controller:lookup-dialog', 'controller:flexberry-file-view-dialog', 'service:user-settings', 'service:appState', 'service:detail-interaction']
+    needs: ['controller:advlimit-dialog', 'controller:colsconfig-dialog', 'service:objectlistviewEvents', 'controller:lookup-dialog', 'controller:flexberry-file-view-dialog', 'service:user-settings', 'service:appState', 'service:detail-interaction', 'service:adv-limit']
   });
 
   // Replace this with your real tests.
@@ -2774,7 +2775,7 @@ define('dummy/tests/unit/controllers/fd-inheritance-edit-form-test', ['ember-qun
   (0, _emberQunit.moduleFor)('controller:fd-inheritance-edit-form', 'Unit | Controller | fd inheritance edit form', {
     // Specify the other units that are required for this test.
     // needs: ['controller:foo']
-    needs: ['service:fd-current-project-context', 'service:objectlistviewEvents', 'controller:lookup-dialog', 'controller:flexberry-file-view-dialog', 'service:user-settings', 'service:appState', 'service:detail-interaction']
+    needs: ['controller:advlimit-dialog', 'controller:colsconfig-dialog', 'service:fd-current-project-context', 'service:objectlistviewEvents', 'controller:lookup-dialog', 'controller:flexberry-file-view-dialog', 'service:user-settings', 'service:appState', 'service:detail-interaction', 'service:adv-limit']
   });
 
   // Replace this with your real tests.
@@ -2789,7 +2790,7 @@ define('dummy/tests/unit/controllers/fd-inheritance-list-form-test', ['ember-qun
   (0, _emberQunit.moduleFor)('controller:fd-inheritance-list-form', 'Unit | Controller | fd inheritance list form', {
     // Specify the other units that are required for this test.
     // needs: ['controller:foo']
-    needs: ['service:user-settings', 'service:objectlistview-events', 'controller:colsconfig-dialog']
+    needs: ['controller:advlimit-dialog', 'service:user-settings', 'service:objectlistview-events', 'controller:colsconfig-dialog', 'service:adv-limit']
   });
 
   // Replace this with your real tests.
@@ -2804,7 +2805,7 @@ define('dummy/tests/unit/controllers/fd-interface-edit-form-test', ['ember-qunit
   (0, _emberQunit.moduleFor)('controller:fd-interface-edit-form', 'Unit | Controller | fd interface edit form', {
     // Specify the other units that are required for this test.
     // needs: ['controller:foo']
-    needs: ['service:objectlistviewEvents', 'controller:lookup-dialog', 'controller:flexberry-file-view-dialog', 'service:user-settings', 'service:appState', 'service:detail-interaction']
+    needs: ['controller:advlimit-dialog', 'controller:colsconfig-dialog', 'service:objectlistviewEvents', 'controller:lookup-dialog', 'controller:flexberry-file-view-dialog', 'service:user-settings', 'service:appState', 'service:detail-interaction', 'service:adv-limit']
   });
 
   // Replace this with your real tests.
@@ -2819,7 +2820,7 @@ define('dummy/tests/unit/controllers/fd-list-form-edit-form-test', ['ember-qunit
   (0, _emberQunit.moduleFor)('controller:fd-list-form-edit-form', 'Unit | Controller | fd list form edit form', {
     // Specify the other units that are required for this test.
     // needs: ['controller:foo']
-    needs: ['service:objectlistviewEvents', 'controller:lookup-dialog', 'controller:flexberry-file-view-dialog', 'service:user-settings', 'service:appState', 'service:detail-interaction']
+    needs: ['controller:advlimit-dialog', 'controller:colsconfig-dialog', 'service:objectlistviewEvents', 'controller:lookup-dialog', 'controller:flexberry-file-view-dialog', 'service:user-settings', 'service:appState', 'service:detail-interaction', 'service:adv-limit']
   });
 
   // Replace this with your real tests.
@@ -2848,7 +2849,7 @@ define('dummy/tests/unit/controllers/fd-stage-edit-form-test', ['ember-qunit'], 
   (0, _emberQunit.moduleFor)('controller:fd-stage-edit-form', 'Unit | Controller | fd stage edit form', {
     // Specify the other units that are required for this test.
     // needs: ['controller:foo']
-    needs: ['service:objectlistviewEvents', 'controller:lookup-dialog', 'controller:flexberry-file-view-dialog', 'service:user-settings', 'service:appState', 'service:detail-interaction']
+    needs: ['controller:advlimit-dialog', 'controller:colsconfig-dialog', 'service:objectlistviewEvents', 'controller:lookup-dialog', 'controller:flexberry-file-view-dialog', 'service:user-settings', 'service:appState', 'service:detail-interaction', 'service:adv-limit']
   });
 
   // Replace this with your real tests.
@@ -2863,7 +2864,7 @@ define('dummy/tests/unit/controllers/fd-stage-list-form-test', ['ember-qunit'], 
   (0, _emberQunit.moduleFor)('controller:fd-stage-list-form', 'Unit | Controller | fd stage list form', {
     // Specify the other units that are required for this test.
     // needs: ['controller:foo']
-    needs: ['service:user-settings', 'service:objectlistview-events', 'controller:colsconfig-dialog']
+    needs: ['controller:advlimit-dialog', 'service:user-settings', 'service:objectlistview-events', 'controller:colsconfig-dialog', 'service:adv-limit']
   });
 
   // Replace this with your real tests.
@@ -2878,7 +2879,7 @@ define('dummy/tests/unit/controllers/fd-system-edit-form-test', ['ember-qunit'],
   (0, _emberQunit.moduleFor)('controller:fd-system-edit-form', 'Unit | Controller | fd system edit form', {
     // Specify the other units that are required for this test.
     // needs: ['controller:foo']
-    needs: ['service:objectlistviewEvents', 'controller:lookup-dialog', 'controller:flexberry-file-view-dialog', 'service:user-settings', 'service:appState', 'service:detail-interaction']
+    needs: ['controller:advlimit-dialog', 'controller:colsconfig-dialog', 'service:objectlistviewEvents', 'controller:lookup-dialog', 'controller:flexberry-file-view-dialog', 'service:user-settings', 'service:appState', 'service:detail-interaction', 'service:adv-limit']
   });
 
   // Replace this with your real tests.
@@ -2893,7 +2894,7 @@ define('dummy/tests/unit/controllers/fd-system-list-form-test', ['ember-qunit'],
   (0, _emberQunit.moduleFor)('controller:fd-system-list-form', 'Unit | Controller | fd system list form', {
     // Specify the other units that are required for this test.
     // needs: ['controller:foo']
-    needs: ['service:user-settings', 'service:objectlistview-events', 'controller:colsconfig-dialog']
+    needs: ['controller:advlimit-dialog', 'service:user-settings', 'service:objectlistview-events', 'controller:colsconfig-dialog', 'service:adv-limit']
   });
 
   // Replace this with your real tests.
@@ -2908,7 +2909,7 @@ define('dummy/tests/unit/controllers/fd-type-edit-form-test', ['ember-qunit'], f
   (0, _emberQunit.moduleFor)('controller:fd-type-edit-form', 'Unit | Controller | fd type edit form', {
     // Specify the other units that are required for this test.
     // needs: ['controller:foo']
-    needs: ['service:objectlistviewEvents', 'controller:lookup-dialog', 'controller:flexberry-file-view-dialog', 'service:user-settings', 'service:appState', 'service:detail-interaction']
+    needs: ['controller:advlimit-dialog', 'controller:colsconfig-dialog', 'service:objectlistviewEvents', 'controller:lookup-dialog', 'controller:flexberry-file-view-dialog', 'service:user-settings', 'service:appState', 'service:detail-interaction', 'service:adv-limit']
   });
 
   // Replace this with your real tests.
@@ -2923,7 +2924,7 @@ define('dummy/tests/unit/controllers/fd-user-form-edit-form-test', ['ember-qunit
   (0, _emberQunit.moduleFor)('controller:fd-user-form-edit-form', 'Unit | Controller | fd user form edit form', {
     // Specify the other units that are required for this test.
     // needs: ['controller:foo']
-    needs: ['service:objectlistviewEvents', 'controller:lookup-dialog', 'controller:flexberry-file-view-dialog', 'service:user-settings', 'service:appState', 'service:detail-interaction']
+    needs: ['controller:advlimit-dialog', 'controller:colsconfig-dialog', 'service:objectlistviewEvents', 'controller:lookup-dialog', 'controller:flexberry-file-view-dialog', 'service:user-settings', 'service:appState', 'service:detail-interaction', 'service:adv-limit']
   });
 
   // Replace this with your real tests.
@@ -2938,7 +2939,7 @@ define('dummy/tests/unit/controllers/fd-view-edit-form-test', ['ember-qunit'], f
   (0, _emberQunit.moduleFor)('controller:fd-view-edit-form', 'Unit | Controller | fd view edit form', {
     // Specify the other units that are required for this test.
     // needs: ['controller:foo']
-    needs: ['service:appState', 'service:objectlistviewEvents', 'controller:lookup-dialog', 'controller:flexberry-file-view-dialog', 'service:user-settings', 'service:detail-interaction']
+    needs: ['controller:advlimit-dialog', 'controller:colsconfig-dialog', 'service:appState', 'service:objectlistviewEvents', 'controller:lookup-dialog', 'controller:flexberry-file-view-dialog', 'service:user-settings', 'service:detail-interaction', 'service:adv-limit']
   });
 
   // Replace this with your real tests.
@@ -2953,7 +2954,7 @@ define('dummy/tests/unit/controllers/fd-view-list-form-test', ['ember-qunit'], f
   (0, _emberQunit.moduleFor)('controller:fd-view-list-form', 'Unit | Controller | fd view list form', {
     // Specify the other units that are required for this test.
     // needs: ['controller:foo']
-    needs: ['service:user-settings', 'service:objectlistview-events', 'controller:colsconfig-dialog']
+    needs: ['controller:advlimit-dialog', 'service:user-settings', 'service:objectlistview-events', 'controller:colsconfig-dialog', 'service:adv-limit']
   });
 
   // Replace this with your real tests.
@@ -2982,7 +2983,7 @@ define('dummy/tests/unit/controllers/new-platform-flexberry-web-designer-generat
   (0, _emberQunit.moduleFor)('controller:new-platform-flexberry-web-designer-generation-e', 'Unit | Controller | new platform flexberry web designer generation e', {
     // Specify the other units that are required for this test.
     // needs: ['controller:foo']
-    needs: ['service:objectlistviewEvents', 'controller:lookup-dialog', 'controller:flexberry-file-view-dialog', 'service:user-settings', 'service:appState', 'service:detail-interaction']
+    needs: ['controller:advlimit-dialog', 'controller:colsconfig-dialog', 'service:objectlistviewEvents', 'controller:lookup-dialog', 'controller:flexberry-file-view-dialog', 'service:user-settings', 'service:appState', 'service:detail-interaction', 'service:adv-limit']
   });
 
   // Replace this with your real tests.
@@ -2997,7 +2998,7 @@ define('dummy/tests/unit/controllers/new-platform-flexberry-web-designer-generat
   (0, _emberQunit.moduleFor)('controller:new-platform-flexberry-web-designer-generation-l', 'Unit | Controller | new platform flexberry web designer generation l', {
     // Specify the other units that are required for this test.
     // needs: ['controller:foo']
-    needs: ['service:user-settings', 'service:objectlistview-events', 'controller:colsconfig-dialog', 'service:objectlistviewEvents']
+    needs: ['controller:advlimit-dialog', 'service:user-settings', 'service:objectlistview-events', 'controller:colsconfig-dialog', 'service:objectlistviewEvents', 'service:adv-limit']
   });
 
   // Replace this with your real tests.
@@ -3012,7 +3013,7 @@ define('dummy/tests/unit/controllers/new-platform-flexberry-web-designer-storage
   (0, _emberQunit.moduleFor)('controller:new-platform-flexberry-web-designer-storage-type-e', 'Unit | Controller | new platform flexberry web designer storage type e', {
     // Specify the other units that are required for this test.
     // needs: ['controller:foo']
-    needs: ['service:objectlistviewEvents', 'controller:lookup-dialog', 'controller:flexberry-file-view-dialog', 'service:user-settings', 'service:appState', 'service:detail-interaction']
+    needs: ['controller:advlimit-dialog', 'controller:colsconfig-dialog', 'service:objectlistviewEvents', 'controller:lookup-dialog', 'controller:flexberry-file-view-dialog', 'service:user-settings', 'service:appState', 'service:detail-interaction', 'service:adv-limit']
   });
 
   // Replace this with your real tests.
@@ -3027,7 +3028,7 @@ define('dummy/tests/unit/controllers/new-platform-flexberry-web-designer-storage
   (0, _emberQunit.moduleFor)('controller:new-platform-flexberry-web-designer-storage-type-l', 'Unit | Controller | new platform flexberry web designer storage type l', {
     // Specify the other units that are required for this test.
     // needs: ['controller:foo']
-    needs: ['service:user-settings', 'service:objectlistview-events', 'controller:colsconfig-dialog']
+    needs: ['controller:advlimit-dialog', 'service:user-settings', 'service:objectlistview-events', 'controller:colsconfig-dialog', 'service:adv-limit']
   });
 
   // Replace this with your real tests.
@@ -4186,7 +4187,7 @@ define('dummy/tests/unit/routes/fd-application-edit-form-test', ['ember-qunit'],
   (0, _emberQunit.moduleFor)('route:fd-application-edit-form', 'Unit | Route | fd application edit form', {
     // Specify the other units that are required for this test.
     // needs: ['controller:foo']
-    needs: ['service:objectlistview-events', 'service:appState', 'service:detail-interaction']
+    needs: ['service:cols-config-menu', 'service:objectlistview-events', 'service:appState', 'service:detail-interaction', 'service:adv-limit']
   });
 
   (0, _emberQunit.test)('it exists', function (assert) {
@@ -4227,7 +4228,7 @@ define('dummy/tests/unit/routes/fd-association-edit-form-test', ['ember-qunit'],
   (0, _emberQunit.moduleFor)('route:fd-association-edit-form', 'Unit | Route | fd association edit form', {
     // Specify the other units that are required for this test.
     // needs: ['controller:foo']
-    needs: ['service:fd-current-project-context', 'service:objectlistview-events', 'service:appState', 'service:detail-interaction']
+    needs: ['service:cols-config-menu', 'service:fd-current-project-context', 'service:objectlistview-events', 'service:appState', 'service:detail-interaction', 'service:adv-limit']
   });
 
   (0, _emberQunit.test)('it exists', function (assert) {
@@ -4241,7 +4242,7 @@ define('dummy/tests/unit/routes/fd-association-list-form-test', ['ember-qunit'],
   (0, _emberQunit.moduleFor)('route:fd-association-list-form', 'Unit | Route | fd association list form', {
     // Specify the other units that are required for this test.
     // needs: ['controller:foo']
-    needs: ['service:fd-current-project-context', 'service:objectlistviewEvents', 'service:formLoadTimeTracker', 'service:colsConfigMenu', 'service:appState']
+    needs: ['service:cols-config-menu', 'service:fd-current-project-context', 'service:objectlistviewEvents', 'service:formLoadTimeTracker', 'service:colsConfigMenu', 'service:appState', 'service:adv-limit']
   });
 
   (0, _emberQunit.test)('it exists', function (assert) {
@@ -4255,7 +4256,7 @@ define('dummy/tests/unit/routes/fd-business-server-edit-form-test', ['ember-quni
   (0, _emberQunit.moduleFor)('route:fd-business-server-edit-form', 'Unit | Route | fd business server edit form', {
     // Specify the other units that are required for this test.
     // needs: ['controller:foo']
-    needs: ['service:objectlistview-events', 'service:appState', 'service:detail-interaction']
+    needs: ['service:cols-config-menu', 'service:objectlistview-events', 'service:appState', 'service:detail-interaction', 'service:adv-limit']
   });
 
   (0, _emberQunit.test)('it exists', function (assert) {
@@ -4269,7 +4270,7 @@ define('dummy/tests/unit/routes/fd-class-edit-form-test', ['ember-qunit'], funct
   (0, _emberQunit.moduleFor)('route:fd-class-edit-form', 'Unit | Route | fd class edit form', {
     // Specify the other units that are required for this test.
     // needs: ['controller:foo']
-    needs: ['service:objectlistview-events', 'service:appState', 'service:detail-interaction']
+    needs: ['service:cols-config-menu', 'service:objectlistview-events', 'service:appState', 'service:detail-interaction', 'service:adv-limit']
   });
 
   (0, _emberQunit.test)('it exists', function (assert) {
@@ -4283,7 +4284,7 @@ define('dummy/tests/unit/routes/fd-class-list-form-test', ['ember-qunit'], funct
   (0, _emberQunit.moduleFor)('route:fd-class-list-form', 'Unit | Route | fd class list form', {
     // Specify the other units that are required for this test.
     // needs: ['controller:foo']
-    needs: ['service:fd-current-project-context', 'service:objectlistviewEvents', 'service:formLoadTimeTracker', 'service:colsConfigMenu', 'service:appState']
+    needs: ['service:cols-config-menu', 'service:fd-current-project-context', 'service:objectlistviewEvents', 'service:formLoadTimeTracker', 'service:colsConfigMenu', 'service:appState', 'service:adv-limit']
   });
 
   (0, _emberQunit.test)('it exists', function (assert) {
@@ -4297,7 +4298,7 @@ define('dummy/tests/unit/routes/fd-configuration-edit-form-test', ['ember-qunit'
   (0, _emberQunit.moduleFor)('route:fd-configuration-edit-form', 'Unit | Route | fd configuration edit form', {
     // Specify the other units that are required for this test.
     // needs: ['controller:foo']
-    needs: ['service:objectlistview-events', 'service:appState', 'service:detail-interaction']
+    needs: ['service:cols-config-menu', 'service:objectlistview-events', 'service:appState', 'service:detail-interaction', 'service:adv-limit']
   });
 
   (0, _emberQunit.test)('it exists', function (assert) {
@@ -4311,7 +4312,7 @@ define('dummy/tests/unit/routes/fd-configuration-list-form-test', ['ember-qunit'
   (0, _emberQunit.moduleFor)('route:fd-configuration-list-form', 'Unit | Route | fd configuration list form', {
     // Specify the other units that are required for this test.
     // needs: ['controller:foo']
-    needs: ['service:fd-current-project-context', 'service:objectlistviewEvents', 'service:formLoadTimeTracker', 'service:colsConfigMenu', 'service:appState']
+    needs: ['service:cols-config-menu', 'service:fd-current-project-context', 'service:objectlistviewEvents', 'service:formLoadTimeTracker', 'service:colsConfigMenu', 'service:appState', 'service:adv-limit']
   });
 
   (0, _emberQunit.test)('it exists', function (assert) {
@@ -4339,7 +4340,7 @@ define('dummy/tests/unit/routes/fd-diagram-edit-form-test', ['ember-qunit'], fun
   (0, _emberQunit.moduleFor)('route:fd-diagram-edit-form', 'Unit | Route | fd diagram edit form', {
     // Specify the other units that are required for this test.
     // needs: ['controller:foo']
-    needs: ['service:objectlistview-events', 'service:appState', 'service:detail-interaction']
+    needs: ['service:cols-config-menu', 'service:objectlistview-events', 'service:appState', 'service:detail-interaction', 'service:adv-limit']
   });
 
   (0, _emberQunit.test)('it exists', function (assert) {
@@ -4353,7 +4354,7 @@ define('dummy/tests/unit/routes/fd-diagram-list-form-test', ['ember-qunit'], fun
   (0, _emberQunit.moduleFor)('route:fd-diagram-list-form', 'Unit | Route | fd diagram list form', {
     // Specify the other units that are required for this test.
     // needs: ['controller:foo']
-    needs: ['service:fd-current-project-context', 'service:objectlistviewEvents', 'service:formLoadTimeTracker', 'service:colsConfigMenu', 'service:appState']
+    needs: ['service:cols-config-menu', 'service:fd-current-project-context', 'service:objectlistviewEvents', 'service:formLoadTimeTracker', 'service:colsConfigMenu', 'service:appState', 'service:adv-limit']
   });
 
   (0, _emberQunit.test)('it exists', function (assert) {
@@ -4381,7 +4382,7 @@ define('dummy/tests/unit/routes/fd-edit-form-edit-form-test', ['ember-qunit'], f
   (0, _emberQunit.moduleFor)('route:fd-edit-form-edit-form', 'Unit | Route | fd edit form edit form', {
     // Specify the other units that are required for this test.
     // needs: ['controller:foo']
-    needs: ['service:objectlistview-events', 'service:appState', 'service:detail-interaction']
+    needs: ['service:cols-config-menu', 'service:objectlistview-events', 'service:appState', 'service:detail-interaction', 'service:adv-limit']
   });
 
   (0, _emberQunit.test)('it exists', function (assert) {
@@ -4409,7 +4410,7 @@ define('dummy/tests/unit/routes/fd-enum-edit-form-test', ['ember-qunit'], functi
   (0, _emberQunit.moduleFor)('route:fd-enum-edit-form', 'Unit | Route | fd enum edit form', {
     // Specify the other units that are required for this test.
     // needs: ['controller:foo']
-    needs: ['service:objectlistview-events', 'service:appState', 'service:detail-interaction']
+    needs: ['service:cols-config-menu', 'service:objectlistview-events', 'service:appState', 'service:detail-interaction', 'service:adv-limit']
   });
 
   (0, _emberQunit.test)('it exists', function (assert) {
@@ -4423,7 +4424,7 @@ define('dummy/tests/unit/routes/fd-external-edit-form-test', ['ember-qunit'], fu
   (0, _emberQunit.moduleFor)('route:fd-external-edit-form', 'Unit | Route | fd external edit form', {
     // Specify the other units that are required for this test.
     // needs: ['controller:foo']
-    needs: ['service:objectlistview-events', 'service:appState', 'service:detail-interaction']
+    needs: ['service:cols-config-menu', 'service:objectlistview-events', 'service:appState', 'service:detail-interaction', 'service:adv-limit']
   });
 
   (0, _emberQunit.test)('it exists', function (assert) {
@@ -4502,7 +4503,7 @@ define('dummy/tests/unit/routes/fd-inheritance-edit-form-test', ['ember-qunit'],
   (0, _emberQunit.moduleFor)('route:fd-inheritance-edit-form', 'Unit | Route | fd inheritance edit form', {
     // Specify the other units that are required for this test.
     // needs: ['controller:foo']
-    needs: ['service:fd-current-project-context', 'service:objectlistview-events', 'service:appState', 'service:detail-interaction']
+    needs: ['service:cols-config-menu', 'service:fd-current-project-context', 'service:objectlistview-events', 'service:appState', 'service:detail-interaction', 'service:adv-limit']
   });
 
   (0, _emberQunit.test)('it exists', function (assert) {
@@ -4516,7 +4517,7 @@ define('dummy/tests/unit/routes/fd-inheritance-list-form-test', ['ember-qunit'],
   (0, _emberQunit.moduleFor)('route:fd-inheritance-list-form', 'Unit | Route | fd inheritance list form', {
     // Specify the other units that are required for this test.
     // needs: ['controller:foo']
-    needs: ['service:fd-current-project-context', 'service:objectlistviewEvents', 'service:formLoadTimeTracker', 'service:colsConfigMenu', 'service:appState']
+    needs: ['service:cols-config-menu', 'service:fd-current-project-context', 'service:objectlistviewEvents', 'service:formLoadTimeTracker', 'service:colsConfigMenu', 'service:appState', 'service:adv-limit']
   });
 
   (0, _emberQunit.test)('it exists', function (assert) {
@@ -4530,7 +4531,7 @@ define('dummy/tests/unit/routes/fd-interface-edit-form-test', ['ember-qunit'], f
   (0, _emberQunit.moduleFor)('route:fd-interface-edit-form', 'Unit | Route | fd interface edit form', {
     // Specify the other units that are required for this test.
     // needs: ['controller:foo']
-    needs: ['service:objectlistview-events', 'service:appState', 'service:detail-interaction']
+    needs: ['service:cols-config-menu', 'service:objectlistview-events', 'service:appState', 'service:detail-interaction', 'service:adv-limit']
   });
 
   (0, _emberQunit.test)('it exists', function (assert) {
@@ -4544,7 +4545,7 @@ define('dummy/tests/unit/routes/fd-list-form-edit-form-test', ['ember-qunit'], f
   (0, _emberQunit.moduleFor)('route:fd-list-form-edit-form', 'Unit | Route | fd list form edit form', {
     // Specify the other units that are required for this test.
     // needs: ['controller:foo']
-    needs: ['service:objectlistview-events', 'service:appState', 'service:detail-interaction']
+    needs: ['service:cols-config-menu', 'service:objectlistview-events', 'service:appState', 'service:detail-interaction', 'service:adv-limit']
   });
 
   (0, _emberQunit.test)('it exists', function (assert) {
@@ -4598,7 +4599,7 @@ define('dummy/tests/unit/routes/fd-stage-edit-form-test', ['ember-qunit'], funct
   (0, _emberQunit.moduleFor)('route:fd-stage-edit-form', 'Unit | Route | fd stage edit form', {
     // Specify the other units that are required for this test.
     // needs: ['controller:foo']
-    needs: ['service:objectlistview-events', 'service:appState', 'service:detail-interaction']
+    needs: ['service:cols-config-menu', 'service:objectlistview-events', 'service:appState', 'service:detail-interaction', 'service:adv-limit']
   });
 
   (0, _emberQunit.test)('it exists', function (assert) {
@@ -4612,7 +4613,7 @@ define('dummy/tests/unit/routes/fd-stage-list-form-test', ['ember-qunit'], funct
   (0, _emberQunit.moduleFor)('route:fd-stage-list-form', 'Unit | Route | fd stage list form', {
     // Specify the other units that are required for this test.
     // needs: ['controller:foo']
-    needs: ['service:appState', 'service:fd-current-project-context', 'service:objectlistviewEvents', 'service:formLoadTimeTracker', 'service:colsConfigMenu']
+    needs: ['service:cols-config-menu', 'service:appState', 'service:fd-current-project-context', 'service:objectlistviewEvents', 'service:formLoadTimeTracker', 'service:colsConfigMenu', 'service:adv-limit']
   });
 
   (0, _emberQunit.test)('it exists', function (assert) {
@@ -4626,7 +4627,7 @@ define('dummy/tests/unit/routes/fd-system-edit-form-test', ['ember-qunit'], func
   (0, _emberQunit.moduleFor)('route:fd-system-edit-form', 'Unit | Route | fd system edit form', {
     // Specify the other units that are required for this test.
     // needs: ['controller:foo']
-    needs: ['service:objectlistview-events', 'service:appState', 'service:detail-interaction']
+    needs: ['service:cols-config-menu', 'service:objectlistview-events', 'service:appState', 'service:detail-interaction', 'service:adv-limit']
   });
 
   (0, _emberQunit.test)('it exists', function (assert) {
@@ -4640,7 +4641,7 @@ define('dummy/tests/unit/routes/fd-system-list-form-test', ['ember-qunit'], func
   (0, _emberQunit.moduleFor)('route:fd-system-list-form', 'Unit | Route | fd system list form', {
     // Specify the other units that are required for this test.
     // needs: ['controller:foo']
-    needs: ['service:fd-current-project-context', 'service:objectlistviewEvents', 'service:formLoadTimeTracker', 'service:colsConfigMenu', 'service:appState']
+    needs: ['service:cols-config-menu', 'service:fd-current-project-context', 'service:objectlistviewEvents', 'service:formLoadTimeTracker', 'service:colsConfigMenu', 'service:appState', 'service:adv-limit']
   });
 
   (0, _emberQunit.test)('it exists', function (assert) {
@@ -4654,7 +4655,7 @@ define('dummy/tests/unit/routes/fd-type-edit-form-test', ['ember-qunit'], functi
   (0, _emberQunit.moduleFor)('route:fd-type-edit-form', 'Unit | Route | fd type edit form', {
     // Specify the other units that are required for this test.
     // needs: ['controller:foo']
-    needs: ['service:objectlistview-events', 'service:appState', 'service:detail-interaction']
+    needs: ['service:cols-config-menu', 'service:objectlistview-events', 'service:appState', 'service:detail-interaction', 'service:adv-limit']
   });
 
   (0, _emberQunit.test)('it exists', function (assert) {
@@ -4668,7 +4669,7 @@ define('dummy/tests/unit/routes/fd-user-form-edit-form-test', ['ember-qunit'], f
   (0, _emberQunit.moduleFor)('route:fd-user-form-edit-form', 'Unit | Route | fd user form edit form', {
     // Specify the other units that are required for this test.
     // needs: ['controller:foo']
-    needs: ['service:objectlistview-events', 'service:appState', 'service:detail-interaction']
+    needs: ['service:cols-config-menu', 'service:objectlistview-events', 'service:appState', 'service:detail-interaction', 'service:adv-limit']
   });
 
   (0, _emberQunit.test)('it exists', function (assert) {
@@ -4682,7 +4683,7 @@ define('dummy/tests/unit/routes/fd-view-edit-form-test', ['ember-qunit'], functi
   (0, _emberQunit.moduleFor)('route:fd-view-edit-form', 'Unit | Route | fd view edit form', {
     // Specify the other units that are required for this test.
     // needs: ['controller:foo']
-    needs: ['service:appState']
+    needs: ['service:appState', 'service:adv-limit']
   });
 
   (0, _emberQunit.test)('it exists', function (assert) {
@@ -4696,7 +4697,7 @@ define('dummy/tests/unit/routes/fd-view-list-form-test', ['ember-qunit'], functi
   (0, _emberQunit.moduleFor)('route:fd-view-list-form', 'Unit | Route | fd view list form', {
     // Specify the other units that are required for this test.
     // needs: ['controller:foo']
-    needs: ['service:objectlistviewEvents', 'service:formLoadTimeTracker', 'service:colsConfigMenu', 'service:appState']
+    needs: ['service:cols-config-menu', 'service:objectlistviewEvents', 'service:formLoadTimeTracker', 'service:colsConfigMenu', 'service:appState', 'service:adv-limit']
   });
 
   (0, _emberQunit.test)('it exists', function (assert) {
@@ -4749,7 +4750,7 @@ define('dummy/tests/unit/routes/new-platform-flexberry-web-designer-generation-e
   (0, _emberQunit.moduleFor)('route:new-platform-flexberry-web-designer-generation-e', 'Unit | Route | new platform flexberry web designer generation e', {
     // Specify the other units that are required for this test.
     // needs: ['controller:foo']
-    needs: ['service:objectlistview-events', 'service:appState', 'service:detail-interaction']
+    needs: ['service:cols-config-menu', 'service:objectlistview-events', 'service:appState', 'service:detail-interaction', 'service:adv-limit']
   });
 
   (0, _emberQunit.test)('it exists', function (assert) {
@@ -4763,7 +4764,7 @@ define('dummy/tests/unit/routes/new-platform-flexberry-web-designer-generation-l
   (0, _emberQunit.moduleFor)('route:new-platform-flexberry-web-designer-generation-l', 'Unit | Route | new platform flexberry web designer generation l', {
     // Specify the other units that are required for this test.
     // needs: ['controller:foo']
-    needs: ['service:objectlistviewEvents', 'service:formLoadTimeTracker', 'service:colsConfigMenu', 'service:appState']
+    needs: ['service:cols-config-menu', 'service:objectlistviewEvents', 'service:formLoadTimeTracker', 'service:colsConfigMenu', 'service:appState', 'service:adv-limit']
   });
 
   (0, _emberQunit.test)('it exists', function (assert) {
@@ -4777,7 +4778,7 @@ define('dummy/tests/unit/routes/new-platform-flexberry-web-designer-storage-type
   (0, _emberQunit.moduleFor)('route:new-platform-flexberry-web-designer-storage-type-e', 'Unit | Route | new platform flexberry web designer storage type e', {
     // Specify the other units that are required for this test.
     // needs: ['controller:foo']
-    needs: ['service:objectlistview-events', 'service:appState', 'service:detail-interaction']
+    needs: ['service:cols-config-menu', 'service:objectlistview-events', 'service:appState', 'service:detail-interaction', 'service:adv-limit']
   });
 
   (0, _emberQunit.test)('it exists', function (assert) {
@@ -4791,7 +4792,7 @@ define('dummy/tests/unit/routes/new-platform-flexberry-web-designer-storage-type
   (0, _emberQunit.moduleFor)('route:new-platform-flexberry-web-designer-storage-type-l', 'Unit | Route | new platform flexberry web designer storage type l', {
     // Specify the other units that are required for this test.
     // needs: ['controller:foo']
-    needs: ['service:objectlistviewEvents', 'service:formLoadTimeTracker', 'service:colsConfigMenu', 'service:appState']
+    needs: ['service:cols-config-menu', 'service:objectlistviewEvents', 'service:formLoadTimeTracker', 'service:colsConfigMenu', 'service:appState', 'service:adv-limit']
   });
 
   (0, _emberQunit.test)('it exists', function (assert) {
