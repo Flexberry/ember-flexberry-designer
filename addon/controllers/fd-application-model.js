@@ -467,8 +467,8 @@ export default Controller.extend(FdSaveHasManyRelationshipsMixin, {
       let stereotype = selectedElement.get('stereotype');
       if (stereotype === '«businessserver»') {
         let bsInClass = this.get('model.classes').filterBy('bs.data.id', selectedElement.id);
-        if (bsInClass > 0) {
-          throw new Error('BusinessServer используется другими классами: ');
+        if (bsInClass.length > 0) {
+          throw new Error(`BusinessServer используется другими классами: ${A(bsInClass).get('firstObject.settings.data.name')}`);
         }
       }
 

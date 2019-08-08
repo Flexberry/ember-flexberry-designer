@@ -4,9 +4,11 @@ moduleFor('controller:fd-class-list-form', 'Unit | Controller | fd class list fo
   // Specify the other units that are required for this test.
   // needs: ['controller:foo']
   needs: [
+    'controller:advlimit-dialog',
     'service:user-settings',
     'service:objectlistview-events',
-    'controller:colsconfig-dialog'
+    'controller:colsconfig-dialog',
+    'service:adv-limit',
   ]
 });
 

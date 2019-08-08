@@ -4,10 +4,12 @@ moduleFor('route:new-platform-flexberry-web-designer-storage-type-l', 'Unit | Ro
   // Specify the other units that are required for this test.
   // needs: ['controller:foo']
   needs: [
+    'service:cols-config-menu',
     'service:objectlistviewEvents',
     'service:formLoadTimeTracker',
     'service:colsConfigMenu',
-    'service:appState'
+    'service:appState',
+    'service:adv-limit',
   ]
 });
 
