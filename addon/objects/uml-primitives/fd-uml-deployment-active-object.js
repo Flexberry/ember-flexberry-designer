@@ -1,13 +1,13 @@
 /**
   @module ember-flexberry-designer
 */
-
 import { computed } from '@ember/object';
 import { isArray } from '@ember/array';
-import joint from 'npm:jointjs';
 
 import { BaseObject } from './fd-uml-baseobject';
 import FdUmlElement from './fd-uml-element';
+
+import joint from 'npm:jointjs';
 
 /**
   An object that describes an DeploymentActiveObject element on the UML diagram.

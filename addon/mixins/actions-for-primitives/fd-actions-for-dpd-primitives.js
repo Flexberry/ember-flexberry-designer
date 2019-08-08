@@ -20,7 +20,7 @@ export default Mixin.create({
       @method actions.addComponent
       @param {jQuery.Event} e event.
      */
-    addComponent(e) {
+    adddOnDpdComponent(e) {
       this.createObjectData((function(x, y) {
         let newComponentObject = new Component({
           position: { x: x, y: y },
@@ -48,7 +48,7 @@ export default Mixin.create({
       @method actions.addUmlNode
       @param {jQuery.Event} e event.
      */
-    addUmlNode(e) {
+    addOnDpdUmlNode(e) {
       this.createObjectData((function(x, y) {
         let newUmlNodeObject = new UmlNode({
           position: { x: x, y: y },
@@ -106,7 +106,7 @@ export default Mixin.create({
       @method actions.addConnection
       @param {jQuery.Event} e event.
      */
-    addConnection(e) {
+    addOnDpdConnection(e) {
       this.createLinkData((function(linkProperties) {
         let newConnectionObject = new Connection({
           source: {

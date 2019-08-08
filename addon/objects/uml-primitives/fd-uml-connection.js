@@ -1,11 +1,11 @@
 /**
   @module ember-flexberry-designer
 */
-import joint from 'npm:jointjs';
-
 import FdUmlBaseLink from './fd-uml-link';
 import { Dependency } from './fd-uml-dependency';
 import { DescriptionView } from './links-view/fd-description-view';
+
+import joint from 'npm:jointjs';
 
 /**
   An object that defines Connection link on the UML diagram.

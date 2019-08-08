@@ -4,8 +4,10 @@
 
 import { computed } from '@ember/object';
 import { isArray } from '@ember/array';
+
 import { BaseObject } from './fd-uml-baseobject';
 import FdUmlElement from './fd-uml-element';
+
 import joint from 'npm:jointjs';
 
 /**
