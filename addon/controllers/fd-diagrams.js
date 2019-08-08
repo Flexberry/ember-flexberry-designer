@@ -610,7 +610,7 @@ export default Controller.extend(FdSaveHasManyRelationshipsMixin, {
        @method actions.delete
     */
     delete() {
-      let store = this.get('store');
+      /*let store = this.get('store');
       let selectedElement = this.get('selectedElement.model.data');
       let modelPart = selectedElement.get('constructor.modelName').slice(11);
       let modelHash = this.get(`model.${modelPart}`);
@@ -649,10 +649,10 @@ export default Controller.extend(FdSaveHasManyRelationshipsMixin, {
         }));
       }
 
-      /*deleteModels.pushObject(selectedElement.deleteRecord());
-      store.batchUpdate(deleteModels)*/
+      deleteModels.pushObject(selectedElement.deleteRecord());
+      store.batchUpdate(deleteModels)
 
-      //all(deleteModels.map(a => a.save())).then(() => deleteObject.data.destroyRecord())
+      all(deleteModels.map(a => a.save())).then(() => deleteObject.data.destroyRecord())
       deleteObject.data.destroyRecord()
       .then(() => {
         this.set('selectedElement', undefined);
@@ -660,7 +660,7 @@ export default Controller.extend(FdSaveHasManyRelationshipsMixin, {
       })
       .finally(() => {
         this.get('appState').reset();
-      });
+      });*/
     }
   }
 });
