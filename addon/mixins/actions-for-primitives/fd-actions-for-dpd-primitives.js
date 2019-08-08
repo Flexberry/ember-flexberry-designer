@@ -1,11 +1,13 @@
 import Mixin from '@ember/object/mixin';
 import { A } from '@ember/array';
+
 import { Component } from '../../objects/uml-primitives/fd-uml-component';
 import { UmlNode } from '../../objects/uml-primitives/fd-uml-node';
 import { DeploymentActiveObject } from '../../objects/uml-primitives/fd-uml-deployment-active-object';
 import { Dependency } from '../../objects/uml-primitives/fd-uml-dependency';
 import { Connection } from '../../objects/uml-primitives/fd-uml-connection';
 
+import { getJsonForElement, getJsonForLink } from '../../utils/get-json-for-diagram';
 /**
   Actions for creating joint js elements on dpd diagrams.
 
@@ -22,13 +24,15 @@ export default Mixin.create({
      */
     adddOnDpdComponent(e) {
       this.createObjectData((function(x, y) {
-        let newComponentObject = new Component({
-          position: { x: x, y: y },
-          size: { width: 80, height: 40 },
-          name: ''
-        });
-
-        return newComponentObject;
+        let jsonObject = getJsonForElement(
+          'STORMCASE.UML.dpd.Component, UMLDPD',
+          { x, y },
+          { width: 80, height: 40 },
+          { Name: '' }
+        );
+        let dpdObject = Component.create({ primitive: jsonObject });
+        this._addToPrimitives(dpdObject);
+        return dpdObject.JointJS();
       }).bind(this), e);
     },
 
