@@ -4,12 +4,14 @@ moduleFor('controller:fd-list-form-edit-form', 'Unit | Controller | fd list form
   // Specify the other units that are required for this test.
   // needs: ['controller:foo']
   needs: [
+    'controller:advlimit-dialog',
     'service:objectlistviewEvents',
     'controller:lookup-dialog',
     'controller:flexberry-file-view-dialog',
     'service:user-settings',
     'service:appState',
-    'service:detail-interaction'
+    'service:detail-interaction',
+    'service:adv-limit',
   ]
 });
 

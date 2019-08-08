@@ -6,7 +6,8 @@ moduleFor('route:fd-edit-form-edit-form', 'Unit | Route | fd edit form edit form
   needs: [
     'service:objectlistview-events',
     'service:appState',
-    'service:detail-interaction'
+    'service:detail-interaction',
+    'service:adv-limit',
   ]
 });
 

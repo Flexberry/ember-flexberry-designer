@@ -7,7 +7,8 @@ moduleFor('route:fd-association-edit-form', 'Unit | Route | fd association edit 
     'service:fd-current-project-context',
     'service:objectlistview-events',
     'service:appState',
-    'service:detail-interaction'
+    'service:detail-interaction',
+    'service:adv-limit',
   ]
 });
 
