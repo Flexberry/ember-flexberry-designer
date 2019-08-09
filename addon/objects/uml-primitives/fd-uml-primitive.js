@@ -6,7 +6,6 @@ import EmberObject from '@ember/object';
 import { computed, get } from '@ember/object';
 import { A, isArray } from '@ember/array';
 import joint from 'npm:jointjs';
-import $ from 'jquery';
 
 /**
   An object that defines any primitive on the UML diagram.
@@ -162,7 +161,8 @@ joint.highlighters.strokeAndButtons = {
       this.addButtons(cellView, id);
     }
 
-    $(magnetEl.firstChild.children).attr({'fill-opacity':'1'});
+    /* Remove for fix highlighting more-class and template-class
+     $(magnetEl.firstChild.children).attr({'fill-opacity':'1'});*/
     cellView.model.set('highlighted', true);
   },
 
@@ -171,7 +171,9 @@ joint.highlighters.strokeAndButtons = {
     let stroke = joint.highlighters.stroke;
     let id = stroke.getHighlighterId(magnetEl, opt);
     this.removeButtons(id);
-    $(magnetEl.firstChild.children).attr({'fill-opacity':'0'});
+
+    /* Remove for fix highlighting more-class and template-class
+    $(magnetEl.firstChild.children).attr({'fill-opacity':'0'});*/
 
     cellView.model.set('highlighted', false);
   },
