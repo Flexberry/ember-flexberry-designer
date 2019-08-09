@@ -131,6 +131,7 @@ joint.shapes.flexberry.uml.NAryAssociationView = joint.shapes.flexberry.uml.Prim
 
     // Remove the box when the model gets removed from the graph.
     this.model.on('remove', this.removeBox, this);
+    this.updateRectangles();
   },
 
   render: function() {
@@ -168,9 +169,14 @@ joint.shapes.flexberry.uml.NAryAssociationView = joint.shapes.flexberry.uml.Prim
     let newWidth = 0;
     rects.forEach(function(rect) {
       if (this.markup.includes('flexberry-uml-' + rect.type + '-rect') && rect.element.inputElements) {
-        let $buffer = rect.element.inputElements.find('.input-buffer');
         let rectHeight = 0;
         let inputs = rect.element.inputElements.find('.' + rect.type + '-input');
+        let inputsDiv = inputs[0].parentElement;
+        if (! inputsDiv.parentElement || ! inputsDiv.parentElement.className.includes('joint-paper')) {
+          let jointPaper = $('.joint-paper')[0];
+          jointPaper.appendChild(inputsDiv);
+        }
+        let $buffer = rect.element.inputElements.find('.input-buffer');
         inputs.each(function() {
           let $input = $(this);
           $buffer.css('font-weight', $input.css('font-weight'));

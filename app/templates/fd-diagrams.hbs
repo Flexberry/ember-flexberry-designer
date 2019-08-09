@@ -15,6 +15,15 @@
         }}
       </div>
     </div>
+    <div class="row">
+      <div class="right floated thirteen wide column">
+        {{
+          fd-button
+          caption=(t "forms.fd-diagrams.create-button")
+          click=(action 'openCreateDiagramsEditPanel')
+        }}
+      </div>
+    </div>
 
     {{!-- ad --}}
     {{#if (not-eq filteredModel.ad.length 0)}}
@@ -36,6 +45,7 @@
         {{
           fd-button
           caption=(t "forms.fd-diagrams.ad")
+          click=(action 'createDiagram' 'ad')
         }}
       </div>
     </div>
@@ -61,6 +71,7 @@
         {{
           fd-button
           caption=(t "forms.fd-diagrams.cad")
+          click=(action 'createDiagram' 'cad')
         }}
       </div>
     </div>
@@ -86,6 +97,7 @@
         {{
           fd-button
           caption=(t "forms.fd-diagrams.cod")
+          click=(action 'createDiagram' 'cod')
         }}
       </div>
     </div>
@@ -111,6 +123,7 @@
         {{
           fd-button
           caption=(t "forms.fd-diagrams.dpd")
+          click=(action 'createDiagram' 'dpd')
         }}
       </div>
     </div>
@@ -136,6 +149,7 @@
         {{
           fd-button
           caption=(t "forms.fd-diagrams.sd")
+          click=(action 'createDiagram' 'sd')
         }}
       </div>
     </div>
@@ -161,6 +175,7 @@
         {{
           fd-button
           caption=(t "forms.fd-diagrams.std")
+          click=(action 'createDiagram' 'std')
         }}
       </div>
     </div>
@@ -186,6 +201,7 @@
         {{
           fd-button
           caption=(t "forms.fd-diagrams.ucd")
+          click=(action 'createDiagram' 'ucd')
         }}
       </div>
     </div>
@@ -196,20 +212,26 @@
 
 
 {{#fd-sheet
-  title=selectedElement.model.data.name
+  title=computedTitle
   saveController=(action 'save')
+  deleteController=(action 'delete')
   sheetComponentName=sheetComponentName
+  toolbarVisible=(not isAddMode)
 }}
-{{#if isDiagramVisible}}
-  {{
-    fd-uml-diagram-editor
-    model=selectedElement.model.data
-    emptyReferenceCountItems=emptyReferenceCountItems
-    sheetComponentName=sheetComponentName
-    openEditFormAction=(action "openObjectEditForm")
-  }}
-{{/if}}
-
+  {{#if isAddMode}}
+    {{fd-editing-panels/fd-create-diagrams
+      createDiagramAction=(action 'createDiagram')
+    }}
+  {{else}}
+    {{#if isDiagramVisible}}
+      {{fd-uml-diagram-editor
+        model=selectedElement.model.data
+        emptyReferenceCountItems=emptyReferenceCountItems
+        sheetComponentName=sheetComponentName
+        openEditFormAction=(action "openObjectEditForm")
+      }}
+    {{/if}}
+  {{/if}}
 {{/fd-sheet}}
 
 {{#fd-sheet

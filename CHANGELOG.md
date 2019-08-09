@@ -3,8 +3,10 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 ### Added
-* Navigation tree.
-### Added
+* Added navigation tree.
+* Added logic for create new class button.
+* Added logic for create new diagram button.
+* Added logic for delete class button.
 * Change text ability on activity diagram primitives.
 
 ## [0.7.0] - 2019-05-31

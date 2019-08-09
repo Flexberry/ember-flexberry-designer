@@ -191,6 +191,8 @@ export let BaseClass = joint.shapes.basic.Generic.define('flexberry.uml.BaseClas
   }
 });
 
+joint.util.setByPath(joint.shapes, 'flexberry.uml.BaseClass', BaseClass, '.');
+
 /**
   Defines the JointJS element, which represents the UML class in the diagram.
 
@@ -201,6 +203,8 @@ export let BaseClass = joint.shapes.basic.Generic.define('flexberry.uml.BaseClas
   @constructor
 */
 export let Class = BaseClass.define('flexberry.uml.Class', {});
+
+joint.util.setByPath(joint.shapes, 'flexberry.uml.BaseClass', BaseClass, '.');
 
 joint.shapes.flexberry.uml.ClassView = joint.shapes.flexberry.uml.PrimitiveElementView.extend({
   template: [
@@ -358,9 +362,14 @@ joint.shapes.flexberry.uml.ClassView = joint.shapes.flexberry.uml.PrimitiveEleme
     let newWidth = 0;
     rects.forEach(function(rect) {
       if (this.markup.includes('flexberry-uml-' + rect.type + '-rect') && rect.element.inputElements) {
-        let $buffer = rect.element.inputElements.find('.input-buffer');
         let rectHeight = 0;
         let inputs = rect.element.inputElements.find('.' + rect.type + '-input');
+        let inputsDiv = inputs[0].parentElement;
+        if (! inputsDiv.parentElement || ! inputsDiv.parentElement.className.includes('joint-paper')) {
+          let jointPaper = $('.joint-paper')[0];
+          jointPaper.appendChild(inputsDiv);
+        }
+        let $buffer = rect.element.inputElements.find('.input-buffer');
         inputs.each(function() {
           let $input = $(this);
           $buffer.css('font-weight', $input.css('font-weight'));
