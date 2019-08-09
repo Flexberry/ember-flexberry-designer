@@ -3,6 +3,10 @@ import { moduleFor, test } from 'ember-qunit';
 moduleFor('controller:fd-all-projects/new', 'Unit | Controller | fd all projects/new', {
   // Specify the other units that are required for this test.
   // needs: ['controller:foo']
+  needs: [
+    'service:appState',
+    'service:fd-current-project-context'
+  ]
 });
 
 // Replace this with your real tests.

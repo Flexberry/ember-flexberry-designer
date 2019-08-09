@@ -7,8 +7,9 @@
     <div class="eleven wide column light-text">
       {{flexberry-textbox
         value=model.stereotype
-        class='fluid input disabled'
+        class=(concat 'fluid input' (if model.isNew '' ' disabled'))
         placeholder=(t "components.fd-custom-editing-panel.stereotype-placeholder")
+        focusOut=stereotypeUpdate
       }}
     </div>
   </div>

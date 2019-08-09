@@ -1,0 +1,56 @@
+<div class="ui stackable grid fd-list">
+
+  <div class="row">
+    <div class="five wide column">
+      {{t "components.fd-property-editing-panel.caption"}}
+    </div>
+    <div class="eleven wide column light-text">
+      {{flexberry-textbox
+        value=node.original.text
+        class='fluid input'
+        placeholder=(t "components.fd-property-editing-panel.caption-placeholder")
+      }}
+    </div>
+  </div>
+
+  {{#if (eq node.original.className null)}}
+    <div class="row">
+      <div class="five wide column">
+        {{t "components.fd-property-editing-panel.url-caption"}}
+      </div>
+      <div class="eleven wide column light-text">
+        {{flexberry-textbox
+          value=node.original.url
+          class='fluid input'
+          placeholder=(t "components.fd-property-editing-panel.url-placeholder")
+        }}
+      </div>
+    </div>
+  {{else}}
+    <div class="row">
+      <div class="five wide column">
+        {{t "components.fd-property-editing-panel.class-name-caption"}}
+      </div>
+      <div class="eleven wide column light-text ">
+        {{flexberry-textbox
+          value=node.original.className
+          class='fluid input disabled'
+          readonly=true
+        }}
+      </div>
+    </div>
+  {{/if}}
+
+  <div class="row">
+    <div class="five wide column">
+      {{t "components.fd-property-editing-panel.description-caption"}}
+    </div>
+    <div class="eleven wide column light-text">
+      {{flexberry-textarea
+        value=node.original.description
+        class='fluid input'
+        placeholder=(t "components.fd-property-editing-panel.description-placeholder")
+      }}
+    </div>
+  </div>
+</div>
