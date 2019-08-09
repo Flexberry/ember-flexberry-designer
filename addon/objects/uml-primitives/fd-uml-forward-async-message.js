@@ -24,7 +24,7 @@ export default FdUmlElement.extend({
   */
   name: computed('primitive.Name.Text', {
     get() {
-      return this.get('primitive.Name.Text');;
+      return this.get('primitive.Name.Text');
     },
     set(key, value) {
       let attributesTxt = (isArray(value)) ? value.join('\n') : value;
