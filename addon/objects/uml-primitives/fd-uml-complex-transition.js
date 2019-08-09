@@ -103,3 +103,16 @@ export let ComplexTransitionV = ComplexTransitionH.define('flexberry.uml.Complex
     }
   }
 });
+
+
+joint.shapes.flexberry.uml.ClassView = joint.shapes.flexberry.uml.PrimitiveElementView.extend({
+  template: [
+    '<div class="uml-class-inputs">',
+    '<textarea class="class-name-input header-input" value="" rows="1" wrap="off"></textarea>',
+    '<textarea class="class-stereotype-input header-input" value="" rows="1" wrap="off"></textarea>',
+    '<textarea class="attributes-input body-input" value="" rows="1" wrap="off" style="visibility: visible"></textarea>',
+    '<textarea class="methods-input footer-input" value="" rows="1" wrap="off" style="visibility: visible"></textarea>',
+    '<div class="input-buffer"></div>',
+    '</div>'
+  ].join('')
+});
