@@ -170,20 +170,22 @@ export default Component.extend({
 
     graph.addCells(links.map(function(l) {
       let link = l.JointJS();
-//       switch (link.prop('type')) {
-//         case 'flexberry.uml.Aggregation':
-//         case 'flexberry.uml.Association':
-//         case 'flexberry.uml.Generalization':
-//           if (this.includes(link.prop('source/id'))) {
-//             link.attr('.marker-arrowhead-group-source', {'display':'none'});
-//             link.attr('.tool-remove', {'display':'none'});
-//           }
-// 
-//           if (this.includes(link.prop('target/id'))) {
-//             link.attr('.marker-arrowhead-group-target', {'display':'none'});
-//             link.attr('.tool-remove', {'display':'none'});
-//           }
-//       }
+      switch (link.prop('type')) {
+        case 'flexberry.uml.Aggregation':
+        case 'flexberry.uml.Association':
+        case 'flexberry.uml.Generalization':
+          if ('anchor' in link.attributes.source) {
+            link.attr('.marker-source', {'display':'none'});
+            link.attr('.marker-arrowhead-group-source', {'display':'none'});
+            link.attr('.tool-remove', {'display':'none'});
+          }
+
+          if ('anchor' in link.attributes.target) {
+            link.attr('.marker-target', {'display':'none'});
+            link.attr('.marker-arrowhead-group-target', {'display':'none'});
+            link.attr('.tool-remove', {'display':'none'});
+          }
+      }
       return link;
     }
     ));
