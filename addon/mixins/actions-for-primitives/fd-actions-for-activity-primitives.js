@@ -1,17 +1,17 @@
 import Mixin from '@ember/object/mixin';
 import { inject as service } from '@ember/service';
 import { A } from '@ember/array';
-import { SignalReceiptRight, SignalReceiptLeft } from 'ember-flexberry-designer/objects/uml-primitives/fd-uml-signal-receipt';
-import { Transition } from 'ember-flexberry-designer/objects/uml-primitives/fd-uml-transition';
-import { ComplexTransitionH, ComplexTransitionV } from 'ember-flexberry-designer/objects/uml-primitives/fd-uml-complex-transition';
-import { SignalSendLeft, SignalSendRight } from 'ember-flexberry-designer/objects/uml-primitives/fd-uml-signal-send';
-import { StartState } from 'ember-flexberry-designer/objects/uml-primitives/fd-uml-start-state';
-import { FinalState } from 'ember-flexberry-designer/objects/uml-primitives/fd-uml-final-state';
-import { Decision } from 'ember-flexberry-designer/objects/uml-primitives/fd-uml-decision';
-import { ObjectInState } from 'ember-flexberry-designer/objects/uml-primitives/fd-uml-object-in-state';
-import { ActiveState } from 'ember-flexberry-designer/objects/uml-primitives/fd-uml-active-state';
-import { Partition } from 'ember-flexberry-designer/objects/uml-primitives/fd-uml-partition';
-import { ObjectFlow } from 'ember-flexberry-designer/objects/uml-primitives/fd-uml-object-flow';
+import FdUmlSignalReceipt from 'ember-flexberry-designer/objects/uml-primitives/fd-uml-signal-receipt';
+import FdUmlTransition from 'ember-flexberry-designer/objects/uml-primitives/fd-uml-transition';
+import FdUmlComplexTransition from 'ember-flexberry-designer/objects/uml-primitives/fd-uml-complex-transition';
+import FdUmlSignalSend from 'ember-flexberry-designer/objects/uml-primitives/fd-uml-signal-send';
+import FdUmlStartState from 'ember-flexberry-designer/objects/uml-primitives/fd-uml-start-state';
+import FdUmlFinalState from 'ember-flexberry-designer/objects/uml-primitives/fd-uml-final-state';
+import FdUmlDecision from 'ember-flexberry-designer/objects/uml-primitives/fd-uml-decision';
+import FdUmlObjectInState  from 'ember-flexberry-designer/objects/uml-primitives/fd-uml-object-in-state';
+import FdUmlActiveState from 'ember-flexberry-designer/objects/uml-primitives/fd-uml-active-state';
+import FdUmlPartition from 'ember-flexberry-designer/objects/uml-primitives/fd-uml-partition';
+import FdObjectFlow  from 'ember-flexberry-designer/objects/uml-primitives/fd-uml-object-flow';
 import FdUmlSwimlineSeparator  from 'ember-flexberry-designer/objects/uml-primitives/fd-uml-swimline-separator';
 import { getJsonForElement, getJsonForLink } from '../../utils/get-json-for-diagram';
 
@@ -40,13 +40,15 @@ export default Mixin.create({
     */
     addDecision(e) {
       this.createObjectData((function(x, y) {
-        let newDecisionObject = new Decision({
-          position: { x: x, y: y },
-          size: { width: 70, height: 40 },
-          name: ''
-        });
+        let jsonObject = getJsonForElement(
+          'STORMCASE.UML.ad.Decision, UMLAD',
+          { x, y },
+          { width: 70, height: 40 },
+        );
 
-        return newDecisionObject;
+        let newDecisionObject = FdUmlDecision.create({ primitive: jsonObject });
+        this._addToPrimitives(newDecisionObject);
+        return newDecisionObject.JointJS();
       }).bind(this), e);
     },
 
@@ -58,46 +60,55 @@ export default Mixin.create({
     */
     addActiveState(e) {
       this.createObjectData((function(x, y) {
-        let newActiveStateObject = new ActiveState({
-          position: { x: x, y: y },
-          size: { width: 90, height: 50 }
-        });
-
-        return newActiveStateObject;
+        let jsonObject = getJsonForElement(
+          'STORMCASE.UML.ad.State, UMLAD',
+          { x, y },
+          { width: 110, height: 90 },
+          { Name: '', Text: '' },
+        );
+        let activeStateObject = FdUmlActiveState.create({ primitive: jsonObject });
+        this._addToPrimitives(activeStateObject);
+        return activeStateObject.JointJS();
       }).bind(this), e);
     },
 
     /**
-      Handler for click on addaddStartState button.
+      Handler for click on addStartState button.
 
-      @method actions.addActiveState
+      @method actions.addStartState
       @param {jQuery.Event} e event.
     */
     addStartState(e) {
       this.createObjectData((function(x, y) {
-        let newStartStateObject = new StartState({
-          position: { x: x, y: y },
-          size: { width: 20, height: 20 }
-        });
-
-        return newStartStateObject;
+        let jsonObject = getJsonForElement(
+          'STORMCASE.UML.ad.StartState, UMLAD',
+          { x, y },
+          { width: 10, height: 10 },
+          { Name: '' },
+        );
+        let startStateObject = FdUmlStartState.create({ primitive: jsonObject });
+        this._addToPrimitives(startStateObject);
+        return startStateObject.JointJS();
       }).bind(this), e);
     },
 
     /**
-      Handler for click on addaddFinalState button.
+      Handler for click on addFinalState button.
 
       @method actions.addFinalState
       @param {jQuery.Event} e event.
     */
     addFinalState(e) {
       this.createObjectData((function(x, y) {
-        let newFinalStateObject = new FinalState({
-          position: { x: x, y: y },
-          size: { width: 20, height: 20 }
-        });
-
-        return newFinalStateObject;
+        let jsonObject = getJsonForElement(
+          'STORMCASE.UML.ad.FinalState, UMLAD',
+          { x, y },
+          { width: 10, height: 10 },
+          { Name: '' },
+        );
+        let finalStateObject = FdUmlFinalState.create({ primitive: jsonObject });
+        this._addToPrimitives(finalStateObject);
+        return finalStateObject.JointJS();
       }).bind(this), e);
     },
 
@@ -109,12 +120,15 @@ export default Mixin.create({
     */
     addComplexTransitionH(e) {
       this.createObjectData((function(x, y) {
-        let newComplexTransitionHObject = new ComplexTransitionH({
-          position: { x: x, y: y },
-          size: { width: 60, height: 20 }
-        });
-
-        return newComplexTransitionHObject;
+        let jsonObject = getJsonForElement(
+          'STORMCASE.UML.ad.ComplexTransitionH, UMLAD',
+          { x, y },
+          { width: 40, height: 10 },
+          { Name: '' },
+        );
+        let complexTransitionObject = FdUmlComplexTransition.create({ primitive: jsonObject });
+        this._addToPrimitives(complexTransitionObject);
+        return complexTransitionObject.JointJS();
       }).bind(this), e);
     },
 
@@ -126,12 +140,15 @@ export default Mixin.create({
     */
     addComplexTransitionV(e) {
       this.createObjectData((function(x, y) {
-        let newComplexTransitionVObject = new ComplexTransitionV({
-          position: { x: x, y: y },
-          size: { width: 20, height: 30 }
-        });
-
-        return newComplexTransitionVObject;
+        let jsonObject = getJsonForElement(
+          'STORMCASE.UML.ad.ComplexTransitionV, UMLAD',
+          { x, y },
+          { width: 10, height: 40 },
+          { Name: '' },
+        );
+        let complexTransitionObject = FdUmlComplexTransition.create({ primitive: jsonObject });
+        this._addToPrimitives(complexTransitionObject);
+        return complexTransitionObject.JointJS();
       }).bind(this), e);
     },
 
@@ -143,12 +160,15 @@ export default Mixin.create({
     */
     addObjectInState(e) {
       this.createObjectData((function(x, y) {
-        let newObjectInStateObject = new ObjectInState({
-          position: { x: x, y: y },
-          size: { width: 100, height: 60 }
-        });
-
-        return newObjectInStateObject;
+        let jsonObject = getJsonForElement(
+          'STORMCASE.UML.ad.ObjectInState, UMLAD',
+          { x, y },
+          { width: 110, height: 90 },
+          { Name: '', Text: '' },
+        );
+        let objectInStateObject = FdUmlObjectInState.create({ primitive: jsonObject });
+        this._addToPrimitives(objectInStateObject);
+        return objectInStateObject.JointJS();
       }).bind(this), e);
     },
 
@@ -160,12 +180,15 @@ export default Mixin.create({
     */
     addSignalReceiptL(e) {
       this.createObjectData((function(x, y) {
-        let newSignalSendLeftObject = new SignalReceiptLeft({
-          position: { x: x, y: y },
-          size: { width: 100, height: 30 }
-        });
-
-        return newSignalSendLeftObject;
+        let jsonObject = getJsonForElement(
+          'STORMCASE.UML.ad.SignalReceiptLeft, UMLAD',
+          { x, y },
+          { width: 100, height: 30 },
+          { Name: '' },
+        );
+        let signalReceiptObject = FdUmlSignalReceipt.create({ primitive: jsonObject });
+        this._addToPrimitives(signalReceiptObject);
+        return signalReceiptObject.JointJS();
       }).bind(this), e);
     },
 
@@ -177,12 +200,15 @@ export default Mixin.create({
     */
     addSignalReceiptR(e) {
       this.createObjectData((function(x, y) {
-        let newSignalSendRightObject = new SignalReceiptRight({
-          position: { x: x, y: y },
-          size: { width: 100, height: 30 }
-        });
-
-        return newSignalSendRightObject;
+        let jsonObject = getJsonForElement(
+          'STORMCASE.UML.ad.SignalReceiptRight, UMLAD',
+          { x, y },
+          { width: 100, height: 30 },
+          { Name: '' },
+        );
+        let signalReceiptObject = FdUmlSignalReceipt.create({ primitive: jsonObject });
+        this._addToPrimitives(signalReceiptObject);
+        return signalReceiptObject.JointJS();
       }).bind(this), e);
     },
 
@@ -194,12 +220,15 @@ export default Mixin.create({
     */
     addSignalSendingL(e) {
       this.createObjectData((function(x, y) {
-        let newSignalSendLeftObject = new SignalSendLeft({
-          position: { x: x, y: y },
-          size: { width: 100, height: 30 }
-        });
-
-        return newSignalSendLeftObject;
+        let jsonObject = getJsonForElement(
+          'STORMCASE.UML.ad.SignalSendLeft, UMLAD',
+          { x, y },
+          { width: 100, height: 30 },
+          { Name: '' },
+        );
+        let signalSendObject = FdUmlSignalSend.create({ primitive: jsonObject });
+        this._addToPrimitives(signalSendObject);
+        return signalSendObject.JointJS();
       }).bind(this), e);
     },
 
@@ -211,12 +240,15 @@ export default Mixin.create({
     */
     addSignalSendingR(e) {
       this.createObjectData((function(x, y) {
-        let newSignalSendRightObject = new SignalSendRight({
-          position: { x: x, y: y },
-          size: { width: 100, height: 30 }
-        });
-
-        return newSignalSendRightObject;
+        let jsonObject = getJsonForElement(
+          'STORMCASE.UML.ad.SignalSendRight, UMLAD',
+          { x, y },
+          { width: 100, height: 30 },
+          { Name: '' },
+        );
+        let signalSendObject = FdUmlSignalSend.create({ primitive: jsonObject });
+        this._addToPrimitives(signalSendObject);
+        return signalSendObject.JointJS();
       }).bind(this), e);
     },
 
@@ -228,20 +260,26 @@ export default Mixin.create({
     */
     addTransition(e) {
       this.createLinkData((function(linkProperties) {
-        let newTransitionObject = new Transition({
-          source: {
-            id: linkProperties.source
-          },
-          target: {
-            id: linkProperties.target
-          },
-          vertices: linkProperties.points || A()
-        });
+        let jsonObject = getJsonForLink(
+          'STORMCASE.UML.ad.Transition, UMLCAD',
+          linkProperties.source,
+          null,
+          linkProperties.target,
+          null,
+          A(),
+          { Name: '' },
+          { NamePos: 0.0 }
+        );
 
-        return newTransitionObject;
+        let transitionObject = FdUmlTransition.create({ primitive: jsonObject });
+        transitionObject.set('vertices', linkProperties.points || A());
+
+        this._addToPrimitives(transitionObject);
+
+        return transitionObject.JointJS();
       }).bind(this), e, A(['flexberry.uml.Decision', 'flexberry.uml.ActiveState', 'flexberry.uml.StartState',
-       'flexberry.uml.FinalState', 'flexberry.uml.ComplexTransitionH', 'flexberry.uml.ComplexTransitionV', 'flexberry.uml.SignalReceiptRight',
-       'flexberry.uml.SignalReceiptLeft', 'flexberry.uml.SignalSendLeft', 'flexberry.uml.SignalSendRight']));
+      'flexberry.uml.FinalState', 'flexberry.uml.ComplexTransitionH', 'flexberry.uml.ComplexTransitionV', 'flexberry.uml.SignalReceiptRight',
+      'flexberry.uml.SignalReceiptLeft', 'flexberry.uml.SignalSendLeft', 'flexberry.uml.SignalSendRight']));
     },
 
     /**
@@ -252,17 +290,23 @@ export default Mixin.create({
     */
     addObjectFlow(e) {
       this.createLinkData((function(linkProperties) {
-        let newObjectFlowObject = new ObjectFlow({
-          source: {
-            id: linkProperties.source
-          },
-          target: {
-            id: linkProperties.target
-          },
-          vertices: linkProperties.points || A()
-        });
+        let jsonObject = getJsonForLink(
+          'STORMCASE.UML.ad.ObjectFlow, UMLCAD',
+          linkProperties.source,
+          null,
+          linkProperties.target,
+          null,
+          A(),
+          { Name: '' },
+          { NamePos: 0.0 }
+        );
 
-        return newObjectFlowObject;
+        let flowObject = FdObjectFlow.create({ primitive: jsonObject });
+        flowObject.set('vertices', linkProperties.points || A());
+
+        this._addToPrimitives(flowObject);
+
+        return flowObject.JointJS();
       }).bind(this), e, A(['flexberry.uml.ActiveState', 'flexberry.uml.ComplexTransitionH',
        'flexberry.uml.ComplexTransitionV', 'flexberry.uml.ObjectInState', 'flexberry.uml.SignalSendLeft',
        'flexberry.uml.SignalSendRight']));
@@ -276,12 +320,15 @@ export default Mixin.create({
     */
     addPartition(e) {
       this.createObjectData((function(x, y) {
-        let newPartitionObject = new Partition({
-          position: { x: x, y: y },
-          size: { width: 150, height: 110 }
-        });
-
-        return newPartitionObject;
+        let jsonObject = getJsonForElement(
+          'STORMCASE.UML.ad.Partition, UMLAD',
+          { x, y },
+          { width: 110, height: 90 },
+          { Name: ''},
+        );
+        let partitonObject = FdUmlPartition.create({ primitive: jsonObject });
+        this._addToPrimitives(partitonObject);
+        return partitonObject.JointJS();
       }).bind(this), e);
     },
 
