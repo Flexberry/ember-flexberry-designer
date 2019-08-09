@@ -93,6 +93,7 @@ joint.shapes.flexberry.uml.MultiObjectView = joint.shapes.flexberry.uml.BaseObje
     let attrs = this.model.get('attrs');
     attrs['.back-rect'].mask = 'url(#' + maskId + ')';
     this.updateRectangles();
+    this.update();
 
     return this;
   },

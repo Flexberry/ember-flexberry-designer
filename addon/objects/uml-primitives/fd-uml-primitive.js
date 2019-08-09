@@ -70,6 +70,8 @@ export default EmberObject.extend({
   },
 });
 
+
+
 joint.highlighters.strokeAndButtons = {
   _buttons: {},
 
@@ -161,8 +163,6 @@ joint.highlighters.strokeAndButtons = {
       this.addButtons(cellView, id);
     }
 
-    /* Remove for fix highlighting more-class and template-class
-     $(magnetEl.firstChild.children).attr({'fill-opacity':'1'});*/
     cellView.model.set('highlighted', true);
   },
 
@@ -171,9 +171,6 @@ joint.highlighters.strokeAndButtons = {
     let stroke = joint.highlighters.stroke;
     let id = stroke.getHighlighterId(magnetEl, opt);
     this.removeButtons(id);
-
-    /* Remove for fix highlighting more-class and template-class
-    $(magnetEl.firstChild.children).attr({'fill-opacity':'0'});*/
 
     cellView.model.set('highlighted', false);
   },
@@ -216,7 +213,10 @@ joint.highlighters.strokeAndButtons = {
   }
 };
 
-joint.shapes.basic.Generic.define('flexberry.uml.PrimitiveElementView');
+
+export let primitiveElementViewCell = joint.shapes.basic.Generic.define('flexberry.uml.PrimitiveElementView');
+joint.util.setByPath(joint.shapes, 'flexberry.uml.PrimitiveElementView', primitiveElementViewCell, '.');
+
 joint.shapes.flexberry.uml.PrimitiveElementView = joint.dia.ElementView.extend({
   getButtons() {
     return A([{
@@ -236,3 +236,4 @@ joint.shapes.flexberry.uml.PrimitiveElementView = joint.dia.ElementView.extend({
     this.model.remove();
   },
 });
+
