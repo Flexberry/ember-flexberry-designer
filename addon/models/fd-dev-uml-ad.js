@@ -20,6 +20,7 @@ import FdUmlObjectFlow from '../objects/uml-primitives/fd-uml-object-flow';
 import FdUmlPartition from '../objects/uml-primitives/fd-uml-partition';
 import FdUmlNoteConnector from '../objects/uml-primitives/fd-uml-note-connector';
 import FdUmlNote from '../objects/uml-primitives/fd-uml-note';
+import FdUmlSwimlineSeparator from '../objects/uml-primitives/fd-uml-swimline-separator';
 
 let Model = ADModel.extend(DevUMLADMixin, {
   /**
@@ -97,6 +98,14 @@ let Model = ADModel.extend(DevUMLADMixin, {
 
         case 'STORMCASE.UML.Common.Note, UMLCommon':
           result.pushObject(FdUmlNote.create({ primitive }));
+          break;
+
+        case 'STORMCASE.UML.Common.SwimlineSeparatorH, UMLCommon':
+          result.pushObject(FdUmlSwimlineSeparator.create({ primitive }));
+          break;
+
+        case 'STORMCASE.UML.Common.SwimlineSeparatorV, UMLCommon':
+          result.pushObject(FdUmlSwimlineSeparator.create({ primitive }));
           break;
 
         default:

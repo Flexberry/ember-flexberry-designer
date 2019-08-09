@@ -12,6 +12,8 @@ import { ObjectInState } from 'ember-flexberry-designer/objects/uml-primitives/f
 import { ActiveState } from 'ember-flexberry-designer/objects/uml-primitives/fd-uml-active-state';
 import { Partition } from 'ember-flexberry-designer/objects/uml-primitives/fd-uml-partition';
 import { ObjectFlow } from 'ember-flexberry-designer/objects/uml-primitives/fd-uml-object-flow';
+import FdUmlSwimlineSeparator  from 'ember-flexberry-designer/objects/uml-primitives/fd-uml-swimline-separator';
+import { getJsonForElement, getJsonForLink } from '../../utils/get-json-for-diagram';
 
 /**
   Metods for creating joint js elements on activity diagrams.
@@ -281,7 +283,45 @@ export default Mixin.create({
 
         return newPartitionObject;
       }).bind(this), e);
-    }
+    },
+
+    /**
+      Handler for click on addSwimlineSeparatorH button.
+      @ethod actions.addSwimlineSeparatorH
+      @param {jQuery.Event} e event.
+    */
+    addSwimlineSeparatorH(e) {
+      this.createObjectData((function(x, y) {
+        let jsonObject = getJsonForElement(
+          'STORMCASE.UML.ad.SwimlineSeparatorH, UMLAD',
+          { x, y },
+          { width: 100, height: 30 },
+          { Name: '' },
+        );
+        let swimlineSeparatorObject = FdUmlSwimlineSeparator.create({ primitive: jsonObject });
+        this._addToPrimitives(swimlineSeparatorObject);
+        return swimlineSeparatorObject.JointJS();
+      }).bind(this), e, A(['flexberry.uml.Partition']));
+    },
+
+    /**
+      Handler for click on addSwimlineSeparatorV button.
+      @ethod actions.addSwimlineSeparatorV
+      @param {jQuery.Event} e event.
+    */
+    addSwimlineSeparatorV(e) {
+      this.createObjectData((function(x, y) {
+        let jsonObject = getJsonForElement(
+          'STORMCASE.UML.ad.SwimlineSeparatorV, UMLAD',
+          { x, y },
+          { width: 100, height: 30 },
+          { Name: '', BindingObjectID: '' },
+        );
+        let swimlineSeparatorObject = FdUmlSwimlineSeparator.create({ primitive: jsonObject });
+        this._addToPrimitives(swimlineSeparatorObject);
+        return swimlineSeparatorObject.JointJS();
+      }).bind(this), e, A(['flexberry.uml.Partition']));
+    },
   }
 });
 

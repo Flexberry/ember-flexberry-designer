@@ -30,6 +30,7 @@ export default {
       'add-packege': 'Пакет',
       'add-note': 'Комментарий',
       'add-note-connector': 'Коннектор комментарий',
+      'add-swimline-separator': 'Разделитель плавательных дорожек',
       'add-object-association': 'Ассоциация между объектами',
       'add-component': 'Компонент',
       'add-component-instance': 'Экземпляр компонента',
