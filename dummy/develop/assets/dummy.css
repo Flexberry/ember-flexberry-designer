@@ -60338,6 +60338,11 @@ body.pushable > .pusher {
 .ui.form .uml-class-inputs textarea.class-name-input.active-object-input {
   text-decoration: underline;
 }
+.ui.form .uml-class-inputs input[type="text"].class-name-input.object-in-state-input,
+.ui.form .uml-link-inputs input[type="text"].class-name-input.object-in-state-input,
+.ui.form .uml-class-inputs textarea.class-name-input.object-in-state-input {
+  text-decoration: underline;
+}
 .ui.form .uml-class-inputs input[type="text"].class-name-input.instance-input,
 .ui.form .uml-link-inputs input[type="text"].class-name-input.instance-input,
 .ui.form .uml-class-inputs textarea.class-name-input.instance-input {
@@ -60357,6 +60362,28 @@ body.pushable > .pusher {
   font-weight: normal;
   text-decoration: underline;
   margin-top: 13px;
+}
+.ui.form .uml-class-inputs input[type="text"].class-name-input.start-state-input,
+.ui.form .uml-link-inputs input[type="text"].class-name-input.start-state-input,
+.ui.form .uml-class-inputs textarea.class-name-input.start-state-input {
+  min-width: 10px;
+  text-align: right;
+}
+.ui.form .uml-class-inputs input[type="text"].class-name-input.final-state-input,
+.ui.form .uml-link-inputs input[type="text"].class-name-input.final-state-input,
+.ui.form .uml-class-inputs textarea.class-name-input.final-state-input {
+  min-width: 10px;
+  text-align: left;
+}
+.ui.form .uml-class-inputs input[type="text"].class-name-input.signal-input,
+.ui.form .uml-link-inputs input[type="text"].class-name-input.signal-input,
+.ui.form .uml-class-inputs textarea.class-name-input.signal-input {
+  min-width: 30px;
+}
+.ui.form .uml-class-inputs input[type="text"].class-name-input.complex-transition-input,
+.ui.form .uml-link-inputs input[type="text"].class-name-input.complex-transition-input,
+.ui.form .uml-class-inputs textarea.class-name-input.complex-transition-input {
+  min-width: 1px;
 }
 .ui.form .uml-class-inputs input[type="text"].params-input,
 .ui.form .uml-link-inputs input[type="text"].params-input,
@@ -60393,6 +60420,14 @@ body.pushable > .pusher {
   resize: none;
   line-height: 1.1;
   margin: 4px 0 0 0;
+  overflow: hidden;
+}
+.ui.form .uml-class-inputs input[type="text"].state-input,
+.ui.form .uml-link-inputs input[type="text"].state-input,
+.ui.form .uml-class-inputs textarea.state-input {
+  text-align: center;
+  resize: none;
+  line-height: 1.1;
   overflow: hidden;
 }
 .ui.form .uml-class-inputs input[type="text"].start-multiplicity-input,

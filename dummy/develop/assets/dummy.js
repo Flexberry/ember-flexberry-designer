@@ -7520,6 +7520,11 @@ define('dummy/ember-flexberry-designer/tests/addon.lint-test', [], function () {
     assert.ok(true, 'addon/objects/uml-primitives/links-view/fd-multiplicity-view.js should pass ESLint\n\n');
   });
 
+  QUnit.test('addon/objects/uml-primitives/links-view/fd-normalized-description-view.js', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'addon/objects/uml-primitives/links-view/fd-normalized-description-view.js should pass ESLint\n\n');
+  });
+
   QUnit.test('addon/objects/uml-primitives/links-view/fd-qualified-view.js', function (assert) {
     assert.expect(1);
     assert.ok(true, 'addon/objects/uml-primitives/links-view/fd-qualified-view.js should pass ESLint\n\n');
