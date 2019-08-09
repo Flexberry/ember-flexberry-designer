@@ -9,6 +9,7 @@ import { BaseObject } from './fd-uml-baseobject';
 import FdUmlElement from './fd-uml-element';
 
 import joint from 'npm:jointjs';
+import $ from 'jquery';
 
 /**
   An object that describes a Signal Reciept element on the UML diagram.

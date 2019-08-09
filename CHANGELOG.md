@@ -4,6 +4,8 @@ All notable changes to this project will be documented in this file.
 ## [Unreleased]
 ### Added
 * Navigation tree.
+### Added
+* Change text ability on activity diagram primitives.
 
 ## [0.7.0] - 2019-05-31
 ### Added

@@ -44,7 +44,9 @@ export default FdUmlElement.extend({
   */
   attributes: computed('primitive.AttributesTxt.Text', {
     get() {
-      return this.get('primitive.AttributesTxt.Text').split('\n');
+      let text = this.get('primitive.AttributesTxt.Text');
+      let splitedText = isPresent(text) ? text.split('\n') : null;
+      return splitedText;
     },
     set(key, value) {
       let attributesTxt = (isArray(value)) ? value.join('\n') : value;
