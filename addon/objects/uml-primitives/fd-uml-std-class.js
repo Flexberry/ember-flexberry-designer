@@ -1,8 +1,11 @@
 /**
   @module ember-flexberry-designer
 */
+import FdUmlElement from './fd-uml-element';
 import { BaseObject } from './fd-uml-baseobject';
-import FdUmlObject from './fd-uml-baseobject';
+
+import { computed } from '@ember/object';
+import { isArray } from '@ember/array';
 
 import joint from 'npm:jointjs';
 
@@ -12,23 +15,23 @@ import joint from 'npm:jointjs';
   @class FdUmlStdClass
   @extends FdUmlObject
 */
-export default FdUmlObject.extend({
+export default FdUmlElement.extend({
   /**
     The name of the class.
 
     @property name
     @type String
   */
-  name: computed('primitive.Name.Text', {
-    get() {
-      return this.get('primitive.Name.Text');
-    },
-    set(key, value) {
-      let nameTxt = (isArray(value)) ? value.join('\n') : value;
-      this.set('primitive.Name.Text', nameTxt);
-      return value;
-    },
-  }),
+ name: computed('primitive.Name.Text', {
+  get() {
+    return this.get('primitive.Name.Text');
+  },
+  set(key, value) {
+    let nameTxt = (isArray(value)) ? value.join('\n') : value;
+    this.set('primitive.Name.Text', nameTxt);
+    return value;
+  },
+}),
 
   /**
     See {{#crossLink "FdUmlPrimitive/JointJS:method"}}here{{/crossLink}}.
@@ -36,7 +39,7 @@ export default FdUmlObject.extend({
     @method JointJS
   */
   JointJS() {
-    let properties = this.getProperties('id', 'size', 'position', 'state');
+    let properties = this.getProperties('id', 'size', 'position');
     properties.objectModel = this;
     return new StdClass(properties);
   }
@@ -53,6 +56,7 @@ export default FdUmlObject.extend({
 */
 export let StdClass = BaseObject.define('flexberry.uml.StdClass', {
 });
+
 
 joint.shapes.flexberry.uml.StdClassView = joint.shapes.flexberry.uml.BaseObjectView.extend({
   template: [
