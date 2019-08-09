@@ -44,6 +44,7 @@
       <div class="twelve wide column light-text">
         {{flexberry-textbox
           class="fluid input"
+          value=projectDescription
           placeholder=(t "forms.fd-all-projects.description-placeholder")
         }}
       </div>
@@ -53,16 +54,17 @@
     <div class="center aligned two column row">
       <div class="column">
         {{fd-round-button
-          iconClass="icon-fd-x-mark-thin" 
+          iconClass="icon-fd-x-mark-thin"
           caption=(t "forms.fd-all-projects.cancel")
           onButtonClicked=(action 'cancelButton')
         }}
       </div>
       <div class="column">
-        {{fd-round-button 
-          iconClass="icon-fd-cloud-upload-thin" 
-          colorClass="blue" 
+        {{fd-round-button
+          iconClass="icon-fd-cloud-upload-thin"
+          colorClass="blue"
           caption=(t "forms.fd-all-projects.create-project")
+          onButtonClicked=(action 'createStage')
         }}
       </div>
     </div>

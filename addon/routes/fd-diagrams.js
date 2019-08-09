@@ -106,6 +106,7 @@ export default Route.extend({
   setupController(controller) {
     this._super(...arguments);
 
+    controller.set('isAddMode', false);
     controller.set('sheetComponentName', this.get('sheetComponentName'));
   },
 
