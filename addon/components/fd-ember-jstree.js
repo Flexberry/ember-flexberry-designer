@@ -110,7 +110,9 @@ export default Component.extend({
   /**
     Flag: indicates whether reload data with close node.
 
-    @method reloadDataAtClose
+    @property reloadDataAtClose
+    @type Bool
+    @default false
   */
   reloadDataAtClose: false,
 
@@ -150,7 +152,7 @@ export default Component.extend({
     */
     handleTreeDidSelectNode(node) {
       let selectNodeAction = this.get('selectNodeAction');
-      if (selectNodeAction && typeof selectNodeAction === 'function') {
+      if (typeof selectNodeAction === 'function') {
         selectNodeAction(node, this.get('store'));
       }
     },

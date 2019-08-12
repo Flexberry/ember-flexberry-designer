@@ -70,13 +70,22 @@ export default Component.extend(
       @method actions.createView
     */
     createView() {
-      /*let store = this.get('store');
+      let store = this.get('store');
       let model = this.get('model');
       let view = store.createRecord('fd-dev-view', {
         class: model
       });
 
-      this.send('openViewSheet', view);*/
+      this.send('openViewSheet', view);
+    },
+
+    /**
+      Method edit view.
+
+      @method actions.createView
+    */
+    editView(view) {
+      this.send('openViewSheet', view);
     },
 
     /**
