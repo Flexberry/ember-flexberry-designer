@@ -464,3 +464,4 @@ joint.linkAnchors.connectionSegmRatio = function(endView, endMagnet, anchorRefer
   let ret = new Point({x: x, y: y});
   return ret;
 };
+

@@ -6,6 +6,22 @@ export default Component.extend({
   layout,
 
   /**
+    Custom button visible.
+
+    @property customButton
+    @type Bool
+  */
+  customButtonVisible: false,
+
+  /**
+    Custom button title.
+
+    @property customButton
+    @type String
+  */
+  customButtonTitle: undefined,
+
+  /**
     Sheet component name.
 
     @property sheetComponentName
@@ -21,6 +37,14 @@ export default Component.extend({
     @type FdSheetService
   */
   fdSheetService: service(),
+
+  /**
+    Flag: indicates whether to show toolbar.
+
+    @property toolbarVisible
+    @type Bool
+  */
+  toolbarVisible: true,
 
   init() {
     this._super(...arguments);
@@ -61,6 +85,24 @@ export default Component.extend({
     */
     save() {
       this.get('saveController')();
-    }
+    },
+
+    /**
+      Delete data.
+
+      @method actions.delete
+    */
+    delete() {
+      this.get('deleteController')();
+    },
+
+    /**
+      Custom button action.
+
+      @method actions.customButtonAction
+    */
+    customButtonAction() {
+      this.get('customButtonController')();
+    },
   }
 });

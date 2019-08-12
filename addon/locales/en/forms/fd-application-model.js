@@ -19,5 +19,7 @@ export default {
   'application-caption': 'Application',
   'userform-caption': 'Userform',
   'userstereotype-caption': 'Entity with user stereotypes',
-  'parent-caption': 'Parent first level'
+  'parent-caption': 'Parent first level',
+  'create-class-caption': 'Create class',
+  cancel: 'Cancel',
 };

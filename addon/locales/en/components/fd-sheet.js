@@ -1,4 +1,4 @@
 export default {
-  'placeholder-caption': 'Entity name',
+  'placeholder-caption': 'Enter name',
   'save-caption': 'Save'
 };

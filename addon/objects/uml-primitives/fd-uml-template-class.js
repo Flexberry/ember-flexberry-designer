@@ -177,6 +177,7 @@ joint.shapes.flexberry.uml.TemplateClassView = joint.shapes.flexberry.uml.ClassV
     let attrs = this.model.get('attrs');
     attrs['.flexberry-uml-header-rect'].mask = 'url(#' + maskId + ')';
     this.updateRectangles();
+    this.update();
 
     return this;
   },

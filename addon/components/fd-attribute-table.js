@@ -40,10 +40,30 @@ export default Component.extend({
   */
   selectedValues: undefined,
 
+  /**
+    Flag: indicates whether to show toolbar.
+
+    @property toolbarVisible
+    @type Bool
+    @default true
+  */
+  toolbarVisible: true,
+
+  /**
+    Flag: indicates whether property is readonly.
+
+    @property readonly
+    @type Boolean
+    @default false
+   */
+  readonly: false,
+
   init() {
     this._super(...arguments);
 
-    this.set('selectedValues', A());
+    if (isNone(this.get('selectedValues'))) {
+      this.set('selectedValues', A());
+    }
   },
 
   actions: {
@@ -54,7 +74,10 @@ export default Component.extend({
       @method actions.createValue
     */
     createValue() {
-      this.get('create')();
+      let createAction = this.get('create');
+      if (!isNone(createAction)) {
+        createAction();
+      }
     },
 
     /**
