@@ -4,8 +4,9 @@
 
 import { computed } from '@ember/object';
 import joint from 'npm:jointjs';
-
+import { isArray } from '@ember/array';
 import FdUmlElement from './fd-uml-element';
+import { BaseObject } from './fd-uml-baseobject';
 
 /**
   An object that describes an history on the UML diagram.
@@ -16,12 +17,21 @@ import FdUmlElement from './fd-uml-element';
 export default FdUmlElement.extend({
 
   /**
-    Type of primitive.
+    Name on the start state element.
 
-    @property type
+    @property name
     @type String
   */
-  type: computed.alias('primitive.$type'),
+  name: computed('primitive.Name.Text', {
+    get() {
+      return this.get('primitive.Name.Text');
+    },
+    set(key, value) {
+      let nameTxt = (isArray(value)) ? value.join('\n') : value;
+      this.set('primitive.Name.Text', nameTxt);
+      return value;
+    },
+  }),
 
   /**
     See {{#crossLink "FdUmlPrimitive/JointJS:method"}}here{{/crossLink}}.
@@ -30,12 +40,12 @@ export default FdUmlElement.extend({
   */
   JointJS() {
     let properties = this.getProperties('id', 'position');
-    if (this.get('type') === 'STORMCASE.UML.std.DeepHistory, UMLSTD') {
+    properties.objectModel = this;
+    if (this.primitive.$type === 'STORMCASE.UML.std.DeepHistory, UMLSTD') {
       return new DeepHistory(properties);
     } else {
       return new History(properties);
     }
-
   },
 });
 
