@@ -91,6 +91,12 @@ joint.shapes.flexberry.uml.UmlNodeView = joint.shapes.flexberry.uml.BaseObjectVi
         let $buffer = rect.element.inputElements.find('.input-buffer');
         let rectHeight = 0;
         let inputs = rect.element.inputElements.find('.' + rect.type + '-input');
+        let inputsDiv = inputs[0].parentElement;
+        if (! inputsDiv.parentElement || ! inputsDiv.parentElement.className.includes('joint-paper')) {
+          let jointPaper = $('.joint-paper')[0];
+          jointPaper.appendChild(inputsDiv);
+        }
+        
         inputs.each(function () {
           let $input = $(this);
           $buffer.css('font-weight', $input.css('font-weight'));
