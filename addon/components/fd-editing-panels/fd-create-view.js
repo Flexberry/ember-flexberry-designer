@@ -239,32 +239,32 @@ export default Component.extend({
         return;
       }
 
-      let newDdfinition;
+      let newDefinition;
       if (get(node, 'parents').length > 1) {
-        newDdfinition = FdViewAttributesProperty.create({
+        newDefinition = FdViewAttributesProperty.create({
           name: propertyName
         });
       } else {
         switch (get(node, 'type')) {
           case 'property':
-            newDdfinition = FdViewAttributesProperty.create({
+            newDefinition = FdViewAttributesProperty.create({
               name: propertyName
             });
             break;
           case 'master':
-            newDdfinition = FdViewAttributesMaster.create({
+            newDefinition = FdViewAttributesMaster.create({
               name: propertyName
             });
             break;
           case 'detail':
-            newDdfinition = FdViewAttributesDetail.create({
+            newDefinition = FdViewAttributesDetail.create({
               name: propertyName
             });
             break;
         }
       }
 
-      view.pushObject(newDdfinition);
+      view.pushObject(newDefinition);
     },
 
     /**
@@ -307,12 +307,12 @@ export default Component.extend({
       }
 
       let definitionArray = this.get('view.definitionArray');
-      let curruntIndex = definitionArray.indexOf(selectedPropery);
+      let currentIndex = definitionArray.indexOf(selectedPropery);
       let newIndex;
       if (up) {
-        newIndex = curruntIndex !== 0 ? curruntIndex - 1 : null;
+        newIndex = currentIndex !== 0 ? currentIndex - 1 : null;
       } else {
-        newIndex = curruntIndex !== definitionArray.length - 1 ? curruntIndex + 1 : null;
+        newIndex = currentIndex !== definitionArray.length - 1 ? currentIndex + 1 : null;
       }
 
       if (isNone(newIndex)) {
@@ -320,7 +320,7 @@ export default Component.extend({
       }
 
       let newIndexNode = definitionArray[newIndex];
-      definitionArray.replace(curruntIndex, 1, A([newIndexNode]));
+      definitionArray.replace(currentIndex, 1, A([newIndexNode]));
       definitionArray.replace(newIndex, 1, A([selectedPropery]));
     },
   }

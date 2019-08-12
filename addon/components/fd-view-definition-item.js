@@ -20,18 +20,18 @@ export default Component.extend({
   /**
     Selected definition property.
 
-    @property selectedPropery
+    @property selectedProperty
     @type Object
   */
-  selectedPropery: undefined,
+  selectedProperty: undefined,
 
   /**
     Type selected definition property.
 
-    @property selectedProperyType
+    @property selectedPropertyType
     @type Object
   */
-  selectedProperyType: undefined,
+  selectedPropertyType: undefined,
 
   /**
     Value search input.
@@ -72,8 +72,8 @@ export default Component.extend({
 
     filterValue = filterValue.trim().toLocaleLowerCase();
     let name = this.get('definition.name');
-    if (!isNone(name) && name.toLocaleLowerCase().indexOf(filterValue) !== -1) {
-      return true;
+    if (!isNone(name)) {
+      return name.toLocaleLowerCase().indexOf(filterValue) !== -1;
     }
 
     return false;
@@ -84,11 +84,11 @@ export default Component.extend({
 
     @method isActive
   */
-  isActive: computed('selectedPropery', function() {
-    let selectedPropery = this.get('selectedPropery');
+  isActive: computed('selectedProperty', function() {
+    let selectedProperty = this.get('selectedProperty');
     let definition = this.get('definition');
 
-    return selectedPropery === definition ? true : false;
+    return selectedProperty === definition;
   }),
 
   actions: {
@@ -112,13 +112,13 @@ export default Component.extend({
        @param {Object} property definition property.
     */
     selectedProperty(property) {
-      let selectedPropery = this.get('selectedPropery');
-      if (selectedPropery !== property) {
-        this.set('selectedPropery', property);
-        this.set('selectedProperyType', this.get('type'));
+      let selectedProperty = this.get('selectedProperty');
+      if (selectedProperty !== property) {
+        this.set('selectedProperty', property);
+        this.set('selectedPropertyType', this.get('type'));
       } else {
-        this.set('selectedPropery', undefined);
-        this.set('selectedProperyType', undefined);
+        this.set('selectedProperty', undefined);
+        this.set('selectedPropertyType', undefined);
       }
     },
   }
