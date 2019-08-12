@@ -262,40 +262,11 @@ export default Component.extend({
   */
   _elementPointerClick(element, e, x, y) {
     let options = { element: element, e: e, x: x, y: y };
-    if (isNone(this.get('draggedLink'))) {
-      let newElement = this.get('startDragLink')(options);
-      if (isNone(newElement)) {
-        element.highlight();
-      } else {
-        this.set('draggedLink', newElement);
-        let graph = this.get('graph');
-        let paper = this.get('paper');
-
-        let linkView = newElement
-          .set({ 'target': { x: x, y: y } })
-          .addTo(graph).findView(paper);
-
-        this.set('isLinkAdding', true);
-
-        graph.getLinks().map(link => {
-          link.findView(paper).$el.addClass('edit-disabled');
-        }, this);
-
-        $(paper.el).find('input,textarea').addClass('click-disabled');
-
-        $(document).on({
-          'mousemove.example': this._onDrag.bind(this)
-        }, {
-          paper: paper,
-          element: newElement
-        });
-
-        this.set('draggedLinkView', linkView);
-      }
+    let type = this.get('type');
+    if (type === 'Object' ) {
+      this._drawPrimitiveInClickedElement(options);
     } else {
-      if (this.get('endDragLink')(options)) {
-        this._clearLinksData();
-      }
+      this._drawLinkForClickedElement(options);
     }
   },
 
@@ -357,6 +328,20 @@ export default Component.extend({
   },
 
   /**
+    Add new embeded Element on graph.
+
+    @method actions._addNewEmbededElement
+    @param {Object} newElement joint js embeded element.
+    @param {Object} parentElement joint js parent element.
+  */
+  _addNewEmbededElement(newElement, parentElement) {
+    if (!isNone(parentElement)) {
+      this._addNewElement(newElement);
+      newElement.setParent(parentElement);
+    }
+  },
+
+  /**
     Handles cell:highlight action.
 
     @method _highlighted
@@ -408,7 +393,19 @@ export default Component.extend({
     let data = evt.data;
     if (data.ghost) {
       let shift = evt.data.shift;
-      data.ghost.position(x + shift.x, y + shift.y);
+      //get border for embed element move restriction. [minX, maxX, minY, maxY]
+      let ghostMoveBorder = view.model.get('ghostMoveBorder');
+      let newPositionX = x + shift.x;
+      let newPositionY = y + shift.y;
+
+      if (!isNone(ghostMoveBorder)) {
+        newPositionX = newPositionX < ghostMoveBorder[0] ? ghostMoveBorder[0] : newPositionX;
+        newPositionX = newPositionX > ghostMoveBorder[1] ? ghostMoveBorder[1] : newPositionX;
+        newPositionY = newPositionY < ghostMoveBorder[2] ? ghostMoveBorder[2] : newPositionY;
+        newPositionY = newPositionY > ghostMoveBorder[3] ? ghostMoveBorder[3] : newPositionY;
+      }
+      
+      data.ghost.position(newPositionX, newPositionY);
     } else {
       let bbox = view.model.getBBox();
       let ghost = new joint.shapes.basic.Rect();
@@ -438,6 +435,18 @@ export default Component.extend({
       let shift = evt.data.shift;
       let valueX = x + shift.x < 0 ? 0 : x + shift.x;
       let valueY = y + shift.y < 0 ? 0 : y + shift.y;
+
+      //get border for embed element move restriction. [minX, maxX, minY, maxY]
+      let ghostMoveBorder = view.model.get('ghostMoveBorder');
+
+      if (!isNone(ghostMoveBorder)) {
+        valueX = valueX < ghostMoveBorder[0] ? ghostMoveBorder[0] : valueX;
+        valueX = valueX > ghostMoveBorder[1] ? ghostMoveBorder[1] : valueX;
+        valueY = valueY < ghostMoveBorder[2] ? ghostMoveBorder[2] : valueY;
+        valueY = valueY > ghostMoveBorder[3] ? ghostMoveBorder[3] : valueY;
+      }
+
+
       data.ghost.remove();
       view.model.position(valueX, valueY);
       let paper = view.paper;
@@ -446,6 +455,65 @@ export default Component.extend({
         let linkView = paper.findViewByModel(link);
         linkView.updateBox();
       });
+    }
+  },
+
+  /**
+    Draw link for clicked element.
+
+    @method _drawLinkForClickedElement
+    @param {Object} options selected joint js element.
+  */
+  _drawLinkForClickedElement(options) {
+    let clickedElement = options;
+    if (isNone(this.get('draggedLink'))) {
+      let newElement = this.get('startDragLink')(clickedElement);
+      if (isNone(newElement)) {
+        clickedElement.element.highlight();
+      } else {
+        this.set('draggedLink', newElement);
+        let graph = this.get('graph');
+        let paper = this.get('paper');
+
+        let linkView = newElement
+          .set({ 'target': { x: clickedElement.x, y: clickedElement.y } })
+          .addTo(graph).findView(paper);
+
+        this.set('isLinkAdding', true);
+
+        graph.getLinks().map(link => {
+          link.findView(paper).$el.addClass('edit-disabled');
+        }, this);
+
+        $(paper.el).find('input,textarea').addClass('click-disabled');
+
+        $(document).on({
+          'mousemove.example': this._onDrag.bind(this)
+        }, {
+          paper: paper,
+          element: newElement
+        });
+
+        this.set('draggedLinkView', linkView);
+      }
+    } else {
+      if (this.get('endDragLink')(clickedElement)) {
+        this._clearLinksData();
+      }
+    }
+  },
+
+   /**
+    Draw child primitive in clicked primitive.
+
+    @method _drawLinkForClickedElement
+    @param {Object} options selected joint js element.
+  */
+  _drawPrimitiveInClickedElement(options) {
+    let newObject =this.get('createChildObject')(options);
+
+    if (!isNone(newObject)) {
+      this._addNewEmbededElement(newObject, options.element.model);
     }
   },
 

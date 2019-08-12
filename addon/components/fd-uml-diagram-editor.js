@@ -2,7 +2,7 @@ import Component from '@ember/component';
 import { inject as service } from '@ember/service';
 import { A, isArray } from '@ember/array';
 import { computed, get } from '@ember/object';
-import { isNone, isBlank } from '@ember/utils';
+import { isNone, isBlank, isEmpty } from '@ember/utils';
 import { next } from '@ember/runloop';
 import $ from 'jquery';
 import layout from '../templates/components/fd-uml-diagram-editor';
@@ -54,6 +54,14 @@ FdActionsForUcdPrimitivesMixin, {
     @type Array
   */
   interactionElements: A(),
+
+  /**
+    Some primitives, like a swimline, can place only in other primitives. This array contains types of available parent elements
+
+    @property parentElements
+    @type Array
+  */
+  parentElements: A(),
 
   /**
    Array items with empty reference count.
@@ -178,17 +186,27 @@ FdActionsForUcdPrimitivesMixin, {
       if (!isNone(type)) {
         let x = options.x;
         let y = options.y;
-        if (type === 'Object') {
-          let jointjsCallback = this.get('jointjsCallback');
-          let newObject = jointjsCallback(x, y);
-          this.clearData();
 
-          return newObject;
-        } else {
-          let newLink = this.get('newLink');
-          if (type === 'Link' && newLink && !isNone(newLink.getSourceElement())) {
-            newLink.insertVertex(-1, { x: x, y: y });
-          }
+        switch (type) {
+          case 'Object':
+            let parentElements = this.get('parentElements');
+            if (type === 'Object' && (isEmpty(parentElements) || isNone(parentElements))) {
+              let jointjsCallback = this.get('jointjsCallback');
+              let newObject = jointjsCallback(x, y);
+              this.clearData();
+    
+              return newObject;
+            }
+
+            break;
+
+          case 'Link':
+            let newLink = this.get('newLink');
+            if (newLink && !isNone(newLink.getSourceElement())) {
+              newLink.insertVertex(-1, { x: x, y: y });
+            }
+
+            break;
         }
       }
     },
@@ -248,6 +266,29 @@ FdActionsForUcdPrimitivesMixin, {
       }
 
       return false;
+    },
+
+    /**
+      Handler event createChildObject.
+
+      @method createChildObject
+      @param {Object} options selected joint js element.
+    */
+    createChildObject(options) {
+      let element = options.element;
+      let model = element.model.attributes;
+      let type = model.type;
+      let parentElements = this.get('parentElements');
+
+      if (isArray(parentElements) && parentElements.includes(type)) {
+        let x = options.x;
+        let y = options.y;
+        let jointjsCallback = this.get('jointjsCallback');
+        let newObject = jointjsCallback(x, y);
+        newObject.set('ParentObjectID', model.id);
+        this.clearData();
+        return newObject;
+      }
     },
 
     /**
@@ -314,11 +355,12 @@ FdActionsForUcdPrimitivesMixin, {
     @param {function} jointjsCallback function of creating a new object.
     @param {jQuery.Event} e event.
   */
-  createObjectData(jointjsCallback, e) {
+  createObjectData(jointjsCallback, e, parentElements) {
     if (!this.get('isLinkAdding')) {
       this._clearProperties();
       this.set('jointjsCallback', jointjsCallback);
       this.set('type', 'Object');
+      this.set('parentElements', parentElements);
       this._changeCurrentTargetElement(e);
     }
   },
@@ -364,6 +406,7 @@ FdActionsForUcdPrimitivesMixin, {
     this.set('storeCallback', undefined);
     this.set('type', undefined);
     this.set('interactionElements', A());
+    this.set('parentElements', A());
     this.set('newLink', undefined);
   },
 

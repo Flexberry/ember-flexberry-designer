@@ -48,8 +48,7 @@ export default FdUmlElement.extend({
     let properties = this.getProperties('id', 'size', 'position');
     properties.objectModel = this;
     let type = this.get('type');
-    if (type === 'STORMCASE.UML.ad.ComplexTransitionV, UMLAD' ||
-     type === 'STORMCASE.UML.std.ComplexTransitionV, UMLSTD') {
+    if (type === 'STORMCASE.UML.ad.SwimlineSeparatorV, UMLAD') {
       return new ComplexTransitionV(properties);
     } else {
       return new ComplexTransitionH(properties);
@@ -67,15 +66,48 @@ export default FdUmlElement.extend({
   @constructor
 */
 export let ComplexTransitionH = BaseObject.define('flexberry.uml.ComplexTransitionH', {
+  // [minX, maxX, minY, maxY]
+  ghostMoveBorder: A(),
+
   attrs: {
-    '.flexberry-uml-header-poliline': {'refPoints': '0,0 40,0', 'stroke': 'black', 'stroke-width': 2 },
+    '.flexberry-uml-header-poliline': {'refPoints': '0,0 10,0', 'stroke': 'black', 'stroke-width': 2 },
   },
 }, {
   markup: [
     '<g class="rotatable">',
     '<polyline class = "flexberry-uml-header-poliline"/>',
     '</g>',
-  ].join('')
+  ].join(''),
+
+  setParent: function (parentObject) {
+    let currentSwimlinePositionY = this.get('position').y
+    let positionShiftY = currentSwimlinePositionY - parentObject.get('position').y;
+
+    this.set('position', { x: parentObject.get('position').x , y: currentSwimlinePositionY});
+    this.set('size', { width: parentObject.get('size').width, height: this.get('size').height });
+
+    this.set('ghostMoveBorder', this.calculateGhostMoveBorder(parentObject.get('position'), parentObject.get('size').height)); 
+    
+    this.on('change:position', function(element, newPosition) {
+      currentSwimlinePositionY = newPosition.y;
+      positionShiftY = currentSwimlinePositionY - parentObject.get('position').y;
+    });
+
+    parentObject.on('change:position', function(element, newPosition) {
+      this.set('position', { x: newPosition.x, y: newPosition.y + positionShiftY });
+      this.set('ghostMoveBorder', this.calculateGhostMoveBorder(newPosition, element.get('size').height));
+    }, this);
+
+    parentObject.on('change:size', function(element, newSize) {
+      this.set('size', { width: newSize.width, height: this.get('size').height });
+      this.set('ghostMoveBorder', this.calculateGhostMoveBorder(element.get('position'), newSize.height));
+    }, this);
+  },
+
+  calculateGhostMoveBorder: function (parentPosition, parentHeight) {
+    let ghostMoveBorder = [parentPosition.x, parentPosition.x, parentPosition.y, parentPosition.y+ parentHeight];
+    return ghostMoveBorder;
+  }
 });
 
 /**
@@ -88,7 +120,43 @@ export let ComplexTransitionH = BaseObject.define('flexberry.uml.ComplexTransiti
 */
 export let ComplexTransitionV = ComplexTransitionH.define('flexberry.uml.ComplexTransitionV', {
   attrs: {
-    '.flexberry-uml-header-poliline': {'refPoints': '40,0 40,40', 'stroke': 'black', 'stroke-width': 2 },
+    '.flexberry-uml-header-poliline': {'refPoints': '0,0 0,10', 'stroke': 'black', 'stroke-width': 2 },
+  },
+}, {
+  markup: [
+    '<g class="rotatable">',
+    '<polyline class = "flexberry-uml-header-poliline"/>',
+    '</g>',
+  ].join(''),
+
+  setParent: function (parentObject) {
+    let currentSwimlinePositionX = this.get('position').x
+    let positionShiftX = currentSwimlinePositionX - parentObject.get('position').x;
+
+    this.set('position', { x: currentSwimlinePositionX , y: parentObject.get('position').y});
+    this.set('size', { width: this.get('size').width, height: parentObject.get('size').height });
+
+    this.set('ghostMoveBorder', this.calculateGhostMoveBorder(parentObject.get('position'), parentObject.get('size').width)); 
+    
+    this.on('change:position', function(element, newPosition) {
+      currentSwimlinePositionX = newPosition.x;
+      positionShiftX = currentSwimlinePositionX - parentObject.get('position').x;
+    });
+
+    parentObject.on('change:position', function(element, newPosition) {
+      this.set('position', { x: newPosition.x + positionShiftX, y: newPosition.y});
+      this.set('ghostMoveBorder', this.calculateGhostMoveBorder(newPosition, element.get('size').width));
+    }, this);
+
+    parentObject.on('change:size', function(element, newSize) {
+      this.set('size', { width: this.get('size').width, height: newSize.height });
+      this.set('ghostMoveBorder', this.calculateGhostMoveBorder(element.get('position'), newSize.width));
+    }, this);
+  },
+
+  calculateGhostMoveBorder: function (parentPosition, parentWidth) {
+    let ghostMoveBorder = [parentPosition.x, parentPosition.x + parentWidth, parentPosition.y, parentPosition.y];
+    return ghostMoveBorder;
   }
 });
 

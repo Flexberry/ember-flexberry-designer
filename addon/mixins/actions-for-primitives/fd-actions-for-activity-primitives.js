@@ -342,8 +342,8 @@ export default Mixin.create({
         let jsonObject = getJsonForElement(
           'STORMCASE.UML.ad.SwimlineSeparatorH, UMLAD',
           { x, y },
-          { width: 100, height: 30 },
-          { Name: '' },
+          { width: 10, height: 2 },
+          { Name: '', ParentObjectID: '' },
         );
         let swimlineSeparatorObject = FdUmlSwimlineSeparator.create({ primitive: jsonObject });
         this._addToPrimitives(swimlineSeparatorObject);
@@ -361,8 +361,8 @@ export default Mixin.create({
         let jsonObject = getJsonForElement(
           'STORMCASE.UML.ad.SwimlineSeparatorV, UMLAD',
           { x, y },
-          { width: 100, height: 30 },
-          { Name: '', BindingObjectID: '' },
+          { width: 2, height: 10 },
+          { Name: '', ParentObjectID: '' },
         );
         let swimlineSeparatorObject = FdUmlSwimlineSeparator.create({ primitive: jsonObject });
         this._addToPrimitives(swimlineSeparatorObject);
