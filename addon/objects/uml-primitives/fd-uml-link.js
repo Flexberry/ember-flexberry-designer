@@ -26,7 +26,16 @@ export default FdUmlPrimitive.extend({
     get() {
       let ret = { id: this.get('primitive.StartPrimitive.$ref') };
       let segmNo = this.get('primitive.StartLE.SegmNo');
-      if (segmNo >= 0) {
+      let linkCreated = true;
+      let points = this.get('primitive.Points');
+      for (let i = 0; i < points.length; i++) {
+        if (points[i].X != 0 || points[i].Y != 0) {
+          linkCreated = false;
+          break;
+        }
+      }
+
+      if (segmNo >= 0 && !linkCreated) {
         let percent = this.get('primitive.StartLE.Percent');
         ret.anchor = {
           name: 'connectionSegmRatio',
@@ -56,7 +65,7 @@ export default FdUmlPrimitive.extend({
       let ret = { id: this.get('primitive.EndPrimitive.$ref') };
       let segmNo = this.get('primitive.EndLE.SegmNo');
       if (segmNo >= 0) {
-        let percent = this.get('primitive.StartLE.Percent');
+        let percent = this.get('primitive.EndLE.Percent');
         ret.anchor = {
           name: 'connectionSegmRatio',
           args: {
