@@ -188,7 +188,7 @@ FdActionsForUcdPrimitivesMixin, {
         let y = options.y;
 
         switch (type) {
-          case 'Object':
+          case 'Object': {
             let parentElements = this.get('parentElements');
             if (type === 'Object' && (isEmpty(parentElements) || isNone(parentElements))) {
               let jointjsCallback = this.get('jointjsCallback');
@@ -199,13 +199,15 @@ FdActionsForUcdPrimitivesMixin, {
             }
 
             break;
-          case 'Link':
+          }
+          case 'Link': {
             let newLink = this.get('newLink');
             if (newLink && !isNone(newLink.getSourceElement())) {
               newLink.insertVertex(-1, { x: x, y: y });
             }
 
             break;
+          }
         }
       }
     },
