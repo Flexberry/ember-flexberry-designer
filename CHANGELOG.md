@@ -7,6 +7,8 @@ All notable changes to this project will be documented in this file.
 * Added logic for create new class button.
 * Added logic for create new diagram button.
 * Added logic for delete class button.
+* Added logic for embeded primitives.
+* Added swimline primitive.
 * Change text ability on activity diagram primitives.
 
 ## [0.7.0] - 2019-05-31

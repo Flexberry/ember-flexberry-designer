@@ -70,7 +70,12 @@ export let ComplexTransitionH = BaseObject.define('flexberry.uml.ComplexTransiti
   ghostMoveBorder: A(),
 
   attrs: {
-    '.flexberry-uml-header-poliline': {'refPoints': '0,0 10,0', 'stroke': 'black', 'stroke-width': 2 },
+    '.flexberry-uml-header-poliline': {
+      'refPoints': '0,0 10,0',
+      'stroke': 'black',
+      'stroke-width': 2,
+      'stroke-dasharray': '7 2'
+     },
   },
 }, {
   markup: [
@@ -120,7 +125,12 @@ export let ComplexTransitionH = BaseObject.define('flexberry.uml.ComplexTransiti
 */
 export let ComplexTransitionV = ComplexTransitionH.define('flexberry.uml.ComplexTransitionV', {
   attrs: {
-    '.flexberry-uml-header-poliline': {'refPoints': '0,0 0,10', 'stroke': 'black', 'stroke-width': 2 },
+    '.flexberry-uml-header-poliline': {
+      'refPoints': '0,0 0,10',
+      'stroke': 'black',
+      'stroke-width': 2,
+      'stroke-dasharray': '7 2'
+     },
   },
 }, {
   markup: [

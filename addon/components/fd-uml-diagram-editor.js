@@ -199,7 +199,6 @@ FdActionsForUcdPrimitivesMixin, {
             }
 
             break;
-
           case 'Link':
             let newLink = this.get('newLink');
             if (newLink && !isNone(newLink.getSourceElement())) {
