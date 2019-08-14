@@ -84,6 +84,72 @@ export default FdUmlPrimitive.extend({
   }),
 
   /**
+   The start segmNo of a link.                                *
+
+   @property startSegmNo
+   @type String
+   */
+  startSegmNo: computed('primitive.StartLE.SegmNo', {
+    get() {
+      return this.get('primitive.StartLE.SegmNo');
+    },
+    set(key, value) {
+      this.set('primitive.StartLE.SegmNo', value.id);
+      return value;
+    }
+  }),
+
+  /**
+   *   The start percent of a link.                                *
+   *
+   *   @property startPercent
+   *   @type String
+   */
+  startPercent: computed('primitive.StartLE.Percent', {
+    get() {
+      return this.get('primitive.StartLE.Percent');
+    },
+    set(key, value) {
+      this.set('primitive.StartLE.Percent', value.id);
+      return value;
+    }
+  }),
+
+  /**
+   The end segmNo of a link.                                *
+
+   @property endSegmNo
+   @type String
+   */
+  endSegmNo: computed('primitive.EndLE.SegmNo', {
+    get() {
+      return this.get('primitive.EndLE.SegmNo');
+    },
+    set(key, value) {
+      this.set('primitive.EndLE.SegmNo', value.id);
+      return value;
+    }
+  }),
+
+
+  /**
+   *   The end percent of a link.                                *
+   *
+   *   @property endPercent
+   *   @type String
+   */
+  endPercent: computed('primitive.EndLE.Percent', {
+    get() {
+      return this.get('primitive.EndLE.Percent');
+    },
+    set(key, value) {
+      this.set('primitive.EndLE.Percent', value.id);
+      return value;
+    }
+  }),
+
+
+  /**
   The start multiplicity of a link.
 
   @property startMultiplicity
@@ -245,6 +311,8 @@ export let Link = joint.dia.Link.define('flexberry.uml.Link', {
 
   objectModel: null,
 
+  connectedLinks: {},
+
   attrs: {
     text: { 'font-size': '12', 'font-family': 'Arial, helvetica, sans-serif' }
   },
@@ -274,6 +342,23 @@ export let Link = joint.dia.Link.define('flexberry.uml.Link', {
       this.on('change:vertices', function(element, newVertices) {
         let objectModel = this.get('objectModel');
         if (objectModel) {
+          let connectedLinks = this.get('connectedLinks');
+          let changedSegment = this._changedSegment(newVertices);
+          if (changedSegment.segmNo >= 0) {
+            for (let id in connectedLinks) {
+              let connectedLink = connectedLinks[id];
+              let connectedLinkObjectModel = connectedLink.model.get('objectModel');
+              let startSegmNo = connectedLinkObjectModel.get('startSegmNo');
+              if (startSegmNo >= changedSegment.segmNo) {
+                connectedLinkObjectModel.set('startSegmNo', startSegmNo + Math.sign(changedSegment.delta));
+              }
+              let endSegmNo = connectedLinkObjectModel.get('endSegmNo');
+              if (endSegmNo >= changedSegment.segmNo) {
+                connectedLinkObjectModel.set('endSegmNo', endSegmNo + Math.sign(changedSegment.delta));
+              }
+            }
+          }
+
           objectModel.set('vertices', newVertices);
           this.trigger('uml-update');
         }
@@ -427,6 +512,31 @@ export let Link = joint.dia.Link.define('flexberry.uml.Link', {
           console.log('ERROR - choose correct label name');
       }
     },
+
+    _changedSegment: function(newVertices) {
+      let vertices = this.get('objectModel').vertices;
+      let delta = newVertices.length - vertices.length;
+      let ret = {segmNo:0, delta: delta};
+      if (newVertices.length == 0) {
+        return ret;
+      }
+      for (let i = 0; i < newVertices.length; i +=1) {
+        if (i >= vertices.length) {
+          ret.segmNo = i;
+          return ret;
+        }
+        let newVertex = newVertices[i];
+        let vertex = vertices[i];
+        if (vertex.x != newVertex.x || vertex.y != newVertex.y) {
+          ret.segmNo = i;
+          return ret;
+        }
+      }
+      ret.segmNo = -1;
+      return ret;
+
+    },
+
   });
 
 joint.util.setByPath(joint.shapes, 'flexberry.uml.Link', Link, '.');
@@ -454,9 +564,22 @@ joint.util.setByPath(joint.shapes, 'flexberry.uml.BaseLinkWithUnderline', LinkWi
 let Point = joint.g.Point;
 
 joint.linkAnchors.connectionSegmRatio = function(endView, endMagnet, anchorReference, args) {
+  let connectedLinks = endView.model.get('connectedLinks');
+  if (!(this.id  in connectedLinks)) {
+    connectedLinks[this.id] = this;
+  }
   let segments=endView.path.segments;
-  let segmNo = args.segmNo;
-  let percent = args.percent;
+  let objectModel = this.model.get('objectModel');
+  let segmNo = objectModel.startSegmNo;
+  let percent;
+  if (segmNo >= 0) {
+    percent = objectModel.startPercent;
+  } else {
+    segmNo =  objectModel.endSegmNo;
+    percent = objectModel.endPercent;
+  }
+//   let segmNo = args.segmNo;
+//   let percent = args.percent;
   if (percent > 1.0) percent = 1.0;
   if (percent < 0.0) percent = 0.0;
   let pathNo;
@@ -474,3 +597,7 @@ joint.linkAnchors.connectionSegmRatio = function(endView, endMagnet, anchorRefer
   return ret;
 };
 
+joint.anchors.connectionSegmRatio = function(endView, endMagnet, anchorReference, args) {
+  let ret = new Point({x: 0, y: 0});
+  return ret;
+};
