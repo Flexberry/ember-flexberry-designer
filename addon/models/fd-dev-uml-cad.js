@@ -43,9 +43,31 @@ let Model = CADModel.extend(DevUMLCADMixin, {
   primitives: computed('primitivesJsonString', function() {
     let result = A();
     let primitives = JSON.parse(this.get('primitivesJsonString')) || A();
-
+    let elements = {};
     for (let i = 0; i < primitives.length; i++) {
       let primitive = primitives[i];
+      elements[primitive.$id] = primitive;
+    }
+    let linkTypes = {
+      'STORMCASE.UML.cad.Inheritance, UMLCAD': {},
+      'STORMCASE.UML.cad.Aggregation, UMLCAD': {},
+      'STORMCASE.UML.cad.Composition, UMLCAD': {},
+      'STORMCASE.UML.cad.Association, UMLCAD': {},
+      'STORMCASE.UML.cad.Realization, UMLCAD': {},
+      'STORMCASE.UML.Common.NoteConnector, UMLCommon': {}
+    };
+    for (let i = 0; i < primitives.length; i++) {
+      let primitive = primitives[i];
+      if ('StartLE' in primitive) {
+        let targetId = primitive.StartLE.Primitive.$ref;
+        let targetType = elements[targetId].$type;
+        primitive.StartLE.refType = (targetType in linkTypes) ? 'Link' : 'Element';
+      }
+      if ('EndLE' in primitive) {
+        let targetId = primitive.EndLE.Primitive.$ref;
+        let targetType = elements[targetId].$type;
+        primitive.EndLE.refType = (targetType in linkTypes) ? 'Link' : 'Element';
+      }
       switch (primitive.$type) {
         case 'STORMCASE.UML.Common.Note, UMLCommon':
           result.pushObject(FdUmlNote.create({ primitive }));

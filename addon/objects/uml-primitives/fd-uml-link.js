@@ -25,25 +25,27 @@ export default FdUmlPrimitive.extend({
   source: computed('primitive.StartPrimitive.$ref', {
     get() {
       let ret = { id: this.get('primitive.StartPrimitive.$ref') };
-      let segmNo = this.get('primitive.StartLE.SegmNo');
-      let linkCreated = true;
-      let points = this.get('primitive.Points');
-      for (let i = 0; i < points.length; i++) {
-        if (points[i].X != 0 || points[i].Y != 0) {
-          linkCreated = false;
-          break;
-        }
-      }
-
-      if (segmNo >= 0 && !linkCreated) {
-        let percent = this.get('primitive.StartLE.Percent');
-        ret.anchor = {
-          name: 'connectionSegmRatio',
-          args: {
-            segmNo: segmNo,
-            percent: percent
+      if (this.get('primitive.StartLE.refType') == 'Link') {
+        let segmNo = this.get('primitive.StartLE.SegmNo');
+        let linkCreated = true;
+        let points = this.get('primitive.Points');
+        for (let i = 0; i < points.length; i++) {
+          if (points[i].X != 0 || points[i].Y != 0) {
+            linkCreated = false;
+            break;
           }
-        };
+        }
+
+        if (segmNo >= 0 && !linkCreated) {
+          let percent = this.get('primitive.StartLE.Percent');
+          ret.anchor = {
+            name: 'connectionSegmRatio',
+            args: {
+              segmNo: segmNo,
+              percent: percent
+            }
+          };
+        }
       }
       return ret;
     },
@@ -63,17 +65,19 @@ export default FdUmlPrimitive.extend({
   target: computed('primitive.EndPrimitive.$ref', {
     get() {
       let ret = { id: this.get('primitive.EndPrimitive.$ref') };
-      let segmNo = this.get('primitive.EndLE.SegmNo');
-      if (segmNo >= 0) {
-        let percent = this.get('primitive.EndLE.Percent');
-        ret.anchor = {
-          name: 'connectionSegmRatio',
-          args: {
-            segmNo: segmNo,
-            percent: percent
-          }
-        };
-    }
+      if (this.get('primitive.EndLE.refType') == 'Link') {
+        let segmNo = this.get('primitive.EndLE.SegmNo');
+        if (segmNo >= 0) {
+          let percent = this.get('primitive.EndLE.Percent');
+          ret.anchor = {
+            name: 'connectionSegmRatio',
+            args: {
+              segmNo: segmNo,
+              percent: percent
+            }
+          };
+        }
+      }
       return ret;
     },
     set(key, value) {
