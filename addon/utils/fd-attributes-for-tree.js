@@ -73,7 +73,7 @@ let getClassTreeNode = function (tree, classData, rootId, addInText) {
         text += ' (' + attribute.get(`${addInText}`) + ')';
       }
 
-      tree.addObject(FdAttributesTree.create({
+      tree.push(FdAttributesTree.create({
         text: text,
         name: attribute.get('name'),
         type: 'property',
@@ -105,7 +105,7 @@ let getAssociationTreeNode = function (tree, associationData, jsTreeId, rootId, 
       text += ' (' + startClass.get(`${addInText}`) + ')';
     }
 
-    tree.addObject(FdAttributesTree.create({
+    tree.push(FdAttributesTree.create({
       text: text,
       name: masterName,
       type: 'master',
@@ -140,7 +140,7 @@ let getAggregationTreeNode = function (tree, aggregationData, rootId, addInText)
       text += ' (' + endClass.get(`${addInText}`) + ')';
     }
 
-    tree.addObject(FdAttributesTree.create({
+    tree.push(FdAttributesTree.create({
       text: text,
       name: detailName,
       type: 'detail',
@@ -167,7 +167,7 @@ let getDetailView = function (aggregationData) {
 
     detailView.pushObject({
       detailName: endClass.get('name'),
-      detailRole: detail.get('startRole'),
+      detailRole: detail.get('endRole'),
       detailViewNameItems: detailViewsItems
     });
   });

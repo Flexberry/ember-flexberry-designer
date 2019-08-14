@@ -1,0 +1,29 @@
+{{#if visible}}
+  <div class="row {{if isActive 'active' ''}}" {{action 'selectedProperty' definition}}>
+    <div class="ten wide column">
+      {{flexberry-textbox
+        value=definition.name
+        class='ui header disable'
+        readonly=true
+        placeholder=(t "components.fd-businessserver-editing-panel.packet-placeholder")
+      }}
+    </div>
+    <div class="two wide column">
+      <button class="mini ui basic button icon circular" {{action 'changeVisible'}}>
+        <i class="{{if definition.visible 'eye' 'icon-fd-eye'}} icon"></i>
+      </button>
+    </div>
+    <div class="two wide column">
+      <button class="mini ui basic button icon circular" {{action delete definition}}>
+        <i class="icon-fd-x-mark icon"></i>
+      </button>
+    </div>
+    <div class="ten wide column">
+      {{flexberry-textbox
+        value=definition.caption
+        class='fluid input'
+        placeholder=(t "components.fd-businessserver-editing-panel.packet-placeholder")
+      }}
+    </div>
+  </div>
+{{/if}}
