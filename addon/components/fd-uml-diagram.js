@@ -211,6 +211,7 @@ export default Component.extend({
 
     paper.on('blank:pointerclick', this._blankPointerClick, this);
     paper.on('element:pointerclick', this._elementPointerClick, this);
+    paper.on('link:pointerclick', this._linkPointerClick, this);
     paper.on('blank:contextmenu', this._blankContextMenu, this);
 
     paper.on('updaterepobj', this._updateRepObj, this);
@@ -246,6 +247,23 @@ export default Component.extend({
   },
 
   /**
+  Handler event 'link:pointerclick'.
+
+  @method actions._linkPointerClick
+  @param {Object} link selected joint js link.
+  @param {jQuery.Event} e event.
+  @param {Number} x coordinate x.
+  @param {Number} y coordinate y.
+  **/
+  _linkPointerClick(link, e, x, y) {
+    let options = { link: link, e: e, x: x, y: y };
+    let placePoint = link.path.closestPointT({x:x,y:y});
+    let segmNo = placePoint.segmentIndex - 1;
+    let percent = placePoint.value;
+
+  },
+
+  /**
     Handler event 'element:pointerclick'.
 
     @method actions._elementPointerClick
@@ -271,9 +289,17 @@ export default Component.extend({
 
         this.set('isLinkAdding', true);
 
-        graph.getLinks().map(link => {
-          link.findView(paper).$el.addClass('edit-disabled');
-        }, this);
+        let links = graph.getLinks();
+        for (let i = 0; i < links.length; i+=1) {
+          let  link = links[i];
+          let view = link.findView(paper);
+          if (link.cid == newElement.cid) {
+            view.$el.addClass('edit-disabled');
+          } else {
+            view.$el.addClass('linktools-disabled');
+            view.options.interactive.vertexAdd = false;
+          }
+        }
 
         $(paper.el).find('input,textarea').addClass('click-disabled');
 
@@ -376,7 +402,11 @@ export default Component.extend({
     let graph = this.get('graph');
     let paper = this.get('paper');
     graph.getLinks().map(link => {
-      link.findView(paper).$el.removeClass('edit-disabled');
+      let view = link.findView(paper);
+      view.$el.removeClass('edit-disabled');
+      if ('vertexAdd' in view.options.interactive) {
+        delete view.options.interactive.vertexAdd;
+      }
     }, this);
 
     $(paper.el).find('input,textarea').removeClass('click-disabled');
