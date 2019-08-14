@@ -558,7 +558,7 @@ joint.util.setByPath(joint.shapes, 'flexberry.uml.BaseLinkWithUnderline', LinkWi
 
 let Point = joint.g.Point;
 
-joint.linkAnchors.connectionSegmRatio = function(endView, endMagnet, anchorReference, args) {
+joint.linkAnchors.connectionSegmRatio = function(endView/*, endMagnet, anchorReference, args*/) {
   let connectedLinks = endView.model.get('connectedLinks');
   if (!(this.id  in connectedLinks)) {
     connectedLinks[this.id] = this;
@@ -573,8 +573,6 @@ joint.linkAnchors.connectionSegmRatio = function(endView, endMagnet, anchorRefer
     segmNo =  objectModel.endSegmNo;
     percent = objectModel.endPercent;
   }
-//   let segmNo = args.segmNo;
-//   let percent = args.percent;
   if (percent > 1.0) percent = 1.0;
   if (percent < 0.0) percent = 0.0;
   let pathNo;
