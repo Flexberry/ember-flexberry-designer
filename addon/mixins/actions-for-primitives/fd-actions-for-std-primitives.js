@@ -10,7 +10,7 @@ import History from '../../objects/uml-primitives/fd-uml-history';
 import DeepHistory from '../../objects/uml-primitives/fd-uml-history';
 import StartState from '../../objects/uml-primitives/fd-uml-start-state';
 import FinalState from '../../objects/uml-primitives/fd-uml-final-state';
-import { getJsonForClass, getJsonForElement, getJsonForLink } from '../../utils/get-json-for-diagram';
+import { getJsonForElement, getJsonForLink } from '../../utils/get-json-for-diagram';
 
 /**
   Actions for creating joint js elements on diagrams.
