@@ -5,34 +5,44 @@
     </div>
   {{/each}}
 </div>
-  {{#each model as |value|}}
-    {{#if (not value.isDeleted)}}
-    <div class="row">  
-      <div class="column fd-table-checkbox">
-        {{flexberry-checkbox
-          onChange=(action 'selectValue' value)
+
+{{#each model as |value|}}
+  {{#if (not value.isDeleted)}}
+  <div class="row">
+    <div class="column fd-table-checkbox">
+      {{flexberry-checkbox
+        onChange=(action 'selectValue' value)
+      }}
+    </div>
+    {{#each tableView as |tableView|}}
+      <div class="column light-text">
+        {{flexberry-textbox
+          value=(mut (get value tableView.columnProperty))
+          class='fluid input'
+          placeholder=(t tableView.attrPlaceholder)
+          readonly=readonly
         }}
       </div>
-      {{#each tableView as |tableView|}}
-        <div class="column light-text">
-          {{flexberry-textbox
-            value=(mut (get value tableView.columnProperty))
-            class='fluid input'
-            placeholder=(t tableView.attrPlaceholder)
-          }}
-        </div>
-      {{/each}}
-    </div>      
+    {{/each}}
+    {{#if editButtonInRow}}
+      <button class="ui basic button icon circular" {{action 'editButtonInRowAction' value}}>
+        <i class="icon edit"></i>
+      </button>
     {{/if}}
-  {{/each}}
-<div class="row">
-  <div class="sixteen wide column buttons-row">
-    <button class="ui basic button table-btn" {{action 'createValue'}}>
-      {{t buttonCaption.createBtn}}
-    </button>
-    <button class="ui basic button table-btn" {{action 'deleteValue'}}>
-      <i class="icon icon-fd-checkbox-checked"></i>
-      {{t buttonCaption.deleteBtn}}
-    </button>
   </div>
-</div>
+  {{/if}}
+{{/each}}
+
+{{#if toolbarVisible}}
+  <div class="row">
+    <div class="sixteen wide column buttons-row">
+      <button class="ui basic button table-btn {{if readonlyButton 'disabled' ''}}" {{action 'createValue'}}>
+        {{t buttonCaption.createBtn}}
+      </button>
+      <button class="ui basic button table-btn {{if readonlyButton 'disabled' ''}}" {{action 'deleteValue'}}>
+        <i class="icon icon-fd-checkbox-checked"></i>
+        {{t buttonCaption.deleteBtn}}
+      </button>
+    </div>
+  </div>
+{{/if}}

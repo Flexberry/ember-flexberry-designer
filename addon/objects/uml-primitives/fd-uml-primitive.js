@@ -6,7 +6,6 @@ import EmberObject from '@ember/object';
 import { computed, get } from '@ember/object';
 import { A, isArray } from '@ember/array';
 import joint from 'npm:jointjs';
-import $ from 'jquery';
 
 /**
   An object that defines any primitive on the UML diagram.
@@ -70,6 +69,8 @@ export default EmberObject.extend({
     throw new Error('Not implemented.');
   },
 });
+
+
 
 joint.highlighters.strokeAndButtons = {
   _buttons: {},
@@ -162,7 +163,6 @@ joint.highlighters.strokeAndButtons = {
       this.addButtons(cellView, id);
     }
 
-    $(magnetEl.firstChild.children).attr({'fill-opacity':'1'});
     cellView.model.set('highlighted', true);
   },
 
@@ -171,7 +171,6 @@ joint.highlighters.strokeAndButtons = {
     let stroke = joint.highlighters.stroke;
     let id = stroke.getHighlighterId(magnetEl, opt);
     this.removeButtons(id);
-    $(magnetEl.firstChild.children).attr({'fill-opacity':'0'});
 
     cellView.model.set('highlighted', false);
   },
@@ -214,7 +213,10 @@ joint.highlighters.strokeAndButtons = {
   }
 };
 
-joint.shapes.basic.Generic.define('flexberry.uml.PrimitiveElementView');
+
+export let primitiveElementViewCell = joint.shapes.basic.Generic.define('flexberry.uml.PrimitiveElementView');
+joint.util.setByPath(joint.shapes, 'flexberry.uml.PrimitiveElementView', primitiveElementViewCell, '.');
+
 joint.shapes.flexberry.uml.PrimitiveElementView = joint.dia.ElementView.extend({
   getButtons() {
     return A([{
@@ -234,3 +236,4 @@ joint.shapes.flexberry.uml.PrimitiveElementView = joint.dia.ElementView.extend({
     this.model.remove();
   },
 });
+

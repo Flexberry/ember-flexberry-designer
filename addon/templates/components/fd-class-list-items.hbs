@@ -6,7 +6,7 @@
     {{
       fd-list-item
       model=entity.settings
-      caption=entity.settings.name
+      caption=entity.settings.data.name
       sheetComponentName=sheetComponentName
     }}
   </div>
@@ -21,7 +21,7 @@
         {{
           fd-list-item
           model=editForm
-          caption=editForm.name
+          caption=editForm.data.name
           sheetComponentName=sheetComponentName
         }}
       {{/each}}
@@ -38,7 +38,7 @@
         {{
           fd-list-item
           model=listForm
-          caption=listForm.name
+          caption=listForm.data.name
           sheetComponentName=sheetComponentName
         }}
       {{/each}}
@@ -54,7 +54,7 @@
       {{
         fd-list-item
         model=entity.bs
-        caption=entity.bs.name
+        caption=entity.bs.data.name
         sheetComponentName=sheetComponentName
       }}
     </div>
@@ -70,7 +70,7 @@
         {{
           fd-list-item
           model=parent
-          caption=parent.name
+          caption=parent.data.name
           sheetComponentName=sheetComponentName
         }}
       {{/each}}
@@ -81,10 +81,12 @@
     {{
       fd-button
       caption=(t "forms.fd-application-model.editor-caption")
+      click=(action createClassAction '«editform»' entity.settings.data)
     }}
     {{
       fd-button
       caption=(t "forms.fd-application-model.list-caption")
+      click=(action createClassAction '«listform»' entity.settings.data)
     }}
   </div>
 </div>

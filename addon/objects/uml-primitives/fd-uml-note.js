@@ -86,6 +86,8 @@ export let Note = BaseObject.define('flexberry.uml.Note', {
   ].join(''),
 });
 
+joint.util.setByPath(joint.shapes, 'flexberry.uml.Note', Note, '.');
+
 joint.shapes.flexberry.uml.NoteView = joint.shapes.flexberry.uml.BaseObjectView.extend({
   template: [
     '<div class="uml-class-inputs">',

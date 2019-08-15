@@ -110,7 +110,9 @@ export default Component.extend({
   /**
     Flag: indicates whether reload data with close node.
 
-    @method reloadDataAtClose
+    @property reloadDataAtClose
+    @type Bool
+    @default false
   */
   reloadDataAtClose: false,
 
@@ -120,6 +122,13 @@ export default Component.extend({
     @method selectNodeAction
   */
   selectNodeAction: undefined,
+
+  /**
+    Method for move tree nodes.
+
+    @method moveNodeAction
+  */
+  moveNodeAction: undefined,
 
   actions: {
 
@@ -134,10 +143,29 @@ export default Component.extend({
       if (this.get('reloadDataAtClose')) {
         this.get('treeObject').on('close_node.jstree', this._closeNodeTree.bind(this));
       }
+    },
 
+    /**
+      Handles selectNode jsTree.
+
+      @method actions.handleTreeDidSelectNode
+    */
+    handleTreeDidSelectNode(node) {
       let selectNodeAction = this.get('selectNodeAction');
-      if (selectNodeAction && typeof selectNodeAction === 'function') {
-        this.get('treeObject').on('select_node.jstree', this._selectNodeTree.bind(this));
+      if (typeof selectNodeAction === 'function') {
+        selectNodeAction(node, this.get('store'));
+      }
+    },
+
+    /**
+      Handles moveNode jsTree.
+
+      @method actions.handleTreeDidMoveNode
+    */
+    handleTreeDidMoveNode(node) {
+      let moveNodeAction = this.get('moveNodeAction');
+      if (typeof moveNodeAction === 'function') {
+        moveNodeAction(node);
       }
     },
   },

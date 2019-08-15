@@ -4,13 +4,16 @@ moduleFor('controller:fd-appstruct-form', 'Unit | Controller | new platform flex
   // Specify the other units that are required for this test.
   // needs: ['controller:foo']
   needs: [
+    'controller:advlimit-dialog',
+    'controller:colsconfig-dialog',
     'service:fd-current-project-context',
     'service:appState',
     'service:objectlistviewEvents',
     'controller:lookup-dialog',
     'controller:flexberry-file-view-dialog',
     'service:user-settings',
-    'service:detail-interaction'
+    'service:detail-interaction',
+    'service:adv-limit',
   ]
 });
 

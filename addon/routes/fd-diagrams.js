@@ -1,6 +1,7 @@
 import Route from '@ember/routing/route';
 import { inject as service } from '@ember/service';
-import { A } from '@ember/array';
+import { A, isArray } from '@ember/array';
+import { isNone } from '@ember/utils';
 
 export default Route.extend({
 
@@ -53,37 +54,44 @@ export default Route.extend({
     // Get current ad diagrams.
     let allAdDiagrams = store.peekAll('fd-dev-uml-ad');
     let adDiagramsCurrentStage = allAdDiagrams.filterBy('subsystem.stage.id', stage.get('id'));
-    modelHash.ad = A(adDiagramsCurrentStage);
+    let wrapAdDiagramsCurrentStage = this.wrapModel(adDiagramsCurrentStage);
+    modelHash.ad = A(wrapAdDiagramsCurrentStage);
 
     // Get current cad diagrams.
     let allCadDiagrams = store.peekAll('fd-dev-uml-cad');
     let cadDiagramsCurrentStage = allCadDiagrams.filterBy('subsystem.stage.id', stage.get('id'));
-    modelHash.cad = A(cadDiagramsCurrentStage);
+    let wrapCadDiagramsCurrentStage = this.wrapModel(cadDiagramsCurrentStage);
+    modelHash.cad = A(wrapCadDiagramsCurrentStage);
 
     // Get current cod diagrams.
     let allCodDiagrams = store.peekAll('fd-dev-uml-cod');
     let codDiagramsCurrentStage = allCodDiagrams.filterBy('subsystem.stage.id', stage.get('id'));
-    modelHash.cod = A(codDiagramsCurrentStage);
+    let wrapCodDiagramsCurrentStage = this.wrapModel(codDiagramsCurrentStage);
+    modelHash.cod = A(wrapCodDiagramsCurrentStage);
 
     // Get current dpd diagrams.
     let allDpdDiagrams = store.peekAll('fd-dev-uml-dpd');
     let dpdDiagramsCurrentStage = allDpdDiagrams.filterBy('subsystem.stage.id', stage.get('id'));
-    modelHash.dpd = A(dpdDiagramsCurrentStage);
+    let wrapDpdDiagramsCurrentStage = this.wrapModel(dpdDiagramsCurrentStage);
+    modelHash.dpd = A(wrapDpdDiagramsCurrentStage);
 
     // Get current sd diagrams.
     let allSdDiagrams = store.peekAll('fd-dev-uml-sd');
     let sdDiagramsCurrentStage = allSdDiagrams.filterBy('subsystem.stage.id', stage.get('id'));
-    modelHash.sd = A(sdDiagramsCurrentStage);
+    let wrapSdDiagramsCurrentStage = this.wrapModel(sdDiagramsCurrentStage);
+    modelHash.sd = A(wrapSdDiagramsCurrentStage);
 
     // Get current std diagrams.
     let allStdDiagrams = store.peekAll('fd-dev-uml-std');
     let stdDiagramsCurrentStage = allStdDiagrams.filterBy('subsystem.stage.id', stage.get('id'));
-    modelHash.std = A(stdDiagramsCurrentStage);
+    let wrapStdDiagramsCurrentStage = this.wrapModel(stdDiagramsCurrentStage);
+    modelHash.std = A(wrapStdDiagramsCurrentStage);
 
     // Get current ucd diagrams.
     let allUcdDiagrams = store.peekAll('fd-dev-uml-ucd');
     let ucdDiagramsCurrentStage = allUcdDiagrams.filterBy('subsystem.stage.id', stage.get('id'));
-    modelHash.ucd = A(ucdDiagramsCurrentStage);
+    let wrapUcdDiagramsCurrentStage = this.wrapModel(ucdDiagramsCurrentStage);
+    modelHash.ucd = A(wrapUcdDiagramsCurrentStage);
 
     return modelHash;
   },
@@ -98,7 +106,26 @@ export default Route.extend({
   setupController(controller) {
     this._super(...arguments);
 
+    controller.set('isAddMode', false);
     controller.set('sheetComponentName', this.get('sheetComponentName'));
+  },
+
+  /**
+    Wrap model data.
+
+    @method wrapModel
+    @param {Object} model
+  */
+  wrapModel(model) {
+    if (isNone(model)) {
+      return null;
+    }
+
+    if (isArray(model)) {
+      return A(model).map((element) => ({ data: element, active: false }));
+    } else {
+      return { data: model, active: false };
+    }
   },
 
   actions: {

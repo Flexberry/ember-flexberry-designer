@@ -396,6 +396,9 @@ export let Link = joint.dia.Link.define('flexberry.uml.Link', {
     },
   });
 
+joint.util.setByPath(joint.shapes, 'flexberry.uml.Link', Link, '.');
+
+
 /**
   Defines the JointJS link, which represents a Link with underline in the UML diagram.
 
@@ -412,3 +415,6 @@ export let LinkWithUnderline = Link.define('flexberry.uml.BaseLinkWithUnderline'
       joint.dia.Link.prototype.initialize.apply(this, arguments);
     },
   });
+
+joint.util.setByPath(joint.shapes, 'flexberry.uml.BaseLinkWithUnderline', LinkWithUnderline, '.');
+

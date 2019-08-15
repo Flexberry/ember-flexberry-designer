@@ -8,6 +8,7 @@ import joint from 'npm:jointjs';
 
 import FdUmlElement from './fd-uml-element';
 import { BaseObject } from './fd-uml-baseobject';
+import joint from 'npm:jointjs';
 
 /**
   An object that describes a partition on the UML diagram.
@@ -18,7 +19,7 @@ import { BaseObject } from './fd-uml-baseobject';
 export default FdUmlElement.extend({
 
   /**
-    The name of the class.
+    The name of the partition.
 
     @property name
     @type String
@@ -57,15 +58,6 @@ export default FdUmlElement.extend({
 */
 export let Partition = BaseObject.define('flexberry.uml.Partition', {
   attrs: {
-    text: {
-      'visibility': 'visible'
-    },
-    '.flexberry-uml-header-text':
-    {
-      'font-weight': 'bold',
-      'ref-y': 0,
-      'y-alignment': 'start'
-    },
     '.flexberry-uml-header-rect':
     {
       'stroke': 'black',
@@ -79,7 +71,6 @@ export let Partition = BaseObject.define('flexberry.uml.Partition', {
   markup: [
     '<g class="rotatable">',
     '<rect class="flexberry-uml-header-rect"/>',
-    '<text class="flexberry-uml-header-text"/>',
     '</g>'
   ].join(''),
 
@@ -100,3 +91,13 @@ joint.shapes.flexberry.uml.PartitionView = joint.shapes.flexberry.uml.BaseObject
     '</div>'
   ].join(''),
 });
+
+joint.shapes.flexberry.uml.PartitionView = joint.shapes.flexberry.uml.BaseObjectView.extend({
+  template: [
+    '<div class="uml-class-inputs">',
+    '<textarea class="class-name-input header-input" value="" rows="1" wrap="off"></textarea>',
+    '<div class="input-buffer"></div>',
+    '</div>'
+  ].join('')
+});
+

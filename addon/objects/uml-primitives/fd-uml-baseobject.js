@@ -44,7 +44,9 @@ export default FdUmlElement.extend({
   */
   attributes: computed('primitive.AttributesTxt.Text', {
     get() {
-      return this.get('primitive.AttributesTxt.Text').split('\n');
+      let text = this.get('primitive.AttributesTxt.Text');
+      let splitedText = isPresent(text) ? text.split('\n') : null;
+      return splitedText;
     },
     set(key, value) {
       let attributesTxt = (isArray(value)) ? value.join('\n') : value;
@@ -162,6 +164,8 @@ export let BaseObject = joint.shapes.basic.Generic.define('flexberry.uml.BaseObj
     attrs['.flexberry-uml-header-rect'].width = rectWidth;
   }
 });
+joint.util.setByPath(joint.shapes, 'flexberry.uml.BaseObject', BaseObject, '.');
+
 
 joint.shapes.flexberry.uml.BaseObjectView = joint.shapes.flexberry.uml.PrimitiveElementView.extend({
   template: [
@@ -237,6 +241,7 @@ joint.shapes.flexberry.uml.BaseObjectView = joint.shapes.flexberry.uml.Primitive
 
     // Remove the box when the model gets removed from the graph.
     this.model.on('remove', this.removeBox, this);
+    this.updateRectangles();
   },
 
   render: function () {
@@ -272,12 +277,17 @@ joint.shapes.flexberry.uml.BaseObjectView = joint.shapes.flexberry.uml.Primitive
     let offsetY = 0;
     let newHeight = 0;
     let newWidth = 0;
-    rects.forEach(function (rect) {
+    rects.forEach(function(rect) {
       if (this.markup.includes('flexberry-uml-' + rect.type + '-rect') && rect.element.inputElements) {
-        let $buffer = rect.element.inputElements.find('.input-buffer');
         let rectHeight = 0;
         let inputs = rect.element.inputElements.find('.' + rect.type + '-input');
-        inputs.each(function () {
+        let inputsDiv = inputs[0].parentElement;
+        if (! inputsDiv.parentElement || ! inputsDiv.parentElement.className.includes('joint-paper')) {
+          let jointPaper = $('.joint-paper')[0];
+          jointPaper.appendChild(inputsDiv);
+        }
+        let $buffer = rect.element.inputElements.find('.input-buffer');
+        inputs.each(function() {
           let $input = $(this);
           $buffer.css('font-weight', $input.css('font-weight'));
           $buffer.text($input.val());
@@ -300,7 +310,7 @@ joint.shapes.flexberry.uml.BaseObjectView = joint.shapes.flexberry.uml.Primitive
     }, this.model);
 
     newWidth += (this.model.get('widthPadding') || 0) * 2;
-    rects.forEach(function (rect) {
+    rects.forEach(function(rect) {
       rect.element.attr('.flexberry-uml-' + rect.type + '-rect/width', newWidth);
     });
 
@@ -310,4 +320,5 @@ joint.shapes.flexberry.uml.BaseObjectView = joint.shapes.flexberry.uml.Primitive
       this.highlight();
     }
   }
+
 });

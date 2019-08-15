@@ -147,10 +147,4 @@ export let defineProjections = function (modelClass) {
   modelClass.defineProjection('SearchSystem', 'fd-diagram', {
     name: attr('')
   });
-  modelClass.defineProjection('FdPreloadMetadata', 'fd-diagram', {
-    name: attr(''),
-    primitivesJsonString: attr(''),
-    primitivesStreamString: attr(''),
-    caseObjectsString: attr(''),
-  });
 };
