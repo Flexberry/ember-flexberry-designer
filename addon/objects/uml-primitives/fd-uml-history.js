@@ -6,7 +6,6 @@ import { computed } from '@ember/object';
 import joint from 'npm:jointjs';
 import { isArray } from '@ember/array';
 import FdUmlElement from './fd-uml-element';
-import { BaseObject } from './fd-uml-baseobject';
 
 /**
   An object that describes an history on the UML diagram.
