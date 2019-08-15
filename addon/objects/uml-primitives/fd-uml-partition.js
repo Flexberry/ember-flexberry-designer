@@ -78,9 +78,7 @@ export let Partition = BaseObject.define('flexberry.uml.Partition', {
 }, {
   markup: [
     '<g class="rotatable">',
-    '<g class="scalable">',
     '<rect class="flexberry-uml-header-rect"/>',
-    '</g>',
     '<text class="flexberry-uml-header-text"/>',
     '</g>'
   ].join(''),
@@ -95,7 +93,4 @@ export let Partition = BaseObject.define('flexberry.uml.Partition', {
 });
 
 joint.shapes.flexberry.uml.PartitionView = joint.shapes.flexberry.uml.BaseObjectView.extend({
-  updateRectangles() {
-    joint.shapes.flexberry.uml.BaseObjectView.prototype.updateRectangles.apply(this, arguments);
-  },
 });

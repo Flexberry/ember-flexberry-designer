@@ -29,7 +29,7 @@ export default FdUmlElement.extend({
     @method JointJS
   */
   JointJS() {
-    let properties = this.getProperties('id', 'name', 'size', 'position');
+    let properties = this.getProperties('id', 'size', 'position');
     properties.objectModel = this;
     return new UseCase(properties);
   },
@@ -61,14 +61,10 @@ export let UseCase = BaseObject.define('flexberry.uml.UseCase', {
       'fontFamily': 'Arial'
     }
   },
-  name: ''
 }, {
   markup: [
     '<g class="rotatable">',
-    '<g class="scalable">',
     '<rect class="flexberry-uml-header-rect"/>',
-    '</g>',
-    '<image/>',
     '<text class="flexberry-uml-header-text"/>',
     '</g>'
   ].join(''),
@@ -87,10 +83,4 @@ joint.shapes.flexberry.uml.UseCaseView = joint.shapes.flexberry.uml.BaseObjectVi
   getUsecaseName: function() {
     return this.model.attributes.objectModel.get('name');
   },
-
-
-  updateRectangles: function() {
-    joint.shapes.flexberry.uml.BaseObjectView.prototype.updateRectangles.apply(this, arguments);
-  }
-
 });

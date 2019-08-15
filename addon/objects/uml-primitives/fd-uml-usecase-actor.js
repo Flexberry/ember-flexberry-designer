@@ -97,7 +97,4 @@ export let UsecaseActor = BaseObject.define('flexberry.uml.UsecaseActor', {
 });
 
 joint.shapes.flexberry.uml.UsecaseActorView = joint.shapes.flexberry.uml.BaseObjectView.extend({
-  updateRectangles() {
-    joint.shapes.flexberry.uml.BaseObjectView.prototype.updateRectangles.apply(this, arguments);
-  },
 });
