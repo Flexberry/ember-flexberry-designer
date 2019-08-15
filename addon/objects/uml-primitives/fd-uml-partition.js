@@ -8,7 +8,6 @@ import joint from 'npm:jointjs';
 
 import FdUmlElement from './fd-uml-element';
 import { BaseObject } from './fd-uml-baseobject';
-import joint from 'npm:jointjs';
 
 /**
   An object that describes a partition on the UML diagram.
@@ -71,7 +70,7 @@ export let Partition = BaseObject.define('flexberry.uml.Partition', {
   markup: [
     '<g class="rotatable">',
     '<rect class="flexberry-uml-header-rect"/>',
-    '</g>'
+    '</g>',
   ].join(''),
 
   initialize: function () {
