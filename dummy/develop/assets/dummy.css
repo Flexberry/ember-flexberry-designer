@@ -60570,6 +60570,15 @@ body.pushable > .pusher {
 .joint-element .open-edit-form-button {
   cursor: pointer;
 }
+.joint-element .right-size-button {
+  cursor: ew-resize;
+}
+.joint-element .down-size-button {
+  cursor: ns-resize;
+}
+.joint-element .right-down-size-button {
+  cursor: nwse-resize;
+}
 .ui.grid.fd-table {
   width: 100%;
   padding-top: 1rem;
