@@ -93,4 +93,10 @@ export let Partition = BaseObject.define('flexberry.uml.Partition', {
 });
 
 joint.shapes.flexberry.uml.PartitionView = joint.shapes.flexberry.uml.BaseObjectView.extend({
+  template: [
+    '<div class="uml-class-inputs">',
+    '<textarea class="class-name-input header-input" value="" rows="1" wrap="off"></textarea>',
+    '<div class="input-buffer"></div>',
+    '</div>'
+  ].join(''),
 });

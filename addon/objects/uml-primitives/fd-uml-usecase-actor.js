@@ -97,4 +97,10 @@ export let UsecaseActor = BaseObject.define('flexberry.uml.UsecaseActor', {
 });
 
 joint.shapes.flexberry.uml.UsecaseActorView = joint.shapes.flexberry.uml.BaseObjectView.extend({
+  template: [
+    '<div class="uml-class-inputs">',
+    '<textarea class="class-name-input header-input" value="" rows="1" wrap="off"></textarea>',
+    '<div class="input-buffer"></div>',
+    '</div>'
+  ].join(''),
 });
