@@ -3,7 +3,7 @@
 */
 
 import { computed } from '@ember/object';
-import { isArray } from '@ember/array';
+import { A, isArray } from '@ember/array';
 import $ from 'jquery';
 import joint from 'npm:jointjs';
 
@@ -59,26 +59,12 @@ export default FdUmlClass.extend({
 */
 export let TemplateClass = Class.define('flexberry.uml.TemplateClass', {
   attrs: {
-    rect: { 'width': 200 },
-
     '.flexberry-uml-header-rect': { 'stroke': 'black', 'stroke-width': 1, 'fill': '#ffffff', 'fill-opacity': 0, 'mask': 'url(#custom-mask)' },
     '.flexberry-uml-params-rect': {
       'stroke': 'black', 'stroke-width': 1,
       'stroke-dasharray': '7 2',
       'fill': '#ffffff',
       'fill-opacity': 0
-    },
-
-    '.flexberry-uml-params-text': {
-      'ref': '.flexberry-uml-params-rect',
-      'ref-y': 0.5,
-      'ref-x': 0.5,
-      'text-anchor': 'middle',
-      'y-alignment': 'middle',
-      'font-weight': 'bold',
-      'fill': 'black',
-      'font-size': 12,
-      'font-family': 'Arial'
     },
 
     '.view-rect': { 'x': -1, 'y': -1, 'fill': 'white' },
@@ -250,5 +236,9 @@ joint.shapes.flexberry.uml.TemplateClassView = joint.shapes.flexberry.uml.ClassV
       this.unhighlight();
       this.highlight();
     }
+  },
+
+  getSizeChangers() {
+    return A();
   }
 });

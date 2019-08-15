@@ -163,6 +163,12 @@ joint.highlighters.strokeAndButtons = {
       this.addButtons(cellView, id);
     }
 
+    if (cellView.getSizeChangers instanceof Function) {
+      this.addSizeChangers(cellView, id);
+    }
+
+    cellView.update();
+
     cellView.model.set('highlighted', true);
   },
 
@@ -173,6 +179,31 @@ joint.highlighters.strokeAndButtons = {
     this.removeButtons(id);
 
     cellView.model.set('highlighted', false);
+  },
+
+  addSizeChangers(cellView, id) {
+    const changers = cellView.getSizeChangers();
+
+    changers.forEach(button => {
+      let svgNS = 'http://www.w3.org/2000/svg';
+      let g = document.createElementNS(svgNS, 'g');
+      let name = get(button, 'name');
+      g.setAttributeNS(null, 'class', name || '');
+      let circle = document.createElementNS(svgNS, 'circle');
+      let text = document.createElementNS(svgNS, 'text');
+      text.innerHTML = get(button, 'text');
+      g.appendChild(circle);
+      g.appendChild(text);
+      if (!isArray(this._buttons[id])) {
+        this._buttons[id] = A();
+      }
+
+      this._buttons[id].addObject(g);
+      cellView.vel.append(g);
+      cellView.model.attr(`.${name}`, get(button, 'attrs.element'));
+      cellView.model.attr(`.${name}>circle`, get(button, 'attrs.circle'));
+      cellView.model.attr(`.${name}>text`, get(button, 'attrs.text'));
+    }, this);
   },
 
   addButtons(cellView, id) {
@@ -187,6 +218,7 @@ joint.highlighters.strokeAndButtons = {
       text.innerHTML = get(button, 'text');
       g.appendChild(circle);
       g.appendChild(text);
+      g.onmousedown = this._onMouseDown;
       g.onclick = get(button, 'handler');
       if (!isArray(this._buttons[id])) {
         this._buttons[id] = A();
@@ -198,8 +230,6 @@ joint.highlighters.strokeAndButtons = {
       cellView.model.attr(`.${name}>circle`, get(button, 'attrs.circle'));
       cellView.model.attr(`.${name}>text`, get(button, 'attrs.text'));
     }, this);
-
-    cellView.update();
   },
 
   removeButtons(id) {
@@ -210,6 +240,10 @@ joint.highlighters.strokeAndButtons = {
     }
 
     this._buttons[id] = null;
+  },
+
+  _onMouseDown(e) {
+    e.stopPropagation();
   }
 };
 
@@ -227,6 +261,34 @@ joint.shapes.flexberry.uml.PrimitiveElementView = joint.dia.ElementView.extend({
         'element': {'ref-dx': 0,'ref-y': 0, 'ref': '.joint-highlight-stroke' },
         'circle': { r: 6, fill: '#007aff', stroke: '#007aff', 'stroke-width': 1 },
         'text': { fill: '#ffffff','font-size': 10, 'text-anchor': 'middle', x: 0, y: 3, 'font-family': 'Icons' },
+      }
+    }]);
+  },
+
+  getSizeChangers() {
+    return A([{
+      name: 'right-size-button',
+      text: '&#xf0da',
+      attrs: {
+        'element': { 'ref-dx': 0, 'ref-y': 0.5, 'ref': '.joint-highlight-stroke' },
+        'circle': { r: 6, fill: '#007aff', stroke: '#007aff', 'stroke-width': 1 },
+        'text': { fill: '#ffffff','font-size': 10, 'text-anchor': 'middle', x: 0.5, y: 3.5, 'font-family': 'Icons' },
+      }
+    }, {
+      name: 'right-down-size-button',
+      text: '&#xf0da',
+      attrs: {
+        'element': { 'ref-dx': 0, 'ref-dy': 0, 'ref': '.joint-highlight-stroke' },
+        'circle': { r: 6, fill: '#007aff', stroke: '#007aff', 'stroke-width': 1 },
+        'text': { fill: '#ffffff','font-size': 10, 'text-anchor': 'middle', x: 0.5, y: 3.5, 'transform': 'rotate(45)', 'font-family': 'Icons' },
+      }
+    }, {
+      name: 'down-size-button',
+      text: '&#xf0d7',
+      attrs: {
+        'element': { 'ref-x': 0.5, 'ref-dy': 0, 'ref': '.joint-highlight-stroke' },
+        'circle': { r: 6, fill: '#007aff', stroke: '#007aff', 'stroke-width': 1 },
+        'text': { fill: '#ffffff','font-size': 10, 'text-anchor': 'middle', x: 0, y: 3.5, 'font-family': 'Icons' },
       }
     }]);
   },
