@@ -1,13 +1,16 @@
 import Mixin from '@ember/object/mixin';
 import { A } from '@ember/array';
-import { StateEx } from '../../objects/uml-primitives/fd-uml-state-ex';
-import { StdClass } from '../../objects/uml-primitives/fd-uml-std-class';
-import { State } from '../../objects/uml-primitives/fd-uml-state';
-import { ComplexTransitionH, ComplexTransitionV } from '../../objects/uml-primitives/fd-uml-complex-transition';
-import { Connection } from '../../objects/uml-primitives/fd-uml-connection';
-import { History, DeepHistory } from '../../objects/uml-primitives/fd-uml-history';
-import { StartState } from '../../objects/uml-primitives/fd-uml-start-state';
-import { FinalState } from '../../objects/uml-primitives/fd-uml-final-state';
+import StateEx from '../../objects/uml-primitives/fd-uml-state-ex';
+import StdClass from '../../objects/uml-primitives/fd-uml-std-class';
+import State from '../../objects/uml-primitives/fd-uml-state';
+import ComplexTransitionH from '../../objects/uml-primitives/fd-uml-complex-transition';
+import ComplexTransitionV from '../../objects/uml-primitives/fd-uml-complex-transition';
+import Connection from '../../objects/uml-primitives/fd-uml-connection';
+import History from '../../objects/uml-primitives/fd-uml-history';
+import DeepHistory from '../../objects/uml-primitives/fd-uml-history';
+import StartState from '../../objects/uml-primitives/fd-uml-start-state';
+import FinalState from '../../objects/uml-primitives/fd-uml-final-state';
+import { getJsonForClass, getJsonForElement, getJsonForLink } from '../../utils/get-json-for-diagram';
 
 /**
   Actions for creating joint js elements on diagrams.
@@ -25,13 +28,18 @@ export default Mixin.create({
      */
     addStdClass(e) {
       this.createObjectData((function(x, y) {
-        let newStdClassObject = new StdClass({
-          position: { x: x, y: y },
-          size: { width: 100, height: 40 },
-          name: ''
-        });
+        let jsonObject = getJsonForElement(
+          'STORMCASE.UML.std.Class, UMLSTD',
+          { x, y },
+          { width: 100, height: 40 },
+          { Name: '' },
+          { InitialFolded: false, Folded: false }
+        );
+        let newStdClassObject = StdClass.create({ primitive: jsonObject });
 
-        return newStdClassObject;
+        this._addToPrimitives(newStdClassObject);
+
+        return newStdClassObject.JointJS();
       }).bind(this), e);
     },
 
@@ -43,13 +51,18 @@ export default Mixin.create({
      */
     addState(e) {
       this.createObjectData((function(x, y) {
-        let newStateObject = new State({
-          position: { x: x, y: y },
-          size: { width: 100, height: 40 },
-          name: ''
-        });
+        let jsonObject = getJsonForElement(
+          'STORMCASE.UML.std.State, UMLSTD',
+          { x, y },
+          { width: 100, height: 40 },
+          { Name: '' },
+          { InitialFolded: false, Folded: false }
+        );
+        let newStateObject = State.create({ primitive: jsonObject });
 
-        return newStateObject;
+        this._addToPrimitives(newStateObject);
+
+        return newStateObject.JointJS();
       }).bind(this), e);
     },
 
@@ -61,13 +74,18 @@ export default Mixin.create({
      */
     addStateEx(e) {
       this.createObjectData((function(x, y) {
-        let newStateExObject = new StateEx({
-          position: { x: x, y: y },
-          size: { width: 100, height: 40 },
-          name: ''
-        });
+        let jsonObject = getJsonForElement(
+          'STORMCASE.UML.std.StateEx, UMLSTD',
+          { x, y },
+          { width: 100, height: 40 },
+          { Name: '' },
+          { InitialFolded: false, Folded: false }
+        );
+        let newStateExObject = StateEx.create({ primitive: jsonObject });
 
-        return newStateExObject;
+        this._addToPrimitives(newStateExObject);
+
+        return newStateExObject.JointJS();
       }).bind(this), e);
     },
 
@@ -89,11 +107,15 @@ export default Mixin.create({
      */
     addHistory(e) {
       this.createObjectData((function(x, y) {
-        let newHistoryObject = new History({
-          position: { x: x, y: y },
-        });
+        let jsonObject = getJsonForElement(
+          'STORMCASE.UML.std.History, UMLSTD',
+          { x, y },
+        );
+        let newHistoryObject = History.create({ primitive: jsonObject });
 
-        return newHistoryObject;
+        this._addToPrimitives(newHistoryObject);
+
+        return newHistoryObject.JointJS();
       }).bind(this), e);
     },
 
@@ -105,11 +127,15 @@ export default Mixin.create({
      */
     addDeepHistory(e) {
       this.createObjectData((function(x, y) {
-        let newDeepHistoryObject = new DeepHistory({
-          position: { x: x, y: y },
-        });
+        let jsonObject = getJsonForElement(
+          'STORMCASE.UML.std.DeepHistory, UMLSTD',
+          { x, y },
+        );
+        let newDeepHistoryObject = DeepHistory.create({ primitive: jsonObject });
 
-        return newDeepHistoryObject;
+        this._addToPrimitives(newDeepHistoryObject);
+
+        return newDeepHistoryObject.JointJS();
       }).bind(this), e);
     },
 
@@ -121,11 +147,15 @@ export default Mixin.create({
      */
     addStartState(e) {
       this.createObjectData((function(x, y) {
-        let newStartStateObject = new StartState({
-          position: { x: x, y: y },
-        });
+        let jsonObject = getJsonForElement(
+          'STORMCASE.UML.std.DeepHistory, UMLSTD',
+          { x, y },
+        );
+        let newStartStateObject = StartState.create({ primitive: jsonObject });
 
-        return newStartStateObject;
+        this._addToPrimitives(newStartStateObject);
+
+        return newStartStateObject.JointJS();
       }).bind(this), e);
     },
 
@@ -137,11 +167,15 @@ export default Mixin.create({
      */
     addFinalState(e) {
       this.createObjectData((function(x, y) {
-        let newFinalStateObject = new FinalState({
-          position: { x: x, y: y },
-        });
+        let jsonObject = getJsonForElement(
+          'STORMCASE.UML.std.DeepHistory, UMLSTD',
+          { x, y },
+        );
+        let newFinalStateObject = FinalState.create({ primitive: jsonObject });
 
-        return newFinalStateObject;
+        this._addToPrimitives(newFinalStateObject);
+
+        return newFinalStateObject.JointJS();
       }).bind(this), e);
     },
 
@@ -153,12 +187,16 @@ export default Mixin.create({
      */
     addComplexTransitionH(e) {
       this.createObjectData((function(x, y) {
-        let newComplexTransitionHObject = new ComplexTransitionH({
-          position: { x: x, y: y },
-          size: { width: 200 },
-        });
+        let jsonObject = getJsonForElement(
+          'STORMCASE.UML.std.ComplexTransitionH, UMLSTD',
+          { x, y },
+          { width: 200 },
+        );
+        let newComplexTransitionHObject = ComplexTransitionH.create({ primitive: jsonObject });
 
-        return newComplexTransitionHObject;
+        this._addToPrimitives(newComplexTransitionHObject);
+
+        return newComplexTransitionHObject.JointJS();
       }).bind(this), e);
     },
 
@@ -170,12 +208,16 @@ export default Mixin.create({
      */
     addComplexTransitionV(e) {
       this.createObjectData((function(x, y) {
-        let newComplexTransitionVObject = new ComplexTransitionV({
-          position: { x: x, y: y },
-          size: { height: 200 },
-        });
+        let jsonObject = getJsonForElement(
+          'STORMCASE.UML.std.ComplexTransitionV, UMLSTD',
+          { x, y },
+          { width: 200 },
+        );
+        let newComplexTransitionVObject = ComplexTransitionV.create({ primitive: jsonObject });
 
-        return newComplexTransitionVObject;
+        this._addToPrimitives(newComplexTransitionVObject);
+
+        return newComplexTransitionVObject.JointJS();
       }).bind(this), e);
     },
 
@@ -187,18 +229,25 @@ export default Mixin.create({
      */
     addOnStdTransition(e) {
       this.createLinkData((function(linkProperties) {
-        let newTransitionObject = new Connection({
-          source: {
-            id: linkProperties.source
-          },
-          target: {
-            id: linkProperties.target
-          },
-          vertices: linkProperties.points || A()
-        });
+        let jsonObject = getJsonForLink(
+          'STORMCASE.UML.std.Transition, UMLSTD',
+          linkProperties.source,
+          null,
+          linkProperties.target,
+          null,
+          A(),
+          { Name: '' }
+        );
 
-        return newTransitionObject;
-      }).bind(this), e, A(['flexberry.uml.State', 'flexberry.uml.StateEx', 'flexberry.uml.ComplexTransitionH', 'flexberry.uml.ComplexTransitionV']));
+        let newTransitionObject = Connection.create({ primitive: jsonObject });
+        newTransitionObject.set('vertices', linkProperties.points || A());
+
+        this._addToPrimitives(newTransitionObject);
+
+        return newTransitionObject.JointJS();
+
+      }).bind(this), e, A(['flexberry.uml.State', 'flexberry.uml.StateEx', 'flexberry.uml.ComplexTransitionH', 'flexberry.uml.ComplexTransitionV',
+      'flexberry.uml.History', 'flexberry.uml.DeepHistory', 'flexberry.uml.StartState', 'flexberry.uml.FinalState', ]));
     },
 
     /**
