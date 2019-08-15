@@ -79,6 +79,12 @@ export let UseCase = BaseObject.define('flexberry.uml.UseCase', {
 });
 
 joint.shapes.flexberry.uml.UseCaseView = joint.shapes.flexberry.uml.BaseObjectView.extend({
+  template: [
+    '<div class="uml-class-inputs">',
+    '<textarea class="class-name-input header-input" value="" rows="1" wrap="off"></textarea>',
+    '<div class="input-buffer"></div>',
+    '</div>'
+  ].join(''),
 
   getUsecaseName: function() {
     return this.model.attributes.objectModel.get('name');
