@@ -305,12 +305,14 @@ FdActionsForUcdPrimitivesMixin, {
     toolbarButtonClicked(buttonName, e) {
       if (!isBlank(buttonName)) {
         switch (buttonName) {
-          case 'addNoteConnector':
           case 'pointerClick':
             this._enableEditLinks();
             break;
+          case 'addNoteConnector':
+            this._enableWrapLinks();
+            break;
           case 'addInheritance':
-            this._enableBaseLinks();
+            this._enableWrapBaseLinks();
             break;
           default:
             this._disableEditLinks();
@@ -403,7 +405,7 @@ FdActionsForUcdPrimitivesMixin, {
     }
   },
 
-  _enableBaseLinks: function() {
+  _enableWrapBaseLinks: function() {
     let paper = this.paper;
     let links = paper.model.getLinks();
     for (let i = 0; i < links.length; i+=1) {
@@ -416,6 +418,17 @@ FdActionsForUcdPrimitivesMixin, {
       } else {
         view.$el.addClass('edit-disabled');
       }
+    }
+  },
+  _enableWrapLinks: function() {
+    let paper = this.paper;
+    let links = paper.model.getLinks();
+    for (let i = 0; i < links.length; i+=1) {
+      let  link = links[i];
+      let view = link.findView(paper);
+      view.$el.removeClass('edit-disabled');
+      view.$el.addClass('linktools-disabled');
+      view.options.interactive.vertexAdd = false;
     }
   },
 
