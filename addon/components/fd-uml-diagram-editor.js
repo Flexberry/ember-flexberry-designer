@@ -27,7 +27,7 @@ FdActionsForUcdPrimitivesMixin, {
 
   layout,
 
-  store: service(),  
+  store: service(),
 
   /**
     Service for managing the state of the component.
@@ -228,14 +228,25 @@ FdActionsForUcdPrimitivesMixin, {
       let type = this.get('type');
       if (type === 'Link') {
         let element = options.element;
-        let model = element.model.attributes;
-        let type = model.type;
+        let model = element.model;
+        let attributes = model.attributes;
+        let type = attributes.type;
         let interactionElements = this.get('interactionElements');
 
         if ((isNone(interactionElements) || (isArray(interactionElements) && interactionElements.includes(type)) ||
          (isArray(interactionElements.start) && interactionElements.start.includes(type)))) {
           let newLink = this.get('newLink');
-          newLink.set({ 'target': { id: model.id }, 'endClassRepObj': { id: get(model, 'objectModel.repositoryObject') } });
+          let target = { id: attributes.id };
+          if (model.isLink()) {
+            target.anchor = {
+              name: 'connectionSegmRatio',
+              args: {
+                segmNo: options.segmNo,
+                percent: options.percent
+              }
+            };
+          }
+          newLink.set({ 'target': target, 'endClassRepObj': { id: get(attributes, 'objectModel.repositoryObject') } });
           let storeCallback = this.get('storeCallback');
           if (storeCallback) {
             let linkRecord = storeCallback({ startClassRepObj: newLink.get('startClassRepObj'), endClassRepObj: newLink.get('endClassRepObj') });
@@ -293,6 +304,17 @@ FdActionsForUcdPrimitivesMixin, {
      */
     toolbarButtonClicked(buttonName, e) {
       if (!isBlank(buttonName)) {
+        switch (buttonName) {
+          case 'addNoteConnector':
+          case 'pointerClick':
+            this._enableEditLinks();
+            break;
+          case 'addInheritance':
+            this._enableBaseLinks();
+            break;
+          default:
+            this._disableEditLinks();
+        }
         this.send(buttonName, e);
       }
     },
@@ -303,7 +325,7 @@ FdActionsForUcdPrimitivesMixin, {
       @method actions.collapseEditPanelToolbar
      */
     collapseEditPanelToolbar() {
-      this.toggleProperty('_collapseEditPanelToolbar');      
+      this.toggleProperty('_collapseEditPanelToolbar');
     }
   },
 
@@ -365,6 +387,46 @@ FdActionsForUcdPrimitivesMixin, {
     this.set('type', undefined);
     this.set('interactionElements', A());
     this.set('newLink', undefined);
+  },
+
+  _enableEditLinks: function() {
+    let paper = this.paper;
+    let links = paper.model.getLinks();
+    for (let i = 0; i < links.length; i+=1) {
+      let  link = links[i];
+      let view = link.findView(paper);
+      view.$el.removeClass('edit-disabled');
+      view.$el.removeClass('linktools-disabled');
+      if ('vertexAdd' in view.options.interactive) {
+        delete view.options.interactive.vertexAdd;
+      }
+    }
+  },
+
+  _enableBaseLinks: function() {
+    let paper = this.paper;
+    let links = paper.model.getLinks();
+    for (let i = 0; i < links.length; i+=1) {
+      let  link = links[i];
+      let view = link.findView(paper);
+      if (link.get('type') == 'flexberry.uml.Generalization' && !link.connectedToLine()) {
+        view.$el.removeClass('edit-disabled');
+        view.$el.addClass('linktools-disabled');
+        view.options.interactive.vertexAdd = false;
+      } else {
+        view.$el.addClass('edit-disabled');
+      }
+    }
+  },
+
+  _disableEditLinks: function() {
+    let paper = this.paper;
+    let links = paper.model.getLinks();
+    for (let i = 0; i < links.length; i+=1) {
+      let  link = links[i];
+      let view = link.findView(paper);
+      view.$el.addClass('edit-disabled');
+    }
   },
 
   /**

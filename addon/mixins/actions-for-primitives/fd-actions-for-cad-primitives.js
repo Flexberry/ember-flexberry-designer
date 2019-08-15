@@ -130,7 +130,7 @@ export default Mixin.create({
         newAssociation.setLabelText('endMultiplicity', '*');
 
         return newAssociation;
-      }).bind(this), e, A(['flexberry.uml.Class', 'flexberry.uml.TemplateClass', 'flexberry.uml.ClassCollapsed']), function(linkProperties) {
+      }).bind(this), e, A(['flexberry.uml.Class', 'flexberry.uml.TemplateClass', 'flexberry.uml.ClassCollapsed', 'flexberry.uml.Generalization']), function(linkProperties) {
         let store = this.get('store');
         let stage = this.get('currentProjectContext').getCurrentStageModel();
 

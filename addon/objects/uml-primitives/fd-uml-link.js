@@ -143,7 +143,6 @@ export default FdUmlPrimitive.extend({
     }
   }),
 
-
   /**
   The start multiplicity of a link.
 
@@ -281,6 +280,7 @@ export default FdUmlPrimitive.extend({
       return value;
     },
   }),
+
   /**
     See {{#crossLink "FdUmlPrimitive/JointJS:method"}}here{{/crossLink}}.
 
@@ -367,6 +367,13 @@ export let Link = joint.dia.Link.define('flexberry.uml.Link', {
       }, this);
 
       joint.dia.Link.prototype.initialize.apply(this, arguments);
+    },
+
+    connectedToLine: function() {
+      let objectModel= this.get('objectModel');
+      let ret= objectModel.get('primitive.EndLE.refType') == 'Link' && objectModel.get('primitive.EndLE.SegmNo') >= 0 ||
+        objectModel.get('primitive.StartLE.refType') == 'Link' && objectModel.get('primitive.StartLE.SegmNo') >= 0;
+      return ret;
     },
 
     /**

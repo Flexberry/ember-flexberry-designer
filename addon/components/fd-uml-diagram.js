@@ -255,12 +255,17 @@ export default Component.extend({
   @param {Number} x coordinate x.
   @param {Number} y coordinate y.
   **/
-  _linkPointerClick(link, e, x, y) {
-    let options = { link: link, e: e, x: x, y: y };
-    let placePoint = link.path.closestPointT({x:x,y:y});
-    let segmNo = placePoint.segmentIndex - 1;
-    let percent = placePoint.value;
-
+  _linkPointerClick(element, e, x, y) {
+    if (isNone(this.get('draggedLink'))) {
+      return;
+    }
+    let options = { element: element, e: e, x: x, y: y };
+    let placePoint = element.path.closestPointT({x:x,y:y});
+    options.segmNo = placePoint.segmentIndex - 1;
+    options.percent = placePoint.value;
+    if (this.get('endDragLink')(options)) {
+      this._clearLinksData();
+    }
   },
 
   /**
