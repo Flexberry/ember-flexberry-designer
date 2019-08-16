@@ -13,7 +13,7 @@ import joint from 'npm:jointjs';
   An object that describes an active state on an activity diagram
 
   @class FdUmlStdClass
-  @extends FdUmlObject
+  @extends FdUmlElement
 */
 export default FdUmlElement.extend({
   /**
@@ -56,7 +56,6 @@ export default FdUmlElement.extend({
 */
 export let StdClass = BaseObject.define('flexberry.uml.StdClass', {
 });
-
 
 joint.shapes.flexberry.uml.StdClassView = joint.shapes.flexberry.uml.BaseObjectView.extend({
   template: [

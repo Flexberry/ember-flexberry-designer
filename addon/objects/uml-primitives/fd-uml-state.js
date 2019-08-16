@@ -6,19 +6,17 @@ import { BaseObject } from './fd-uml-baseobject';
 
 import { computed } from '@ember/object';
 import { isArray } from '@ember/array';
-
 import joint from 'npm:jointjs';
 
 /**
   An object that describes an active state on an activity diagram
 
   @class FdUmlState
-  @extends FFdUmlElement
+  @extends FdUmlElement
 */
 export default FdUmlElement.extend({
   /**
     The name of the class.
-
     @property name
     @type String
   */
@@ -27,8 +25,8 @@ export default FdUmlElement.extend({
       return this.get('primitive.Name.Text');
     },
     set(key, value) {
-      let nameTxt = (isArray(value)) ? value.join('\n') : value;
-      this.set('primitive.Name.Text', nameTxt);
+      let attributesTxt = (isArray(value)) ? value.join('\n') : value;
+      this.set('primitive.Name.Text', attributesTxt);
       return value;
     },
   }),
@@ -50,11 +48,11 @@ export default FdUmlElement.extend({
 
   @for FdUmlState
   @class State
-  @extends StdClass
+  @extends BaseObject
   @namespace flexberry.uml
   @constructor
 */
-export let State =  BaseObject.define('flexberry.uml.State', {
+export let State = BaseObject.define('flexberry.uml.State', {
   attrs: {
     '.flexberry-uml-header-rect': { rx:10, ry:10 },
   }
