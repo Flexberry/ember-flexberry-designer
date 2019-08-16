@@ -62,6 +62,9 @@
     &.active-object-input {
       text-decoration: underline;
     }
+    &.object-in-state-input {
+      text-decoration: underline;
+    }
     &.instance-input {
       font-weight: normal;
       text-decoration: underline;
@@ -75,6 +78,20 @@
       font-weight: normal;
       text-decoration: underline;
       margin-top: 13px;
+    }
+    &.start-state-input {
+      min-width: 10px;
+      text-align: right;
+    }
+    &.final-state-input {
+      min-width: 10px;
+      text-align: left;
+    }
+    &.signal-input {
+      min-width: 30px;
+    }
+    &.complex-transition-input {
+      min-width: 1px;
     }
   }
   &.params-input {
@@ -101,6 +118,12 @@
     resize: none;
     line-height: 1.1;
     margin: 4px 0 0 0;
+    overflow: hidden;
+  }
+  &.state-input {
+    text-align: center;
+    resize: none;
+    line-height: 1.1;
     overflow: hidden;
   }
   &.start-multiplicity-input, &.end-multiplicity-input,
@@ -226,5 +249,17 @@
   .collapse-button,
   .open-edit-form-button {
     cursor: pointer;
+  }
+
+  .right-size-button {
+    cursor: ew-resize;
+  }
+
+  .down-size-button {
+    cursor: ns-resize;
+  }
+
+  .right-down-size-button {
+    cursor: nwse-resize;
   }
 }

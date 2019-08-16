@@ -27,7 +27,7 @@ FdActionsForUcdPrimitivesMixin, {
 
   layout,
 
-  store: service(),  
+  store: service(),
 
   /**
     Service for managing the state of the component.
@@ -120,6 +120,16 @@ FdActionsForUcdPrimitivesMixin, {
   paper: undefined,
 
   classNames: ['fd-uml-diagram-editor'],
+
+  attributeBindings: ['spellcheck'],
+
+  /**
+    Disable spellcheck for diagram elements.
+
+    @property spellcheck
+    @type Boolean
+  */
+  spellcheck: false,
 
   diagramType: computed('model.constructor.modelName', function() {
     let type = this.get('model.constructor.modelName');
@@ -303,7 +313,7 @@ FdActionsForUcdPrimitivesMixin, {
       @method actions.collapseEditPanelToolbar
      */
     collapseEditPanelToolbar() {
-      this.toggleProperty('_collapseEditPanelToolbar');      
+      this.toggleProperty('_collapseEditPanelToolbar');
     }
   },
 

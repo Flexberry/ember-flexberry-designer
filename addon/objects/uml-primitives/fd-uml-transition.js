@@ -4,9 +4,10 @@
 import joint from 'npm:jointjs';
 
 import FdUmlBaseLink from './fd-uml-link';
+import { computed } from '@ember/object';
 import { Connection } from './fd-uml-connection';
 import { Dependency } from './fd-uml-dependency';
-import { EmptyView } from './links-view/fd-empty-view';
+import { NormalizedDescriptionView } from './links-view/fd-normalized-description-view';
 
 /**
   An object that defines Transition link on the UML diagram.
@@ -15,6 +16,14 @@ import { EmptyView } from './links-view/fd-empty-view';
   @extends FdUmlBaseLink
 */
 export default FdUmlBaseLink.extend({
+
+  /**
+    Type of primitive.
+
+    @property type
+    @type String
+  */
+  type: computed.alias('primitive.$type'),
 
   /**
     See {{#crossLink "FdUmlPrimitive/JointJS:method"}}here{{/crossLink}}.
@@ -42,21 +51,12 @@ export default FdUmlBaseLink.extend({
 */
 export let Transition = Connection.define('flexberry.uml.Transition', {
   attrs: {
-    text: { 'visibility': 'visible' },
     rect: { 'visibility': 'visible' },
   }
 }, {
   initialize: function () {
-    this.updateLabel();
     Dependency.prototype.initialize.apply(this, arguments);
-  },
-  updateLabel: function () {
-    let labelsLen = this.attributes.labels.length;
-    if (labelsLen > 0) {
-      this.attributes.labels[2].attrs.text.text = '[' + this.attributes.labels[2].attrs.text.text;
-      this.attributes.labels[2].attrs.text.text = this.attributes.labels[2].attrs.text.text + ']';
-    }
-  },
+  }
 });
 
-joint.shapes.flexberry.uml.TransitionView = EmptyView;
+joint.shapes.flexberry.uml.TransitionView = NormalizedDescriptionView.extend();

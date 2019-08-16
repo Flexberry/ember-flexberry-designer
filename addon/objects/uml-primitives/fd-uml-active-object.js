@@ -56,12 +56,14 @@ export default FdUmlElement.extend({
   @constructor
 */
 export let ActiveObject = BaseObject.define('flexberry.uml.ActiveObject', {
-  attrs: {
-    text: {
-      'text-decoration': 'underline',
-      'font-weight': 'bold'
-    }
-  }
+  // Minimum height.
+  minHeight: 20,
+}, {
+  getRectangles() {
+    return [
+      { type: 'header', element: this }
+    ];
+  },
 });
 
 joint.shapes.flexberry.uml.ActiveObjectView = joint.shapes.flexberry.uml.BaseObjectView.extend({
