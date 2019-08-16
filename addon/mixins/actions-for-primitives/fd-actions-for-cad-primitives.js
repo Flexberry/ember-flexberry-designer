@@ -382,7 +382,7 @@ export default Mixin.create({
         let jsonObject = getJsonForElement(
           'STORMCASE.UML.cad.Instance, UMLCAD',
           { x, y },
-          { width: 80, height: 30 },
+          { width: 80, height: 20 },
           { Name: '' }
         );
         let instance = FdUmlInstance.create({ primitive: jsonObject });
@@ -404,7 +404,7 @@ export default Mixin.create({
         let jsonObject = getJsonForElement(
           'STORMCASE.UML.cad.ActiveObject, UMLCAD',
           { x, y },
-          { width: 80, height: 30 },
+          { width: 80, height: 20 },
           { Name: '' }
         );
         let activeObject = FdUmlActiveObject.create({ primitive: jsonObject });
@@ -426,7 +426,7 @@ export default Mixin.create({
         let jsonObject = getJsonForElement(
           'STORMCASE.UML.cad.MultiObject, UMLCAD',
           { x, y },
-          { width: 80, height: 30 },
+          { width: 80, height: 20 },
           { Name: '' }
         );
         let multiObject = FdUmlMultiObject.create({ primitive: jsonObject });
@@ -448,7 +448,7 @@ export default Mixin.create({
         let jsonObject = getJsonForElement(
           'STORMCASE.UML.cad.PropertyObject, UMLCAD',
           { x, y },
-          { width: 80, height: 40 },
+          { width: 80, height: 34 },
           { Name: '', Prop: '' }
         );
         let propertyObject = FdUmlPropertyObject.create({ primitive: jsonObject });
@@ -470,7 +470,7 @@ export default Mixin.create({
         let jsonObject = getJsonForElement(
           'STORMCASE.UML.cad.NarLink, UMLCAD',
           { x, y },
-          { width: 40, height: 40 },
+          { width: 80, height: 40 },
           { Name: '' }
         );
         let naryAssociation = FdUmlNAryAssociation.create({ primitive: jsonObject });
@@ -656,7 +656,7 @@ export default Mixin.create({
         let jsonObject = getJsonForElement(
           'STORMCASE.UML.cad.Package, UMLCAD',
           { x, y },
-          { width: 60, height: 40 },
+          { width: 80, height: 34 },
           { Name: '', Prop: '' }
         );
         let packageObject = FdUmlPackage.create({ primitive: jsonObject });

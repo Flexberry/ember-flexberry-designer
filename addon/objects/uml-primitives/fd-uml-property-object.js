@@ -79,17 +79,21 @@ export default FdUmlElement.extend({
   @constructor
 */
 export let PropertyObject = BaseClass.define('flexberry.uml.PropertyObject', {
-  attrs: {
-    '.flexberry-uml-header-text': {
-      'text-decoration': 'underline'
-    },
-  },
+  // Minimum height.
+  minHeight: 34,
 }, {
     markup: [
       '<g class="rotatable">',
       '<rect class="flexberry-uml-header-rect"/><rect class="flexberry-uml-body-rect"/>',
       '</g>'
-    ].join('')
+    ].join(''),
+
+    getRectangles() {
+      return [
+        { type: 'header', element: this },
+        { type: 'body', element: this },
+      ];
+    },
   });
 
 joint.shapes.flexberry.uml.PropertyObjectView = joint.shapes.flexberry.uml.BaseObjectView.extend();
