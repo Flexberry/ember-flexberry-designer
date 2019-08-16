@@ -95,8 +95,6 @@ export default Service.extend({
   getCurrentConfigurationModel() {
     let configuration = this.get('context.configurationModel');
 
-    assert('Current configuration is not set.', configuration);
-
     return configuration;
   },
 

@@ -58,32 +58,39 @@ Defines the JointJS object, which represents a 'NAryAssociation' object in the U
 @constructor
 */
 export let NAryAssociation = BaseObject.define('flexberry.uml.NAryAssociation', {
-  attrs: {
-  },
-
   // Inputs padding by X.
   widthPadding: 15,
 
   // Inputs bottom padding by Y.
-  heightBottomPadding: 50,
+  heightBottomPadding: 27,
+
+  // Minimum width.
+  minWidth: 80,
+
+  // Minimum height.
+  minHeight: 40,
 },
 {
-  markup: [
+  initialize: function () {
+    this.markup = [
       '<g class="rotatable">',
       '<g class="scalable">',
-      '<path class="flexberry-uml-header-rect" d="M 0 20 L 50 0 100 20 50 40 Z"/>',
+      `<path class="flexberry-uml-header-rect" d="M 0 ${this.get('minHeight') / 2} L ${this.get('minWidth') / 2} 0 ${this.get('minWidth')} ${this.get('minHeight') / 2} ${this.get('minWidth') / 2} ${this.get('minHeight')} Z"/>`,
       '</g>',
       '</g>'
-  ].join(''),
+    ].join('');
+
+    joint.shapes.flexberry.uml.BaseObject.prototype.initialize.apply(this, arguments);
+  },
 
   getRectangles() {
     return [
-      { type: 'header', text: this.getObjName(), element: this },
+      { type: 'header', element: this },
     ];
   },
 });
 
-joint.shapes.flexberry.uml.NAryAssociationView = joint.shapes.flexberry.uml.PrimitiveElementView.extend({
+joint.shapes.flexberry.uml.NAryAssociationView = joint.shapes.flexberry.uml.BaseObjectView.extend({
   template: [
     '<div class="uml-class-inputs">',
       '<div class="input-buffer nary-buffer"></div>',
@@ -131,86 +138,8 @@ joint.shapes.flexberry.uml.NAryAssociationView = joint.shapes.flexberry.uml.Prim
 
     // Remove the box when the model gets removed from the graph.
     this.model.on('remove', this.removeBox, this);
-    this.updateRectangles();
-  },
 
-  render: function() {
-    joint.dia.ElementView.prototype.render.apply(this, arguments);
-    this.paper.$el.prepend(this.$box);
-    this.paper.on('blank:pointerdown link:pointerdown element:pointerdown', function() {
-      this.$box.find('input:focus, textarea:focus').blur();
-    }, this);
-    this.updateBox();
-    this.updateRectangles();
-    return this;
-  },
-
-  updateBox: function() {
-    // Set the position and dimension of the box so that it covers the JointJS element.
-    let bbox = this.model.getBBox();
-    this.$box.css({
-      width: bbox.width,
-      height: bbox.height,
-      left: bbox.x,
-      top: bbox.y,
-      transform: 'rotate(' + (this.model.get('angle') || 0) + 'deg)'
-    });
-  },
-
-  removeBox: function() {
-    this.$box.remove();
-  },
-
-  updateRectangles: function() {
-    let rects = this.model.getRectangles();
-
-    let offsetY = 0;
-    let newHeight = 0;
-    let newWidth = 0;
-    rects.forEach(function(rect) {
-      if (this.markup.includes('flexberry-uml-' + rect.type + '-rect') && rect.element.inputElements) {
-        let rectHeight = 0;
-        let inputs = rect.element.inputElements.find('.' + rect.type + '-input');
-        let inputsDiv = inputs[0].parentElement;
-        if (! inputsDiv.parentElement || ! inputsDiv.parentElement.className.includes('joint-paper')) {
-          let jointPaper = $('.joint-paper')[0];
-          jointPaper.appendChild(inputsDiv);
-        }
-        let $buffer = rect.element.inputElements.find('.input-buffer');
-        inputs.each(function() {
-          let $input = $(this);
-          $buffer.css('font-weight', $input.css('font-weight'));
-          $buffer.text($input.val());
-          $input.width($buffer.width() + 1);
-          if ($input.width() > newWidth) {
-            newWidth = $input.width();
-          }
-
-          rectHeight += $input.height();
-        });
-
-        rectHeight += rect.element.get('heightBottomPadding') || 0;
-        newHeight += rectHeight;
-        rect.element.attr('.flexberry-uml-' + rect.type + '-rect/height', rectHeight);
-        rect.element.attr('.flexberry-uml-' + rect.type + '-rect/transform', 'translate(0,' + offsetY + ')');
-
-        offsetY += rectHeight;
-      }
-    }, this.model);
-
-    newWidth += (this.model.get('widthPadding') || 0) * 2;
-    rects.forEach(function(rect) {
-      rect.element.attr('.flexberry-uml-' + rect.type + '-rect/width', newWidth);
-    });
-
-    if (newHeight === 0) {
-      newHeight = 50;
-    }
-
-    this.model.resize(newWidth, newHeight);
-    if (this.model.get('highlighted')) {
-      this.unhighlight();
-      this.highlight();
-    }
+    const initSize = this.model.size();
+    this.updateRectangles(initSize.width, initSize.height);
   }
 });

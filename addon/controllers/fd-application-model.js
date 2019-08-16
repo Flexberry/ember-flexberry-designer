@@ -254,10 +254,17 @@ export default Controller.extend(FdSaveHasManyRelationshipsMixin, {
   */
   closeSheet(sheetName) {
     let sheetComponentName = this.get('sheetComponentName');
+    let sheetViewName = this.get('sheetViewName');
     if (sheetComponentName === sheetName) {
       this.deactivateListItem();
       this.closeViewSheet();
       this.set('selectedElement', undefined);
+    } else if (sheetViewName === sheetName) {
+      let selectedView = this.get('selectedView');
+      if (!isNone(selectedView)) {
+        selectedView.rollbackAll();
+        this.set('selectedView', undefined);
+      }
     }
   },
 
@@ -271,7 +278,6 @@ export default Controller.extend(FdSaveHasManyRelationshipsMixin, {
     let fdSheetService = this.get('fdSheetService');
     if (fdSheetService.isVisible(sheetViewName)) {
       fdSheetService.closeSheet(sheetViewName);
-      this.set('selectedView', undefined);
     }
   },
 
@@ -390,6 +396,20 @@ export default Controller.extend(FdSaveHasManyRelationshipsMixin, {
     },
 
     /**
+      Save 'selectedView'.
+
+       @method actions.saveView
+    */
+    saveView() {
+      let view = this.get('selectedView');
+      this.get('appState').loading();
+      view.save()
+      .finally(() => {
+        this.get('appState').reset();
+      });
+    },
+
+    /**
       Opening sheet 'view-sheet'.
 
        @method actions.openViewSheet
@@ -495,5 +515,24 @@ export default Controller.extend(FdSaveHasManyRelationshipsMixin, {
         this.get('appState').reset();
       });
     },
+
+    /**
+      Delete selected view.
+
+       @method actions.deleteView
+    */
+    deleteView() {
+      let view = this.get('selectedView');
+
+      this.get('appState').loading();
+      view.destroyRecord()
+      .then(() => {
+        this.set('selectedView', undefined);
+        this.get('fdSheetService').closeSheet(this.get('sheetViewName'));
+      })
+      .finally(() => {
+        this.get('appState').reset();
+      });
+    }
   }
 });
