@@ -4,7 +4,6 @@
 
 import { computed } from '@ember/object';
 import { isArray } from '@ember/array';
-import { BaseClass, Class } from './fd-uml-class';
 import joint from 'npm:jointjs';
 
 import { BaseObject } from './fd-uml-baseobject';
@@ -68,7 +67,6 @@ export default FdUmlElement.extend({
   JointJS() {
     let properties = this.getProperties('id', 'size', 'position');
     properties.objectModel = this;
-    return new StateEx(properties);
     if (this.get('type') === 'STORMCASE.UML.std.CompositeState, UMLSTD') {
       return new CompositeState(properties);
     } else {
@@ -126,4 +124,14 @@ joint.shapes.flexberry.uml.StateExView = joint.shapes.flexberry.uml.BaseObjectVi
 */
 export let CompositeState = StateEx.define('flexberry.uml.CompositeState', {
   attrs: { '.flexberry-uml-body-text': { 'font-weight':'bold', 'ref-y': 0, 'y-alignment': 'start' } }
+});
+
+joint.shapes.flexberry.uml.StateExView = joint.shapes.flexberry.uml.StateExView.extend({
+  template: [
+    '<div class="uml-class-inputs">',
+    '<textarea class="class-name-input header-input" value="" rows="1" wrap="off"></textarea>',
+    '<textarea class="attributes-input body-input" value="" rows="1" wrap="off"></textarea>',
+    '<div class="input-buffer"></div>',
+    '</div>'
+  ].join('')
 });
