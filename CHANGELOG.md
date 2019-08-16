@@ -2,6 +2,12 @@
 All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
+## [0.8.0-beta.1] - 2019-08-16
+### Added
+* Add primitives resizing on cad diagram.
+
+### Fixed
+* Fix new project creating.
 
 ## [0.8.0-beta.0] - 2019-08-13
 ### Added
