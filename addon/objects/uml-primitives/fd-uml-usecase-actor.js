@@ -3,7 +3,6 @@
 */
 import { computed } from '@ember/object';
 import { isArray } from '@ember/array';
-import joint from 'npm:jointjs';
 
 import FdUmlElement from './fd-uml-element';
 import { BaseObject } from './fd-uml-baseobject';
