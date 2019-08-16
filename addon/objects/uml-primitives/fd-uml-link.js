@@ -515,22 +515,23 @@ export let Link = joint.dia.Link.define('flexberry.uml.Link', {
       if (newVertices.length == 0) {
         return ret;
       }
-      for (let i = 0; i < newVertices.length; i +=1) {
-        if (i >= vertices.length) {
-          ret.segmNo = i;
+      let nVertex;
+      for (nVertex = 0; nVertex < newVertices.length; nVertex +=1) {
+        if (nVertex >= vertices.length) {
+          ret.segmNo = nVertex;
           return ret;
         }
-        let newVertex = newVertices[i];
-        let vertex = vertices[i];
+        let newVertex = newVertices[nVertex];
+        let vertex = vertices[nVertex];
         if (vertex.x != newVertex.x || vertex.y != newVertex.y) {
-          ret.segmNo = i;
+          ret.segmNo = nVertex;
           return ret;
         }
       }
-      ret.segmNo = -1;
+      ret.segmNo = nVertex;
       return ret;
 
-    },
+    }
 
   });
 
