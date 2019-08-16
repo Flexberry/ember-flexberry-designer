@@ -256,13 +256,34 @@ export default Component.extend({
   @param {Number} y coordinate y.
   **/
   _linkPointerClick(element, e, x, y) {
-    if (isNone(this.get('draggedLink'))) {
-      return;
-    }
     let options = { element: element, e: e, x: x, y: y };
-    let placePoint = element.path.closestPointT({x:x,y:y});
-    options.segmNo = placePoint.segmentIndex - 1;
-    options.percent = placePoint.value;
+    switch (element.model.get('editMode')) {
+      case 'addInheritance':
+        let startDragLink = this.get('startDragLink');
+        let placePoint = element.path.closestPointT({x:x,y:y});
+        options.segmNo = placePoint.segmentIndex - 1;
+        options.percent = placePoint.value;
+        let newElement = startDragLink(options);
+        this.set('draggedLink', newElement);
+        let graph = this.get('graph');
+        let paper = this.get('paper');
+        let linkView = newElement
+          .set({ 'target': { x: x, y: y } })
+          .addTo(graph).findView(paper);
+        this.set('isLinkAdding', true);
+        $(document).on({
+          'mousemove.example': this._onDrag.bind(this)
+        }, {
+          paper: paper,
+          element: newElement
+        });
+        this.set('draggedLinkView', linkView);
+        break;
+      default:
+        if (isNone(this.get('draggedLink'))) {
+          return;
+        }
+    }
     if (this.get('endDragLink')(options)) {
       this._clearLinksData();
     }
@@ -280,7 +301,11 @@ export default Component.extend({
   _elementPointerClick(element, e, x, y) {
     let options = { element: element, e: e, x: x, y: y };
     if (isNone(this.get('draggedLink'))) {
-      let newElement = this.get('startDragLink')(options);
+      if (element.model.get('type') == 'flexberry.uml.Class') {
+        this._disableEditLinks();
+      }
+      let startDragLink = this.get('startDragLink');
+      let newElement = startDragLink(options);
       if (isNone(newElement)) {
         element.highlight();
       } else {
@@ -855,5 +880,15 @@ export default Component.extend({
     let view = paper.findViewByModel(model);
     view.updateInputValue();
     view.updateRectangles();
+  },
+
+  _disableEditLinks: function() {
+    let paper = this.paper;
+    let links = paper.model.getLinks();
+    for (let i = 0; i < links.length; i+=1) {
+      let  link = links[i];
+      let view = link.findView(paper);
+      view.$el.addClass('edit-disabled');
+    }
   }
 });

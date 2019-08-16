@@ -108,12 +108,18 @@ let getJsonForElement = function(typeName, location, size, textProperties, prope
 /**
   Get json for base link.
 */
-let getJsonForBaseLink = function(typeName, startPrimitive, startPoint, endPrimitive, endPoint, vertices, repositoryObject) {
+let getJsonForBaseLink = function(typeName, startPrimitive, startPoint, endPrimitive, endPoint, vertices, repositoryObject, startSegment, endSegment) {
   startPoint = _normalizeLocation(startPoint);
   endPoint = _normalizeLocation(endPoint);
   startPrimitive = startPrimitive || '';
   endPrimitive = endPrimitive || '';
   vertices = _normalizeVertices(vertices);
+  if (!startSegment) {
+    startSegment = {'segmNo': -1, 'percent': 0};
+  }
+  if (!endSegment) {
+    endSegment = {'segmNo': -1, 'percent': 0};
+  }
 
   let baseLinkObject = getJsonForBasePrimitive(typeName, repositoryObject);
   let id = baseLinkObject.$id;
@@ -125,8 +131,8 @@ let getJsonForBaseLink = function(typeName, startPrimitive, startPoint, endPrimi
   Object.assign(baseLinkObject, _getJsonForPointBlock('EndPoint', endPoint.x, endPoint.y));
   Object.assign(baseLinkObject, { StartPrimitive: { $ref: startPrimitive } });
   Object.assign(baseLinkObject, { EndPrimitive: { $ref: endPrimitive } });
-  Object.assign(baseLinkObject, _getJsonForLEBlock('StartLE', id, startPrimitive, startPoint.x, startPoint.y, true));
-  Object.assign(baseLinkObject, _getJsonForLEBlock('EndLE', id, endPrimitive, endPoint.x, endPoint.y, false));
+  Object.assign(baseLinkObject, _getJsonForLEBlock('StartLE', id, startPrimitive, startPoint.x, startPoint.y, true, startSegment));
+  Object.assign(baseLinkObject, _getJsonForLEBlock('EndLE', id, endPrimitive, endPoint.x, endPoint.y, false, endSegment));
 
   return baseLinkObject;
 };
@@ -134,10 +140,10 @@ let getJsonForBaseLink = function(typeName, startPrimitive, startPoint, endPrimi
 /**
   Get json for link with additional properties.
 */
-let getJsonForLink = function(typeName, startPrimitive, startPoint, endPrimitive, endPoint, vertices, textProperties, properties, repositoryObject) {
+let getJsonForLink = function(typeName, startPrimitive, startPoint, endPrimitive, endPoint, vertices, textProperties, properties, repositoryObject, startSegment, endSegment) {
   properties = properties || {};
   textProperties = textProperties || {};
-  let linkObject = getJsonForBaseLink(typeName, startPrimitive, startPoint, endPrimitive, endPoint, vertices, repositoryObject);
+  let linkObject = getJsonForBaseLink(typeName, startPrimitive, startPoint, endPrimitive, endPoint, vertices, repositoryObject, startSegment, endSegment);
 
   for (let prop in textProperties) {
     Object.assign(linkObject, _getJsonForPropBlock(prop, textProperties[prop]));
@@ -2072,7 +2078,7 @@ let _getJsonForPropBlock = function(propName, value, location, size) {
 /*
   Get JSON for LE block.
 */
-let _getJsonForLEBlock = function(propName, id, primitiveId, x, y, isStart) {
+let _getJsonForLEBlock = function(propName, id, primitiveId, x, y, isStart, segment) {
   x = x || 0;
   y = y || 0;
   let result = {};
@@ -2110,8 +2116,8 @@ let _getJsonForLEBlock = function(propName, id, primitiveId, x, y, isStart) {
     },
     IsStart: isStart,
     Parent: { $ref: id },
-    Percent: isStart ? 0.25 : 0,
-    SegmNo: isStart ? 0 : -1,
+    Percent: segment.percent,
+    SegmNo: segment.segmNo,
     Primitive: { $ref: primitiveId }
   };
 

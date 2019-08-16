@@ -43,6 +43,12 @@ export default FdUmlPrimitive.extend({
     set(key, value) {
       this.set('primitive.StartPrimitive.$ref', value.id);
       this.set('primitive.StartLE.Primitive.$ref', value.id);
+      if ('segmNo' in value) {
+        this.set('primitive.StartLE.SegmNo', value.segmNo);
+      }
+      if ('percent' in value) {
+        this.set('primitive.StartLE.Percent', value.percent);
+      }
       return value;
     },
   }),
@@ -74,7 +80,12 @@ export default FdUmlPrimitive.extend({
     set(key, value) {
       this.set('primitive.EndPrimitive.$ref', value.id);
       this.set('primitive.EndLE.Primitive.$ref', value.id);
-      return value;
+      if ('segmNo' in value) {
+        this.set('primitive.EndLE..SegmNo', value.segmNo);
+      }
+      if ('percent' in value) {
+        this.set('primitive.EndLE..Percent', value.percent);
+      }       return value;
     },
   }),
 

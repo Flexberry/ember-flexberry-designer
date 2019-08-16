@@ -251,6 +251,12 @@ export default Mixin.create({
      */
     addInheritance(e) {
       this.createLinkData((function(linkProperties) {
+        if (!('segmNo' in linkProperties)) {
+          linkProperties.segmNo = -1;
+        }
+        if (!('percent' in linkProperties)) {
+          linkProperties.percent = 0;
+        }
         let jsonObject = getJsonForLink(
           'STORMCASE.UML.cad.Inheritance, UMLCAD',
           linkProperties.source,
@@ -259,7 +265,9 @@ export default Mixin.create({
           null,
           A(),
           { Name: '' },
-          { NamePos: 0.0 }
+          { NamePos: 0.0 },
+          undefined,
+          {'segmNo': linkProperties.segmNo, 'percent': linkProperties.percent}
         );
 
         let inheritanceObject = FdUmlGeneralization.create({ primitive: jsonObject });
@@ -268,7 +276,7 @@ export default Mixin.create({
         this._addToPrimitives(inheritanceObject);
 
         return inheritanceObject.JointJS();
-      }).bind(this), e, A(['flexberry.uml.Class', 'flexberry.uml.TemplateClass']), function(linkProperties) {
+      }).bind(this), e, A(['flexberry.uml.Class', 'flexberry.uml.TemplateClass', 'flexberry.uml.Generalization']), function(linkProperties) {
         let store = this.get('store');
         let stage = this.get('currentProjectContext').getCurrentStageModel();
 

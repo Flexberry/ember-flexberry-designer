@@ -158,7 +158,7 @@ FdActionsForUcdPrimitivesMixin, {
     */
     fitToContent() {
       let paper = this.get('paper');
-      if (isNone(paper)) {
+      if (isNone(paper) || !this.$()) {
         return;
       }
 
@@ -210,7 +210,12 @@ FdActionsForUcdPrimitivesMixin, {
         if ((isNone(interactionElements) || (isArray(interactionElements) && interactionElements.includes(type)) ||
          (isArray(interactionElements.start) && interactionElements.start.includes(type)))) {
           let jointjsCallback = this.get('jointjsCallback');
-          let newLink = jointjsCallback({ source: model.id });
+          let linkProperties = { source: model.id };
+          if ('segmNo' in options) {
+            linkProperties.segmNo = options.segmNo;
+            linkProperties.percent = options.percent;
+          }
+          let newLink = jointjsCallback(linkProperties);
           newLink.set({ 'startClassRepObj': { id: get(model, 'objectModel.repositoryObject') } });
           this.set('newLink', newLink);
           return newLink;
@@ -312,7 +317,7 @@ FdActionsForUcdPrimitivesMixin, {
             this._enableWrapLinks();
             break;
           case 'addInheritance':
-            this._enableWrapBaseLinks();
+            this._enableWrapBaseLinks(buttonName);
             break;
           default:
             this._disableEditLinks();
@@ -405,7 +410,7 @@ FdActionsForUcdPrimitivesMixin, {
     }
   },
 
-  _enableWrapBaseLinks: function() {
+  _enableWrapBaseLinks: function(editMode) {
     let paper = this.paper;
     let links = paper.model.getLinks();
     for (let i = 0; i < links.length; i+=1) {
@@ -415,6 +420,7 @@ FdActionsForUcdPrimitivesMixin, {
         view.$el.removeClass('edit-disabled');
         view.$el.addClass('linktools-disabled');
         view.options.interactive.vertexAdd = false;
+        link.set('editMode', editMode);
       } else {
         view.$el.addClass('edit-disabled');
       }
