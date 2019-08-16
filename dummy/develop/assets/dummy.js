@@ -7518,6 +7518,11 @@ define('dummy/ember-flexberry-designer/tests/addon.lint-test', [], function () {
     assert.ok(true, 'addon/objects/uml-primitives/fd-uml-usecase-generalization.js should pass ESLint\n\n');
   });
 
+  QUnit.test('addon/objects/uml-primitives/fd-uml-usecase-undirected-association.js', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'addon/objects/uml-primitives/fd-uml-usecase-undirected-association.js should pass ESLint\n\n');
+  });
+
   QUnit.test('addon/objects/uml-primitives/links-view/fd-description-view.js', function (assert) {
     assert.expect(1);
     assert.ok(true, 'addon/objects/uml-primitives/links-view/fd-description-view.js should pass ESLint\n\n');
