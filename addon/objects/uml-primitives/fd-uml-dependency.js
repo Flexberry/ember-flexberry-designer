@@ -49,8 +49,6 @@ export let Dependency = Link.define('flexberry.uml.Dependency', {
   initialize(properties) {
     setLinkColors(properties.primitive, this);
   }
-}
-
-);
+});
 
 joint.shapes.flexberry.uml.DependencyView = DescriptionView;

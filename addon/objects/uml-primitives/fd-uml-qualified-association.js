@@ -70,27 +70,18 @@ export let QualifiedAssociation = Link.define('flexberry.uml.QualifiedAssociatio
         return isVertical ? -10 : -5;
       case 'description':
         return 0.5;
-      default:
-        // eslint-disable-next-line no-console
-        console.log('ERROR - choose correct label name');
     }
   }
 });
 
 joint.shapes.flexberry.uml.QualifiedAssociationView = QualifiedView.extend({
   template: [
-    '<div class="input-buffer"></div>',
     '<div class="uml-link-inputs">',
     '<input type="text" class="description-input underline-text" value="" />',
-    '</div>',
-    '<div class="uml-link-inputs">',
     '<input type="text" class="start-role-input" value="" />',
-    '</div>',
-    '<div class="uml-link-inputs">',
     '<input type="text" class="end-role-input" value="" />',
-    '</div>',
-    '<div class="uml-link-inputs">',
     '<input type="text" class="qualified-input" value="" />',
+    '<div class="input-buffer"></div>',
     '</div>'
   ].join(''),
 });

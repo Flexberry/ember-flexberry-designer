@@ -3,7 +3,7 @@
 */
 
 import { computed } from '@ember/object';
-import { isArray } from '@ember/array';
+import { A, isArray } from '@ember/array';
 import $ from 'jquery';
 import joint from 'npm:jointjs';
 
@@ -60,26 +60,12 @@ export default FdUmlClass.extend({
 */
 export let TemplateClass = Class.define('flexberry.uml.TemplateClass', {
   attrs: {
-    rect: { 'width': 200 },
-
     '.flexberry-uml-header-rect': { 'stroke': 'black', 'stroke-width': 1, 'fill': '#ffffff', 'fill-opacity': 0, 'mask': 'url(#custom-mask)' },
     '.flexberry-uml-params-rect': {
       'stroke': 'black', 'stroke-width': 1,
       'stroke-dasharray': '7 2',
       'fill': '#ffffff',
       'fill-opacity': 0
-    },
-
-    '.flexberry-uml-params-text': {
-      'ref': '.flexberry-uml-params-rect',
-      'ref-y': 0.5,
-      'ref-x': 0.5,
-      'text-anchor': 'middle',
-      'y-alignment': 'middle',
-      'font-weight': 'bold',
-      'fill': 'black',
-      'font-size': 12,
-      'font-family': 'Arial'
     },
 
     '.view-rect': { 'x': -1, 'y': -1, 'fill': 'white' },
@@ -147,6 +133,7 @@ joint.shapes.flexberry.uml.TemplateClassView = joint.shapes.flexberry.uml.ClassV
     let paramsInput = this.$box.find('.params-input');
     paramsInput.prop('rows', objectModel.get('params').length || 1);
     paramsInput.val(objectModel.get('params').join('\n'));
+    this.updateRectangles();
   },
 
   updateBox: function() {
@@ -178,6 +165,7 @@ joint.shapes.flexberry.uml.TemplateClassView = joint.shapes.flexberry.uml.ClassV
     let attrs = this.model.get('attrs');
     attrs['.flexberry-uml-header-rect'].mask = 'url(#' + maskId + ')';
     this.updateRectangles();
+    this.update();
 
     return this;
   },
@@ -199,9 +187,14 @@ joint.shapes.flexberry.uml.TemplateClassView = joint.shapes.flexberry.uml.ClassV
     let paramHeight = 0;
     rects.forEach(function(rect) {
       if (this.markup.includes('flexberry-uml-' + rect.type + '-rect') && rect.element.inputElements) {
-        let $buffer = rect.element.inputElements.find('.input-buffer');
         let rectHeight = 0;
         let inputs = rect.element.inputElements.find('.' + rect.type + '-input');
+        let inputsDiv = inputs[0].parentElement;
+        if (! inputsDiv.parentElement || ! inputsDiv.parentElement.className.includes('joint-paper')) {
+          let jointPaper = $('.joint-paper')[0];
+          jointPaper.appendChild(inputsDiv);
+        }
+        let $buffer = rect.element.inputElements.find('.input-buffer');
         inputs.each(function() {
           let $input = $(this);
           $buffer.css('font-weight', $input.css('font-weight'));
@@ -246,5 +239,9 @@ joint.shapes.flexberry.uml.TemplateClassView = joint.shapes.flexberry.uml.ClassV
       this.unhighlight();
       this.highlight();
     }
+  },
+
+  getSizeChangers() {
+    return A();
   }
 });

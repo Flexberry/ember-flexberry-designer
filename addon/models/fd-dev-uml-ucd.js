@@ -12,9 +12,9 @@ import FdUmlNote from '../objects/uml-primitives/fd-uml-note';
 import FdUmlNoteConnector from '../objects/uml-primitives/fd-uml-note-connector';
 import FdUmlUsecaseActor from '../objects/uml-primitives/fd-uml-usecase-actor';
 import FdUmlUseCase from '../objects/uml-primitives/fd-uml-use-case';
-import FdUmlAssociation from '../objects/uml-primitives/fd-uml-association';
 import FdUmlUsecaseGeneralization from '../objects/uml-primitives/fd-uml-usecase-generalization';
 import FdUmlDependency from '../objects/uml-primitives/fd-uml-dependency';
+import FdUmlUnDirectedAssociation from '../objects/uml-primitives/fd-uml-usecase-undirected-association';
 import FdUmlDirectedAssociation from '../objects/uml-primitives/fd-uml-usecase-directed-association';
 import FdUmlPartition from '../objects/uml-primitives/fd-uml-partition';
 
@@ -45,7 +45,7 @@ let Model = UCDModel.extend(DevUMLUCDMixin, {
           result.pushObject(FdUmlUseCase.create({ primitive }));
           break;
         case 'STORMCASE.UML.ucd.UndirectedAssoc, UMLUCD':
-          result.pushObject(FdUmlAssociation.create({ primitive }));
+          result.pushObject(FdUmlUnDirectedAssociation.create({ primitive }));
           break;
         case 'STORMCASE.UML.ucd.DirectedAssoc, UMLUCD':
           result.pushObject(FdUmlDirectedAssociation.create({ primitive }));

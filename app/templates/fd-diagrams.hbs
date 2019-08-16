@@ -15,6 +15,15 @@
         }}
       </div>
     </div>
+    <div class="row">
+      <div class="right floated thirteen wide column">
+        {{
+          fd-button
+          caption=(t "forms.fd-diagrams.create-button")
+          click=(action 'openCreateDiagramsEditPanel')
+        }}
+      </div>
+    </div>
 
     {{!-- ad --}}
     {{#if (not-eq filteredModel.ad.length 0)}}
@@ -27,7 +36,7 @@
           {{
             fd-list-item
             model=ad
-            caption=ad.name
+            caption=ad.data.name
             sheetComponentName=sheetComponentName
           }}
         {{/each}}
@@ -36,6 +45,7 @@
         {{
           fd-button
           caption=(t "forms.fd-diagrams.ad")
+          click=(action 'createDiagram' 'ad')
         }}
       </div>
     </div>
@@ -52,7 +62,7 @@
           {{
             fd-list-item
             model=cad
-            caption=cad.name
+            caption=cad.data.name
             sheetComponentName=sheetComponentName
           }}
         {{/each}}
@@ -61,6 +71,7 @@
         {{
           fd-button
           caption=(t "forms.fd-diagrams.cad")
+          click=(action 'createDiagram' 'cad')
         }}
       </div>
     </div>
@@ -77,7 +88,7 @@
           {{
             fd-list-item
             model=cod
-            caption=cod.name
+            caption=cod.data.name
             sheetComponentName=sheetComponentName
           }}
         {{/each}}
@@ -86,6 +97,7 @@
         {{
           fd-button
           caption=(t "forms.fd-diagrams.cod")
+          click=(action 'createDiagram' 'cod')
         }}
       </div>
     </div>
@@ -102,7 +114,7 @@
           {{
             fd-list-item
             model=dpd
-            caption=dpd.name
+            caption=dpd.data.name
             sheetComponentName=sheetComponentName
           }}
         {{/each}}
@@ -111,6 +123,7 @@
         {{
           fd-button
           caption=(t "forms.fd-diagrams.dpd")
+          click=(action 'createDiagram' 'dpd')
         }}
       </div>
     </div>
@@ -127,7 +140,7 @@
           {{
             fd-list-item
             model=sd
-            caption=sd.name
+            caption=sd.data.name
             sheetComponentName=sheetComponentName
           }}
         {{/each}}
@@ -136,6 +149,7 @@
         {{
           fd-button
           caption=(t "forms.fd-diagrams.sd")
+          click=(action 'createDiagram' 'sd')
         }}
       </div>
     </div>
@@ -152,7 +166,7 @@
           {{
             fd-list-item
             model=std
-            caption=std.name
+            caption=std.data.name
             sheetComponentName=sheetComponentName
           }}
         {{/each}}
@@ -161,6 +175,7 @@
         {{
           fd-button
           caption=(t "forms.fd-diagrams.std")
+          click=(action 'createDiagram' 'std')
         }}
       </div>
     </div>
@@ -177,7 +192,7 @@
           {{
             fd-list-item
             model=ucd
-            caption=ucd.name
+            caption=ucd.data.name
             sheetComponentName=sheetComponentName
           }}
         {{/each}}
@@ -186,6 +201,7 @@
         {{
           fd-button
           caption=(t "forms.fd-diagrams.ucd")
+          click=(action 'createDiagram' 'ucd')
         }}
       </div>
     </div>
@@ -196,20 +212,26 @@
 
 
 {{#fd-sheet
-  title=selectedElement.model.name
+  title=computedTitle
   saveController=(action 'save')
+  deleteController=(action 'delete')
   sheetComponentName=sheetComponentName
+  toolbarVisible=(not isAddMode)
 }}
-{{#if isDiagramVisible}}
-  {{
-    fd-uml-diagram-editor
-    model=selectedElement.model
-    emptyReferenceCountItems=emptyReferenceCountItems
-    sheetComponentName=sheetComponentName
-    openEditFormAction=(action "openObjectEditForm")
-  }}
-{{/if}}
-
+  {{#if isAddMode}}
+    {{fd-editing-panels/fd-create-diagrams
+      createDiagramAction=(action 'createDiagram')
+    }}
+  {{else}}
+    {{#if isDiagramVisible}}
+      {{fd-uml-diagram-editor
+        model=selectedElement.model.data
+        emptyReferenceCountItems=emptyReferenceCountItems
+        sheetComponentName=sheetComponentName
+        openEditFormAction=(action "openObjectEditForm")
+      }}
+    {{/if}}
+  {{/if}}
 {{/fd-sheet}}
 
 {{#fd-sheet
@@ -228,3 +250,16 @@
     }}
   {{/if}}
 {{/fd-sheet}}
+
+{{#if _showErrorDialog}}
+  {{#modal-dialog
+    title=_classErrors
+    useOkButton=false
+    useCloseButton=false
+    settings=(hash
+      onHidden=(action set "_showErrorDialog" false)
+      context=".pusher:first"
+    )
+  }}
+  {{/modal-dialog}}
+{{/if}}

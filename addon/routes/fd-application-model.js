@@ -1,6 +1,7 @@
 import Route from '@ember/routing/route';
 import { inject as service } from '@ember/service';
-import { A } from '@ember/array';
+import { A, isArray } from '@ember/array';
+import { isNone } from '@ember/utils';
 
 export default Route.extend({
 
@@ -93,54 +94,66 @@ export default Route.extend({
       let classFormsArray = A(classForms);
       let editForms = classFormsArray.filterBy('stereotype', '«editform»');
       let listForms = classFormsArray.filterBy('stereotype', '«listform»');
+      let wrapEditForms = this.wrapModel(editForms);
+      let wrapListForms = this.wrapModel(listForms);
 
       let inheritanceData = inheritanceCurrentStage.filterBy('child.id', implementation.get('id'));
       let parents = A(inheritanceData).mapBy('parent');
+      let wrapParents = this.wrapModel(parents);
 
       modelHash.classes.pushObject({
-        settings: implementation,
-        editForms: A(editForms),
-        listForms: A(listForms),
-        parents: A(parents),
-        bs: implementation.get('businessServerClass')
+        settings: this.wrapModel(implementation),
+        editForms: A(wrapEditForms),
+        listForms: A(wrapListForms),
+        parents: A(wrapParents),
+        bs: this.wrapModel(implementation.get('businessServerClass'))
       });
     });
 
     // Typedef.
     let typedefs = classesCurrentStage.filterBy('stereotype', '«typedef»');
-    modelHash.typedefs = A(typedefs);
+    let wrapTypedefs = this.wrapModel(typedefs);
+    modelHash.typedefs = A(wrapTypedefs);
 
     // Enums.
     let enums = classesCurrentStage.filterBy('stereotype', '«enumeration»');
-    modelHash.enums = A(enums);
+    let wrapEnums = this.wrapModel(enums);
+    modelHash.enums = A(wrapEnums);
 
     // Types.
     let types = classesCurrentStage.filterBy('stereotype', '«type»');
-    modelHash.types = A(types);
+    let wrapTypes = this.wrapModel(types);
+    modelHash.types = A(wrapTypes);
 
     // Applications.
     let applications = classesCurrentStage.filterBy('stereotype', '«application»');
-    modelHash.applications = A(applications);
+    let wrapApplications = this.wrapModel(applications);
+    modelHash.applications = A(wrapApplications);
 
     // BS.
     let bs = classesCurrentStage.filterBy('stereotype', '«businessserver»');
-    modelHash.bs = A(bs);
+    let wrapBs = this.wrapModel(bs);
+    modelHash.bs = A(wrapBs);
 
     // External.
     let externals = classesCurrentStage.filterBy('stereotype', '«external»');
-    modelHash.externals = A(externals);
+    let wrapExternals = this.wrapModel(externals);
+    modelHash.externals = A(wrapExternals);
 
     // Extinterface.
     let extinterfaces = classesCurrentStage.filterBy('stereotype', '«externalinterface»');
-    modelHash.extinterfaces = A(extinterfaces);
+    let wrapExtinterfaces = this.wrapModel(extinterfaces);
+    modelHash.extinterfaces = A(wrapExtinterfaces);
 
     // Interface.
     let interfaces = classesCurrentStage.filterBy('stereotype', '«interface»');
-    modelHash.interfaces = A(interfaces);
+    let wrapInterfaces = this.wrapModel(interfaces);
+    modelHash.interfaces = A(wrapInterfaces);
 
     // Userforms.
     let userforms = classesCurrentStage.filterBy('stereotype', '«userform»');
-    modelHash.userforms = A(userforms);
+    let wrapUserforms = this.wrapModel(userforms);
+    modelHash.userforms = A(wrapUserforms);
 
     // Userstereotypes.
     let designerStereotypes = A([
@@ -161,7 +174,8 @@ export default Route.extend({
     let userstereotypes = classesCurrentStage.filter(function(item) {
       return !designerStereotypes.includes(item.get('stereotype'));
     });
-    modelHash.userstereotypes = A(userstereotypes);
+    let wrapUserstereotypes = this.wrapModel(userstereotypes);
+    modelHash.userstereotypes = A(wrapUserstereotypes);
 
     return modelHash;
   },
@@ -176,8 +190,27 @@ export default Route.extend({
   setupController(controller) {
     this._super(...arguments);
 
+    controller.set('isAddMode', false);
     controller.set('sheetComponentName', this.get('sheetComponentName'));
     controller.set('sheetViewName', this.get('sheetViewName'));
+  },
+
+  /**
+    Wrap model data.
+
+    @method wrapModel
+    @param {Object} model
+  */
+  wrapModel(model) {
+    if (isNone(model)) {
+      return null;
+    }
+
+    if (isArray(model)) {
+      return A(model).map((element) => ({ data: element, active: false }));
+    } else {
+      return { data: model, active: false };
+    }
   },
 
   actions: {

@@ -4,10 +4,10 @@
 
 import { computed } from '@ember/object';
 import { isArray } from '@ember/array';
-
-import { BaseObject } from './fd-uml-baseobject';
-
+import { ActiveState } from './fd-uml-active-state';
+import { isBlank } from '@ember/utils';
 import FdUmlElement from './fd-uml-element';
+import joint from 'npm:jointjs';
 
 /**
   An object that describes an `Object in state` element on the UML diagram.
@@ -35,12 +35,21 @@ export default FdUmlElement.extend({
   }),
 
   /**
-    The state of the ObjectInState.
+    Text on the object in state element.
 
     @property state
     @type String
   */
-  state: computed.alias('primitive.Text.Text'),
+  state: computed('primitive.Text.Text', {
+    get() {
+      return this.get('primitive.Text.Text');
+    },
+    set(key, value) {
+      let stateTxt = (isArray(value)) ? value.join('\n') : value;
+      this.set('primitive.Text.Text', stateTxt);
+      return value;
+    },
+  }),
 
   /**
     See {{#crossLink "FdUmlPrimitive/JointJS:method"}}here{{/crossLink}}.
@@ -51,7 +60,6 @@ export default FdUmlElement.extend({
     let properties = this.getProperties('id', 'size', 'position');
     properties.objectModel = this;
     return new ObjectInState(properties);
-
   },
 });
 
@@ -60,24 +68,36 @@ export default FdUmlElement.extend({
 
   @for FdUmlObjectInState
   @class ObjectInState
-  @extends flexberry.uml.BaseObject
+  @extends flexberry.uml.ActiveState
   @namespace flexberry.uml
   @constructor
 */
-export let ObjectInState = BaseObject.define('flexberry.uml.ObjectInState', {
-  attrs: {
-    'text tspan': { 'text-decoration': 'underline' },
-    'text tspan[x]': { 'font-weight': 'bold', 'text-decoration': 'none' },
-    'text': { 'visibility': 'visible' },
-  },
+export let ObjectInState = ActiveState.define('flexberry.uml.ObjectInState', {
+});
 
-}, {
-    getObjName: function () {
-      let state = this.get('objectModel.state').length > 0 ? '[' + this.get('objectModel.state') + ']' : '';
-      return [this.get('objectModel.name'), state];
-    },
+joint.shapes.flexberry.uml.ObjectInStateView = joint.shapes.flexberry.uml.ActiveStateView.extend({
+  template: [
+   '<div class="uml-class-inputs">',
+   '<textarea class="class-name-input object-in-state-input header-input" value="" rows="1" wrap="off"></textarea>',
+   '<textarea class="state-input header-input" value="" rows="1" wrap="off"></textarea>',
+   '<div class="input-buffer"></div>',
+   '</div>'
+  ].join(''),
 
-    updateRectangles: function () {
-      this.updateRectanglesOld();
+  normalizeState(state) {
+    let beforeChar = String.fromCharCode(91);
+    let afterChar = String.fromCharCode(93);
+    let normalizedState = state.replace(new RegExp(`${'\\'+beforeChar}|${'\\'+afterChar}`, 'g'), '');
+    if (!isBlank(normalizedState)) {
+      if (normalizedState[0] !== beforeChar) {
+        normalizedState = beforeChar + normalizedState;
+      }
+
+      if (normalizedState[normalizedState - 1] !== afterChar) {
+        normalizedState = normalizedState + afterChar;
+      }
     }
-  });
+
+    return normalizedState;
+  }
+});

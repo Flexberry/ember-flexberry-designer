@@ -261,7 +261,10 @@ export let defineProjections = function (modelClass) {
   modelClass.defineProjection('FdPreloadMetadata', 'fd-dev-method', {
     accessModifier: attr(''),
     type: attr(''),
-    name: attr('')
+    name: attr(''),
+    isEvent: attr(''),
+    parametersStr: attr(''),
+    typeParametersStr:attr(''),
   });
   modelClass.defineProjection('Generator', 'fd-dev-method', {
     accessModifier: attr('AccessModifier', { hidden: true }),

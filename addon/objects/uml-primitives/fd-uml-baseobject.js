@@ -46,7 +46,9 @@ export default FdUmlElement.extend({
   */
   attributes: computed('primitive.AttributesTxt.Text', {
     get() {
-      return this.get('primitive.AttributesTxt.Text').split('\n');
+      let text = this.get('primitive.AttributesTxt.Text');
+      let splitedText = isPresent(text) ? text.split('\n') : null;
+      return splitedText;
     },
     set(key, value) {
       let attributesTxt = (isArray(value)) ? value.join('\n') : value;
@@ -102,6 +104,18 @@ export let BaseObject = joint.shapes.basic.Generic.define('flexberry.uml.BaseObj
 
   // Inputs bottom padding by Y.
   heightBottomPadding: 4,
+
+  // Minimum height.
+  minHeight: 64,
+
+  // Minimum width.
+  minWidth: 80,
+
+  // Height by inputs.
+  inputHeight: 0,
+
+  // Width by inputs.
+  inputWidth: 0,
 }, {
   markup: [
     '<g class="rotatable">',
@@ -164,6 +178,8 @@ export let BaseObject = joint.shapes.basic.Generic.define('flexberry.uml.BaseObj
     attrs['.flexberry-uml-header-rect'].width = rectWidth;
   }
 });
+joint.util.setByPath(joint.shapes, 'flexberry.uml.BaseObject', BaseObject, '.');
+
 
 joint.shapes.flexberry.uml.BaseObjectView = joint.shapes.flexberry.uml.PrimitiveElementView.extend({
   template: [
@@ -239,6 +255,9 @@ joint.shapes.flexberry.uml.BaseObjectView = joint.shapes.flexberry.uml.Primitive
 
     // Remove the box when the model gets removed from the graph.
     this.model.on('remove', this.removeBox, this);
+
+    const initSize = this.model.size();
+    this.updateRectangles(initSize.width, initSize.height);
   },
 
   render: function () {
@@ -268,18 +287,26 @@ joint.shapes.flexberry.uml.BaseObjectView = joint.shapes.flexberry.uml.Primitive
     this.$box.remove();
   },
 
-  updateRectangles: function () {
+  updateRectangles: function (resizedWidth, resizedHeight) {
     let rects = this.model.getRectangles();
     setInputRectColors(this, rects);
     let offsetY = 0;
     let newHeight = 0;
     let newWidth = 0;
-    rects.forEach(function (rect) {
+    const minWidth = this.model.attributes.minWidth;
+    const minHeight = this.model.attributes.minHeight;
+    const oldSize = this.model.size();
+    rects.forEach(function(rect, index, array) {
       if (this.markup.includes('flexberry-uml-' + rect.type + '-rect') && rect.element.inputElements) {
-        let $buffer = rect.element.inputElements.find('.input-buffer');
         let rectHeight = 0;
         let inputs = rect.element.inputElements.find('.' + rect.type + '-input');
-        inputs.each(function () {
+        let inputsDiv = inputs[0].parentElement;
+        if (! inputsDiv.parentElement || ! inputsDiv.parentElement.className.includes('joint-paper')) {
+          let jointPaper = $('.joint-paper')[0];
+          jointPaper.appendChild(inputsDiv);
+        }
+        let $buffer = rect.element.inputElements.find('.input-buffer');
+        inputs.each(function() {
           let $input = $(this);
           $buffer.css('font-weight', $input.css('font-weight'));
           $buffer.text($input.val());
@@ -293,7 +320,12 @@ joint.shapes.flexberry.uml.BaseObjectView = joint.shapes.flexberry.uml.Primitive
 
         rectHeight += rect.element.get('heightBottomPadding') || 0;
         newHeight += rectHeight;
-        rect.element.attr('.flexberry-uml-' + rect.type + '-rect/height', rectHeight);
+        if (array.length === index + 1) {
+          this.set('inputHeight', newHeight);
+          rect.element.attr('.flexberry-uml-' + rect.type + '-rect/height', Math.max((resizedHeight || oldSize.height) - offsetY, minHeight - offsetY, rectHeight));
+        } else {
+          rect.element.attr('.flexberry-uml-' + rect.type + '-rect/height', rectHeight);
+        }
 
         rect.element.attr('.flexberry-uml-' + rect.type + '-rect/transform', 'translate(0,' + offsetY + ')');
 
@@ -302,14 +334,16 @@ joint.shapes.flexberry.uml.BaseObjectView = joint.shapes.flexberry.uml.Primitive
     }, this.model);
 
     newWidth += (this.model.get('widthPadding') || 0) * 2;
-    rects.forEach(function (rect) {
-      rect.element.attr('.flexberry-uml-' + rect.type + '-rect/width', newWidth);
+    this.model.set('inputWidth', newWidth);
+    rects.forEach(function(rect) {
+      rect.element.attr('.flexberry-uml-' + rect.type + '-rect/width', Math.max(newWidth, resizedWidth || oldSize.width, minWidth));
     });
 
-    this.model.resize(newWidth, newHeight);
+    this.model.resize(Math.max(newWidth, resizedWidth || oldSize.width, minWidth), Math.max(newHeight, resizedHeight || oldSize.height, minHeight));
     if (this.model.get('highlighted')) {
       this.unhighlight();
       this.highlight();
     }
   }
+
 });

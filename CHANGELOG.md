@@ -2,37 +2,49 @@
 All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
+
+## [0.8.0-beta.1] - 2019-08-16
 ### Added
+* Add primitives resizing on cad diagram.
+
+### Fixed
+* Fix new project creating.
+
+## [0.8.0-beta.0] - 2019-08-13
+### Added
+* Added navigation tree.
+* Added logic for create new class button.
+* Added logic for create new diagram button.
+* Added logic for delete class button.
+* Change text ability on activity diagram primitives.
+
+## [0.7.0] - 2019-05-31
+### Added
+* Added json update when editing diagrams.
+* Added styles for the application generation page.
+* Added component "Round button".
+* Implemented join to connections for other primitives.
 * Added collapse button for diagram edit panel toolbar.
 * Added collapse button for class primitives.
 * Added highlight feature for cad elements.
 * Added check on exist diagram elements.
 * Added delete button for class primitives.
 * Button to open the object edit form from the diagram.
-
-### Changed
-* The diagram in the `{{fd-uml-diagram}}` component now has an infinite size.
-* Links can't have empty source or target.
-
-### Fixed
-* Saving unchanged objects on diagrams.
-
-## [0.7.0-beta.1] - 2019-05-17
-### Added
-* Added json update when editing diagrams.
-* Added styles for the application generation page.
-* Added component "Round button".
-* Implemented join to connections for other primitives.
+* Roll back changes on diagram when close edit form or diagram.
 
 ### Changed
 * Corrected the error when restarting the project.
 * Removed the ability to detach intermediate links from link-connectors.
 * Different stylistic edits.
+* The diagram in the `{{fd-uml-diagram}}` component now has an infinite size.
+* Links can't have empty source or target.
+* Optimized movement of diagram elements.
 
 ### Fixed
 * Textarea size in elements cad diagram.
 * Fixed save cad diagram.
 * Fixed styles of the component "Table".
+* Saving unchanged objects on diagrams.
 
 ## [0.6.0] - 2019-04-12
 ### Added

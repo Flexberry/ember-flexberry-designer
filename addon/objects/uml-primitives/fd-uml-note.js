@@ -57,25 +57,23 @@ export default FdUmlElement.extend({
 */
 export let Note = BaseObject.define('flexberry.uml.Note', {
   attrs: {
-    '.flexberry-uml-header-text': {
-      'font-weight': 'bold',
-      'ref-y': 0,
-      'ref-x': 0,
-      'text-anchor': 'start',
-      'y-alignment': 'start',
-    },
     '.corner-rect': {
       'ref': '.flexberry-uml-header-rect',
       'stroke': 'white',
-      'stroke-width': '2'
+      'stroke-width': '2',
+      'ref-dx': -10
     },
     '.corner': {
       'ref': '.flexberry-uml-header-rect',
       'stroke': 'black',
       'stroke-width': '1',
-      'd': 'M0,0 L0,10 L10,10 L0,0'
+      'd': 'M0,0 L0,10 L10,10 L0,0',
+      'ref-dx': -10
     },
   },
+
+  // Minimum height.
+  minHeight: 17,
 }, {
   markup: [
     '<g class="rotatable">',
@@ -84,14 +82,21 @@ export let Note = BaseObject.define('flexberry.uml.Note', {
     '<path class="corner"/>',
     '</g>'
   ].join(''),
+
+  getRectangles() {
+    return [
+      { type: 'header', element: this },
+    ];
+  },
 });
 
-joint.shapes.flexberry.uml.NoteView = joint.shapes.flexberry.uml.BaseObjectView.extend({
-  updateRectangles() {
-    joint.shapes.flexberry.uml.BaseObjectView.prototype.updateRectangles.apply(this, arguments);
-    let transX = this.model.size().width - 8;
+joint.util.setByPath(joint.shapes, 'flexberry.uml.Note', Note, '.');
 
-    this.model.attr('.corner-rect/transform', `translate(${transX}, 0)`);
-    this.model.attr('.corner/transform', `translate(${transX}, 0)`);
-  },
+joint.shapes.flexberry.uml.NoteView = joint.shapes.flexberry.uml.BaseObjectView.extend({
+  template: [
+    '<div class="uml-class-inputs">',
+    '<textarea class="class-name-input header-input" value="" rows="1" wrap="off"></textarea>',
+    '<div class="input-buffer"></div>',
+    '</div>'
+  ].join(''),
 });
