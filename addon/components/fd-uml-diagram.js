@@ -401,8 +401,14 @@ export default Component.extend({
   _ghostElementMove(view, evt, x, y) {
     let data = evt.data;
     if (data.ghost) {
-      let shift = evt.data.shift;
-      data.ghost.position(x + shift.x, y + shift.y);
+      const shift = data.shift;
+      if (data.widthResize || data.heightResize) {
+        const oldSize = data.ghost.size();
+        const position = data.ghost.position();
+        data.ghost.resize(data.widthResize ? Math.max(x - position.x, view.model.attributes.inputWidth || 0, view.model.attributes.minWidth || 0) : oldSize.width, data.heightResize ? Math.max(y - position.y, view.model.attributes.inputHeight || 0, view.model.attributes.minHeight || 0) : oldSize.height);
+      } else {
+        data.ghost.position(x + shift.x, y + shift.y);
+      }
     } else {
       let bbox = view.model.getBBox();
       let ghost = new joint.shapes.basic.Rect();
@@ -413,6 +419,9 @@ export default Component.extend({
 
       view.model.graph.addCell(ghost);
       evt.data.ghost = ghost;
+      const button = $(evt.target.parentElement);
+      evt.data.widthResize = button.hasClass('right-down-size-button') || button.hasClass('right-size-button');
+      evt.data.heightResize = button.hasClass('right-down-size-button') || button.hasClass('down-size-button');
       evt.data.shift = { x: bbox.x - x, y: bbox.y - y};
     }
   },
@@ -429,17 +438,27 @@ export default Component.extend({
   _ghostElementRemove(view, evt, x, y) {
     let data = evt.data;
     if (data.ghost) {
-      let shift = evt.data.shift;
-      let valueX = x + shift.x < 0 ? 0 : x + shift.x;
-      let valueY = y + shift.y < 0 ? 0 : y + shift.y;
+      if (data.widthResize || data.heightResize) {
+        let newSize = data.ghost.size();
+        view.updateRectangles(newSize.width, newSize.height);
+      } else {
+        let shift = evt.data.shift;
+        let valueX = x + shift.x < 0 ? 0 : x + shift.x;
+        let valueY = y + shift.y < 0 ? 0 : y + shift.y;
+        view.model.position(valueX, valueY);
+      }
+
       data.ghost.remove();
-      view.model.position(valueX, valueY);
+
       let paper = view.paper;
       let links = paper.model.getConnectedLinks(view.model);
       links.forEach((link)=> {
         let linkView = paper.findViewByModel(link);
         linkView.updateBox();
+        linkView.update();
       });
+
+      view.highlight();
     }
   },
 
