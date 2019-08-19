@@ -4,7 +4,6 @@ import $ from 'jquery';
 
 import { EmptyView } from './fd-empty-view';
 
-
 export let DescriptionView = EmptyView.extend({
   template: [
     '<div class="uml-link-inputs">',

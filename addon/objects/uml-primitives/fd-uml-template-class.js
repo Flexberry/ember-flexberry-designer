@@ -93,8 +93,7 @@ export let TemplateClass = Class.define('flexberry.uml.TemplateClass', {
       { type: 'body', element: this },
       { type: 'footer', element: this }
     ];
-  }
-
+  },
 });
 
 joint.shapes.flexberry.uml.TemplateClassView = joint.shapes.flexberry.uml.ClassView.extend({
