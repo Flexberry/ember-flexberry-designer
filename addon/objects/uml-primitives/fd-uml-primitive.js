@@ -5,7 +5,9 @@
 import EmberObject from '@ember/object';
 import { computed, get } from '@ember/object';
 import { A, isArray } from '@ember/array';
+import { isNone } from '@ember/utils';
 import joint from 'npm:jointjs';
+import $ from 'jquery';
 
 /**
   An object that defines any primitive on the UML diagram.
@@ -297,5 +299,69 @@ joint.shapes.flexberry.uml.PrimitiveElementView = joint.dia.ElementView.extend({
     e.stopPropagation();
     this.model.remove();
   },
+
+  initialize: function() {
+    joint.dia.ElementView.prototype.initialize.apply(this, arguments);
+
+    if (!isNone(this.template)) {
+      this.$box = $(this.template);
+      this.model.inputElements = this.$box;
+    }
+
+    this.setColors();
+  },
+
+  getTextColor() {
+    const objectModel = this.model.get('objectModel');
+    if (!isNone(objectModel)) {
+      const textColor = objectModel.get('primitive.DrawStyle.TextColor');
+      if (!isNone(textColor)) {
+        return 'rgba(' + [textColor.R, textColor.G, textColor.B, textColor.A].join(',') + ')';
+      }
+    }
+
+    return;
+  },
+
+  getBrushColor() {
+    const objectModel = this.model.get('objectModel');
+    if (!isNone(objectModel)) {
+      const brushColor = objectModel.get('primitive.DrawStyle.DrawBrush.Color');
+      if (!isNone(brushColor)) {
+        return 'rgba(' + [brushColor.R, brushColor.G, brushColor.B, brushColor.A].join(',') + ')';
+      }
+    }
+
+    return;
+  },
+
+  setColors() {
+    const textColor = this.getTextColor();
+    const brushColor = this.getBrushColor();
+
+    if (this.model.getRectangles instanceof Function && (!isNone(brushColor) || !isNone(textColor))) {
+      const rects = this.model.getRectangles();
+      rects.forEach(function(rect) {
+        const className = 'flexberry-uml-' + rect.type + '-rect';
+        if (this.markup.includes(className)) {
+          if (!isNone(brushColor)) {
+            this.attr(`.${className}/fill-opacity`, 1);
+            this.attr(`.${className}/fill`, brushColor);
+          }
+
+          if (!isNone(textColor)) {
+            this.attr(`.${className}/stroke`, textColor);
+          }
+        }
+      }, this.model);
+    }
+
+    const inputElements = this.model.inputElements;
+    if (!isNone(textColor) && isArray(inputElements)) {
+      inputElements.each(function(index, input) {
+        $(input).find('input, textarea').css('color', textColor);
+      });
+    }
+  }
 });
 

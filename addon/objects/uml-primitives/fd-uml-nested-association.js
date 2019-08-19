@@ -2,6 +2,7 @@
   @module ember-flexberry-designer
 */
 import joint from 'npm:jointjs';
+import { isNone } from '@ember/utils';
 
 import FdUmlLink from './fd-uml-link';
 import { Link } from './fd-uml-link';
@@ -46,4 +47,14 @@ export let NestedClassAssociation = Link.define('flexberry.uml.NestedClassAssoci
   }
 });
 
-joint.shapes.flexberry.uml.NestedClassAssociationView = DescriptionView;
+joint.shapes.flexberry.uml.NestedClassAssociationView = DescriptionView.extend({
+  setColors() {
+    DescriptionView.prototype.setColors.apply(this, arguments);
+
+    const textColor = this.getTextColor();
+
+    if (!isNone(textColor)) {
+      this.model.attr('.marker-source/stroke', textColor);
+    }
+  }
+});
