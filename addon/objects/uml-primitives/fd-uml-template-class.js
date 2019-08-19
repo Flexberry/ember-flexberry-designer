@@ -10,7 +10,6 @@ import joint from 'npm:jointjs';
 import { Class } from './fd-uml-class';
 
 import FdUmlClass from './fd-uml-class';
-import { setInputRectColors } from '../../utils/fd-uml-colors';
 
 /**
   An object that describes a TemplateClass on the UML diagram.
@@ -180,7 +179,6 @@ joint.shapes.flexberry.uml.TemplateClassView = joint.shapes.flexberry.uml.ClassV
 
   updateRectangles() {
     let rects = this.model.getRectangles();
-    setInputRectColors(this, rects);
     let offsetY = 0;
     let newHeight = 0;
     let newWidth = 0;

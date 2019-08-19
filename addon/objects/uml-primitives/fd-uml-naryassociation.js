@@ -9,7 +9,6 @@ import joint from 'npm:jointjs';
 
 import { BaseObject } from './fd-uml-baseobject';
 import FdUmlElement from './fd-uml-element';
-import { setInputRectColors } from '../../utils/fd-uml-colors';
 
 /**
   An object that describes a n-ar association on the UML diagram.
@@ -100,10 +99,8 @@ joint.shapes.flexberry.uml.NAryAssociationView = joint.shapes.flexberry.uml.Base
   ].join(''),
 
   initialize: function() {
-    joint.dia.ElementView.prototype.initialize.apply(this, arguments);
+    joint.shapes.flexberry.uml.PrimitiveElementView.prototype.initialize.apply(this, arguments);
 
-    this.$box = $(this.template);
-    this.model.inputElements = this.$box;
     let _this = this;
 
     // Prevent paper from handling pointerdown.

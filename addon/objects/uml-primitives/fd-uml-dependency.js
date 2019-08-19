@@ -2,11 +2,11 @@
   @module ember-flexberry-designer
 */
 import joint from 'npm:jointjs';
+import { isNone } from '@ember/utils';
 
 import FdUmlLink from './fd-uml-link';
 import { Link } from './fd-uml-link';
 import { DescriptionView } from './links-view/fd-description-view';
-import { setLinkColors } from '../../utils/fd-uml-colors';
 
 /**
   An object that describes a link of the dependency type on the UML diagram.
@@ -45,10 +45,16 @@ export let Dependency = Link.define('flexberry.uml.Dependency', {
     rect: { visibility: 'hidden' }
   },
 
-}, {
-  initialize(properties) {
-    setLinkColors(properties.primitive, this);
+}, {});
+
+joint.shapes.flexberry.uml.DependencyView = DescriptionView.extend({
+  setColors() {
+    DescriptionView.prototype.setColors.apply(this, arguments);
+
+    const textColor = this.getTextColor();
+
+    if (!isNone(textColor)) {
+      this.model.attr('.marker-target/stroke', textColor);
+    }
   }
 });
-
-joint.shapes.flexberry.uml.DependencyView = DescriptionView;

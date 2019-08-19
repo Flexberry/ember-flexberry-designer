@@ -9,7 +9,6 @@ import joint from 'npm:jointjs';
 
 import { BaseClass } from './fd-uml-class';
 import FdUmlElement from './fd-uml-element';
-import { setInputRectColors } from '../../utils/fd-uml-colors';
 
 /**
   An object that describes a package on the UML diagram.
@@ -135,7 +134,6 @@ joint.shapes.flexberry.uml.PackageView = joint.shapes.flexberry.uml.BaseObjectVi
     let offsetY = 0;
     let newHeight = 0;
     let newWidth = 0;
-    setInputRectColors(this, rects);
     const minWidth = this.model.attributes.minWidth;
     const minHeight = this.model.attributes.minHeight;
     const oldSize = this.model.size();

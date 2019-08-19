@@ -2,7 +2,6 @@ import { computed } from '@ember/object';
 import $ from 'jquery';
 
 import { DescriptionView } from './fd-description-view';
-import { setLinkViewColors } from '../../../utils/fd-uml-colors';
 
 export let RoleView = DescriptionView.extend({
   template: [
@@ -62,7 +61,6 @@ export let RoleView = DescriptionView.extend({
 
     this.updateInputPosition(1, '.start-role-input');
     this.updateInputPosition(2, '.end-role-input');
-    setLinkViewColors(this);
   },
 
   normalizeRoleText(text) {

@@ -11,8 +11,6 @@ import joint from 'npm:jointjs';
 
 import FdUmlElement from './fd-uml-element';
 
-import { setInputRectColors } from '../../utils/fd-uml-colors';
-
 /**
   An object that describes an object on the UML diagram.
 
@@ -191,10 +189,8 @@ joint.shapes.flexberry.uml.BaseObjectView = joint.shapes.flexberry.uml.Primitive
   ].join(''),
 
   initialize: function () {
-    joint.dia.ElementView.prototype.initialize.apply(this, arguments);
+    joint.shapes.flexberry.uml.PrimitiveElementView.prototype.initialize.apply(this, arguments);
 
-    this.$box = $(this.template);
-    this.model.inputElements = this.$box;
     let _this = this;
 
     // Prevent paper from handling pointerdown.
@@ -289,7 +285,6 @@ joint.shapes.flexberry.uml.BaseObjectView = joint.shapes.flexberry.uml.Primitive
 
   updateRectangles: function (resizedWidth, resizedHeight) {
     let rects = this.model.getRectangles();
-    setInputRectColors(this, rects);
     let offsetY = 0;
     let newHeight = 0;
     let newWidth = 0;

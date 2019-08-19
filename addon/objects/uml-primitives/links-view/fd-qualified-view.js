@@ -2,12 +2,11 @@ import { computed } from '@ember/object';
 import $ from 'jquery';
 
 import { RoleView } from './fd-role-view';
-import { setLinkViewColors } from '../../../utils/fd-uml-colors';
 
 export let QualifiedView = RoleView.extend({
   template: [
     '<div class="uml-link-inputs">',
-    '<input type="text" class="description-input" value="" />',
+    '<input type="text" class="description-input underline-text" value="" />',
     '<input type="text" class="start-role-input" value="" />',
     '<input type="text" class="end-role-input" value="" />',
     '<input type="text" class="qualified-input" value="" />',
@@ -43,6 +42,5 @@ export let QualifiedView = RoleView.extend({
     RoleView.prototype.updateBox.apply(this, arguments);
 
     this.updateInputPosition(5, '.qualified-input');
-    setLinkViewColors(this);
   }
 });

@@ -2,7 +2,6 @@ import { computed } from '@ember/object'
 import $ from 'jquery';
 
 import { RoleView } from './fd-role-view';
-import { setLinkViewColors } from '../../../utils/fd-uml-colors';
 
 export let MultiplicityView = RoleView.extend({
   template: [
@@ -60,6 +59,5 @@ export let MultiplicityView = RoleView.extend({
 
     this.updateInputPosition(3, '.start-multiplicity-input');
     this.updateInputPosition(4, '.end-multiplicity-input');
-    setLinkViewColors(this);
   }
 });

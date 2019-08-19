@@ -11,9 +11,6 @@ import joint from 'npm:jointjs';
 
 import FdUmlElement from './fd-uml-element';
 
-import { setInputRectColors } from '../../utils/fd-uml-colors';
-
-
 /**
   An object that describes a class on the UML diagram.
 
@@ -132,8 +129,6 @@ export let BaseClass = joint.shapes.basic.Generic.define('flexberry.uml.BaseClas
   objectModel: null,
 
   attrs: {
-    rect: { 'width': 200 },
-
     '.flexberry-uml-header-rect': { 'stroke': 'black', 'stroke-width': 1, 'fill': '#ffffff', 'fill-opacity': 0 },
     '.flexberry-uml-body-rect': { 'stroke': 'black', 'stroke-width': 1, 'fill': '#ffffff', 'fill-opacity': 0 },
     '.flexberry-uml-footer-rect': { 'stroke': 'black', 'stroke-width': 1, 'fill': '#ffffff', 'fill-opacity': 0 },
@@ -230,10 +225,8 @@ joint.shapes.flexberry.uml.ClassView = joint.shapes.flexberry.uml.PrimitiveEleme
   ].join(''),
 
   initialize: function() {
-    joint.dia.ElementView.prototype.initialize.apply(this, arguments);
+    joint.shapes.flexberry.uml.PrimitiveElementView.prototype.initialize.apply(this, arguments);
 
-    this.$box = $(this.template);
-    this.model.inputElements = this.$box;
     let _this = this;
 
     // Prevent paper from handling pointerdown.
@@ -368,7 +361,6 @@ joint.shapes.flexberry.uml.ClassView = joint.shapes.flexberry.uml.PrimitiveEleme
 
   updateRectangles(resizedWidth, resizedHeight) {
     let rects = this.model.getRectangles();
-    setInputRectColors(this, rects);
     let offsetY = 0;
     let newHeight = 0;
     let newWidth = 0;
