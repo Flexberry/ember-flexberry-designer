@@ -386,16 +386,16 @@ export let Link = joint.dia.Link.define('flexberry.uml.Link', {
 
           } else {
             if (delta <0) { //Removing vertex0
-              let prevVertex, vertex, newVertex;
+              let prevVertex, vertex, removedVertex;
               for (nSegment = 0; nSegment < newVertices.length; nSegment+=1) {
-                newVertex = newVertices[nSegment];
-                vertex = vertices[nSegment];
-                if (vertex.x != newVertex.x || vertex.y != newVertex.y) {
+                vertex = newVertices[nSegment];
+                removedVertex = vertices[nSegment];
+                if (vertex.x != removedVertex.x || vertex.y != removedVertex.y) {
                   break;
                 }
                 prevVertex = vertex;
               }
-              let removedVertex = vertices[nSegment];
+              removedVertex = vertices[nSegment];
               if (nSegment >= newVertices.length) {
                 vertex = this.getTargetPoint()
               }
@@ -421,6 +421,12 @@ export let Link = joint.dia.Link.define('flexberry.uml.Link', {
                     percent = len / fullLen;
                     connectedLinkObjectModel.set('startSegmNo', nSegment);
                     connectedLinkObjectModel.set('startPercent', percent);
+                  }
+                  else {
+                    let segmNo = connectedLinkObjectModel.get('startSegmNo');
+                    if (segmNo > nSegment+1) {
+                      connectedLinkObjectModel.set('startSegmNo', segmNo-1);
+                    }
                   }
                 }
 
