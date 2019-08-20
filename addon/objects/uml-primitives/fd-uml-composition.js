@@ -2,6 +2,7 @@
   @module ember-flexberry-designer
 */
 import joint from 'npm:jointjs';
+import { isNone } from '@ember/utils';
 
 import FdUmlLink from './fd-uml-link';
 import { Link } from './fd-uml-link';
@@ -57,4 +58,15 @@ export let Composition = Link.define('flexberry.uml.Composition', {
   }
 });
 
-joint.shapes.flexberry.uml.CompositionView = MultiplicityView;
+joint.shapes.flexberry.uml.CompositionView = MultiplicityView.extend({
+  setColors() {
+    MultiplicityView.prototype.setColors.apply(this, arguments);
+
+    const textColor = this.getTextColor();
+
+    if (!isNone(textColor)) {
+      this.model.attr('.marker-source/stroke', textColor);
+      this.model.attr('.marker-source/fill', textColor);
+    }
+  }
+});

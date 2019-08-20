@@ -87,7 +87,7 @@ export let NAryAssociation = BaseObject.define('flexberry.uml.NAryAssociation', 
     return [
       { type: 'header', element: this },
     ];
-  },
+  }
 });
 
 joint.shapes.flexberry.uml.NAryAssociationView = joint.shapes.flexberry.uml.BaseObjectView.extend({
@@ -99,10 +99,8 @@ joint.shapes.flexberry.uml.NAryAssociationView = joint.shapes.flexberry.uml.Base
   ].join(''),
 
   initialize: function() {
-    joint.dia.ElementView.prototype.initialize.apply(this, arguments);
+    joint.shapes.flexberry.uml.PrimitiveElementView.prototype.initialize.apply(this, arguments);
 
-    this.$box = $(this.template);
-    this.model.inputElements = this.$box;
     let _this = this;
 
     // Prevent paper from handling pointerdown.
