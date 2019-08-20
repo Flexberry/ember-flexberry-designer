@@ -98,17 +98,24 @@ export let UsecaseActor = BaseObject.define('flexberry.uml.UsecaseActor', {
 joint.shapes.flexberry.uml.UsecaseActorView = joint.shapes.flexberry.uml.BaseObjectView.extend({
   template: [
     '<div class="uml-class-inputs">',
-    '<textarea class="class-name-input header-input" value="" rows="1" wrap="off"></textarea>',
+    '<textarea class="under-class-name-input class-name-input header-input" value="" rows="1" wrap="off"></textarea>',
     '<div class="input-buffer"></div>',
     '</div>'
   ].join(''),
-});
 
-joint.shapes.flexberry.uml.UsecaseActorView = joint.shapes.flexberry.uml.BaseObjectView.extend({
-  template: [
-    '<div class="uml-class-inputs">',
-    '<textarea class="instance-input class-name-input header-input" value="" rows="1" wrap="off"></textarea>',
-    '<div class="input-buffer"></div>',
-    '</div>'
-  ].join(''),
+  updateRectangles: function () {
+    let $box = this.$box;
+    let inputs =  $box.find('.class-name-input');
+    let $buffer = $box.find('.input-buffer');
+
+    inputs.each(function() {
+      let $input = $(this);
+      $buffer.css('font-weight', $input.css('font-weight'));
+      $buffer.text($input.val());
+      $input.width($buffer.width() + 1);
+      if($buffer.width()> 60) {
+        $input[0].style.marginLeft = -$buffer.width()/2 + 30 + 'px';
+      }
+    });
+  }
 });
