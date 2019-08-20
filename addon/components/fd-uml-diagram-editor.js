@@ -121,6 +121,16 @@ FdActionsForUcdPrimitivesMixin, {
 
   classNames: ['fd-uml-diagram-editor'],
 
+  attributeBindings: ['spellcheck'],
+
+  /**
+    Disable spellcheck for diagram elements.
+
+    @property spellcheck
+    @type Boolean
+  */
+  spellcheck: false,
+
   diagramType: computed('model.constructor.modelName', function() {
     let type = this.get('model.constructor.modelName');
     if (isNone(type)) {

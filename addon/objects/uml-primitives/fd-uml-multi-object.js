@@ -4,6 +4,7 @@
 
 import { computed } from '@ember/object';
 import { isArray } from '@ember/array';
+import { isNone } from '@ember/utils';
 import $ from 'jquery';
 import joint from 'npm:jointjs';
 
@@ -59,8 +60,11 @@ export let MultiObject = BaseObject.define('flexberry.uml.MultiObject', {
   attrs: {
     '.back-rect': { 'stroke': 'black', 'stroke-width': 1, 'fill': '#ffffff', 'fill-opacity': 0, 'mask': 'url(#custom-mask)' },
     '.view-rect': { 'x': -1, 'y': -1, 'fill': 'white' },
-    '.not-view-rect': { 'x': -3, 'y': -6, 'fill': 'black' }
-  }
+    '.not-view-rect': { 'x': -3, 'y': -4, 'fill': 'black' }
+  },
+
+  // Minimum height.
+  minHeight: 20,
 }, {
   markup: [
     '<g class="rotatable">',
@@ -72,7 +76,13 @@ export let MultiObject = BaseObject.define('flexberry.uml.MultiObject', {
     '</defs>',
     '<rect class="back-rect"/><rect class="flexberry-uml-header-rect"/>',
     '</g>'
-  ].join('')
+  ].join(''),
+
+  getRectangles() {
+    return [
+      { type: 'header', element: this },
+    ];
+  },
 });
 
 joint.shapes.flexberry.uml.MultiObjectView = joint.shapes.flexberry.uml.BaseObjectView.extend({
@@ -90,8 +100,7 @@ joint.shapes.flexberry.uml.MultiObjectView = joint.shapes.flexberry.uml.BaseObje
     let viewMaskId = $(mask).children('.view-rect').attr('id');
     let maskId = 'mask_mo_' + viewMaskId;
     mask.setAttribute('id', maskId);
-    let attrs = this.model.get('attrs');
-    attrs['.back-rect'].mask = 'url(#' + maskId + ')';
+    this.model.attr('.back-rect/mask', 'url(#' + maskId + ')');
     this.updateRectangles();
     this.update();
 
@@ -101,24 +110,38 @@ joint.shapes.flexberry.uml.MultiObjectView = joint.shapes.flexberry.uml.BaseObje
   updateRectangles: function () {
     joint.shapes.flexberry.uml.BaseObjectView.prototype.updateRectangles.apply(this, arguments);
 
-    let attrs = this.model.get('attrs');
-    let backRectTransY = 6;
-    attrs['.back-rect'].transform = 'translate(3, ' + backRectTransY + ')';
-    attrs['.back-rect'].height = this.model.size().height;
-    attrs['.back-rect'].width = this.model.size().width;
+    const size = this.model.size();
 
-    attrs['.view-rect'].height = this.model.size().height + 2;
-    attrs['.view-rect'].width = this.model.size().width + 2;
+    this.model.attr('.back-rect/transform', 'translate(4, 4)');
+    this.model.attr('.back-rect/height', size.height);
+    this.model.attr('.back-rect/width', size.width);
 
-    attrs['.not-view-rect'].height = this.model.size().height;
-    attrs['.not-view-rect'].width = this.model.size().width;
+    this.model.attr('.view-rect/height', size.height + 2);
+    this.model.attr('.view-rect/width', size.width + 2);
 
-    let newWidth = this.model.size().width;
-    let newHeight = this.model.size().height + backRectTransY;
-    this.model.resize(newWidth, newHeight);
+    this.model.attr('.not-view-rect/height', size.height);
+    this.model.attr('.not-view-rect/width', size.width);
+
+    this.update();
     if (this.model.get('highlighted')) {
       this.unhighlight();
       this.highlight();
     }
   },
+
+  setColors() {
+    joint.shapes.flexberry.uml.BaseObjectView.prototype.setColors.apply(this, arguments);
+
+    const textColor = this.getTextColor();
+    const brushColor = this.getBrushColor();
+
+    if (!isNone(brushColor)) {
+      this.model.attr('.back-rect/fill-opacity', 1);
+      this.model.attr('.back-rect/fill', brushColor);
+    }
+
+    if (!isNone(textColor)) {
+      this.model.attr('.back-rect/stroke', textColor);
+    }
+  }
 });

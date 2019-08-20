@@ -129,15 +129,13 @@ export let BaseClass = joint.shapes.basic.Generic.define('flexberry.uml.BaseClas
   objectModel: null,
 
   attrs: {
-    rect: { 'width': 200 },
-
     '.flexberry-uml-header-rect': { 'stroke': 'black', 'stroke-width': 1, 'fill': '#ffffff', 'fill-opacity': 0 },
     '.flexberry-uml-body-rect': { 'stroke': 'black', 'stroke-width': 1, 'fill': '#ffffff', 'fill-opacity': 0 },
     '.flexberry-uml-footer-rect': { 'stroke': 'black', 'stroke-width': 1, 'fill': '#ffffff', 'fill-opacity': 0 },
   },
 
   // Inputs padding by X.
-  widthPadding: 15,
+  widthPadding: 17,
 
   // Inputs bottom padding by Y.
   heightBottomPadding: 4,
@@ -145,8 +143,17 @@ export let BaseClass = joint.shapes.basic.Generic.define('flexberry.uml.BaseClas
   // Indicates when element is highlighted.
   highlighted: false,
 
-  // Text of the collapse button
-  collapseButtonText: '-',
+  // Minimum height.
+  minHeight: 64,
+
+  // Minimum width
+  minWidth: 80,
+
+  // Height by inputs.
+  inputHeight: 0,
+
+  // Width by inputs.
+  inputWidth: 0,
 }, {
   markup: [
     '<g class="rotatable">',
@@ -193,10 +200,6 @@ export let BaseClass = joint.shapes.basic.Generic.define('flexberry.uml.BaseClas
 joint.util.setByPath(joint.shapes, 'flexberry.uml.BaseClass', BaseClass, '.');
 
 
-joint.util.setByPath(joint.shapes, 'flexberry.uml.BaseClass', BaseClass, '.');
-
-joint.util.setByPath(joint.shapes, 'flexberry.uml.BaseClass', BaseClass, '.');
-
 /**
   Defines the JointJS element, which represents the UML class in the diagram.
 
@@ -226,10 +229,8 @@ joint.shapes.flexberry.uml.ClassView = joint.shapes.flexberry.uml.PrimitiveEleme
   ].join(''),
 
   initialize: function() {
-    joint.dia.ElementView.prototype.initialize.apply(this, arguments);
+    joint.shapes.flexberry.uml.PrimitiveElementView.prototype.initialize.apply(this, arguments);
 
-    this.$box = $(this.template);
-    this.model.inputElements = this.$box;
     let _this = this;
 
     // Prevent paper from handling pointerdown.
@@ -362,13 +363,15 @@ joint.shapes.flexberry.uml.ClassView = joint.shapes.flexberry.uml.PrimitiveEleme
     this.$box.remove();
   },
 
-  updateRectangles() {
+  updateRectangles(resizedWidth, resizedHeight) {
     let rects = this.model.getRectangles();
-
     let offsetY = 0;
     let newHeight = 0;
     let newWidth = 0;
-    rects.forEach(function(rect) {
+    const minWidth = this.model.attributes.minWidth;
+    const minHeight = this.model.attributes.minHeight;
+    const oldSize = this.model.size();
+    rects.forEach(function(rect, index, array) {
       if (this.markup.includes('flexberry-uml-' + rect.type + '-rect') && rect.element.inputElements) {
         let rectHeight = 0;
         let inputs = rect.element.inputElements.find('.' + rect.type + '-input');
@@ -392,7 +395,12 @@ joint.shapes.flexberry.uml.ClassView = joint.shapes.flexberry.uml.PrimitiveEleme
 
         rectHeight += rect.element.get('heightBottomPadding') || 0;
         newHeight += rectHeight;
-        rect.element.attr('.flexberry-uml-' + rect.type + '-rect/height', rectHeight);
+        if (array.length === index + 1) {
+          this.set('inputHeight', newHeight);
+          rect.element.attr('.flexberry-uml-' + rect.type + '-rect/height', Math.max((resizedHeight || oldSize.height) - offsetY, minHeight - offsetY, rectHeight));
+        } else {
+          rect.element.attr('.flexberry-uml-' + rect.type + '-rect/height', rectHeight);
+        }
 
         rect.element.attr('.flexberry-uml-' + rect.type + '-rect/transform', 'translate(0,' + offsetY + ')');
 
@@ -401,11 +409,12 @@ joint.shapes.flexberry.uml.ClassView = joint.shapes.flexberry.uml.PrimitiveEleme
     }, this.model);
 
     newWidth += (this.model.get('widthPadding') || 0) * 2;
+    this.model.set('inputWidth', newWidth);
     rects.forEach(function(rect) {
-      rect.element.attr('.flexberry-uml-' + rect.type + '-rect/width', newWidth);
+      rect.element.attr('.flexberry-uml-' + rect.type + '-rect/width', Math.max(newWidth, resizedWidth || oldSize.width, minWidth));
     });
 
-    this.model.resize(newWidth, newHeight);
+    this.model.resize(Math.max(newWidth, resizedWidth || oldSize.width, minWidth), Math.max(newHeight, resizedHeight || oldSize.height, minHeight));
     if (this.model.get('highlighted')) {
       this.unhighlight();
       this.highlight();
@@ -483,8 +492,9 @@ joint.shapes.flexberry.uml.ClassView = joint.shapes.flexberry.uml.PrimitiveEleme
     this.$box.find('.attributes-input').css('visibility', styleVisibilityValue);
     this.$box.find('.methods-input').css('visibility', styleVisibilityValue);
 
+    const initSize = this.model.size();
     this.updateBox();
-    this.updateRectangles();
+    this.updateRectangles(initSize.width, initSize.height);
   },
 
   normalizeStereotype(stereotype) {

@@ -3,6 +3,7 @@
 */
 
 import joint from 'npm:jointjs';
+import { A } from '@ember/array';
 
 import FdUmlElement from './fd-uml-element';
 
@@ -66,4 +67,14 @@ export let MoreClasses = joint.shapes.basic.Generic.define('flexberry.uml.MoreCl
   }
 });
 
-joint.shapes.flexberry.uml.MoreClassesView = joint.shapes.flexberry.uml.PrimitiveElementView.extend({});
+joint.shapes.flexberry.uml.MoreClassesView = joint.shapes.flexberry.uml.PrimitiveElementView.extend({
+  getSizeChangers() {
+    return A();
+  },
+
+  setColors() {
+    const brushColor = this.getBrushColor();
+
+    this.model.attr(`circle/fill`, brushColor);
+  }
+});

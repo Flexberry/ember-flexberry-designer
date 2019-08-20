@@ -4,6 +4,7 @@
 
 import { computed } from '@ember/object';
 import joint from 'npm:jointjs';
+import { isNone } from '@ember/utils';
 
 import FdUmlLink from './fd-uml-link';
 import { Link } from './fd-uml-link';
@@ -76,13 +77,18 @@ export let QualifiedAggregation = Link.define('flexberry.uml.QualifiedAggregatio
 });
 
 joint.shapes.flexberry.uml.QualifiedAggregationView = QualifiedView.extend({
-  template: [
-    '<div class="uml-link-inputs">',
-    '<input type="text" class="description-input underline-text" value="" />',
-    '<input type="text" class="start-role-input" value="" />',
-    '<input type="text" class="end-role-input" value="" />',
-    '<input type="text" class="qualified-input" value="" />',
-    '<div class="input-buffer"></div>',
-    '</div>'
-  ].join(''),
+  setColors() {
+    QualifiedView.prototype.setColors.apply(this, arguments);
+
+    const brushColor = this.getBrushColor();
+    const textColor = this.getTextColor();
+
+    if (!isNone(textColor)) {
+      this.model.attr('.marker-source/stroke', textColor);
+    }
+
+    if (!isNone(brushColor)) {
+      this.model.attr('.marker-source/fill', brushColor);
+    }
+  }
 });
