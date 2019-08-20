@@ -264,11 +264,14 @@ export default Component.extend({
           let placePoint = element.path.closestPointT({x:x,y:y});
           options.segmNo = placePoint.segmentIndex - 1;
           options.percent = placePoint.value;
-          let newElement = startDragLink(options);
-          this.set('draggedLink', newElement);
+          let newLink = startDragLink(options);
+          newLink.attr('.marker-source', {'display':'none'});
+          newLink.attr('.marker-arrowhead-group-source', {'display':'none'});
+          newLink.attr('.tool-remove', {'display':'none'});
+          this.set('draggedLink', newLink);
           let graph = this.get('graph');
           let paper = this.get('paper');
-          let linkView = newElement
+          let linkView = newLink
             .set({ 'target': { x: x, y: y } })
             .addTo(graph).findView(paper);
           this.set('isLinkAdding', true);
@@ -282,7 +285,7 @@ export default Component.extend({
             'mousemove.link': this._onDrag.bind(this)
           }, {
             paper: paper,
-            element: newElement
+            element: newLink
           });
           this.set('draggedLinkView', linkView);
           break;
