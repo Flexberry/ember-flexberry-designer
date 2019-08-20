@@ -2,6 +2,8 @@
 All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
+### Added
+* Add text and background colors for primitives on cad diagram.
 
 ## [0.8.0-beta.1] - 2019-08-16
 ### Added
