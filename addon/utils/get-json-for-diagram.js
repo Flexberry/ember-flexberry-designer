@@ -2082,6 +2082,7 @@ let _getJsonForLEBlock = function(propName, id, primitiveId, x, y, isStart, segm
   x = x || 0;
   y = y || 0;
   let result = {};
+  let refType = segment.segmNo >= 0 ? 'Link' : 'Elemenr';
   result[propName] = {
     $type: 'STORMCASE.Primitives.LEInformation, Repository',
     DrawStyle: {
@@ -2118,6 +2119,7 @@ let _getJsonForLEBlock = function(propName, id, primitiveId, x, y, isStart, segm
     Parent: { $ref: id },
     Percent: segment.percent,
     SegmNo: segment.segmNo,
+    refType: refType,
     Primitive: { $ref: primitiveId }
   };
 

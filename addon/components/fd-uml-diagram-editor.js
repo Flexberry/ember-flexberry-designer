@@ -221,7 +221,7 @@ FdActionsForUcdPrimitivesMixin, {
          (isArray(interactionElements.start) && interactionElements.start.includes(type)))) {
           let jointjsCallback = this.get('jointjsCallback');
           let linkProperties = { source: model.id };
-          if ('segmNo' in options) {
+          if ('segmNo' in options && options['segmNo'] >= 0) {
             linkProperties.segmNo = options.segmNo;
             linkProperties.percent = options.percent;
           }
@@ -252,15 +252,15 @@ FdActionsForUcdPrimitivesMixin, {
          (isArray(interactionElements.start) && interactionElements.start.includes(type)))) {
           let newLink = this.get('newLink');
           let target = { id: attributes.id };
-          if (model.isLink()) {
-            target.anchor = {
-              name: 'connectionSegmRatio',
-              args: {
-                segmNo: options.segmNo,
-                percent: options.percent
-              }
-            };
-          }
+//           if (model.isLink()) {
+//             target.anchor = {
+//               name: 'connectionSegmRatio',
+//               args: {
+//                 segmNo: options.segmNo,
+//                 percent: options.percent
+//               }
+//             };
+//           }
           newLink.set({ 'target': target, 'endClassRepObj': { id: get(attributes, 'objectModel.repositoryObject') } });
           let storeCallback = this.get('storeCallback');
           if (storeCallback) {

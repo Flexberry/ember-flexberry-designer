@@ -257,35 +257,44 @@ export default Component.extend({
   **/
   _linkPointerClick(element, e, x, y) {
     let options = { element: element, e: e, x: x, y: y };
-    switch (element.model.get('editMode')) {
-      case 'addInheritance':
-        let startDragLink = this.get('startDragLink');
-        let placePoint = element.path.closestPointT({x:x,y:y});
-        options.segmNo = placePoint.segmentIndex - 1;
-        options.percent = placePoint.value;
-        let newElement = startDragLink(options);
-        this.set('draggedLink', newElement);
-        let graph = this.get('graph');
-        let paper = this.get('paper');
-        let linkView = newElement
-          .set({ 'target': { x: x, y: y } })
-          .addTo(graph).findView(paper);
-        this.set('isLinkAdding', true);
-        $(document).on({
-          'mousemove.example': this._onDrag.bind(this)
-        }, {
-          paper: paper,
-          element: newElement
-        });
-        this.set('draggedLinkView', linkView);
-        break;
-      default:
-        if (isNone(this.get('draggedLink'))) {
-          return;
-        }
-    }
-    if (this.get('endDragLink')(options)) {
-      this._clearLinksData();
+    if (isNone(this.get('draggedLink'))) {
+      switch (element.model.get('editMode')) {
+        case 'addInheritance':
+          let startDragLink = this.get('startDragLink');
+          let placePoint = element.path.closestPointT({x:x,y:y});
+          options.segmNo = placePoint.segmentIndex - 1;
+          options.percent = placePoint.value;
+          let newElement = startDragLink(options);
+          this.set('draggedLink', newElement);
+          let graph = this.get('graph');
+          let paper = this.get('paper');
+          let linkView = newElement
+            .set({ 'target': { x: x, y: y } })
+            .addTo(graph).findView(paper);
+          this.set('isLinkAdding', true);
+          let links = graph.getLinks();
+          for (let i = 0; i < links.length; i+=1) {
+            let  link = links[i];
+            let view = link.findView(paper);
+              view.$el.addClass('edit-disabled');
+          }
+          $(document).on({
+            'mousemove.link': this._onDrag.bind(this)
+          }, {
+            paper: paper,
+            element: newElement
+          });
+          this.set('draggedLinkView', linkView);
+          break;
+        default:
+          if (isNone(this.get('draggedLink'))) {
+            return;
+          }
+      }
+    } else {
+      if (this.get('endDragLink')(options)) {
+        this._clearLinksData();
+      }
     }
   },
 
@@ -429,6 +438,7 @@ export default Component.extend({
    */
   _clearLinksData(removeFromGraph) {
     $(document).off('mousemove.example');
+    $(document).off('mousemove.link');
     let graph = this.get('graph');
     let paper = this.get('paper');
     graph.getLinks().map(link => {
