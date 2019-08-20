@@ -78,8 +78,13 @@ export let Partition = BaseObject.define('flexberry.uml.Partition', {
     this.on('change', function() {
       this.toBack({ deep: true });
     });
-  }
-
+  },
+  
+  getRectangles() {
+    return [
+      { type: 'header', element: this }
+    ];
+  },
 });
 
 joint.shapes.flexberry.uml.PartitionView = joint.shapes.flexberry.uml.BaseObjectView.extend({
