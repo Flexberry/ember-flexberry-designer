@@ -5,7 +5,7 @@ import joint from 'npm:jointjs';
 import { isNone } from '@ember/utils';
 
 import FdUmlLink, { Link } from './fd-uml-link';
-import { EmptyView } from './links-view/fd-empty-view';
+import { DescriptionView } from './links-view/fd-description-view';
 
 /**
   An object that describes a link of the inheritance type on the UML diagram.
