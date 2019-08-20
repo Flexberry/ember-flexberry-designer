@@ -3,6 +3,7 @@
 */
 import { computed } from '@ember/object';
 import { isArray } from '@ember/array';
+import $ from 'jquery';
 
 import FdUmlElement from './fd-uml-element';
 import { BaseObject } from './fd-uml-baseobject';
