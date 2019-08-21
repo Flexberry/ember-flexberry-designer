@@ -7318,16 +7318,6 @@ define('dummy/ember-flexberry-designer/tests/addon.lint-test', [], function () {
     assert.ok(true, 'addon/objects/uml-primitives/fd-uml-instance.js should pass ESLint\n\n');
   });
 
-  QUnit.test('addon/objects/uml-primitives/fd-uml-link-connector.js', function (assert) {
-    assert.expect(1);
-    assert.ok(true, 'addon/objects/uml-primitives/fd-uml-link-connector.js should pass ESLint\n\n');
-  });
-
-  QUnit.test('addon/objects/uml-primitives/fd-uml-link-inheritance.js', function (assert) {
-    assert.expect(1);
-    assert.ok(true, 'addon/objects/uml-primitives/fd-uml-link-inheritance.js should pass ESLint\n\n');
-  });
-
   QUnit.test('addon/objects/uml-primitives/fd-uml-link.js', function (assert) {
     assert.expect(1);
     assert.ok(true, 'addon/objects/uml-primitives/fd-uml-link.js should pass ESLint\n\n');
@@ -8676,11 +8666,6 @@ define('dummy/ember-flexberry-designer/tests/addon.lint-test', [], function () {
   QUnit.test('addon/transforms/fd-generation-state.js', function (assert) {
     assert.expect(1);
     assert.ok(true, 'addon/transforms/fd-generation-state.js should pass ESLint\n\n');
-  });
-
-  QUnit.test('addon/transforms/fd-primitives-json-string.js', function (assert) {
-    assert.expect(1);
-    assert.ok(true, 'addon/transforms/fd-primitives-json-string.js should pass ESLint\n\n');
   });
 
   QUnit.test('addon/transforms/fd-propertylookupstr.js', function (assert) {
@@ -10596,11 +10581,6 @@ define('dummy/ember-flexberry-designer/tests/app.lint-test', [], function () {
   QUnit.test('app/transforms/fd-generation-state.js', function (assert) {
     assert.expect(1);
     assert.ok(true, 'app/transforms/fd-generation-state.js should pass ESLint\n\n');
-  });
-
-  QUnit.test('app/transforms/fd-primitives-json-string.js', function (assert) {
-    assert.expect(1);
-    assert.ok(true, 'app/transforms/fd-primitives-json-string.js should pass ESLint\n\n');
   });
 
   QUnit.test('app/transforms/fd-propertylookupstr.js', function (assert) {
@@ -17824,19 +17804,6 @@ define('dummy/transforms/fd-generation-state', ['exports', 'ember-flexberry-desi
     enumerable: true,
     get: function () {
       return _fdGenerationState.default;
-    }
-  });
-});
-define('dummy/transforms/fd-primitives-json-string', ['exports', 'ember-flexberry-designer/transforms/fd-primitives-json-string'], function (exports, _fdPrimitivesJsonString) {
-  'use strict';
-
-  Object.defineProperty(exports, "__esModule", {
-    value: true
-  });
-  Object.defineProperty(exports, 'default', {
-    enumerable: true,
-    get: function () {
-      return _fdPrimitivesJsonString.default;
     }
   });
 });
