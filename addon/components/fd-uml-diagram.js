@@ -257,13 +257,13 @@ export default Component.extend({
   **/
   _linkPointerClick(element, e, x, y) {
     let options = { element: element, e: e, x: x, y: y };
+    let placePoint = element.path.closestPointT({x:x,y:y});
+    options.segmNo = placePoint.segmentIndex - 1;
+    options.percent = placePoint.value;
     if (isNone(this.get('draggedLink'))) {
       switch (element.model.get('editMode')) {
         case 'addInheritance':
           let startDragLink = this.get('startDragLink');
-          let placePoint = element.path.closestPointT({x:x,y:y});
-          options.segmNo = placePoint.segmentIndex - 1;
-          options.percent = placePoint.value;
           let newLink = startDragLink(options);
           newLink.attr('.marker-source', {'display':'none'});
           newLink.attr('.marker-arrowhead-group-source', {'display':'none'});

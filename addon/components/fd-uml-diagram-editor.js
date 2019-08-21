@@ -247,12 +247,16 @@ FdActionsForUcdPrimitivesMixin, {
         let attributes = model.attributes;
         let type = attributes.type;
         let interactionElements = this.get('interactionElements');
+        let newLink = this.get('newLink');
 
         if ((isNone(interactionElements) || (isArray(interactionElements) && interactionElements.includes(type)) ||
-         (isArray(interactionElements.start) && interactionElements.start.includes(type)))) {
-          let newLink = this.get('newLink');
+         (isArray(interactionElements.start) && interactionElements.start.includes(type))) ||
+         newLink.get('type') == 'flexberry.uml.NoteConnector'
+        ) {
           let target = { id: attributes.id };
-//           if (model.isLink()) {
+          if (model.isLink()) {
+            target.segmNo = options.segmNo;
+            target.percent = options.percent;
 //             target.anchor = {
 //               name: 'connectionSegmRatio',
 //               args: {
@@ -260,7 +264,7 @@ FdActionsForUcdPrimitivesMixin, {
 //                 percent: options.percent
 //               }
 //             };
-//           }
+          }
           newLink.set({ 'target': target, 'endClassRepObj': { id: get(attributes, 'objectModel.repositoryObject') } });
           let storeCallback = this.get('storeCallback');
           if (storeCallback) {
@@ -324,7 +328,7 @@ FdActionsForUcdPrimitivesMixin, {
             this._enableEditLinks();
             break;
           case 'addNoteConnector':
-            this._enableWrapLinks();
+            this._enableWrapLinks(buttonName);
             break;
           case 'addInheritance':
             this._enableWrapBaseLinks(buttonName);
@@ -436,7 +440,8 @@ FdActionsForUcdPrimitivesMixin, {
       }
     }
   },
-  _enableWrapLinks: function() {
+
+  _enableWrapLinks: function(editMode) {
     let paper = this.paper;
     let links = paper.model.getLinks();
     for (let i = 0; i < links.length; i+=1) {
@@ -445,6 +450,7 @@ FdActionsForUcdPrimitivesMixin, {
       view.$el.removeClass('edit-disabled');
       view.$el.addClass('linktools-disabled');
       view.options.interactive.vertexAdd = false;
+      link.set('editMode', editMode);
     }
   },
 
