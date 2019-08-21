@@ -164,13 +164,8 @@ export default Component.extend({
 
     let elements = this.get('elements');
     let links = this.get('links');
-    let linkConnectorsIds = A();
     graph.addCells(elements.map(e => {
       let element = e.JointJS();
-      if (element.prop('type') === 'flexberry.uml.LinkConnector') {
-        linkConnectorsIds.addObject(element.prop('id'));
-      }
-
       return element;
     }));
 
@@ -180,21 +175,20 @@ export default Component.extend({
         case 'flexberry.uml.Aggregation':
         case 'flexberry.uml.Association':
         case 'flexberry.uml.Generalization':
-        case 'flexberry.uml.LinkInheritance':
-          if (this.includes(link.prop('source/id'))) {
+          if ('anchor' in link.attributes.source) {
+            link.attr('.marker-source', {'display':'none'});
             link.attr('.marker-arrowhead-group-source', {'display':'none'});
             link.attr('.tool-remove', {'display':'none'});
           }
 
-          if (this.includes(link.prop('target/id'))) {
+          if ('anchor' in link.attributes.target) {
+            link.attr('.marker-target', {'display':'none'});
             link.attr('.marker-arrowhead-group-target', {'display':'none'});
             link.attr('.tool-remove', {'display':'none'});
           }
       }
-
       return link;
-    },
-      linkConnectorsIds
+    }
     ));
 
     let fitPaperToContent = function() {
