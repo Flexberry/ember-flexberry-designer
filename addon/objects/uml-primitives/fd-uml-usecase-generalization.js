@@ -2,6 +2,7 @@
   @module ember-flexberry-designer
 */
 import joint from 'npm:jointjs';
+import { isNone } from '@ember/utils';
 
 import FdUmlLink from './fd-uml-link';
 import { Link } from './fd-uml-link';
@@ -43,4 +44,14 @@ export let UseCaseGeneralization = Link.define('flexberry.uml.UseCaseGeneralizat
   }
 });
 
-joint.shapes.flexberry.uml.UseCaseGeneralizationView = DescriptionView;
+joint.shapes.flexberry.uml.UseCaseGeneralizationView = DescriptionView.extend({
+  setColors() {
+    DescriptionView.prototype.setColors.apply(this, arguments);
+
+    const textColor = this.getTextColor();
+
+    if (!isNone(textColor)) {
+      this.model.attr('.marker-target/stroke', textColor);
+    }
+  }
+});
