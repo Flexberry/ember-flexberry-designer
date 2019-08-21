@@ -81,10 +81,10 @@ export default FdUmlPrimitive.extend({
       this.set('primitive.EndPrimitive.$ref', value.id);
       this.set('primitive.EndLE.Primitive.$ref', value.id);
       if ('segmNo' in value) {
-        this.set('primitive.EndLE..SegmNo', value.segmNo);
+        this.set('primitive.EndLE.SegmNo', value.segmNo);
       }
       if ('percent' in value) {
-        this.set('primitive.EndLE..Percent', value.percent);
+        this.set('primitive.EndLE.Percent', value.percent);
       }       return value;
     },
   }),
