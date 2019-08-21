@@ -4,6 +4,7 @@
 
 import { computed } from '@ember/object';
 import { isArray } from '@ember/array';
+import { isNone } from '@ember/utils';
 import $ from 'jquery';
 import joint from 'npm:jointjs';
 
@@ -127,4 +128,20 @@ joint.shapes.flexberry.uml.MultiObjectView = joint.shapes.flexberry.uml.BaseObje
       this.highlight();
     }
   },
+
+  setColors() {
+    joint.shapes.flexberry.uml.BaseObjectView.prototype.setColors.apply(this, arguments);
+
+    const textColor = this.getTextColor();
+    const brushColor = this.getBrushColor();
+
+    if (!isNone(brushColor)) {
+      this.model.attr('.back-rect/fill-opacity', 1);
+      this.model.attr('.back-rect/fill', brushColor);
+    }
+
+    if (!isNone(textColor)) {
+      this.model.attr('.back-rect/stroke', textColor);
+    }
+  }
 });

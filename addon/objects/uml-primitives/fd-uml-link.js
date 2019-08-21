@@ -338,18 +338,98 @@ export let Link = joint.dia.Link.define('flexberry.uml.Link', {
         let objectModel = this.get('objectModel');
         if (objectModel) {
           let connectedLinks = this.get('connectedLinks');
-          let changedSegment = this._changedSegment(newVertices);
-          if (changedSegment.segmNo >= 0) {
+          let vertices = this.get('objectModel').vertices;
+          let delta = newVertices.length - vertices.length;
+          let nSegment;
+          if (delta > 0) {  //Adding vertex
+            let prevVertex, vertex, newVertex;
+            for (nSegment = 0; nSegment < vertices.length; nSegment+=1) {
+              newVertex = newVertices[nSegment];
+              vertex = vertices[nSegment];
+              if (vertex.x != newVertex.x || vertex.y != newVertex.y) {
+                break;
+              }
+              prevVertex = vertex;
+            }
+            newVertex = newVertices[nSegment];
+            if (nSegment >= vertices.length) {
+              vertex = this.getTargetPoint()
+            }
+            if (nSegment == 0) {
+              prevVertex = this.getSourcePoint();
+            }
+
+            let newVertexProject = {};
+            let percent = this._getPercentSegmInfo(prevVertex, vertex, newVertex);
+            newVertexProject.x = prevVertex.x + (vertex.x - prevVertex.x) * percent;
+            newVertexProject.y = prevVertex.y + (vertex.y - prevVertex.y) * percent;
             for (let id in connectedLinks) {
               let connectedLink = connectedLinks[id];
               let connectedLinkObjectModel = connectedLink.model.get('objectModel');
-              let startSegmNo = connectedLinkObjectModel.get('startSegmNo');
-              if (startSegmNo >= changedSegment.segmNo) {
-                connectedLinkObjectModel.set('startSegmNo', startSegmNo + Math.sign(changedSegment.delta));
+              let percent = this._getPercentSegmInfo(prevVertex, newVertexProject, connectedLink.sourcePoint);
+              if (percent >= 0) {
+                connectedLinkObjectModel.set('startSegmNo', nSegment);
+                connectedLinkObjectModel.set('startPercent', percent);
+              } else {
+                percent = this._getPercentSegmInfo(newVertexProject, vertex, connectedLink.sourcePoint);
+                if (percent >= 0) {
+                  connectedLinkObjectModel.set('startSegmNo', nSegment+1);
+                  connectedLinkObjectModel.set('startPercent', percent);
+                } else {
+                  let startSegmNo = connectedLinkObjectModel.get('startSegmNo');
+                  if (startSegmNo >= nSegment) {
+                    connectedLinkObjectModel.set('startSegmNo', startSegmNo + 1);
+                  }
+                }
               }
-              let endSegmNo = connectedLinkObjectModel.get('endSegmNo');
-              if (endSegmNo >= changedSegment.segmNo) {
-                connectedLinkObjectModel.set('endSegmNo', endSegmNo + Math.sign(changedSegment.delta));
+            }
+
+          } else {
+            if (delta <0) { //Removing vertex0
+              let prevVertex, vertex, removedVertex;
+              for (nSegment = 0; nSegment < newVertices.length; nSegment+=1) {
+                vertex = newVertices[nSegment];
+                removedVertex = vertices[nSegment];
+                if (vertex.x != removedVertex.x || vertex.y != removedVertex.y) {
+                  break;
+                }
+                prevVertex = vertex;
+              }
+              removedVertex = vertices[nSegment];
+              if (nSegment >= newVertices.length) {
+                vertex = this.getTargetPoint()
+              }
+              if (nSegment == 0) {
+                prevVertex = this.getSourcePoint();
+              }
+              let len1 = this._segmentLength(prevVertex, removedVertex);
+              let fullLen = len1 + this._segmentLength(removedVertex, vertex);
+              for (let id in connectedLinks) {
+                let connectedLink = connectedLinks[id];
+                let connectedLinkObjectModel = connectedLink.model.get('objectModel');
+                let percent = this._getPercentSegmInfo(prevVertex, removedVertex, connectedLink.sourcePoint);
+                if (percent >= 0) {
+                  let len = this._segmentLength(prevVertex, connectedLink.sourcePoint);
+                  percent = len / fullLen;
+                  connectedLinkObjectModel.set('startSegmNo', nSegment);
+                  connectedLinkObjectModel.set('startPercent', percent);
+                } else {
+                  percent = this._getPercentSegmInfo(removedVertex, vertex, connectedLink.sourcePoint);
+                  if (percent >= 0) {
+                    connectedLinkObjectModel.set('startSegmNo', nSegment);
+                    let len = len1 + this._segmentLength(removedVertex, connectedLink.sourcePoint);
+                    percent = len / fullLen;
+                    connectedLinkObjectModel.set('startSegmNo', nSegment);
+                    connectedLinkObjectModel.set('startPercent', percent);
+                  }
+                  else {
+                    let segmNo = connectedLinkObjectModel.get('startSegmNo');
+                    if (segmNo > nSegment+1) {
+                      connectedLinkObjectModel.set('startSegmNo', segmNo-1);
+                    }
+                  }
+                }
+
               }
             }
           }
@@ -508,29 +588,25 @@ export let Link = joint.dia.Link.define('flexberry.uml.Link', {
       }
     },
 
-    _changedSegment: function(newVertices) {
-      let vertices = this.get('objectModel').vertices;
-      let delta = newVertices.length - vertices.length;
-      let ret = {segmNo:0, delta: delta};
-      if (newVertices.length == 0) {
-        return ret;
+    _getPercentSegmInfo: function(point1, point2, middlePoint) {
+      let minX = Math.min(point1.x, point2.x);
+      let minY = Math.min(point1.y, point2.y);
+      let maxX = Math.max(point1.x, point2.x);
+      let maxY = Math.max(point1.y, point2.y);
+      if (middlePoint.x < minX || middlePoint.y < minY || middlePoint.x > maxX || middlePoint.y > maxY) {
+        return -1.0;
       }
-      for (let i = 0; i < newVertices.length; i +=1) {
-        if (i >= vertices.length) {
-          ret.segmNo = i;
-          return ret;
-        }
-        let newVertex = newVertices[i];
-        let vertex = vertices[i];
-        if (vertex.x != newVertex.x || vertex.y != newVertex.y) {
-          ret.segmNo = i;
-          return ret;
-        }
-      }
-      ret.segmNo = -1;
+      let len1 = this._segmentLength(point1, point2);
+      let len2 = this._segmentLength(point1, middlePoint);
+      let ret = len2 / len1;
       return ret;
-
     },
+
+    _segmentLength: function(point1,point2) {
+      let deltaX = point2.x - point1.x;
+      let deltaY = point2.y - point1.y;
+      return Math.sqrt(deltaX * deltaX + deltaY * deltaY);
+    }
 
   });
 

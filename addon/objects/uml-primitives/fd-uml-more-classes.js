@@ -70,5 +70,11 @@ export let MoreClasses = joint.shapes.basic.Generic.define('flexberry.uml.MoreCl
 joint.shapes.flexberry.uml.MoreClassesView = joint.shapes.flexberry.uml.PrimitiveElementView.extend({
   getSizeChangers() {
     return A();
+  },
+
+  setColors() {
+    const brushColor = this.getBrushColor();
+
+    this.model.attr(`circle/fill`, brushColor);
   }
 });

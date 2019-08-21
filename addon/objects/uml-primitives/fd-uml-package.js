@@ -131,7 +131,6 @@ joint.shapes.flexberry.uml.PackageView = joint.shapes.flexberry.uml.BaseObjectVi
 
   updateRectangles: function (resizedWidth, resizedHeight) {
     let rects = this.model.getRectangles();
-
     let offsetY = 0;
     let newHeight = 0;
     let newWidth = 0;

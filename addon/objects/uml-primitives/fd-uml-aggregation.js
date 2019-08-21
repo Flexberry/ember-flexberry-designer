@@ -2,6 +2,7 @@
   @module ember-flexberry-designer
 */
 import joint from 'npm:jointjs';
+import { isNone } from '@ember/utils';
 
 import FdUmlLink from './fd-uml-link';
 import { Link } from './fd-uml-link';
@@ -57,4 +58,19 @@ export let Aggregation = Link.define('flexberry.uml.Aggregation', {
   },
 });
 
-joint.shapes.flexberry.uml.AggregationView = MultiplicityView;
+joint.shapes.flexberry.uml.AggregationView = MultiplicityView.extend({
+  setColors() {
+    MultiplicityView.prototype.setColors.apply(this, arguments);
+
+    const textColor = this.getTextColor();
+    const brushColor = this.getBrushColor();
+
+    if (!isNone(textColor)) {
+      this.model.attr('.marker-source/stroke', textColor);
+    }
+
+    if (!isNone(brushColor)) {
+      this.model.attr('.marker-source/fill', brushColor);
+    }
+  }
+});

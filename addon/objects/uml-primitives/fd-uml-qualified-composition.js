@@ -4,6 +4,7 @@
 
 import { computed } from '@ember/object';
 import joint from 'npm:jointjs';
+import { isNone } from '@ember/utils';
 
 import FdUmlLink, { Link } from './fd-uml-link';
 import { QualifiedView } from './links-view/fd-qualified-view';
@@ -70,10 +71,10 @@ export let QualifiedComposition = Link.define('flexberry.uml.QualifiedCompositio
 
     // append <linearGradient> to markup, so that it covers whole path
     markup += '<linearGradient id="solids" x1="0%" y1="0%" x2="100%" y2="0%">' +
-      '<stop offset="0%" style="stop-color:rgb(255,255,255);stop-opacity:1" />' +
-      '<stop offset="50%" style="stop-color:rgb(255,255,255);stop-opacity:1" />' +
-      '<stop offset="50%" style="stop-color:rgb(0,0,0);stop-opacity:1" />' +
-      '<stop offset="100%" style="stop-color:rgb(0,0,0);stop-opacity:1" />' +
+      '<stop class="brush-color" offset="0%" style="stop-color:rgb(255,255,255);stop-opacity:1" />' +
+      '<stop class="brush-color" offset="50%" style="stop-color:rgb(255,255,255);stop-opacity:1" />' +
+      '<stop class="text-color" offset="50%" style="stop-color:rgb(0,0,0);stop-opacity:1" />' +
+      '<stop class="text-color" offset="100%" style="stop-color:rgb(0,0,0);stop-opacity:1" />' +
       '</linearGradient>';
     this.set('markup', markup);
   },
@@ -92,13 +93,19 @@ export let QualifiedComposition = Link.define('flexberry.uml.QualifiedCompositio
 });
 
 joint.shapes.flexberry.uml.QualifiedCompositionView = QualifiedView.extend({
-  template: [
-    '<div class="uml-link-inputs">',
-    '<input type="text" class="description-input underline-text" value="" />',
-    '<input type="text" class="start-role-input" value="" />',
-    '<input type="text" class="end-role-input" value="" />',
-    '<input type="text" class="qualified-input" value="" />',
-    '<div class="input-buffer"></div>',
-    '</div>'
-  ].join(''),
+  setColors() {
+    QualifiedView.prototype.setColors.apply(this, arguments);
+
+    const brushColor = this.getBrushColor();
+    const textColor = this.getTextColor();
+
+    if (!isNone(textColor)) {
+      this.model.attr('.marker-source/stroke', textColor);
+      this.model.attr('.text-color/style/stop-color', textColor);
+    }
+
+    if (!isNone(brushColor)) {
+      this.model.attr('.brush-color/style/stop-color', brushColor);
+    }
+  }
 });
