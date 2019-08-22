@@ -380,12 +380,10 @@ export let Link = joint.dia.Link.define('flexberry.uml.Link', {
               let percent = this._getPercentSegmInfo(prevVertex, newVertexProject, connectedLink.sourcePoint);
               if (percent >= 0) {
                 connectedLinkObjectModel.set('startSegmNo', nSegment);
-                connectedLinkObjectModel.set('startPercent', percent);
               } else {
                 percent = this._getPercentSegmInfo(newVertexProject, vertex, connectedLink.sourcePoint);
                 if (percent >= 0) {
                   connectedLinkObjectModel.set('startSegmNo', nSegment+1);
-                  connectedLinkObjectModel.set('startPercent', percent);
                 } else {
                   let startSegmNo = connectedLinkObjectModel.get('startSegmNo');
                   if (startSegmNo >= nSegment) {
@@ -423,7 +421,6 @@ export let Link = joint.dia.Link.define('flexberry.uml.Link', {
                   let len = this._segmentLength(prevVertex, connectedLink.sourcePoint);
                   percent = len / fullLen;
                   connectedLinkObjectModel.set('startSegmNo', nSegment);
-                  connectedLinkObjectModel.set('startPercent', percent);
                 } else {
                   percent = this._getPercentSegmInfo(removedVertex, vertex, connectedLink.sourcePoint);
                   if (percent >= 0) {
@@ -431,7 +428,6 @@ export let Link = joint.dia.Link.define('flexberry.uml.Link', {
                     let len = len1 + this._segmentLength(removedVertex, connectedLink.sourcePoint);
                     percent = len / fullLen;
                     connectedLinkObjectModel.set('startSegmNo', nSegment);
-                    connectedLinkObjectModel.set('startPercent', percent);
                   }
                   else {
                     let segmNo = connectedLinkObjectModel.get('startSegmNo');
