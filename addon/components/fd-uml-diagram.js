@@ -177,14 +177,14 @@ export default Component.extend({
         case 'flexberry.uml.Generalization':
           if ('anchor' in link.attributes.source) {
             link.attr('.marker-source', {'display':'none'});
-            link.attr('.marker-arrowhead-group-source', {'display':'none'});
-            link.attr('.tool-remove', {'display':'none'});
+//             link.attr('.marker-arrowhead-group-source', {'display':'none'});
+//             link.attr('.tool-remove', {'display':'none'});
           }
 
           if ('anchor' in link.attributes.target) {
             link.attr('.marker-target', {'display':'none'});
-            link.attr('.marker-arrowhead-group-target', {'display':'none'});
-            link.attr('.tool-remove', {'display':'none'});
+//             link.attr('.marker-arrowhead-group-target', {'display':'none'});
+//             link.attr('.tool-remove', {'display':'none'});
           }
       }
       return link;
@@ -266,8 +266,8 @@ export default Component.extend({
           options.percent = placePoint.value;
           let newLink = startDragLink(options);
           newLink.attr('.marker-source', {'display':'none'});
-          newLink.attr('.marker-arrowhead-group-source', {'display':'none'});
-          newLink.attr('.tool-remove', {'display':'none'});
+//           newLink.attr('.marker-arrowhead-group-source', {'display':'none'});
+//           newLink.attr('.tool-remove', {'display':'none'});
           this.set('draggedLink', newLink);
           let graph = this.get('graph');
           let paper = this.get('paper');
