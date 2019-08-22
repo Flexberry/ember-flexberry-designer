@@ -1,4 +1,10 @@
 <h2 class="form-header">{{t "forms.fd-navigation.caption"}}</h2>
+{{#if applicationClassIsAbsent}}
+  {{fd-button
+    caption=(t "forms.fd-navigation.create-prototype-button-text")
+    click=(action "createPrototype")
+  }}
+{{else}}
 
 <div class="fd-projects-toolbar">
   {{fd-button
@@ -50,3 +56,4 @@
     {{/if}}
   {{/if}}
 {{/fd-sheet}}
+{{/if}}
