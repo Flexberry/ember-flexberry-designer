@@ -106,6 +106,22 @@ export default FdUmlPrimitive.extend({
   }),
 
   /**
+   The end segmNo of a link.                                *
+
+   @property endSegmNo
+   @type String
+   */
+  endSegmNo: computed('primitive.EndLE.SegmNo', {
+    get() {
+      return this.get('primitive.EndLE.SegmNo');
+    },
+    set(key, value) {
+      this.set('primitive.EndLE.SegmNo', value.id);
+      return value;
+    }
+  }),
+
+  /**
    *   The start percent of a link.                                *
    *
    *   @property startPercent
@@ -122,23 +138,6 @@ export default FdUmlPrimitive.extend({
   }),
 
   /**
-   The end segmNo of a link.                                *
-
-   @property endSegmNo
-   @type String
-   */
-  endSegmNo: computed('primitive.EndLE.SegmNo', {
-    get() {
-      return this.get('primitive.EndLE.SegmNo');
-    },
-    set(key, value) {
-      this.set('primitive.EndLE.SegmNo', value.id);
-      return value;
-    }
-  }),
-
-
-  /**
    *   The end percent of a link.                                *
    *
    *   @property endPercent
@@ -153,6 +152,7 @@ export default FdUmlPrimitive.extend({
       return value;
     }
   }),
+
 
   /**
   The start multiplicity of a link.

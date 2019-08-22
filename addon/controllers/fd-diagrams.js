@@ -375,9 +375,11 @@ export default Controller.extend(FdSaveHasManyRelationshipsMixin, {
               attributesStr: getActualValue(attributes, currentValues.attributesStr),
               methodsStr: getActualValue(methods, currentValues.methodsStr),
             });
+
+            updateObjectByStr(repObject, store);
           }
 
-          return hasChanges(repObject) ? repObject.save() : resolve();
+          return hasChanges(repObject) ? repObject.save().then(() => this.saveHasManyRelationships(repObject)) : resolve();
         }));
       }
 
