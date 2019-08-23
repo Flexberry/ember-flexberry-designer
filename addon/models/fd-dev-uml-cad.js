@@ -60,13 +60,22 @@ let Model = CADModel.extend(DevUMLCADMixin, {
       let primitive = primitives[i];
       if ('StartLE' in primitive) {
         let targetId = primitive.StartLE.Primitive.$ref;
-        let targetType = elements[targetId].$type;
-        primitive.StartLE.refType = (targetType in linkTypes) ? 'Link' : 'Element';
+        if (targetId) {
+          let targetType = elements[targetId].$type;
+          primitive.StartLE.refType = (targetType in linkTypes) ? 'Link' : 'Element';
+        } else {
+          primitive.StartLE.refType = 'Element';
+        }
       }
+
       if ('EndLE' in primitive) {
         let targetId = primitive.EndLE.Primitive.$ref;
-        let targetType = elements[targetId].$type;
-        primitive.EndLE.refType = (targetType in linkTypes) ? 'Link' : 'Element';
+        if (targetId) {
+          let targetType = elements[targetId].$type;
+          primitive.EndLE.refType = (targetType in linkTypes) ? 'Link' : 'Element';
+        } else {
+          primitive.EndLE.refType = 'Element';
+        }
       }
       switch (primitive.$type) {
         case 'STORMCASE.UML.Common.Note, UMLCommon':

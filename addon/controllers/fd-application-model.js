@@ -131,7 +131,7 @@ export default Controller.extend(FdSaveHasManyRelationshipsMixin, {
     let selectedElement = this.get('selectedElement');
     if (!isNone(selectedElement)) {
       let stereotype = selectedElement.get('model.data.stereotype');
-      if (isNone(stereotype)) {
+      if (isBlank(stereotype)) {
         return 'implementation';
       }
 
@@ -218,7 +218,7 @@ export default Controller.extend(FdSaveHasManyRelationshipsMixin, {
   */
   updateClassModel(modelSelectedElement) {
     let stereotype = modelSelectedElement.get('stereotype');
-    if (stereotype === '«implementation»' || stereotype === null) {
+    if (stereotype === '«implementation»' || isBlank(stereotype)) {
       let model = this.get('model');
       let classObj = model.classes.findBy('settings.data.id', modelSelectedElement.id);
       let bs = modelSelectedElement.get('businessServerClass');
@@ -492,7 +492,7 @@ export default Controller.extend(FdSaveHasManyRelationshipsMixin, {
         }
       }
 
-      if (stereotype === '«implementation»' || stereotype === null) {
+      if (stereotype === '«implementation»' || isBlank(stereotype)) {
         let deleteObjectClass = modelHash.findBy('settings.data.id', selectedElement.id);
         deleteModels.pushObjects(deleteObjectClass.listForms);
         deleteModels.pushObjects(deleteObjectClass.editForms);

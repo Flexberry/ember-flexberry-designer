@@ -212,9 +212,6 @@ joint.util.setByPath(joint.shapes, 'flexberry.uml.BaseClass', BaseClass, '.');
 export let Class = BaseClass.define('flexberry.uml.Class', {});
 joint.util.setByPath(joint.shapes, 'flexberry.uml.Class', Class, '.');
 
-
-joint.util.setByPath(joint.shapes, 'flexberry.uml.BaseClass', BaseClass, '.');
-
 joint.util.setByPath(joint.shapes, 'flexberry.uml.BaseClass', BaseClass, '.');
 
 joint.shapes.flexberry.uml.ClassView = joint.shapes.flexberry.uml.PrimitiveElementView.extend({
@@ -342,7 +339,8 @@ joint.shapes.flexberry.uml.ClassView = joint.shapes.flexberry.uml.PrimitiveEleme
     }, this);
 
     this.updateBox();
-    this.updateRectangles();
+    const objectModel = this.model.get('objectModel');
+    this.paper.trigger('getrepobjvalues', objectModel, this);
 
     return this;
   },
