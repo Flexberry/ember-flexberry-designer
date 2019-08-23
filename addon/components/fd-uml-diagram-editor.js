@@ -263,15 +263,11 @@ FdActionsForUcdPrimitivesMixin, {
           }
           let target = { id: attributes.id };
           if (model.isLink()) {
-            target.segmNo = options.segmNo;
-            target.percent = options.percent;
-//             target.anchor = {
-//               name: 'connectionSegmRatio',
-//               args: {
-//                 segmNo: options.segmNo,
-//                 percent: options.percent
-//               }
-//             };
+            let objectModel = newLink.get('objectModel');
+            objectModel.set('endSegmNo',  options.segmNo);
+            objectModel.set('endPercent', options.percent);
+//             target.segmNo = options.segmNo;
+//             target.percent = options.percent;
           }
           newLink.set({ 'target': target, 'endClassRepObj': { id: get(attributes, 'objectModel.repositoryObject') } });
           let storeCallback = this.get('storeCallback');
