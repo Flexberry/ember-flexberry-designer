@@ -164,6 +164,7 @@ export default Component.extend({
 
     paper.on('blank:pointerclick', this._blankPointerClick, this);
     paper.on('element:pointerclick', this._elementPointerClick, this);
+    paper.on('link:pointerclick', this._linkPointerClick, this);
     paper.on('blank:contextmenu', this._blankContextMenu, this);
 
     paper.on('updaterepobj', this._updateRepObj, this);
