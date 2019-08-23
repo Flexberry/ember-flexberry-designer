@@ -85,7 +85,8 @@ export default FdUmlPrimitive.extend({
       }
       if ('percent' in value) {
         this.set('primitive.EndLE.Percent', value.percent);
-      }       return value;
+      }
+      return value;
     },
   }),
 
@@ -100,7 +101,7 @@ export default FdUmlPrimitive.extend({
       return this.get('primitive.StartLE.SegmNo');
     },
     set(key, value) {
-      this.set('primitive.StartLE.SegmNo', value.id);
+      this.set('primitive.StartLE.SegmNo', value);
       return value;
     }
   }),
@@ -116,7 +117,7 @@ export default FdUmlPrimitive.extend({
       return this.get('primitive.EndLE.SegmNo');
     },
     set(key, value) {
-      this.set('primitive.EndLE.SegmNo', value.id);
+      this.set('primitive.EndLE.SegmNo', value);
       return value;
     }
   }),
@@ -132,7 +133,7 @@ export default FdUmlPrimitive.extend({
       return this.get('primitive.StartLE.Percent');
     },
     set(key, value) {
-      this.set('primitive.StartLE.Percent', value.id);
+      this.set('primitive.StartLE.Percent', value);
       return value;
     }
   }),
@@ -148,7 +149,7 @@ export default FdUmlPrimitive.extend({
       return this.get('primitive.EndLE.Percent');
     },
     set(key, value) {
-      this.set('primitive.EndLE.Percent', value.id);
+      this.set('primitive.EndLE.Percent', value);
       return value;
     }
   }),
