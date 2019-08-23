@@ -263,6 +263,9 @@ export default Component.extend({
         case 'addInheritance':
         case 'addNoteConnector':
         {
+          if (editMode === 'addNoteConnector' && !this._haveNote()) {
+            return;
+          }
           let startDragLink = this.get('startDragLink');
           let newLink = startDragLink(options);
           if (editMode === 'addInheritance') {
@@ -290,30 +293,6 @@ export default Component.extend({
           this.set('draggedLinkView', linkView);
           break;
         }
-//         case 'addNoteConnector':
-//           let startDragLink = this.get('startDragLink');
-//           let newLink = startDragLink(options);
-//           this.set('draggedLink', newLink);
-//           let graph = this.get('graph');
-//           let paper = this.get('paper');
-//           let linkView = newLink
-//           .set({ 'target': { x: x, y: y } })
-//           .addTo(graph).findView(paper);
-//           this.set('isLinkAdding', true);
-//           let links = graph.getLinks();
-//           for (let i = 0; i < links.length; i+=1) {
-//             let  link = links[i];
-//             let view = link.findView(paper);
-//             view.$el.addClass('edit-disabled');
-//           }
-//           $(document).on({
-//             'mousemove.link': this._onDrag.bind(this)
-//           }, {
-//             paper: paper,
-//             element: newLink
-//           });
-//           this.set('draggedLinkView', linkView);
-//           break;
         default:
           if (isNone(this.get('draggedLink'))) {
             return;
@@ -983,5 +962,19 @@ export default Component.extend({
       let view = link.findView(paper);
       view.$el.addClass('edit-disabled');
     }
+  },
+
+  _haveNote: function() {
+    let paper = this.paper;
+    let elements = paper.model.getElements();
+    for (let i = 0; i < elements.length; i+=1) {
+      let  element = elements[i];
+      if (element.get('type') == 'flexberry.uml.Note') {
+        return true;
+      }
+
+    }
+    return false;
   }
+
 });

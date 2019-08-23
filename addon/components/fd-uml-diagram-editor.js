@@ -131,6 +131,11 @@ FdActionsForUcdPrimitivesMixin, {
   */
   spellcheck: false,
 
+  /**
+   Type source element of Link
+   */
+  sourceElementType: undefined,
+
   diagramType: computed('model.constructor.modelName', function() {
     let type = this.get('model.constructor.modelName');
     if (isNone(type)) {
@@ -219,6 +224,7 @@ FdActionsForUcdPrimitivesMixin, {
 
         if ((isNone(interactionElements) || (isArray(interactionElements) && interactionElements.includes(type)) ||
          (isArray(interactionElements.start) && interactionElements.start.includes(type)))) {
+          this.sourceElementType =  type;
           let jointjsCallback = this.get('jointjsCallback');
           let linkProperties = { source: model.id };
           if ('segmNo' in options && options['segmNo'] >= 0) {
@@ -250,9 +256,11 @@ FdActionsForUcdPrimitivesMixin, {
         let newLink = this.get('newLink');
 
         if ((isNone(interactionElements) || (isArray(interactionElements) && interactionElements.includes(type)) ||
-         (isArray(interactionElements.start) && interactionElements.start.includes(type))) ||
-         newLink.get('type') == 'flexberry.uml.NoteConnector'
+         (isArray(interactionElements.start) && interactionElements.start.includes(type)))
         ) {
+          if (newLink.get('type') == 'flexberry.uml.NoteConnector' && this.sourceElementType !== 'flexberry.uml.Note' &&  type !== 'flexberry.uml.Note') {
+            return false;
+          }
           let target = { id: attributes.id };
           if (model.isLink()) {
             target.segmNo = options.segmNo;
