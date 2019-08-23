@@ -258,11 +258,16 @@ export default Component.extend({
     options.segmNo = placePoint.segmentIndex - 1;
     options.percent = placePoint.value;
     if (isNone(this.get('draggedLink'))) {
-      switch (element.model.get('editMode')) {
-        case 'addInheritance': {
+      let editMode = element.model.get('editMode');
+      switch (editMode) {
+        case 'addInheritance':
+        case 'addNoteConnector':
+        {
           let startDragLink = this.get('startDragLink');
           let newLink = startDragLink(options);
-          newLink.attr('.marker-source', {'display':'none'});
+          if (editMode === 'addInheritance') {
+            newLink.attr('.marker-source', {'display':'none'});
+          }
           this.set('draggedLink', newLink);
           let graph = this.get('graph');
           let paper = this.get('paper');
@@ -285,6 +290,30 @@ export default Component.extend({
           this.set('draggedLinkView', linkView);
           break;
         }
+//         case 'addNoteConnector':
+//           let startDragLink = this.get('startDragLink');
+//           let newLink = startDragLink(options);
+//           this.set('draggedLink', newLink);
+//           let graph = this.get('graph');
+//           let paper = this.get('paper');
+//           let linkView = newLink
+//           .set({ 'target': { x: x, y: y } })
+//           .addTo(graph).findView(paper);
+//           this.set('isLinkAdding', true);
+//           let links = graph.getLinks();
+//           for (let i = 0; i < links.length; i+=1) {
+//             let  link = links[i];
+//             let view = link.findView(paper);
+//             view.$el.addClass('edit-disabled');
+//           }
+//           $(document).on({
+//             'mousemove.link': this._onDrag.bind(this)
+//           }, {
+//             paper: paper,
+//             element: newLink
+//           });
+//           this.set('draggedLinkView', linkView);
+//           break;
         default:
           if (isNone(this.get('draggedLink'))) {
             return;
