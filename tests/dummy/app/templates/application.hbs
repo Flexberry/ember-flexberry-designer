@@ -24,13 +24,12 @@
         {{currentProjectName}}
       </div>
     </div>
+    {{flexberry-sitemap sitemap=sitemap}}
   {{/if}}
 
   <button {{action 'toggleSidebar'}} class="ui toggle-sidebar-visible icon button">
     <i class="caret left icon"></i>
   </button>
-
-  {{flexberry-sitemap sitemap=sitemap}}
 
   <div class="sitemap-bottom">
     {{flexberry-sitemap sitemap=sitemapBottom}}

@@ -41,6 +41,17 @@
 }
 
 @ind: (@rowSpacing / 2);
-.ui.cards.fd-projects {
+.ui.cards.fd-projects,
+.ui.cards.fd-list {
   margin-left: calc(~'-@{leftIndent} - @{ind}');
+}
+
+.ui.cards.fd-list {
+  > .card:first-child {
+    margin-top: 0;
+  }
+  > .card .content {
+    padding-top: 1em;
+    padding-bottom: 1em;
+  }
 }
