@@ -53,16 +53,17 @@
 			position: relative;
 			left: -1.6rem;
 			&.active {
-				margin-bottom: 2rem;
+				margin-bottom: 1rem;
 			}
 		}
+
 		.flexberry-toggler-content {
+			.ui.grid {
+				margin-top: 0;
+			}
 			.row {
 				&:last-child {
 					border-bottom: none;
-				}
-				& > .column {
-					padding: @fdListColPadding 0;
 				}
 			}
 		}
