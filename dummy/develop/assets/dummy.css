@@ -38354,6 +38354,27 @@ a.ui.card:hover,
   font-size: 1.3em;
   color: rgba(0, 0, 0, 0.5);
 }
+.ui.card.dashed {
+  border: 1px dashed rgba(0, 0, 0, 0.1);
+  box-shadow: none;
+  margin: 1.2em auto 1em auto;
+}
+.ui.card.dashed:hover {
+  border: 1px dashed rgba(0, 0, 0, 0.19);
+  box-shadow: none;
+}
+.ui.card.dashed .fd-round-button {
+  margin: 1em auto;
+}
+.ui.card.dashed label.ui.basic.button.circular.icon {
+  box-shadow: none !important;
+}
+.ui.card.dashed label.ui.basic.button.circular.icon:hover {
+  box-shadow: none !important;
+}
+.ui.card.dashed label.ui.basic.button.circular.icon:active {
+  box-shadow: none !important;
+}
 .ui.cards.fd-projects {
   margin-left: calc(-2.5em - 0.875em);
 }
@@ -60864,6 +60885,15 @@ h2,
 }
 .fd-centered-new-form .fd-list-edited {
   margin-bottom: 5rem;
+}
+.fd-centered-new-form.empty {
+  text-align: center;
+  margin-top: 8em;
+}
+.fd-centered-new-form.empty .text {
+  max-width: 40%;
+  margin: auto;
+  margin-bottom: 5em;
 }
 .fd-styled-link {
   border-bottom: 1px dashed;

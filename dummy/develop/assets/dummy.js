@@ -17115,7 +17115,7 @@ define("dummy/templates/fd-all-projects/empty", ["exports"], function (exports) 
   Object.defineProperty(exports, "__esModule", {
     value: true
   });
-  exports.default = Ember.HTMLBars.template({ "id": "kpfByaoQ", "block": "{\"symbols\":[],\"statements\":[[6,\"h3\"],[8],[1,[26,\"t\",[\"forms.fd-all-projects.greeting\"],null],false],[9],[0,\"\\n\\n\"],[6,\"h4\"],[8],[1,[26,\"t\",[\"forms.fd-all-projects.pr\"],null],false],[9],[0,\"\\n\\n\"],[4,\"link-to\",[\"fd-all-projects.new\"],null,{\"statements\":[[0,\"  \"],[1,[26,\"t\",[\"forms.fd-all-projects.new-project\"],null],false],[0,\"\\n\"]],\"parameters\":[]},null]],\"hasEval\":false}", "meta": { "moduleName": "dummy/templates/fd-all-projects/empty.hbs" } });
+  exports.default = Ember.HTMLBars.template({ "id": "TC0cyoJA", "block": "{\"symbols\":[],\"statements\":[[6,\"div\"],[10,\"class\",\"fd-centered-new-form empty\"],[8],[0,\"\\n  \"],[6,\"h1\"],[8],[1,[26,\"t\",[\"forms.fd-all-projects.greeting\"],null],false],[9],[0,\"\\n  \"],[6,\"div\"],[10,\"class\",\"text\"],[8],[1,[26,\"t\",[\"forms.fd-all-projects.pr\"],null],false],[9],[0,\"\\n\"],[4,\"link-to\",[\"fd-all-projects.new\"],[[\"class\"],[\"ui card dashed\"]],{\"statements\":[[0,\"    \"],[1,[26,\"fd-round-button\",null,[[\"iconClass\",\"colorClass\",\"caption\"],[\"icon-fd-plus-thin\",\"blue\",[26,\"t\",[\"forms.fd-all-projects.new-project\"],null]]]],false],[0,\"\\n\"]],\"parameters\":[]},null],[9]],\"hasEval\":false}", "meta": { "moduleName": "dummy/templates/fd-all-projects/empty.hbs" } });
 });
 define("dummy/templates/fd-all-projects/index", ["exports"], function (exports) {
   "use strict";
