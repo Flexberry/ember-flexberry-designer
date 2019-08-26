@@ -60581,7 +60581,7 @@ body.pushable > .pusher {
 }
 .ui.grid.fd-table {
   width: 100%;
-  padding-top: 1rem;
+  padding: 1rem 0 0;
 }
 .ui.grid.fd-table > .row .column.fd-table-checkbox {
   position: absolute;
@@ -60689,6 +60689,23 @@ body.pushable > .pusher {
 .ui.grid.fd-list .ui.selection.dropdown > .dropdown.icon,
 .ui.grid.fd-list-edited .ui.selection.dropdown > .dropdown.icon {
   padding: 0 0.91666667em;
+}
+.ui.grid.fd-list .flexberry-toggler .title,
+.ui.grid.fd-list-edited .flexberry-toggler .title {
+  position: relative;
+  left: -1.6rem;
+}
+.ui.grid.fd-list .flexberry-toggler .title.active,
+.ui.grid.fd-list-edited .flexberry-toggler .title.active {
+  margin-bottom: 1rem;
+}
+.ui.grid.fd-list .flexberry-toggler .flexberry-toggler-content .ui.grid,
+.ui.grid.fd-list-edited .flexberry-toggler .flexberry-toggler-content .ui.grid {
+  margin-top: 0;
+}
+.ui.grid.fd-list .flexberry-toggler .flexberry-toggler-content .row:last-child,
+.ui.grid.fd-list-edited .flexberry-toggler .flexberry-toggler-content .row:last-child {
+  border-bottom: none;
 }
 .ui.grid.fd-list-edited > .row:first-child {
   border-top: 1px solid rgba(0, 0, 0, 0.1);
