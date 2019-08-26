@@ -1,16 +1,43 @@
 .ui.cards > .card > .content > .header:not(.ui),
 .ui.card > .content > .header:not(.ui) {
-    margin-bottom: 0.9em;
+  margin-bottom: 0.9em;
 }
 
 .ui.cards > .card > .content > .description,
 .ui.card > .content > .description {
-   margin-bottom: 0.9em; 
+  margin-bottom: 0.9em; 
 }
 
 .ui.cards > .card > .content > i.icon {
-    font-size: 1.3em;
-    color: @sidebarIconColor;
+  font-size: 1.3em;
+  color: @sidebarIconColor;
+}
+
+.ui.card.dashed {
+  border: 1px dashed @sidebarBg;
+  box-shadow: none;
+  margin: 1.2em auto 1em auto;
+
+  &:hover {
+    border: 1px dashed @sidebarBg + rgba(0, 0, 0, 0.10);
+    box-shadow: none;
+  }
+
+  .fd-round-button {
+    margin: 1em auto;
+  }
+
+  label.ui.basic.button.circular.icon {
+    box-shadow: none !important;
+
+    &:hover {
+      box-shadow: none !important;
+    }
+
+    &:active {
+      box-shadow: none !important;
+    }
+  }
 }
 
 @ind: (@rowSpacing / 2);
