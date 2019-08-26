@@ -258,7 +258,7 @@ export default Component.extend({
     options.segmNo = placePoint.segmentIndex - 1;
     options.percent = placePoint.value;
     if (isNone(this.get('draggedLink'))) {
-      let editMode = element.model.get('editMode');
+      let editMode = this.paper.fDDEditMode;
       switch (editMode) {
         case 'addInheritance':
         case 'addNoteConnector':
@@ -317,6 +317,10 @@ export default Component.extend({
   _elementPointerClick(element, e, x, y) {
     let options = { element: element, e: e, x: x, y: y };
     if (isNone(this.get('draggedLink'))) {
+      let editMode = this.paper.fDDEditMode;
+      if (editMode === 'addNoteConnector' && !this._haveNote()) {
+        return;
+      }
       if (element.model.get('type') == 'flexberry.uml.Class') {
         this._disableEditLinks();
       }
@@ -448,6 +452,7 @@ export default Component.extend({
     $(document).off('mousemove.link');
     let graph = this.get('graph');
     let paper = this.get('paper');
+    paper.fDDEditMode = 'pointerClick';
     graph.getLinks().map(link => {
       let view = link.findView(paper);
       view.$el.removeClass('edit-disabled');

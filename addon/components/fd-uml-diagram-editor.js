@@ -329,15 +329,16 @@ FdActionsForUcdPrimitivesMixin, {
      */
     toolbarButtonClicked(buttonName, e) {
       if (!isBlank(buttonName)) {
+        this.paper.fDDEditMode = buttonName;
         switch (buttonName) {
           case 'pointerClick':
             this._enableEditLinks();
             break;
           case 'addNoteConnector':
-            this._enableWrapLinks(buttonName);
+            this._enableWrapLinks();
             break;
           case 'addInheritance':
-            this._enableWrapBaseLinks(buttonName);
+            this._enableWrapBaseLinks();
             break;
           default:
             this._disableEditLinks();
@@ -430,7 +431,7 @@ FdActionsForUcdPrimitivesMixin, {
     }
   },
 
-  _enableWrapBaseLinks: function(editMode) {
+  _enableWrapBaseLinks: function() {
     let paper = this.paper;
     let links = paper.model.getLinks();
     for (let i = 0; i < links.length; i+=1) {
@@ -440,14 +441,13 @@ FdActionsForUcdPrimitivesMixin, {
         view.$el.removeClass('edit-disabled');
         view.$el.addClass('linktools-disabled');
         view.options.interactive.vertexAdd = false;
-        link.set('editMode', editMode);
       } else {
         view.$el.addClass('edit-disabled');
       }
     }
   },
 
-  _enableWrapLinks: function(editMode) {
+  _enableWrapLinks: function() {
     let paper = this.paper;
     let links = paper.model.getLinks();
     for (let i = 0; i < links.length; i+=1) {
@@ -456,7 +456,6 @@ FdActionsForUcdPrimitivesMixin, {
       view.$el.removeClass('edit-disabled');
       view.$el.addClass('linktools-disabled');
       view.options.interactive.vertexAdd = false;
-      link.set('editMode', editMode);
     }
   },
 
