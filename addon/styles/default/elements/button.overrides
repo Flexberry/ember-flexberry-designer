@@ -1,5 +1,5 @@
 
-.ui.basic.button {
+.ui.basic.button:not(.icon) {
   padding: 0.5em 1.2em;
 }
 
@@ -24,7 +24,7 @@
   left: -1.2em;
 }
 
-.basic.button.table-btn {
+.basic.button.table-btn:not(.icon) {
   border-radius: @itemActiveBorderRadius;
   white-space: nowrap;
   min-height: 34px;
