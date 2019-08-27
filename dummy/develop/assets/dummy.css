@@ -6270,7 +6270,7 @@ body .ui.inverted::-webkit-scrollbar-thumb:hover {
 /*******************************
          Theme Overrides
 *******************************/
-.ui.basic.button {
+.ui.basic.button:not(.icon) {
   padding: 0.5em 1.2em;
 }
 .fd-sheet-toolbar .ui.button {
@@ -6288,7 +6288,7 @@ body .ui.inverted::-webkit-scrollbar-thumb:hover {
 .buttons-row {
   left: -1.2em;
 }
-.basic.button.table-btn {
+.basic.button.table-btn:not(.icon) {
   border-radius: 0.5rem;
   white-space: nowrap;
   min-height: 34px;
@@ -6296,15 +6296,15 @@ body .ui.inverted::-webkit-scrollbar-thumb:hover {
   border: 1px dashed rgba(0, 0, 0, 0.1);
   padding: 0.7em 1em;
 }
-.basic.button.table-btn:hover {
+.basic.button.table-btn:not(.icon):hover {
   border: 1px dashed rgba(0, 0, 0, 0.19);
   box-shadow: none;
 }
-.basic.button.table-btn:active {
+.basic.button.table-btn:not(.icon):active {
   border: 1px dashed rgba(0, 0, 0, 0.28);
   box-shadow: none;
 }
-.basic.button.table-btn:focus {
+.basic.button.table-btn:not(.icon):focus {
   border: 1px dashed rgba(0, 0, 0, 0.28);
   box-shadow: none;
 }
@@ -38375,8 +38375,16 @@ a.ui.card:hover,
 .ui.card.dashed label.ui.basic.button.circular.icon:active {
   box-shadow: none !important;
 }
-.ui.cards.fd-projects {
+.ui.cards.fd-projects,
+.ui.cards.fd-list {
   margin-left: calc(-2.5em - 0.875em);
+}
+.ui.cards.fd-list > .card:first-child {
+  margin-top: 0;
+}
+.ui.cards.fd-list > .card .content {
+  padding-top: 1em;
+  padding-bottom: 1em;
 }
 /*!
  * # Semantic UI - Comment
@@ -60298,6 +60306,18 @@ body.pushable > .pusher {
   color: rgba(0, 0, 0, 0.25);
   line-height: 1.5em;
 }
+.display-flex {
+  display: -webkit-box;
+  /* OLD - iOS 6-, Safari 3.1-6 */
+  display: -moz-box;
+  /* OLD - Firefox 19- (buggy but mostly works) */
+  display: -ms-flexbox;
+  /* TWEENER - IE 10 */
+  display: -webkit-flex;
+  /* NEW - Chrome */
+  display: flex;
+  /* NEW, Spec - Opera 12.1, Firefox 20+ */
+}
 .joint-paper.joint-theme-default {
   background-color: transparent;
 }
@@ -60609,6 +60629,12 @@ body.pushable > .pusher {
   left: -2.5em;
   width: 2em;
 }
+.ui.grid.fd-table .fd-edit-button-in-row {
+  height: 100%;
+  position: absolute;
+  right: -2em;
+  top: 0;
+}
 .fd-sheet {
   background: #FFFFFF;
   height: 100%;
@@ -60655,15 +60681,8 @@ body.pushable > .pusher {
   height: 5rem;
   line-height: 5rem;
 }
-.fd-sheet.diagrams-sheet .form-header {
-  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-}
 .fd-sheet .ui.grid.fd-list > .row:first-child {
   border-top: 1px solid rgba(0, 0, 0, 0.1);
-}
-.fd-sheet .form-header,
-.ui.form .fd-sheet .form-header input[type="text"] {
-  margin-bottom: 1em;
 }
 .ui.grid.fd-list > .row,
 .ui.grid.fd-list-edited > .row {
@@ -60748,9 +60767,12 @@ body.pushable > .pusher {
   height: 41px;
 }
 .jstree-default .jstree-wholerow-clicked,
-.jstree-default .jstree-wholerow-hovered {
-  background: rgba(0, 0, 0, 0.1);
+.jstree-default .jstree-wholerow-clicked.jstree-wholerow-hovered {
+  background: #FFFFFF;
   border-radius: 0.5rem;
+}
+.jstree-default .jstree-wholerow-hovered {
+  background: transparent;
 }
 .jstree-default .jstree-themeicon-custom {
   background-size: 100%!important;
@@ -60772,6 +60794,9 @@ body.pushable > .pusher {
   border: 7px solid transparent;
   left: 0;
 }
+.jstree-default > .jstree-container-ul > .jstree-node {
+  margin-left: 1em;
+}
 .pushable,
 .full.height {
   transition: background-color 1s;
@@ -60786,7 +60811,7 @@ h1 {
   font-weight: 300;
 }
 h2,
-.ui.form .form-header input[type="text"] {
+.ui.form .form-header {
   margin-bottom: 2em;
   font-weight: normal;
   margin-top: 0;
@@ -60897,5 +60922,8 @@ h2,
 }
 .fd-styled-link {
   border-bottom: 1px dashed;
+}
+.display-flex .ui.button {
+  margin: auto;
 }
 /*# sourceMappingURL=/assets/dummy.css.map */
