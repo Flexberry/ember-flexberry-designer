@@ -7,6 +7,8 @@ export default {
   'creating-new': 'Creating a new project',
   name: 'Project name',
   'name-placeholder': 'Name',
+  product: 'Short project name',
+  'product-placeholder': 'If left blank, the field will be created automatically using \'Name\'',
   'name-example': 'For example',
   'name-examples': {
     library: 'Library accounting system',
@@ -14,6 +16,13 @@ export default {
     university: 'University accounting system',
     museum: 'Museum accounting system',
     gallery: 'Gallery accounting system',
+  },
+  'product-examples': {
+    library: 'Library',
+    school: 'School',
+    university: 'University',
+    museum: 'Museum',
+    gallery: 'Gallery',
   },
   access: 'Access',
   'access-private': 'Open to you',

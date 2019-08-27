@@ -14,10 +14,24 @@
       </div>
     </div>
     <div class="row">
+      <div class="four wide column">
+        {{t "forms.fd-all-projects.product"}}
+      </div>
+      <div class="twelve wide column light-text">
+        {{flexberry-textbox
+          class="fluid input"
+          value=productName
+          placeholder=(t "forms.fd-all-projects.product-placeholder")
+          keyPress=keyPressPattern
+        }}
+      </div>
+    </div>
+    <div class="row">
       <div class="sixteen wide column light-text">
         {{t "forms.fd-all-projects.name-example"}},
-        <a href="#" {{action set "projectName" (t nameExample)}} class="fd-styled-link">
-          {{t nameExample}}
+        <a href="#" {{action set "projectName" (get (t (concat "forms.fd-all-projects.name-examples." nameExample)) 'string')}}
+        {{action set "productName" (get (t (concat "forms.fd-all-projects.product-examples." nameExample)) 'string')}} class="fd-styled-link">
+          {{t (concat "forms.fd-all-projects.name-examples." nameExample)}}
         </a>
         <a href="#" {{action notifyPropertyChange "nameExample"}}>
           <i class="recycle icon"></i>
@@ -30,10 +44,16 @@
       </div>
       <div class="twelve wide column light-text">
         <div class="field">
-          {{flexberry-checkbox label=(t "forms.fd-all-projects.access-private")}}
+          <div class="flexberry-checkbox ui checkbox">
+            <input type="radio" name="access" class="flexberry-checkbox-input" onchange={{action set 'accessIsPublic' false}}>
+            <label class="flexberry-checkbox-label">{{t "forms.fd-all-projects.access-private"}}</label>
+          </div>
         </div>
         <div class="field">
-          {{flexberry-checkbox label=(t "forms.fd-all-projects.access-public")}}
+          <div class="flexberry-checkbox ui checkbox">
+            <input type="radio" name="access" class="flexberry-checkbox-input" checked onchange={{action set 'accessIsPublic' true}}>
+            <label class="flexberry-checkbox-label">{{t "forms.fd-all-projects.access-public"}}</label>
+          </div>
         </div>
       </div>
     </div>
@@ -63,6 +83,7 @@
         {{fd-round-button
           iconClass="icon-fd-cloud-upload-thin"
           colorClass="blue"
+          customClass=(if (or (eq projectName undefined) (eq projectName.length 0)) 'disabled' '')
           caption=(t "forms.fd-all-projects.create-project")
           onButtonClicked=(action 'createStage')
         }}
