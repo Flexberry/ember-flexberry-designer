@@ -3,7 +3,7 @@
 */
 
 import Component from '@ember/component';
-import { computed } from '@ember/object';
+import { computed, observer } from '@ember/object';
 import { isNone } from '@ember/utils';
 import { inject as service } from '@ember/service';
 import { A } from '@ember/array';
@@ -122,6 +122,40 @@ export default Component.extend({
   highlightedElement: undefined,
 
   /**
+    Add handlers on pointer events.
+
+    @method pointerEvents
+  */
+  pointerEvents: observer('currentTargetElementIsPointer', 'paper', function() {
+    let currentTargetElementIsPointer = this.get('currentTargetElementIsPointer');
+    let paper = this.get('paper');
+    let graph = this.get('graph');
+    if (isNone(paper) || isNone(graph)) {
+      return;
+    }
+
+    if (currentTargetElementIsPointer) {
+      paper.on('element:pointermove', this._ghostElementMove, this);
+      paper.on('element:pointerup', this._ghostElementRemove, this);
+
+      graph.getLinks().map(link => {
+        link.findView(paper).$el.removeClass('edit-disabled');
+      }, this);
+
+      $(paper.el).find('input,textarea').removeClass('click-disabled');
+    } else {
+      paper.off('element:pointermove', this._ghostElementMove, this);
+      paper.off('element:pointerup', this._ghostElementRemove, this);
+
+      graph.getLinks().map(link => {
+        link.findView(paper).$el.addClass('edit-disabled');
+      }, this);
+
+      $(paper.el).find('input,textarea').addClass('click-disabled');
+    }
+  }),
+
+  /**
     See [EmberJS API](https://emberjs.com/).
 
     @method didInsertElement
@@ -171,10 +205,6 @@ export default Component.extend({
     paper.on('checkexistelements', this._checkOnExistElements, this);
     paper.on('cell:highlight', this._highlighted, this);
     paper.on('element:openeditform', this._elementOpenEditForm, this);
-
-    // Ghost element mode.
-    paper.on('element:pointermove', this._ghostElementMove, this);
-    paper.on('element:pointerup', this._ghostElementRemove, this);
 
     let elements = this.get('elements');
     let links = this.get('links');
@@ -272,11 +302,8 @@ export default Component.extend({
 
         this.set('isLinkAdding', true);
 
-        graph.getLinks().map(link => {
-          link.findView(paper).$el.addClass('edit-disabled');
-        }, this);
-
-        $(paper.el).find('input,textarea').addClass('click-disabled');
+        linkView.$el.addClass('edit-disabled');
+        $(linkView.el).find('input,textarea').addClass('click-disabled');
 
         $(document).on({
           'mousemove.example': this._onDrag.bind(this)
@@ -374,13 +401,6 @@ export default Component.extend({
    */
   _clearLinksData(removeFromGraph) {
     $(document).off('mousemove.example');
-    let graph = this.get('graph');
-    let paper = this.get('paper');
-    graph.getLinks().map(link => {
-      link.findView(paper).$el.removeClass('edit-disabled');
-    }, this);
-
-    $(paper.el).find('input,textarea').removeClass('click-disabled');
     if (removeFromGraph) {
       this.get('draggedLink').remove();
     }
