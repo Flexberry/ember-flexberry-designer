@@ -1,0 +1,45 @@
+.fd-sheet .ui.grid.fd-list.view-definition {
+  margin: 0;
+
+  > .row {
+    margin: 0;
+    &:first-child {
+      border-top: none;
+    }
+  }
+
+  input[type="text"] {
+    padding: 0 calc(~'@{leftIndent}');
+  }
+
+  .fd-view-attr-name input[type="text"]{
+    font-weight: bold;
+    color: @lightTextColor + @sidebarBg;
+  }
+}
+
+.ui.basic.button.super-mini {
+  background: @sidebarBg !important;
+}
+
+.ui.super-mini.button {
+  font-size: 0.6rem;
+}
+
+.ui.equal.width.grid.fd-view-table-attr .column {
+  padding: 0;
+}
+
+.ui.grid.fd-view-table-attr {
+  margin-left: calc(~'-@{leftIndent}');
+}
+
+.fd-view-table-attr .ui.vertical.buttons .ui.button {
+  background: @sidebarBg none;
+  margin-bottom: @toolbarBtnsmargin;
+}
+
+.fd-view-buttons {
+  margin-top: auto;
+  margin-bottom: auto;
+}

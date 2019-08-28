@@ -68,7 +68,7 @@
 @activeToolbarBtnBg: rgba(0, 0, 0, 0.45);
 @itemActiveBorderRadius: 0.5rem;
 
-@leftIndent: 2.5em;
+@leftIndent: 2.5rem;
 
 /*--------------
    Form Input
