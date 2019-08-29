@@ -60426,6 +60426,11 @@ body.pushable > .pusher {
 .ui.form .uml-class-inputs textarea.class-name-input.complex-transition-input {
   min-width: 1px;
 }
+.ui.form .uml-class-inputs input[type="text"].class-name-input.under-class-name-input,
+.ui.form .uml-link-inputs input[type="text"].class-name-input.under-class-name-input,
+.ui.form .uml-class-inputs textarea.class-name-input.under-class-name-input {
+  margin: 0;
+}
 .ui.form .uml-class-inputs input[type="text"].params-input,
 .ui.form .uml-link-inputs input[type="text"].params-input,
 .ui.form .uml-class-inputs textarea.params-input {
