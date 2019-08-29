@@ -83,7 +83,7 @@
         {{fd-round-button
           iconClass="icon-fd-cloud-upload-thin"
           colorClass="blue"
-          customClass=(if (or (eq projectName undefined) (eq projectName.length 0)) 'disabled' '')
+          readonly=(not projectName)
           caption=(t "forms.fd-all-projects.create-project")
           onButtonClicked=(action 'createStage')
         }}
