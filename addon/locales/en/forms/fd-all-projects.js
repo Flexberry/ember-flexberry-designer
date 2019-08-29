@@ -8,7 +8,7 @@ export default {
   name: 'Project name',
   'name-placeholder': 'Name',
   product: 'Short project name',
-  'product-placeholder': 'If left blank, the field will be created automatically using \'Name\'',
+  'product-placeholder': 'If left blank, the field will be created automatically by the name of the project',
   'name-example': 'For example',
   'name-examples': {
     library: 'Library accounting system',
