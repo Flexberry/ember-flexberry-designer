@@ -261,16 +261,23 @@ FdActionsForUcdPrimitivesMixin, {
           if (newLink.get('type') == 'flexberry.uml.NoteConnector' && this.sourceElementType !== 'flexberry.uml.Note' &&  type !== 'flexberry.uml.Note') {
             return false;
           }
-//           if (model.isLink()) {
-//             let objectModel = newLink.get('objectModel');
-//             objectModel.set('endSegmNo',  options.segmNo);
-//             objectModel.set('endPercent', options.percent);
-// //             target.segmNo = options.segmNo;
-// //             target.percent = options.percent;
-//           }
-          let segmNo = model.isLink() ? options.segmNo : -1;
-          let percent = model.isLink() ? options.percent : 0;
-          let target = { id: attributes.id , segmNo: segmNo, percent: percent, };
+
+          let target = { id: attributes.id};
+          if (model.isLink()) {
+            let segmNo = model.isLink() ? options.segmNo : -1;
+            let percent = model.isLink() ? options.percent : 0;
+            let anchor = {
+              name: 'connectionSegmRatio',
+              args: {
+                segmNo: segmNo,
+                percent: percent
+              }
+            };
+            target.segmNo = segmNo;
+            target.percent = percent;
+            target.anchor = anchor;
+          }
+
           newLink.set({ 'target': target, 'endClassRepObj': { id: get(attributes, 'objectModel.repositoryObject') } });
           let storeCallback = this.get('storeCallback');
           if (storeCallback) {
