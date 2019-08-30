@@ -3,7 +3,7 @@ import EmberObject from '@ember/object';
 import { computed, observer } from '@ember/object';
 import { inject as service } from '@ember/service';
 import { A, isArray } from '@ember/array';
-import { isEmpty, isNone } from '@ember/utils';
+import { isEmpty, isNone, isBlank } from '@ember/utils';
 import { scheduleOnce } from '@ember/runloop';
 import { all } from 'rsvp';
 import $ from 'jquery';
@@ -360,7 +360,7 @@ FdFormUnsavedData, {
     @property implementations
     @type Ember.NativeArray
   */
-  implementations: computed.filter('model.classes', clazz => clazz.get('stereotype') === '«implementation»' || clazz.get('stereotype') === null),
+  implementations: computed.filter('model.classes', clazz => clazz.get('stereotype') === '«implementation»' || isBlank(clazz.get('stereotype'))),
 
   /**
     @property attributes

@@ -3,7 +3,7 @@
 */
 
 import Component from '@ember/component';
-import { computed } from '@ember/object';
+import { computed, observer } from '@ember/object';
 import { isNone } from '@ember/utils';
 import { inject as service } from '@ember/service';
 import { A } from '@ember/array';
@@ -122,6 +122,40 @@ export default Component.extend({
   highlightedElement: undefined,
 
   /**
+    Add handlers on pointer events.
+
+    @method pointerEvents
+  */
+  pointerEvents: observer('currentTargetElementIsPointer', 'paper', function() {
+    let currentTargetElementIsPointer = this.get('currentTargetElementIsPointer');
+    let paper = this.get('paper');
+    let graph = this.get('graph');
+    if (isNone(paper) || isNone(graph)) {
+      return;
+    }
+
+    if (currentTargetElementIsPointer) {
+      paper.on('element:pointermove', this._ghostElementMove, this);
+      paper.on('element:pointerup', this._ghostElementRemove, this);
+
+      graph.getLinks().map(link => {
+        link.findView(paper).$el.removeClass('edit-disabled');
+      }, this);
+
+      $(paper.el).find('input,textarea').removeClass('click-disabled');
+    } else {
+      paper.off('element:pointermove', this._ghostElementMove, this);
+      paper.off('element:pointerup', this._ghostElementRemove, this);
+
+      graph.getLinks().map(link => {
+        link.findView(paper).$el.addClass('edit-disabled');
+      }, this);
+
+      $(paper.el).find('input,textarea').addClass('click-disabled');
+    }
+  }),
+
+  /**
     See [EmberJS API](https://emberjs.com/).
 
     @method didInsertElement
@@ -162,15 +196,20 @@ export default Component.extend({
       cellViewNamespace: namespace
     }));
 
+    paper.on('blank:pointerclick', this._blankPointerClick, this);
+    paper.on('element:pointerclick', this._elementPointerClick, this);
+    paper.on('blank:contextmenu', this._blankContextMenu, this);
+
+    paper.on('updaterepobj', this._updateRepObj, this);
+    paper.on('getrepobjvalues', this._getRepObjValues, this);
+    paper.on('checkexistelements', this._checkOnExistElements, this);
+    paper.on('cell:highlight', this._highlighted, this);
+    paper.on('element:openeditform', this._elementOpenEditForm, this);
+
     let elements = this.get('elements');
     let links = this.get('links');
-    let linkConnectorsIds = A();
     graph.addCells(elements.map(e => {
       let element = e.JointJS();
-      if (element.prop('type') === 'flexberry.uml.LinkConnector') {
-        linkConnectorsIds.addObject(element.prop('id'));
-      }
-
       return element;
     }));
 
@@ -180,21 +219,20 @@ export default Component.extend({
         case 'flexberry.uml.Aggregation':
         case 'flexberry.uml.Association':
         case 'flexberry.uml.Generalization':
-        case 'flexberry.uml.LinkInheritance':
-          if (this.includes(link.prop('source/id'))) {
+          if ('anchor' in link.attributes.source) {
+            link.attr('.marker-source', {'display':'none'});
             link.attr('.marker-arrowhead-group-source', {'display':'none'});
             link.attr('.tool-remove', {'display':'none'});
           }
 
-          if (this.includes(link.prop('target/id'))) {
+          if ('anchor' in link.attributes.target) {
+            link.attr('.marker-target', {'display':'none'});
             link.attr('.marker-arrowhead-group-target', {'display':'none'});
             link.attr('.tool-remove', {'display':'none'});
           }
       }
-
       return link;
-    },
-      linkConnectorsIds
+    }
     ));
 
     let fitPaperToContent = function() {
@@ -214,19 +252,6 @@ export default Component.extend({
     graph.on('remove', this._removeElements, this);
 
     fitPaperToContent();
-
-    paper.on('blank:pointerclick', this._blankPointerClick, this);
-    paper.on('element:pointerclick', this._elementPointerClick, this);
-    paper.on('blank:contextmenu', this._blankContextMenu, this);
-
-    paper.on('updaterepobj', this._updateRepObj, this);
-    paper.on('checkexistelements', this._checkOnExistElements, this);
-    paper.on('cell:highlight', this._highlighted, this);
-    paper.on('element:openeditform', this._elementOpenEditForm, this);
-
-    // Ghost element mode.
-    paper.on('element:pointermove', this._ghostElementMove, this);
-    paper.on('element:pointerup', this._ghostElementRemove, this);
 
     this.get('fdDiagramService').on('updateJointObjectViewTriggered', this, this._updateJointObjectView);
   },
@@ -277,11 +302,8 @@ export default Component.extend({
 
         this.set('isLinkAdding', true);
 
-        graph.getLinks().map(link => {
-          link.findView(paper).$el.addClass('edit-disabled');
-        }, this);
-
-        $(paper.el).find('input,textarea').addClass('click-disabled');
+        linkView.$el.addClass('edit-disabled');
+        $(linkView.el).find('input,textarea').addClass('click-disabled');
 
         $(document).on({
           'mousemove.example': this._onDrag.bind(this)
@@ -379,13 +401,6 @@ export default Component.extend({
    */
   _clearLinksData(removeFromGraph) {
     $(document).off('mousemove.example');
-    let graph = this.get('graph');
-    let paper = this.get('paper');
-    graph.getLinks().map(link => {
-      link.findView(paper).$el.removeClass('edit-disabled');
-    }, this);
-
-    $(paper.el).find('input,textarea').removeClass('click-disabled');
     if (removeFromGraph) {
       this.get('draggedLink').remove();
     }
@@ -492,6 +507,42 @@ export default Component.extend({
     }
 
     repositoryObject.set(`${key}`, value);
+  },
+
+  /**
+    Update objectModel by repositoryObject.
+
+    @method _updateRepObj
+    @param {Object} objectModel model diagrams object.
+    @param {Object} view this JoinJS object.
+   */
+  _getRepObjValues(objectModel, view) {
+    const repositoryObject = objectModel.get('repositoryObject');
+    if (isNone(repositoryObject)) {
+      return;
+    }
+
+    const modelName = this._getModelName(objectModel.get('primitive.$type'));
+    if (modelName === 'fd-dev-class') {
+      const store = this.get('store');
+      const repositoryObjectId = repositoryObject.slice(1, -1);
+      const currentRepObj = store.peekRecord(modelName, repositoryObjectId);
+      const stereotype = currentRepObj.get('stereotype') || '';
+      objectModel.set('stereotype', stereotype);
+      this._updateInputValue('.class-stereotype-input', stereotype, view);
+
+      const attributes = currentRepObj.get('attributesStr') || '';
+      objectModel.set('attributes', attributes.split('\n'));
+      this._updateInputValue('.attributes-input', attributes, view);
+
+      const methods = currentRepObj.get('methodsStr') || '';
+      objectModel.set('methods', methods.split('\n'));
+      this._updateInputValue('.methods-input', methods, view);
+
+      const initSize = view.model.size();
+      view.updateRectangles(initSize.width, initSize.height);
+      view.update();
+    }
   },
 
   /**

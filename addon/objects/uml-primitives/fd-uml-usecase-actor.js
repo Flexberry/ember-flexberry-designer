@@ -63,15 +63,6 @@ export let UsecaseActor = BaseObject.define('flexberry.uml.UsecaseActor', {
   minHeight: 50,
 
   attrs: {
-    /*image: {
-      'xlink:href': 'assets/images/actor.svg',
-      width: 30,
-      'ref': '.flexberry-uml-header-text',
-      'refY': -55,
-      'refX': 3,
-      height: 50
-    },*/
-
     text: {
       'visibility': 'visible'
     },

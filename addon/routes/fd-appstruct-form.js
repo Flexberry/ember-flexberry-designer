@@ -2,7 +2,7 @@ import Route from '@ember/routing/route';
 import { A } from '@ember/array';
 import { getOwner } from '@ember/application';
 import { inject as service } from '@ember/service';
-import { isNone } from '@ember/utils';
+import { isNone, isBlank } from '@ember/utils';
 import $ from 'jquery';
 import FdAppStructTree from '../objects/fd-appstruct-tree';
 import FdFormCheckTransitionMixin from '../mixins/fd-form-check-transition';
@@ -28,7 +28,7 @@ export default Route.extend(FdFormCheckTransitionMixin, {
 
     // null or «implementation»
     let implementations = classesCurrentStage.filter(function(item) {
-      return item.get('stereotype') === '«implementation»' || item.get('stereotype') === null;
+      return item.get('stereotype') === '«implementation»' || isBlank(item.get('stereotype'));
     });
 
     // «listform», «editform»

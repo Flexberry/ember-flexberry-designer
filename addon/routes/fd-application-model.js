@@ -1,7 +1,7 @@
 import Route from '@ember/routing/route';
 import { inject as service } from '@ember/service';
 import { A, isArray } from '@ember/array';
-import { isNone } from '@ember/utils';
+import { isNone, isBlank } from '@ember/utils';
 
 export default Route.extend({
 
@@ -70,7 +70,7 @@ export default Route.extend({
 
     // null or «implementation»
     let implementations = classesCurrentStage.filter(function(item) {
-      return item.get('stereotype') === '«implementation»' || item.get('stereotype') === null;
+      return item.get('stereotype') === '«implementation»' || isBlank(item.get('stereotype'));
     });
 
     // «listform», «editform»
@@ -157,7 +157,6 @@ export default Route.extend({
 
     // Userstereotypes.
     let designerStereotypes = A([
-      null,
       '«implementation»',
       '«listform»',
       '«editform»',
@@ -172,7 +171,7 @@ export default Route.extend({
       '«userform»'
     ]);
     let userstereotypes = classesCurrentStage.filter(function(item) {
-      return !designerStereotypes.includes(item.get('stereotype'));
+      return !designerStereotypes.includes(item.get('stereotype')) && !isBlank(item.get('stereotype'));
     });
     let wrapUserstereotypes = this.wrapModel(userstereotypes);
     modelHash.userstereotypes = A(wrapUserstereotypes);

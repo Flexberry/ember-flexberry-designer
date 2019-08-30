@@ -65,6 +65,10 @@ export let Partition = BaseObject.define('flexberry.uml.Partition', {
       'fill-opacity': 0
     },
   },
+
+  // Minimum height.
+  minHeight: 17,
+
   heightPadding: 60
 }, {
   markup: [
