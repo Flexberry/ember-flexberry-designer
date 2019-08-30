@@ -315,7 +315,12 @@ joint.shapes.flexberry.uml.ClassView = joint.shapes.flexberry.uml.PrimitiveEleme
     }.bind(this));
 
     this.$box.find('.class-stereotype-input').on('blur', function(evt) {
-      this.showNormalizedStereotypeOnInput($(evt.target));
+      let $textarea = $(evt.target);
+      this.showNormalizedStereotypeOnInput($textarea);
+
+      let textareaText = $textarea.val();
+      let objectModel = this.model.get('objectModel');
+      objectModel.set('stereotype', textareaText);
     }.bind(this));
 
     this.updateInputValue();
