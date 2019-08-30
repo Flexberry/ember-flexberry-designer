@@ -506,8 +506,12 @@ export default Controller.extend(FdSaveHasManyRelationshipsMixin, {
       this.get('appState').loading();
 
       deleteModels.pushObject(deleteObject);
-      this.get('store').batchUpdate(deleteModels.map(a => a.data.deleteRecord()))
-      //deleteObject.data.destroyRecord() // TODO убрать при появлении batchUpdate.
+      this.get('store').batchUpdate(deleteModels.map((a) => {
+        let data = a.data;
+        data.deleteRecord();
+
+        return data;
+      }))
       .then(() => {
         this.set('selectedElement', undefined);
         this.get('fdSheetService').closeSheet(this.get('sheetComponentName'));
