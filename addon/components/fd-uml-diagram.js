@@ -528,8 +528,9 @@ export default Component.extend({
       const repositoryObjectId = repositoryObject.slice(1, -1);
       const currentRepObj = store.peekRecord(modelName, repositoryObjectId);
       const stereotype = currentRepObj.get('stereotype') || '';
-      objectModel.set('stereotype', stereotype);
-      this._updateInputValue('.class-stereotype-input', stereotype, view);
+      const normalizeStereotype = view.normalizeStereotype(stereotype);
+      objectModel.set('stereotype', normalizeStereotype);
+      this._updateInputValue('.class-stereotype-input', normalizeStereotype, view);
 
       const attributes = currentRepObj.get('attributesStr') || '';
       objectModel.set('attributes', attributes.split('\n'));

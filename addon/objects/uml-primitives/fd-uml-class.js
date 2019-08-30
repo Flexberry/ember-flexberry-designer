@@ -437,7 +437,7 @@ joint.shapes.flexberry.uml.ClassView = joint.shapes.flexberry.uml.PrimitiveEleme
     classNameInput.prop('rows', objectModel.get('name').split(/[\n\r|\r|\n]/).length || 1);
     classNameInput.val(objectModel.get('name'));
     classStereotypeInput.prop('rows', objectModel.get('stereotype').split(/[\n\r|\r|\n]/).length || 1);
-    classStereotypeInput.val(objectModel.get('stereotype'));
+    classStereotypeInput.val(this.normalizeStereotype(objectModel.get('stereotype')));
 
     attributesInput.prop('rows', objectModel.get('attributes').length || 1);
     attributesInput.val(objectModel.get('attributes').join('\n'));
