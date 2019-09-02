@@ -1,44 +1,37 @@
-<div class="ui cards fd-list">
-  <a class="ui card fluid">
+<div class="ui cards fd-list fd-create-cards">
+  {{#fd-drop-card}}
     <div class="content" {{action createDiagramAction "cad"}}>
-      <div class="header">{{t "components.fd-create-diagrams.cad-caption"}}</div>
-      <div>{{t "components.fd-create-diagrams.cad-it-is"}}</div>
+      <div><b>{{t "components.fd-create-diagrams.cad-caption"}}</b>{{t "components.fd-create-diagrams.cad-it-is"}}</div>
     </div>
-  </a>
-  <a class="ui card fluid">
+  {{/fd-drop-card}}
+  {{#fd-drop-card}}
     <div class="content" {{action createDiagramAction "ad"}}>
-      <div class="header">{{t "components.fd-create-diagrams.ad-caption"}}</div>
-      <div>{{t "components.fd-create-diagrams.ad-it-is"}}</div>
+      <div><b>{{t "components.fd-create-diagrams.ad-caption"}}</b>{{t "components.fd-create-diagrams.ad-it-is"}}</div>
     </div>
-  </a>
-  <a class="ui card fluid">
+  {{/fd-drop-card}}
+  {{#fd-drop-card}}
     <div class="content" {{action createDiagramAction "cod"}}>
-      <div class="header">{{t "components.fd-create-diagrams.cod-caption"}}</div>
-      <div>{{t "components.fd-create-diagrams.cod-it-is"}}</div>
+      <div><b>{{t "components.fd-create-diagrams.cod-caption"}}</b>{{t "components.fd-create-diagrams.cod-it-is"}}</div>
     </div>
-  </a>
-  <a class="ui card fluid">
+  {{/fd-drop-card}}
+  {{#fd-drop-card}}
     <div class="content" {{action createDiagramAction "dpd"}}>
-      <div class="header">{{t "components.fd-create-diagrams.dpd-caption"}}</div>
-      <div>{{t "components.fd-create-diagrams.dpd-it-is"}}</div>
+      <div><b>{{t "components.fd-create-diagrams.dpd-caption"}}</b>{{t "components.fd-create-diagrams.dpd-it-is"}}</div>
     </div>
-  </a>
-  <a class="ui card fluid">
+  {{/fd-drop-card}}
+  {{#fd-drop-card}}
     <div class="content" {{action createDiagramAction "sd"}}>
-      <div class="header">{{t "components.fd-create-diagrams.sd-caption"}}</div>
-      <div>{{t "components.fd-create-diagrams.sd-it-is"}}</div>
+      <div><b>{{t "components.fd-create-diagrams.sd-caption"}}</b>{{t "components.fd-create-diagrams.sd-it-is"}}</div>
     </div>
-  </a>
-  <a class="ui card fluid">
+  {{/fd-drop-card}}
+  {{#fd-drop-card}}
     <div class="content" {{action createDiagramAction "std"}}>
-      <div class="header">{{t "components.fd-create-diagrams.std-caption"}}</div>
-      <div>{{t "components.fd-create-diagrams.std-it-is"}}</div>
+      <div><b>{{t "components.fd-create-diagrams.std-caption"}}</b>{{t "components.fd-create-diagrams.std-it-is"}}</div>
     </div>
-  </a>
-  <a class="ui card fluid">
+  {{/fd-drop-card}}
+  {{#fd-drop-card}}
     <div class="content" {{action createDiagramAction "ucd"}}>
-      <div class="header">{{t "components.fd-create-diagrams.ucd-caption"}}</div>
-      <div>{{t "components.fd-create-diagrams.ucd-it-is"}}</div>
+      <div><b>{{t "components.fd-create-diagrams.ucd-caption"}}</b>{{t "components.fd-create-diagrams.ucd-it-is"}}</div>
     </div>
-  </a>
+  {{/fd-drop-card}}
 </div>

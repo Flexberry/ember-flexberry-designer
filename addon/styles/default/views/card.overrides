@@ -50,8 +50,42 @@
   > .card:first-child {
     margin-top: 0;
   }
-  > .card .content {
-    padding-top: 1em;
-    padding-bottom: 1em;
+}
+
+.fd-create-cards .ui.card {
+  overflow: hidden;
+  transition: all .5s;
+  max-height: 3em;
+
+  .content {
+    padding-top: 0.6em;
+    padding-bottom: 0.6em;
+    line-height: 1.9em;
+    b {
+      color: @textColor;
+      font-weight: normal;
+    }
+  }
+
+  &.show {
+    max-height: 7em;
+  }
+}
+
+.ui.cards > .card > .button,
+.ui.card > .button {
+  &.fd-create-card-btn {
+    background-color: @fdSheetBg;
+    border-radius: @itemActiveBorderRadius !important;
+    position: absolute;
+    top: 1em;
+    right: 1em;
+    padding: 0 0.3em;
+    width: auto;
+    transition: background-color .3s;
+
+    &:hover {
+      background-color: @sidebarBg;
+    }
   }
 }
