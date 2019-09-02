@@ -19,7 +19,9 @@ export default Component.extend({
   */
   classNames: ['ui', 'card', 'fluid'],
 
-  allTextButtonShow: computed(function() {
+  textVisible: false,
+
+  allTextButtonShow: computed('i18n.locale', function() {
     let cardHeight = this.$().outerHeight();
     let textHeight = this.$('.content div').outerHeight();
 
@@ -29,6 +31,7 @@ export default Component.extend({
   actions: {
     showAllText() {
       this.$().toggleClass('show');
+      this.toggleProperty('textVisible');
     }
   }
 });
