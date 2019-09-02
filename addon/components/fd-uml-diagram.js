@@ -140,6 +140,7 @@ export default Component.extend({
 
       graph.getLinks().map(link => {
         link.findView(paper).$el.removeClass('edit-disabled');
+        link.findView(paper).$el.removeClass('linktools-disabled');
       }, this);
 
       $(paper.el).find('input,textarea').removeClass('click-disabled');
@@ -147,9 +148,16 @@ export default Component.extend({
       paper.off('element:pointermove', this._ghostElementMove, this);
       paper.off('element:pointerup', this._ghostElementRemove, this);
 
-      graph.getLinks().map(link => {
-        link.findView(paper).$el.addClass('edit-disabled');
-      }, this);
+      switch (this.paper.fDDEditMode) {
+        case 'addNoteConnector':
+          this._enableWrapLinks();
+          break;
+        case 'addInheritance':
+          this._enableWrapBaseLinks();
+          break;
+        default:
+          this._disableEditLinks();
+      }
 
       $(paper.el).find('input,textarea').addClass('click-disabled');
     }
@@ -987,6 +995,48 @@ export default Component.extend({
     let view = paper.findViewByModel(model);
     view.updateInputValue();
     view.updateRectangles();
+  },
+
+  _enableEditLinks: function() {
+    let paper = this.paper;
+    let links = paper.model.getLinks();
+    for (let i = 0; i < links.length; i+=1) {
+      let  link = links[i];
+      let view = link.findView(paper);
+      view.$el.removeClass('edit-disabled');
+      view.$el.removeClass('linktools-disabled');
+      if ('vertexAdd' in view.options.interactive) {
+        delete view.options.interactive.vertexAdd;
+      }
+    }
+  },
+
+  _enableWrapBaseLinks: function() {
+    let paper = this.paper;
+    let links = paper.model.getLinks();
+    for (let i = 0; i < links.length; i+=1) {
+      let  link = links[i];
+      let view = link.findView(paper);
+      if (link.get('type') == 'flexberry.uml.Generalization' && !link.connectedToLine()) {
+        view.$el.removeClass('edit-disabled');
+        view.$el.addClass('linktools-disabled');
+        view.options.interactive.vertexAdd = false;
+      } else {
+        view.$el.addClass('edit-disabled');
+      }
+    }
+  },
+
+  _enableWrapLinks: function() {
+    let paper = this.paper;
+    let links = paper.model.getLinks();
+    for (let i = 0; i < links.length; i+=1) {
+      let  link = links[i];
+      let view = link.findView(paper);
+      view.$el.removeClass('edit-disabled');
+      view.$el.addClass('linktools-disabled');
+      view.options.interactive.vertexAdd = false;
+    }
   },
 
   _disableEditLinks: function() {
