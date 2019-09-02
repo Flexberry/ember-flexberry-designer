@@ -1,26 +1,24 @@
-import { module, test } from 'qunit';
-import { setupRenderingTest } from 'ember-qunit';
-import { render } from '@ember/test-helpers';
+import { moduleForComponent, test } from 'ember-qunit';
 import hbs from 'htmlbars-inline-precompile';
 
-module('Integration | Component | fd-drop-card', function(hooks) {
-  setupRenderingTest(hooks);
+moduleForComponent('fd-drop-card', 'Integration | Component | fd-drop-card', {
+  integration: true
+});
 
-  test('it renders', async function(assert) {
-    // Set any properties with this.set('myProperty', 'value');
-    // Handle any actions with this.set('myAction', function(val) { ... });
+test('it renders', function(assert) {
+  // Set any properties with this.set('myProperty', 'value');
+  // Handle any actions with this.set('myAction', function(val) { ... });
 
-    await render(hbs`{{fd-drop-card}}`);
+  this.render(hbs`{{fd-drop-card}}`);
 
-    assert.equal(this.element.textContent.trim(), '');
+  assert.equal(this.$().text().trim(), '');
 
-    // Template block usage:
-    await render(hbs`
-      {{#fd-drop-card}}
-        template block text
-      {{/fd-drop-card}}
-    `);
+  // Template block usage:
+  this.render(hbs`
+    {{#fd-drop-card}}
+      template block text
+    {{/fd-drop-card}}
+  `);
 
-    assert.equal(this.element.textContent.trim(), 'template block text');
-  });
+  assert.equal(this.$().text().trim(), 'template block text');
 });
