@@ -408,6 +408,7 @@ FdActionsForUcdPrimitivesMixin, {
   clearData() {
     this._clearProperties();
     this._resetCurrentTargetElement();
+    this._enableEditLinks();
   },
 
   /**
