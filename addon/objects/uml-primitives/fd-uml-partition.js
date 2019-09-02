@@ -65,6 +65,10 @@ export let Partition = BaseObject.define('flexberry.uml.Partition', {
       'fill-opacity': 0
     },
   },
+
+  // Minimum height.
+  minHeight: 17,
+
   heightPadding: 60
 }, {
   markup: [
@@ -78,8 +82,13 @@ export let Partition = BaseObject.define('flexberry.uml.Partition', {
     this.on('change', function() {
       this.toBack({ deep: true });
     });
-  }
-
+  },
+  
+  getRectangles() {
+    return [
+      { type: 'header', element: this }
+    ];
+  },
 });
 
 joint.shapes.flexberry.uml.PartitionView = joint.shapes.flexberry.uml.BaseObjectView.extend({

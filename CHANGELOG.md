@@ -2,11 +2,18 @@
 All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
+
+## [0.8.0-beta.2] - 2019-08-23
 ### Added
 * Add text and background colors for primitives on cad diagram.
+* Add create prototype button.
 
 ### Fixed
 * Fix cad class attributes and methods parsing.
+* Fix `fd-button` type.
+
+### Changed
+* Change link to link realization to JointJS 3.
 
 ## [0.8.0-beta.1] - 2019-08-16
 ### Added

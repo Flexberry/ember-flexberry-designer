@@ -3,7 +3,7 @@
 */
 
 import Component from '@ember/component';
-import { computed } from '@ember/object';
+import { computed, observer } from '@ember/object';
 import { isNone } from '@ember/utils';
 import { inject as service } from '@ember/service';
 import { A } from '@ember/array';
@@ -122,6 +122,40 @@ export default Component.extend({
   highlightedElement: undefined,
 
   /**
+    Add handlers on pointer events.
+
+    @method pointerEvents
+  */
+  pointerEvents: observer('currentTargetElementIsPointer', 'paper', function() {
+    let currentTargetElementIsPointer = this.get('currentTargetElementIsPointer');
+    let paper = this.get('paper');
+    let graph = this.get('graph');
+    if (isNone(paper) || isNone(graph)) {
+      return;
+    }
+
+    if (currentTargetElementIsPointer) {
+      paper.on('element:pointermove', this._ghostElementMove, this);
+      paper.on('element:pointerup', this._ghostElementRemove, this);
+
+      graph.getLinks().map(link => {
+        link.findView(paper).$el.removeClass('edit-disabled');
+      }, this);
+
+      $(paper.el).find('input,textarea').removeClass('click-disabled');
+    } else {
+      paper.off('element:pointermove', this._ghostElementMove, this);
+      paper.off('element:pointerup', this._ghostElementRemove, this);
+
+      graph.getLinks().map(link => {
+        link.findView(paper).$el.addClass('edit-disabled');
+      }, this);
+
+      $(paper.el).find('input,textarea').addClass('click-disabled');
+    }
+  }),
+
+  /**
     See [EmberJS API](https://emberjs.com/).
 
     @method didInsertElement
@@ -172,10 +206,6 @@ export default Component.extend({
     paper.on('checkexistelements', this._checkOnExistElements, this);
     paper.on('cell:highlight', this._highlighted, this);
     paper.on('element:openeditform', this._elementOpenEditForm, this);
-
-    // Ghost element mode.
-    paper.on('element:pointermove', this._ghostElementMove, this);
-    paper.on('element:pointerup', this._ghostElementRemove, this);
 
     let elements = this.get('elements');
     let links = this.get('links');
@@ -338,7 +368,6 @@ export default Component.extend({
           .addTo(graph).findView(paper);
 
         this.set('isLinkAdding', true);
-
         let links = graph.getLinks();
         for (let i = 0; i < links.length; i+=1) {
           let  link = links[i];
@@ -589,8 +618,9 @@ export default Component.extend({
       const repositoryObjectId = repositoryObject.slice(1, -1);
       const currentRepObj = store.peekRecord(modelName, repositoryObjectId);
       const stereotype = currentRepObj.get('stereotype') || '';
-      objectModel.set('stereotype', stereotype);
-      this._updateInputValue('.class-stereotype-input', stereotype, view);
+      const normalizeStereotype = view.normalizeStereotype(stereotype);
+      objectModel.set('stereotype', normalizeStereotype);
+      this._updateInputValue('.class-stereotype-input', normalizeStereotype, view);
 
       const attributes = currentRepObj.get('attributesStr') || '';
       objectModel.set('attributes', attributes.split('\n'));

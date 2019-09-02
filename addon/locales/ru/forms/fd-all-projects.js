@@ -7,6 +7,8 @@ export default {
   'creating-new': 'Создание нового проекта',
   name: 'Название проекта',
   'name-placeholder': 'Название',
+  product: 'Кодовое имя проекта',
+  'product-placeholder': 'Если оставить пустым, поле создастся автоматически по названию проекта',
   'name-example': 'Например',
   'name-examples': {
     library: 'Учетная система для библиотеки',
@@ -14,6 +16,13 @@ export default {
     university: 'Учетная система для университета',
     museum: 'Учетная система для музея',
     gallery: 'Учетная система для галереи',
+  },
+  'product-examples': {
+    library: 'Library',
+    school: 'School',
+    university: 'University',
+    museum: 'Museum',
+    gallery: 'Gallery',
   },
   access: 'Доступ',
   'access-private': 'Открыт для вас',

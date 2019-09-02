@@ -1,7 +1,11 @@
-<h3>{{t "forms.fd-all-projects.greeting"}}</h3>
-
-<h4>{{t "forms.fd-all-projects.pr"}}</h4>
-
-{{#link-to "fd-all-projects.new"}}
-  {{t "forms.fd-all-projects.new-project"}}
-{{/link-to}}
+<div class="fd-centered-new-form empty">
+  <h1>{{t "forms.fd-all-projects.greeting"}}</h1>
+  <div class="text">{{t "forms.fd-all-projects.pr"}}</div>
+  {{#link-to "fd-all-projects.new" class="ui card dashed"}}
+    {{fd-round-button 
+      iconClass="icon-fd-plus-thin" 
+      colorClass="blue" 
+      caption=(t "forms.fd-all-projects.new-project")
+    }}
+  {{/link-to}}
+</div>

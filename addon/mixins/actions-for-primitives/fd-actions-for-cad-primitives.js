@@ -85,8 +85,8 @@ export default Mixin.create({
         let newClass = store.createRecord('fd-dev-class', {
           id: id,
           stage: stage,
-          caption: freeName,
-          description: freeName,
+          caption: '',
+          description: '',
           name: freeName,
           nameStr: freeName,
           attributesStr: '',

@@ -112,6 +112,21 @@ FdActionsForUcdPrimitivesMixin, {
   currentTargetElement: undefined,
 
   /**
+    Сurrent pressed button is pointer.
+
+    @property currentTargetElementIsPointer
+    @type Bool
+  */
+  currentTargetElementIsPointer: computed('currentTargetElement', function() {
+    let currentTargetElement = this.get('currentTargetElement');
+    if (!isNone(currentTargetElement)) {
+      return currentTargetElement.hasClass('pointer-button');
+    }
+
+    return true;
+  }),
+
+  /**
     Сurrent diagram's paper.
 
     @property paper

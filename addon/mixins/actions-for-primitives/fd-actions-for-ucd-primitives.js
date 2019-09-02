@@ -28,7 +28,7 @@ export default Mixin.create({
         let jsonObject = getJsonForElement(
           'STORMCASE.UML.ucd.UseCase, UMLUCD',
           { x, y },
-          { width: 100, height: 40 },
+          { width: 80, height: 20 },
           { Name: '' }
         );
         let usecaseObject = fdUmlUseCase.create({ primitive: jsonObject });
@@ -47,7 +47,7 @@ export default Mixin.create({
         let jsonObject = getJsonForElement(
           'STORMCASE.UML.ucd.Actor, UMLUCD',
           { x, y },
-          { width: 30, height: 50 },
+          { width: 25, height: 50 },
           { Name: '' }
         );
         let usecaseActorObject = fdUseCaseActor.create({ primitive: jsonObject });
