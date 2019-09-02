@@ -327,6 +327,35 @@ define('dummy/tests/integration/components/fd-button-test', ['ember-qunit'], fun
     assert.equal(this.$().text().trim(), '');
   });
 });
+define('dummy/tests/integration/components/fd-drop-card-test', ['ember-qunit'], function (_emberQunit) {
+  'use strict';
+
+  (0, _emberQunit.moduleForComponent)('fd-drop-card', 'Integration | Component | fd-drop-card', {
+    integration: true
+  });
+
+  (0, _emberQunit.test)('it renders', function (assert) {
+    // Set any properties with this.set('myProperty', 'value');
+    // Handle any actions with this.set('myAction', function(val) { ... });
+
+    this.render(Ember.HTMLBars.template({
+      "id": "oAG0rHNd",
+      "block": "{\"symbols\":[],\"statements\":[[1,[20,\"fd-drop-card\"],false]],\"hasEval\":false}",
+      "meta": {}
+    }));
+
+    assert.equal(this.$().text().trim(), '');
+
+    // Template block usage:
+    this.render(Ember.HTMLBars.template({
+      "id": "WnvSbTpN",
+      "block": "{\"symbols\":[],\"statements\":[[0,\"\\n\"],[4,\"fd-drop-card\",null,null,{\"statements\":[[0,\"      template block text\\n\"]],\"parameters\":[]},null],[0,\"  \"]],\"hasEval\":false}",
+      "meta": {}
+    }));
+
+    assert.equal(this.$().text().trim(), 'template block text');
+  });
+});
 define('dummy/tests/integration/components/fd-editform-control-test', ['ember-qunit', 'ember-flexberry/components/flexberry-textbox', 'ember-flexberry-designer/objects/fd-editform-row', 'ember-flexberry-designer/objects/fd-editform-control', 'ember-flexberry-designer/objects/fd-editform-group', 'ember-flexberry-designer/objects/fd-editform-tabgroup', 'ember-flexberry-designer/objects/fd-editform-tab'], function (_emberQunit, _flexberryTextbox, _fdEditformRow, _fdEditformControl, _fdEditformGroup, _fdEditformTabgroup, _fdEditformTab) {
   'use strict';
 
@@ -933,6 +962,11 @@ define('dummy/tests/tests.lint-test', [], function () {
   QUnit.test('integration/components/fd-button-test.js', function (assert) {
     assert.expect(1);
     assert.ok(true, 'integration/components/fd-button-test.js should pass ESLint\n\n');
+  });
+
+  QUnit.test('integration/components/fd-drop-card-test.js', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'integration/components/fd-drop-card-test.js should pass ESLint\n\n');
   });
 
   QUnit.test('integration/components/fd-editform-control-test.js', function (assert) {

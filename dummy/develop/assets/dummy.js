@@ -183,6 +183,19 @@ define('dummy/components/fd-config-panel', ['exports', 'ember-flexberry-designer
     }
   });
 });
+define('dummy/components/fd-drop-card', ['exports', 'ember-flexberry-designer/components/fd-drop-card'], function (exports, _fdDropCard) {
+  'use strict';
+
+  Object.defineProperty(exports, "__esModule", {
+    value: true
+  });
+  Object.defineProperty(exports, 'default', {
+    enumerable: true,
+    get: function () {
+      return _fdDropCard.default;
+    }
+  });
+});
 define('dummy/components/fd-editform-control', ['exports', 'ember-flexberry-designer/components/fd-editform-control'], function (exports, _fdEditformControl) {
   'use strict';
 
@@ -3536,6 +3549,11 @@ define('dummy/ember-flexberry-designer/tests/addon.lint-test', [], function () {
   QUnit.test('addon/components/fd-config-panel.js', function (assert) {
     assert.expect(1);
     assert.ok(true, 'addon/components/fd-config-panel.js should pass ESLint\n\n');
+  });
+
+  QUnit.test('addon/components/fd-drop-card.js', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'addon/components/fd-drop-card.js should pass ESLint\n\n');
   });
 
   QUnit.test('addon/components/fd-editform-control.js', function (assert) {
@@ -8846,6 +8864,11 @@ define('dummy/ember-flexberry-designer/tests/app.lint-test', [], function () {
   QUnit.test('app/components/fd-config-panel.js', function (assert) {
     assert.expect(1);
     assert.ok(true, 'app/components/fd-config-panel.js should pass ESLint\n\n');
+  });
+
+  QUnit.test('app/components/fd-drop-card.js', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'app/components/fd-drop-card.js should pass ESLint\n\n');
   });
 
   QUnit.test('app/components/fd-editform-control.js', function (assert) {
