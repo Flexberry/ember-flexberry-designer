@@ -43,6 +43,12 @@ export default FdUmlPrimitive.extend({
     set(key, value) {
       this.set('primitive.StartPrimitive.$ref', value.id);
       this.set('primitive.StartLE.Primitive.$ref', value.id);
+      if ('segmNo' in value) {
+        this.set('primitive.StartLE.SegmNo', value.segmNo);
+      }
+      if ('percent' in value) {
+        this.set('primitive.StartLE.Percent', value.percent);
+      }
       return value;
     },
   }),
@@ -74,6 +80,12 @@ export default FdUmlPrimitive.extend({
     set(key, value) {
       this.set('primitive.EndPrimitive.$ref', value.id);
       this.set('primitive.EndLE.Primitive.$ref', value.id);
+      if ('segmNo' in value) {
+        this.set('primitive.EndLE.SegmNo', value.segmNo);
+      }
+      if ('percent' in value) {
+        this.set('primitive.EndLE.Percent', value.percent);
+      }
       return value;
     },
   }),
@@ -89,23 +101,7 @@ export default FdUmlPrimitive.extend({
       return this.get('primitive.StartLE.SegmNo');
     },
     set(key, value) {
-      this.set('primitive.StartLE.SegmNo', value.id);
-      return value;
-    }
-  }),
-
-  /**
-   *   The start percent of a link.                                *
-   *
-   *   @property startPercent
-   *   @type String
-   */
-  startPercent: computed('primitive.StartLE.Percent', {
-    get() {
-      return this.get('primitive.StartLE.Percent');
-    },
-    set(key, value) {
-      this.set('primitive.StartLE.Percent', value.id);
+      this.set('primitive.StartLE.SegmNo', value);
       return value;
     }
   }),
@@ -121,11 +117,26 @@ export default FdUmlPrimitive.extend({
       return this.get('primitive.EndLE.SegmNo');
     },
     set(key, value) {
-      this.set('primitive.EndLE.SegmNo', value.id);
+      this.set('primitive.EndLE.SegmNo', value);
       return value;
     }
   }),
 
+  /**
+   *   The start percent of a link.                                *
+   *
+   *   @property startPercent
+   *   @type String
+   */
+  startPercent: computed('primitive.StartLE.Percent', {
+    get() {
+      return this.get('primitive.StartLE.Percent');
+    },
+    set(key, value) {
+      this.set('primitive.StartLE.Percent', value);
+      return value;
+    }
+  }),
 
   /**
    *   The end percent of a link.                                *
@@ -138,7 +149,7 @@ export default FdUmlPrimitive.extend({
       return this.get('primitive.EndLE.Percent');
     },
     set(key, value) {
-      this.set('primitive.EndLE.Percent', value.id);
+      this.set('primitive.EndLE.Percent', value);
       return value;
     }
   }),
@@ -281,6 +292,7 @@ export default FdUmlPrimitive.extend({
       return value;
     },
   }),
+
   /**
     See {{#crossLink "FdUmlPrimitive/JointJS:method"}}here{{/crossLink}}.
 
@@ -369,12 +381,10 @@ export let Link = joint.dia.Link.define('flexberry.uml.Link', {
               let percent = this._getPercentSegmInfo(prevVertex, newVertexProject, connectedLink.sourcePoint);
               if (percent >= 0) {
                 connectedLinkObjectModel.set('startSegmNo', nSegment);
-                connectedLinkObjectModel.set('startPercent', percent);
               } else {
                 percent = this._getPercentSegmInfo(newVertexProject, vertex, connectedLink.sourcePoint);
                 if (percent >= 0) {
                   connectedLinkObjectModel.set('startSegmNo', nSegment+1);
-                  connectedLinkObjectModel.set('startPercent', percent);
                 } else {
                   let startSegmNo = connectedLinkObjectModel.get('startSegmNo');
                   if (startSegmNo >= nSegment) {
@@ -412,7 +422,6 @@ export let Link = joint.dia.Link.define('flexberry.uml.Link', {
                   let len = this._segmentLength(prevVertex, connectedLink.sourcePoint);
                   percent = len / fullLen;
                   connectedLinkObjectModel.set('startSegmNo', nSegment);
-                  connectedLinkObjectModel.set('startPercent', percent);
                 } else {
                   percent = this._getPercentSegmInfo(removedVertex, vertex, connectedLink.sourcePoint);
                   if (percent >= 0) {
@@ -420,7 +429,6 @@ export let Link = joint.dia.Link.define('flexberry.uml.Link', {
                     let len = len1 + this._segmentLength(removedVertex, connectedLink.sourcePoint);
                     percent = len / fullLen;
                     connectedLinkObjectModel.set('startSegmNo', nSegment);
-                    connectedLinkObjectModel.set('startPercent', percent);
                   }
                   else {
                     let segmNo = connectedLinkObjectModel.get('startSegmNo');
@@ -447,6 +455,13 @@ export let Link = joint.dia.Link.define('flexberry.uml.Link', {
       }, this);
 
       joint.dia.Link.prototype.initialize.apply(this, arguments);
+    },
+
+    connectedToLine: function() {
+      let objectModel= this.get('objectModel');
+      let ret= objectModel.get('primitive.EndLE.refType') == 'Link' && objectModel.get('primitive.EndLE.SegmNo') >= 0 ||
+        objectModel.get('primitive.StartLE.refType') == 'Link' && objectModel.get('primitive.StartLE.SegmNo') >= 0;
+      return ret;
     },
 
     /**

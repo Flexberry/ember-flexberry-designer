@@ -140,6 +140,7 @@ export default Component.extend({
 
       graph.getLinks().map(link => {
         link.findView(paper).$el.removeClass('edit-disabled');
+        link.findView(paper).$el.removeClass('linktools-disabled');
       }, this);
 
       $(paper.el).find('input,textarea').removeClass('click-disabled');
@@ -147,9 +148,16 @@ export default Component.extend({
       paper.off('element:pointermove', this._ghostElementMove, this);
       paper.off('element:pointerup', this._ghostElementRemove, this);
 
-      graph.getLinks().map(link => {
-        link.findView(paper).$el.addClass('edit-disabled');
-      }, this);
+      switch (this.paper.fDDEditMode) {
+        case 'addNoteConnector':
+          this._enableWrapLinks();
+          break;
+        case 'addInheritance':
+          this._enableWrapBaseLinks();
+          break;
+        default:
+          this._disableEditLinks();
+      }
 
       $(paper.el).find('input,textarea').addClass('click-disabled');
     }
@@ -198,6 +206,7 @@ export default Component.extend({
 
     paper.on('blank:pointerclick', this._blankPointerClick, this);
     paper.on('element:pointerclick', this._elementPointerClick, this);
+    paper.on('link:pointerclick', this._linkPointerClick, this);
     paper.on('blank:contextmenu', this._blankContextMenu, this);
 
     paper.on('updaterepobj', this._updateRepObj, this);
@@ -221,14 +230,10 @@ export default Component.extend({
         case 'flexberry.uml.Generalization':
           if ('anchor' in link.attributes.source) {
             link.attr('.marker-source', {'display':'none'});
-            link.attr('.marker-arrowhead-group-source', {'display':'none'});
-            link.attr('.tool-remove', {'display':'none'});
           }
 
           if ('anchor' in link.attributes.target) {
             link.attr('.marker-target', {'display':'none'});
-            link.attr('.marker-arrowhead-group-target', {'display':'none'});
-            link.attr('.tool-remove', {'display':'none'});
           }
       }
       return link;
@@ -277,6 +282,68 @@ export default Component.extend({
   },
 
   /**
+  Handler event 'link:pointerclick'.
+
+  @method actions._linkPointerClick
+  @param {Object} link selected joint js link.
+  @param {jQuery.Event} e event.
+  @param {Number} x coordinate x.
+  @param {Number} y coordinate y.
+  **/
+  _linkPointerClick(element, e, x, y) {
+    let options = { element: element, e: e, x: x, y: y };
+    let placePoint = element.path.closestPointT({x:x,y:y});
+    options.segmNo = placePoint.segmentIndex - 1;
+    options.percent = placePoint.value;
+    if (isNone(this.get('draggedLink'))) {
+      let editMode = this.paper.fDDEditMode;
+      switch (editMode) {
+        case 'addInheritance':
+        case 'addNoteConnector':
+        {
+          if (editMode === 'addNoteConnector' && !this._haveNote()) {
+            return;
+          }
+          let startDragLink = this.get('startDragLink');
+          let newLink = startDragLink(options);
+          if (editMode === 'addInheritance') {
+            newLink.attr('.marker-source', {'display':'none'});
+          }
+          this.set('draggedLink', newLink);
+          let graph = this.get('graph');
+          let paper = this.get('paper');
+          let linkView = newLink
+            .set({ 'target': { x: x, y: y } })
+            .addTo(graph).findView(paper);
+          this.set('isLinkAdding', true);
+          let links = graph.getLinks();
+          for (let i = 0; i < links.length; i+=1) {
+            let  link = links[i];
+            let view = link.findView(paper);
+              view.$el.addClass('edit-disabled');
+          }
+          $(document).on({
+            'mousemove.link': this._onDrag.bind(this)
+          }, {
+            paper: paper,
+            element: newLink
+          });
+          this.set('draggedLinkView', linkView);
+          break;
+        }
+        default:
+          if (isNone(this.get('draggedLink'))) {
+            return;
+          }
+      }
+    } else {
+      if (this.get('endDragLink')(options)) {
+        this._clearLinksData();
+      }
+    }
+  },
+
+  /**
     Handler event 'element:pointerclick'.
 
     @method actions._elementPointerClick
@@ -288,7 +355,15 @@ export default Component.extend({
   _elementPointerClick(element, e, x, y) {
     let options = { element: element, e: e, x: x, y: y };
     if (isNone(this.get('draggedLink'))) {
-      let newElement = this.get('startDragLink')(options);
+      let editMode = this.paper.fDDEditMode;
+      if (editMode === 'addNoteConnector' && !this._haveNote()) {
+        return;
+      }
+      if (element.model.get('type') == 'flexberry.uml.Class') {
+        this._disableEditLinks();
+      }
+      let startDragLink = this.get('startDragLink');
+      let newElement = startDragLink(options);
       if (isNone(newElement)) {
         element.highlight();
       } else {
@@ -301,9 +376,19 @@ export default Component.extend({
           .addTo(graph).findView(paper);
 
         this.set('isLinkAdding', true);
+        let links = graph.getLinks();
+        for (let i = 0; i < links.length; i+=1) {
+          let  link = links[i];
+          let view = link.findView(paper);
+          if (link.cid == newElement.cid) {
+            view.$el.addClass('edit-disabled');
+          } else {
+            view.$el.addClass('linktools-disabled');
+            view.options.interactive.vertexAdd = false;
+          }
+        }
 
-        linkView.$el.addClass('edit-disabled');
-        $(linkView.el).find('input,textarea').addClass('click-disabled');
+        $(paper.el).find('input,textarea').addClass('click-disabled');
 
         $(document).on({
           'mousemove.example': this._onDrag.bind(this)
@@ -401,6 +486,19 @@ export default Component.extend({
    */
   _clearLinksData(removeFromGraph) {
     $(document).off('mousemove.example');
+    $(document).off('mousemove.link');
+    let graph = this.get('graph');
+    let paper = this.get('paper');
+    paper.fDDEditMode = 'pointerClick';
+    graph.getLinks().map(link => {
+      let view = link.findView(paper);
+      view.$el.removeClass('edit-disabled');
+      if ('vertexAdd' in view.options.interactive) {
+        delete view.options.interactive.vertexAdd;
+      }
+    }, this);
+
+    $(paper.el).find('input,textarea').removeClass('click-disabled');
     if (removeFromGraph) {
       this.get('draggedLink').remove();
     }
@@ -897,5 +995,71 @@ export default Component.extend({
     let view = paper.findViewByModel(model);
     view.updateInputValue();
     view.updateRectangles();
+  },
+
+  _enableEditLinks: function() {
+    let paper = this.paper;
+    let links = paper.model.getLinks();
+    for (let i = 0; i < links.length; i+=1) {
+      let  link = links[i];
+      let view = link.findView(paper);
+      view.$el.removeClass('edit-disabled');
+      view.$el.removeClass('linktools-disabled');
+      if ('vertexAdd' in view.options.interactive) {
+        delete view.options.interactive.vertexAdd;
+      }
+    }
+  },
+
+  _enableWrapBaseLinks: function() {
+    let paper = this.paper;
+    let links = paper.model.getLinks();
+    for (let i = 0; i < links.length; i+=1) {
+      let  link = links[i];
+      let view = link.findView(paper);
+      if (link.get('type') == 'flexberry.uml.Generalization' && !link.connectedToLine()) {
+        view.$el.removeClass('edit-disabled');
+        view.$el.addClass('linktools-disabled');
+        view.options.interactive.vertexAdd = false;
+      } else {
+        view.$el.addClass('edit-disabled');
+      }
+    }
+  },
+
+  _enableWrapLinks: function() {
+    let paper = this.paper;
+    let links = paper.model.getLinks();
+    for (let i = 0; i < links.length; i+=1) {
+      let  link = links[i];
+      let view = link.findView(paper);
+      view.$el.removeClass('edit-disabled');
+      view.$el.addClass('linktools-disabled');
+      view.options.interactive.vertexAdd = false;
+    }
+  },
+
+  _disableEditLinks: function() {
+    let paper = this.paper;
+    let links = paper.model.getLinks();
+    for (let i = 0; i < links.length; i+=1) {
+      let  link = links[i];
+      let view = link.findView(paper);
+      view.$el.addClass('edit-disabled');
+    }
+  },
+
+  _haveNote: function() {
+    let paper = this.paper;
+    let elements = paper.model.getElements();
+    for (let i = 0; i < elements.length; i+=1) {
+      let  element = elements[i];
+      if (element.get('type') == 'flexberry.uml.Note') {
+        return true;
+      }
+
+    }
+    return false;
   }
+
 });
