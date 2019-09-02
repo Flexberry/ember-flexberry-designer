@@ -60445,6 +60445,7 @@ body.pushable > .pusher {
   resize: none;
   line-height: 1.1;
   overflow: hidden;
+  text-align: center;
 }
 .ui.form .uml-class-inputs input[type="text"].package-header-input,
 .ui.form .uml-link-inputs input[type="text"].package-header-input,
