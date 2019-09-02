@@ -75,12 +75,17 @@
 .ui.cards > .card > .button,
 .ui.card > .button {
   &.fd-create-card-btn {
-    background: @sidebarBg;
+    background-color: @fdSheetBg;
     border-radius: @itemActiveBorderRadius !important;
     position: absolute;
     top: 1em;
     right: 1em;
     padding: 0 0.3em;
     width: auto;
+    transition: background-color .3s;
+
+    &:hover {
+      background-color: @sidebarBg;
+    }
   }
 }
