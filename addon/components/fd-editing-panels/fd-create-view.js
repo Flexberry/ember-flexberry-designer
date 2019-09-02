@@ -9,6 +9,8 @@ import FdViewAttributesMaster from '../../objects/fd-view-attributes-master';
 import FdViewAttributesDetail from '../../objects/fd-view-attributes-detail';
 import { getDataForBuildTree, getClassTreeNode, getAssociationTreeNode, getAggregationTreeNode, getDetailView } from '../../utils/fd-attributes-for-tree';
 import layout from '../../templates/components/fd-editing-panels/fd-create-view';
+import $ from 'jquery';
+import { next } from '@ember/runloop';
 
 export default Component.extend({
   layout,
@@ -72,18 +74,18 @@ export default Component.extend({
   /**
     Selected definition property.
 
-    @property selectedPropery
+    @property selectedProperty
     @type Object
   */
-  selectedPropery: undefined,
+  selectedProperty: undefined,
 
   /**
     Type selected attribute for editing.
 
-    @property selectedProperyType
+    @property selectedPropertyType
     @type Object
   */
-  selectedProperyType: undefined,
+  selectedPropertyType: undefined,
 
   /**
     View for details.
@@ -94,17 +96,17 @@ export default Component.extend({
   detailsViewArray: undefined,
 
   /**
-    Array View selectedPropery.
+    Array View selectedProperty.
 
     @property detailView
     @type Array
   */
-  detailView: computed('selectedPropery', function() {
-    let selectedPropery = this.get('selectedPropery');
-    if (!isNone(selectedPropery) && this.get('selectedProperyType') === 'isDetail') {
+  detailView: computed('selectedProperty', function() {
+    let selectedProperty = this.get('selectedProperty');
+    if (!isNone(selectedProperty) && this.get('selectedPropertyType') === 'isDetail') {
       let detailsViewArray = this.get('detailsViewArray');
-      let detailViewByName = detailsViewArray.findBy('detailName', selectedPropery.name);
-      let detailViewByRole = detailsViewArray.findBy('detailRole', selectedPropery.name);
+      let detailViewByName = detailsViewArray.findBy('detailName', selectedProperty.name);
+      let detailViewByRole = detailsViewArray.findBy('detailRole', selectedProperty.name);
       if (detailViewByName) {
         return  detailViewByName.detailViewNameItems;
       } else if (detailViewByRole) {
@@ -158,7 +160,7 @@ export default Component.extend({
     @method viewObserver
   */
   viewObserver: observer('view', function() {
-    this.set('selectedPropery', undefined);
+    this.set('selectedProperty', undefined);
     this.set('searchTerm', '');
     this.set('searchValue', '');
     let treeObject = this.get('treeObject');
@@ -167,6 +169,46 @@ export default Component.extend({
       tree.deselect_all();
       tree.close_all();
     }
+  }),
+
+  /**
+    Get sheet elements height.
+
+    @method getElementsSheetHeight
+  */
+  getElementsSheetHeight() {
+    let sheetHeaderToolbarHeight = $('.fd-sheet-header .fd-sheet-toolbar').outerHeight(true);
+    let sheetHeaderHeight = $('.fd-sheet-header .form-header').outerHeight(true);
+    let searchHeight = $('.fd-ember-jstree .field').outerHeight(true);
+    let footerHeight = $('.ui.footer .flex-container').outerHeight(true);
+    let elementsSheetHeight = sheetHeaderHeight + sheetHeaderToolbarHeight + footerHeight + searchHeight;
+    this.set('elementsSheetHeight', elementsSheetHeight);
+    $('.fd-view-table-attr .overflow-panel').css('max-height', `calc( 100vh - ${elementsSheetHeight}px)`);
+  },
+
+  /**
+    See [EmberJS API](https://emberjs.com/).
+
+    @method didInsertElement
+  */
+  didInsertElement() {
+    this._super(...arguments);
+    this.getElementsSheetHeight();
+    this.$('.fd-view-table-attr').closest('.fd-sheet-body').css('overflow', 'hidden');
+  },
+
+  /**
+    Set overflow-panels height.
+
+    @method selectedPropertyObserver
+  */
+  selectedPropertyObserver: observer('selectedProperty', function() {
+    next(() => {
+      let attrProp = $('.fd-attr-prop').outerHeight(true);
+      let attrPropHeight = attrProp === undefined ? 0 : attrProp;
+      let elementsSheetHeight = attrPropHeight + this.get('elementsSheetHeight');
+      $('.fd-view-table-attr .overflow-panel').css('max-height', `calc( 100vh - ${elementsSheetHeight}px)`);
+    });
   }),
 
   /**
@@ -275,9 +317,9 @@ export default Component.extend({
     */
     changeLookupType(value) {
       if (value === 'default') {
-        let selectedPropery = this.get('selectedPropery');
-        selectedPropery.set('masterPropertyName', '');
-        selectedPropery.set('masterCustomizationString', '');
+        let selectedProperty = this.get('selectedProperty');
+        selectedProperty.set('masterPropertyName', '');
+        selectedProperty.set('masterCustomizationString', '');
       }
     },
 
@@ -289,8 +331,8 @@ export default Component.extend({
     */
     deleteDefinitionItem(item) {
       this.get('view.definitionArray').removeObject(item);
-      if (this.get('selectedPropery') === item) {
-        this.set('selectedPropery', undefined);
+      if (this.get('selectedProperty') === item) {
+        this.set('selectedProperty', undefined);
       }
     },
 
@@ -301,13 +343,13 @@ export default Component.extend({
       @param {Bool} up in up = true or is down = false.
     */
     changeOrderDefinition(up) {
-      let selectedPropery = this.get('selectedPropery');
-      if (isNone(selectedPropery)) {
+      let selectedProperty = this.get('selectedProperty');
+      if (isNone(selectedProperty)) {
         return;
       }
 
       let definitionArray = this.get('view.definitionArray');
-      let currentIndex = definitionArray.indexOf(selectedPropery);
+      let currentIndex = definitionArray.indexOf(selectedProperty);
       let newIndex;
       if (up) {
         newIndex = currentIndex !== 0 ? currentIndex - 1 : null;
@@ -321,7 +363,7 @@ export default Component.extend({
 
       let newIndexNode = definitionArray[newIndex];
       definitionArray.replace(currentIndex, 1, A([newIndexNode]));
-      definitionArray.replace(newIndex, 1, A([selectedPropery]));
+      definitionArray.replace(newIndex, 1, A([selectedProperty]));
     },
   }
 });
