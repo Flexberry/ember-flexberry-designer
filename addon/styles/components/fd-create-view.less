@@ -3,8 +3,29 @@
 
   > .row {
     margin: 0;
+    padding-top: 0.3rem;
+    padding-bottom: 0.3rem;
+
     &:first-child {
       border-top: none;
+    }
+
+    .thirteen.wide.column {
+      border-top-left-radius: @itemActiveBorderRadius;
+      padding-top: 0.7rem
+    }
+
+    .three.wide.column {
+      border-top-right-radius: @itemActiveBorderRadius;
+      &.buttons {
+        padding-top: 0.7rem;
+      }
+    }
+
+    .sixteen.wide.column {
+      border-bottom-right-radius: @itemActiveBorderRadius;
+      border-bottom-left-radius: @itemActiveBorderRadius;
+      padding-bottom: 0.7rem;
     }
   }
 
@@ -28,10 +49,19 @@
 
 .ui.equal.width.grid.fd-view-table-attr .column {
   padding: 0;
+  &.buttons {
+    padding-right: 0.7em;
+  }
 }
 
 .ui.grid.fd-view-table-attr {
   margin-left: calc(~'-@{leftIndent}');
+
+  .row.active {
+    .column {
+      background: @sidebarBg;
+    }
+  }
 }
 
 .fd-view-table-attr .ui.vertical.buttons .ui.button {
@@ -43,3 +73,4 @@
   margin-top: auto;
   margin-bottom: auto;
 }
+

@@ -7,7 +7,7 @@
         placeholder=(t "components.fd-businessserver-editing-panel.packet-placeholder")
       }}
     </div>
-    <div class="three wide column right aligned">
+    <div class="three wide column right aligned buttons">
       <button class="super-mini ui basic button icon circular" {{action 'changeVisible'}}>
         <i class="{{if definition.visible 'eye' 'icon-fd-eye'}} icon"></i>
       </button>
@@ -15,7 +15,7 @@
         <i class="icon-fd-x-mark icon"></i>
       </button>
     </div>
-    <div class="ten wide column">
+    <div class="sixteen wide column">
       {{flexberry-textbox
         value=definition.caption
         class='fluid input fd-view-attr-name'
