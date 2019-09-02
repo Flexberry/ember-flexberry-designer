@@ -4268,6 +4268,11 @@ define('dummy/ember-flexberry-designer/tests/addon.lint-test', [], function () {
     assert.ok(true, 'addon/locales/en/components/fd-userform-editing-panel.js should pass ESLint\n\n');
   });
 
+  QUnit.test('addon/locales/en/components/fd-view-definition-item.js', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'addon/locales/en/components/fd-view-definition-item.js should pass ESLint\n\n');
+  });
+
   QUnit.test('addon/locales/en/components/fd-visual-control.js', function (assert) {
     assert.expect(1);
     assert.ok(true, 'addon/locales/en/components/fd-visual-control.js should pass ESLint\n\n');
@@ -4961,6 +4966,11 @@ define('dummy/ember-flexberry-designer/tests/addon.lint-test', [], function () {
   QUnit.test('addon/locales/ru/components/fd-userform-editing-panel.js', function (assert) {
     assert.expect(1);
     assert.ok(true, 'addon/locales/ru/components/fd-userform-editing-panel.js should pass ESLint\n\n');
+  });
+
+  QUnit.test('addon/locales/ru/components/fd-view-definition-item.js', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'addon/locales/ru/components/fd-view-definition-item.js should pass ESLint\n\n');
   });
 
   QUnit.test('addon/locales/ru/components/fd-visual-control.js', function (assert) {
