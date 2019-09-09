@@ -371,6 +371,7 @@ export default Controller.extend(FdSaveHasManyRelationshipsMixin, {
       updateStrByObjects(model);
 
       if (model.get('isNew')) {
+        model.set('nameStr', model.get('name'));
         this.addNewClassInModel();
       }
 
