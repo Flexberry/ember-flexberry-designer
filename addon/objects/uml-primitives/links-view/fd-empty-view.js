@@ -4,6 +4,7 @@ import { isArray } from '@ember/array';
 import { schedule } from '@ember/runloop';
 import joint from 'npm:jointjs';
 import $ from 'jquery';
+import { forPointerMethodOverrideResizeAndDnd } from '../../../utils/fd-update-coordinate-for-firefox';
 
 export let EmptyView = joint.dia.LinkView.extend({
   updateInputsArray: computed(() => []).readOnly(),
@@ -132,5 +133,16 @@ export let EmptyView = joint.dia.LinkView.extend({
         }
       });
     }
-  }
+  },
+
+  pointerdown(evt, x, y) {
+    let coordinates = forPointerMethodOverrideResizeAndDnd(evt, x, y);
+    joint.dia.LinkView.prototype.pointerdown.apply(this, [evt, coordinates.x, coordinates.y]);
+  },
+
+  pointermove(evt, x, y) {
+    let coordinates = forPointerMethodOverrideResizeAndDnd(evt, x, y);
+    joint.dia.LinkView.prototype.pointermove.apply(this, [evt, coordinates.x, coordinates.y]);
+  },
+
 });

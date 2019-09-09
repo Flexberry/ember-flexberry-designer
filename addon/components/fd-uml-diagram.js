@@ -14,6 +14,11 @@ import uuid from 'npm:node-uuid';
 
 import FdUmlElement from '../objects/uml-primitives/fd-uml-element';
 import FdUmlLink from '../objects/uml-primitives/fd-uml-link';
+import {
+  forPointerMethodOverrideResizeAndDnd,
+  forLinkAndElementPointerClickEvent,
+  forBlankEventPointerClickAndContextMenu
+} from '../utils/fd-update-coordinate-for-firefox';
 
 /**
   Component for working with the UML diagram through the JointJS.
@@ -266,11 +271,10 @@ export default Component.extend({
 
     @method actions._blankPointerClick
     @param {jQuery.Event} e event.
-    @param {Number} x coordinate x.
-    @param {Number} y coordinate y.
    */
-  _blankPointerClick(e, x, y) {
-    let options = { e: e, x: x, y: y };
+  _blankPointerClick(e) {
+    let coordinates = forBlankEventPointerClickAndContextMenu(e);
+    let options = { e: e, x: coordinates.x, y: coordinates.y };
     let highlightedElement = this.get('highlightedElement');
     if (highlightedElement) {
       highlightedElement.unhighlight();
@@ -291,6 +295,9 @@ export default Component.extend({
   @param {Number} y coordinate y.
   **/
   _linkPointerClick(element, e, x, y) {
+    let coordinates = forLinkAndElementPointerClickEvent(e, x, y);
+    x = coordinates.x;
+    y = coordinates.y;
     let options = { element: element, e: e, x: x, y: y };
     let placePoint = element.path.closestPointT({x:x,y:y});
     options.segmNo = placePoint.segmentIndex - 1;
@@ -353,6 +360,9 @@ export default Component.extend({
     @param {Number} y coordinate y.
   */
   _elementPointerClick(element, e, x, y) {
+    let coordinates = forLinkAndElementPointerClickEvent(e, x, y);
+    x = coordinates.x;
+    y = coordinates.y;
     let options = { element: element, e: e, x: x, y: y };
     if (isNone(this.get('draggedLink'))) {
       let editMode = this.paper.fDDEditMode;
@@ -430,8 +440,10 @@ export default Component.extend({
       x: evt.clientX,
       y: evt.clientY
     });
+
+    let coordinates = forPointerMethodOverrideResizeAndDnd(evt, evt.offsetX, evt.offsetY);
     evt.data.element.set({
-      'target': { x: evt.offsetX, y: evt.offsetY },
+      'target': { x: coordinates.x, y: coordinates.y },
     });
   },
 
@@ -440,11 +452,10 @@ export default Component.extend({
 
     @method actions._blankContextMenu
     @param {jQuery.Event} e event.
-    @param {Number} x coordinate x.
-    @param {Number} y coordinate y.
   */
-  _blankContextMenu(e, x, y) {
-    let options = { e: e, x: x, y: y };
+  _blankContextMenu(e) {
+    let coordinates = forBlankEventPointerClickAndContextMenu(e);
+    let options = { e: e, x: coordinates.x, y: coordinates.y };
     if (this.get('blankContextMenu')(options)) {
       this._clearLinksData(true);
     }
@@ -524,7 +535,8 @@ export default Component.extend({
       if (data.widthResize || data.heightResize) {
         const oldSize = data.ghost.size();
         const position = data.ghost.position();
-        data.ghost.resize(data.widthResize ? Math.max(x - position.x, view.model.attributes.inputWidth || 0, view.model.attributes.minWidth || 0) : oldSize.width, data.heightResize ? Math.max(y - position.y, view.model.attributes.inputHeight || 0, view.model.attributes.minHeight || 0) : oldSize.height);
+        let coordinates = forPointerMethodOverrideResizeAndDnd(evt, x, y);
+        data.ghost.resize(data.widthResize ? Math.max(coordinates.x - position.x, view.model.attributes.inputWidth || 0, view.model.attributes.minWidth || 0) : oldSize.width, data.heightResize ? Math.max(coordinates.y - position.y, view.model.attributes.inputHeight || 0, view.model.attributes.minHeight || 0) : oldSize.height);
       } else {
         data.ghost.position(x + shift.x, y + shift.y);
       }

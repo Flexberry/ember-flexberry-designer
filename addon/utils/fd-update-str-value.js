@@ -16,9 +16,9 @@ let updateAttributes = function(classObject, store) {
 
   let regexStr;
   if (classObject.get('stereotype') === '«enumeration»') {
-    regexStr = /()()(\w+)()(\s*=\s*(.+))?/i;
+    regexStr = /()()([\wа-я]+)()(\s*=\s*(.+))?/i;
   } else {
-    regexStr = /([/]?)([+\-#]?)(\w+)\s*:\s*([\wа-яА-Я]+)(\s*=\s*(.+))?/i;
+    regexStr = /([/]?)([+\-#]?)([\wа-я]+)\s*:\s*([\wа-я]+)(\s*=\s*(.+))?/i;
   }
 
   const attributesStrArray = attributesStr.split('\n');
@@ -76,7 +76,7 @@ let updateMethods = function(classObject, store) {
     delMethod.deleteRecord();
   });
 
-  const regexStr = /([/]?)([+\-#]?)(\w+)(<([\w:,;]+)>)?\((.+)?\)(\s*:\s*(\w+))?/i;
+  const regexStr = /([/]?)([+\-#]?)([\wа-я]+)(<([\wа-я:,;]+)>)?\((.+)?\)(\s*:\s*([\wа-я]+))?/i;
   const methodsStrArray = methodsStr.split('\n');
   const resultMatch = methodsStrArray.map((methStr) => {
     return methStr.match(regexStr);
