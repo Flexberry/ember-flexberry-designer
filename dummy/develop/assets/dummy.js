@@ -8796,6 +8796,11 @@ define('dummy/ember-flexberry-designer/tests/addon.lint-test', [], function () {
     assert.ok(true, 'addon/utils/fd-update-class-diagram.js should pass ESLint\n\n');
   });
 
+  QUnit.test('addon/utils/fd-update-coordinate-for-firefox.js', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'addon/utils/fd-update-coordinate-for-firefox.js should pass ESLint\n\n');
+  });
+
   QUnit.test('addon/utils/fd-update-str-value.js', function (assert) {
     assert.expect(1);
     assert.ok(true, 'addon/utils/fd-update-str-value.js should pass ESLint\n\n');
@@ -10709,6 +10714,11 @@ define('dummy/ember-flexberry-designer/tests/app.lint-test', [], function () {
   QUnit.test('app/utils/fd-update-class-diagram.js', function (assert) {
     assert.expect(1);
     assert.ok(true, 'app/utils/fd-update-class-diagram.js should pass ESLint\n\n');
+  });
+
+  QUnit.test('app/utils/fd-update-coordinate-for-firefox.js', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'app/utils/fd-update-coordinate-for-firefox.js should pass ESLint\n\n');
   });
 
   QUnit.test('app/utils/fd-update-str-value.js', function (assert) {
@@ -17201,7 +17211,7 @@ define("dummy/templates/fd-architecture", ["exports"], function (exports) {
   Object.defineProperty(exports, "__esModule", {
     value: true
   });
-  exports.default = Ember.HTMLBars.template({ "id": "lYrHtS8W", "block": "{\"symbols\":[],\"statements\":[[6,\"div\"],[10,\"class\",\"ui vertical menu\"],[8],[0,\"\\n  \"],[1,[26,\"flexberry-sitemap\",null,[[\"sitemap\"],[[22,[\"sitemap\"]]]]],false],[0,\"\\n\"],[9]],\"hasEval\":false}", "meta": { "moduleName": "dummy/templates/fd-architecture.hbs" } });
+  exports.default = Ember.HTMLBars.template({ "id": "fcLlcKh3", "block": "{\"symbols\":[],\"statements\":[],\"hasEval\":false}", "meta": { "moduleName": "dummy/templates/fd-architecture.hbs" } });
 });
 define("dummy/templates/fd-association-edit-form", ["exports"], function (exports) {
   "use strict";
@@ -18162,6 +18172,19 @@ define('dummy/utils/fd-update-class-diagram', ['exports', 'ember-flexberry-desig
     enumerable: true,
     get: function () {
       return _fdUpdateClassDiagram.default;
+    }
+  });
+});
+define('dummy/utils/fd-update-coordinate-for-firefox', ['exports', 'ember-flexberry-designer/utils/fd-update-coordinate-for-firefox'], function (exports, _fdUpdateCoordinateForFirefox) {
+  'use strict';
+
+  Object.defineProperty(exports, "__esModule", {
+    value: true
+  });
+  Object.defineProperty(exports, 'default', {
+    enumerable: true,
+    get: function () {
+      return _fdUpdateCoordinateForFirefox.default;
     }
   });
 });
