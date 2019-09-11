@@ -291,6 +291,7 @@ export default Controller.extend(FdSaveHasManyRelationshipsMixin, {
     let findArray;
     switch (model.get('stereotype')) {
       case null:
+      case '':
       case '«implementation»':
         findArray = this.get('model.classes');
         break;

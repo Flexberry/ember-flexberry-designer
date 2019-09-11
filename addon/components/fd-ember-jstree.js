@@ -181,12 +181,17 @@ export default Component.extend({
       let childrenNode = this.get('loadDataNode')(data.node.original, this.get('store'));
       let promise = resolve(childrenNode);
       promise.then((childrenNode)=> {
-        childrenNode.forEach((node) => {
-          jstree.create_node(data.node, node, 'last', null, true);
-        });
-
         data.node.state.loaded = true;
-        jstree.open_node(data.node);
+        if (childrenNode.length === 0) {
+          let $node = jstree.get_node(data.node, true);
+          $node.removeClass('jstree-closed');
+        } else {
+          childrenNode.forEach((node) => {
+            jstree.create_node(data.node, node, 'last', null, true);
+          });
+
+          jstree.open_node(data.node);
+        }
       });
     }
   },
