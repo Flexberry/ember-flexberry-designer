@@ -180,7 +180,9 @@ export default Component.extend({
     let sheetHeaderToolbarHeight = $('.fd-sheet-header .fd-sheet-toolbar').outerHeight(true);
     let sheetHeaderHeight = $('.fd-sheet-header .form-header').outerHeight(true);
     let searchHeight = $('.fd-ember-jstree .field').outerHeight(true);
-    let footerHeight = $('.ui.footer .flex-container').outerHeight(true);
+
+    // In Enterprise is no footer.
+    let footerHeight = $('.ui.footer .flex-container').outerHeight(true) || 0;
     let elementsSheetHeight = sheetHeaderHeight + sheetHeaderToolbarHeight + footerHeight + searchHeight;
     this.set('elementsSheetHeight', elementsSheetHeight);
     $('.fd-view-table-attr .overflow-panel').css('max-height', `calc( 100vh - ${elementsSheetHeight}px)`);

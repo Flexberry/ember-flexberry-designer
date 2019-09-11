@@ -369,9 +369,7 @@ export default Component.extend({
       if (editMode === 'addNoteConnector' && !this._haveNote()) {
         return;
       }
-      if (element.model.get('type') == 'flexberry.uml.Class') {
-        this._disableEditLinks();
-      }
+
       let startDragLink = this.get('startDragLink');
       let newElement = startDragLink(options);
       if (isNone(newElement)) {
