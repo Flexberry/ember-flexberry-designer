@@ -2,7 +2,13 @@
 All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
-0.8.1-beta.1
+
+## [0.8.1-beta.2] - 2019-09-12
+### Fixed
+* Fix view styles.
+* Fix readonly link.
+* Fix delete class from model form.
+
 ## [0.8.1-beta.1] - 2019-09-09
 ### Fixed
 * Fix empty class nameStr.
