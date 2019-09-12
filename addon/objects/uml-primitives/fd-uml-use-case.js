@@ -61,6 +61,9 @@ export let UseCase = BaseObject.define('flexberry.uml.UseCase', {
       'fontFamily': 'Arial'
     }
   },
+
+  // Minimum height.
+  minHeight: 17,
 }, {
   markup: [
     '<g class="rotatable">',
@@ -74,7 +77,13 @@ export let UseCase = BaseObject.define('flexberry.uml.UseCase', {
     this.on('change:name', function() {
       this.updateRectangles();
     }, this);
-  }
+  },
+
+  getRectangles() {
+    return [
+      { type: 'header', element: this }
+    ];
+  },
 
 });
 

@@ -107,6 +107,7 @@
     resize: none;
     line-height: 1.1;
     overflow: hidden;
+    text-align: center;
   }
   &.package-header-input {
     font-weight: normal;
@@ -158,6 +159,12 @@
 .edit-disabled {
   pointer-events: none;
   .connection-wrap, .marker-arrowhead, .link-tools, .marker-vertices {
+    display: none;
+  }
+}
+
+.linktools-disabled {
+  .link-tools, .marker-vertices, .marker-arrowhead {
     display: none;
   }
 }

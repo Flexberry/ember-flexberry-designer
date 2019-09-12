@@ -3,7 +3,7 @@
 */
 
 import Component from '@ember/component';
-import { computed } from '@ember/object';
+import { computed, observer } from '@ember/object';
 import { isNone } from '@ember/utils';
 import { inject as service } from '@ember/service';
 import { A } from '@ember/array';
@@ -14,6 +14,11 @@ import uuid from 'npm:node-uuid';
 
 import FdUmlElement from '../objects/uml-primitives/fd-uml-element';
 import FdUmlLink from '../objects/uml-primitives/fd-uml-link';
+import {
+  forPointerMethodOverrideResizeAndDnd,
+  forLinkAndElementPointerClickEvent,
+  forBlankEventPointerClickAndContextMenu
+} from '../utils/fd-update-coordinate-for-firefox';
 
 /**
   Component for working with the UML diagram through the JointJS.
@@ -122,6 +127,48 @@ export default Component.extend({
   highlightedElement: undefined,
 
   /**
+    Add handlers on pointer events.
+
+    @method pointerEvents
+  */
+  pointerEvents: observer('currentTargetElementIsPointer', 'paper', function() {
+    let currentTargetElementIsPointer = this.get('currentTargetElementIsPointer');
+    let paper = this.get('paper');
+    let graph = this.get('graph');
+    if (isNone(paper) || isNone(graph)) {
+      return;
+    }
+
+    if (currentTargetElementIsPointer) {
+      paper.on('element:pointermove', this._ghostElementMove, this);
+      paper.on('element:pointerup', this._ghostElementRemove, this);
+
+      graph.getLinks().map(link => {
+        link.findView(paper).$el.removeClass('edit-disabled');
+        link.findView(paper).$el.removeClass('linktools-disabled');
+      }, this);
+
+      $(paper.el).find('input,textarea').removeClass('click-disabled');
+    } else {
+      paper.off('element:pointermove', this._ghostElementMove, this);
+      paper.off('element:pointerup', this._ghostElementRemove, this);
+
+      switch (this.paper.fDDEditMode) {
+        case 'addNoteConnector':
+          this._enableWrapLinks();
+          break;
+        case 'addInheritance':
+          this._enableWrapBaseLinks();
+          break;
+        default:
+          this._disableEditLinks();
+      }
+
+      $(paper.el).find('input,textarea').addClass('click-disabled');
+    }
+  }),
+
+  /**
     See [EmberJS API](https://emberjs.com/).
 
     @method didInsertElement
@@ -162,15 +209,21 @@ export default Component.extend({
       cellViewNamespace: namespace
     }));
 
+    paper.on('blank:pointerclick', this._blankPointerClick, this);
+    paper.on('element:pointerclick', this._elementPointerClick, this);
+    paper.on('link:pointerclick', this._linkPointerClick, this);
+    paper.on('blank:contextmenu', this._blankContextMenu, this);
+
+    paper.on('updaterepobj', this._updateRepObj, this);
+    paper.on('getrepobjvalues', this._getRepObjValues, this);
+    paper.on('checkexistelements', this._checkOnExistElements, this);
+    paper.on('cell:highlight', this._highlighted, this);
+    paper.on('element:openeditform', this._elementOpenEditForm, this);
+
     let elements = this.get('elements');
     let links = this.get('links');
-    let linkConnectorsIds = A();
     graph.addCells(elements.map(e => {
       let element = e.JointJS();
-      if (element.prop('type') === 'flexberry.uml.LinkConnector') {
-        linkConnectorsIds.addObject(element.prop('id'));
-      }
-
       return element;
     }));
 
@@ -180,21 +233,16 @@ export default Component.extend({
         case 'flexberry.uml.Aggregation':
         case 'flexberry.uml.Association':
         case 'flexberry.uml.Generalization':
-        case 'flexberry.uml.LinkInheritance':
-          if (this.includes(link.prop('source/id'))) {
-            link.attr('.marker-arrowhead-group-source', {'display':'none'});
-            link.attr('.tool-remove', {'display':'none'});
+          if ('anchor' in link.attributes.source) {
+            link.attr('.marker-source', {'display':'none'});
           }
 
-          if (this.includes(link.prop('target/id'))) {
-            link.attr('.marker-arrowhead-group-target', {'display':'none'});
-            link.attr('.tool-remove', {'display':'none'});
+          if ('anchor' in link.attributes.target) {
+            link.attr('.marker-target', {'display':'none'});
           }
       }
-
       return link;
-    },
-      linkConnectorsIds
+    }
     ));
 
     let fitPaperToContent = function() {
@@ -215,19 +263,6 @@ export default Component.extend({
 
     fitPaperToContent();
 
-    paper.on('blank:pointerclick', this._blankPointerClick, this);
-    paper.on('element:pointerclick', this._elementPointerClick, this);
-    paper.on('blank:contextmenu', this._blankContextMenu, this);
-
-    paper.on('updaterepobj', this._updateRepObj, this);
-    paper.on('checkexistelements', this._checkOnExistElements, this);
-    paper.on('cell:highlight', this._highlighted, this);
-    paper.on('element:openeditform', this._elementOpenEditForm, this);
-
-    // Ghost element mode.
-    paper.on('element:pointermove', this._ghostElementMove, this);
-    paper.on('element:pointerup', this._ghostElementRemove, this);
-
     this.get('fdDiagramService').on('updateJointObjectViewTriggered', this, this._updateJointObjectView);
   },
 
@@ -236,11 +271,10 @@ export default Component.extend({
 
     @method actions._blankPointerClick
     @param {jQuery.Event} e event.
-    @param {Number} x coordinate x.
-    @param {Number} y coordinate y.
    */
-  _blankPointerClick(e, x, y) {
-    let options = { e: e, x: x, y: y };
+  _blankPointerClick(e) {
+    let coordinates = forBlankEventPointerClickAndContextMenu(e);
+    let options = { e: e, x: coordinates.x, y: coordinates.y };
     let highlightedElement = this.get('highlightedElement');
     if (highlightedElement) {
       highlightedElement.unhighlight();
@@ -249,6 +283,71 @@ export default Component.extend({
 
     let newElement = this.get('blankPointerClick')(options);
     this._addNewElement(newElement);
+  },
+
+  /**
+  Handler event 'link:pointerclick'.
+
+  @method actions._linkPointerClick
+  @param {Object} link selected joint js link.
+  @param {jQuery.Event} e event.
+  @param {Number} x coordinate x.
+  @param {Number} y coordinate y.
+  **/
+  _linkPointerClick(element, e, x, y) {
+    let coordinates = forLinkAndElementPointerClickEvent(e, x, y);
+    x = coordinates.x;
+    y = coordinates.y;
+    let options = { element: element, e: e, x: x, y: y };
+    let placePoint = element.path.closestPointT({x:x,y:y});
+    options.segmNo = placePoint.segmentIndex - 1;
+    options.percent = placePoint.value;
+    if (isNone(this.get('draggedLink'))) {
+      let editMode = this.paper.fDDEditMode;
+      switch (editMode) {
+        case 'addInheritance':
+        case 'addNoteConnector':
+        {
+          if (editMode === 'addNoteConnector' && !this._haveNote()) {
+            return;
+          }
+          let startDragLink = this.get('startDragLink');
+          let newLink = startDragLink(options);
+          if (editMode === 'addInheritance') {
+            newLink.attr('.marker-source', {'display':'none'});
+          }
+          this.set('draggedLink', newLink);
+          let graph = this.get('graph');
+          let paper = this.get('paper');
+          let linkView = newLink
+            .set({ 'target': { x: x, y: y } })
+            .addTo(graph).findView(paper);
+          this.set('isLinkAdding', true);
+          let links = graph.getLinks();
+          for (let i = 0; i < links.length; i+=1) {
+            let  link = links[i];
+            let view = link.findView(paper);
+              view.$el.addClass('edit-disabled');
+          }
+          $(document).on({
+            'mousemove.link': this._onDrag.bind(this)
+          }, {
+            paper: paper,
+            element: newLink
+          });
+          this.set('draggedLinkView', linkView);
+          break;
+        }
+        default:
+          if (isNone(this.get('draggedLink'))) {
+            return;
+          }
+      }
+    } else {
+      if (this.get('endDragLink')(options)) {
+        this._clearLinksData();
+      }
+    }
   },
 
   /**
@@ -261,9 +360,18 @@ export default Component.extend({
     @param {Number} y coordinate y.
   */
   _elementPointerClick(element, e, x, y) {
+    let coordinates = forLinkAndElementPointerClickEvent(e, x, y);
+    x = coordinates.x;
+    y = coordinates.y;
     let options = { element: element, e: e, x: x, y: y };
     if (isNone(this.get('draggedLink'))) {
-      let newElement = this.get('startDragLink')(options);
+      let editMode = this.paper.fDDEditMode;
+      if (editMode === 'addNoteConnector' && !this._haveNote()) {
+        return;
+      }
+
+      let startDragLink = this.get('startDragLink');
+      let newElement = startDragLink(options);
       if (isNone(newElement)) {
         element.highlight();
       } else {
@@ -276,10 +384,17 @@ export default Component.extend({
           .addTo(graph).findView(paper);
 
         this.set('isLinkAdding', true);
-
-        graph.getLinks().map(link => {
-          link.findView(paper).$el.addClass('edit-disabled');
-        }, this);
+        let links = graph.getLinks();
+        for (let i = 0; i < links.length; i+=1) {
+          let  link = links[i];
+          let view = link.findView(paper);
+          if (link.cid == newElement.cid) {
+            view.$el.addClass('edit-disabled');
+          } else {
+            view.$el.addClass('linktools-disabled');
+            view.options.interactive.vertexAdd = false;
+          }
+        }
 
         $(paper.el).find('input,textarea').addClass('click-disabled');
 
@@ -323,8 +438,10 @@ export default Component.extend({
       x: evt.clientX,
       y: evt.clientY
     });
+
+    let coordinates = forPointerMethodOverrideResizeAndDnd(evt, evt.offsetX, evt.offsetY);
     evt.data.element.set({
-      'target': { x: evt.offsetX, y: evt.offsetY },
+      'target': { x: coordinates.x, y: coordinates.y },
     });
   },
 
@@ -333,11 +450,10 @@ export default Component.extend({
 
     @method actions._blankContextMenu
     @param {jQuery.Event} e event.
-    @param {Number} x coordinate x.
-    @param {Number} y coordinate y.
   */
-  _blankContextMenu(e, x, y) {
-    let options = { e: e, x: x, y: y };
+  _blankContextMenu(e) {
+    let coordinates = forBlankEventPointerClickAndContextMenu(e);
+    let options = { e: e, x: coordinates.x, y: coordinates.y };
     if (this.get('blankContextMenu')(options)) {
       this._clearLinksData(true);
     }
@@ -379,10 +495,16 @@ export default Component.extend({
    */
   _clearLinksData(removeFromGraph) {
     $(document).off('mousemove.example');
+    $(document).off('mousemove.link');
     let graph = this.get('graph');
     let paper = this.get('paper');
+    paper.fDDEditMode = 'pointerClick';
     graph.getLinks().map(link => {
-      link.findView(paper).$el.removeClass('edit-disabled');
+      let view = link.findView(paper);
+      view.$el.removeClass('edit-disabled');
+      if ('vertexAdd' in view.options.interactive) {
+        delete view.options.interactive.vertexAdd;
+      }
     }, this);
 
     $(paper.el).find('input,textarea').removeClass('click-disabled');
@@ -411,7 +533,8 @@ export default Component.extend({
       if (data.widthResize || data.heightResize) {
         const oldSize = data.ghost.size();
         const position = data.ghost.position();
-        data.ghost.resize(data.widthResize ? Math.max(x - position.x, view.model.attributes.inputWidth || 0, view.model.attributes.minWidth || 0) : oldSize.width, data.heightResize ? Math.max(y - position.y, view.model.attributes.inputHeight || 0, view.model.attributes.minHeight || 0) : oldSize.height);
+        let coordinates = forPointerMethodOverrideResizeAndDnd(evt, x, y);
+        data.ghost.resize(data.widthResize ? Math.max(coordinates.x - position.x, view.model.attributes.inputWidth || 0, view.model.attributes.minWidth || 0) : oldSize.width, data.heightResize ? Math.max(coordinates.y - position.y, view.model.attributes.inputHeight || 0, view.model.attributes.minHeight || 0) : oldSize.height);
       } else {
         data.ghost.position(x + shift.x, y + shift.y);
       }
@@ -492,6 +615,43 @@ export default Component.extend({
     }
 
     repositoryObject.set(`${key}`, value);
+  },
+
+  /**
+    Update objectModel by repositoryObject.
+
+    @method _updateRepObj
+    @param {Object} objectModel model diagrams object.
+    @param {Object} view this JoinJS object.
+   */
+  _getRepObjValues(objectModel, view) {
+    const repositoryObject = objectModel.get('repositoryObject');
+    if (isNone(repositoryObject)) {
+      return;
+    }
+
+    const modelName = this._getModelName(objectModel.get('primitive.$type'));
+    if (modelName === 'fd-dev-class') {
+      const store = this.get('store');
+      const repositoryObjectId = repositoryObject.slice(1, -1);
+      const currentRepObj = store.peekRecord(modelName, repositoryObjectId);
+      const stereotype = currentRepObj.get('stereotype') || '';
+      const normalizeStereotype = view.normalizeStereotype(stereotype);
+      objectModel.set('stereotype', normalizeStereotype);
+      this._updateInputValue('.class-stereotype-input', normalizeStereotype, view);
+
+      const attributes = currentRepObj.get('attributesStr') || '';
+      objectModel.set('attributes', attributes.split('\n'));
+      this._updateInputValue('.attributes-input', attributes, view);
+
+      const methods = currentRepObj.get('methodsStr') || '';
+      objectModel.set('methods', methods.split('\n'));
+      this._updateInputValue('.methods-input', methods, view);
+
+      const initSize = view.model.size();
+      view.updateRectangles(initSize.width, initSize.height);
+      view.update();
+    }
   },
 
   /**
@@ -845,5 +1005,71 @@ export default Component.extend({
     let view = paper.findViewByModel(model);
     view.updateInputValue();
     view.updateRectangles();
+  },
+
+  _enableEditLinks: function() {
+    let paper = this.paper;
+    let links = paper.model.getLinks();
+    for (let i = 0; i < links.length; i+=1) {
+      let  link = links[i];
+      let view = link.findView(paper);
+      view.$el.removeClass('edit-disabled');
+      view.$el.removeClass('linktools-disabled');
+      if ('vertexAdd' in view.options.interactive) {
+        delete view.options.interactive.vertexAdd;
+      }
+    }
+  },
+
+  _enableWrapBaseLinks: function() {
+    let paper = this.paper;
+    let links = paper.model.getLinks();
+    for (let i = 0; i < links.length; i+=1) {
+      let  link = links[i];
+      let view = link.findView(paper);
+      if (link.get('type') == 'flexberry.uml.Generalization' && !link.connectedToLine()) {
+        view.$el.removeClass('edit-disabled');
+        view.$el.addClass('linktools-disabled');
+        view.options.interactive.vertexAdd = false;
+      } else {
+        view.$el.addClass('edit-disabled');
+      }
+    }
+  },
+
+  _enableWrapLinks: function() {
+    let paper = this.paper;
+    let links = paper.model.getLinks();
+    for (let i = 0; i < links.length; i+=1) {
+      let  link = links[i];
+      let view = link.findView(paper);
+      view.$el.removeClass('edit-disabled');
+      view.$el.addClass('linktools-disabled');
+      view.options.interactive.vertexAdd = false;
+    }
+  },
+
+  _disableEditLinks: function() {
+    let paper = this.paper;
+    let links = paper.model.getLinks();
+    for (let i = 0; i < links.length; i+=1) {
+      let  link = links[i];
+      let view = link.findView(paper);
+      view.$el.addClass('edit-disabled');
+    }
+  },
+
+  _haveNote: function() {
+    let paper = this.paper;
+    let elements = paper.model.getElements();
+    for (let i = 0; i < elements.length; i+=1) {
+      let  element = elements[i];
+      if (element.get('type') == 'flexberry.uml.Note') {
+        return true;
+      }
+
+    }
+    return false;
   }
+
 });

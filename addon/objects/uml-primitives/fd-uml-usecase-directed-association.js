@@ -2,6 +2,7 @@
   @module ember-flexberry-designer
 */
 import joint from 'npm:jointjs';
+import { isNone } from '@ember/utils';
 
 import FdUmlLink from './fd-uml-link';
 import { Link } from './fd-uml-link';
@@ -44,4 +45,15 @@ export let DirectedAssociation = Link.define('flexberry.uml.DirectedAssociation'
   }
 });
 
-joint.shapes.flexberry.uml.DirectedAssociationView = DescriptionView;
+joint.shapes.flexberry.uml.DirectedAssociationView = DescriptionView.extend({
+  setColors() {
+    DescriptionView.prototype.setColors.apply(this, arguments);
+
+    const textColor = this.getTextColor();
+
+    if (!isNone(textColor)) {
+      this.model.attr('.marker-target/stroke', textColor);
+      this.model.attr('.marker-target/fill', textColor);
+    }
+  }
+});

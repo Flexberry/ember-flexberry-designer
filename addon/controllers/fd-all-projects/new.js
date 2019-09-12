@@ -5,10 +5,11 @@
 import Controller from '@ember/controller';
 import FdPreloadStageMetadata from 'ember-flexberry-designer/utils/fd-preload-stage-metadata';
 import { computed } from '@ember/object';
-import { isNone } from '@ember/utils';
+import { isNone, isBlank } from '@ember/utils';
 import { inject as service } from '@ember/service';
 import { Promise } from 'rsvp';
 import Builder from 'ember-flexberry-data/query/builder';
+import { transliteration } from 'ember-flexberry-designer/utils/fd-transliteration';
 
 /**
   The controller for the project creation form.
@@ -26,12 +27,28 @@ export default Controller.extend({
   projectName: undefined,
 
   /**
+    The product name.
+
+    @property productName
+    @type String
+  */
+  productName: undefined,
+
+  /**
     The project description.
 
     @property projectDescription
     @type String
   */
   projectDescription: undefined,
+
+  /**
+    Access value.
+
+    @property accessIsPublic
+    @type Bool
+  */
+  accessIsPublic: true,
 
   /**
     Service for managing the state of the application.
@@ -59,7 +76,8 @@ export default Controller.extend({
     // Parts of `forms/fd-all-projects` locale keys.
     let examples = ['library', 'school', 'university', 'museum', 'gallery'];
     let example = examples[Math.floor(Math.random() * examples.length)];
-    return `forms.fd-all-projects.name-examples.${example}`;
+
+    return example;
   }).readOnly(),
 
   /**
@@ -77,6 +95,17 @@ export default Controller.extend({
     @property queryParams
   */
   queryParams: ['nameFromSearch'],
+
+  /**
+    Check lexical structure.
+
+    @method keyPressPattern
+  */
+  keyPressPattern(e) {
+    if(!((e.keyCode >= 48 && e.keyCode <= 57) || (e.keyCode >= 65 && e.keyCode <= 90) || (e.keyCode >= 97 && e.keyCode <= 122) || e.keyCode === 95)) {
+      e.preventDefault();
+    }
+  },
 
   actions: {
     /**
@@ -116,8 +145,13 @@ export default Controller.extend({
         }
       })
       .then(() => {
+        const projectName = this.get('projectName');
+        const productName = this.get('productName');
+
+        const product = isBlank(productName) ? transliteration(projectName) : productName;
         const stage = store.createRecord('fd-dev-stage', {
-          name: this.get('projectName'),
+          name: projectName,
+          product: product,
           description: this.get('projectDescription'),
           configuration: configuration,
         });
