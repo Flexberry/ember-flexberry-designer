@@ -129,8 +129,6 @@ export let BaseClass = joint.shapes.basic.Generic.define('flexberry.uml.BaseClas
   objectModel: null,
 
   attrs: {
-    rect: { 'width': 200 },
-
     '.flexberry-uml-header-rect': { 'stroke': 'black', 'stroke-width': 1, 'fill': '#ffffff', 'fill-opacity': 0 },
     '.flexberry-uml-body-rect': { 'stroke': 'black', 'stroke-width': 1, 'fill': '#ffffff', 'fill-opacity': 0 },
     '.flexberry-uml-footer-rect': { 'stroke': 'black', 'stroke-width': 1, 'fill': '#ffffff', 'fill-opacity': 0 },
@@ -199,8 +197,8 @@ export let BaseClass = joint.shapes.basic.Generic.define('flexberry.uml.BaseClas
     ];
   }
 });
-
 joint.util.setByPath(joint.shapes, 'flexberry.uml.BaseClass', BaseClass, '.');
+
 
 /**
   Defines the JointJS element, which represents the UML class in the diagram.
@@ -212,6 +210,7 @@ joint.util.setByPath(joint.shapes, 'flexberry.uml.BaseClass', BaseClass, '.');
   @constructor
 */
 export let Class = BaseClass.define('flexberry.uml.Class', {});
+joint.util.setByPath(joint.shapes, 'flexberry.uml.Class', Class, '.');
 
 joint.util.setByPath(joint.shapes, 'flexberry.uml.BaseClass', BaseClass, '.');
 
@@ -227,10 +226,8 @@ joint.shapes.flexberry.uml.ClassView = joint.shapes.flexberry.uml.PrimitiveEleme
   ].join(''),
 
   initialize: function() {
-    joint.dia.ElementView.prototype.initialize.apply(this, arguments);
+    joint.shapes.flexberry.uml.PrimitiveElementView.prototype.initialize.apply(this, arguments);
 
-    this.$box = $(this.template);
-    this.model.inputElements = this.$box;
     let _this = this;
 
     // Prevent paper from handling pointerdown.
@@ -318,11 +315,19 @@ joint.shapes.flexberry.uml.ClassView = joint.shapes.flexberry.uml.PrimitiveEleme
     }.bind(this));
 
     this.$box.find('.class-stereotype-input').on('blur', function(evt) {
-      this.showNormalizedStereotypeOnInput($(evt.target));
+      let stereotypeText = $(evt.target).val();
+      let stereotype = this.normalizeStereotype(stereotypeText);
+      let rows = stereotypeText.split(/[\n\r|\r|\n]/);
+      let $stereotypeInput = this.$box.find('.class-stereotype-input');
+      $stereotypeInput.val(stereotype);
+      $stereotypeInput.prop('rows', rows.length);
+      let objectModel = this.model.get('objectModel');
+      objectModel.set('stereotype', stereotype);
+      this.paper.trigger('updaterepobj', objectModel, 'stereotype', stereotype);
+      this.updateRectangles();
     }.bind(this));
 
     this.updateInputValue();
-    this.showNormalizedStereotypeOnInput(this.$box.find('.class-stereotype-input'));
 
     // Update the box position whenever the underlying model changes.
     this.model.on('change', this.updateBox, this);
@@ -342,7 +347,8 @@ joint.shapes.flexberry.uml.ClassView = joint.shapes.flexberry.uml.PrimitiveEleme
     }, this);
 
     this.updateBox();
-    this.updateRectangles();
+    const objectModel = this.model.get('objectModel');
+    this.paper.trigger('getrepobjvalues', objectModel, this);
 
     return this;
   },
@@ -365,7 +371,6 @@ joint.shapes.flexberry.uml.ClassView = joint.shapes.flexberry.uml.PrimitiveEleme
 
   updateRectangles(resizedWidth, resizedHeight) {
     let rects = this.model.getRectangles();
-
     let offsetY = 0;
     let newHeight = 0;
     let newWidth = 0;
@@ -432,7 +437,7 @@ joint.shapes.flexberry.uml.ClassView = joint.shapes.flexberry.uml.PrimitiveEleme
     classNameInput.prop('rows', objectModel.get('name').split(/[\n\r|\r|\n]/).length || 1);
     classNameInput.val(objectModel.get('name'));
     classStereotypeInput.prop('rows', objectModel.get('stereotype').split(/[\n\r|\r|\n]/).length || 1);
-    classStereotypeInput.val(objectModel.get('stereotype'));
+    classStereotypeInput.val(this.normalizeStereotype(objectModel.get('stereotype')));
 
     attributesInput.prop('rows', objectModel.get('attributes').length || 1);
     attributesInput.val(objectModel.get('attributes').join('\n'));
@@ -511,14 +516,5 @@ joint.shapes.flexberry.uml.ClassView = joint.shapes.flexberry.uml.PrimitiveEleme
     }
 
     return stereotype;
-  },
-
-  showNormalizedStereotypeOnInput(element) {
-    let stereotypeText = element.val();
-    let stereotype = this.normalizeStereotype(stereotypeText);
-    let rows = stereotypeText.split(/[\n\r|\r|\n]/);
-    element.val(stereotype);
-    element.prop('rows', rows.length);
-    this.updateRectangles();
   }
 });

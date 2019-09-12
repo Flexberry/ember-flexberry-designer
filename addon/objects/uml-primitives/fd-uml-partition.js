@@ -4,10 +4,10 @@
 
 import { computed } from '@ember/object';
 import { isArray } from '@ember/array';
+import joint from 'npm:jointjs';
 
 import FdUmlElement from './fd-uml-element';
 import { BaseObject } from './fd-uml-baseobject';
-import joint from 'npm:jointjs';
 
 /**
   An object that describes a partition on the UML diagram.
@@ -62,9 +62,13 @@ export let Partition = BaseObject.define('flexberry.uml.Partition', {
       'stroke': 'black',
       'stroke-width': 1,
       'fill': '#ffffff',
-      'fill-opacity': '0.0'
+      'fill-opacity': 0
     },
   },
+
+  // Minimum height.
+  minHeight: 17,
+
   heightPadding: 60
 }, {
   markup: [
@@ -78,7 +82,22 @@ export let Partition = BaseObject.define('flexberry.uml.Partition', {
     this.on('change', function() {
       this.toBack({ deep: true });
     });
-  }
+  },
+  
+  getRectangles() {
+    return [
+      { type: 'header', element: this }
+    ];
+  },
+});
+
+joint.shapes.flexberry.uml.PartitionView = joint.shapes.flexberry.uml.BaseObjectView.extend({
+  template: [
+    '<div class="uml-class-inputs">',
+    '<textarea class="class-name-input header-input" value="" rows="1" wrap="off"></textarea>',
+    '<div class="input-buffer"></div>',
+    '</div>'
+  ].join(''),
 });
 
 joint.shapes.flexberry.uml.PartitionView = joint.shapes.flexberry.uml.BaseObjectView.extend({

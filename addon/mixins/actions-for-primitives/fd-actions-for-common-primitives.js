@@ -66,7 +66,12 @@ export default Mixin.create({
           linkProperties.source,
           null,
           linkProperties.target,
-          null
+          null,
+          A(),
+          { Name: '' },
+          { NamePos: 0.0 },
+          undefined,
+          {'segmNo': linkProperties.segmNo, 'percent': linkProperties.percent}
         );
 
         let noteConnectorObject = FdUmlNoteConnector.create({ primitive: jsonObject });

@@ -2,7 +2,7 @@ import Route from '@ember/routing/route';
 import { inject as service } from '@ember/service';
 import { A } from '@ember/array';
 import $ from 'jquery';
-import { isNone } from '@ember/utils';
+import { isNone, isBlank } from '@ember/utils';
 import { get } from '@ember/object';
 import FdAttributesTree from '../objects/fd-attributes-tree';
 import FdDataTypes from '../utils/fd-datatypes';
@@ -119,7 +119,7 @@ export default Route.extend(FdFormCheckTransitionMixin, {
 
     // Implementation.
     let implementation = allClasses.filter(function(item) {
-      return (item.get('stereotype') === '«implementation»' || item.get('stereotype') === null) && item.get('stage.id') === stage.get('id');
+      return (item.get('stereotype') === '«implementation»' || isBlank(item.get('stereotype'))) && item.get('stage.id') === stage.get('id');
     });
     modelHash.mastersType = this._buildTree(implementation, 'master', true);
 

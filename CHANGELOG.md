@@ -2,14 +2,31 @@
 All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
+0.8.1-beta.1
+## [0.8.1-beta.1] - 2019-09-09
+### Fixed
+* Fix empty class nameStr.
+* Fix update str value with ru symvols.
+* Fix coordinates in firefox.
 
-## [0.8.0-beta.0] - 2019-08-13
+## [0.8.0] - 2019-09-02
 ### Added
 * Added navigation tree.
 * Added logic for create new class button.
 * Added logic for create new diagram button.
 * Added logic for delete class button.
 * Change text ability on activity diagram primitives.
+* Add primitives resizing on cad diagram.
+* Add text and background colors for primitives on cad diagram.
+* Add create prototype button.
+
+### Fixed
+* Fix new project creating.
+* Fix cad class attributes and methods parsing.
+* Fix `fd-button` type.
+
+### Changed
+* Change link to link realization to JointJS 3.
 
 ## [0.7.0] - 2019-05-31
 ### Added

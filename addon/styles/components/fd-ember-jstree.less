@@ -21,9 +21,20 @@
 }
 
 .jstree-default .jstree-wholerow-clicked,
-.jstree-default .jstree-wholerow-hovered {
-  background: rgba(0, 0, 0, 0.1);
+.jstree-default .jstree-wholerow-clicked.jstree-wholerow-hovered {
+  background: @fdSheetBg;
   border-radius: 0.5rem;
+}
+
+.fd-view-table-attr {
+  .jstree-default .jstree-wholerow-clicked,
+  .jstree-default .jstree-wholerow-clicked.jstree-wholerow-hovered {
+    background: @sidebarBg;
+  }
+}
+
+.jstree-default .jstree-wholerow-hovered {
+  background: transparent;
 }
 
 .jstree-default .jstree-themeicon-custom {
@@ -49,4 +60,12 @@
     border: 7px solid transparent;
     left: 0;
   }
+}
+
+.jstree-default > .jstree-container-ul > .jstree-node {
+  margin-left: 1em;
+}
+
+.jstree-default .jstree-icon.jstree-themeicon.jstree-themeicon-custom {
+  width: 16px;
 }

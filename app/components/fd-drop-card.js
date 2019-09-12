@@ -1,0 +1,1 @@
+export { default } from 'ember-flexberry-designer/components/fd-drop-card';

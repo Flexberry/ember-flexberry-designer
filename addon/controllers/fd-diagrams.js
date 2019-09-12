@@ -375,9 +375,11 @@ export default Controller.extend(FdSaveHasManyRelationshipsMixin, {
               attributesStr: getActualValue(attributes, currentValues.attributesStr),
               methodsStr: getActualValue(methods, currentValues.methodsStr),
             });
+
+            updateObjectByStr(repObject, store);
           }
 
-          return hasChanges(repObject) ? repObject.save() : resolve();
+          return hasChanges(repObject) ? repObject.save().then(() => this.saveHasManyRelationships(repObject)) : resolve();
         }));
       }
 
@@ -497,13 +499,18 @@ export default Controller.extend(FdSaveHasManyRelationshipsMixin, {
       let model = this.get('selectedElement.model.data');
       this.get('appState').loading();
 
+      let isNew = false;
       if (model.get('isNew')) {
-        this.addNewDiagramInModel();
+        isNew = true;
       }
 
       this.savePrimitives().then(() => {
         model.save()
         .then(() => {
+          if (isNew) {
+            this.addNewDiagramInModel();
+          }
+
           this.set('isDiagramVisible', false);
           schedule('afterRender', this, function() {
             this.set('isDiagramVisible', true);

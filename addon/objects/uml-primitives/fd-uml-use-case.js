@@ -6,6 +6,7 @@ import { computed } from '@ember/object';
 
 import FdUmlElement from './fd-uml-element';
 import joint from 'npm:jointjs';
+import { BaseObject } from './fd-uml-baseobject';
 
 /**
   An object that describes a UseCase on the UML diagram.
@@ -28,7 +29,8 @@ export default FdUmlElement.extend({
     @method JointJS
   */
   JointJS() {
-    let properties = this.getProperties('id', 'name', 'size', 'position');
+    let properties = this.getProperties('id', 'size', 'position');
+    properties.objectModel = this;
     return new UseCase(properties);
   },
 });
@@ -38,17 +40,17 @@ export default FdUmlElement.extend({
 
   @for FdUmlUseCase
   @class UseCase
-  @extends basic.Generic
+  @extends flexberry.uml.BaseObject
   @namespace flexberry.uml
   @constructor
 */
-export let UseCase = joint.shapes.basic.Generic.define('flexberry.uml.Usecase', {
+export let UseCase = BaseObject.define('flexberry.uml.UseCase', {
   attrs: {
     rect: { 'width': 400 },
-    '.uml-usecase-rect': { 'rx': '120', 'ry': '120', 'stroke': 'black', 'strokeWidth': '1', 'fill': '#ffffff' },
+    '.flexberry-uml-header-rect': { 'rx': '120', 'ry': '120', 'stroke': 'black', 'strokeWidth': '1', 'fill': '#ffffff' },
 
-    '.uml-usecase-text': {
-      'ref': '.uml-usecase-rect',
+    '.flexberry-uml-header-text': {
+      'ref': '.flexberry-uml-header-rect',
       'textAnchor': 'middle',
       'yAlignment': 'middle',
       'fontWeight': 'bold',
@@ -59,54 +61,41 @@ export let UseCase = joint.shapes.basic.Generic.define('flexberry.uml.Usecase', 
       'fontFamily': 'Arial'
     }
   },
-  name: ''
+
+  // Minimum height.
+  minHeight: 17,
 }, {
   markup: [
     '<g class="rotatable">',
-    '<g class="scalable">',
-    '<rect class="uml-usecase-rect"/>',
-    '</g>',
-    '<image/>',
-    '<text class="uml-usecase-text"/>',
+    '<rect class="flexberry-uml-header-rect"/>',
+    '<text class="flexberry-uml-header-text"/>',
     '</g>'
   ].join(''),
 
   initialize: function () {
+    BaseObject.prototype.initialize.apply(this, arguments);
     this.on('change:name', function() {
       this.updateRectangles();
     }, this);
-
-    this.updateRectangles();
-
-    joint.shapes.basic.Generic.prototype.initialize.apply(this, arguments);
   },
+
+  getRectangles() {
+    return [
+      { type: 'header', element: this }
+    ];
+  },
+
+});
+
+joint.shapes.flexberry.uml.UseCaseView = joint.shapes.flexberry.uml.BaseObjectView.extend({
+  template: [
+    '<div class="uml-class-inputs">',
+    '<textarea class="class-name-input header-input" value="" rows="1" wrap="off"></textarea>',
+    '<div class="input-buffer"></div>',
+    '</div>'
+  ].join(''),
 
   getUsecaseName: function() {
-    return this.get('name');
+    return this.model.attributes.objectModel.get('name');
   },
-
-  updateRectangles: function() {
-    let attrs = this.get('attrs');
-    let rect =  { type: 'name', text: this.getUsecaseName() };
-    let lines = rect.text.split('\n');
-
-    let maxStringChars = lines[0].length;
-    for (let stringIndex = 0; stringIndex < lines.length; stringIndex++) {
-      if (lines[stringIndex].length >= maxStringChars) {
-        maxStringChars = lines[stringIndex].length;
-      }
-    }
-
-    let hightStep = attrs['.uml-usecase-text'].fontSize;
-    let rectHeight = lines.length * hightStep + 20;
-
-    let widthStep = attrs['.uml-usecase-text'].fontSize / 1.5;
-    let rectWidth = maxStringChars * widthStep  + 20;
-
-    attrs['.uml-usecase-text'].text = rect.text;
-    attrs['.uml-usecase-rect'].height = rectHeight;
-    attrs['.uml-usecase-rect'].width = rectWidth;
-
-    this.resize(rectWidth, rectHeight);
-  }
 });
