@@ -5,7 +5,6 @@ import { A } from '@ember/array';
 import { isNone } from '@ember/utils';
 import { later } from '@ember/runloop';
 import $ from 'jquery';
-import config from '../config/environment'
 
 export default Controller.extend({
   fdSheetService: service(),
@@ -33,6 +32,8 @@ export default Controller.extend({
     @type AppStateService
   */
   appState: service(),
+
+  router: service(),
 
   /**
     Current project name from stageModel
@@ -193,7 +194,7 @@ export default Controller.extend({
   sidebarMiniWidth: '60px',
 
   itemsArray: ["light", "dark", "blue"],
-  router: service(),
+
   actions: {
     theme() {
       let sheet = document.querySelector('#theme');
