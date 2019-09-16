@@ -5,6 +5,7 @@ import { A } from '@ember/array';
 import { isNone } from '@ember/utils';
 import { later } from '@ember/runloop';
 import $ from 'jquery';
+import config from '../config/environment'
 
 export default Controller.extend({
   fdSheetService: service(),
@@ -191,7 +192,19 @@ export default Controller.extend({
 
   sidebarMiniWidth: '60px',
 
+  itemsArray: ["light", "dark", "blue"],
+  router: service(),
   actions: {
+    theme() {
+      let sheet = document.querySelector('#theme');
+      if (!sheet) {
+        return
+      }
+
+      let theme = $('.flexberry-dropdown.theme div.text').text();
+      let rootURL = this.get('router.location.location.origin');
+      sheet.setAttribute('href', `${rootURL}/assets/${theme}.css`);
+    },
 
     /**
       Call `updateWidthTrigger` for `objectlistviewEventsService`.
