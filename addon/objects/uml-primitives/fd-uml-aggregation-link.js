@@ -1,8 +1,8 @@
 /**
   @module ember-flexberry-designer
 */
-import joint from 'npm:jointjs';
 import { isNone } from '@ember/utils';
+import joint from 'npm:jointjs';
 
 import FdUmlLink, { LinkWithUnderline } from './fd-uml-link';
 import { QualifiedView } from './links-view/fd-qualified-view';
@@ -48,7 +48,6 @@ joint.shapes.flexberry.uml.AggregationLinkView = QualifiedView.extend({
   setColors() {
     QualifiedView.prototype.setColors.apply(this, arguments);
 
-    const brushColor = this.getBrushColor();
     const textColor = this.getTextColor();
 
     if (!isNone(textColor)) {
