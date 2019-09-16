@@ -145,6 +145,15 @@ export default Controller.extend({
   locales: undefined,
 
   /**
+    Themes supported by application.
+
+    @property themes
+    @type String[]
+    @default ['light', 'dark', 'blue']
+  */
+   themes: undefined,
+
+  /**
     Handles changes in userSettingsService.isUserSettingsServiceEnabled.
 
     @method _userSettingsServiceChanged
@@ -159,6 +168,8 @@ export default Controller.extend({
   */
   init() {
     this._super(...arguments);
+
+    this.set('themes', ['light', 'dark', 'blue']);
 
     this.set('locales', ['ru', 'en']);
 
@@ -193,10 +204,8 @@ export default Controller.extend({
 
   sidebarMiniWidth: '60px',
 
-  itemsArray: ["light", "dark", "blue"],
-
   actions: {
-    theme() {
+    changeTheme() {
       let sheet = document.querySelector('#theme');
       if (!sheet) {
         return

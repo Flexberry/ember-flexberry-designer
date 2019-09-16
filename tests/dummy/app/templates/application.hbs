@@ -85,9 +85,9 @@
     <div class="right menu">
       {{flexberry-dropdown
         class="compact theme"
-        items=itemsArray
+        items=themes
         value='light'
-        onChange=(action 'theme')
+        onChange=(action 'changeTheme')
         direction="upward"
       }}
       {{flexberry-dropdown
