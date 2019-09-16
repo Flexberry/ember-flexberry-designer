@@ -1,5 +1,9 @@
 export default {
   'attribute': {
+    'value': 'Возможное значение',
+    'value-placeholder': 'Введите возможное значение',
+    'default-value': 'Значение по умолчанию',
+    'default-value-placeholder': 'Введите значение по умолчанию',
     'name': 'Имя атрибута',
     'name-placeholder': 'Введите имя',
     'caption': 'Заголовок',
