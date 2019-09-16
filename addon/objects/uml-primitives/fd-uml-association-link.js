@@ -4,7 +4,7 @@
 import joint from 'npm:jointjs';
 
 import FdUmlLink, { LinkWithUnderline } from './fd-uml-link';
-import { EmptyView } from './links-view/fd-empty-view';
+import { QualifiedView } from './links-view/fd-qualified-view';
 
 /**
   An object that describes an association link on the UML diagram.
@@ -35,6 +35,11 @@ export default FdUmlLink.extend({
   @namespace flexberry.uml
   @constructor
 */
-export let AssociationLink = LinkWithUnderline.define('flexberry.uml.AssociationLink', {});
+export let AssociationLink = LinkWithUnderline.define('flexberry.uml.AssociationLink', {
+  attrs: {
+    text: { visibility: 'hidden' },
+    rect: { visibility: 'hidden' }
+  },
+});
 
-joint.shapes.flexberry.uml.AssociationLinkView = EmptyView;
+joint.shapes.flexberry.uml.AssociationLinkView = QualifiedView;

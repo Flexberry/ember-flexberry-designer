@@ -2,9 +2,10 @@
   @module ember-flexberry-designer
 */
 import joint from 'npm:jointjs';
+import { isNone } from '@ember/utils';
 
 import FdUmlLink, { LinkWithUnderline } from './fd-uml-link';
-import { EmptyView } from './links-view/fd-empty-view';
+import { QualifiedView } from './links-view/fd-qualified-view';
 
 /**
   An object that describes a link of the composition type on the UML diagram.
@@ -36,7 +37,26 @@ export default FdUmlLink.extend({
   @constructor
 */
 export let CompositionLink = LinkWithUnderline.define('flexberry.uml.CompositionLink', {
-  attrs: { '.marker-target': { d: 'M 26 10 L 13 17 L 0 10 L 13 3 z', fill: 'black' } },
+  attrs: {
+    '.marker-source': { d: 'M 26 10 L 13 17 L 0 10 L 13 3 z', fill: 'black' },
+    text: { visibility: 'hidden' },
+    rect: { visibility: 'hidden' }
+  },
 });
 
-joint.shapes.flexberry.uml.CompositionLinkView = EmptyView;
+joint.shapes.flexberry.uml.CompositionLinkView = QualifiedView.extend({
+  setColors() {
+    QualifiedView.prototype.setColors.apply(this, arguments);
+
+    const brushColor = this.getBrushColor();
+    const textColor = this.getTextColor();
+
+    if (!isNone(textColor)) {
+      this.model.attr('.marker-source/stroke', textColor);
+    }
+
+    if (!isNone(brushColor)) {
+      this.model.attr('.marker-source/fill', brushColor);
+    }
+  }
+});
