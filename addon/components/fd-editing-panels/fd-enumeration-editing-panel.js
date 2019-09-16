@@ -23,21 +23,26 @@ export default Component.extend(FdUpdateAttributeValueMixin, {
     @type Array
     @default undefined
   */
-  tableViewAttribute: computed(() => ( 
+  tableViewAttribute: computed(() => (
     A([{
-      columnCaption: 'components.fd-attribute-table.attribute.name',
+      columnCaption: 'components.fd-attribute-table.attribute.value',
       columnProperty: 'name',
-      attrPlaceholder: 'components.fd-attribute-table.attribute.name-placeholder',
-    },
-    {
-      columnCaption: 'components.fd-attribute-table.attribute.caption',
-      columnProperty: 'caption',
-      attrPlaceholder: 'components.fd-attribute-table.attribute.caption-placeholder',
+      attrPlaceholder: 'components.fd-attribute-table.attribute.value-placeholder',
     },
     {
       columnCaption: 'components.fd-attribute-table.attribute.description',
       columnProperty: 'description',
       attrPlaceholder: 'components.fd-attribute-table.attribute.description-placeholder',
+    },
+    {
+      columnCaption: 'components.fd-attribute-table.attribute.default-value',
+      columnProperty: 'defaultValue',
+      attrPlaceholder: 'components.fd-attribute-table.attribute.default-value-placeholder',
+    },
+    {
+      columnCaption: 'components.fd-attribute-table.attribute.caption',
+      columnProperty: 'caption',
+      attrPlaceholder: 'components.fd-attribute-table.attribute.caption-placeholder',
     }])
   )),
 });

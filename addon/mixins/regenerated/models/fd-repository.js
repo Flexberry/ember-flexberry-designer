@@ -32,4 +32,8 @@ export let defineProjections = function (modelClass) {
   modelClass.defineProjection('Test', 'fd-repository', {
     name: attr('')
   });
+  modelClass.defineProjection('LoadDataNode', 'fd-repository', {
+    name: attr(''),
+    description: attr('')
+  });
 };

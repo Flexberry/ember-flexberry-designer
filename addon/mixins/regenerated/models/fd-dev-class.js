@@ -1275,6 +1275,7 @@ export let defineProjections = function (modelClass) {
       description: attr(''),
       accessModifier: attr(''),
       stored: attr(''),
+      caption: attr('')
     }),
     methods: hasMany('fd-dev-method', '', {
       accessModifier: attr(''),

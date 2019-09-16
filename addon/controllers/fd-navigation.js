@@ -270,7 +270,10 @@ export default Controller.extend({
       if (treeObject) {
         let jstree = treeObject.jstree(true);
         jstree.deselect_node(this.get('selectedNode'));
-        this.get('actionReceiver').send('redraw');
+        const actionReceiver = this.get('actionReceiver');
+        if (actionReceiver) {
+          actionReceiver.send('redraw');
+        }
       }
     }
   },
