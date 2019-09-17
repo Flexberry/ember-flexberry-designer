@@ -299,6 +299,7 @@
   sheetComponentName=sheetComponentName
   readonly=(not selectedElement.model.data.isNew)
   toolbarVisible=(not isAddMode)
+  isNewModel=selectedElement.model.data.isNew
 }}
   {{#if isAddMode}}
     {{fd-editing-panels/fd-create-entity
@@ -324,6 +325,7 @@
   deleteController=(action 'deleteView')
   sheetComponentName=sheetViewName
   readonly=false
+  isNewModel=selectedView.isNew
 }}
 
   {{fd-editing-panels/fd-create-view
