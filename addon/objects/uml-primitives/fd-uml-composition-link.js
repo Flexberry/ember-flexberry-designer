@@ -1,6 +1,7 @@
 /**
   @module ember-flexberry-designer
 */
+import { computed } from '@ember/object';
 import joint from 'npm:jointjs';
 import { isNone } from '@ember/utils';
 
@@ -14,6 +15,22 @@ import { QualifiedView } from './links-view/fd-qualified-view';
   @extends FdUmlLink
 */
 export default FdUmlLink.extend({
+
+  /**
+    End role text.
+
+    @property endRoleTxt
+    @type String
+  */
+  endRoleTxt: computed.alias('primitive.RightText.Text'),
+
+  /**
+     Start role text.
+
+    @property startRoleTxt
+    @type String
+  */
+  startRoleTxt: computed.alias('primitive.LeftText.Text'),
 
   /**
     See {{#crossLink "FdUmlPrimitive/JointJS:method"}}here{{/crossLink}}.
@@ -42,9 +59,22 @@ export let CompositionLink = LinkWithUnderline.define('flexberry.uml.Composition
     text: { visibility: 'hidden' },
     rect: { visibility: 'hidden' }
   },
+}, {
+  initialize: function() {
+    LinkWithUnderline.prototype.initialize.apply(this, arguments);
+  },
 });
 
 joint.shapes.flexberry.uml.CompositionLinkView = QualifiedView.extend({
+  template: [
+    '<div class="uml-link-inputs">',
+    '<input type="text" class="description-input underline-text" value="" />',
+    '<input type="text" class="start-role-input" value="" />',
+    '<input type="text" class="end-role-input" value="" />',
+    '<div class="input-buffer"></div>',
+    '</div>'
+  ].join(''),
+  
   setColors() {
     QualifiedView.prototype.setColors.apply(this, arguments);
 
@@ -53,6 +83,7 @@ joint.shapes.flexberry.uml.CompositionLinkView = QualifiedView.extend({
 
     if (!isNone(textColor)) {
       this.model.attr('.marker-source/stroke', textColor);
+      this.model.attr('.text-color/style/stop-color', textColor);
     }
 
     if (!isNone(brushColor)) {
