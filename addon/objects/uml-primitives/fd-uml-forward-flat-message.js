@@ -3,6 +3,9 @@
 */
 
 import { computed } from '@ember/object';
+import { isArray } from '@ember/array';
+import joint from 'npm:jointjs';
+
 
 import FdUmlElement from './fd-uml-element';
 import { CollMessageBase } from './fd-uml-base-coll-message';
@@ -14,16 +17,23 @@ import { CollMessageBase } from './fd-uml-base-coll-message';
   @extends FdUmlElement
 */
 export default FdUmlElement.extend({
-
+  
   /**
     The attrs of the class.
 
     @property attrs
     @type String
   */
-  attrs: computed('primitive.Name.Text', function() {
-    return { '.uml-base-text': { 'text': this.get('primitive.Name.Text') } };
-  }),
+ name: computed('primitive.Name.Text', {
+  get() {
+    return this.get('primitive.Name.Text');
+  },
+  set(key, value) {
+    let nameTxt = (isArray(value)) ? value.join('\n') : value;
+    this.set('primitive.Name.Text', nameTxt);
+    return value;
+  },
+}),
 
   /**See {{#crossLink "FdUmlPrimitive/JointJS:method"}}here{{/crossLink}}.
 
@@ -31,6 +41,7 @@ export default FdUmlElement.extend({
   */
   JointJS() {
     let properties = this.getProperties('id', 'attrs', 'size', 'position');
+    properties.objectModel = this;
     return new ForwardFlatMessage(properties);
   },
 });
@@ -56,3 +67,5 @@ export let ForwardFlatMessage = CollMessageBase.define('flexberry.uml.ForwardFla
     }
   }
 });
+
+joint.shapes.flexberry.uml.ForwardFlatMessageView = joint.shapes.flexberry.uml.CollMessageBaseView;

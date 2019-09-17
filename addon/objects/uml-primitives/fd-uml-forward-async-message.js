@@ -3,6 +3,8 @@
 */
 
 import { computed } from '@ember/object';
+import { isArray } from '@ember/array';
+import joint from 'npm:jointjs';
 
 import FdUmlElement from './fd-uml-element';
 import { CollMessageBase } from './fd-uml-base-coll-message';
@@ -21,16 +23,24 @@ export default FdUmlElement.extend({
     @property attrs
     @type String
   */
-  attrs: computed('primitive.Name.Text', function() {
-    return { '.uml-base-text': { 'text': this.get('primitive.Name.Text') } };
+  name: computed('primitive.Name.Text', {
+    get() {
+      return this.get('primitive.Name.Text');
+    },
+    set(key, value) {
+      let nameTxt = (isArray(value)) ? value.join('\n') : value;
+      this.set('primitive.Name.Text', nameTxt);
+      return value;
+    },
   }),
-
+  
   /**See {{#crossLink "FdUmlPrimitive/JointJS:method"}}here{{/crossLink}}.
 
     @method JointJS
   */
   JointJS() {
     let properties = this.getProperties('id', 'attrs', 'size', 'position');
+    properties.objectModel = this;
     return new ForwardAsyncMessage(properties);
   },
 });
@@ -50,9 +60,7 @@ export let ForwardAsyncMessage = CollMessageBase.define('flexberry.uml.ForwardAs
       'd': 'M 5 0 L 0 -5',
       'refX': 55
     },
-
-    '.uml-base-text': {
-      'text': ''
-    }
   }
 });
+
+joint.shapes.flexberry.uml.ForwardAsyncMessageView = joint.shapes.flexberry.uml.CollMessageBaseView;

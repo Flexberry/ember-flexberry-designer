@@ -3,6 +3,9 @@
 */
 
 import { computed } from '@ember/object';
+import { isArray } from '@ember/array';
+import { isNone } from '@ember/utils';
+import { A } from '@ember/array';
 import joint from 'npm:jointjs';
 
 import FdUmlElement from './fd-uml-element';
@@ -30,6 +33,7 @@ export default FdUmlElement.extend({
   */
   JointJS() {
     let properties = this.getProperties('id', 'name', 'size', 'position');
+    properties.objectModel = this;
     return new CollMessageBase(properties);
   },
 });
@@ -57,18 +61,6 @@ export let CollMessageBase = joint.shapes.basic.Generic.define('flexberry.uml.Co
       'stroke': 'black',
       'stroke-width':'1',
     },
-
-    '.uml-base-text': {
-      'ref': '.line',
-      'textAnchor': 'middle',
-      'yAlignment': 'middle',
-      'fontWeight': 'bold',
-      'refY': 20,
-      'refX': 30,
-      'fill': 'black',
-      'fontSize': 12,
-      'fontFamily': 'Arial',
-    }
   },
 }, {
   markup: [
@@ -76,8 +68,83 @@ export let CollMessageBase = joint.shapes.basic.Generic.define('flexberry.uml.Co
     '<g class="scalable">',
     '</g>',
     '<path class="line"/>',
-    '<text class="uml-base-text"/>',
     '<path class="arrow"/>',
     '</g>'
-  ].join('')
+  ].join(''),
+  
+  getRectangles() {
+    return [
+      { type: 'header', element: this }
+    ];
+  },
+});
+
+joint.shapes.flexberry.uml.CollMessageBaseView = joint.shapes.flexberry.uml.BaseObjectView.extend({
+  template: [
+    '<div class="uml-class-inputs">',
+    '<textarea under-class-name-input class="class-name-input params-input" value="" rows="1" wrap="off"></textarea>',
+    '<div class="input-buffer"></div>',
+    '</div>'
+  ].join(''),
+
+  setColors() { 
+    const brushColor = this.getBrushColor();
+    const textColor = this.getTextColor();
+
+    if (!isNone(textColor)) {
+      this.model.attr('.arrow/stroke', textColor);
+      this.model.attr('.line/stroke', textColor);
+      this.model.attr('.arrow/fill', textColor);
+    }
+
+    const inputElements = this.model.inputElements;
+    if (isArray(inputElements) && (!isNone(textColor) || !isNone(brushColor))) {
+      inputElements.each(function(index, input) {
+        if (!isNone(textColor)) {
+          $(input).find('input, textarea').css('color', textColor);
+        }
+
+        if (!isNone(brushColor)) {
+          $(input).find('input, textarea').css('background-color', brushColor);
+        }
+      });
+    }
+  },
+
+  getSizeChangers() {
+    return A();
+  },
+
+  updateRectangles: function (resizedWidth, resizedHeight) {
+    const minWidth = this.model.attributes.minWidth;
+    const minHeight = this.model.attributes.minHeight;
+    const oldSize = this.model.size();
+
+    let newHeight = Math.max( resizedHeight || oldSize.height, minHeight)
+    let newWidth = Math.max( resizedWidth || oldSize.width, minWidth)
+
+    let $box = this.$box;
+    let inputs =  $box.find('.class-name-input');
+    let $buffer = $box.find('.input-buffer');
+
+    inputs.each(function() {
+      let $input = $(this);
+      $buffer.css('font-weight', $input.css('font-weight'));
+      $buffer.text($input.val());
+      $input.width($buffer.width() + 1);
+    });
+
+    this.model.resize(newWidth, newHeight);
+    if (this.model.get('highlighted')) {
+      this.unhighlight();
+      this.highlight();
+    }
+
+    let paramsBox = this.$box.find('.params-input');
+    paramsBox.css({
+      left: newWidth/2,
+      top: newHeight + 10,
+      position: 'absolute'
+    });
+  },
 });

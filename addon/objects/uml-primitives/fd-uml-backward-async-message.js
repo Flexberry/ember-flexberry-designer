@@ -3,6 +3,8 @@
 */
 
 import { computed } from '@ember/object';
+import { isArray } from '@ember/array';
+import joint from 'npm:jointjs';
 
 import FdUmlElement from './fd-uml-element';
 import { CollMessageBase } from './fd-uml-base-coll-message';
@@ -21,8 +23,15 @@ export default FdUmlElement.extend({
     @property attrs
     @type String
   */
-  attrs: computed('primitive.Name.Text', function() {
-    return { '.uml-base-text': { 'text': this.get('primitive.Name.Text') } };
+  name: computed('primitive.Name.Text', {
+    get() {
+      return this.get('primitive.Name.Text');
+    },
+    set(key, value) {
+      let nameTxt = (isArray(value)) ? value.join('\n') : value;
+      this.set('primitive.Name.Text', nameTxt);
+      return value;
+    },
   }),
 
   /**See {{#crossLink "FdUmlPrimitive/JointJS:method"}}here{{/crossLink}}.
@@ -31,6 +40,7 @@ export default FdUmlElement.extend({
   */
   JointJS() {
     let properties = this.getProperties('id', 'attrs', 'size', 'position');
+    properties.objectModel = this;
     return new BackwardAsyncMessage(properties);
   },
 });
@@ -49,9 +59,7 @@ export let BackwardAsyncMessage = CollMessageBase.define('flexberry.uml.Backward
     '.arrow': {
       'd':'M 0 0 L 5 -5'
     },
-
-    '.uml-base-text': {
-      'text': ''
-    }
   }
 });
+
+joint.shapes.flexberry.uml.BackwardAsyncMessageView = joint.shapes.flexberry.uml.CollMessageBaseView;
