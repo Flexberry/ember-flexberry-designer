@@ -14,10 +14,10 @@ import { ForwardAsyncMessage } from '../../objects/uml-primitives/fd-uml-forward
 import { BackwardNestedMessage } from '../../objects/uml-primitives/fd-uml-backward-nested-message';
 import { BackwardFlatMessage } from '../../objects/uml-primitives/fd-uml-backward-flat-message';
 import { BackwardAsyncMessage } from '../../objects/uml-primitives/fd-uml-backward-async-message';
-import { Association } from '../../objects/uml-primitives/fd-uml-association';
 import { QualifiedAssociation } from '../../objects/uml-primitives/fd-uml-qualified-association';
 import { QualifiedComposition } from '../../objects/uml-primitives/fd-uml-qualified-composition';
 import { QualifiedAggregation } from '../../objects/uml-primitives/fd-uml-qualified-aggregation';
+import { NAryAssociationConnector } from '../../objects/uml-primitives/fd-uml-naryassociation-connector';
 
 /**
   Actions for creating joint js elements on cod diagrams.
@@ -66,7 +66,7 @@ export default Mixin.create({
    */
     addOnCodNaryAssociationConnector(e) {
       this.createLinkData((function(linkProperties) {
-        let newNaryAssociationConnectorObject = new Association({
+        let newNaryAssociationConnectorObject = new NAryAssociationConnector({
           source: {
             id: linkProperties.source
           },
