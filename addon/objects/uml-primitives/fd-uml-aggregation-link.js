@@ -7,7 +7,6 @@ import { isNone } from '@ember/utils';
 
 import FdUmlLink, { LinkWithUnderline } from './fd-uml-link';
 import { QualifiedView } from './links-view/fd-qualified-view';
-
 /**
   An object that describes an aggregation link on the UML diagram.
 
@@ -24,7 +23,7 @@ export default FdUmlLink.extend({
   endRoleTxt: computed.alias('primitive.RightText.Text'),
 
   /**
-     Start role text.
+    Start role text.
 
     @property startRoleTxt
     @type String
@@ -53,12 +52,22 @@ export default FdUmlLink.extend({
   @constructor
 */
 export let AggregationLink = LinkWithUnderline.define('flexberry.uml.AggregationLink', {
-  attrs: {
-    '.marker-source': { d: 'M 26 10 L 13 17 L 0 10 L 13 3 z', fill: 'white' },
+  attrs: { '.marker-target': { d: 'M 26 10 L 13 17 L 0 10 L 13 3 z', fill: 'white' },
     text: { visibility: 'hidden' },
     rect: { visibility: 'hidden' }
-  },
+  }
 }, {
+  getLabelDistance: function (labelName, isVertical) {
+    switch (labelName) {
+      case 'startMultiplicity':
+      case 'startRole':
+        return 30;
+      case 'endMultiplicity':
+      case 'endRole':
+        return isVertical ? -10 : -5;
+    }
+  },
+
   initialize: function() {
     LinkWithUnderline.prototype.initialize.apply(this, arguments);
   },

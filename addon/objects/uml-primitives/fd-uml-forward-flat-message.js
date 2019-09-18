@@ -1,7 +1,7 @@
 /**
   @module ember-flexberry-designer
 */
-
+import joint from 'npm:jointjs';
 import { computed } from '@ember/object';
 import { isArray } from '@ember/array';
 import joint from 'npm:jointjs';
@@ -19,9 +19,9 @@ import { CollMessageBase } from './fd-uml-base-coll-message';
 export default FdUmlElement.extend({
   
   /**
-    The attrs of the class.
+    The name of the class.
 
-    @property attrs
+    @property name
     @type String
   */
  name: computed('primitive.Name.Text', {
@@ -40,7 +40,7 @@ export default FdUmlElement.extend({
     @method JointJS
   */
   JointJS() {
-    let properties = this.getProperties('id', 'attrs', 'size', 'position');
+    let properties = this.getProperties('id', 'size', 'position');
     properties.objectModel = this;
     return new ForwardFlatMessage(properties);
   },
@@ -61,10 +61,7 @@ export let ForwardFlatMessage = CollMessageBase.define('flexberry.uml.ForwardFla
       'd': 'M 5 0 L 0 -5 L 5 0 L 0 5',
       'refX': 55,
     },
-
-    '.uml-base-text': {
-      'text': ''
-    }
+    text: { visibility: 'hidden' }
   }
 });
 

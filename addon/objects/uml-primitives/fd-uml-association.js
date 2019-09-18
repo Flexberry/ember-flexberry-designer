@@ -5,7 +5,7 @@ import joint from 'npm:jointjs';
 
 import FdUmlLink from './fd-uml-link';
 import { Link } from './fd-uml-link';
-import { MultiplicityView } from './links-view/fd-multiplicity-view';
+import { EmptyView } from './links-view/fd-empty-view';
 
 /**
   An object that describes an association link on the UML diagram.
@@ -38,9 +38,12 @@ export default FdUmlLink.extend({
 */
 export let Association = Link.define('flexberry.uml.Association', {
   attrs: {
-    text: { visibility: 'hidden' },
+    text: { 'font-size': '12', 'font-family': 'Arial, helvetica, sans-serif' },
     rect: { visibility: 'hidden' }
   },
+  labels: [{
+    position: { distance: 50 }, attrs: { text: { text: '' } }
+  }]
 });
 
-joint.shapes.flexberry.uml.AssociationView = MultiplicityView;
+joint.shapes.flexberry.uml.AssociationView = EmptyView;

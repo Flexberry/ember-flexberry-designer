@@ -4,8 +4,7 @@
 import joint from 'npm:jointjs';
 import { isNone } from '@ember/utils';
 
-import FdUmlLink from './fd-uml-link';
-import { Link } from './fd-uml-link';
+import FdUmlLink, { Link } from './fd-uml-link';
 import { DescriptionView } from './links-view/fd-description-view';
 
 /**
@@ -38,7 +37,7 @@ export default FdUmlLink.extend({
 */
 export let Generalization = Link.define('flexberry.uml.Generalization', {
   attrs: { '.marker-source': { d: 'M 20 0 L 0 10 L 20 20 z', fill: 'white' },
-  text: { visibility: 'hidden' },
+  text: { 'font-size': '12', 'font-family': 'Arial, helvetica, sans-serif' },
   rect: { visibility: 'hidden' }
  }
 }, {

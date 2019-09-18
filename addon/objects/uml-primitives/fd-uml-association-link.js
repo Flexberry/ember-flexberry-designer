@@ -14,8 +14,10 @@ import { QualifiedView } from './links-view/fd-qualified-view';
   @class FdUmlAssociationLink
   @extends FdUmlLink
 */
-export default FdUmlLink.extend({  /**
-  End role text.
+
+export default FdUmlLink.extend({
+  /**
+    End role text.
 
     @property endRoleTxt
     @type String
@@ -85,6 +87,17 @@ joint.shapes.flexberry.uml.AssociationLinkView = QualifiedView.extend({
 
     if (!isNone(brushColor)) {
       this.model.attr('.marker-source/fill', brushColor);
+    }
+  },
+
+  getLabelDistance: function (labelName, isVertical) {
+    switch (labelName) {
+      case 'startMultiplicity':
+      case 'startRole':
+        return 30;
+      case 'endMultiplicity':
+      case 'endRole':
+        return isVertical ? -10 : -5;
     }
   }
 });

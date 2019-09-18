@@ -1,7 +1,6 @@
 /**
   @module ember-flexberry-designer
 */
-
 import { computed } from '@ember/object';
 import { isArray } from '@ember/array';
 import { isNone } from '@ember/utils';
@@ -71,11 +70,16 @@ export let CollMessageBase = joint.shapes.basic.Generic.define('flexberry.uml.Co
     '<path class="arrow"/>',
     '</g>'
   ].join(''),
-  
+
   getRectangles() {
     return [
-      { type: 'header', element: this }
+      { type: 'header', text: this.getObjName(), element: this },
+      { type: 'body', text: this.get('objectModel.attributes'), element: this },
     ];
+  },
+
+  getObjName: function () {
+    return this.get('objectModel.name');
   },
 });
 

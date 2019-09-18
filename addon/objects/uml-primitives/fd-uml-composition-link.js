@@ -14,7 +14,21 @@ import { QualifiedView } from './links-view/fd-qualified-view';
   @class FdUmlCompositionLink
   @extends FdUmlLink
 */
-export default FdUmlLink.extend({
+export default FdUmlLink.extend({  /**
+  End role text.
+
+  @property endRoleTxt
+  @type String
+  */
+  endRoleTxt: computed.alias('primitive.RightText.Text'),
+
+  /**
+     Start role text.
+
+    @property startRoleTxt
+    @type String
+  */
+  startRoleTxt: computed.alias('primitive.LeftText.Text'),
 
   /**
     End role text.
@@ -63,6 +77,17 @@ export let CompositionLink = LinkWithUnderline.define('flexberry.uml.Composition
   initialize: function() {
     LinkWithUnderline.prototype.initialize.apply(this, arguments);
   },
+
+  getLabelDistance: function (labelName, isVertical) {
+    switch (labelName) {
+      case 'startMultiplicity':
+      case 'startRole':
+        return 30;
+      case 'endMultiplicity':
+      case 'endRole':
+        return isVertical ? -10 : -5;
+    }
+  }
 });
 
 joint.shapes.flexberry.uml.CompositionLinkView = QualifiedView.extend({
