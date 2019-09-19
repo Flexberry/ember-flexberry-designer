@@ -466,12 +466,14 @@ export default Controller.extend(FdSaveHasManyRelationshipsMixin, {
             emptyReferenceCountItems.clear();
 
             model.set('primitivesJsonString', JSON.stringify(primitives));
+            model.set('caseObjectsString', elements.map(p => `Class:(${p.get('name')})`).join(';'));
             return all(promises);
           });
         });
       });
     } else {
       model.set('primitivesJsonString', JSON.stringify(primitives));
+      model.set('caseObjectsString', null);
       return resolve();
     }
   },

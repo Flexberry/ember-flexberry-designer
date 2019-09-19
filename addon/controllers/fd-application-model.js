@@ -6,6 +6,8 @@ import { inject as service } from '@ember/service';
 import { updateStrByObjects } from '../utils/fd-update-str-value';
 import { translationMacro as t } from 'ember-i18n';
 import $ from 'jquery';
+import { resolve } from 'rsvp';
+import { createClassPrimitive, deletePrimitives } from '../utils/fd-update-class-diagram';
 
 import FdSaveHasManyRelationshipsMixin from '../mixins/fd-save-has-many-relationships';
 
@@ -375,13 +377,22 @@ export default Controller.extend(FdSaveHasManyRelationshipsMixin, {
       this.get('appState').loading();
       updateStrByObjects(model);
 
-      if (model.get('isNew')) {
+      let isNew = model.get('isNew');
+      if (isNew) {
         model.set('nameStr', model.get('name'));
         this.addNewClassInModel();
       }
 
       model.save()
       .then(() => this.saveHasManyRelationships(model))
+      .then(() => {
+        if (isNew) {
+          let diagram = createClassPrimitive(this.get('store'), this.get('currentProjectContext'), model);
+          return diagram.save();
+        }
+
+        return resolve();
+      })
       .then(() => {
         this.updateClassModel(model);
       })
@@ -470,6 +481,7 @@ export default Controller.extend(FdSaveHasManyRelationshipsMixin, {
        @method actions.delete
     */
     delete() {
+      const store = this.get('store');
       let selectedElement = this.get('selectedElement.model.data');
       let modelHash = this.getModelArrayByStereotype(selectedElement);
 
@@ -497,12 +509,17 @@ export default Controller.extend(FdSaveHasManyRelationshipsMixin, {
       this.get('appState').loading();
 
       deleteModels.pushObject(deleteObject);
-      this.get('store').batchUpdate(deleteModels.map((a) => {
+      let modelsForBatchUpdate = deleteModels.map((a) => {
         let data = a.data;
         data.deleteRecord();
 
         return data;
-      }))
+      });
+
+      let primitivesOnDelete = deletePrimitives(store, this.get('currentProjectContext'), deleteModels.map((a) => a.data));
+      A(modelsForBatchUpdate).pushObjects(primitivesOnDelete);
+
+      store.batchUpdate(modelsForBatchUpdate)
       .then(() => {
         this.set('selectedElement', undefined);
         this.get('fdSheetService').closeSheet(this.get('sheetComponentName'));
