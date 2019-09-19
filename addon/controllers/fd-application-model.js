@@ -6,6 +6,7 @@ import { inject as service } from '@ember/service';
 import { updateStrByObjects } from '../utils/fd-update-str-value';
 import { translationMacro as t } from 'ember-i18n';
 import $ from 'jquery';
+import { resolve } from 'rsvp';
 import { createClassPrimitive, deletePrimitives } from '../utils/fd-update-class-diagram';
 
 import FdSaveHasManyRelationshipsMixin from '../mixins/fd-save-has-many-relationships';
