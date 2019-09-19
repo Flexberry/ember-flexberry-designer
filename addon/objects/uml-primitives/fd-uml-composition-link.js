@@ -103,13 +103,12 @@ joint.shapes.flexberry.uml.CompositionLinkView = QualifiedView.extend({
   setColors() {
     QualifiedView.prototype.setColors.apply(this, arguments);
 
-    const brushColor = this.getBrushColor();
     const textColor = this.getTextColor();
 
     if (!isNone(textColor)) {
       this.model.attr('.marker-source/stroke', textColor);
       this.model.attr('.text-color/style/stop-color', textColor);
-      this.model.attr('.marker-source/fill', textColor);
+      this.model.attr('.marker-source/fill', textColor );
     }
   }
 });
