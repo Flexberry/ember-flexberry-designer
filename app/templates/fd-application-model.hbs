@@ -309,6 +309,7 @@
     {{#if (known-for-type (concat "fd-editing-panels/fd-" componentNamePart "-editing-panel"))}}
       {{component (concat "fd-editing-panels/fd-" componentNamePart "-editing-panel")
         model=selectedElement.model.data
+        dataobject=selectedElement.dataobject
         openViewSheetController=(action 'openViewSheet')
       }}
     {{else}}

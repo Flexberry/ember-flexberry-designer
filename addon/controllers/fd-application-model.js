@@ -5,7 +5,6 @@ import { A } from '@ember/array';
 import { inject as service } from '@ember/service';
 import { updateStrByObjects } from '../utils/fd-update-str-value';
 import { translationMacro as t } from 'ember-i18n';
-import { resolve } from 'rsvp';
 import $ from 'jquery';
 
 import FdSaveHasManyRelationshipsMixin from '../mixins/fd-save-has-many-relationships';
@@ -368,6 +367,11 @@ export default Controller.extend(FdSaveHasManyRelationshipsMixin, {
     */
     save() {
       let model = this.get('selectedElement.model.data');
+
+      if ((model.get('stereotype') === '«editform»' || model.get('stereotype') === '«listform»') && isNone(model.get('formViews.firstObject.view'))) {
+        throw new Error(`Составное представление не указано`);
+      }
+
       this.get('appState').loading();
       updateStrByObjects(model);
 
@@ -377,14 +381,6 @@ export default Controller.extend(FdSaveHasManyRelationshipsMixin, {
       }
 
       model.save()
-      .then(() => {
-        let stereotype = model.get('stereotype');
-        if (stereotype === '«editform»' || stereotype === '«listform»') {
-          return model.get('formViews.firstObject.view').save();
-        }
-
-        return resolve();
-      })
       .then(() => this.saveHasManyRelationships(model))
       .then(() => {
         this.updateClassModel(model);
@@ -454,15 +450,8 @@ export default Controller.extend(FdSaveHasManyRelationshipsMixin, {
       });
 
       if (!isBlank(dataobject) && !(dataobject instanceof $.Event)) {
-        let view = store.createRecord('fd-dev-view', {
-          class: dataobject,
-          name: '',
-          definition: A()
-        });
-
         let formView = store.createRecord('fd-dev-form-view', {
-          class: dataobject,
-          view: view,
+          view: null,
           orderNum: 1
         });
 
@@ -472,7 +461,7 @@ export default Controller.extend(FdSaveHasManyRelationshipsMixin, {
       let model = { data: newClass, active: true };
 
       this.set('isAddMode', false);
-      this.get('fdSheetService').openSheet(this.get('sheetComponentName'), EmberObject.create({ model: model }));
+      this.get('fdSheetService').openSheet(this.get('sheetComponentName'), EmberObject.create({ model: model, dataobject: dataobject }));
     },
 
     /**
