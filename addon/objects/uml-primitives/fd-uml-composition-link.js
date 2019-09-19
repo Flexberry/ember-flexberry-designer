@@ -14,22 +14,7 @@ import { QualifiedView } from './links-view/fd-qualified-view';
   @class FdUmlCompositionLink
   @extends FdUmlLink
 */
-export default FdUmlLink.extend({  /**
-  End role text.
-
-  @property endRoleTxt
-  @type String
-  */
-  endRoleTxt: computed.alias('primitive.RightText.Text'),
-
-  /**
-     Start role text.
-
-    @property startRoleTxt
-    @type String
-  */
-  startRoleTxt: computed.alias('primitive.LeftText.Text'),
-
+export default FdUmlLink.extend({
   /**
     End role text.
 

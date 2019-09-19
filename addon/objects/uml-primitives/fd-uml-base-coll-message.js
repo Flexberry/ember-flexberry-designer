@@ -6,6 +6,7 @@ import { isArray } from '@ember/array';
 import { isNone } from '@ember/utils';
 import { A } from '@ember/array';
 import joint from 'npm:jointjs';
+import $ from 'jquery';
 
 import FdUmlElement from './fd-uml-element';
 
