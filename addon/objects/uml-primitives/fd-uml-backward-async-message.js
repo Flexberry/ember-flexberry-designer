@@ -1,7 +1,6 @@
 /**
   @module ember-flexberry-designer
 */
-import joint from 'npm:jointjs';
 import { computed } from '@ember/object';
 import { isArray } from '@ember/array';
 import joint from 'npm:jointjs';
@@ -55,7 +54,7 @@ export default FdUmlElement.extend({
   @constructor
 */
 export let BackwardAsyncMessage = CollMessageBase.define('flexberry.uml.BackwardAsyncMessage', {
-  attrs: {s
+  attrs: {
     '.arrow': {
       'd':'M 0 0 L 5 -5'
     },

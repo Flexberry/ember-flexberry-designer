@@ -63,8 +63,11 @@ export let MultiObject = BaseObject.define('flexberry.uml.MultiObject', {
     '.not-view-rect': { 'x': -3, 'y': -4, 'fill': 'black' }
   },
 
+  // Minimum width.
+  minWidth: 80,
+
   // Minimum height.
-  minHeight: 20,
+  minHeight: 30,
 }, {
   markup: [
     '<g class="rotatable">',

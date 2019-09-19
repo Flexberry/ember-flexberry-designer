@@ -61,6 +61,12 @@ export let DesignPattern = BaseObject.define('flexberry.uml.DesignPattern', {
     '.flexberry-uml-header-rect': { 'rx': '120', 'ry': '120', 'stroke': 'black', 'strokeDasharray': '10,2', 'strokeWidth': '1', 'fill': '#ffffff' }
   },
 
+  // Minimum height.
+  minHeight: 64,
+
+  // Minimum width
+  minWidth: 64,
+
   getRectangles() {
     return [
       { type: 'header', element: this }

@@ -109,10 +109,7 @@ joint.shapes.flexberry.uml.CompositionLinkView = QualifiedView.extend({
     if (!isNone(textColor)) {
       this.model.attr('.marker-source/stroke', textColor);
       this.model.attr('.text-color/style/stop-color', textColor);
-    }
-
-    if (!isNone(brushColor)) {
-      this.model.attr('.marker-source/fill', brushColor);
+      this.model.attr('.marker-source/fill', textColor);
     }
   }
 });

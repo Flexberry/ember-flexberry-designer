@@ -1,7 +1,6 @@
 /**
   @module ember-flexberry-designer
 */
-import joint from 'npm:jointjs';
 import { computed } from '@ember/object';
 import { isArray } from '@ember/array';
 import joint from 'npm:jointjs';

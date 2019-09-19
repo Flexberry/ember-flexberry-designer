@@ -64,11 +64,11 @@ export let NAryAssociation = BaseObject.define('flexberry.uml.NAryAssociation', 
   // Inputs bottom padding by Y.
   heightBottomPadding: 27,
 
-  // Minimum width.
-  minWidth: 80,
+ // Minimum height.
+ minHeight: 40,
 
-  // Minimum height.
-  minHeight: 40,
+ // Minimum width
+ minWidth: 40,
 },
 {
   initialize: function () {

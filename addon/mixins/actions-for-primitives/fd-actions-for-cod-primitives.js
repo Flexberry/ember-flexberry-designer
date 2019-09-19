@@ -43,7 +43,7 @@ export default Mixin.create({
         let jsonObject = getJsonForElement(
           'STORMCASE.UML.cod.Actor, UMLCOD',
           { x, y },
-          { width: 100, height: 40 },
+          { width: 25, height: 50 },
           { Name: '' }
         );
         let codObject = UsecaseActor.create({ primitive: jsonObject });
@@ -62,7 +62,7 @@ export default Mixin.create({
         let jsonObject = getJsonForElement(
           'STORMCASE.UML.cod.DesignPattern, UMLCOD',
           { x, y },
-          { width: 100, height: 40 },
+          { width: 80, height: 30 },
           { Name: '' }
         );
         let codObject = DesignPattern.create({ primitive: jsonObject });
@@ -300,7 +300,7 @@ export default Mixin.create({
         let jsonObject = getJsonForElement(
           'STORMCASE.UML.cod.BackwardNestedMessage, UMLCOD',
           { x, y },
-          { width: 100, height: 40 },
+          { width: 80, height: 30 },
           { Name: '' }
         );
         let codObject = BackwardNestedMessage.create({ primitive: jsonObject });
@@ -319,7 +319,7 @@ export default Mixin.create({
         let jsonObject = getJsonForElement(
           'STORMCASE.UML.cod.ForwardNestedMessage, UMLCOD',
           { x, y },
-          { width: 100, height: 40 },
+          { width: 80, height: 30 },
           { Name: '' }
         );
         let codObject = ForwardNestedMessage.create({ primitive: jsonObject });
@@ -338,7 +338,7 @@ export default Mixin.create({
         let jsonObject = getJsonForElement(
           'STORMCASE.UML.cod.BackwardFlatMessage, UMLCOD',
           { x, y },
-          { width: 100, height: 40 },
+          { width: 80, height: 30 },
           { Name: '' }
         );
         let codObject = BackwardFlatMessage.create({ primitive: jsonObject });
@@ -357,7 +357,7 @@ export default Mixin.create({
         let jsonObject = getJsonForElement(
           'STORMCASE.UML.cod.ForwardFlatMessage, UMLCOD',
           { x, y },
-          { width: 100, height: 40 },
+          { width: 80, height: 30 },
           { Name: '' }
         );
         let codObject = ForwardFlatMessage.create({ primitive: jsonObject });
@@ -376,7 +376,7 @@ export default Mixin.create({
         let jsonObject = getJsonForElement(
           'STORMCASE.UML.cod.BackwardAsyncMessage, UMLCOD',
           { x, y },
-          { width: 100, height: 40 },
+          { width: 80, height: 30 },
           { Name: '' }
         );
         let codObject = BackwardAsyncMessage.create({ primitive: jsonObject });
@@ -395,7 +395,7 @@ export default Mixin.create({
         let jsonObject = getJsonForElement(
           'STORMCASE.UML.cod.ForwardAsyncMessage, UMLCOD',
           { x, y },
-          { width: 100, height: 40 },
+          { width: 80, height: 30 },
           { Name: '' }
         );
         let codObject = ForwardAsyncMessage.create({ primitive: jsonObject });
@@ -439,7 +439,7 @@ export default Mixin.create({
         let jsonObject = getJsonForElement(
           'STORMCASE.UML.cod.MultiObject, UMLCOD',
           { x, y },
-          { width: 100, height: 40 },
+          { width: 80, height: 30 },
           { Name: '' }
         );
         let multiObject = MultiObject.create({ primitive: jsonObject });
