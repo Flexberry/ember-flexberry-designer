@@ -260,7 +260,7 @@ export default Mixin.create({
     addTransition(e) {
       this.createLinkData((function(linkProperties) {
         let jsonObject = getJsonForLink(
-          'STORMCASE.UML.ad.Transition, UMLCAD',
+          'STORMCASE.UML.ad.Transition, UMLAD',
           linkProperties.source,
           null,
           linkProperties.target,
@@ -290,7 +290,7 @@ export default Mixin.create({
     addObjectFlow(e) {
       this.createLinkData((function(linkProperties) {
         let jsonObject = getJsonForLink(
-          'STORMCASE.UML.ad.ObjectFlow, UMLCAD',
+          'STORMCASE.UML.ad.ObjectFlow, UMLAD',
           linkProperties.source,
           null,
           linkProperties.target,

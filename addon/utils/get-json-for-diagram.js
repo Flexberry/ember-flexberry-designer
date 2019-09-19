@@ -117,8 +117,19 @@ let getJsonForBaseLink = function(typeName, startPrimitive, startPoint, endPrimi
   if (!startSegment) {
     startSegment = {'segmNo': -1, 'percent': 0};
   }
+
+  if (!startSegment.segmNo) {
+    startSegment.segmNo = -1;
+    startSegment.percent = 0;
+  }
+
   if (!endSegment) {
     endSegment = {'segmNo': -1, 'percent': 0};
+  }
+
+  if (!endSegment.segmNo) {
+    endSegment.segmNo = -1;
+    endSegment.percent = 0;
   }
 
   let baseLinkObject = getJsonForBasePrimitive(typeName, repositoryObject);
@@ -193,7 +204,7 @@ let getJsonForClass = function(devClass, type, index, oldData) {
       }
     }
 
-    attributesWidth = maxAttributeStrLength < 14  ? 100.0 : 100.0 + (maxAttributeStrLength - 14) * 10;
+    attributesWidth = maxAttributeStrLength < 14 ? 100.0 : 100.0 + (maxAttributeStrLength - 14) * 10;
     attributesRight = maxAttributeStrLength < 14 ? 400.0 : 400.0 + (maxAttributeStrLength - 14) * 10;
     attributesBottom = attributesStrArray.length < 2 ? 126.0 : 125.0 + (attributesStrArray.length - 1) * 14;
     classHeight = (25 + attributesHeight + methodsHeight) % 2 === 0 ? 25 + attributesHeight + methodsHeight : 26 + attributesHeight + methodsHeight;
@@ -2082,7 +2093,7 @@ let _getJsonForLEBlock = function(propName, id, primitiveId, x, y, isStart, segm
   x = x || 0;
   y = y || 0;
   let result = {};
-  let refType = segment.segmNo >= 0 ? 'Link' : 'Elemenr';
+  let refType = segment.segmNo >= 0 ? 'Link' : 'Element';
   result[propName] = {
     $type: 'STORMCASE.Primitives.LEInformation, Repository',
     DrawStyle: {
