@@ -37,7 +37,7 @@ export default FdUmlLink.extend({
 */
 export let Generalization = Link.define('flexberry.uml.Generalization', {
   attrs: { '.marker-source': { d: 'M 20 0 L 0 10 L 20 20 z', fill: 'white' },
-  text: { 'font-size': '12', 'font-family': 'Arial, helvetica, sans-serif' },
+  text: { visibility: 'hidden' },
   rect: { visibility: 'hidden' }
  }
 }, {

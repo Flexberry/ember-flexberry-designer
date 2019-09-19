@@ -85,7 +85,7 @@ export default Mixin.create({
           linkProperties.target,
           null,
           null,
-          { Name: '-' }
+          null,
         );
         let undirAssociationObject = Association.create({ primitive: jsonObject });
         undirAssociationObject.set('vertices', linkProperties.points || A());
@@ -112,7 +112,7 @@ export default Mixin.create({
           linkProperties.target,
           null,
           null,
-          { Name: '-' }
+          null,
         );
         let undirAssociationObject = AssociationLink.create({ primitive: jsonObject });
         undirAssociationObject.set('vertices', linkProperties.points || A());
@@ -137,7 +137,7 @@ export default Mixin.create({
           linkProperties.target,
           null,
           null,
-          { Name: '-' }
+          null,
         );
         let undirAssociationObject = QualifiedAssociation.create({ primitive: jsonObject });
         undirAssociationObject.set('vertices', linkProperties.points || A());
@@ -160,7 +160,7 @@ export default Mixin.create({
           linkProperties.target,
           null,
           null,
-          { Name: '-' }
+          null,
         );
         let undirAssociationObject = AggregationLink.create({ primitive: jsonObject });
         undirAssociationObject.set('vertices', linkProperties.points || A());
@@ -183,7 +183,7 @@ export default Mixin.create({
           linkProperties.target,
           null,
           null,
-          { Name: '-' }
+          null,
         );
         let undirAssociationObject = QualifiedAggregation.create({ primitive: jsonObject });
         undirAssociationObject.set('vertices', linkProperties.points || A());
@@ -206,7 +206,7 @@ export default Mixin.create({
           linkProperties.target,
           null,
           null,
-          { Name: '-' }
+          null,
         );
         let undirAssociationObject = CompositionLink.create({ primitive: jsonObject });
         undirAssociationObject.set('vertices', linkProperties.points || A());
@@ -229,7 +229,7 @@ export default Mixin.create({
           linkProperties.target,
           null,
           null,
-          { Name: '-' }
+          null,
         );
         let undirAssociationObject = QualifiedComposition.create({ primitive: jsonObject });
         undirAssociationObject.set('vertices', linkProperties.points || A());
@@ -252,7 +252,7 @@ export default Mixin.create({
           linkProperties.target,
           null,
           null,
-          { Name: '-' }
+          null,
         );
         let undirAssociationObject = DesignPatternConnector.create({ primitive: jsonObject });
         undirAssociationObject.set('vertices', linkProperties.points || A());
@@ -278,7 +278,7 @@ export default Mixin.create({
           linkProperties.target,
           null,
           null,
-          { Name: '-' }
+          null,
         );
         let undirAssociationObject = Generalization.create({ primitive: jsonObject });
         undirAssociationObject.set('vertices', linkProperties.points || A());

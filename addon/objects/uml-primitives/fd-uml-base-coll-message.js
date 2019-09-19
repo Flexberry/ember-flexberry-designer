@@ -65,22 +65,19 @@ export let CollMessageBase = joint.shapes.basic.Generic.define('flexberry.uml.Co
 }, {
   markup: [
     '<g class="rotatable">',
-    '<g class="scalable">',
-    '</g>',
-    '<path class="line"/>',
-    '<path class="arrow"/>',
+      '<path class="line"/>',
+      '<path class="arrow"/>',
     '</g>'
   ].join(''),
 
-  getRectangles() {
-    return [
-      { type: 'header', text: this.getObjName(), element: this },
-      { type: 'body', text: this.get('objectModel.attributes'), element: this },
-    ];
-  },
+  // Minimum height.
+  minHeight: 30,
 
-  getObjName: function () {
-    return this.get('objectModel.name');
+  // Minimum width
+  minWidth: 80,
+
+  getRectangles() {
+    return [];
   },
 });
 

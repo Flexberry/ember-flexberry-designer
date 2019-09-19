@@ -62,20 +62,7 @@ export let QualifiedAssociation = Link.define('flexberry.uml.QualifiedAssociatio
   }
 }, {
   initialize: function() {
-    // called from Backbone constructor
     Link.prototype.initialize.apply(this, arguments);
-
-    // link markup is so complex that we need to fetch its definition
-    var markup = (this.markup || this.get('markup'));
-
-    // append <linearGradient> to markup, so that it covers whole path
-    markup += '<linearGradient id="solids" x1="0%" y1="0%" x2="100%" y2="0%">' +
-      '<stop class="brush-color" offset="0%" style="stop-color:rgb(255,255,255);stop-opacity:1" />' +
-      '<stop class="brush-color" offset="50%" style="stop-color:rgb(255,255,255);stop-opacity:1" />' +
-      '<stop class="text-color" offset="50%" style="stop-color:rgb(0,0,0);stop-opacity:1" />' +
-      '<stop class="text-color" offset="100%" style="stop-color:rgb(0,0,0);stop-opacity:1" />' +
-      '</linearGradient>';
-    this.set('markup', markup);
   },
 
   getLabelDistance: function (labelName, isVertical) {
