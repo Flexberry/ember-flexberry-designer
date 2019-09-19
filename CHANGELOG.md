@@ -3,6 +3,17 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+## [0.9.0-beta.1] - 2019-09-19
+### Added
+* Edit form for editforms.
+* Integration of application model form and diagrams.
+* Add unload store.
+
+### Fixed
+* Remove the delete button when creating a new record.
+* Fix locales.
+* Update model projections.
+
 ## [0.8.1-beta.2] - 2019-09-12
 ### Fixed
 * Fix view styles.
