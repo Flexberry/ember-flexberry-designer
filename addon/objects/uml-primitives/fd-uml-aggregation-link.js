@@ -6,7 +6,7 @@ import joint from 'npm:jointjs';
 import { isNone } from '@ember/utils';
 
 import FdUmlLink, { LinkWithUnderline } from './fd-uml-link';
-import { QualifiedView } from './links-view/fd-qualified-view';
+import { RoleView } from './links-view/fd-role-view';
 /**
   An object that describes an aggregation link on the UML diagram.
 
@@ -73,7 +73,7 @@ export let AggregationLink = LinkWithUnderline.define('flexberry.uml.Aggregation
   },
 });
 
-joint.shapes.flexberry.uml.AggregationLinkView = QualifiedView.extend({
+joint.shapes.flexberry.uml.AggregationLinkView = RoleView.extend({
   template: [
     '<div class="uml-link-inputs">',
     '<input type="text" class="description-input underline-text" value="" />',
@@ -84,7 +84,7 @@ joint.shapes.flexberry.uml.AggregationLinkView = QualifiedView.extend({
   ].join(''),
 
   setColors() {
-    QualifiedView.prototype.setColors.apply(this, arguments);
+    RoleView.prototype.setColors.apply(this, arguments);
 
     const brushColor = this.getBrushColor();
     const textColor = this.getTextColor();

@@ -58,6 +58,7 @@ export let BackwardAsyncMessage = CollMessageBase.define('flexberry.uml.Backward
     '.arrow': {
       'd':'M 0 0 L 5 -5'
     },
+    text: { visibility: 'hidden' }
   },
 
   // Minimum height.

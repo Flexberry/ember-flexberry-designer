@@ -60,6 +60,7 @@ export let BackwardNestedMessage = CollMessageBase.define('flexberry.uml.Backwar
       'fill': 'black',
       'refY': -5
     },
+    text: { visibility: 'hidden' }
   },
 
   // Minimum height.

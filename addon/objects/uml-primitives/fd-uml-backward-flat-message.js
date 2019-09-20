@@ -59,6 +59,7 @@ export let BackwardFlatMessage = CollMessageBase.define('flexberry.uml.BackwardF
       'd': 'M -5 0 L 0 -5 L -5 0 L 0 5',
       'refX': 5
     },
+    text: { visibility: 'hidden' }
   },
 
   // Minimum height.

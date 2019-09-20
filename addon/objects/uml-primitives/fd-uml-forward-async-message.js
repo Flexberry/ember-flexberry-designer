@@ -59,6 +59,7 @@ export let ForwardAsyncMessage = CollMessageBase.define('flexberry.uml.ForwardAs
       'd': 'M 5 0 L 0 -5',
       'refX': 55
     },
+    text: { visibility: 'hidden' }
   },
 
   // Minimum height.
