@@ -62,16 +62,16 @@ export let DesignPattern = BaseObject.define('flexberry.uml.DesignPattern', {
   },
 
   // Minimum height.
-  minHeight: 64,
+  minHeight: 30,
 
   // Minimum width
-  minWidth: 64,
+  minWidth: 80,
 
   getRectangles() {
     return [
       { type: 'header', element: this }
     ];
-  },
+  }
 });
 
 joint.shapes.flexberry.uml.DesignPatternView = joint.shapes.flexberry.uml.BaseObjectView.extend({

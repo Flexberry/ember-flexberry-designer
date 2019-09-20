@@ -62,6 +62,12 @@ export let ForwardFlatMessage = CollMessageBase.define('flexberry.uml.ForwardFla
     },
     text: { visibility: 'hidden' }
   }
+}, {
+  // Minimum height.
+  minHeight: 30,
+
+  // Minimum width
+  minWidth: 80,
 });
 
 joint.shapes.flexberry.uml.ForwardFlatMessageView = joint.shapes.flexberry.uml.CollMessageBaseView;

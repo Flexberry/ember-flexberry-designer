@@ -60,6 +60,12 @@ export let BackwardFlatMessage = CollMessageBase.define('flexberry.uml.BackwardF
       'refX': 5
     },
   }
+}, {
+  // Minimum height.
+  minHeight: 30,
+
+  // Minimum width
+  minWidth: 80,
 });
 
 joint.shapes.flexberry.uml.BackwardFlatMessageView = joint.shapes.flexberry.uml.CollMessageBaseView;

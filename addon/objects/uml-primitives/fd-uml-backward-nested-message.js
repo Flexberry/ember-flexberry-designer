@@ -61,6 +61,12 @@ export let BackwardNestedMessage = CollMessageBase.define('flexberry.uml.Backwar
       'refY': -5
     },
   }
+}, {
+  // Minimum height.
+  minHeight: 30,
+
+  // Minimum width
+  minWidth: 80,
 });
 
 joint.shapes.flexberry.uml.BackwardNestedMessageView = joint.shapes.flexberry.uml.CollMessageBaseView;
