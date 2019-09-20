@@ -7364,6 +7364,11 @@ define('dummy/ember-flexberry-designer/tests/addon.lint-test', [], function () {
     assert.ok(true, 'addon/objects/uml-primitives/fd-uml-forward-nested-message.js should pass ESLint\n\n');
   });
 
+  QUnit.test('addon/objects/uml-primitives/fd-uml-generalization-cod.js', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'addon/objects/uml-primitives/fd-uml-generalization-cod.js should pass ESLint\n\n');
+  });
+
   QUnit.test('addon/objects/uml-primitives/fd-uml-generalization.js', function (assert) {
     assert.expect(1);
     assert.ok(true, 'addon/objects/uml-primitives/fd-uml-generalization.js should pass ESLint\n\n');
