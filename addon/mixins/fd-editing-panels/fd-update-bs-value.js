@@ -50,9 +50,9 @@ export default Mixin.create({
   /**
     Ember.observer, watching string `model.name` and update 'bsValue' property.
 
-    @method _modelObserver
+    @method _bsObserver
   */
-  _modelObserver: on('init', observer('model.name', function() {
+  _bsObserver: on('init', observer('model.name', function() {
     let bsName = this.get('model.businessServerClass.name') || '';
     this.set('bsValue', bsName);
   })),

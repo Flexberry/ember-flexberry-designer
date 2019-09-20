@@ -33,9 +33,9 @@ export default Mixin.create({
   /**
     Ember.observer, watching string `model.name` and update 'viewValue' property.
 
-    @method _modelObserver
+    @method _viewObserver
   */
-  _modelObserver: on('didInsertElement', observer('model.name', function() {
+  _viewObserver: on('didInsertElement', observer('model.name', function() {
     let dataobject = this.get('dataobject');
     if (isNone(dataobject)) {
       dataobject = this.get('model.formViews.firstObject.view.class');

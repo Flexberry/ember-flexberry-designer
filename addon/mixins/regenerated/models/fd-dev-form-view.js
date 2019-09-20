@@ -162,7 +162,8 @@ export let defineProjections = function (modelClass) {
       class: belongsTo('fd-dev-class', '', {
         name: attr('')
       })
-    })
+    }),
+    dataObjectTypesStr: attr('')
   });
   modelClass.defineProjection('ForFormControls', 'fd-dev-form-view', {
     controls: hasMany('fd-dev-form-control', '', {
