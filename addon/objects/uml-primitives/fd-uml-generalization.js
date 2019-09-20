@@ -40,13 +40,6 @@ export let Generalization = Link.define('flexberry.uml.Generalization', {
   text: { visibility: 'hidden' },
   rect: { visibility: 'hidden' }
  }
-}, {
-  getLabelDistance: function (labelName) {
-    switch (labelName) {
-      case 'description':
-        return 0.1;
-    }
-  }
 });
 
 joint.shapes.flexberry.uml.GeneralizationView = DescriptionView.extend({

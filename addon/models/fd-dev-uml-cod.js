@@ -9,7 +9,7 @@ import FdUmlNAryAssociation from '../objects/uml-primitives/fd-uml-naryassociati
 import FdUmlInstance from '../objects/uml-primitives/fd-uml-instance';
 import FdUmlMultiObject from '../objects/uml-primitives/fd-uml-multi-object';
 import FdUmlNote from '../objects/uml-primitives/fd-uml-note';
-import FdUmlGeneralization from '../objects/uml-primitives/fd-uml-generalization';
+import FdUmlGeneralizationCod from '../objects/uml-primitives/fd-uml-generalization-cod';
 import FdUmlNoteConnector from '../objects/uml-primitives/fd-uml-note-connector';
 import FdUmlQAggregation from '../objects/uml-primitives/fd-uml-qualified-aggregation';
 import FdUmlQComposition from '../objects/uml-primitives/fd-uml-qualified-composition';
@@ -64,7 +64,7 @@ let Model = CODModel.extend(DevUMLCODMixin, {
           break;
 
         case 'STORMCASE.UML.cod.Inheritance, UMLCOD':
-          result.pushObject(FdUmlGeneralization.create({ primitive }));
+          result.pushObject(FdUmlGeneralizationCod.create({ primitive }));
           break;
 
         case 'STORMCASE.UML.Common.NoteConnector, UMLCommon':

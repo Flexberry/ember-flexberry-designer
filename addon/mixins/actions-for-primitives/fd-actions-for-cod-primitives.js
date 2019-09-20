@@ -6,7 +6,7 @@ import DesignPattern from 'ember-flexberry-designer/objects/uml-primitives/fd-um
 import AssociationLink from 'ember-flexberry-designer/objects/uml-primitives/fd-uml-association-link';
 import AggregationLink from 'ember-flexberry-designer/objects/uml-primitives/fd-uml-aggregation-link';
 import CompositionLink from 'ember-flexberry-designer/objects/uml-primitives/fd-uml-composition-link';
-import Generalization from 'ember-flexberry-designer/objects/uml-primitives/fd-uml-generalization';
+import GeneralizationCod from 'ember-flexberry-designer/objects/uml-primitives/fd-uml-generalization-cod';
 import DesignPatternConnector from 'ember-flexberry-designer/objects/uml-primitives/fd-uml-design-pattern-connector';
 import ForwardFlatMessage from 'ember-flexberry-designer/objects/uml-primitives/fd-uml-forward-flat-message';
 import ForwardNestedMessage from 'ember-flexberry-designer/objects/uml-primitives/fd-uml-forward-nested-message';
@@ -280,7 +280,7 @@ export default Mixin.create({
           null,
           null,
         );
-        let undirAssociationObject = Generalization.create({ primitive: jsonObject });
+        let undirAssociationObject = GeneralizationCod.create({ primitive: jsonObject });
         undirAssociationObject.set('vertices', linkProperties.points || A());
         this._addToPrimitives(undirAssociationObject);
         return undirAssociationObject.JointJS();
