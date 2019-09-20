@@ -1,8 +1,9 @@
 /**
   @module ember-flexberry-designer
 */
-
 import { computed } from '@ember/object';
+import { isArray } from '@ember/array';
+import joint from 'npm:jointjs';
 
 import FdUmlElement from './fd-uml-element';
 import { CollMessageBase } from './fd-uml-base-coll-message';
@@ -16,13 +17,20 @@ import { CollMessageBase } from './fd-uml-base-coll-message';
 export default FdUmlElement.extend({
 
   /**
-    The attrs of the class.
+    The name of the class.
 
     @property attrs
     @type String
   */
-  attrs: computed('primitive.Name.Text', function() {
-    return { '.uml-base-text': { 'text': this.get('primitive.Name.Text') } };
+  name: computed('primitive.Name.Text', {
+    get() {
+      return this.get('primitive.Name.Text');
+    },
+    set(key, value) {
+      let nameTxt = (isArray(value)) ? value.join('\n') : value;
+      this.set('primitive.Name.Text', nameTxt);
+      return value;
+    },
   }),
 
   /**See {{#crossLink "FdUmlPrimitive/JointJS:method"}}here{{/crossLink}}.
@@ -30,7 +38,8 @@ export default FdUmlElement.extend({
     @method JointJS
   */
   JointJS() {
-    let properties = this.getProperties('id', 'attrs', 'size', 'position');
+    let properties = this.getProperties('id', 'size', 'position');
+    properties.objectModel = this;
     return new BackwardNestedMessage(properties);
   },
 });
@@ -51,9 +60,14 @@ export let BackwardNestedMessage = CollMessageBase.define('flexberry.uml.Backwar
       'fill': 'black',
       'refY': -5
     },
+    text: { visibility: 'hidden' }
+  },
 
-    '.uml-base-text': {
-      'text': ''
-    }
-  }
+  // Minimum height.
+  minHeight: 10,
+
+  // Minimum width
+  minWidth: 60,
 });
+
+joint.shapes.flexberry.uml.BackwardNestedMessageView = joint.shapes.flexberry.uml.CollMessageBaseView;

@@ -4,8 +4,7 @@
 import joint from 'npm:jointjs';
 import { isNone } from '@ember/utils';
 
-import FdUmlLink from './fd-uml-link';
-import { Link } from './fd-uml-link';
+import FdUmlLink, { Link } from './fd-uml-link';
 import { DescriptionView } from './links-view/fd-description-view';
 
 /**

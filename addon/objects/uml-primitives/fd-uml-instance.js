@@ -56,8 +56,11 @@ export default FdUmlElement.extend({
   @constructor
 */
 export let Instance = BaseObject.define('flexberry.uml.Instance', {
+  // Minimum width.
+  minWidth: 80,
+
   // Minimum height.
-  minHeight: 20,
+  minHeight: 30,
 }, {
   getRectangles() {
     return [

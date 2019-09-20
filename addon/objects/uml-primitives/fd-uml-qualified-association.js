@@ -61,6 +61,10 @@ export let QualifiedAssociation = Link.define('flexberry.uml.QualifiedAssociatio
     rect: { visibility: 'hidden' }
   }
 }, {
+  initialize: function() {
+    Link.prototype.initialize.apply(this, arguments);
+  },
+
   getLabelDistance: function (labelName, isVertical) {
     switch (labelName) {
       case 'qualified':
