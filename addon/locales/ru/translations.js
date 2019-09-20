@@ -131,6 +131,7 @@ import FdInterfaceEditingPanel from './components/fd-interface-editing-panel';
 import FdBsEditingPanel from './components/fd-businessserver-editing-panel';
 import FdEnumEditingPanel from './components/fd-enumeration-editing-panel';
 import FdEditFormEditingPanel from './components/fd-editform-editing-panel';
+import FdListFormEditingPanel from './components/fd-listform-editing-panel';
 import FdCreateView from './components/fd-create-view';
 import FdCreateEntity from './components/fd-create-entity';
 import FdCreateDiagrams from './components/fd-create-diagrams';
@@ -437,6 +438,7 @@ $.extend(true, translations, {
     'fd-businessserver-editing-panel': FdBsEditingPanel,
     'fd-enumeration-editing-panel': FdEnumEditingPanel,
     'fd-editform-editing-panel': FdEditFormEditingPanel,
+    'fd-listform-editing-panel': FdListFormEditingPanel,
     'fd-create-view': FdCreateView,
     'fd-sheet': FdSheet,
     'fd-create-node-editing-panel': FdCreateNodeEditingPanel,
