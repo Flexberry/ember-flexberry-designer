@@ -58,13 +58,13 @@ export let BackwardAsyncMessage = CollMessageBase.define('flexberry.uml.Backward
     '.arrow': {
       'd':'M 0 0 L 5 -5'
     },
-  }
-}, {
+  },
+
   // Minimum height.
-  minHeight: 30,
+  minHeight: 10,
 
   // Minimum width
-  minWidth: 80,
+  minWidth: 60,
 });
 
 joint.shapes.flexberry.uml.BackwardAsyncMessageView = joint.shapes.flexberry.uml.CollMessageBaseView;

@@ -66,7 +66,7 @@ export let DesignPattern = BaseObject.define('flexberry.uml.DesignPattern', {
 
   // Minimum width
   minWidth: 80,
-
+}, {
   getRectangles() {
     return [
       { type: 'header', element: this }

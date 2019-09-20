@@ -300,7 +300,7 @@ export default Mixin.create({
         let jsonObject = getJsonForElement(
           'STORMCASE.UML.cod.BackwardNestedMessage, UMLCOD',
           { x, y },
-          { width: 80, height: 30 },
+          { width: 60, height: 10 },
           { Name: '' }
         );
         let codObject = BackwardNestedMessage.create({ primitive: jsonObject });
@@ -319,7 +319,7 @@ export default Mixin.create({
         let jsonObject = getJsonForElement(
           'STORMCASE.UML.cod.ForwardNestedMessage, UMLCOD',
           { x, y },
-          { width: 80, height: 30 },
+          { width: 60, height: 10 },
           { Name: '' }
         );
         let codObject = ForwardNestedMessage.create({ primitive: jsonObject });
@@ -338,7 +338,7 @@ export default Mixin.create({
         let jsonObject = getJsonForElement(
           'STORMCASE.UML.cod.BackwardFlatMessage, UMLCOD',
           { x, y },
-          { width: 80, height: 30 },
+          { width: 60, height: 10 },
           { Name: '' }
         );
         let codObject = BackwardFlatMessage.create({ primitive: jsonObject });
@@ -357,7 +357,7 @@ export default Mixin.create({
         let jsonObject = getJsonForElement(
           'STORMCASE.UML.cod.ForwardFlatMessage, UMLCOD',
           { x, y },
-          { width: 80, height: 30 },
+          { width: 60, height: 10 },
           { Name: '' }
         );
         let codObject = ForwardFlatMessage.create({ primitive: jsonObject });
@@ -376,7 +376,7 @@ export default Mixin.create({
         let jsonObject = getJsonForElement(
           'STORMCASE.UML.cod.BackwardAsyncMessage, UMLCOD',
           { x, y },
-          { width: 80, height: 30 },
+          { width: 60, height: 10 },
           { Name: '' }
         );
         let codObject = BackwardAsyncMessage.create({ primitive: jsonObject });
@@ -395,7 +395,7 @@ export default Mixin.create({
         let jsonObject = getJsonForElement(
           'STORMCASE.UML.cod.ForwardAsyncMessage, UMLCOD',
           { x, y },
-          { width: 80, height: 30 },
+          { width: 60, height: 10 },
           { Name: '' }
         );
         let codObject = ForwardAsyncMessage.create({ primitive: jsonObject });

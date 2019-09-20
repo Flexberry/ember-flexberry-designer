@@ -63,13 +63,13 @@ export let ForwardNestedMessage = CollMessageBase.define('flexberry.uml.ForwardN
       'refY': -5
     },
     text: { visibility: 'hidden' }
-  }
-}, {
+  },
+
   // Minimum height.
-  minHeight: 30,
+  minHeight: 10,
 
   // Minimum width
-  minWidth: 80,
+  minWidth: 60,
 });
 
 joint.shapes.flexberry.uml.ForwardNestedMessageView = joint.shapes.flexberry.uml.CollMessageBaseView;

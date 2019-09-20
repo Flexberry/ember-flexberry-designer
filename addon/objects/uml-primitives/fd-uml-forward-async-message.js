@@ -59,13 +59,13 @@ export let ForwardAsyncMessage = CollMessageBase.define('flexberry.uml.ForwardAs
       'd': 'M 5 0 L 0 -5',
       'refX': 55
     },
-  }
-}, {
+  },
+
   // Minimum height.
-  minHeight: 30,
+  minHeight: 10,
 
   // Minimum width
-  minWidth: 80,
+  minWidth: 60,
 });
 
 joint.shapes.flexberry.uml.ForwardAsyncMessageView = joint.shapes.flexberry.uml.CollMessageBaseView;

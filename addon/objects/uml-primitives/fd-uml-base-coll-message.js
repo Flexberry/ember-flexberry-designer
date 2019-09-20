@@ -71,10 +71,10 @@ export let CollMessageBase = joint.shapes.basic.Generic.define('flexberry.uml.Co
   ].join(''),
 
   // Minimum height.
-  minHeight: 30,
+  minHeight: 10,
 
   // Minimum width
-  minWidth: 80,
+  minWidth: 60,
 
   getRectangles() {
     return [];
@@ -134,6 +134,7 @@ joint.shapes.flexberry.uml.CollMessageBaseView = joint.shapes.flexberry.uml.Base
       $buffer.css('font-weight', $input.css('font-weight'));
       $buffer.text($input.val());
       $input.width($buffer.width() + 1);
+      $input[0].style.marginLeft = -$input.width()/2 + 'px';
     });
 
     this.model.resize(newWidth, newHeight);
@@ -145,7 +146,7 @@ joint.shapes.flexberry.uml.CollMessageBaseView = joint.shapes.flexberry.uml.Base
     let paramsBox = this.$box.find('.params-input');
     paramsBox.css({
       left: newWidth/2,
-      top: newHeight + 10,
+      top: newHeight,
       position: 'absolute'
     });
   },
