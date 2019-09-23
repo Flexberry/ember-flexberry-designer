@@ -2,7 +2,7 @@
   @module ember-flexberry-designer
 */
 import { computed } from '@ember/object';
-import { isArray } from '@ember/array';
+import { isArray, A } from '@ember/array';
 
 import FdUmlElement from './fd-uml-element';
 import { BaseObject } from './fd-uml-baseobject';
@@ -75,7 +75,17 @@ export let History = BaseObject.define('flexberry.uml.History', {
       'font-size': '12'
     }
   },
-  }, {
+  
+  // Minimum height.
+  minHeight: 20,
+
+  // Minimum width
+  minWidth: 20,
+
+  getRectangles() {
+    return [];
+  },
+}, {
   markup: [
     '<g class="rotatable">',
     '<g class="scalable">',
@@ -84,11 +94,15 @@ export let History = BaseObject.define('flexberry.uml.History', {
     '<text class="flexberry-uml-header-text"/>',
     '</g>'
   ].join(''),
-  });
+});
 
 joint.shapes.flexberry.uml.HistoryView = joint.shapes.flexberry.uml.BaseObjectView.extend({
   template: [
   ].join(''),
+
+  getSizeChangers() {
+    return A();
+  },
 
   // No resize.
   updateRectangles() {
@@ -111,11 +125,4 @@ export let DeepHistory = History.define('flexberry.uml.DeepHistory', {
   }}
 });
 
-joint.shapes.flexberry.uml.DeepHistoryView = joint.shapes.flexberry.uml.BaseObjectView.extend({
-  template: [
-  ].join(''),
-
-  // No resize.
-  updateRectangles() {
-   },
-});
+joint.shapes.flexberry.uml.DeepHistoryView = joint.shapes.flexberry.uml.HistoryView;

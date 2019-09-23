@@ -31,7 +31,7 @@ export default Mixin.create({
         let jsonObject = getJsonForElement(
           'STORMCASE.UML.std.Class, UMLSTD',
           { x, y },
-          { width: 100, height: 40 },
+          { width: 80, height: 30 },
           { Name: '' },
           { InitialFolded: false, Folded: false }
         );
@@ -54,7 +54,7 @@ export default Mixin.create({
         let jsonObject = getJsonForElement(
           'STORMCASE.UML.std.State, UMLSTD',
           { x, y },
-          { width: 100, height: 40 },
+          { width: 80, height: 30 },
           { Name: '' },
           { InitialFolded: false, Folded: false }
         );
@@ -77,7 +77,7 @@ export default Mixin.create({
         let jsonObject = getJsonForElement(
           'STORMCASE.UML.std.StateEx, UMLSTD',
           { x, y },
-          { width: 100, height: 40 },
+          { width: 80, height: 60 },
           { Name: '' },
           { InitialFolded: false, Folded: false }
         );
@@ -110,6 +110,7 @@ export default Mixin.create({
         let jsonObject = getJsonForElement(
           'STORMCASE.UML.std.History, UMLSTD',
           { x, y },
+          { width: 20, height: 20 },
         );
         let newHistoryObject = History.create({ primitive: jsonObject });
 
@@ -130,6 +131,7 @@ export default Mixin.create({
         let jsonObject = getJsonForElement(
           'STORMCASE.UML.std.DeepHistory, UMLSTD',
           { x, y },
+          { width: 20, height: 20 },
         );
         let newDeepHistoryObject = DeepHistory.create({ primitive: jsonObject });
 
@@ -150,6 +152,7 @@ export default Mixin.create({
         let jsonObject = getJsonForElement(
           'STORMCASE.UML.std.DeepHistory, UMLSTD',
           { x, y },
+          { width: 20, height: 20 },
         );
         let newStartStateObject = StartState.create({ primitive: jsonObject });
 
@@ -170,6 +173,7 @@ export default Mixin.create({
         let jsonObject = getJsonForElement(
           'STORMCASE.UML.std.DeepHistory, UMLSTD',
           { x, y },
+          { width: 20, height: 20 },
         );
         let newFinalStateObject = FinalState.create({ primitive: jsonObject });
 
@@ -190,7 +194,7 @@ export default Mixin.create({
         let jsonObject = getJsonForElement(
           'STORMCASE.UML.std.ComplexTransitionH, UMLSTD',
           { x, y },
-          { width: 200 },
+          { width: 1, height: 20 },
         );
         let newComplexTransitionHObject = ComplexTransitionH.create({ primitive: jsonObject });
 
@@ -211,7 +215,7 @@ export default Mixin.create({
         let jsonObject = getJsonForElement(
           'STORMCASE.UML.std.ComplexTransitionV, UMLSTD',
           { x, y },
-          { width: 200 },
+          { width: 20, height: 1 },
         );
         let newComplexTransitionVObject = ComplexTransitionV.create({ primitive: jsonObject });
 

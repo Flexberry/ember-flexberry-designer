@@ -5,7 +5,7 @@
 import { computed } from '@ember/object';
 import { StartState } from './fd-uml-start-state';
 import joint from 'npm:jointjs';
-import { isArray } from '@ember/array';
+import { isArray, A } from '@ember/array';
 
 import FdUmlElement from './fd-uml-element';
 
@@ -60,7 +60,17 @@ export let FinalState = StartState.define('flexberry.uml.FinalState', {
   attrs: {
     '.flexberry-uml-header-circle': { 'fill': 'black', 'r': 18,'ref-y': 10, 'ref-x': 10 },
     '.flexberry-uml-header-circle-outer': { 'fill': 'white', 'stroke': 'black', 'stroke-width': 2, 'r': 28, 'ref-y': 10, 'ref-x': 10 },
-  }
+  },
+
+  // Minimum height.
+  minHeight: 20,
+
+  // Minimum width
+  minWidth: 20,
+
+  getRectangles() {
+    return [];
+  },
 }, {
   markup: [
     '<g class="scalable">',
@@ -77,6 +87,10 @@ joint.shapes.flexberry.uml.FinalStateView = joint.shapes.flexberry.uml.StartStat
     '<div class="input-buffer"></div>',
     '</div>'
   ].join(''),
+
+  getSizeChangers() {
+    return A();
+  },
 
   updateRectangles() {
     let $buffer = this.$box.find('.input-buffer');

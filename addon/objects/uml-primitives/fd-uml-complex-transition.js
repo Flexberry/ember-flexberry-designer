@@ -75,27 +75,18 @@ export let ComplexTransitionH = BaseObject.define('flexberry.uml.ComplexTransiti
   attrs: {
     '.flexberry-uml-header-poliline': {'refPoints': '0,0 40,0', 'stroke': 'black', 'stroke-width': 2 },
   },
+
+  // Minimum height.
+  minHeight: 0,
+
+  // Minimum width
+  minWidth: 20,
 }, {
   markup: [
     '<g class="rotatable">',
     '<polyline class = "flexberry-uml-header-poliline"/>',
     '</g>',
   ].join('')
-});
-
-/**
-  Defines the JointJS object, which represents a vertical 'ComplexTransition' object in the UML diagram.
-
-  @for FdUmlStartState
-  @class ComplexTransitionV
-  @extends ComplexTransitionH
-  @namespace flexberry.uml
-  @constructor
-*/
-export let ComplexTransitionV = ComplexTransitionH.define('flexberry.uml.ComplexTransitionV', {
-  attrs: {
-    '.flexberry-uml-header-poliline': {'refPoints': '40,0 40,40', 'stroke': 'black', 'stroke-width': 2 },
-  }
 });
 
 joint.shapes.flexberry.uml.ComplexTransitionHView = joint.shapes.flexberry.uml.PrimitiveElementView.extend({
@@ -175,8 +166,13 @@ joint.shapes.flexberry.uml.ComplexTransitionHView = joint.shapes.flexberry.uml.P
     });
   },
 
-  //In updateRectangles update only text sizes, because start/final state not have rectanles
-  updateRectangles() {
+  updateRectangles: function (resizedWidth) {
+    const minWidth = this.model.attributes.minWidth;
+    const oldSize = this.model.size();
+
+    let newHeight = 1;
+    let newWidth = Math.max( resizedWidth || oldSize.width, minWidth);
+
     let $buffer = this.$box.find('.input-buffer');
     let $input = this.$box.find('.class-name-input');
     $buffer.css('font-weight', $input.css('font-weight'));
@@ -184,8 +180,21 @@ joint.shapes.flexberry.uml.ComplexTransitionHView = joint.shapes.flexberry.uml.P
     $input.width($buffer.width() + 1);
 
     //shift state text
-    $input.css({top: -8, left: (this.$box.width() + 20), position:'absolute'});
-   },
+    $input.css({top: -8, left: (newWidth + 5), position:'absolute'});
+
+    this.model.resize(newWidth, newHeight);
+    if (this.model.get('highlighted')) {
+      this.unhighlight();
+      this.highlight();
+    }
+
+    let paramsBox = this.$box.find('.params-input');
+    paramsBox.css({
+      left: newWidth/2,
+      top: newHeight,
+      position: 'absolute'
+    });
+  },
 
   removeBox: function () {
     this.$box.remove();
@@ -202,7 +211,40 @@ joint.shapes.flexberry.uml.ComplexTransitionHView = joint.shapes.flexberry.uml.P
         'text': { fill: '#ffffff','font-size': 10, 'text-anchor': 'middle', x: 0, y: 3, 'font-family': 'Icons' },
       }
     }]);
-  }
+  },
+
+  getSizeChangers() {
+    return A([{
+      name: 'right-size-button',
+      text: '&#xf0da',
+      attrs: {
+        'element': { 'ref-dx': 0, 'ref-y': 0.5, 'ref': '.joint-highlight-stroke' },
+        'circle': { r: 6, fill: '#007aff', stroke: '#007aff', 'stroke-width': 1 },
+        'text': { fill: '#ffffff','font-size': 10, 'text-anchor': 'middle', x: 0.5, y: 3.5, 'font-family': 'Icons' },
+      }
+    }]);
+  },
+});
+
+/**
+  Defines the JointJS object, which represents a vertical 'ComplexTransition' object in the UML diagram.
+
+  @for FdUmlStartState
+  @class ComplexTransitionV
+  @extends ComplexTransitionH
+  @namespace flexberry.uml
+  @constructor
+*/
+export let ComplexTransitionV = ComplexTransitionH.define('flexberry.uml.ComplexTransitionV', {
+  attrs: {
+    '.flexberry-uml-header-poliline': {'refPoints': '40,0 40,40', 'stroke': 'black', 'stroke-width': 2 },
+  },
+
+  // Minimum height.
+  minHeight: 20,
+
+  // Minimum width
+  minWidth: 0,
 });
 
 joint.shapes.flexberry.uml.ComplexTransitionVView = joint.shapes.flexberry.uml.ComplexTransitionHView .extend({
@@ -213,14 +255,47 @@ joint.shapes.flexberry.uml.ComplexTransitionVView = joint.shapes.flexberry.uml.C
     '</div>'
    ].join(''),
 
-   updateRectangles() {
+
+  updateRectangles: function (resizedHeight) {
+    const minHeight = this.model.attributes.minHeight;
+    const oldSize = this.model.size();
+
+    let newHeight = Math.max( resizedHeight || oldSize.height, minHeight);
+    let newWidth = 1;
+
     let $buffer = this.$box.find('.input-buffer');
     let $input = this.$box.find('.class-name-input');
     $buffer.css('font-weight', $input.css('font-weight'));
     $buffer.text($input.val());
     $input.width($buffer.width() + 1);
 
-    $input.css({top: (this.$box.height() * 1.2), left: -(($buffer.width()) / 2),  position:'absolute'});
-   },
+    $input.css({top: (newHeight + 5), left: -(($buffer.width()) / 2),  position:'absolute'});
+
+    this.model.resize(newWidth, newHeight);
+    if (this.model.get('highlighted')) {
+      this.unhighlight();
+      this.highlight();
+    }
+
+    let paramsBox = this.$box.find('.params-input');
+    paramsBox.css({
+      left: newWidth/2,
+      top: newHeight,
+      position: 'absolute'
+    });
+  },
+
+
+   getSizeChangers() {
+    return A([{
+      name: 'down-size-button',
+      text: '&#xf0d7',
+      attrs: {
+        'element': { 'ref-x': 0.5, 'ref-dy': 0, 'ref': '.joint-highlight-stroke' },
+        'circle': { r: 6, fill: '#007aff', stroke: '#007aff', 'stroke-width': 1 },
+        'text': { fill: '#ffffff','font-size': 10, 'text-anchor': 'middle', x: 0, y: 3.5, 'font-family': 'Icons' },
+      }
+    }]);
+  },
 });
 

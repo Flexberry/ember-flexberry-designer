@@ -4,7 +4,7 @@
 
 import { computed } from '@ember/object';
 import joint from 'npm:jointjs';
-import { isArray } from '@ember/array';
+import { isArray, A } from '@ember/array';
 import FdUmlElement from './fd-uml-element';
 import { BaseObject } from './fd-uml-baseobject';
 
@@ -66,6 +66,16 @@ export let StartState = BaseObject.define('flexberry.uml.StartState', {
     '<circle class="flexberry-uml-header-circle"/>',
     '</g>'
   ].join(''),
+
+  // Minimum height.
+  minHeight: 20,
+
+  // Minimum width
+  minWidth: 20,
+  
+  getRectangles() {
+    return [];
+  },
 });
 
 joint.shapes.flexberry.uml.StartStateView = joint.shapes.flexberry.uml.BaseObjectView.extend({
@@ -75,6 +85,10 @@ joint.shapes.flexberry.uml.StartStateView = joint.shapes.flexberry.uml.BaseObjec
     '<div class="input-buffer"></div>',
     '</div>'
   ].join(''),
+
+  getSizeChangers() {
+    return A();
+  },
 
   //In updateRectangles update only text sizes, because start/final state not have rectanles
   updateRectangles() {

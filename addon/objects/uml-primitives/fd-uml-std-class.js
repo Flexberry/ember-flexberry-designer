@@ -54,7 +54,18 @@ export default FdUmlElement.extend({
   @namespace flexberry.uml
   @constructor
 */
-export let StdClass = BaseObject.define('flexberry.uml.StdClass', {
+export let StdClass = BaseObject.define('flexberry.uml.StdClass',  {
+  // Minimum width.
+  minWidth: 80,
+
+  // Minimum height.
+  minHeight: 30,
+}, {
+  getRectangles() {
+    return [
+      { type: 'header', element: this }
+    ];
+  },
 });
 
 joint.shapes.flexberry.uml.StdClassView = joint.shapes.flexberry.uml.BaseObjectView.extend({
