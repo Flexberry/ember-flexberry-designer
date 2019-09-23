@@ -168,7 +168,7 @@ joint.shapes.flexberry.uml.ComplexTransitionHView = joint.shapes.flexberry.uml.P
     });
   },
 
-  updateRectangles: function (resizedWidth, resizedHeight) {
+  updateRectangles: function (resizedWidth) {
     const minWidth = this.model.attributes.minWidth;
     const oldSize = this.model.size();
 
