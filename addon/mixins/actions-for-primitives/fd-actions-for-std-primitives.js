@@ -194,7 +194,7 @@ export default Mixin.create({
         let jsonObject = getJsonForElement(
           'STORMCASE.UML.std.ComplexTransitionH, UMLSTD',
           { x, y },
-          { width: 1, height: 20 },
+          { width: 2, height: 20 },
         );
         let newComplexTransitionHObject = ComplexTransitionH.create({ primitive: jsonObject });
 
@@ -215,7 +215,7 @@ export default Mixin.create({
         let jsonObject = getJsonForElement(
           'STORMCASE.UML.std.ComplexTransitionV, UMLSTD',
           { x, y },
-          { width: 20, height: 1 },
+          { width: 20, height: 2 },
         );
         let newComplexTransitionVObject = ComplexTransitionV.create({ primitive: jsonObject });
 

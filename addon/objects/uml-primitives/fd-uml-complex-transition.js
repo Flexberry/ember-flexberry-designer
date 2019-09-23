@@ -3,12 +3,13 @@
 */
 
 import { computed } from '@ember/object';
-import joint from 'npm:jointjs';
 import { A, isArray } from '@ember/array';
+import { isNone } from '@ember/utils';
 import $ from 'jquery';
-import { BaseObject } from './fd-uml-baseobject';
+import joint from 'npm:jointjs';
 
 import FdUmlElement from './fd-uml-element';
+import { BaseObject } from './fd-uml-baseobject';
 
 /**
   An object that describes a Complex Transitionon an activity diagram
@@ -77,7 +78,7 @@ export let ComplexTransitionH = BaseObject.define('flexberry.uml.ComplexTransiti
   },
 
   // Minimum height.
-  minHeight: 0,
+  minHeight: 2,
 
   // Minimum width
   minWidth: 20,
@@ -128,6 +129,7 @@ joint.shapes.flexberry.uml.ComplexTransitionHView = joint.shapes.flexberry.uml.P
     }.bind(this));
 
     this.updateInputValue();
+    this.setColors();
 
     // Update the box position whenever the underlying model changes.
     this.model.on('change', this.updateBox, this);
@@ -166,11 +168,11 @@ joint.shapes.flexberry.uml.ComplexTransitionHView = joint.shapes.flexberry.uml.P
     });
   },
 
-  updateRectangles: function (resizedWidth) {
+  updateRectangles: function (resizedWidth, resizedHeight) {
     const minWidth = this.model.attributes.minWidth;
     const oldSize = this.model.size();
 
-    let newHeight = 1;
+    let newHeight = 2;
     let newWidth = Math.max( resizedWidth || oldSize.width, minWidth);
 
     let $buffer = this.$box.find('.input-buffer');
@@ -180,7 +182,7 @@ joint.shapes.flexberry.uml.ComplexTransitionHView = joint.shapes.flexberry.uml.P
     $input.width($buffer.width() + 1);
 
     //shift state text
-    $input.css({top: -8, left: (newWidth + 5), position:'absolute'});
+    $input.css({top: -6, left: (newWidth + 5), position:'absolute'});
 
     this.model.resize(newWidth, newHeight);
     if (this.model.get('highlighted')) {
@@ -224,6 +226,23 @@ joint.shapes.flexberry.uml.ComplexTransitionHView = joint.shapes.flexberry.uml.P
       }
     }]);
   },
+
+  setColors() { 
+    const textColor = this.getTextColor();
+
+    if (!isNone(textColor)) {
+      this.model.attr('.flexberry-uml-header-poliline/stroke', textColor);
+    }
+
+    const inputElements = this.model.inputElements;
+    if (isArray(inputElements) && (!isNone(textColor))) {
+      inputElements.each(function(index, input) {
+        if (!isNone(textColor)) {
+          $(input).find('input, textarea').css('color', textColor);
+        }
+      });
+    }
+  },
 });
 
 /**
@@ -244,7 +263,7 @@ export let ComplexTransitionV = ComplexTransitionH.define('flexberry.uml.Complex
   minHeight: 20,
 
   // Minimum width
-  minWidth: 0,
+  minWidth: 2,
 });
 
 joint.shapes.flexberry.uml.ComplexTransitionVView = joint.shapes.flexberry.uml.ComplexTransitionHView .extend({
@@ -255,13 +274,12 @@ joint.shapes.flexberry.uml.ComplexTransitionVView = joint.shapes.flexberry.uml.C
     '</div>'
    ].join(''),
 
-
-  updateRectangles: function (resizedHeight) {
+  updateRectangles: function (resizedWidth, resizedHeight) {
     const minHeight = this.model.attributes.minHeight;
     const oldSize = this.model.size();
 
     let newHeight = Math.max( resizedHeight || oldSize.height, minHeight);
-    let newWidth = 1;
+    let newWidth = 2;
 
     let $buffer = this.$box.find('.input-buffer');
     let $input = this.$box.find('.class-name-input');
@@ -285,8 +303,7 @@ joint.shapes.flexberry.uml.ComplexTransitionVView = joint.shapes.flexberry.uml.C
     });
   },
 
-
-   getSizeChangers() {
+  getSizeChangers() {
     return A([{
       name: 'down-size-button',
       text: '&#xf0d7',
@@ -296,6 +313,23 @@ joint.shapes.flexberry.uml.ComplexTransitionVView = joint.shapes.flexberry.uml.C
         'text': { fill: '#ffffff','font-size': 10, 'text-anchor': 'middle', x: 0, y: 3.5, 'font-family': 'Icons' },
       }
     }]);
+  },
+
+  setColors() {
+    const textColor = this.getTextColor();
+
+    if (!isNone(textColor)) {
+      this.model.attr('.flexberry-uml-header-poliline/stroke', textColor);
+    }
+
+    const inputElements = this.model.inputElements;
+    if (isArray(inputElements) && (!isNone(textColor))) {
+      inputElements.each(function(index, input) {
+        if (!isNone(textColor)) {
+          $(input).find('input, textarea').css('color', textColor);
+        }
+      });
+    }
   },
 });
 

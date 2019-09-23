@@ -3,6 +3,7 @@
 */
 import { computed } from '@ember/object';
 import { isArray, A } from '@ember/array';
+import { isNone } from '@ember/utils';
 
 import FdUmlElement from './fd-uml-element';
 import { BaseObject } from './fd-uml-baseobject';
@@ -62,7 +63,7 @@ export default FdUmlElement.extend({
 export let History = BaseObject.define('flexberry.uml.History', {
   size: { width: 20, height: 20 },
   attrs: {
-    '.flexberry-uml-header-circle-outer': { 'fill': 'white', 'stroke': 'black', 'stroke-width': 1, 'r': 28, 'ref-y': 10, 'ref-x': 10 },
+    '.flexberry-uml-header-circle-outer': { 'fill': 'white', 'stroke': 'black', 'stroke-width': 1, 'r': 30, 'ref-y': 10, 'ref-x': 10 },
     '.flexberry-uml-header-text': {
       'ref': '.flexberry-uml-header-circle-outer',
       'ref-y': 0.5,
@@ -105,8 +106,16 @@ joint.shapes.flexberry.uml.HistoryView = joint.shapes.flexberry.uml.BaseObjectVi
   },
 
   // No resize.
-  updateRectangles() {
-   },
+  updateRectangles() {},
+
+   setColors() {
+    const textColor = this.getTextColor();
+
+    if (!isNone(textColor)) {
+      this.model.attr('.flexberry-uml-header-circle-outer/stroke', textColor);
+      this.model.attr('.flexberry-uml-header-text/stroke', textColor);
+    }
+  },
 });
 
 /**
