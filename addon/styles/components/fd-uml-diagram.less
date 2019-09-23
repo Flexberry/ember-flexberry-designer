@@ -281,18 +281,9 @@
 @texttColorHex: multiply(white, @textColor);
 .joint-paper {
   rect{
-    stroke: @texttColorHex;
     &.corner-rect {
       fill: @pageBackground;
       stroke: @pageBackground;
     }
   }
-  
-  path {
-    stroke: @texttColorHex;
-    &.corner {
-      fill: @pageBackground;
-      stroke: @texttColorHex;
-    }
-  }  
 }
