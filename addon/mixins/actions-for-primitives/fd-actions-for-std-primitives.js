@@ -55,7 +55,7 @@ export default Mixin.create({
           'STORMCASE.UML.std.State, UMLSTD',
           { x, y },
           { width: 80, height: 30 },
-          { Name: '' },
+          { Name: '', Text: ''},
           { InitialFolded: false, Folded: false }
         );
         let newStateObject = State.create({ primitive: jsonObject });
@@ -78,7 +78,7 @@ export default Mixin.create({
           'STORMCASE.UML.std.StateEx, UMLSTD',
           { x, y },
           { width: 80, height: 60 },
-          { Name: '' },
+          { Name: '', Text: ''},
           { InitialFolded: false, Folded: false }
         );
         let newStateExObject = StateEx.create({ primitive: jsonObject });
