@@ -621,7 +621,7 @@ export default Controller.extend(FdSaveHasManyRelationshipsMixin, {
        @method actions.delete
     */
     delete() {
-      /*let store = this.get('store');
+      let store = this.get('store');
       let selectedElement = this.get('selectedElement.model.data');
       let modelPart = selectedElement.get('constructor.modelName').slice(11);
       let modelHash = this.get(`model.${modelPart}`);
@@ -656,22 +656,26 @@ export default Controller.extend(FdSaveHasManyRelationshipsMixin, {
 
           let repObject = allRepObjects.findBy('id', repId);
 
-          return repObject.get('referenceCount') > 1 ? repObject.decrementProperty('referenceCount') : repObject.deleteRecord();
+          if (repObject.get('referenceCount') > 1) {
+            repObject.decrementProperty('referenceCount');
+          } else {
+            repObject.deleteRecord();
+          }
+
+          return repObject;
         }));
       }
 
-      deleteModels.pushObject(selectedElement.deleteRecord());
+      selectedElement.deleteRecord();
+      deleteModels.pushObject(selectedElement);
       store.batchUpdate(deleteModels)
-
-      all(deleteModels.map(a => a.save())).then(() => deleteObject.data.destroyRecord())
-      deleteObject.data.destroyRecord()
       .then(() => {
         this.set('selectedElement', undefined);
         this.get('fdSheetService').closeSheet(this.get('sheetComponentName'));
       })
       .finally(() => {
         this.get('appState').reset();
-      });*/
+      });
     }
   }
 });
