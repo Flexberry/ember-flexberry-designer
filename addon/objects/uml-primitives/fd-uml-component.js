@@ -60,7 +60,13 @@ export let Component = BaseObject.define('flexberry.uml.Component', {
   attrs: {
     '.firstRect': {'refY': '50%', 'refY2': '-8', 'fill': 'white', 'stroke': 'black', 'stroke-width': 1 },
     '.secondRect': { 'refY': '50%', 'refY2': '2', 'fill': 'white', 'stroke': 'black', 'stroke-width': 1 }
-  }
+  },
+
+  // Minimum height.
+  minHeight: 30,
+
+  // Minimum width
+  minWidth: 80,
 }, {
   markup: [
     '<g class="rotatable">',
@@ -71,7 +77,13 @@ export let Component = BaseObject.define('flexberry.uml.Component', {
     '</g>',
     '<text class="flexberry-uml-header-text"/>',
     '</g>'
-  ].join('')
+  ].join(''),
+
+  getRectangles() {
+    return [
+      { type: 'header', element: this }
+    ];
+  },
 });
 
 joint.shapes.flexberry.uml.ComponentView = joint.shapes.flexberry.uml.BaseObjectView.extend({

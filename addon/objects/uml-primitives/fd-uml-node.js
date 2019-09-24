@@ -58,16 +58,29 @@ export default FdUmlElement.extend({
   @constructor
 */
 export let UmlNode = BaseObject.define('flexberry.uml.UmlNode', {
-    attrs: {
-      '.back-path': { 'd': 'M 0 0 L 5 -5 70 -5 70 12 65 17 M 65 0 L 70 -5', 'fill': 'white', 'stroke': 'black', 'stroke-width': 1 }
-    },
-    markup: [
-      '<g class="rotatable">',
-      '<path class="back-path"/>',
-      '<rect class="flexberry-uml-header-rect"/>',
-      '<text class="flexberry-uml-header-text"/>',
-      '</g>'
-    ].join('')
+  attrs: {
+    '.back-path': { 'd': 'M 0 0 L 5 -5 70 -5 70 12 65 17 M 65 0 L 70 -5', 'fill': 'white', 'stroke': 'black', 'stroke-width': 1 }
+  }, 
+    
+  // Minimum height.
+  minHeight: 30,
+
+  // Minimum width
+  minWidth: 80,
+}, {
+  markup: [
+    '<g class="rotatable">',
+    '<path class="back-path"/>',
+    '<rect class="flexberry-uml-header-rect"/>',
+    '<text class="flexberry-uml-header-text"/>',
+    '</g>'
+  ].join(''),
+  
+  getRectangles() {
+    return [
+      { type: 'header', element: this }
+    ];
+  },
 });
 
 
@@ -79,16 +92,17 @@ joint.shapes.flexberry.uml.UmlNodeView = joint.shapes.flexberry.uml.BaseObjectVi
     '</div>'
   ].join(''),
 
-  
-  updateRectangles() {
+  updateRectangles(resizedWidth, resizedHeight) {
+    let _this = this;
     let rects = this.model.getRectangles();
-
     let offsetY = 0;
     let newHeight = 0;
     let newWidth = 0;
-    rects.forEach(function (rect) {
+    const minWidth = this.model.attributes.minWidth;
+    const minHeight = this.model.attributes.minHeight;
+    const oldSize = this.model.size();
+    rects.forEach(function(rect, index, array) {
       if (this.markup.includes('flexberry-uml-' + rect.type + '-rect') && rect.element.inputElements) {
-        let $buffer = rect.element.inputElements.find('.input-buffer');
         let rectHeight = 0;
         let inputs = rect.element.inputElements.find('.' + rect.type + '-input');
         let inputsDiv = inputs[0].parentElement;
@@ -96,8 +110,8 @@ joint.shapes.flexberry.uml.UmlNodeView = joint.shapes.flexberry.uml.BaseObjectVi
           let jointPaper = $('.joint-paper')[0];
           jointPaper.appendChild(inputsDiv);
         }
-        
-        inputs.each(function () {
+        let $buffer = rect.element.inputElements.find('.input-buffer');
+        inputs.each(function() {
           let $input = $(this);
           $buffer.css('font-weight', $input.css('font-weight'));
           $buffer.text($input.val());
@@ -111,7 +125,12 @@ joint.shapes.flexberry.uml.UmlNodeView = joint.shapes.flexberry.uml.BaseObjectVi
 
         rectHeight += rect.element.get('heightBottomPadding') || 0;
         newHeight += rectHeight;
-        rect.element.attr('.flexberry-uml-' + rect.type + '-rect/height', rectHeight);
+        if (array.length === index + 1) {
+          this.set('inputHeight', newHeight);
+          rect.element.attr('.flexberry-uml-' + rect.type + '-rect/height', Math.max((resizedHeight || oldSize.height) - offsetY, minHeight - offsetY, rectHeight));
+        } else {
+          rect.element.attr('.flexberry-uml-' + rect.type + '-rect/height', rectHeight);
+        }
 
         rect.element.attr('.flexberry-uml-' + rect.type + '-rect/transform', 'translate(0,' + offsetY + ')');
 
@@ -120,33 +139,37 @@ joint.shapes.flexberry.uml.UmlNodeView = joint.shapes.flexberry.uml.BaseObjectVi
     }, this.model);
 
     newWidth += (this.model.get('widthPadding') || 0) * 2;
-    rects.forEach(function (rect) {
-      rect.element.attr('.flexberry-uml-' + rect.type + '-rect/width', newWidth);
+    let setWidth = Math.max(newWidth, resizedWidth || oldSize.width, minWidth);
+    let setHight = Math.max(newHeight, resizedHeight || oldSize.height, minHeight);
+    
+    this.model.set('inputWidth', newWidth);
+    rects.forEach(function(rect) {
+      rect.element.attr('.flexberry-uml-' + rect.type + '-rect/width', setWidth);
     });
 
-    this.model.resize(newWidth, newHeight);
+    this.model.resize(setWidth, setHight);
     if (this.model.get('highlighted')) {
       this.unhighlight();
       this.highlight();
-    }
-    
-    rects.forEach((rect) => {
-      let points = this.recalculatePathPoints(newWidth, newHeight);
+    } 
+
+    rects.forEach(function(rect) {
+      let points = _this.recalculatePathPoints(setWidth, setHight);
       //set path
       rect.element.attr('.back-path/d', 'M '+ points[0] + ' L ' + points[1] + ' ' + points[2] + ' ' + points[3] + ' ' + points[4] + 'M '+ points[5] + ' L ' + points[6]  );
-    });
+    }, this.model);
   },
 
-  recalculatePathPoints(newWidth, newHeight) {
+  recalculatePathPoints(setWidth, setHight) {
       //calculating path points
       let points = A();
       points[0] = '0 0';
       points[1] = '5 -5';
-      points[2] = (newWidth + 5).toString() + ' -5';
-      points[3] = (newWidth + 5).toString() + ' ' + (newHeight - 5 ).toString();
-      points[4] = newWidth.toString() + ' ' + newHeight.toString();
-      points[5] = newWidth.toString() + ' 0';
-      points[6] = (newWidth + 5).toString() + ' -5';
+      points[2] = (setWidth + 5).toString() + ' -5';
+      points[3] = (setWidth + 5).toString() + ' ' + (setHight - 5 ).toString();
+      points[4] = setWidth.toString() + ' ' + setHight.toString();
+      points[5] = setWidth.toString() + ' 0';
+      points[6] = (setWidth + 5).toString() + ' -5';
       return points;
   }
 });
