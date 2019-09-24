@@ -4,6 +4,7 @@
 
 import { computed } from '@ember/object';
 import { A, isArray } from '@ember/array';
+import { isNone } from '@ember/utils';
 
 import FdUmlElement from './fd-uml-element';
 import { BaseObject } from './fd-uml-baseobject';
@@ -141,7 +142,7 @@ joint.shapes.flexberry.uml.UmlNodeView = joint.shapes.flexberry.uml.BaseObjectVi
     newWidth += (this.model.get('widthPadding') || 0) * 2;
     let setWidth = Math.max(newWidth, resizedWidth || oldSize.width, minWidth);
     let setHight = Math.max(newHeight, resizedHeight || oldSize.height, minHeight);
-    
+
     this.model.set('inputWidth', newWidth);
     rects.forEach(function(rect) {
       rect.element.attr('.flexberry-uml-' + rect.type + '-rect/width', setWidth);
@@ -171,5 +172,20 @@ joint.shapes.flexberry.uml.UmlNodeView = joint.shapes.flexberry.uml.BaseObjectVi
       points[5] = setWidth.toString() + ' 0';
       points[6] = (setWidth + 5).toString() + ' -5';
       return points;
+  },
+  
+  setColors() {
+    joint.shapes.flexberry.uml.BaseObjectView.prototype.setColors.apply(this, arguments);
+  
+    const brushColor = this.getBrushColor();
+    const textColor = this.getTextColor();
+
+    if (!isNone(textColor)) {
+      this.model.attr('.back-path/stroke', textColor);
+    }
+  
+    if (!isNone(brushColor)) {
+      this.model.attr('.back-path/fill', brushColor);
+    }
   }
 });
