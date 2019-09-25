@@ -61,7 +61,18 @@ export let DeploymentActiveObject = BaseObject.define('flexberry.uml.DeploymentA
       'visibility': 'visible',
     },
     '.flexberry-uml-header-rect': { 'stroke-width': 3 },
-  }
+  },
+  // Minimum width.
+  minWidth: 80,
+
+  // Minimum height.
+  minHeight: 30,
+}, {
+  getRectangles() {
+    return [
+      { type: 'header', element: this }
+    ];
+  },
 });
 
 joint.shapes.flexberry.uml.DeploymentActiveObjectView = joint.shapes.flexberry.uml.BaseObjectView.extend({
