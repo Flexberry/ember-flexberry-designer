@@ -27,7 +27,7 @@ FdActionsForUcdPrimitivesMixin, {
 
   layout,
 
-  store: service(),  
+  store: service(),
 
   /**
     Service for managing the state of the component.
@@ -120,6 +120,21 @@ FdActionsForUcdPrimitivesMixin, {
   currentTargetElement: undefined,
 
   /**
+    Сurrent pressed button is pointer.
+
+    @property currentTargetElementIsPointer
+    @type Bool
+  */
+  currentTargetElementIsPointer: computed('currentTargetElement', function() {
+    let currentTargetElement = this.get('currentTargetElement');
+    if (!isNone(currentTargetElement)) {
+      return currentTargetElement.hasClass('pointer-button');
+    }
+
+    return true;
+  }),
+
+  /**
     Сurrent diagram's paper.
 
     @property paper
@@ -128,6 +143,21 @@ FdActionsForUcdPrimitivesMixin, {
   paper: undefined,
 
   classNames: ['fd-uml-diagram-editor'],
+
+  attributeBindings: ['spellcheck'],
+
+  /**
+    Disable spellcheck for diagram elements.
+
+    @property spellcheck
+    @type Boolean
+  */
+  spellcheck: false,
+
+  /**
+   Type source element of Link
+   */
+  sourceElementType: undefined,
 
   diagramType: computed('model.constructor.modelName', function() {
     let type = this.get('model.constructor.modelName');
@@ -166,7 +196,7 @@ FdActionsForUcdPrimitivesMixin, {
     */
     fitToContent() {
       let paper = this.get('paper');
-      if (isNone(paper)) {
+      if (isNone(paper) || !this.$()) {
         return;
       }
 
@@ -228,8 +258,14 @@ FdActionsForUcdPrimitivesMixin, {
 
         if ((isNone(interactionElements) || (isArray(interactionElements) && interactionElements.includes(type)) ||
          (isArray(interactionElements.start) && interactionElements.start.includes(type)))) {
+          this.sourceElementType =  type;
           let jointjsCallback = this.get('jointjsCallback');
-          let newLink = jointjsCallback({ source: model.id });
+          let linkProperties = { source: model.id };
+          if ('segmNo' in options && options['segmNo'] >= 0) {
+            linkProperties.segmNo = options.segmNo;
+            linkProperties.percent = options.percent;
+          }
+          let newLink = jointjsCallback(linkProperties);
           newLink.set({ 'startClassRepObj': { id: get(model, 'objectModel.repositoryObject') } });
           this.set('newLink', newLink);
           return newLink;
@@ -247,14 +283,36 @@ FdActionsForUcdPrimitivesMixin, {
       let type = this.get('type');
       if (type === 'Link') {
         let element = options.element;
-        let model = element.model.attributes;
-        let type = model.type;
+        let model = element.model;
+        let attributes = model.attributes;
+        let type = attributes.type;
         let interactionElements = this.get('interactionElements');
+        let newLink = this.get('newLink');
 
         if ((isNone(interactionElements) || (isArray(interactionElements) && interactionElements.includes(type)) ||
-         (isArray(interactionElements.start) && interactionElements.start.includes(type)))) {
-          let newLink = this.get('newLink');
-          newLink.set({ 'target': { id: model.id }, 'endClassRepObj': { id: get(model, 'objectModel.repositoryObject') } });
+         (isArray(interactionElements.start) && interactionElements.start.includes(type)))
+        ) {
+          if (newLink.get('type') == 'flexberry.uml.NoteConnector' && this.sourceElementType !== 'flexberry.uml.Note' &&  type !== 'flexberry.uml.Note') {
+            return false;
+          }
+
+          let target = { id: attributes.id};
+          if (model.isLink()) {
+            let segmNo = model.isLink() ? options.segmNo : -1;
+            let percent = model.isLink() ? options.percent : 0;
+            let anchor = {
+              name: 'connectionSegmRatio',
+              args: {
+                segmNo: segmNo,
+                percent: percent
+              }
+            };
+            target.segmNo = segmNo;
+            target.percent = percent;
+            target.anchor = anchor;
+          }
+
+          newLink.set({ 'target': target, 'endClassRepObj': { id: get(attributes, 'objectModel.repositoryObject') } });
           let storeCallback = this.get('storeCallback');
           if (storeCallback) {
             let linkRecord = storeCallback({ startClassRepObj: newLink.get('startClassRepObj'), endClassRepObj: newLink.get('endClassRepObj') });
@@ -335,6 +393,20 @@ FdActionsForUcdPrimitivesMixin, {
      */
     toolbarButtonClicked(buttonName, e) {
       if (!isBlank(buttonName)) {
+        this.paper.fDDEditMode = buttonName;
+        switch (buttonName) {
+          case 'pointerClick':
+            this._enableEditLinks();
+            break;
+          case 'addNoteConnector':
+            this._enableWrapLinks();
+            break;
+          case 'addInheritance':
+            this._enableWrapBaseLinks();
+            break;
+          default:
+            this._disableEditLinks();
+        }
         this.send(buttonName, e);
       }
     },
@@ -345,7 +417,7 @@ FdActionsForUcdPrimitivesMixin, {
       @method actions.collapseEditPanelToolbar
      */
     collapseEditPanelToolbar() {
-      this.toggleProperty('_collapseEditPanelToolbar');      
+      this.toggleProperty('_collapseEditPanelToolbar');
     }
   },
 
@@ -394,6 +466,7 @@ FdActionsForUcdPrimitivesMixin, {
   clearData() {
     this._clearProperties();
     this._resetCurrentTargetElement();
+    this._enableEditLinks();
   },
 
   /**
@@ -409,6 +482,58 @@ FdActionsForUcdPrimitivesMixin, {
     this.set('interactionElements', A());
     this.set('parentElements', A());
     this.set('newLink', undefined);
+  },
+
+  _enableEditLinks: function() {
+    let paper = this.paper;
+    let links = paper.model.getLinks();
+    for (let i = 0; i < links.length; i+=1) {
+      let  link = links[i];
+      let view = link.findView(paper);
+      view.$el.removeClass('edit-disabled');
+      view.$el.removeClass('linktools-disabled');
+      if ('vertexAdd' in view.options.interactive) {
+        delete view.options.interactive.vertexAdd;
+      }
+    }
+  },
+
+  _enableWrapBaseLinks: function() {
+    let paper = this.paper;
+    let links = paper.model.getLinks();
+    for (let i = 0; i < links.length; i+=1) {
+      let  link = links[i];
+      let view = link.findView(paper);
+      if (link.get('type') == 'flexberry.uml.Generalization' && !link.connectedToLine()) {
+        view.$el.removeClass('edit-disabled');
+        view.$el.addClass('linktools-disabled');
+        view.options.interactive.vertexAdd = false;
+      } else {
+        view.$el.addClass('edit-disabled');
+      }
+    }
+  },
+
+  _enableWrapLinks: function() {
+    let paper = this.paper;
+    let links = paper.model.getLinks();
+    for (let i = 0; i < links.length; i+=1) {
+      let  link = links[i];
+      let view = link.findView(paper);
+      view.$el.removeClass('edit-disabled');
+      view.$el.addClass('linktools-disabled');
+      view.options.interactive.vertexAdd = false;
+    }
+  },
+
+  _disableEditLinks: function() {
+    let paper = this.paper;
+    let links = paper.model.getLinks();
+    for (let i = 0; i < links.length; i+=1) {
+      let  link = links[i];
+      let view = link.findView(paper);
+      view.$el.addClass('edit-disabled');
+    }
   },
 
   /**

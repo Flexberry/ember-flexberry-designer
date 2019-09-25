@@ -1,4 +1,5 @@
 import Mixin from '@ember/object/mixin';
+import { inject as service } from '@ember/service';
 import RepositoryAccessModifier  from '../../enums/s-t-o-r-m-c-a-s-e-repository-access-modifier';
 
 /**
@@ -8,6 +9,14 @@ import RepositoryAccessModifier  from '../../enums/s-t-o-r-m-c-a-s-e-repository-
   @uses <a href="http://emberjs.com/api/classes/Ember.Mixin.html">Ember.Mixin</a>
 */
 export default Mixin.create({
+
+  /**
+    Store of current application.
+
+    @property store
+    @type DS.Store or subclass
+  */
+  store: service(),
 
   /**
     Table headers for attribute.

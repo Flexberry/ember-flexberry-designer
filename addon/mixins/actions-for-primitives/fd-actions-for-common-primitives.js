@@ -42,7 +42,7 @@ export default Mixin.create({
         let jsonObject = getJsonForElement(
           'STORMCASE.UML.Common.Note, UMLCommon',
           { x, y },
-          { width: 100, height: 40 },
+          { width: 80, height: 20 },
           { Name: '' }
         );
         let noteObject = FdUmlNote.create({ primitive: jsonObject });
@@ -66,7 +66,12 @@ export default Mixin.create({
           linkProperties.source,
           null,
           linkProperties.target,
-          null
+          null,
+          A(),
+          { Name: '' },
+          { NamePos: 0.0 },
+          undefined,
+          {'segmNo': linkProperties.segmNo, 'percent': linkProperties.percent}
         );
 
         let noteConnectorObject = FdUmlNoteConnector.create({ primitive: jsonObject });

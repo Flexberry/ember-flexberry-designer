@@ -85,15 +85,15 @@ export default Mixin.create({
         let newClass = store.createRecord('fd-dev-class', {
           id: id,
           stage: stage,
-          caption: freeName,
-          description: freeName,
+          caption: '',
+          description: '',
           name: freeName,
           nameStr: freeName,
           attributesStr: '',
           methodsStr: '',
         });
         newClass.incrementProperty('referenceCount');
-        let umlClass = FdUmlClass.create({ primitive: getJsonForClass(newClass, null, 0, { location: { X, Y } }), isCreated: true });
+        let umlClass = FdUmlClass.create({ primitive: getJsonForClass(newClass, { X, Y }), isCreated: true });
 
         this._addToPrimitives(umlClass);
 
@@ -130,7 +130,7 @@ export default Mixin.create({
         newAssociation.setLabelText('endMultiplicity', '*');
 
         return newAssociation;
-      }).bind(this), e, A(['flexberry.uml.Class', 'flexberry.uml.TemplateClass', 'flexberry.uml.ClassCollapsed']), function(linkProperties) {
+      }).bind(this), e, A(['flexberry.uml.Class', 'flexberry.uml.TemplateClass', 'flexberry.uml.ClassCollapsed', 'flexberry.uml.Generalization']), function(linkProperties) {
         let store = this.get('store');
         let stage = this.get('currentProjectContext').getCurrentStageModel();
 
@@ -251,6 +251,12 @@ export default Mixin.create({
      */
     addInheritance(e) {
       this.createLinkData((function(linkProperties) {
+        if (!('segmNo' in linkProperties)) {
+          linkProperties.segmNo = -1;
+        }
+        if (!('percent' in linkProperties)) {
+          linkProperties.percent = 0;
+        }
         let jsonObject = getJsonForLink(
           'STORMCASE.UML.cad.Inheritance, UMLCAD',
           linkProperties.source,
@@ -259,7 +265,9 @@ export default Mixin.create({
           null,
           A(),
           { Name: '' },
-          { NamePos: 0.0 }
+          { NamePos: 0.0 },
+          undefined,
+          {'segmNo': linkProperties.segmNo, 'percent': linkProperties.percent}
         );
 
         let inheritanceObject = FdUmlGeneralization.create({ primitive: jsonObject });
@@ -268,7 +276,7 @@ export default Mixin.create({
         this._addToPrimitives(inheritanceObject);
 
         return inheritanceObject.JointJS();
-      }).bind(this), e, A(['flexberry.uml.Class', 'flexberry.uml.TemplateClass']), function(linkProperties) {
+      }).bind(this), e, A(['flexberry.uml.Class', 'flexberry.uml.TemplateClass', 'flexberry.uml.Generalization']), function(linkProperties) {
         let store = this.get('store');
         let stage = this.get('currentProjectContext').getCurrentStageModel();
 
@@ -382,7 +390,7 @@ export default Mixin.create({
         let jsonObject = getJsonForElement(
           'STORMCASE.UML.cad.Instance, UMLCAD',
           { x, y },
-          { width: 80, height: 30 },
+          { width: 80, height: 20 },
           { Name: '' }
         );
         let instance = FdUmlInstance.create({ primitive: jsonObject });
@@ -404,7 +412,7 @@ export default Mixin.create({
         let jsonObject = getJsonForElement(
           'STORMCASE.UML.cad.ActiveObject, UMLCAD',
           { x, y },
-          { width: 80, height: 30 },
+          { width: 80, height: 20 },
           { Name: '' }
         );
         let activeObject = FdUmlActiveObject.create({ primitive: jsonObject });
@@ -426,7 +434,7 @@ export default Mixin.create({
         let jsonObject = getJsonForElement(
           'STORMCASE.UML.cad.MultiObject, UMLCAD',
           { x, y },
-          { width: 80, height: 30 },
+          { width: 80, height: 20 },
           { Name: '' }
         );
         let multiObject = FdUmlMultiObject.create({ primitive: jsonObject });
@@ -448,7 +456,7 @@ export default Mixin.create({
         let jsonObject = getJsonForElement(
           'STORMCASE.UML.cad.PropertyObject, UMLCAD',
           { x, y },
-          { width: 80, height: 40 },
+          { width: 80, height: 34 },
           { Name: '', Prop: '' }
         );
         let propertyObject = FdUmlPropertyObject.create({ primitive: jsonObject });
@@ -470,7 +478,7 @@ export default Mixin.create({
         let jsonObject = getJsonForElement(
           'STORMCASE.UML.cad.NarLink, UMLCAD',
           { x, y },
-          { width: 40, height: 40 },
+          { width: 80, height: 40 },
           { Name: '' }
         );
         let naryAssociation = FdUmlNAryAssociation.create({ primitive: jsonObject });
@@ -656,7 +664,7 @@ export default Mixin.create({
         let jsonObject = getJsonForElement(
           'STORMCASE.UML.cad.Package, UMLCAD',
           { x, y },
-          { width: 60, height: 40 },
+          { width: 80, height: 34 },
           { Name: '', Prop: '' }
         );
         let packageObject = FdUmlPackage.create({ primitive: jsonObject });

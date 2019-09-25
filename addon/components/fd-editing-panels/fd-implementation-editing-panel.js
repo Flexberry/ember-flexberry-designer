@@ -14,6 +14,14 @@ export default Component.extend(
   layout,
 
   /**
+    Store of current application.
+
+    @property store
+    @type DS.Store or subclass
+  */
+  store: service('store'),
+
+  /**
     Classes data.
 
     @property model
@@ -21,14 +29,6 @@ export default Component.extend(
     @default undefined
   */
   model: undefined,
-
-  /**
-    Service for managing the state of the sheet component.
-
-    @property fdSheetService
-    @type FdSheetService
-  */
-  fdSheetService: service(),
 
   /**
     Table headers for view.
@@ -70,13 +70,22 @@ export default Component.extend(
       @method actions.createView
     */
     createView() {
-      /*let store = this.get('store');
+      let store = this.get('store');
       let model = this.get('model');
       let view = store.createRecord('fd-dev-view', {
         class: model
       });
 
-      this.send('openViewSheet', view);*/
+      this.send('openViewSheet', view);
+    },
+
+    /**
+      Method edit view.
+
+      @method actions.createView
+    */
+    editView(view) {
+      this.send('openViewSheet', view);
     },
 
     /**

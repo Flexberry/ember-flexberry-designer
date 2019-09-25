@@ -93,6 +93,9 @@
     &.complex-transition-input {
       min-width: 1px;
     }
+    &.under-class-name-input {
+      margin: 0;
+    }
   }
   &.params-input {
     resize: none;
@@ -104,6 +107,7 @@
     resize: none;
     line-height: 1.1;
     overflow: hidden;
+    text-align: center;
   }
   &.package-header-input {
     font-weight: normal;
@@ -155,6 +159,12 @@
 .edit-disabled {
   pointer-events: none;
   .connection-wrap, .marker-arrowhead, .link-tools, .marker-vertices {
+    display: none;
+  }
+}
+
+.linktools-disabled {
+  .link-tools, .marker-vertices, .marker-arrowhead {
     display: none;
   }
 }
@@ -249,5 +259,17 @@
   .collapse-button,
   .open-edit-form-button {
     cursor: pointer;
+  }
+
+  .right-size-button {
+    cursor: ew-resize;
+  }
+
+  .down-size-button {
+    cursor: ns-resize;
+  }
+
+  .right-down-size-button {
+    cursor: nwse-resize;
   }
 }

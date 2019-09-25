@@ -2,6 +2,7 @@
   @module ember-flexberry-designer
 */
 import joint from 'npm:jointjs';
+import { isNone } from '@ember/utils';
 
 import FdUmlLink from './fd-uml-link';
 import { Link } from './fd-uml-link';
@@ -43,6 +44,17 @@ export let Dependency = Link.define('flexberry.uml.Dependency', {
     '.connection': { stroke: 'black', 'stroke-width': 1, 'stroke-dasharray': '7 2' },
     rect: { visibility: 'hidden' }
   },
-});
 
-joint.shapes.flexberry.uml.DependencyView = DescriptionView;
+}, {});
+
+joint.shapes.flexberry.uml.DependencyView = DescriptionView.extend({
+  setColors() {
+    DescriptionView.prototype.setColors.apply(this, arguments);
+
+    const textColor = this.getTextColor();
+
+    if (!isNone(textColor)) {
+      this.model.attr('.marker-target/stroke', textColor);
+    }
+  }
+});

@@ -299,6 +299,7 @@
   sheetComponentName=sheetComponentName
   readonly=(not selectedElement.model.data.isNew)
   toolbarVisible=(not isAddMode)
+  isNewModel=selectedElement.model.data.isNew
 }}
   {{#if isAddMode}}
     {{fd-editing-panels/fd-create-entity
@@ -308,6 +309,7 @@
     {{#if (known-for-type (concat "fd-editing-panels/fd-" componentNamePart "-editing-panel"))}}
       {{component (concat "fd-editing-panels/fd-" componentNamePart "-editing-panel")
         model=selectedElement.model.data
+        dataobject=selectedElement.dataobject
         openViewSheetController=(action 'openViewSheet')
       }}
     {{else}}
@@ -319,14 +321,17 @@
 {{/fd-sheet}}
 
 {{#fd-sheet
-  title=selectedElement.model.name
-  saveController=(action 'save')
+  title=selectedView.name
+  saveController=(action 'saveView')
+  deleteController=(action 'deleteView')
   sheetComponentName=sheetViewName
   readonly=false
+  isNewModel=selectedView.isNew
 }}
-  {{!--{{fd-editing-panels/fd-create-view
-    model=selectedElement.model.name
+
+  {{fd-editing-panels/fd-create-view
+    model=selectedElement.model.data
     view=selectedView
-  }}--}}
+  }}
 
 {{/fd-sheet}}

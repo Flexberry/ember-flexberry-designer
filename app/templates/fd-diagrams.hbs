@@ -217,6 +217,7 @@
   deleteController=(action 'delete')
   sheetComponentName=sheetComponentName
   toolbarVisible=(not isAddMode)
+  isNewModel=selectedElement.model.data.isNew
 }}
   {{#if isAddMode}}
     {{fd-editing-panels/fd-create-diagrams
@@ -239,6 +240,7 @@
   saveController=(action "saveEditableObject")
   sheetComponentName=objectEditFormSheet
   readonly=true
+  isNewModel=true
 }}
   {{#if (known-for-type (concat "fd-editing-panels/fd-" objectEditFormNamePart "-editing-panel"))}}
     {{component (concat "fd-editing-panels/fd-" objectEditFormNamePart "-editing-panel")

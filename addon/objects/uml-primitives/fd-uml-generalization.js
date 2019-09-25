@@ -2,9 +2,9 @@
   @module ember-flexberry-designer
 */
 import joint from 'npm:jointjs';
+import { isNone } from '@ember/utils';
 
-import FdUmlLink from './fd-uml-link';
-import { Link } from './fd-uml-link';
+import FdUmlLink, { Link } from './fd-uml-link';
 import { DescriptionView } from './links-view/fd-description-view';
 
 /**
@@ -42,4 +42,19 @@ export let Generalization = Link.define('flexberry.uml.Generalization', {
  }
 });
 
-joint.shapes.flexberry.uml.GeneralizationView = DescriptionView;
+joint.shapes.flexberry.uml.GeneralizationView = DescriptionView.extend({
+  setColors() {
+    DescriptionView.prototype.setColors.apply(this, arguments);
+
+    const textColor = this.getTextColor();
+    const brushColor = this.getBrushColor();
+
+    if (!isNone(textColor)) {
+      this.model.attr('.marker-source/stroke', textColor);
+    }
+
+    if (!isNone(brushColor)) {
+      this.model.attr('.marker-source/fill', brushColor);
+    }
+  }
+});

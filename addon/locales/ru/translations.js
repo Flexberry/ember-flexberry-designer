@@ -130,6 +130,8 @@ import FdApplicationEditingPanel from './components/fd-application-editing-panel
 import FdInterfaceEditingPanel from './components/fd-interface-editing-panel';
 import FdBsEditingPanel from './components/fd-businessserver-editing-panel';
 import FdEnumEditingPanel from './components/fd-enumeration-editing-panel';
+import FdEditFormEditingPanel from './components/fd-editform-editing-panel';
+import FdListFormEditingPanel from './components/fd-listform-editing-panel';
 import FdCreateView from './components/fd-create-view';
 import FdCreateEntity from './components/fd-create-entity';
 import FdCreateDiagrams from './components/fd-create-diagrams';
@@ -137,6 +139,7 @@ import FdSheet from './components/fd-sheet';
 import FdCreateNodeEditingPanel from './components/fd-create-node-editing-panel';
 import FdFolderEditingPanel from './components/fd-folder-editing-panel';
 import FdPropertyEditingPanel from './components/fd-property-editing-panel';
+import FdViewDefinitionItem from './components/fd-view-definition-item';
 import FdApplicationModelForm from './forms/fd-application-model';
 
 const translations = {};
@@ -434,6 +437,8 @@ $.extend(true, translations, {
     'fd-interface-editing-panel': FdInterfaceEditingPanel,
     'fd-businessserver-editing-panel': FdBsEditingPanel,
     'fd-enumeration-editing-panel': FdEnumEditingPanel,
+    'fd-editform-editing-panel': FdEditFormEditingPanel,
+    'fd-listform-editing-panel': FdListFormEditingPanel,
     'fd-create-view': FdCreateView,
     'fd-sheet': FdSheet,
     'fd-create-node-editing-panel': FdCreateNodeEditingPanel,
@@ -441,6 +446,7 @@ $.extend(true, translations, {
     'fd-property-editing-panel': FdPropertyEditingPanel,
     'fd-create-entity': FdCreateEntity,
     'fd-create-diagrams': FdCreateDiagrams,
+    'fd-view-definition-item': FdViewDefinitionItem,
   }
 
 });

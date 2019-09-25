@@ -5,8 +5,9 @@ import { A } from '@ember/array';
 import { inject as service } from '@ember/service';
 import { updateStrByObjects } from '../utils/fd-update-str-value';
 import { translationMacro as t } from 'ember-i18n';
-import { resolve } from 'rsvp';
 import $ from 'jquery';
+import { resolve } from 'rsvp';
+import { createClassPrimitive, deletePrimitives } from '../utils/fd-update-class-diagram';
 
 import FdSaveHasManyRelationshipsMixin from '../mixins/fd-save-has-many-relationships';
 
@@ -131,7 +132,7 @@ export default Controller.extend(FdSaveHasManyRelationshipsMixin, {
     let selectedElement = this.get('selectedElement');
     if (!isNone(selectedElement)) {
       let stereotype = selectedElement.get('model.data.stereotype');
-      if (isNone(stereotype)) {
+      if (isBlank(stereotype)) {
         return 'implementation';
       }
 
@@ -218,7 +219,7 @@ export default Controller.extend(FdSaveHasManyRelationshipsMixin, {
   */
   updateClassModel(modelSelectedElement) {
     let stereotype = modelSelectedElement.get('stereotype');
-    if (stereotype === '«implementation»' || stereotype === null) {
+    if (stereotype === '«implementation»' || isBlank(stereotype)) {
       let model = this.get('model');
       let classObj = model.classes.findBy('settings.data.id', modelSelectedElement.id);
       let bs = modelSelectedElement.get('businessServerClass');
@@ -254,10 +255,17 @@ export default Controller.extend(FdSaveHasManyRelationshipsMixin, {
   */
   closeSheet(sheetName) {
     let sheetComponentName = this.get('sheetComponentName');
+    let sheetViewName = this.get('sheetViewName');
     if (sheetComponentName === sheetName) {
       this.deactivateListItem();
       this.closeViewSheet();
       this.set('selectedElement', undefined);
+    } else if (sheetViewName === sheetName) {
+      let selectedView = this.get('selectedView');
+      if (!isNone(selectedView)) {
+        selectedView.rollbackAll();
+        this.set('selectedView', undefined);
+      }
     }
   },
 
@@ -271,7 +279,6 @@ export default Controller.extend(FdSaveHasManyRelationshipsMixin, {
     let fdSheetService = this.get('fdSheetService');
     if (fdSheetService.isVisible(sheetViewName)) {
       fdSheetService.closeSheet(sheetViewName);
-      this.set('selectedView', undefined);
     }
   },
 
@@ -285,6 +292,7 @@ export default Controller.extend(FdSaveHasManyRelationshipsMixin, {
     let findArray;
     switch (model.get('stereotype')) {
       case null:
+      case '':
       case '«implementation»':
         findArray = this.get('model.classes');
         break;
@@ -361,29 +369,50 @@ export default Controller.extend(FdSaveHasManyRelationshipsMixin, {
     */
     save() {
       let model = this.get('selectedElement.model.data');
+
+      if ((model.get('stereotype') === '«editform»' || model.get('stereotype') === '«listform»') && isNone(model.get('formViews.firstObject.view'))) {
+        throw new Error(`Составное представление не указано`);
+      }
+
       this.get('appState').loading();
       updateStrByObjects(model);
 
-      if (model.get('isNew')) {
+      let isNew = model.get('isNew');
+      if (isNew) {
+        model.set('nameStr', model.get('name'));
         this.addNewClassInModel();
       }
 
       model.save()
+      .then(() => this.saveHasManyRelationships(model))
       .then(() => {
-        let stereotype = model.get('stereotype');
-        if (stereotype === '«editform»' || stereotype === '«listform»') {
-          return model.get('formViews.firstObject.view').save();
+        if (isNew) {
+          let diagram = createClassPrimitive(this.get('store'), this.get('currentProjectContext'), model);
+          return diagram.save();
         }
 
         return resolve();
       })
-      .then(() => this.saveHasManyRelationships(model))
       .then(() => {
         this.updateClassModel(model);
       })
       .catch((error) => {
         this.set('error', error);
       })
+      .finally(() => {
+        this.get('appState').reset();
+      });
+    },
+
+    /**
+      Save 'selectedView'.
+
+       @method actions.saveView
+    */
+    saveView() {
+      let view = this.get('selectedView');
+      this.get('appState').loading();
+      view.save()
       .finally(() => {
         this.get('appState').reset();
       });
@@ -432,15 +461,8 @@ export default Controller.extend(FdSaveHasManyRelationshipsMixin, {
       });
 
       if (!isBlank(dataobject) && !(dataobject instanceof $.Event)) {
-        let view = store.createRecord('fd-dev-view', {
-          class: dataobject,
-          name: '',
-          definition: A()
-        });
-
         let formView = store.createRecord('fd-dev-form-view', {
-          class: dataobject,
-          view: view,
+          view: null,
           orderNum: 1
         });
 
@@ -450,7 +472,7 @@ export default Controller.extend(FdSaveHasManyRelationshipsMixin, {
       let model = { data: newClass, active: true };
 
       this.set('isAddMode', false);
-      this.get('fdSheetService').openSheet(this.get('sheetComponentName'), EmberObject.create({ model: model }));
+      this.get('fdSheetService').openSheet(this.get('sheetComponentName'), EmberObject.create({ model: model, dataobject: dataobject }));
     },
 
     /**
@@ -459,6 +481,7 @@ export default Controller.extend(FdSaveHasManyRelationshipsMixin, {
        @method actions.delete
     */
     delete() {
+      const store = this.get('store');
       let selectedElement = this.get('selectedElement.model.data');
       let modelHash = this.getModelArrayByStereotype(selectedElement);
 
@@ -472,21 +495,31 @@ export default Controller.extend(FdSaveHasManyRelationshipsMixin, {
         }
       }
 
-      if (stereotype === '«implementation»' || stereotype === null) {
+      if (stereotype === '«implementation»' || isBlank(stereotype)) {
         let deleteObjectClass = modelHash.findBy('settings.data.id', selectedElement.id);
         deleteModels.pushObjects(deleteObjectClass.listForms);
         deleteModels.pushObjects(deleteObjectClass.editForms);
         deleteObject = deleteObjectClass.settings;
+        modelHash.removeObject(deleteObjectClass);
       } else {
         deleteObject = modelHash.findBy('data.id', selectedElement.id);
+        modelHash.removeObject(deleteObject);
       }
 
-      modelHash.removeObject(deleteObject);
-
       this.get('appState').loading();
-      /*deleteModels.pushObject(selectedElement);
-      this.get('store').batchUpdate(deleteModels.map(a => a.data.deleteRecord()))*/
-      deleteObject.data.destroyRecord() // TODO убрать при появлении batchUpdate.
+
+      deleteModels.pushObject(deleteObject);
+      let modelsForBatchUpdate = deleteModels.map((a) => {
+        let data = a.data;
+        data.deleteRecord();
+
+        return data;
+      });
+
+      let primitivesOnDelete = deletePrimitives(store, this.get('currentProjectContext'), deleteModels.map((a) => a.data));
+      A(modelsForBatchUpdate).pushObjects(primitivesOnDelete);
+
+      store.batchUpdate(modelsForBatchUpdate)
       .then(() => {
         this.set('selectedElement', undefined);
         this.get('fdSheetService').closeSheet(this.get('sheetComponentName'));
@@ -495,5 +528,24 @@ export default Controller.extend(FdSaveHasManyRelationshipsMixin, {
         this.get('appState').reset();
       });
     },
+
+    /**
+      Delete selected view.
+
+       @method actions.deleteView
+    */
+    deleteView() {
+      let view = this.get('selectedView');
+
+      this.get('appState').loading();
+      view.destroyRecord()
+      .then(() => {
+        this.set('selectedView', undefined);
+        this.get('fdSheetService').closeSheet(this.get('sheetViewName'));
+      })
+      .finally(() => {
+        this.get('appState').reset();
+      });
+    }
   }
 });

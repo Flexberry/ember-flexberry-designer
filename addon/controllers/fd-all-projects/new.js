@@ -5,11 +5,11 @@
 import Controller from '@ember/controller';
 import FdPreloadStageMetadata from 'ember-flexberry-designer/utils/fd-preload-stage-metadata';
 import { computed } from '@ember/object';
-import { isNone } from '@ember/utils';
-import { A } from '@ember/array';
+import { isNone, isBlank } from '@ember/utils';
 import { inject as service } from '@ember/service';
 import { Promise } from 'rsvp';
-import uuid from 'npm:node-uuid';
+import Builder from 'ember-flexberry-data/query/builder';
+import { transliteration } from 'ember-flexberry-designer/utils/fd-transliteration';
 
 /**
   The controller for the project creation form.
@@ -27,12 +27,28 @@ export default Controller.extend({
   projectName: undefined,
 
   /**
+    The product name.
+
+    @property productName
+    @type String
+  */
+  productName: undefined,
+
+  /**
     The project description.
 
     @property projectDescription
     @type String
   */
   projectDescription: undefined,
+
+  /**
+    Access value.
+
+    @property accessIsPublic
+    @type Bool
+  */
+  accessIsPublic: true,
 
   /**
     Service for managing the state of the application.
@@ -60,7 +76,8 @@ export default Controller.extend({
     // Parts of `forms/fd-all-projects` locale keys.
     let examples = ['library', 'school', 'university', 'museum', 'gallery'];
     let example = examples[Math.floor(Math.random() * examples.length)];
-    return `forms.fd-all-projects.name-examples.${example}`;
+
+    return example;
   }).readOnly(),
 
   /**
@@ -79,6 +96,17 @@ export default Controller.extend({
   */
   queryParams: ['nameFromSearch'],
 
+  /**
+    Check lexical structure.
+
+    @method keyPressPattern
+  */
+  keyPressPattern(e) {
+    if(!((e.keyCode >= 48 && e.keyCode <= 57) || (e.keyCode >= 65 && e.keyCode <= 90) || (e.keyCode >= 97 && e.keyCode <= 122) || e.keyCode === 95)) {
+      e.preventDefault();
+    }
+  },
+
   actions: {
     /**
       Cancel create new stage.
@@ -95,60 +123,44 @@ export default Controller.extend({
       @method actions.createStage
     */
     createStage() {
-      let store = this.get('store');
-      let currentProjectContext = this.get('currentProjectContext');
+      const store = this.get('store');
+      const currentProjectContext = this.get('currentProjectContext');
 
-      let repository = this.get('model.repository');
-      let project = this.get('model.project');
-      let configuration = this.get('model.configuration');
+      let configuration = currentProjectContext.getCurrentConfigurationModel();
 
-      let updateData = A();
-      if (isNone(repository)) {
-        repository = store.createRecord('fd-repository', {
-          name: 'customRepository',
-          id: uuid.v4()
-        });
+      return new Promise(function(resolve) {
+        if (isNone(configuration)) {
+          const modelName = 'fd-configuration';
+          const builder = new Builder(store)
+          .from(modelName)
+          .selectByProjection('ListFormView')
+          .top(1);
 
-        updateData.pushObject(repository);
-      }
-
-      if (isNone(project)) {
-        project = store.createRecord('fd-project', {
-          name: 'customProject',
-          repository: repository,
-          id: uuid.v4()
-        });
-
-        updateData.pushObject(project);
-      }
-
-      if (isNone(configuration)) {
-        configuration = store.createRecord('fd-configuration', {
-          name: 'customConfiguration',
-          project: project,
-          id: uuid.v4()
-        });
-
-        updateData.pushObject(configuration);
-      }
-
-      let stage = store.createRecord('fd-dev-stage', {
-        name: this.get('projectName'),
-        description: this.get('projectDescription'),
-        configuration: configuration,
-      });
-
-      this.get('appState').loading();
-
-      new Promise(function(resolve) {
-        if (updateData.length > 0) {
-          resolve(store.batchUpdate(updateData));
+          store.query(modelName, builder.build()).then(result => {
+            configuration = result.firstObject;
+            resolve();
+          });
         } else {
           resolve();
         }
       })
-      .then(() => stage.save())
       .then(() => {
+        const projectName = this.get('projectName');
+        const productName = this.get('productName');
+
+        const product = isBlank(productName) ? transliteration(projectName) : productName;
+        const stage = store.createRecord('fd-dev-stage', {
+          name: projectName,
+          product: product,
+          description: this.get('projectDescription'),
+          configuration: configuration,
+        });
+
+        this.get('appState').loading();
+
+        return stage.save();
+      })
+      .then((stage) => {
         currentProjectContext.setCurrentConfiguration(configuration);
         currentProjectContext.setCurrentStage(stage);
 
@@ -156,10 +168,9 @@ export default Controller.extend({
       })
       .then(() => currentProjectContext.getAutogeneratedSystemPromise())
       .then(() => {
-        this.get('appState').reset();
         this.transitionToRoute('fd-application-model');
       })
-      .catch(() => {
+      .finally(() => {
         this.get('appState').reset();
       });
     }

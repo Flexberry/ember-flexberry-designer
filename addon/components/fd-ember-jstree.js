@@ -110,7 +110,9 @@ export default Component.extend({
   /**
     Flag: indicates whether reload data with close node.
 
-    @method reloadDataAtClose
+    @property reloadDataAtClose
+    @type Bool
+    @default false
   */
   reloadDataAtClose: false,
 
@@ -150,7 +152,7 @@ export default Component.extend({
     */
     handleTreeDidSelectNode(node) {
       let selectNodeAction = this.get('selectNodeAction');
-      if (selectNodeAction && typeof selectNodeAction === 'function') {
+      if (typeof selectNodeAction === 'function') {
         selectNodeAction(node, this.get('store'));
       }
     },
@@ -179,12 +181,17 @@ export default Component.extend({
       let childrenNode = this.get('loadDataNode')(data.node.original, this.get('store'));
       let promise = resolve(childrenNode);
       promise.then((childrenNode)=> {
-        childrenNode.forEach((node) => {
-          jstree.create_node(data.node, node, 'last', null, true);
-        });
-
         data.node.state.loaded = true;
-        jstree.open_node(data.node);
+        if (childrenNode.length === 0) {
+          let $node = jstree.get_node(data.node, true);
+          $node.removeClass('jstree-closed');
+        } else {
+          childrenNode.forEach((node) => {
+            jstree.create_node(data.node, node, 'last', null, true);
+          });
+
+          jstree.open_node(data.node);
+        }
       });
     }
   },

@@ -5,143 +5,137 @@ import RepositoryAccessModifier  from '../enums/s-t-o-r-m-c-a-s-e-repository-acc
   Update Attributes.
 */
 let updateAttributes = function(classObject, store) {
-  let attributesStr = classObject.get('attributesStr');
+  const attributesStr = classObject.get('attributesStr');
   if (isNone(attributesStr) || isBlank(attributesStr.trim())) {
     return '';
   }
 
-  let attributes = classObject.get('attributes');
-  let copyAttributes = attributes.slice();
+  const attributes = classObject.get('attributes');
+  const copyAttributes = attributes.slice();
   copyAttributes.forEach((attr) => attr.deleteRecord());
 
   let regexStr;
   if (classObject.get('stereotype') === '«enumeration»') {
-    regexStr = /()()(\w+)()(\s*=\s*(.+))?/i;
+    regexStr = /()()([\wа-я]+)()(\s*=\s*(.+))?/i;
   } else {
-    regexStr = /([/]?)([+\-#]?)(\w+)\s*:\s*([\wа-яА-Я]+)(\s*=\s*(.+))?/i;
+    regexStr = /([/]?)([+\-#]?)([\wа-я]+)\s*:\s*([\wа-я]+)(\s*=\s*(.+))?/i;
   }
 
-  let attributesStrArray = attributesStr.split('\n');
-  let resultMatch = attributesStrArray.map((attStr) => {
+  const attributesStrArray = attributesStr.split('\n');
+  const resultMatch = attributesStrArray.map((attStr) => {
     return attStr.match(regexStr);
   });
 
-  let errorMatch = resultMatch.indexOf(null);
-  if (errorMatch === -1) {
-      resultMatch.forEach((result) => {
-        let stored = result[1];
-        let modifier = result[2];
-        let attrName = result[3];
-        let attrType = result[4];
-        let defaultVal = result[6];
+  resultMatch.forEach((result) => {
+    if (!isNone(result)) {
+      const stored = result[1];
+      const modifier = result[2];
+      const attrName = result[3];
+      const attrType = result[4];
+      const defaultVal = result[6];
 
-        let attribute = attributes.findBy('name', attrName);
-        if (isNone(attribute)) {
-          attribute = store.createRecord('fd-dev-attribute', {
-            class: classObject,
-            name: attrName
-          });
-        } else {
-          attribute.rollbackAttributes();
-        }
+      let attribute = attributes.findBy('name', attrName);
+      if (isNone(attribute)) {
+        attribute = store.createRecord('fd-dev-attribute', {
+          class: classObject,
+          name: attrName
+        });
+      } else {
+        attribute.rollbackAttributes();
+      }
 
-        attribute.set('stored', stored === '');
-        attribute.set('type', attrType);
-        attribute.set('defaultValue', defaultVal || null);
+      attribute.set('stored', stored === '');
+      attribute.set('type', attrType);
+      attribute.set('defaultValue', defaultVal || null);
 
-        switch (modifier) {
-          case '':
-            attribute.set('accessModifier', RepositoryAccessModifier.Public);
-            break;
-          default:
-            attribute.set('accessModifier', modifier);
-        }
-      });
+      switch (modifier) {
+        case '':
+          attribute.set('accessModifier', RepositoryAccessModifier.Public);
+          break;
+        default:
+          attribute.set('accessModifier', modifier);
+      }
+    }
+  });
 
-      return '';
-  } else {
-    return 'Invalid attribute:' + attributesStrArray[errorMatch] + '. ';
-  }
+  return '';
 };
 
 /**
   Update Methods.
 */
 let updateMethods = function(classObject, store) {
-  let methodsStr = classObject.get('methodsStr');
+  const methodsStr = classObject.get('methodsStr');
   if (isNone(methodsStr) || isBlank(methodsStr.trim())) {
     return '';
   }
 
-  let methods = classObject.get('methods');
-  let copyMethods = methods.slice();
+  const methods = classObject.get('methods');
+  const copyMethods = methods.slice();
   copyMethods.map((delMethod) => {
     delMethod.deleteRecord();
   });
 
-  let regexStr = /([/]?)([+\-#]?)(\w+)(<([\w:,;]+)>)?\((.+)?\)(\s*:\s*(\w+))?/i;
-  let methodsStrArray = methodsStr.split('\n');
-  let resultMatch = methodsStrArray.map((methStr) => {
+  const regexStr = /([/]?)([+\-#]?)([\wа-я]+)(<([\wа-я:,;]+)>)?\((.+)?\)(\s*:\s*([\wа-я]+))?/i;
+  const methodsStrArray = methodsStr.split('\n');
+  const resultMatch = methodsStrArray.map((methStr) => {
     return methStr.match(regexStr);
   });
 
-  let errorMatch = resultMatch.indexOf(null);
-  if (errorMatch === -1) {
-      resultMatch.forEach((result) => {
-        let methEvent = result[1];
-        let modifier = result[2];
-        let methName = result[3];
-        let methParams = result[6];
-        let methType = result[8];
-        let methTypeParams = result[5];
+  resultMatch.forEach((result) => {
+    if (!isNone(result)) {
+      const methEvent = result[1];
+      const modifier = result[2];
+      const methName = result[3];
+      const methParams = result[6];
+      const methType = result[8];
+      const methTypeParams = result[5];
 
-        let sortMethParams = function(str) {
-          if (!isBlank(str)) {
-            let array = str.split(',');
-            let newArray = array.sort();
+      const sortMethParams = function(str) {
+        if (!isBlank(str)) {
+          const array = str.split(',');
+          const newArray = array.sort();
 
-            return newArray.join(',');
-          }
-
-          return '';
-        };
-
-        let methParamsSort = sortMethParams(methParams);
-        let method = methods.find(function(meth) {
-          let name = meth.get('name');
-          let params = sortMethParams(meth.get('parametersStr'));
-          if (name === methName && params === methParamsSort) {
-            return meth;
-          }
-        });
-
-        if (isNone(method)) {
-          method = store.createRecord('fd-dev-method', {
-            class: classObject,
-            name: methName
-          });
-        } else {
-          method.rollbackAttributes();
+          return newArray.join(',');
         }
 
-        method.set('isEvent', methEvent === '/');
-        method.set('parametersStr', methParamsSort);
-        method.set('type', methType);
-        method.set('typeParametersStr', methTypeParams || '');
+        return '';
+      };
 
-        switch (modifier) {
-          case '':
-            method.set('accessModifier', RepositoryAccessModifier.Public);
-            break;
-          default:
-            method.set('accessModifier', modifier);
+      const methParamsSort = sortMethParams(methParams);
+      let method = methods.find(function(meth) {
+        const name = meth.get('name');
+        const params = sortMethParams(meth.get('parametersStr'));
+        if (name === methName && params === methParamsSort) {
+          return meth;
         }
       });
 
-      return '';
-  } else {
-    return 'Invalid method: ' + methodsStrArray[errorMatch] + '.';
-  }
+      if (isNone(method)) {
+        method = store.createRecord('fd-dev-method', {
+          class: classObject,
+          name: methName
+        });
+      } else {
+        method.rollbackAttributes();
+      }
+
+      method.set('isEvent', methEvent === '/');
+      method.set('parametersStr', methParamsSort);
+      method.set('type', methType);
+      method.set('typeParametersStr', methTypeParams || '');
+
+      switch (modifier) {
+        case '':
+          method.set('accessModifier', RepositoryAccessModifier.Public);
+          break;
+        default:
+          method.set('accessModifier', modifier);
+      }
+    }
+  });
+
+  return '';
 };
 
 /**

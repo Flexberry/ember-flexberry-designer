@@ -56,6 +56,17 @@ export default FdUmlElement.extend({
   @constructor
 */
 export let Instance = BaseObject.define('flexberry.uml.Instance', {
+  // Minimum width.
+  minWidth: 80,
+
+  // Minimum height.
+  minHeight: 30,
+}, {
+  getRectangles() {
+    return [
+      { type: 'header', element: this }
+    ];
+  },
 });
 
 joint.shapes.flexberry.uml.InstanceView = joint.shapes.flexberry.uml.BaseObjectView.extend({

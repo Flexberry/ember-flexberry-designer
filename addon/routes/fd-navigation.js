@@ -47,19 +47,8 @@ export default Route.extend({
       return item.get('stereotype') === '«application»';
     });
 
-    if (isNone(application)) {
-      application = store.createRecord('fd-dev-class', {
-        stage: stage,
-        caption: 'Application',
-        name: 'Application',
-        nameStr: 'Application',
-        stereotype: '«application»',
-        containersStr: ''
-      });
-    }
-
     return {
-      tree: deserialize(application.get('containersStr')),
+      tree: deserialize(isNone(application) ? '' : application.get('containersStr')),
       forms: forms,
       app: application
     };
@@ -76,6 +65,7 @@ export default Route.extend({
     this._super(...arguments);
 
     controller.set('sheetComponentName', this.get('sheetComponentName'));
+    controller.set('modelFunction', this.get('model').bind(this));
   },
 
   actions: {

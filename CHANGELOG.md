@@ -3,13 +3,45 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 ### Added
+*Added swimline primitive.
+
+## [0.9.0-beta.1] - 2019-09-19
+### Added
+* Edit form for editforms.
+* Integration of application model form and diagrams.
+* Add unload store.
+
+### Fixed
+* Remove the delete button when creating a new record.
+* Fix locales.
+* Update model projections.
+
+## [0.8.1-beta.2] - 2019-09-12
+### Fixed
+* Fix view styles.
+* Fix readonly link.
+* Fix delete class from model form.
+
+## [0.8.1-beta.1] - 2019-09-09
+### Fixed
+* Fix empty class nameStr.
+* Fix update str value with ru symvols.
+* Fix coordinates in firefox.
+
+## [0.8.0] - 2019-09-02
+### Added
 * Added navigation tree.
 * Added logic for create new class button.
 * Added logic for create new diagram button.
 * Added logic for delete class button.
-* Added logic for embeded primitives.
-* Added swimline primitive.
-* Change text ability on activity diagram primitives.
+
+### Fixed
+* Fix new project creating.
+* Fix cad class attributes and methods parsing.
+* Fix `fd-button` type.
+
+### Changed
+* Change link to link realization to JointJS 3.
 
 ## [0.7.0] - 2019-05-31
 ### Added

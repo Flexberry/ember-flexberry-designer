@@ -24,11 +24,31 @@ export default FdUmlPrimitive.extend({
   */
   source: computed('primitive.StartPrimitive.$ref', {
     get() {
-      return { id: this.get('primitive.StartPrimitive.$ref') };
+      let ret = { id: this.get('primitive.StartPrimitive.$ref') };
+      if (this.get('primitive.StartLE.refType') == 'Link') {
+        let segmNo = this.get('primitive.StartLE.SegmNo');
+        if (segmNo >= 0) {
+          let percent = this.get('primitive.StartLE.Percent');
+          ret.anchor = {
+            name: 'connectionSegmRatio',
+            args: {
+              segmNo: segmNo,
+              percent: percent
+            }
+          };
+        }
+      }
+      return ret;
     },
     set(key, value) {
       this.set('primitive.StartPrimitive.$ref', value.id);
       this.set('primitive.StartLE.Primitive.$ref', value.id);
+      if ('segmNo' in value) {
+        this.set('primitive.StartLE.SegmNo', value.segmNo);
+      }
+      if ('percent' in value) {
+        this.set('primitive.StartLE.Percent', value.percent);
+      }
       return value;
     },
   }),
@@ -41,14 +61,99 @@ export default FdUmlPrimitive.extend({
   */
   target: computed('primitive.EndPrimitive.$ref', {
     get() {
-      return { id: this.get('primitive.EndPrimitive.$ref') };
+      let ret = { id: this.get('primitive.EndPrimitive.$ref') };
+      if (this.get('primitive.EndLE.refType') == 'Link') {
+        let segmNo = this.get('primitive.EndLE.SegmNo');
+        if (segmNo >= 0) {
+          let percent = this.get('primitive.EndLE.Percent');
+          ret.anchor = {
+            name: 'connectionSegmRatio',
+            args: {
+              segmNo: segmNo,
+              percent: percent
+            }
+          };
+        }
+      }
+      return ret;
     },
     set(key, value) {
       this.set('primitive.EndPrimitive.$ref', value.id);
       this.set('primitive.EndLE.Primitive.$ref', value.id);
+      if ('segmNo' in value) {
+        this.set('primitive.EndLE.SegmNo', value.segmNo);
+      }
+      if ('percent' in value) {
+        this.set('primitive.EndLE.Percent', value.percent);
+      }
       return value;
     },
   }),
+
+  /**
+   The start segmNo of a link.                                *
+
+   @property startSegmNo
+   @type String
+   */
+  startSegmNo: computed('primitive.StartLE.SegmNo', {
+    get() {
+      return this.get('primitive.StartLE.SegmNo');
+    },
+    set(key, value) {
+      this.set('primitive.StartLE.SegmNo', value);
+      return value;
+    }
+  }),
+
+  /**
+   The end segmNo of a link.                                *
+
+   @property endSegmNo
+   @type String
+   */
+  endSegmNo: computed('primitive.EndLE.SegmNo', {
+    get() {
+      return this.get('primitive.EndLE.SegmNo');
+    },
+    set(key, value) {
+      this.set('primitive.EndLE.SegmNo', value);
+      return value;
+    }
+  }),
+
+  /**
+   *   The start percent of a link.                                *
+   *
+   *   @property startPercent
+   *   @type String
+   */
+  startPercent: computed('primitive.StartLE.Percent', {
+    get() {
+      return this.get('primitive.StartLE.Percent');
+    },
+    set(key, value) {
+      this.set('primitive.StartLE.Percent', value);
+      return value;
+    }
+  }),
+
+  /**
+   *   The end percent of a link.                                *
+   *
+   *   @property endPercent
+   *   @type String
+   */
+  endPercent: computed('primitive.EndLE.Percent', {
+    get() {
+      return this.get('primitive.EndLE.Percent');
+    },
+    set(key, value) {
+      this.set('primitive.EndLE.Percent', value);
+      return value;
+    }
+  }),
+
 
   /**
   The start multiplicity of a link.
@@ -187,6 +292,7 @@ export default FdUmlPrimitive.extend({
       return value;
     },
   }),
+
   /**
     See {{#crossLink "FdUmlPrimitive/JointJS:method"}}here{{/crossLink}}.
 
@@ -211,6 +317,8 @@ export default FdUmlPrimitive.extend({
 export let Link = joint.dia.Link.define('flexberry.uml.Link', {
 
   objectModel: null,
+
+  connectedLinks: {},
 
   attrs: {
     text: { 'font-size': '12', 'font-family': 'Arial, helvetica, sans-serif' }
@@ -241,6 +349,99 @@ export let Link = joint.dia.Link.define('flexberry.uml.Link', {
       this.on('change:vertices', function(element, newVertices) {
         let objectModel = this.get('objectModel');
         if (objectModel) {
+          let connectedLinks = this.get('connectedLinks');
+          let vertices = this.get('objectModel').vertices;
+          let delta = newVertices.length - vertices.length;
+          let nSegment;
+          if (delta > 0) {  //Adding vertex
+            let prevVertex, vertex, newVertex;
+            for (nSegment = 0; nSegment < vertices.length; nSegment+=1) {
+              newVertex = newVertices[nSegment];
+              vertex = vertices[nSegment];
+              if (vertex.x != newVertex.x || vertex.y != newVertex.y) {
+                break;
+              }
+              prevVertex = vertex;
+            }
+            newVertex = newVertices[nSegment];
+            if (nSegment >= vertices.length) {
+              vertex = this.getTargetPoint()
+            }
+            if (nSegment == 0) {
+              prevVertex = this.getSourcePoint();
+            }
+
+            let newVertexProject = {};
+            let percent = this._getPercentSegmInfo(prevVertex, vertex, newVertex);
+            newVertexProject.x = prevVertex.x + (vertex.x - prevVertex.x) * percent;
+            newVertexProject.y = prevVertex.y + (vertex.y - prevVertex.y) * percent;
+            for (let id in connectedLinks) {
+              let connectedLink = connectedLinks[id];
+              let connectedLinkObjectModel = connectedLink.model.get('objectModel');
+              let percent = this._getPercentSegmInfo(prevVertex, newVertexProject, connectedLink.sourcePoint);
+              if (percent >= 0) {
+                connectedLinkObjectModel.set('startSegmNo', nSegment);
+              } else {
+                percent = this._getPercentSegmInfo(newVertexProject, vertex, connectedLink.sourcePoint);
+                if (percent >= 0) {
+                  connectedLinkObjectModel.set('startSegmNo', nSegment+1);
+                } else {
+                  let startSegmNo = connectedLinkObjectModel.get('startSegmNo');
+                  if (startSegmNo >= nSegment) {
+                    connectedLinkObjectModel.set('startSegmNo', startSegmNo + 1);
+                  }
+                }
+              }
+            }
+
+          } else {
+            if (delta <0) { //Removing vertex0
+              let prevVertex, vertex, removedVertex;
+              for (nSegment = 0; nSegment < newVertices.length; nSegment+=1) {
+                vertex = newVertices[nSegment];
+                removedVertex = vertices[nSegment];
+                if (vertex.x != removedVertex.x || vertex.y != removedVertex.y) {
+                  break;
+                }
+                prevVertex = vertex;
+              }
+              removedVertex = vertices[nSegment];
+              if (nSegment >= newVertices.length) {
+                vertex = this.getTargetPoint()
+              }
+              if (nSegment == 0) {
+                prevVertex = this.getSourcePoint();
+              }
+              let len1 = this._segmentLength(prevVertex, removedVertex);
+              let fullLen = len1 + this._segmentLength(removedVertex, vertex);
+              for (let id in connectedLinks) {
+                let connectedLink = connectedLinks[id];
+                let connectedLinkObjectModel = connectedLink.model.get('objectModel');
+                let percent = this._getPercentSegmInfo(prevVertex, removedVertex, connectedLink.sourcePoint);
+                if (percent >= 0) {
+                  let len = this._segmentLength(prevVertex, connectedLink.sourcePoint);
+                  percent = len / fullLen;
+                  connectedLinkObjectModel.set('startSegmNo', nSegment);
+                } else {
+                  percent = this._getPercentSegmInfo(removedVertex, vertex, connectedLink.sourcePoint);
+                  if (percent >= 0) {
+                    connectedLinkObjectModel.set('startSegmNo', nSegment);
+                    let len = len1 + this._segmentLength(removedVertex, connectedLink.sourcePoint);
+                    percent = len / fullLen;
+                    connectedLinkObjectModel.set('startSegmNo', nSegment);
+                  }
+                  else {
+                    let segmNo = connectedLinkObjectModel.get('startSegmNo');
+                    if (segmNo > nSegment+1) {
+                      connectedLinkObjectModel.set('startSegmNo', segmNo-1);
+                    }
+                  }
+                }
+
+              }
+            }
+          }
+
           objectModel.set('vertices', newVertices);
           this.trigger('uml-update');
         }
@@ -254,6 +455,13 @@ export let Link = joint.dia.Link.define('flexberry.uml.Link', {
       }, this);
 
       joint.dia.Link.prototype.initialize.apply(this, arguments);
+    },
+
+    connectedToLine: function() {
+      let objectModel= this.get('objectModel');
+      let ret= objectModel.get('primitive.EndLE.refType') == 'Link' && objectModel.get('primitive.EndLE.SegmNo') >= 0 ||
+        objectModel.get('primitive.StartLE.refType') == 'Link' && objectModel.get('primitive.StartLE.SegmNo') >= 0;
+      return ret;
     },
 
     /**
@@ -394,6 +602,27 @@ export let Link = joint.dia.Link.define('flexberry.uml.Link', {
           console.log('ERROR - choose correct label name');
       }
     },
+
+    _getPercentSegmInfo: function(point1, point2, middlePoint) {
+      let minX = Math.min(point1.x, point2.x);
+      let minY = Math.min(point1.y, point2.y);
+      let maxX = Math.max(point1.x, point2.x);
+      let maxY = Math.max(point1.y, point2.y);
+      if (middlePoint.x < minX || middlePoint.y < minY || middlePoint.x > maxX || middlePoint.y > maxY) {
+        return -1.0;
+      }
+      let len1 = this._segmentLength(point1, point2);
+      let len2 = this._segmentLength(point1, middlePoint);
+      let ret = len2 / len1;
+      return ret;
+    },
+
+    _segmentLength: function(point1,point2) {
+      let deltaX = point2.x - point1.x;
+      let deltaY = point2.y - point1.y;
+      return Math.sqrt(deltaX * deltaX + deltaY * deltaY);
+    }
+
   });
 
 joint.util.setByPath(joint.shapes, 'flexberry.uml.Link', Link, '.');
@@ -417,4 +646,38 @@ export let LinkWithUnderline = Link.define('flexberry.uml.BaseLinkWithUnderline'
   });
 
 joint.util.setByPath(joint.shapes, 'flexberry.uml.BaseLinkWithUnderline', LinkWithUnderline, '.');
+
+let Point = joint.g.Point;
+
+joint.linkAnchors.connectionSegmRatio = function(endView/*, endMagnet, anchorReference, args*/) {
+  let connectedLinks = endView.model.get('connectedLinks');
+  if (!(this.id  in connectedLinks)) {
+    connectedLinks[this.id] = this;
+  }
+  let segments=endView.path.segments;
+  let objectModel = this.model.get('objectModel');
+  let segmNo = objectModel.startSegmNo;
+  let percent;
+  if (segmNo >= 0) {
+    percent = objectModel.startPercent;
+  } else {
+    segmNo =  objectModel.endSegmNo;
+    percent = objectModel.endPercent;
+  }
+  if (percent > 1.0) percent = 1.0;
+  if (percent < 0.0) percent = 0.0;
+  let pathNo;
+  for (pathNo = 0; segments[pathNo].isSubpathStart; pathNo+=1);
+  for (let tailSegNo = segmNo; tailSegNo > 0 ; tailSegNo -=1) {
+    pathNo +=1;
+  }
+  let x0 = segments[pathNo].start.x;
+  let y0 = segments[pathNo].start.y;
+  let x1 = segments[pathNo].end.x;
+  let y1 = segments[pathNo].end.y;
+  let x = x0 + (x1 - x0) * percent;
+  let y = y0 + (y1 - y0) * percent;
+  let ret = new Point({x: x, y: y});
+  return ret;
+};
 
