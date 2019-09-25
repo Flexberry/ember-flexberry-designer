@@ -504,7 +504,7 @@ export default Controller.extend(FdSaveHasManyRelationshipsMixin, {
     let mapPrimitives = primitivesModel.mapBy('primitive');
 
     mapPrimitives.forEach((primitive, index) => {
-      if (mapPrimitives[index].$type == "STORMCASE.UML.cad.Inheritance, UMLCAD"){
+      if (mapPrimitives[index].$type === "STORMCASE.UML.cad.Inheritance, UMLCAD") {
         let idInheritance =  mapPrimitives[index].RepositoryObject;
         idInheritance = idInheritance.split('{');
         idInheritance = idInheritance[1].split('}');
@@ -517,12 +517,12 @@ export default Controller.extend(FdSaveHasManyRelationshipsMixin, {
         let parent = currentObj.parent;
 
         let loopFunction = function(i) {
-          if ((i>=recordsInheritance.length)||(i<0)){
+          if ((i>=recordsInheritance.length)||(i<0)) {
             return;
           }
-          if (recordsInheritance._objects[i].parent.id == currentObj.child.id){
+          if (recordsInheritance._objects[i].parent.id === currentObj.child.id) {
             currentObj = recordsInheritance._objects[i];
-            if (recordsInheritance._objects[i].child.id == parent.id){
+            if (recordsInheritance._objects[i].child.id === parent.id) {
               throw new Error("Loop is found");
             } else {
               loopFunction(--i);
