@@ -510,6 +510,7 @@ export default Component.extend({
       } else {
         data.ghost.position(x + shift.x, y + shift.y);
       }
+/*
       //get border for embed element move restriction. [minX, maxX, minY, maxY]
       let ghostMoveBorder = view.model.get('ghostMoveBorder');
       let newPositionX = x + shift.x;
@@ -522,7 +523,7 @@ export default Component.extend({
         newPositionY = newPositionY > ghostMoveBorder[3] ? ghostMoveBorder[3] : newPositionY;
       }
       
-      data.ghost.position(newPositionX, newPositionY);
+      data.ghost.position(newPositionX, newPositionY);*/
     } else {
       let bbox = view.model.getBBox();
       let ghost = new joint.shapes.basic.Rect();
@@ -560,17 +561,17 @@ export default Component.extend({
         let valueX = x + shift.x < 0 ? 0 : x + shift.x;
         let valueY = y + shift.y < 0 ? 0 : y + shift.y;
         view.model.position(valueX, valueY);
+        //get border for embed element move restriction. [minX, maxX, minY, maxY]
+        /*let ghostMoveBorder = view.model.get('ghostMoveBorder');
+
+        if (!isNone(ghostMoveBorder)) {
+          valueX = valueX < ghostMoveBorder[0] ? ghostMoveBorder[0] : valueX;
+          valueX = valueX > ghostMoveBorder[1] ? ghostMoveBorder[1] : valueX;
+          valueY = valueY < ghostMoveBorder[2] ? ghostMoveBorder[2] : valueY;
+          valueY = valueY > ghostMoveBorder[3] ? ghostMoveBorder[3] : valueY;
+        }*/
       }
 
-      //get border for embed element move restriction. [minX, maxX, minY, maxY]
-      let ghostMoveBorder = view.model.get('ghostMoveBorder');
-
-      if (!isNone(ghostMoveBorder)) {
-        valueX = valueX < ghostMoveBorder[0] ? ghostMoveBorder[0] : valueX;
-        valueX = valueX > ghostMoveBorder[1] ? ghostMoveBorder[1] : valueX;
-        valueY = valueY < ghostMoveBorder[2] ? ghostMoveBorder[2] : valueY;
-        valueY = valueY > ghostMoveBorder[3] ? ghostMoveBorder[3] : valueY;
-      }
       data.ghost.remove();
 
       let paper = view.paper;
