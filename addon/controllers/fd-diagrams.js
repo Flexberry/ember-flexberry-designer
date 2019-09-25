@@ -489,6 +489,53 @@ export default Controller.extend(FdSaveHasManyRelationshipsMixin, {
     this.notifyPropertyChange('model');
   },
 
+    /**
+    Finds loops in links.
+
+     @method checkForLooping
+  */
+  checkForLooping() {
+    let model = this.get('selectedElement.model.data');
+    let primitivesModel = model.get('primitives');
+
+    let store = this.get('store');
+    let recordsInheritance = store.peekAll('fd-dev-inheritance');
+
+    let mapPrimitives = primitivesModel.mapBy('primitive');
+
+    mapPrimitives.forEach((primitive, index) => {
+      if (mapPrimitives[index].$type == "STORMCASE.UML.cad.Inheritance, UMLCAD"){
+        let idInheritance =  mapPrimitives[index].RepositoryObject;
+        idInheritance = idInheritance.split('{');
+        idInheritance = idInheritance[1].split('}');
+        idInheritance = idInheritance[0];
+
+        let inheritanceData = recordsInheritance.filterBy('id', idInheritance);
+        let searchIndex = recordsInheritance._objects.indexOf(inheritanceData[0]);
+
+        let currentObj = recordsInheritance._objects[searchIndex];
+        let parent = currentObj.parent;
+
+        let loopFunction = function(i) {
+          if ((i>=recordsInheritance.length)||(i<0)){
+            return;
+          }
+          if (recordsInheritance._objects[i].parent.id == currentObj.child.id){
+            currentObj = recordsInheritance._objects[i];
+            if (recordsInheritance._objects[i].child.id == parent.id){
+              throw new Error("Loop is found");
+            } else {
+              loopFunction(--i);
+            }
+          } else {
+            loopFunction(++i);
+          }
+        }
+      loopFunction(0);
+      }
+    });
+  },
+
   actions: {
     /**
       Save 'selectedElement'.
@@ -498,6 +545,9 @@ export default Controller.extend(FdSaveHasManyRelationshipsMixin, {
     save() {
       let model = this.get('selectedElement.model.data');
       this.get('appState').loading();
+
+      
+      this.checkForLooping();
 
       let isNew = false;
       if (model.get('isNew')) {
