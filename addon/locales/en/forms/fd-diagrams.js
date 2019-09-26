@@ -10,6 +10,6 @@ export default {
   std: 'Statechart diagram',
   ucd: 'Usecase diagram',
   'error-message': {
-    'empty-class': 'Error: classes with an empty name exist on the diagram'
+    'empty-class': 'Classes with an empty name exist on the diagram'
   }
 };

@@ -23,8 +23,9 @@ export default {
   'create-class-caption': 'Create class',
   cancel: 'Cancel',
   'error-message': {
-    'empty-class': 'Error: the class name cannot be empty',
-    'exist-class': 'Error: a class with the same name already exists',
-    'view-form': 'Error: no composite view specified'
+    'empty-class': 'The class name cannot be empty',
+    'exist-class': 'Class with the same name already exists',
+    'view-form': 'No composite view specified',
+    'bs-delete': 'BusinessServer is used by other classes:',
   }
 };
