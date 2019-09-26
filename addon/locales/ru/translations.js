@@ -140,6 +140,7 @@ import FdCreateNodeEditingPanel from './components/fd-create-node-editing-panel'
 import FdFolderEditingPanel from './components/fd-folder-editing-panel';
 import FdPropertyEditingPanel from './components/fd-property-editing-panel';
 import FdViewDefinitionItem from './components/fd-view-definition-item';
+import FdfModalMessageBox from './components/fd-modal-message-box';
 import FdApplicationModelForm from './forms/fd-application-model';
 
 const translations = {};
@@ -447,6 +448,7 @@ $.extend(true, translations, {
     'fd-create-entity': FdCreateEntity,
     'fd-create-diagrams': FdCreateDiagrams,
     'fd-view-definition-item': FdViewDefinitionItem,
+    'fd-modal-message-box': FdfModalMessageBox,
   }
 
 });

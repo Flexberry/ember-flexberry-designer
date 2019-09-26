@@ -302,7 +302,8 @@ export default Controller.extend({
     app.save().then((newApp) => {
       _this.set('model.tree', deserialize(newApp.get('containersStr')));
     }).catch((error) => {
-      _this.set('error', error);
+      _this.set('error', error.message);
+      _this.set('show', true);
     }).finally(() => {
       _this.get('appState').reset();
     });

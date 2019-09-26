@@ -498,7 +498,7 @@ export default Controller.extend(FdSaveHasManyRelationshipsMixin, {
     });
 
     if (!isNone(emptyClass)) {
-      return reject(this.get('i18n').t('forms.fd-diagrams.error-message.empty-class').toString());
+      return reject({ message: this.get('i18n').t('forms.fd-diagrams.error-message.empty-class').toString() });
     }
 
     return resolve();
@@ -535,6 +535,10 @@ export default Controller.extend(FdSaveHasManyRelationshipsMixin, {
       .catch((error) => {
         this.set('error', error);
       })
+      .catch((error) => {
+        this.set('error', error.message);
+        this.set('show', true);
+      })
       .finally(() => {
         this.get('appState').reset();
       });
@@ -556,6 +560,10 @@ export default Controller.extend(FdSaveHasManyRelationshipsMixin, {
       this.get('fdDiagramService').updateJointObjectOnDiagram(objectModel.get('id'));
       editableObject.save()
       .then(() => this.saveHasManyRelationships(editableObject))
+      .catch((error) => {
+        this.set('error', error.message);
+        this.set('show', true);
+      })
       .finally(() => {
         this.get('appState').reset();
         this.set('_attributesStr', editableObject.get('attributesStr'));
@@ -682,6 +690,10 @@ export default Controller.extend(FdSaveHasManyRelationshipsMixin, {
       .then(() => {
         this.set('selectedElement', undefined);
         this.get('fdSheetService').closeSheet(this.get('sheetComponentName'));
+      })
+      .catch((error) => {
+        this.set('error', error.message);
+        this.set('show', true);
       })
       .finally(() => {
         this.get('appState').reset();
