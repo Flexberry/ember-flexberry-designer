@@ -106,4 +106,19 @@ joint.shapes.flexberry.uml.DecisionView = joint.shapes.flexberry.uml.PrimitiveEl
     points[3] = (setWidth/2).toString() + ' '+ (setHight).toString();
     return points;
   },
+
+  setColors() {
+    joint.shapes.flexberry.uml.BaseObjectView.prototype.setColors.apply(this, arguments);
+  
+    const brushColor = this.getBrushColor();
+    const textColor = this.getTextColor();
+
+    if (!isNone(textColor)) {
+      this.model.attr('.flexberry-uml-header-rombus-path/stroke', textColor);
+    }
+  
+    if (!isNone(brushColor)) {
+      this.model.attr('.flexberry-uml-header-rombus-path/fill', brushColor);
+    }
+  }
 });

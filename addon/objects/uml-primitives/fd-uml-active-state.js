@@ -2,11 +2,13 @@
   @module ember-flexberry-designer
 */
 
-import { BaseObject } from './fd-uml-baseobject';
-import FdUmlObject from './fd-uml-baseobject';
 import { computed } from '@ember/object';
 import { isArray } from '@ember/array';
 import { isBlank } from '@ember/utils';
+
+import { BaseObject } from './fd-uml-baseobject';
+import FdUmlObject from './fd-uml-baseobject';
+
 import $ from 'jquery';
 import joint from 'npm:jointjs';
 
@@ -177,5 +179,9 @@ joint.shapes.flexberry.uml.ActiveStateView = joint.shapes.flexberry.uml.BaseObje
     element.val(state);
     element.prop('rows', rows.length);
     this.updateRectangles();
+  },
+
+  setColors() {
+    joint.shapes.flexberry.uml.BaseObjectView.prototype.setColors.apply(this, arguments);
   }
 });

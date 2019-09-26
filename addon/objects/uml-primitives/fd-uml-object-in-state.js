@@ -82,5 +82,5 @@ joint.shapes.flexberry.uml.ObjectInStateView = joint.shapes.flexberry.uml.BaseOb
    '<textarea class="class-name-input object-in-state-input header-input" value="" rows="1" wrap="off"></textarea>',
    '<div class="input-buffer"></div>',
    '</div>'
-  ].join('')
+  ].join(''),
 });

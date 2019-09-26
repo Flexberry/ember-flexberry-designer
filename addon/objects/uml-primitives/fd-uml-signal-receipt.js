@@ -4,6 +4,7 @@
 
 import { computed } from '@ember/object';
 import { A, isArray } from '@ember/array';
+import { isNone } from '@ember/utils';
 
 import { BaseObject } from './fd-uml-baseobject';
 import FdUmlElement from './fd-uml-element';
@@ -180,6 +181,21 @@ joint.shapes.flexberry.uml.SignalReceiptRightView = joint.shapes.flexberry.uml.B
     points[4] = '0 ' + newHeight.toString();
 
     return points;
+  },
+
+  setColors() {
+    joint.shapes.flexberry.uml.BaseObjectView.prototype.setColors.apply(this, arguments);
+  
+    const brushColor = this.getBrushColor();
+    const textColor = this.getTextColor();
+
+    if (!isNone(textColor)) {
+      this.model.attr('.flexberry-uml-header-rect-path/stroke', textColor);
+    }
+  
+    if (!isNone(brushColor)) {
+      this.model.attr('.flexberry-uml-header-rect-path/fill', brushColor);
+    }
   }
 });
 
