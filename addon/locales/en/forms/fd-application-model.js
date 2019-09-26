@@ -22,4 +22,9 @@ export default {
   'parent-caption': 'Parent first level',
   'create-class-caption': 'Create class',
   cancel: 'Cancel',
+  'error-message': {
+    'empty-class': 'Error: the class name cannot be empty',
+    'exist-class': 'Error: a class with the same name already exists',
+    'view-form': 'Error: no composite view specified'
+  }
 };

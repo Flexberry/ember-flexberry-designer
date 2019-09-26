@@ -4,7 +4,7 @@
 
 import { computed } from '@ember/object';
 import $ from 'jquery';
-import { isBlank } from '@ember/utils';
+import { isBlank, isNone } from '@ember/utils';
 import { isArray } from '@ember/array';
 
 import joint from 'npm:jointjs';
@@ -450,7 +450,7 @@ joint.shapes.flexberry.uml.ClassView = joint.shapes.flexberry.uml.PrimitiveEleme
     let objectModel = this.model.get('objectModel');
     let collapsed = objectModel.get('collapsed');
 
-    buttons.pushObjects([{
+    buttons.pushObject({
       name: 'collapse-button',
       text: collapsed ? '&#xf065' : '&#xf066',
       handler: this.collapseElementView.bind(this),
@@ -459,16 +459,20 @@ joint.shapes.flexberry.uml.ClassView = joint.shapes.flexberry.uml.PrimitiveEleme
         'circle': { r: 6, fill: '#007aff', stroke: '#007aff', 'stroke-width': 1 },
         'text': { fill: '#ffffff', 'font-size': 10, 'text-anchor': 'middle', x: 0, y: 3, 'font-family': 'Icons' },
       }
-    }, {
-      name: 'open-edit-form-button',
-      text: '&#xf013',
-      handler: this.openEditForm.bind(this),
-      attrs: {
-        'element': { 'ref-dx': -14, 'ref-y': 0, 'ref': '.joint-highlight-stroke' },
-        'circle': { r: 6, fill: '#007aff', stroke: '#007aff', 'stroke-width': 1 },
-        'text': { fill: '#ffffff', x: 0, y: 3, 'font-size': 10, 'text-anchor': 'middle', 'font-family': 'Icons' },
-      }
-    }]);
+    });
+
+    if (!isNone(objectModel.get('repositoryObject'))) {
+      buttons.pushObject({
+        name: 'open-edit-form-button',
+        text: '&#xf013',
+        handler: this.openEditForm.bind(this),
+        attrs: {
+          'element': { 'ref-dx': -14, 'ref-y': 0, 'ref': '.joint-highlight-stroke' },
+          'circle': { r: 6, fill: '#007aff', stroke: '#007aff', 'stroke-width': 1 },
+          'text': { fill: '#ffffff', x: 0, y: 3, 'font-size': 10, 'text-anchor': 'middle', 'font-family': 'Icons' },
+        }
+      });
+    }
 
     return buttons;
   },

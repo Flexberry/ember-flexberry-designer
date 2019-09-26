@@ -4,7 +4,7 @@ import { A } from '@ember/array';
 import EmberObject, { computed, observer } from '@ember/object';
 import { isBlank, isNone } from '@ember/utils';
 import { schedule } from '@ember/runloop';
-import { all, resolve } from 'rsvp';
+import { all, resolve, reject } from 'rsvp';
 import { translationMacro as t } from 'ember-i18n';
 import hasChanges from '../utils/model-has-changes';
 
@@ -336,10 +336,10 @@ export default Controller.extend(FdSaveHasManyRelationshipsMixin, {
     Save changes in primitives.
 
     @method savePrimitives
+    @param {Object} model diagram model.
   */
-  savePrimitives() {
+  savePrimitives(model) {
     let promises = A();
-    let model = this.get('selectedElement.model.data');
     let primitives = model.get('primitives');
     primitives.forEach((primitive) => {
       if (!isNone(primitive.get('isCreated'))) {
@@ -358,12 +358,7 @@ export default Controller.extend(FdSaveHasManyRelationshipsMixin, {
           let repObject = allRepObjects.findBy('id', repId);
           if (repObject) {
             if (repObject.get('isNew')) {
-              let propName = p.get('name');
-              if (isBlank(propName)) {
-                return repObject.rollbackAttributes();
-              } else {
-                repObject.set('nameStr', propName);
-              }
+              repObject.set('nameStr', p.get('name'));
             }
 
             let stereotype = p.getWithDefault('stereotype', '').trim();
@@ -491,6 +486,24 @@ export default Controller.extend(FdSaveHasManyRelationshipsMixin, {
     this.notifyPropertyChange('model');
   },
 
+  /**
+    Check data for correctness.
+
+    @method validateData
+    @param {Object} model diagram model.
+  */
+  validateData(model) {
+    let emptyClass = model.get('primitives').find((p) => {
+      return p.get('primitive.$type') === 'STORMCASE.STORMNET.Repository.CADClass, STORM.NET Case Tool plugin' && isBlank(p.get('name'));
+    });
+
+    if (!isNone(emptyClass)) {
+      return reject(this.get('i18n').t('forms.fd-diagrams.error-message.empty-class').toString());
+    }
+
+    return resolve();
+  },
+
   actions: {
     /**
       Save 'selectedElement'.
@@ -506,26 +519,23 @@ export default Controller.extend(FdSaveHasManyRelationshipsMixin, {
         isNew = true;
       }
 
-      this.savePrimitives().then(() => {
-        model.save()
-        .then(() => {
-          if (isNew) {
-            this.addNewDiagramInModel();
-          }
+      this.validateData(model)
+      .then(() => this.savePrimitives(model))
+      .then(() => model.save())
+      .then(() => {
+        if (isNew) {
+          this.addNewDiagramInModel();
+        }
 
-          this.set('isDiagramVisible', false);
-          schedule('afterRender', this, function() {
-            this.set('isDiagramVisible', true);
-          });
-        })
-        .catch((error) => {
-          this.set('error', error);
-        })
-        .finally(() => {
-          this.get('appState').reset();
+        this.set('isDiagramVisible', false);
+        schedule('afterRender', this, function() {
+          this.set('isDiagramVisible', true);
         });
-      }).catch((error) => {
+      })
+      .catch((error) => {
         this.set('error', error);
+      })
+      .finally(() => {
         this.get('appState').reset();
       });
     },
