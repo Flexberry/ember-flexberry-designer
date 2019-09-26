@@ -9,6 +9,16 @@ module.exports = function(defaults) {
         'bower_components/semantic-ui'
       ]
     },
+    outputPaths: {
+      app: {
+        css: {
+          'app': '/assets/light.css',
+          'dark': '/assets/dark.css',
+          'blue': '/assets/blue.css'
+        }
+      }
+    },
+
     SemanticUI: {
       css: false
     }

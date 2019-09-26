@@ -44,8 +44,8 @@
   <div class="ui form {{appState.state}}">
     <div class="full height">
       <div class="flexberry-content">
-         <div class="ui main container fluid">
-            {{outlet}}
+        <div class="ui main container fluid">
+          {{outlet}}
         </div>
       </div>
     </div>
@@ -83,6 +83,13 @@
       </div>
     </div>
     <div class="right menu">
+      {{flexberry-dropdown
+        class="compact theme"
+        items=themes
+        value='light'
+        onChange=(action 'changeTheme')
+        direction="upward"
+      }}
       {{flexberry-dropdown
         class="compact"
         items=locales
