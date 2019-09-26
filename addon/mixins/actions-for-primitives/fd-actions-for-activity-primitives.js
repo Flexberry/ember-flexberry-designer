@@ -43,7 +43,7 @@ export default Mixin.create({
         let jsonObject = getJsonForElement(
           'STORMCASE.UML.ad.Decision, UMLAD',
           { x, y },
-          { width: 70, height: 40 },
+          { width: 40, height: 20 },
         );
 
         let newDecisionObject = FdUmlDecision.create({ primitive: jsonObject });

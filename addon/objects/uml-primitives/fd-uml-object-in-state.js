@@ -4,9 +4,10 @@
 
 import { computed } from '@ember/object';
 import { isArray } from '@ember/array';
-import { ActiveState } from './fd-uml-active-state';
-import { isBlank } from '@ember/utils';
+
+import { BaseObject } from './fd-uml-baseobject';
 import FdUmlElement from './fd-uml-element';
+
 import joint from 'npm:jointjs';
 
 /**
@@ -35,23 +36,6 @@ export default FdUmlElement.extend({
   }),
 
   /**
-    Text on the object in state element.
-
-    @property state
-    @type String
-  */
-  state: computed('primitive.Text.Text', {
-    get() {
-      return this.get('primitive.Text.Text');
-    },
-    set(key, value) {
-      let stateTxt = (isArray(value)) ? value.join('\n') : value;
-      this.set('primitive.Text.Text', stateTxt);
-      return value;
-    },
-  }),
-
-  /**
     See {{#crossLink "FdUmlPrimitive/JointJS:method"}}here{{/crossLink}}.
 
     @method JointJS
@@ -68,36 +52,35 @@ export default FdUmlElement.extend({
 
   @for FdUmlObjectInState
   @class ObjectInState
-  @extends flexberry.uml.ActiveState
+  @extends flexberry.uml.BaseObject
   @namespace flexberry.uml
   @constructor
 */
-export let ObjectInState = ActiveState.define('flexberry.uml.ObjectInState', {
+export let ObjectInState =  BaseObject.define('flexberry.uml.ObjectInState ', {
+    // Minimum height.
+    minHeight: 30,
+
+    // Minimum width
+    minWidth: 80,
+
+    getRectangles() {
+      return [
+        { type: 'header', text: this.getObjName(), element: this },
+      ];
+    },
+}, {
+  markup: [
+    '<g class="rotatable">',
+    '<rect class="flexberry-uml-header-rect"/>',
+    '</g>'
+  ].join(''),
 });
 
-joint.shapes.flexberry.uml.ObjectInStateView = joint.shapes.flexberry.uml.ActiveStateView.extend({
+joint.shapes.flexberry.uml.ObjectInStateView = joint.shapes.flexberry.uml.BaseObjectView.extend({
   template: [
    '<div class="uml-class-inputs">',
    '<textarea class="class-name-input object-in-state-input header-input" value="" rows="1" wrap="off"></textarea>',
-   '<textarea class="state-input header-input" value="" rows="1" wrap="off"></textarea>',
    '<div class="input-buffer"></div>',
    '</div>'
-  ].join(''),
-
-  normalizeState(state) {
-    let beforeChar = String.fromCharCode(91);
-    let afterChar = String.fromCharCode(93);
-    let normalizedState = state.replace(new RegExp(`${'\\'+beforeChar}|${'\\'+afterChar}`, 'g'), '');
-    if (!isBlank(normalizedState)) {
-      if (normalizedState[0] !== beforeChar) {
-        normalizedState = beforeChar + normalizedState;
-      }
-
-      if (normalizedState[normalizedState - 1] !== afterChar) {
-        normalizedState = normalizedState + afterChar;
-      }
-    }
-
-    return normalizedState;
-  }
+  ].join('')
 });
