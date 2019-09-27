@@ -366,7 +366,7 @@ $.extend(true, translations, {
             title: '',
           },
           'i-i-s-caseberry-logging-objects-application-log-l': {
-            caption: 'Лог',
+            caption: 'Таблица логов',
             title: '',
           }
         },
