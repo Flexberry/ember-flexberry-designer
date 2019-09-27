@@ -113,6 +113,12 @@ export default Controller.extend({
         icon: 'icon-fd-view'
       },
       {
+        link: 'i-i-s-caseberry-logging-objects-application-log-l',
+        caption: i18n.t('forms.application.sitemap.root.i-i-s-caseberry-logging-objects-application-log-l.caption'),
+        title: i18n.t('forms.application.sitemap.root.i-i-s-caseberry-logging-objects-application-log-l.title'),
+        icon: 'bug'
+      },
+      {
         link: '',
         caption: i18n.t('forms.application.sitemap.root.fd-requests.caption'),
         title: i18n.t('forms.application.sitemap.root.fd-requests.title'),
