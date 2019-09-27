@@ -1,11 +1,13 @@
 /**
   @module ember-flexberry-designer
 */
-
 import { computed } from '@ember/object';
-import joint from 'npm:jointjs';
+import { isArray } from '@ember/array';
 
 import FdUmlElement from './fd-uml-element';
+import { BaseObject } from './fd-uml-baseobject';
+
+import joint from 'npm:jointjs';
 
 /**
   An object that describes an history on the UML diagram.
@@ -16,12 +18,21 @@ import FdUmlElement from './fd-uml-element';
 export default FdUmlElement.extend({
 
   /**
-    Type of primitive.
+    Name on the start state element.
 
-    @property type
+    @property name
     @type String
   */
-  type: computed.alias('primitive.$type'),
+  name: computed('primitive.Name.Text', {
+    get() {
+      return this.get('primitive.Name.Text') || '';
+    },
+    set(key, value) {
+      let nameTxt = (isArray(value)) ? value.join('\n') : value;
+      this.set('primitive.Name.Text', nameTxt);
+      return value;
+    },
+  }),
 
   /**
     See {{#crossLink "FdUmlPrimitive/JointJS:method"}}here{{/crossLink}}.
@@ -30,12 +41,12 @@ export default FdUmlElement.extend({
   */
   JointJS() {
     let properties = this.getProperties('id', 'position');
-    if (this.get('type') === 'STORMCASE.UML.std.DeepHistory, UMLSTD') {
+    properties.objectModel = this;
+    if (this.primitive.$type === 'STORMCASE.UML.std.DeepHistory, UMLSTD') {
       return new DeepHistory(properties);
     } else {
       return new History(properties);
     }
-
   },
 });
 
@@ -48,9 +59,40 @@ export default FdUmlElement.extend({
   @namespace flexberry.uml
   @constructor
 */
-export let History = joint.shapes.basic.Circle.define('flexberry.uml.History', {
-  attrs: { text: { 'text': 'H', 'font-family':'Times New Roman', 'font-size': '12' } },
-  size: { width: 20, height: 20 }
+export let History = BaseObject.define('flexberry.uml.History', {
+  size: { width: 20, height: 20 },
+  attrs: {
+    '.flexberry-uml-header-circle-outer': { 'fill': 'white', 'stroke': 'black', 'stroke-width': 1, 'r': 28, 'ref-y': 10, 'ref-x': 10 },
+    '.flexberry-uml-header-text': {
+      'ref': '.flexberry-uml-header-circle-outer',
+      'ref-y': 0.5,
+      'ref-x': 0.5,
+      'text-anchor': 'middle',
+      'y-alignment': 'middle',
+      'fill': 'black',
+      'text': 'H',
+      'font-family':'Times New Roman', 
+      'font-size': '12'
+    }
+  },
+  }, {
+  markup: [
+    '<g class="rotatable">',
+    '<g class="scalable">',
+    '<circle class="flexberry-uml-header-circle-outer"/>',
+    '</g>',
+    '<text class="flexberry-uml-header-text"/>',
+    '</g>'
+  ].join(''),
+  });
+
+joint.shapes.flexberry.uml.HistoryView = joint.shapes.flexberry.uml.BaseObjectView.extend({
+  template: [
+  ].join(''),
+
+  // No resize.
+  updateRectangles() {
+   },
 });
 
 /**
@@ -63,5 +105,17 @@ export let History = joint.shapes.basic.Circle.define('flexberry.uml.History', {
   @constructor
 */
 export let DeepHistory = History.define('flexberry.uml.DeepHistory', {
-  attrs: { text: { 'text': 'H*' } }
+  attrs: {     
+    '.flexberry-uml-header-text': {
+      'text': 'H*',
+  }}
+});
+
+joint.shapes.flexberry.uml.DeepHistoryView = joint.shapes.flexberry.uml.BaseObjectView.extend({
+  template: [
+  ].join(''),
+
+  // No resize.
+  updateRectangles() {
+   },
 });

@@ -23,7 +23,9 @@ export default Mixin.create({
     let promises = [];
     model.eachRelationship((name, desc) => {
       if (desc.kind === 'hasMany') {
-        model.get(name).filterBy('hasDirtyAttributes', true).forEach((record) => {
+        model.get(name).filter((a) => {
+          return a.get('hasDirtyAttributes') || a.hasChangedBelongsTo();
+        }).forEach((record) => {
           let promise = this._checkRecordOnChanges(record);
           promises.push(promise);
         });

@@ -43,29 +43,31 @@
 /*--------------------------------------
     ember flexberry designer colors
 ---------------------------------------*/
+@fdPrimaryColor: rgb(0, 0, 0);
+
 /* Фон основной*/
 @fdSheetBg: @pageBackground;
 
 /* Текст кнопок тулбара */
-@toolbarBtnClr: @white;
+@toolbarButtonColor: @white;
 
 /* Фон сайдбара */
-@sidebarBg: @strongTransparentBlack;
+@sidebarBg: fade(@fdPrimaryColor, 10%);
 
 /* Фон затемнение */
-@overlayColor: @veryStrongTransparentBlack;
+@overlayColor: fade(@fdPrimaryColor, 15%);
 
 @footerBackground: #eee;
 
 /* Фон кнопок тулбара */
-@toolbarBtnBg: @lightTextColor;
+@toolbarButtonBackground: fade(@fdPrimaryColor, 25%);
 
 /* Цвет основных кнопок */
-@basicBtn: @lightTextColor;
+@basicButtonColor: @lightTextColor;
+@basicButtonBoxShadow: @strongTransparentBlack;
 
 @itemActiveBorderRadius: 0.5rem;
-@hoverToolbarBtnBg: rgba(0, 0, 0, 0.35);
-@activeToolbarBtnBg: rgba(0, 0, 0, 0.45);
+
 @itemActiveBorderRadius: 0.5rem;
 
 @leftIndent: 2.5rem;
@@ -78,3 +80,11 @@
 @inputBackground        : transparent;
 
 @blue: #007aff;
+/* Loading Dimmer */
+@loaderDimmerColorGlobal: rgba(255, 255, 255, 0.8);
+
+/*---------------
+    THEME
+----------------*/
+
+@import (optional) '@{Theme}';

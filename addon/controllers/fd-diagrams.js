@@ -4,7 +4,7 @@ import { A } from '@ember/array';
 import EmberObject, { computed, observer } from '@ember/object';
 import { isBlank, isNone } from '@ember/utils';
 import { schedule } from '@ember/runloop';
-import { all, resolve } from 'rsvp';
+import { all, resolve, reject } from 'rsvp';
 import { translationMacro as t } from 'ember-i18n';
 import hasChanges from '../utils/model-has-changes';
 
@@ -336,10 +336,10 @@ export default Controller.extend(FdSaveHasManyRelationshipsMixin, {
     Save changes in primitives.
 
     @method savePrimitives
+    @param {Object} model diagram model.
   */
-  savePrimitives() {
+  savePrimitives(model) {
     let promises = A();
-    let model = this.get('selectedElement.model.data');
     let primitives = model.get('primitives');
     primitives.forEach((primitive) => {
       if (!isNone(primitive.get('isCreated'))) {
@@ -358,12 +358,7 @@ export default Controller.extend(FdSaveHasManyRelationshipsMixin, {
           let repObject = allRepObjects.findBy('id', repId);
           if (repObject) {
             if (repObject.get('isNew')) {
-              let propName = p.get('name');
-              if (isBlank(propName)) {
-                return repObject.rollbackAttributes();
-              } else {
-                repObject.set('nameStr', propName);
-              }
+              repObject.set('nameStr', p.get('name'));
             }
 
             let stereotype = p.getWithDefault('stereotype', '').trim();
@@ -466,12 +461,14 @@ export default Controller.extend(FdSaveHasManyRelationshipsMixin, {
             emptyReferenceCountItems.clear();
 
             model.set('primitivesJsonString', JSON.stringify(primitives));
+            model.set('caseObjectsString', elements.map(p => `Class:(${p.get('name')})`).join(';'));
             return all(promises);
           });
         });
       });
     } else {
       model.set('primitivesJsonString', JSON.stringify(primitives));
+      model.set('caseObjectsString', null);
       return resolve();
     }
   },
@@ -530,8 +527,26 @@ export default Controller.extend(FdSaveHasManyRelationshipsMixin, {
             loopFunction(++i);
           }
         }
-      loopFunction(0);      
+      loopFunction(0);
     });
+  },
+
+  /**
+    Check data for correctness.
+
+    @method validateData
+    @param {Object} model diagram model.
+  */
+  validateData(model) {
+    let emptyClass = model.get('primitives').find((p) => {
+      return p.get('primitive.$type') === 'STORMCASE.STORMNET.Repository.CADClass, STORM.NET Case Tool plugin' && isBlank(p.get('name'));
+    });
+
+    if (!isNone(emptyClass)) {
+      return reject({ message: this.get('i18n').t('forms.fd-diagrams.error-message.empty-class').toString() });
+    }
+
+    return resolve();
   },
 
   actions: {
@@ -544,7 +559,7 @@ export default Controller.extend(FdSaveHasManyRelationshipsMixin, {
       let model = this.get('selectedElement.model.data');
       this.get('appState').loading();
 
-      
+
       this.checkForLooping();
 
       let isNew = false;
@@ -552,26 +567,27 @@ export default Controller.extend(FdSaveHasManyRelationshipsMixin, {
         isNew = true;
       }
 
-      this.savePrimitives().then(() => {
-        model.save()
-        .then(() => {
-          if (isNew) {
-            this.addNewDiagramInModel();
-          }
+      this.validateData(model)
+      .then(() => this.savePrimitives(model))
+      .then(() => model.save())
+      .then(() => {
+        if (isNew) {
+          this.addNewDiagramInModel();
+        }
 
-          this.set('isDiagramVisible', false);
-          schedule('afterRender', this, function() {
-            this.set('isDiagramVisible', true);
-          });
-        })
-        .catch((error) => {
-          this.set('error', error);
-        })
-        .finally(() => {
-          this.get('appState').reset();
+        this.set('isDiagramVisible', false);
+        schedule('afterRender', this, function() {
+          this.set('isDiagramVisible', true);
         });
-      }).catch((error) => {
+      })
+      .catch((error) => {
         this.set('error', error);
+      })
+      .catch((error) => {
+        this.set('error', error.message);
+        this.set('show', true);
+      })
+      .finally(() => {
         this.get('appState').reset();
       });
     },
@@ -592,6 +608,10 @@ export default Controller.extend(FdSaveHasManyRelationshipsMixin, {
       this.get('fdDiagramService').updateJointObjectOnDiagram(objectModel.get('id'));
       editableObject.save()
       .then(() => this.saveHasManyRelationships(editableObject))
+      .catch((error) => {
+        this.set('error', error.message);
+        this.set('show', true);
+      })
       .finally(() => {
         this.get('appState').reset();
         this.set('_attributesStr', editableObject.get('attributesStr'));
@@ -667,7 +687,7 @@ export default Controller.extend(FdSaveHasManyRelationshipsMixin, {
        @method actions.delete
     */
     delete() {
-      /*let store = this.get('store');
+      let store = this.get('store');
       let selectedElement = this.get('selectedElement.model.data');
       let modelPart = selectedElement.get('constructor.modelName').slice(11);
       let modelHash = this.get(`model.${modelPart}`);
@@ -702,22 +722,30 @@ export default Controller.extend(FdSaveHasManyRelationshipsMixin, {
 
           let repObject = allRepObjects.findBy('id', repId);
 
-          return repObject.get('referenceCount') > 1 ? repObject.decrementProperty('referenceCount') : repObject.deleteRecord();
+          if (repObject.get('referenceCount') > 1) {
+            repObject.decrementProperty('referenceCount');
+          } else {
+            repObject.deleteRecord();
+          }
+
+          return repObject;
         }));
       }
 
-      deleteModels.pushObject(selectedElement.deleteRecord());
+      selectedElement.deleteRecord();
+      deleteModels.pushObject(selectedElement);
       store.batchUpdate(deleteModels)
-
-      all(deleteModels.map(a => a.save())).then(() => deleteObject.data.destroyRecord())
-      deleteObject.data.destroyRecord()
       .then(() => {
         this.set('selectedElement', undefined);
         this.get('fdSheetService').closeSheet(this.get('sheetComponentName'));
       })
+      .catch((error) => {
+        this.set('error', error.message);
+        this.set('show', true);
+      })
       .finally(() => {
         this.get('appState').reset();
-      });*/
+      });
     }
   }
 });

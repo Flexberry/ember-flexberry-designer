@@ -1265,7 +1265,8 @@ export let defineProjections = function (modelClass) {
         class: belongsTo('fd-dev-class', '', {
           name: attr('')
         })
-      })
+      }),
+      dataObjectTypesStr: attr(''),
     }),
     attributes: hasMany('fd-dev-attribute', '', {
       name: attr(''),
@@ -1275,6 +1276,7 @@ export let defineProjections = function (modelClass) {
       description: attr(''),
       accessModifier: attr(''),
       stored: attr(''),
+      caption: attr('')
     }),
     methods: hasMany('fd-dev-method', '', {
       accessModifier: attr(''),

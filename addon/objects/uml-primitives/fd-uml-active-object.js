@@ -56,8 +56,11 @@ export default FdUmlElement.extend({
   @constructor
 */
 export let ActiveObject = BaseObject.define('flexberry.uml.ActiveObject', {
+  // Minimum width.
+  minWidth: 80,
+
   // Minimum height.
-  minHeight: 20,
+  minHeight: 30,
 }, {
   getRectangles() {
     return [

@@ -1,5 +1,6 @@
 import { computed } from '@ember/object';
 import { A } from '@ember/array';
+import { isBlank } from '@ember/utils';
 
 import CADModel from './fd-cad';
 import {
@@ -83,13 +84,13 @@ let Model = CADModel.extend(DevUMLCADMixin, {
           break;
 
         case 'STORMCASE.UML.cad.Class, UMLCAD': {
-          let classObject = FdUmlClass.create({ primitive });
+          let classObject = FdUmlClass.create({ primitive, isCreated: isBlank(primitive.Name.Text) });
           classObject.set('primitive.$type', 'STORMCASE.STORMNET.Repository.CADClass, STORM.NET Case Tool plugin');
           result.pushObject(classObject);
           break;
         }
         case 'STORMCASE.STORMNET.Repository.CADClass, STORM.NET Case Tool plugin':
-          result.pushObject(FdUmlClass.create({ primitive }));
+          result.pushObject(FdUmlClass.create({ primitive, isCreated: isBlank(primitive.Name.Text) }));
           break;
 
         case 'STORMCASE.UML.Common.NoteConnector, UMLCommon':
