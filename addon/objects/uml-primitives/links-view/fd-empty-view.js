@@ -135,7 +135,11 @@ export let EmptyView = joint.dia.LinkView.extend({
     }
   },
 
+  /**
+    Update coordinates for FF.
+  */
   pointerdown(evt, x, y) {
+    $(this.paper.el).find('input,textarea').addClass('click-disabled');
     let coordinates = forPointerMethodOverrideResizeAndDnd(evt, x, y);
     joint.dia.LinkView.prototype.pointerdown.apply(this, [evt, coordinates.x, coordinates.y]);
   },
@@ -145,4 +149,9 @@ export let EmptyView = joint.dia.LinkView.extend({
     joint.dia.LinkView.prototype.pointermove.apply(this, [evt, coordinates.x, coordinates.y]);
   },
 
+  pointerup(evt, x, y) {
+    $(this.paper.el).find('input,textarea').removeClass('click-disabled');
+    let coordinates = forPointerMethodOverrideResizeAndDnd(evt, x, y);
+    joint.dia.LinkView.prototype.pointerup.apply(this, [evt, coordinates.x, coordinates.y]);
+  }
 });
