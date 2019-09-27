@@ -38,7 +38,6 @@ inflector.irregular('ucd', 'Ucds');
 inflector.irregular('cad', 'Cads');
 inflector.irregular('std', 'Stds');
 inflector.irregular('LoggingObjectsApplicationLog', 'LoggingObjectsApplicationLogs');
-//inflector.irregular('log', 'Logs');
 inflector.irregular('cod', 'Cods');
 inflector.irregular('sd', 'Sds');
 inflector.irregular('in', 'Ins');
