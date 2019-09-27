@@ -60272,38 +60272,40 @@ body.pushable > .pusher {
   right: -2em;
   top: 0;
 }
-.fd-sheet .ui.grid.fd-list.view-definition {
+.ui.grid.fd-list.view-definition {
   margin: 0;
 }
-.fd-sheet .ui.grid.fd-list.view-definition > .row {
+.ui.grid.fd-list.view-definition > .row {
   margin: 0;
   padding-top: 0.3rem;
   padding-bottom: 0.3rem;
 }
-.fd-sheet .ui.grid.fd-list.view-definition > .row:first-child {
+.ui.grid.fd-list.view-definition > .row:first-child {
   border-top: none;
 }
-.fd-sheet .ui.grid.fd-list.view-definition > .row .thirteen.wide.column {
+.ui.grid.fd-list.view-definition > .row .thirteen.wide.column {
   border-top-left-radius: 0.5rem;
   padding-top: 0.7rem;
 }
-.fd-sheet .ui.grid.fd-list.view-definition > .row .three.wide.column {
+.ui.grid.fd-list.view-definition > .row .three.wide.column {
   border-top-right-radius: 0.5rem;
 }
-.fd-sheet .ui.grid.fd-list.view-definition > .row .three.wide.column.buttons {
+.ui.grid.fd-list.view-definition > .row .three.wide.column.buttons {
   padding-top: 0.7rem;
 }
-.fd-sheet .ui.grid.fd-list.view-definition > .row .sixteen.wide.column {
+.ui.grid.fd-list.view-definition > .row .sixteen.wide.column {
   border-bottom-right-radius: 0.5rem;
   border-bottom-left-radius: 0.5rem;
   padding-bottom: 0.7rem;
 }
-.fd-sheet .ui.grid.fd-list.view-definition input[type="text"] {
-  padding: 0 calc(2.5rem);
+.ui.grid.fd-list.view-definition input[type="text"] {
+  padding-left: 2.5rem;
+  text-overflow: ellipsis;
 }
-.fd-sheet .ui.grid.fd-list.view-definition .fd-view-attr-name input[type="text"] {
+.ui.grid.fd-list.view-definition .fd-view-attr-name input[type="text"] {
   font-weight: bold;
   color: rgba(255, 255, 255, 0.355);
+  padding-right: 2.5rem;
 }
 .ui.basic.button.super-mini {
   background: rgba(0, 0, 0, 0.14) !important;
@@ -60323,6 +60325,9 @@ body.pushable > .pusher {
 .ui.grid.fd-view-table-attr .row.active .column {
   background: rgba(0, 0, 0, 0.14);
 }
+.fd-view-table-attr > .column .fd-ember-jstree {
+  height: 100%;
+}
 .fd-view-table-attr .ui.vertical.buttons .ui.button {
   background: rgba(0, 0, 0, 0.14) none;
   margin-bottom: 0.2rem;
@@ -60330,6 +60335,11 @@ body.pushable > .pusher {
 .fd-view-buttons {
   margin-top: auto;
   margin-bottom: auto;
+}
+.overflow-panel {
+  overflow: auto;
+  transition: max-height 0.3s;
+  max-height: 100%;
 }
 .jstree-default .jstree-anchor {
   height: 41px;
@@ -60755,22 +60765,40 @@ body.pushable > .pusher {
 }
 .fd-sheet .content-mini {
   height: 100%;
-  padding: 0 0 1em;
-  transition: opacity 0.5s ease-in-out, background-color 1s;
   width: 50%;
   position: relative;
+  display: -webkit-box;
+  /* OLD - iOS 6-, Safari 3.1-6 */
+  display: -moz-box;
+  /* OLD - Firefox 19- (buggy but mostly works) */
+  display: -ms-flexbox;
+  /* TWEENER - IE 10 */
+  display: -webkit-flex;
+  /* NEW - Chrome */
+  display: flex;
+  /* NEW, Spec - Opera 12.1, Firefox 20+ */
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
   -webkit-transition: opacity 0.5s ease-in-out, background-color 1s;
   -moz-transition: opacity 0.5s ease-in-out, background-color 1s;
   -ms-transition: opacity 0.5s ease-in-out, background-color 1s;
   -o-transition: opacity 0.5s ease-in-out, background-color 1s;
+}
+.fd-sheet .content-mini .ui.button {
+  margin: auto;
 }
 .fd-sheet .fd-sheet-header {
   padding: 0 4em;
 }
 .fd-sheet .fd-sheet-body {
   overflow: auto;
-  height: calc(100vh - 9.375rem - 40px);
   padding: 1em 4em;
+  -webkit-box-flex: 1;
+  -moz-box-flex: 1;
+  -webkit-flex-grow: 1;
+  -ms-flex: 1;
+  flex-grow: 1;
 }
 .fd-sheet .fd-sheet-toolbar {
   text-align: right;
@@ -60994,15 +61022,15 @@ body.pushable > .pusher {
   background: #3e3e3e;
   border-top-left-radius: 1rem;
   border-top-right-radius: 1rem;
-  display: inline-table;
-  padding: 5px;
   bottom: 0;
+  display: inline-table;
   font-size: 0;
-  left: 0;
+  padding: 5px;
   position: absolute;
-  width: auto;
+  margin-right: -50%;
   max-width: 90%;
   left: 50%;
+  width: auto;
   z-index: 2;
   -webkit-transform: translate(-50%, 0);
   -moz-transform: translate(-50%, 0);
@@ -61013,16 +61041,16 @@ body.pushable > .pusher {
   -ms-transition: transform 0.5s;
   -o-transition: transform 0.5s;
 }
-.fd-uml-diagram-toolbar::before,
-.fd-uml-diagram-toolbar::after {
-  z-index: -1;
+.fd-uml-diagram-toolbar .row {
+  position: relative;
+  z-index: 1;
 }
 .fd-uml-diagram-toolbar.hidden {
   -webkit-transform: translate(-50%, 100%);
   -moz-transform: translate(-50%, 100%);
   -ms-transform: translate(-50%, 100%);
   -o-transform: translate(-50%, 100%);
-  bottom: 0!important;
+  bottom: 0 !important;
 }
 .fd-uml-diagram-toolbar .ui.button:not(.toggle-diagram-toolbar) {
   background: rgba(0, 0, 0, 0.14);
@@ -61228,9 +61256,5 @@ h2,
 }
 .display-flex .ui.button {
   margin: auto;
-}
-.overflow-panel {
-  overflow: auto;
-  transition: max-height 0.3s;
 }
 /*# sourceMappingURL=/assets/dark.css.map */
