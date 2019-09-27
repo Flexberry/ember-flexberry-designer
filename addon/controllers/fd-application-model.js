@@ -366,8 +366,9 @@ export default Controller.extend(FdSaveHasManyRelationshipsMixin, {
 
        @method actions.save
     */
-    save() {
-      let model = this.get('selectedElement.model.data');
+    save(closeAfter) {
+      const selectedElement = this.get('selectedElement');
+      let model = selectedElement.get('model.data');
       this.get('appState').loading();
       updateStrByObjects(model);
 
@@ -388,6 +389,11 @@ export default Controller.extend(FdSaveHasManyRelationshipsMixin, {
       .then(() => this.saveHasManyRelationships(model))
       .then(() => {
         this.updateClassModel(model);
+
+        const selectedSheetName = selectedElement.get('sheetComponentName');
+        if (closeAfter && !isNone(selectedSheetName)) {
+          this.get('fdSheetService').closeSheetAfterSave(selectedSheetName);
+        }
       })
       .catch((error) => {
         this.set('error', error);

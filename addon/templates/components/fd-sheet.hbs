@@ -20,7 +20,7 @@
       <button class="ui icon button" {{action 'expand'}}>
         <i class="icon-fd-resize icon" ></i>
       </button>
-      <button class="ui icon button" {{action 'closeSheet'}}>
+      <button class="ui icon button" {{action 'closeSheet' false}}>
         <i class="icon-fd-x-mark icon" ></i>
       </button>
     </div>
@@ -35,4 +35,16 @@
   <div class="fd-sheet-body">
     {{yield}}
   </div>
+  {{#if _showConfirmDialog}}
+    {{flexberry-dialog
+      caption="Форма подтверждения"
+      content="Имеются несохраненные данные"
+      approve=(action "closeWithSaving")
+      deny=(action "closeWithoutSaving")
+      hide=(action "closeConfirmUnsavedDialog")
+      approveButtonCaption="Сохранить и закрыть"
+      denyButtonCaption="Закрыть без сохраненеия"
+      visible=true
+    }}
+  {{/if}}
 </div>

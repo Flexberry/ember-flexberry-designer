@@ -221,9 +221,8 @@ export default Route.extend({
 
       @method actions.willTransition
     */
-    willTransition() {
-      this.get('fdSheetService').closeSheet(this.get('sheetComponentName'));
-      this.get('fdSheetService').closeSheet(this.get('sheetViewName'));
+    willTransition(transition) {
+      this.get('fdSheetService').transitionFromSheet(transition, this.get('sheetComponentName'), this.get('sheetViewName'));
 
       this._super(...arguments);
     }

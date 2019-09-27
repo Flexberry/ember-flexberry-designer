@@ -9,7 +9,7 @@ export default Service.extend(Evented, {
   init() {
     this._super(...arguments);
 
-    this.set('sheetSettings', { visibility: { }, expanded: { } });
+    this.set('sheetSettings', { visibility: { }, expanded: { }, currentItem: { } });
   },
 
   /**
@@ -32,6 +32,7 @@ export default Service.extend(Evented, {
   openSheet(sheetName, currentItem) {
     this.trigger('openSheetTriggered', sheetName, currentItem);
     this.set(`sheetSettings.visibility.${sheetName}`, true);
+    this.set(`sheetSettings.currentItem.${sheetName}`, currentItem);
     $('.pushable').addClass('fade');
     $('.fd-sheet.visible.expand .content-mini').addClass('fade');
 
@@ -51,10 +52,11 @@ export default Service.extend(Evented, {
      @param {String} sheetName Sheet's component name
   */
   closeSheet(sheetName) {
+    let currentSheet = $(`.fd-sheet.${sheetName}`);
+    this.trigger('sheetUnsavedDataTrigger', sheetName);
     this.trigger('closeSheetTriggered', sheetName);
     this.set(`sheetSettings.visibility.${sheetName}`, false);
     this.set(`sheetSettings.expanded.${sheetName}`, false);
-    let currentSheet = $(`.fd-sheet.${sheetName}`);
 
     if ($('.fd-sheet.visible').length < 2) {
       $('.pushable').removeClass('fade');
@@ -77,6 +79,27 @@ export default Service.extend(Evented, {
       $('.content-mini', currentSheet).css({ width: '' });
       $('.toggle-sidebar').removeClass('no-delay');
     }, 1000);
+  },
+
+  /**
+    Close sheet when call save and close.
+
+     @method closeSheetAfterSave
+     @param {String} sheetName Sheet's component name
+  */
+  closeSheetAfterSave(sheetName) {
+    this.trigger('closeSheetAfterSaveTrigger', sheetName); 
+  },
+
+  /**
+    Transition from opened sheet.
+
+     @method transitionFromSheet
+     @param {Object} transition Transition, getted from route
+     @param {String} sheetName Sheet's component name
+  */
+  transitionFromSheet(transition, sheetName, viewName) {
+    this.trigger('transitionFromSheetTrigger', transition, sheetName, viewName); 
   },
 
   /**
@@ -168,5 +191,5 @@ export default Service.extend(Evented, {
       _this.toolbarDiagramPosition();
       _this.trigger('diagramResizeTriggered', sheetName, containsName);
     }, speed);
-  }
+  },
 });
