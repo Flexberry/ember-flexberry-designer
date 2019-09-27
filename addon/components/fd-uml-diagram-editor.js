@@ -298,6 +298,7 @@ FdActionsForUcdPrimitivesMixin, {
           if (storeCallback) {
             let linkRecord = storeCallback({ startClassRepObj: newLink.get('startClassRepObj'), endClassRepObj: newLink.get('endClassRepObj') });
             newLink.set({ 'repositoryObject': linkRecord });
+            this.paper.trigger('checkexistelements', newLink.get('objectModel'), this.paper.findViewByModel(newLink));
           }
 
           this.clearData();
@@ -316,7 +317,7 @@ FdActionsForUcdPrimitivesMixin, {
     */
     blankContextMenu() {
       let type = this.get('type');
-      if (!isNone(type)) {
+      if (type === 'Link') {
         let newLink = this.get('newLink');
         if (newLink.vertices().length === 0) {
           let primitives = this.get('model.primitives');
@@ -327,6 +328,8 @@ FdActionsForUcdPrimitivesMixin, {
         } else {
           newLink.removeVertex(-1);
         }
+      } else if (type === 'Object') {
+        this.clearData();
       }
 
       return false;

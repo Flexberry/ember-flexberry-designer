@@ -5,7 +5,7 @@
 
 .fd-sheet-toolbar {
   .ui.button {
-    color: @toolbarBtnClr;
+    color: @toolbarButtonColor;
   }
   .ui.buttons {
     .ui.button {
@@ -29,14 +29,14 @@
   white-space: nowrap;
   min-height: 34px;
   box-shadow: none;
-  border: 1px dashed @sidebarBg;
+  border: 1px dashed @basicButtonBoxShadow;
   padding: 0.7em 1em;
   &:hover {
-    border: 1px dashed @sidebarBg + rgba(0, 0, 0, 0.10);
+    border: 1px dashed fadein(@basicButtonBoxShadow, 10%);
     box-shadow: none;
   }
   &:active {
-    border: 1px dashed @sidebarBg + rgba(0, 0, 0, 0.20);
+    border: 1px dashed fadein(@basicButtonBoxShadow, 20%);
     box-shadow: none;
   }
   &:focus {

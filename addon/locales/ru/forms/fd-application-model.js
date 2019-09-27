@@ -22,4 +22,10 @@ export default {
   'parent-caption': 'Предки первого уровня',
   'create-class-caption': 'Создать класс',
   cancel: 'Отменить',
+  'error-message': {
+    'empty-class': 'Имя у класса не может быть пустое',
+    'exist-class': 'Класс с таким именем уже существует',
+    'view-form': 'Составное представление не указано',
+    'bs-delete': 'BusinessServer используется другими классами:',
+  }
 };

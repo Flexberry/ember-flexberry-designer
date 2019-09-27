@@ -45,7 +45,7 @@
 .ui.form .uml-class-inputs textarea {
   border: none;
   padding: 0px;
-  color: black;
+  color: @textColor;
   font-size: 12px;
   font-family: Arial;
   min-width: 50px;
@@ -271,5 +271,19 @@
 
   .right-down-size-button {
     cursor: nwse-resize;
+  }
+}
+
+.joint-paper-background {
+  background-color: @pageBackground;
+}
+
+@texttColorHex: multiply(white, @textColor);
+.joint-paper {
+  rect{
+    &.corner-rect {
+      fill: @pageBackground;
+      stroke: @pageBackground;
+    }
   }
 }

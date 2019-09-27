@@ -21,3 +21,9 @@
 /* Selected */
 @selectedBackground: @overlayColor;
 @selectedTextColor: @textColor;
+
+/* Menu */
+@menuBackground: @fdSheetBg;
+
+/* Menu Item */
+@selectionItemDivider: @sidebarBg;

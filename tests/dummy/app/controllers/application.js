@@ -33,6 +33,8 @@ export default Controller.extend({
   */
   appState: service(),
 
+  router: service(),
+
   /**
     Current project name from stageModel
 
@@ -143,6 +145,15 @@ export default Controller.extend({
   locales: undefined,
 
   /**
+    Themes supported by application.
+
+    @property themes
+    @type String[]
+    @default ['light', 'dark', 'blue']
+  */
+   themes: undefined,
+
+  /**
     Handles changes in userSettingsService.isUserSettingsServiceEnabled.
 
     @method _userSettingsServiceChanged
@@ -157,6 +168,8 @@ export default Controller.extend({
   */
   init() {
     this._super(...arguments);
+
+    this.set('themes', ['light', 'dark', 'blue']);
 
     this.set('locales', ['ru', 'en']);
 
@@ -192,6 +205,16 @@ export default Controller.extend({
   sidebarMiniWidth: '60px',
 
   actions: {
+    changeTheme() {
+      let sheet = document.querySelector('#theme');
+      if (!sheet) {
+        return
+      }
+
+      let theme = $('.flexberry-dropdown.theme div.text').text();
+      let rootURL = this.get('router.location.location.origin');
+      sheet.setAttribute('href', `${rootURL}/assets/${theme}.css`);
+    },
 
     /**
       Call `updateWidthTrigger` for `objectlistviewEventsService`.
