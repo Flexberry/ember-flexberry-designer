@@ -1556,6 +1556,11 @@ define('dummy/controllers/application', ['exports'], function (exports) {
           title: i18n.t('forms.application.sitemap.root.fd-all-projects.title'),
           icon: 'icon-fd-view'
         }, {
+          link: 'i-i-s-caseberry-logging-objects-application-log-l',
+          caption: i18n.t('forms.application.sitemap.root.i-i-s-caseberry-logging-objects-application-log-l.caption'),
+          title: i18n.t('forms.application.sitemap.root.i-i-s-caseberry-logging-objects-application-log-l.title'),
+          icon: 'bug'
+        }, {
           link: '',
           caption: i18n.t('forms.application.sitemap.root.fd-requests.caption'),
           title: i18n.t('forms.application.sitemap.root.fd-requests.title'),
@@ -12803,7 +12808,6 @@ define('dummy/models/custom-inflector-rules', ['exports', 'ember-inflector'], fu
   inflector.irregular('ucd', 'Ucds');
   inflector.irregular('cad', 'Cads');
   inflector.irregular('std', 'Stds');
-  inflector.irregular('log', 'Logs');
   inflector.irregular('cod', 'Cods');
   inflector.irregular('sd', 'Sds');
   inflector.irregular('in', 'Ins');
@@ -14022,6 +14026,10 @@ define('dummy/router', ['exports', 'dummy/config/environment'], function (export
     this.route('deployment-diagram-primitives-demo');
     this.route('statechart-diagram-primitives-demo');
     this.route('collaboration-diagram-primitives-demo');
+
+    // Logging.
+    this.route('i-i-s-caseberry-logging-objects-application-log-l');
+    this.route('i-i-s-caseberry-logging-objects-application-log-e', { path: 'i-i-s-caseberry-logging-objects-application-log-e/:id' });
 
     // new route
     this.route('fd-application-model');
