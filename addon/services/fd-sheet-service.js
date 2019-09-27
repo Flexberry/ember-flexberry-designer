@@ -2,9 +2,55 @@ import Service from '@ember/service';
 import Evented from '@ember/object/evented';
 import $ from 'jquery';
 import { later, schedule } from '@ember/runloop';
+import { isBlank, isNone } from '@ember/utils';
 
 export default Service.extend(Evented, {
+  /**
+    View component name when closing stopping by confirm close.
+
+    @property _viewNameStopedClose
+    @type String
+    @default ''
+  */
+  _viewNameStopedClose: '',
+
   sheetSettings: undefined,
+
+  /**
+    Current transition from sheet.
+
+    @property currentTransitionFromSheet
+    @type Object
+    @default undefined
+  */
+  abortedTransitionFromSheet: undefined,
+
+  /**
+    Sheet component name of opened sheet.
+
+    @property openingSheetName
+    @type String
+    @default ''
+  */
+  openingSheetName: '',
+
+  /**
+    Sheet component name of opened sheet.
+
+    @property _openingItem
+    @type Object
+    @default ''
+  */
+  openingItem: undefined,
+
+  /**
+    Sheet component name that opened now.
+
+    @property currentSheetName
+    @type String
+    @default ''
+  */
+  currentSheetName: '',
 
   init() {
     this._super(...arguments);
@@ -30,19 +76,30 @@ export default Service.extend(Evented, {
      @param {Object} currentItem Current list item
   */
   openSheet(sheetName, currentItem) {
-    this.trigger('openSheetTriggered', sheetName, currentItem);
-    this.set(`sheetSettings.visibility.${sheetName}`, true);
-    this.set(`sheetSettings.currentItem.${sheetName}`, currentItem);
-    $('.pushable').addClass('fade');
-    $('.fd-sheet.visible.expand .content-mini').addClass('fade');
+    const currentSheetName = this.get('currentSheetName');
+    const unsavedData = this.findUnsavedSheetData(currentSheetName);
+    this.set('abortedTransitionFromSheet', undefined);
 
-    let sidebarWidth = $('.ui.sidebar.main.menu').width();
+    if (unsavedData) {
+      this.set('openingSheetName', sheetName);
+      this.set('openingItem', currentItem);
+      this.trigger('showCloseDialogTrigger');
+    } else {
+      this.set('currentSheetName', sheetName);
+      this.trigger('openSheetTriggered', sheetName, currentItem);
+      this.set(`sheetSettings.visibility.${sheetName}`, true);
+      this.set(`sheetSettings.currentItem.${sheetName}`, currentItem);
+      $('.pushable').addClass('fade');
+      $('.fd-sheet.visible.expand .content-mini').addClass('fade');
 
-    let sheetTranslate = `translate3d(calc(50% - ${sidebarWidth}px), 0, 0)`;
-    $(`.fd-sheet.${sheetName}`).css({ 'transform': sheetTranslate });
+      let sidebarWidth = $('.ui.sidebar.main.menu').width();
 
-    // Сбрасываем стиль с кнопки сайдбара.
-    $('.toggle-sidebar').removeClass('expanded');
+      let sheetTranslate = `translate3d(calc(50% - ${sidebarWidth}px), 0, 0)`;
+      $(`.fd-sheet.${sheetName}`).css({ 'transform': sheetTranslate });
+
+      // Сбрасываем стиль с кнопки сайдбара.
+      $('.toggle-sidebar').removeClass('expanded');
+    }
   },
 
   /**
@@ -53,53 +110,93 @@ export default Service.extend(Evented, {
   */
   closeSheet(sheetName) {
     let currentSheet = $(`.fd-sheet.${sheetName}`);
-    this.trigger('sheetUnsavedDataTrigger', sheetName);
-    this.trigger('closeSheetTriggered', sheetName);
-    this.set(`sheetSettings.visibility.${sheetName}`, false);
-    this.set(`sheetSettings.expanded.${sheetName}`, false);
 
-    if ($('.fd-sheet.visible').length < 2) {
-      $('.pushable').removeClass('fade');
-
-      // Сбрасываем стиль с кнопки сайдбара.
-      $('.toggle-sidebar').removeClass('expanded');
+    const unsavedData = this.findUnsavedSheetData(sheetName);
+    
+    if (unsavedData) {
+      this.trigger('showCloseDialogTrigger');
     } else {
-      if ($('.fd-sheet.visible').hasClass('expand')) {
+      this.trigger('closeSheetTriggered', sheetName);
+      this.set(`sheetSettings.visibility.${sheetName}`, false);
+      this.set(`sheetSettings.expanded.${sheetName}`, false);
 
-        // Затемняем кнопку сайдбара.
-        $('.toggle-sidebar').addClass('expanded');
-        $('.toggle-sidebar').addClass('no-delay');
+      if ($('.fd-sheet.visible').length < 2) {
+        $('.pushable').removeClass('fade');
+
+        // Сбрасываем стиль с кнопки сайдбара.
+        $('.toggle-sidebar').removeClass('expanded');
+      } else {
+        if ($('.fd-sheet.visible').hasClass('expand')) {
+
+          // Затемняем кнопку сайдбара.
+          $('.toggle-sidebar').addClass('expanded');
+          $('.toggle-sidebar').addClass('no-delay');
+        }
       }
-    }
 
-    $('.fd-sheet.visible.expand .content-mini').removeClass('fade');
-    currentSheet.css({ 'transform': '' });
+      $('.fd-sheet.visible.expand .content-mini').removeClass('fade');
+      currentSheet.css({ 'transform': '' });
 
-    later(function() {
-      $('.content-mini', currentSheet).css({ width: '' });
-      $('.toggle-sidebar').removeClass('no-delay');
-    }, 1000);
+      later(function() {
+        $('.content-mini', currentSheet).css({ width: '' });
+        $('.toggle-sidebar').removeClass('no-delay');
+      }, 1000);
+    } 
   },
 
   /**
-    Close sheet when call save and close.
+    Save and close sheet.
 
-     @method closeSheetAfterSave
+    @method closeWithSaving
+  */
+  closeWithSaving() {
+    this.trigger('saveSheetTrigger', true);
+  },
+
+  /**
+    Close sheet when it confirmed.
+
+     @method confirmClose
      @param {String} sheetName Sheet's component name
   */
-  closeSheetAfterSave(sheetName) {
-    this.trigger('closeSheetAfterSaveTrigger', sheetName); 
+  confirmClose(sheetName) {
+    const abortedTransition = this.get('abortedTransitionFromSheet');
+    const openingSheetName = this.get('openingSheetName');
+    const openingItem = this.get('openingItem');
+
+    if (!isNone(abortedTransition)) {
+      abortedTransition.retry();
+      this.closeSheet(sheetName);
+      this.closeSheet(this.get('_viewNameStopedClose'));
+    } else if (!isBlank(openingSheetName) && !isNone(openingItem)) {
+      this.openSheet(openingSheetName, openingItem);
+    } else {
+      this.closeSheet(sheetName);
+    }
+
+    this.trigger('hideCloseDialogTrigger');
   },
 
   /**
     Transition from opened sheet.
 
-     @method transitionFromSheet
-     @param {Object} transition Transition, getted from route
+     @method closeSheet
+     @param {Object} transition Transition
      @param {String} sheetName Sheet's component name
+     @param {String} viewName View's component name
   */
   transitionFromSheet(transition, sheetName, viewName) {
-    this.trigger('transitionFromSheetTrigger', transition, sheetName, viewName); 
+    this.set('_viewNameStopedClose', viewName);
+    const isUnsavedData = this.findUnsavedSheetData(sheetName);
+
+    if (isUnsavedData) {
+      transition.abort();
+      this.set('abortedTransitionFromSheet', transition);
+      this.trigger('showCloseDialogTrigger', sheetName);
+    } else {
+      this.closeSheet(sheetName);
+      this.closeSheet(viewName);        
+    }
   },
 
   /**
@@ -174,6 +271,35 @@ export default Service.extend(Evented, {
     outer.parentNode.removeChild(outer);
 
     return widthNoScroll - widthWithScroll;
+  },
+
+  /**
+    Check if sheet has unsaved data.
+
+     @method findUnsavedSheetData
+     @param {String} sheetName Sheet's component name
+  */
+  findUnsavedSheetData(sheetName) {
+    const currentItemModel = this.getSheetModel(sheetName);
+    const isDirty = (isNone(currentItemModel)) ? false : currentItemModel.hasDirtyAttributes;
+
+    return isDirty;
+  },
+
+  /**
+    Get sheet model.
+
+    @method getSheetModel
+    @param {String} sheetName Sheet's component name
+  */
+  getSheetModel(sheetName) {
+    if (isBlank(sheetName)) {
+      return null;
+    }
+
+    let currentItemModel = this.get(`sheetSettings.currentItem.${sheetName}.model.data`);
+
+    return currentItemModel;
   },
 
   /**

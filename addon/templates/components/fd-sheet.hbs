@@ -34,17 +34,5 @@
   </div>
   <div class="fd-sheet-body">
     {{yield}}
-  </div>
-  {{#if _showConfirmDialog}}
-    {{flexberry-dialog
-      caption="Форма подтверждения"
-      content="Имеются несохраненные данные"
-      approve=(action "closeWithSaving")
-      deny=(action "closeWithoutSaving")
-      hide=(action "closeConfirmUnsavedDialog")
-      approveButtonCaption="Сохранить и закрыть"
-      denyButtonCaption="Закрыть без сохраненеия"
-      visible=true
-    }}
-  {{/if}}
+  </div>  
 </div>

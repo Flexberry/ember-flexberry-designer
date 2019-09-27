@@ -5,12 +5,13 @@ import { A } from '@ember/array';
 import { inject as service } from '@ember/service';
 import { updateStrByObjects } from '../utils/fd-update-str-value';
 import { translationMacro as t } from 'ember-i18n';
+import FdSheetCloseConfirm from '../mixins/fd-sheet-close-confirm';
 import { resolve } from 'rsvp';
 import $ from 'jquery';
 
 import FdSaveHasManyRelationshipsMixin from '../mixins/fd-save-has-many-relationships';
 
-export default Controller.extend(FdSaveHasManyRelationshipsMixin, {
+export default Controller.extend(FdSaveHasManyRelationshipsMixin, FdSheetCloseConfirm, {
 
   /**
    Service that get current project contexts.
@@ -195,6 +196,7 @@ export default Controller.extend(FdSaveHasManyRelationshipsMixin, {
 
     this.get('fdSheetService').on('openSheetTriggered', this, this.openSheet);
     this.get('fdSheetService').on('closeSheetTriggered', this, this.closeSheet);
+    this.get('fdSheetService').on('saveSheetTrigger', this, this.saveSheet);
   },
 
   /**
@@ -244,7 +246,7 @@ export default Controller.extend(FdSaveHasManyRelationshipsMixin, {
         this.set('isAddMode', false);
       }
     }
-  },
+  },  
 
   /**
     Closing sheet.
@@ -279,6 +281,15 @@ export default Controller.extend(FdSaveHasManyRelationshipsMixin, {
     if (fdSheetService.isVisible(sheetViewName)) {
       fdSheetService.closeSheet(sheetViewName);
     }
+  },
+
+  /**
+    Save sheet.
+
+     @method saveSheet
+  */
+  saveSheet(close) {
+    this.send('save', close);
   },
 
   /**
@@ -365,6 +376,7 @@ export default Controller.extend(FdSaveHasManyRelationshipsMixin, {
       Save 'selectedElement'.
 
        @method actions.save
+       @param {Boolean} closeAfter close after save
     */
     save(closeAfter) {
       const selectedElement = this.get('selectedElement');
@@ -392,7 +404,7 @@ export default Controller.extend(FdSaveHasManyRelationshipsMixin, {
 
         const selectedSheetName = selectedElement.get('sheetComponentName');
         if (closeAfter && !isNone(selectedSheetName)) {
-          this.get('fdSheetService').closeSheetAfterSave(selectedSheetName);
+          this.get('fdSheetService').confirmClose(selectedSheetName);
         }
       })
       .catch((error) => {
