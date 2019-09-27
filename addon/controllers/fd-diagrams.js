@@ -504,20 +504,22 @@ export default Controller.extend(FdSaveHasManyRelationshipsMixin, {
     let mapPrimitives = primitivesModel.mapBy('primitive');
 
     mapPrimitives.forEach((primitive, index) => {
-      if (mapPrimitives[index].$type === "STORMCASE.UML.cad.Inheritance, UMLCAD") {
-        let idInheritance =  mapPrimitives[index].RepositoryObject;
-        idInheritance = idInheritance.split('{');
-        idInheritance = idInheritance[1].split('}');
-        idInheritance = idInheritance[0];
+      if (primitive.$type != "STORMCASE.UML.cad.Inheritance, UMLCAD") {
+        return;
+      }
+        let idInheritance =  primitive.RepositoryObject;
+        // idInheritance = idInheritance.split('{');
+        // idInheritance = idInheritance[1].split('}');
+        // idInheritance = idInheritance[0];
 
-        let inheritanceData = recordsInheritance.filterBy('id', idInheritance);
+        let inheritanceData = recordsInheritance.filterBy('id', idInheritance.slice(1, -1));
         let searchIndex = recordsInheritance._objects.indexOf(inheritanceData[0]);
 
         let currentObj = recordsInheritance._objects[searchIndex];
         let parent = currentObj.parent;
 
         let loopFunction = function(i) {
-          if ((i>=recordsInheritance.length)||(i<0)) {
+          if ((i >= recordsInheritance.length) || (i<0)) {
             return;
           }
           if (recordsInheritance._objects[i].parent.id === currentObj.child.id) {
@@ -532,7 +534,7 @@ export default Controller.extend(FdSaveHasManyRelationshipsMixin, {
           }
         }
       loopFunction(0);
-      }
+      
     });
   },
 
