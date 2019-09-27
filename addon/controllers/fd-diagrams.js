@@ -503,14 +503,11 @@ export default Controller.extend(FdSaveHasManyRelationshipsMixin, {
 
     let mapPrimitives = primitivesModel.mapBy('primitive');
 
-    mapPrimitives.forEach((primitive, index) => {
+    mapPrimitives.forEach((primitive) => {
       if (primitive.$type != "STORMCASE.UML.cad.Inheritance, UMLCAD") {
         return;
       }
         let idInheritance =  primitive.RepositoryObject;
-        // idInheritance = idInheritance.split('{');
-        // idInheritance = idInheritance[1].split('}');
-        // idInheritance = idInheritance[0];
 
         let inheritanceData = recordsInheritance.filterBy('id', idInheritance.slice(1, -1));
         let searchIndex = recordsInheritance._objects.indexOf(inheritanceData[0]);
@@ -533,8 +530,7 @@ export default Controller.extend(FdSaveHasManyRelationshipsMixin, {
             loopFunction(++i);
           }
         }
-      loopFunction(0);
-      
+      loopFunction(0);      
     });
   },
 
