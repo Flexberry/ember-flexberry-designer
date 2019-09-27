@@ -364,6 +364,10 @@ $.extend(true, translations, {
           'fd-current-project-name-header': {
             caption: 'Проект',
             title: '',
+          },
+          'i-i-s-caseberry-logging-objects-application-log-l': {
+            caption: 'Лог',
+            title: '',
           }
         },
       }

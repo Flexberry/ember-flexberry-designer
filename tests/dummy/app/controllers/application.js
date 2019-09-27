@@ -129,6 +129,12 @@ export default Controller.extend({
         caption: i18n.t('forms.application.sitemap.root.fd-chat.caption'),
         title: i18n.t('forms.application.sitemap.root.fd-chat.title'),
         icon: 'icon-fd-speech-bubble'
+      },
+      {
+        link: 'i-i-s-caseberry-logging-objects-application-log-l',
+        caption: i18n.t('forms.application.sitemap.root.i-i-s-caseberry-logging-objects-application-log-l.caption'),
+        title: i18n.t('forms.application.sitemap.root.i-i-s-caseberry-logging-objects-application-log-l.title'),
+        icon: 'bug'
       });
     }
 
