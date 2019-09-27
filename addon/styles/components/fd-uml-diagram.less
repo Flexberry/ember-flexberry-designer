@@ -173,27 +173,27 @@
   background: @fdSheetBg;
   border-top-left-radius: 1rem;
   border-top-right-radius: 1rem;
-  display: inline-table;
-  padding: 5px;
   bottom: 0;
+  display: inline-table;
   font-size: 0;
-  left: 0;
+  padding: 5px; 
   position: absolute;
-  width: auto;
+  margin-right: -50%;
   max-width: 90%;
   left: 50%;
+  width: auto;
   z-index: 2;
   .transform(translate(-50%, 0));
   .transition(transform 0.5s);
 
-  &::before,
-  &::after {
-    z-index: -1;
+  .row {
+    position: relative;
+    z-index: 1;
   }
 
   &.hidden {
     .transform(translate(-50%, 100%));
-    bottom: 0!important;
+    bottom: 0 !important;
   }
 
   .ui.button:not(.toggle-diagram-toolbar) {
