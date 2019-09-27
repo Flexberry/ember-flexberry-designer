@@ -10,6 +10,8 @@ export default {
   std: 'Statechart diagram',
   ucd: 'Usecase diagram',
   'error-message': {
-    'empty-class': 'Classes with an empty name exist on the diagram'
+    'empty-class': 'Classes with an empty name exist on the diagram',
+    'loop-inheritance': 'Loop found in inheritance links',
+    'two-childs': 'Cannot be multiple childs'
   }
 };

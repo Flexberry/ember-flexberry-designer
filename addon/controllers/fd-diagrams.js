@@ -486,6 +486,59 @@ export default Controller.extend(FdSaveHasManyRelationshipsMixin, {
     this.notifyPropertyChange('model');
   },
 
+    /**
+    Finds loops in links.
+
+     @method checkForLooping
+  */
+  checkForLooping() {
+    let model = this.get('selectedElement.model.data');
+    let primitivesModel = model.get('primitives');
+    let mapPrimitives = primitivesModel.mapBy('primitive');
+
+    let store = this.get('store');
+    let allInheritance = store.peekAll('fd-dev-inheritance');
+
+    let loopFunction = function(rep, childId, i18n) {
+      let newReps = allInheritance.filter(function(r) {
+        let isExist = true;
+        if (r.get('isNew')) {
+          isExist = A(mapPrimitives).findBy('RepositoryObject', `{${r.get('id')}}`) ? true : false;
+        }
+
+        return isExist && r.get('child.id') === rep.get('parent.id') && store.peekRecord('fd-dev-class', r.get('parent.id')).get('stereotype') !== '«interface»';
+      });
+
+      if (newReps.length > 1) {
+        message = i18n.t('forms.fd-diagrams.error-message.two-childs').toString();
+      } else if (newReps.length === 0) {
+        return;
+      }
+
+      let newRep = newReps.get('firstObject');
+
+      if (newRep.get('parent.id') === childId) {
+        message = i18n.t('forms.fd-diagrams.error-message.loop-inheritance').toString();
+      } else {
+        loopFunction(newRep, childId, i18n);
+      }
+    };
+
+    let message = '';
+    mapPrimitives.forEach((primitive) => {
+      if (primitive.$type !== "STORMCASE.UML.cad.Inheritance, UMLCAD" || !isBlank(message)) {
+        return;
+      }
+
+      let currentObj = allInheritance.findBy('id', primitive.RepositoryObject.slice(1, -1));
+      let childId = currentObj.get('child.id');
+
+      loopFunction(currentObj, childId, this.get('i18n'));
+    });
+
+    return message;
+  },
+
   /**
     Check data for correctness.
 
@@ -499,6 +552,11 @@ export default Controller.extend(FdSaveHasManyRelationshipsMixin, {
 
     if (!isNone(emptyClass)) {
       return reject({ message: this.get('i18n').t('forms.fd-diagrams.error-message.empty-class').toString() });
+    }
+
+    let errorMessage = this.checkForLooping();
+    if (!isBlank(errorMessage)) {
+      return reject({ message: errorMessage });
     }
 
     return resolve();
@@ -531,9 +589,6 @@ export default Controller.extend(FdSaveHasManyRelationshipsMixin, {
         schedule('afterRender', this, function() {
           this.set('isDiagramVisible', true);
         });
-      })
-      .catch((error) => {
-        this.set('error', error);
       })
       .catch((error) => {
         this.set('error', error.message);
