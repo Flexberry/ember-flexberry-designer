@@ -501,12 +501,12 @@ export default Controller.extend(FdSaveHasManyRelationshipsMixin, {
 
     let loopFunction = function(rep, childId, i18n) {
       let newReps = allInheritance.filter(function(r) {
-        let isExsist = true;
+        let isExist = true;
         if (r.get('isNew')) {
-          isExsist = A(mapPrimitives).findBy('RepositoryObject', `{${r.get('id')}}`) ? true : false;
+          isExist = A(mapPrimitives).findBy('RepositoryObject', `{${r.get('id')}}`) ? true : false;
         }
 
-        return isExsist && r.get('child.id') === rep.get('parent.id') && store.peekRecord('fd-dev-class', r.get('parent.id')).get('stereotype') !== '«interface»';
+        return isExist && r.get('child.id') === rep.get('parent.id') && store.peekRecord('fd-dev-class', r.get('parent.id')).get('stereotype') !== '«interface»';
       });
 
       if (newReps.length > 1) {
@@ -526,7 +526,7 @@ export default Controller.extend(FdSaveHasManyRelationshipsMixin, {
 
     let message = '';
     mapPrimitives.forEach((primitive) => {
-      if (primitive.$type != "STORMCASE.UML.cad.Inheritance, UMLCAD" || !isBlank(message)) {
+      if (primitive.$type !== "STORMCASE.UML.cad.Inheritance, UMLCAD" || !isBlank(message)) {
         return;
       }
 
