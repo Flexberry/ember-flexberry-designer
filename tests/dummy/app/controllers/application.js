@@ -5,6 +5,7 @@ import { A } from '@ember/array';
 import { isNone } from '@ember/utils';
 import { later } from '@ember/runloop';
 import $ from 'jquery';
+import config from '../config/environment';
 
 export default Controller.extend({
   fdSheetService: service(),
@@ -218,7 +219,7 @@ export default Controller.extend({
       }
 
       let theme = $('.flexberry-dropdown.theme div.text').text();
-      let rootURL = this.get('router.location.location.origin');
+      let rootURL = this.get('router.location.location.origin') + config.rootURL;
       sheet.setAttribute('href', `${rootURL}/assets/${theme}.css`);
     },
 
