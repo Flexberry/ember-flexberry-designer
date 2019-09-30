@@ -28,6 +28,14 @@ export default Component.extend({
   */
   fdSheetService: service(),
 
+  /**	
+    Sheet component name.	
+    @property sheetComponentName	
+    @type String	
+    @default ''	
+  */	
+  sheetComponentName: '',
+
   /**
     Flag: indicates whether to show toolbar.
 

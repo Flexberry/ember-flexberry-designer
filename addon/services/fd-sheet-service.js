@@ -26,15 +26,6 @@ export default Service.extend(Evented, {
   abortedTransitionFromSheet: undefined,
 
   /**
-    Name of sheet that opening was abort and must continue after confirm.
-
-    @property openingSheetName
-    @type String
-    @default ''
-  */
-  openingSheetName: '',
-
-  /**
     Item of sheet that opening was abort and must continue after confirm.
 
     @property openingItem
@@ -44,31 +35,13 @@ export default Service.extend(Evented, {
   openingItem: undefined,
 
   /**
-    Item of sheet component that opened now.
-
-    @property currentItem
-    @type Object
-    @default undefined
-  */
-  currentItem: undefined,
-
-  /**
-    Name of sheet component that opened now.
-
-    @property currentSheetName
-    @type String
-    @default undefined
-  */
-  currentSheetName: undefined,
-
-  /**
     Origin json diagram data.
 
     @property originJsonDiagramData
     @type String
     @default ''
   */
-  originJsonDiagramData: '',
+  //originJsonDiagramData: '',
 
   init() {
     this._super(...arguments);
@@ -94,19 +67,15 @@ export default Service.extend(Evented, {
      @param {Object} currentItem Current list item
   */
   openSheet(sheetName, currentItem) {
-    const currentSheetName = this.get('currentSheetName');
-    const unsavedData = this.findUnsavedSheetData(currentSheetName);
+    const unsavedData = this.findUnsavedSheetData(sheetName);
     this.set('abortedTransitionFromSheet', undefined);
 
     if (unsavedData) {
-      this.set('openingSheetName', sheetName);
       this.set('openingItem', currentItem);
       this.trigger('showCloseDialogTrigger');
     } else {
-      this.set('currentSheetName', sheetName);
-      this.set('currentItem', currentItem);
-      const primitivesJsonData = this.getJsonFromDiagramModel(this.getSheetModel(sheetName));
-      this.set('originJsonDiagramData', primitivesJsonData);
+      //const primitivesJsonData = this.getJsonFromDiagramModel(this.getSheetModel(sheetName));
+      //this.set('originJsonDiagramData', primitivesJsonData);
 
       this.trigger('openSheetTriggered', sheetName, currentItem);
       this.set(`sheetSettings.visibility.${sheetName}`, true);
@@ -167,15 +136,6 @@ export default Service.extend(Evented, {
   },
 
   /**
-    Save and close sheet.
-
-    @method closeWithSaving
-  */
-  closeWithSaving() {
-    this.trigger('saveSheetTrigger', true);
-  },
-
-  /**
     Close sheet when it confirmed.
 
      @method confirmClose
@@ -183,15 +143,14 @@ export default Service.extend(Evented, {
   */
   confirmClose(sheetName) {
     const abortedTransition = this.get('abortedTransitionFromSheet');
-    const openingSheetName = this.get('openingSheetName');
     const openingItem = this.get('openingItem');
 
     if (!isNone(abortedTransition)) {
       abortedTransition.retry();
       this.closeSheet(sheetName);
       this.closeSheet(this.get('_viewNameStopedClose'));
-    } else if (!isBlank(openingSheetName) && !isNone(openingItem)) {
-      this.openSheet(openingSheetName, openingItem);
+    } else if (!isNone(openingItem)) {
+      this.openSheet(sheetName, openingItem);
     } else {
       this.closeSheet(sheetName);
     }
@@ -310,7 +269,6 @@ export default Service.extend(Evented, {
       let diagramHasChanges = false;
       let sheetHasChanges = currentItemModel.hasDirtyAttributes;
       if (!isNone(currentDiagramPrimitivesJson)) {
-        //const originDiagramPrimitivesJson = this.get('originJsonDiagramData');
         const originDiagramPrimitivesJson = currentItemModel.get('primitivesJsonString');
         diagramHasChanges = (!isNone(originDiagramPrimitivesJson)) ? (currentDiagramPrimitivesJson !== originDiagramPrimitivesJson) : false;
       }

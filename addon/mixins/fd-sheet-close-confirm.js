@@ -1,4 +1,5 @@
 import Mixin from '@ember/object/mixin';
+import { isNone } from '@ember/utils';
 
 export default Mixin.create({
   /**
@@ -38,7 +39,32 @@ export default Mixin.create({
     sheetService.set('openingItem', undefined);
     this.set('_showConfirmDialog', false);
   },
-  
+
+  /**
+    Save and close/
+
+     @method saveSheet
+  */
+  saveAndClose() {
+    const selectedElement = this.get('selectedElement');
+    if (!isNone(selectedElement)) {
+      this.send('save', true);
+    }
+  },
+
+  /**
+    Close sheet after save data/
+
+     @method closeAfterSave
+     @param {Boolean} close close after save
+     @param {String} sheetName name of closing sheet
+  */
+  closeAfterSaveConfirm(close, sheetName) {
+    if (close && !isNone(sheetName)) {
+      this.get('fdSheetService').confirmClose(sheetName);
+    }
+  },
+
   actions: {
     /**
       Button action close sheet without saving.
@@ -47,11 +73,13 @@ export default Mixin.create({
     */
     closeWithoutSaving() {
       const sheetService = this.get('fdSheetService');
-      const sheetname = sheetService.get('currentSheetName');
-      const currentItemModel = sheetService.getSheetModel(sheetname);
+
+      const selectedElement = this.get('selectedElement');
+      const currentItemModel = selectedElement.get('model.data');
       currentItemModel.rollbackAttributes();
 
-      sheetService.confirmClose(sheetname);
+      const sheetName = selectedElement.get('sheetComponentName');
+      sheetService.confirmClose(sheetName);
     },
 
     /**
@@ -60,8 +88,7 @@ export default Mixin.create({
       @method actions.closeWithSaving
     */
     closeWithSaving() {
-      const sheetService = this.get('fdSheetService');
-      sheetService.closeWithSaving();
+      this.saveAndClose();
     },
 
     /**

@@ -235,7 +235,6 @@ export default Controller.extend(FdSaveHasManyRelationshipsMixin, FdSheetCloseCo
 
     this.get('fdSheetService').on('openSheetTriggered', this, this.openSheet);
     this.get('fdSheetService').on('closeSheetTriggered', this, this.closeSheet);
-    this.get('fdSheetService').on('saveSheetTrigger', this, this.saveSheet);
   },
 
   /**
@@ -331,18 +330,6 @@ export default Controller.extend(FdSaveHasManyRelationshipsMixin, FdSheetCloseCo
       this.set('editableObjectModel', undefined);
       this.set('_attributesStr', undefined);
       this.set('_methodsStr', undefined);
-    }
-  },
-
-  /**
-    Save sheet.
-
-     @method saveSheet
-  */
-  saveSheet(close) {
-    const selectedElement = this.get('selectedElement');
-    if (!isNone(selectedElement)) {
-      this.send('save', close);
     }
   },
 
@@ -548,9 +535,7 @@ export default Controller.extend(FdSaveHasManyRelationshipsMixin, FdSheetCloseCo
         });
       }).then(() => {
         const selectedSheetName = selectedElement.get('sheetComponentName');
-        if (closeAfter && !isNone(selectedSheetName)) {
-          this.get('fdSheetService').confirmClose(selectedSheetName);
-        }
+        this.closeAfterSaveConfirm(closeAfter, selectedSheetName);
       })
       .catch((error) => {
         this.set('error', error);
