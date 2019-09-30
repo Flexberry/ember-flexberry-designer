@@ -36,6 +36,14 @@ export default Component.extend({
   */
   toolbarVisible: true,
 
+  /**
+    Flag: indicates whether to not show button for new model.
+
+    @property isNewModel
+    @type Bool
+  */
+  isNewModel: false,
+
   init() {
     this._super(...arguments);
 

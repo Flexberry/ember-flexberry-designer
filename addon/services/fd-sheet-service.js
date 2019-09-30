@@ -26,7 +26,7 @@ export default Service.extend(Evented, {
   abortedTransitionFromSheet: undefined,
 
   /**
-    Sheet component name of opened sheet.
+    Name of sheet that opening was abort and must continue after confirm.
 
     @property openingSheetName
     @type String
@@ -35,22 +35,40 @@ export default Service.extend(Evented, {
   openingSheetName: '',
 
   /**
-    Sheet component name of opened sheet.
+    Item of sheet that opening was abort and must continue after confirm.
 
-    @property _openingItem
+    @property openingItem
     @type Object
-    @default ''
+    @default undefined
   */
   openingItem: undefined,
 
   /**
-    Sheet component name that opened now.
+    Item of sheet component that opened now.
+
+    @property currentItem
+    @type Object
+    @default undefined
+  */
+  currentItem: undefined,
+
+  /**
+    Name of sheet component that opened now.
 
     @property currentSheetName
     @type String
+    @default undefined
+  */
+  currentSheetName: undefined,
+
+  /**
+    Origin json diagram data.
+
+    @property originJsonDiagramData
+    @type String
     @default ''
   */
-  currentSheetName: '',
+  originJsonDiagramData: '',
 
   init() {
     this._super(...arguments);
@@ -86,6 +104,10 @@ export default Service.extend(Evented, {
       this.trigger('showCloseDialogTrigger');
     } else {
       this.set('currentSheetName', sheetName);
+      this.set('currentItem', currentItem);
+      const primitivesJsonData = this.getJsonFromDiagramModel(this.getSheetModel(sheetName));
+      this.set('originJsonDiagramData', primitivesJsonData);
+
       this.trigger('openSheetTriggered', sheetName, currentItem);
       this.set(`sheetSettings.visibility.${sheetName}`, true);
       this.set(`sheetSettings.currentItem.${sheetName}`, currentItem);
@@ -281,9 +303,40 @@ export default Service.extend(Evented, {
   */
   findUnsavedSheetData(sheetName) {
     const currentItemModel = this.getSheetModel(sheetName);
-    const isDirty = (isNone(currentItemModel)) ? false : currentItemModel.hasDirtyAttributes;
+    let isDirty = false;
+
+    if (!isNone(currentItemModel)) {
+      const currentDiagramPrimitivesJson = this.getJsonFromDiagramModel(currentItemModel);
+      let diagramHasChanges = false;
+      let sheetHasChanges = currentItemModel.hasDirtyAttributes;
+      if (!isNone(currentDiagramPrimitivesJson)) {
+        //const originDiagramPrimitivesJson = this.get('originJsonDiagramData');
+        const originDiagramPrimitivesJson = currentItemModel.get('primitivesJsonString');
+        diagramHasChanges = (!isNone(originDiagramPrimitivesJson)) ? (currentDiagramPrimitivesJson !== originDiagramPrimitivesJson) : false;
+      }
+
+      isDirty = (diagramHasChanges || sheetHasChanges);
+    }
 
     return isDirty;
+  },
+
+  /**
+    Get sheet model.
+
+    @method getSheetModel
+    @param {Object} diagramModel model
+  */
+  getJsonFromDiagramModel(diagramModel) {
+    let jsonString = undefined;
+    if (!isNone(diagramModel)) {
+      const primitives = diagramModel.get('primitives');
+      if (!isNone(primitives)) {
+        jsonString = JSON.stringify(primitives);
+      }
+    }
+
+    return jsonString;
   },
 
   /**
@@ -300,7 +353,7 @@ export default Service.extend(Evented, {
     let currentItemModel = this.get(`sheetSettings.currentItem.${sheetName}.model.data`);
 
     return currentItemModel;
-  },
+  },  
 
   /**
     Expands specified sheet.

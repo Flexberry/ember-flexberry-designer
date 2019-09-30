@@ -40,7 +40,6 @@ export let Association = Link.define('flexberry.uml.Association', {
   attrs: {
     text: { visibility: 'hidden' },
     rect: { visibility: 'hidden' }
-  },
+  }
 });
-
 joint.shapes.flexberry.uml.AssociationView = MultiplicityView;

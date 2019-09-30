@@ -6,8 +6,9 @@ import { inject as service } from '@ember/service';
 import { updateStrByObjects } from '../utils/fd-update-str-value';
 import { translationMacro as t } from 'ember-i18n';
 import FdSheetCloseConfirm from '../mixins/fd-sheet-close-confirm';
-import { resolve } from 'rsvp';
 import $ from 'jquery';
+import { resolve, reject } from 'rsvp';
+import { createClassPrimitive, deletePrimitives } from '../utils/fd-update-class-diagram';
 
 import FdSaveHasManyRelationshipsMixin from '../mixins/fd-save-has-many-relationships';
 
@@ -289,7 +290,10 @@ export default Controller.extend(FdSaveHasManyRelationshipsMixin, FdSheetCloseCo
      @method saveSheet
   */
   saveSheet(close) {
-    this.send('save', close);
+    const selectedElement = this.get('selectedElement');
+    if (!isNone(selectedElement)) {
+      this.send('save', close);
+    }
   },
 
   /**
@@ -370,6 +374,40 @@ export default Controller.extend(FdSaveHasManyRelationshipsMixin, FdSheetCloseCo
     this.notifyPropertyChange('model');
   },
 
+  /**
+    Check data for correctness.
+
+    @method validateData
+    @param {Object} model class model.
+  */
+  validateData(model) {
+    let modelName = model.get('name');
+
+    if (isBlank(modelName)) {
+      return reject({ message: this.get('i18n').t('forms.fd-application-model.error-message.empty-class').toString() });
+    }
+
+    if ((model.get('stereotype') === '«editform»' || model.get('stereotype') === '«listform»') && isNone(model.get('formViews.firstObject.view'))) {
+      return reject({ message: this.get('i18n').t('forms.fd-application-model.error-message.view-form').toString() });
+    }
+
+    if (model.get('isNew')) {
+      model.set('nameStr', model.get('name'));
+      // Get current classes.
+      let allClasses = this.get('store').peekAll('fd-dev-class');
+      let classesCurrentStage = allClasses.filterBy('stage.id', this.get('currentProjectContext').getCurrentStage());
+      let currentClass = A(classesCurrentStage).find((a) => {
+        return a.get('name') === modelName && !isNone(a.get('id'));
+      });
+
+      if (!isNone(currentClass)) {
+        return reject({ message: this.get('i18n').t('forms.fd-application-model.error-message.exist-class').toString() });
+      }
+    }
+
+    return resolve();
+  },
+
   actions: {
 
     /**
@@ -384,21 +422,19 @@ export default Controller.extend(FdSaveHasManyRelationshipsMixin, FdSheetCloseCo
       this.get('appState').loading();
       updateStrByObjects(model);
 
-      if (model.get('isNew')) {
-        model.set('nameStr', model.get('name'));
-        this.addNewClassInModel();
-      }
-
-      model.save()
+      let isNew = model.get('isNew');
+      this.validateData(model)
+      .then(() => model.save())
+      .then(() => this.saveHasManyRelationships(model))
       .then(() => {
-        let stereotype = model.get('stereotype');
-        if (stereotype === '«editform»' || stereotype === '«listform»') {
-          return model.get('formViews.firstObject.view').save();
+        if (isNew) {
+          this.addNewClassInModel();
+          let diagram = createClassPrimitive(this.get('store'), this.get('currentProjectContext'), model);
+          return diagram.save();
         }
 
         return resolve();
       })
-      .then(() => this.saveHasManyRelationships(model))
       .then(() => {
         this.updateClassModel(model);
 
@@ -408,7 +444,8 @@ export default Controller.extend(FdSaveHasManyRelationshipsMixin, FdSheetCloseCo
         }
       })
       .catch((error) => {
-        this.set('error', error);
+        this.set('error', error.message);
+        this.set('show', true);
       })
       .finally(() => {
         this.get('appState').reset();
@@ -424,6 +461,10 @@ export default Controller.extend(FdSaveHasManyRelationshipsMixin, FdSheetCloseCo
       let view = this.get('selectedView');
       this.get('appState').loading();
       view.save()
+      .catch((error) => {
+        this.set('error', error.message);
+        this.set('show', true);
+      })
       .finally(() => {
         this.get('appState').reset();
       });
@@ -472,15 +513,8 @@ export default Controller.extend(FdSaveHasManyRelationshipsMixin, FdSheetCloseCo
       });
 
       if (!isBlank(dataobject) && !(dataobject instanceof $.Event)) {
-        let view = store.createRecord('fd-dev-view', {
-          class: dataobject,
-          name: '',
-          definition: A()
-        });
-
         let formView = store.createRecord('fd-dev-form-view', {
-          class: dataobject,
-          view: view,
+          view: null,
           orderNum: 1
         });
 
@@ -490,7 +524,7 @@ export default Controller.extend(FdSaveHasManyRelationshipsMixin, FdSheetCloseCo
       let model = { data: newClass, active: true };
 
       this.set('isAddMode', false);
-      this.get('fdSheetService').openSheet(this.get('sheetComponentName'), EmberObject.create({ model: model }));
+      this.get('fdSheetService').openSheet(this.get('sheetComponentName'), EmberObject.create({ model: model, dataobject: dataobject }));
     },
 
     /**
@@ -499,6 +533,7 @@ export default Controller.extend(FdSaveHasManyRelationshipsMixin, FdSheetCloseCo
        @method actions.delete
     */
     delete() {
+      const store = this.get('store');
       let selectedElement = this.get('selectedElement.model.data');
       let modelHash = this.getModelArrayByStereotype(selectedElement);
 
@@ -508,7 +543,9 @@ export default Controller.extend(FdSaveHasManyRelationshipsMixin, FdSheetCloseCo
       if (stereotype === '«businessserver»') {
         let bsInClass = this.get('model.classes').filterBy('bs.data.id', selectedElement.id);
         if (bsInClass.length > 0) {
-          throw new Error(`BusinessServer используется другими классами: ${A(bsInClass).get('firstObject.settings.data.name')}`);
+          this.set('error', this.get('i18n').t('forms.fd-application-model.error-message.exist-class').toString() + A(bsInClass).get('firstObject.settings.data.name'));
+          this.set('show', true);
+          return;
         }
       }
 
@@ -526,15 +563,24 @@ export default Controller.extend(FdSaveHasManyRelationshipsMixin, FdSheetCloseCo
       this.get('appState').loading();
 
       deleteModels.pushObject(deleteObject);
-      this.get('store').batchUpdate(deleteModels.map((a) => {
+      let modelsForBatchUpdate = deleteModels.map((a) => {
         let data = a.data;
         data.deleteRecord();
 
         return data;
-      }))
+      });
+
+      let primitivesOnDelete = deletePrimitives(store, this.get('currentProjectContext'), deleteModels.map((a) => a.data));
+      A(modelsForBatchUpdate).pushObjects(primitivesOnDelete);
+
+      store.batchUpdate(modelsForBatchUpdate)
       .then(() => {
         this.set('selectedElement', undefined);
         this.get('fdSheetService').closeSheet(this.get('sheetComponentName'));
+      })
+      .catch((error) => {
+        this.set('error', error.message);
+        this.set('show', true);
       })
       .finally(() => {
         this.get('appState').reset();
@@ -554,6 +600,10 @@ export default Controller.extend(FdSaveHasManyRelationshipsMixin, FdSheetCloseCo
       .then(() => {
         this.set('selectedView', undefined);
         this.get('fdSheetService').closeSheet(this.get('sheetViewName'));
+      })
+      .catch((error) => {
+        this.set('error', error.message);
+        this.set('show', true);
       })
       .finally(() => {
         this.get('appState').reset();

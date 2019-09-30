@@ -9,12 +9,12 @@ import FdUmlNAryAssociation from '../objects/uml-primitives/fd-uml-naryassociati
 import FdUmlInstance from '../objects/uml-primitives/fd-uml-instance';
 import FdUmlMultiObject from '../objects/uml-primitives/fd-uml-multi-object';
 import FdUmlNote from '../objects/uml-primitives/fd-uml-note';
-import FdUmlGeneralization from '../objects/uml-primitives/fd-uml-generalization';
+import FdUmlGeneralizationCod from '../objects/uml-primitives/fd-uml-generalization-cod';
 import FdUmlNoteConnector from '../objects/uml-primitives/fd-uml-note-connector';
 import FdUmlQAggregation from '../objects/uml-primitives/fd-uml-qualified-aggregation';
 import FdUmlQComposition from '../objects/uml-primitives/fd-uml-qualified-composition';
 import FdUmlQAssociation from '../objects/uml-primitives/fd-uml-qualified-association';
-import FdUmlAssociation from '../objects/uml-primitives/fd-uml-association';
+import FdUmlNAryAssociationConnector from '../objects/uml-primitives/fd-uml-naryassociation-connector';
 import FdUmlAggregationLink from '../objects/uml-primitives/fd-uml-aggregation-link';
 import FdUmlAssociationLink from '../objects/uml-primitives/fd-uml-association-link';
 import FdUmlCompositionLink from '../objects/uml-primitives/fd-uml-composition-link';
@@ -64,7 +64,7 @@ let Model = CODModel.extend(DevUMLCODMixin, {
           break;
 
         case 'STORMCASE.UML.cod.Inheritance, UMLCOD':
-          result.pushObject(FdUmlGeneralization.create({ primitive }));
+          result.pushObject(FdUmlGeneralizationCod.create({ primitive }));
           break;
 
         case 'STORMCASE.UML.Common.NoteConnector, UMLCommon':
@@ -84,7 +84,7 @@ let Model = CODModel.extend(DevUMLCODMixin, {
           break;
 
         case 'STORMCASE.UML.cod.NaryLink, UMLCOD':
-          result.pushObject(FdUmlAssociation.create({ primitive }));
+          result.pushObject(FdUmlNAryAssociationConnector.create({ primitive }));
           break;
 
         case 'STORMCASE.UML.cod.AggregationLink, UMLCOD':

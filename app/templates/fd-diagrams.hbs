@@ -217,6 +217,7 @@
   deleteController=(action 'delete')
   sheetComponentName=sheetComponentName
   toolbarVisible=(not isAddMode)
+  isNewModel=selectedElement.model.data.isNew
 }}
   {{#if isAddMode}}
     {{fd-editing-panels/fd-create-diagrams
@@ -239,6 +240,7 @@
   saveController=(action "saveEditableObject")
   sheetComponentName=objectEditFormSheet
   readonly=true
+  isNewModel=true
 }}
   {{#if (known-for-type (concat "fd-editing-panels/fd-" objectEditFormNamePart "-editing-panel"))}}
     {{component (concat "fd-editing-panels/fd-" objectEditFormNamePart "-editing-panel")
@@ -251,15 +253,18 @@
   {{/if}}
 {{/fd-sheet}}
 
-{{#if _showErrorDialog}}
-  {{#modal-dialog
-    title=_classErrors
-    useOkButton=false
-    useCloseButton=false
-    settings=(hash
-      onHidden=(action set "_showErrorDialog" false)
-      context=".pusher:first"
-    )
+{{#if _showConfirmDialog}}
+  {{flexberry-dialog
+    caption="Форма подтверждения"
+    content="Имеются несохраненные данные"
+    approve=(action "closeWithSaving")
+    deny=(action "closeWithoutSaving")
+    hide=(action "closeDialog")
+    approveButtonCaption="Сохранить и закрыть"
+    denyButtonCaption="Закрыть без сохраненеия"
+    visible=true
   }}
-  {{/modal-dialog}}
 {{/if}}
+
+{{fd-modal-message-box show=show isError=true messageText=error componentName='fd-diagrams'}}
+

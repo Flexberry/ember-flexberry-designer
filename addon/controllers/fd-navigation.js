@@ -270,7 +270,10 @@ export default Controller.extend({
       if (treeObject) {
         let jstree = treeObject.jstree(true);
         jstree.deselect_node(this.get('selectedNode'));
-        this.get('actionReceiver').send('redraw');
+        const actionReceiver = this.get('actionReceiver');
+        if (actionReceiver) {
+          actionReceiver.send('redraw');
+        }
       }
     }
   },
@@ -299,7 +302,8 @@ export default Controller.extend({
     app.save().then((newApp) => {
       _this.set('model.tree', deserialize(newApp.get('containersStr')));
     }).catch((error) => {
-      _this.set('error', error);
+      _this.set('error', error.message);
+      _this.set('show', true);
     }).finally(() => {
       _this.get('appState').reset();
     });

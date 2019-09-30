@@ -90,7 +90,8 @@ export default Mixin.create({
           linkProperties.target,
           null,
           null,
-          { Name: '' }
+          { Name: '' },
+          { NamePos: 0.0 }
         );
         let undirAssociationObject = FdUnDirectedAssociation.create({ primitive: jsonObject });
         undirAssociationObject.set('vertices', linkProperties.points || A());
@@ -114,7 +115,8 @@ export default Mixin.create({
           linkProperties.target,
           null,
           null,
-          { Name: '' }
+          { Name: '' },
+          { NamePos: 0.0 }
         );
         let associationObject = FdDirectedAssociation.create({ primitive: jsonObject });
         associationObject.set('vertices', linkProperties.points || A());
@@ -138,7 +140,8 @@ export default Mixin.create({
           linkProperties.target,
           null,
           null,
-          { Name: '' }
+          { Name: '' },
+          { NamePos: 0.0 }
         );
         let generalitionObject = FdUseCaseGeneralization.create({ primitive: jsonObject });
         generalitionObject.set('vertices', linkProperties.points || A());
@@ -162,7 +165,8 @@ export default Mixin.create({
           linkProperties.target,
           null,
           null,
-          { Name: '' }
+          { Name: '' },
+          { NamePos: 0.0 }
         );
         let depencyObject = FdDependency.create({ primitive: jsonObject });
         depencyObject.set('vertices', linkProperties.points || A());

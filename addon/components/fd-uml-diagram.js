@@ -4,7 +4,7 @@
 
 import Component from '@ember/component';
 import { computed, observer } from '@ember/object';
-import { isNone } from '@ember/utils';
+import { isNone, isBlank } from '@ember/utils';
 import { inject as service } from '@ember/service';
 import { A } from '@ember/array';
 
@@ -428,9 +428,9 @@ export default Component.extend({
   },
 
   /**
-    Handler event 'blank:contextmenu'.
+    Handler event '_onDrag'.
 
-    @method actions._blankContextMenu
+    @method actions._onDrag
     @param {jQuery.Event} e event.
   */
   _onDrag(evt) {
@@ -687,8 +687,13 @@ export default Component.extend({
    */
   _checkOnExistElements(objectModel, view, isSourse) {
     let repositoryObject = objectModel.get('repositoryObject');
+    let isEmpty = false;
     if (isNone(repositoryObject)) {
-      return;
+      if (objectModel.get('primitive.$type') === 'STORMCASE.STORMNET.Repository.CADClass, STORM.NET Case Tool plugin') {
+        isEmpty = true;
+      } else {
+        return;
+      }
     }
 
     let store = this.get('store');
@@ -697,7 +702,7 @@ export default Component.extend({
     let modelName = this._getModelName(objectModel.get('primitive.$type'));
     let allModels = store.peekAll(`${modelName}`);
 
-    let repositoryObjectId = repositoryObject.slice(1, -1);
+    let repositoryObjectId = !isEmpty ? repositoryObject.slice(1, -1) : null;
     let modelsCurrentStage = allModels.filterBy('stage.id', stage.get('id'));
     let currentRepObj = modelsCurrentStage.findBy('id', repositoryObjectId);
 
@@ -717,7 +722,7 @@ export default Component.extend({
           let name = item.get('name');
           if (
             !isNone(name) && !isNone(objectModelName) &&
-            name.toLocaleLowerCase() === objectModelName.toLocaleLowerCase() &&
+            name.trim().toLocaleLowerCase() === objectModelName.trim().toLocaleLowerCase() &&
             item.get('id') !== repositoryObjectId
             ) {
               return item;
@@ -739,14 +744,14 @@ export default Component.extend({
         }
 
         newRepObj = modelsCurrentStage.find(function(item) {
-          let name = item.get('name');
+          let name = isNone(item.get('name')) ? '' : item.get('name');
           let startRole = item.get('startRoleStr');
           let endRole = item.get('endRoleStr');
           if (
             item.get('startClass.id') === sClass && item.get('endClass.id') === eClass && item.get('id') !== repositoryObjectId &&
-            !isNone(sRole) && !isNone(startRole) && startRole.toLocaleLowerCase() === sRole.toLocaleLowerCase() &&
-            !isNone(eRole) && !isNone(endRole) && endRole.toLocaleLowerCase() === eRole.toLocaleLowerCase() &&
-            !isNone(objectModelName) && !isNone(name) && name.toLocaleLowerCase() === objectModelName.toLocaleLowerCase()
+            !isNone(sRole) && !isNone(startRole) && startRole.trim().toLocaleLowerCase() === sRole.trim().toLocaleLowerCase() &&
+            !isNone(eRole) && !isNone(endRole) && endRole.trim().toLocaleLowerCase() === eRole.trim().toLocaleLowerCase() &&
+            !isNone(objectModelName) && !isNone(name) && name.trim().toLocaleLowerCase() === objectModelName.trim().toLocaleLowerCase()
           ) {
             return item;
           }
@@ -764,10 +769,10 @@ export default Component.extend({
         }
 
         newRepObj = modelsCurrentStage.find(function(item) {
-          let name = item.get('name');
+          let name = isNone(item.get('name')) ? '' : item.get('name');
           if (
             item.get('parent.id') === parentId && item.get('child.id') === childId && item.get('id') !== repositoryObjectId &&
-            !isNone(objectModelName) && !isNone(name) && name.toLocaleLowerCase() === objectModelName.toLocaleLowerCase()
+            !isNone(objectModelName) && !isNone(name) && name.trim().toLocaleLowerCase() === objectModelName.trim().toLocaleLowerCase()
           ) {
             return item;
           }
@@ -777,7 +782,10 @@ export default Component.extend({
     }
 
     if (!isNone(newRepObj)) {
-      this._decrementPropertyReferenceCount(currentRepObj);
+      if (!isEmpty) {
+        this._decrementPropertyReferenceCount(currentRepObj);
+      }
+
       this._incrementPropertyReferenceCount(newRepObj);
 
       objectModel.set('repositoryObject', `{${newRepObj.get('id')}}`);
@@ -808,8 +816,10 @@ export default Component.extend({
         view.updateRectangles();
       }
 
-    } else if (currentRepObj.get('referenceCount') > 1) {
-      this._decrementPropertyReferenceCount(currentRepObj);
+    } else if (isEmpty || currentRepObj.get('referenceCount') > 1) {
+      if (!isEmpty) {
+        this._decrementPropertyReferenceCount(currentRepObj);
+      }
 
       let newElement = store.createRecord(`${modelName}`, {
         id: uuid.v4(),
@@ -891,6 +901,13 @@ export default Component.extend({
       if (!isNone(newConnectedClass)) {
         currentRepObj.set(`${repProp}`, newConnectedClass);
       }
+    }
+
+    if (isEmpty) {
+      let emptyLinks = this.graph.getConnectedLinks(view.model);
+      emptyLinks.forEach((link) => {
+        this._updateEmptylink(link);
+      });
     }
   },
 
@@ -1005,6 +1022,113 @@ export default Component.extend({
     let view = paper.findViewByModel(model);
     view.updateInputValue();
     view.updateRectangles();
+  },
+
+  /**
+    Create rep object for empty link.
+
+    @method _updateEmptylink
+    @param {Object} link current link.
+   */
+  _updateEmptylink(link) {
+    let objectModel = link.get('objectModel');
+    let type = objectModel.get('primitive.$type');
+    if (type !== 'STORMCASE.UML.cad.Association, UMLCAD' && type !== 'STORMCASE.UML.cad.Inheritance, UMLCAD' && type !== 'STORMCASE.UML.cad.Composition, UMLCAD') {
+      return;
+    }
+
+    let endPrimitiveId = objectModel.get('target.id');
+    let startPrimitiveId = objectModel.get('source.id');
+
+    let endPrimitive = this.graph.getCell(endPrimitiveId);
+    let startPrimitive = this.graph.getCell(startPrimitiveId);
+
+    let endPrimitiveRepObjId = endPrimitive.get('objectModel').repositoryObject;
+    let startPrimitiveRepObjId = startPrimitive.get('objectModel').repositoryObject;
+
+    if (isBlank(endPrimitiveRepObjId) || isBlank(startPrimitiveRepObjId)) {
+      return;
+    }
+
+    let store = this.get('store');
+    let stage = this.get('currentProjectContext').getCurrentStageModel();
+
+    let allClasses = store.peekAll('fd-dev-class');
+    let classesCurrentStage = allClasses.filterBy('stage.id', stage.get('id'));
+    let endPrimitiveRepObj = classesCurrentStage.findBy('id', endPrimitiveRepObjId.slice(1, -1));
+    let startPrimitiveRepObj = classesCurrentStage.findBy('id', startPrimitiveRepObjId.slice(1, -1));
+
+    let modelName = this._getModelName(type);
+    let allModels = store.peekAll(`${modelName}`);
+    let modelsCurrentStage = allModels.filterBy('stage.id', stage.get('id'));
+
+    let newElement;
+    if (modelName === 'fd-dev-inheritance') {
+      let objectModelName = objectModel.get('description');
+
+      newElement = modelsCurrentStage.find(function(item) {
+        let name = isNone(item.get('name')) ? '' : item.get('name');
+        if (
+          item.get('parent.id') === startPrimitiveRepObj.get('id') && item.get('child.id') === endPrimitiveRepObj.get('id') &&
+          !isNone(objectModelName) && !isNone(name) && name.trim().toLocaleLowerCase() === objectModelName.trim().toLocaleLowerCase()
+        ) {
+          return item;
+        }
+      });
+    } else {
+      let sRole = objectModel.getWithDefault('startRoleTxt', '').trim();
+      sRole = !isBlank(sRole) && sRole[0] !== '+' ? '+' + sRole : sRole;
+      let eRole = objectModel.getWithDefault('endRoleTxt', '').trim();
+      eRole = !isBlank(eRole) && eRole[0] !== '+' ? '+' + eRole : eRole;
+      let objectModelName = objectModel.get('description');
+
+      newElement = modelsCurrentStage.find(function(item) {
+        let name = isNone(item.get('name')) ? '' : item.get('name');
+        let startRole = item.get('startRoleStr');
+        let endRole = item.get('endRoleStr');
+        if (
+          item.get('startClass.id') === startPrimitiveRepObj.get('id') && item.get('endClass.id') === endPrimitiveRepObj.get('id') &&
+          !isNone(sRole) && !isNone(startRole) && startRole.trim().toLocaleLowerCase() === sRole.trim().toLocaleLowerCase() &&
+          !isNone(eRole) && !isNone(endRole) && endRole.trim().toLocaleLowerCase() === eRole.trim().toLocaleLowerCase() &&
+          !isNone(objectModelName) && !isNone(name) && name.trim().toLocaleLowerCase() === objectModelName.trim().toLocaleLowerCase()
+        ) {
+          return item;
+        }
+      });
+    }
+
+    if (isNone(newElement)) {
+      newElement = store.createRecord(`${modelName}`, {
+        id: uuid.v4(),
+        stage: stage
+      });
+
+      if (modelName === 'fd-dev-inheritance') {
+        newElement.set('child', endPrimitiveRepObj);
+        newElement.set('parent', startPrimitiveRepObj);
+      } else {
+        newElement.set('endClass', endPrimitiveRepObj);
+        newElement.set('startClass', startPrimitiveRepObj);
+        newElement.set('endMultiplicity', objectModel.get('endMultiplicity'));
+        newElement.set('startMultiplicity', objectModel.get('startMultiplicity'));
+        newElement.set('startRoleStr', objectModel.get('startRoleTxt'));
+        newElement.set('endRoleStr', objectModel.get('endRoleTxt'));
+      }
+
+      newElement.set('name', objectModel.get('description'));
+    } else if (modelName !== 'fd-dev-inheritance') {
+      let view = this.paper.findViewByModel(link);
+      let startMultiplicity = newElement.get('startMultiplicity')
+      view.model.setLabelText('startMultiplicity', startMultiplicity);
+      this._updateInputValue('.start-multiplicity-input', startMultiplicity, view);
+
+      let endMultiplicity = newElement.get('endMultiplicity')
+      view.model.setLabelText('endMultiplicity', endMultiplicity);
+      this._updateInputValue('.end-multiplicity-input', endMultiplicity, view);
+    }
+
+    objectModel.set('repositoryObject', `{${newElement.get('id')}}`);
+    this._incrementPropertyReferenceCount(newElement);
   },
 
   _enableEditLinks: function() {

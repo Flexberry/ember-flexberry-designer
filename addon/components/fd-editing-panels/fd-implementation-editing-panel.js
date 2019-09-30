@@ -14,6 +14,14 @@ export default Component.extend(
   layout,
 
   /**
+    Store of current application.
+
+    @property store
+    @type DS.Store or subclass
+  */
+  store: service('store'),
+
+  /**
     Classes data.
 
     @property model
@@ -21,14 +29,6 @@ export default Component.extend(
     @default undefined
   */
   model: undefined,
-
-  /**
-    Service for managing the state of the sheet component.
-
-    @property fdSheetService
-    @type FdSheetService
-  */
-  fdSheetService: service(),
 
   /**
     Table headers for view.
