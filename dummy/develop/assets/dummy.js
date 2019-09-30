@@ -1454,7 +1454,7 @@ define('dummy/controllers/advlimit-dialog', ['exports', 'ember-flexberry/control
   });
   exports.default = _advlimitDialog.default;
 });
-define('dummy/controllers/application', ['exports'], function (exports) {
+define('dummy/controllers/application', ['exports', 'dummy/config/environment'], function (exports, _environment) {
   'use strict';
 
   Object.defineProperty(exports, "__esModule", {
@@ -1655,7 +1655,7 @@ define('dummy/controllers/application', ['exports'], function (exports) {
         }
 
         var theme = Ember.$('.flexberry-dropdown.theme div.text').text();
-        var rootURL = this.get('router.location.location.origin');
+        var rootURL = this.get('router.location.location.origin') + _environment.default.rootURL;
         sheet.setAttribute('href', rootURL + '/assets/' + theme + '.css');
       },
 
