@@ -21,6 +21,10 @@ module.exports = function(defaults) {
 
     SemanticUI: {
       css: false
+    },
+
+    fingerprint: {
+      exclude: ['light', 'dark', 'blue'],
     }
 
     // Add options here
