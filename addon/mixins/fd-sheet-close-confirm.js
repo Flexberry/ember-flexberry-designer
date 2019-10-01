@@ -29,22 +29,40 @@ export default Mixin.create({
   */
   messageText: undefined,
 
+  /**
+    Item of sheet that opening was abort and must continue after confirm.
+
+    @property _openingItem
+    @type Object
+    @default undefined
+  */
+  openingItem: undefined,
+
   init() {
     this._super(...arguments);
-    this.get('fdSheetService').on('showCloseDialogTrigger', this, this.showCloseDialog);
-    this.get('fdSheetService').on('hideCloseDialogTrigger', this, this.hideCloseDialog);
+    this.get('fdSheetService').on('confirmCloseTrigger', this, this.showCloseDialog);
   },
 
   /**
     Show confirm close dialog when unsaved data exist on sheet.
 
     @method showCloseDialog
+     @param {String} sheetName Sheet's dbName
+     @param {Object} currentItem Current list item
   */
-  showCloseDialog(sheetName) {
-    this.set('isError', false);
-    this.set('sheetName', sheetName);
-    this.set('messageText', this.get('i18n').t('forms.fd-application-model.').toString());
-    this.set('show', true);
+  showCloseDialog(sheetName, currentItem) {    
+    let sheetComponentName = this.get('sheetComponentName');
+
+    if (sheetComponentName === sheetName) {
+      this.set('isError', false);
+      this.set('messageText', this.get('i18n').t('forms.fd-application-model.').toString());
+
+      this.set('sheetName', sheetName);
+      const openingItem = (this.get('selectedElement') !== currentItem) ? currentItem : undefined;
+      this.set('openingItem', openingItem);
+    
+      this.set('show', true);
+    }
   },
 
   /**
@@ -55,17 +73,41 @@ export default Mixin.create({
   hideCloseDialog() {
     const sheetService = this.get('fdSheetService');
     sheetService.set('abortedTransitionFromSheet', undefined);
-    sheetService.set('openingItem', undefined);
+  },
+
+  /**
+    Close sheet when it confirmed.
+
+     @method confirmClose
+  */
+  confirmClose() {
+    const sheetName = this.get('sheetComponentName');
+
+    const sheetService = this.get('fdSheetService');
+    
+    sheetService.set('_originJsonDiagramData', undefined);
+
+    const abortedTransition = sheetService.get('abortedTransitionFromSheet');
+    const openingItem = this.get('openingItem');
+
+    if (!isNone(abortedTransition)) {
+      abortedTransition.retry();
+    } else if (!isNone(openingItem)) {
+      sheetService.openSheet(sheetName, openingItem);
+    } else  {
+      sheetService.closeSheet(sheetName);
+    }
+
+    this.hideCloseDialog();
   },
 
   /**
     Close sheet after save data/
 
-     @method closeAfterSave
+     @method closeAfterSaveConfirm
   */
   closeAfterSaveConfirm() {
-    const sheetName = this.get('sheetName');
-    this.get('fdSheetService').confirmClose(sheetName);
+    this.confirmClose();
   },
 
   actions: {
@@ -76,9 +118,9 @@ export default Mixin.create({
     */
     closeWithoutSaving() {
       const sheetService = this.get('fdSheetService');
-      const sheetName = this.get('sheetName');
+      const sheetName = this.get('sheetComponentName');
       sheetService.rollbackCurrentItem(sheetName);
-      sheetService.confirmClose(sheetName);
+      this.confirmClose();
     },
 
     /**
