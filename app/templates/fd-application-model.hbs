@@ -336,17 +336,16 @@
 
 {{/fd-sheet}}
 
-{{#if _showConfirmDialog}}
-  {{flexberry-dialog
-    caption="Форма подтверждения"
-    content="Имеются несохраненные данные"
-    approve=(action "closeWithSaving")
-    deny=(action "closeWithoutSaving")
-    hide=(action "closeDialog")
-    approveButtonCaption="Сохранить и закрыть"
-    denyButtonCaption="Закрыть без сохраненеия"
-    visible=true
-  }}
-{{/if}}
-
-{{fd-modal-message-box show=show isError=true messageText=error componentName='fd-application-model'}}
+{{fd-modal-message-box
+  show=show
+  isError=isError
+  messageText=messageText
+  componentName='fd-application-model'
+  sheetName=sheetName
+  approve=(hash
+    application-model-sheet=(action "save")
+    view-sheet=(action "saveView")
+  )
+  deny=(action "closeWithoutSaving")
+  hide=(action "closeDialog")
+}}

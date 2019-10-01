@@ -1,13 +1,13 @@
 {{#if show}}
   {{#modal-dialog
     title=(if isError (t "components.fd-modal-message-box.error-caption") (t "components.fd-modal-message-box.confirmation-caption"))
-    ok=(action "approve")
-    close=(action set "show" false)
+    ok=(action "onApprove")
+    close=(action "onDeny")
     useOkButton=(not isError)
     useCloseButton=(not isError)
     componentName=componentName
     settings=(hash
-      onHidden=(action set "show" false)
+      onHidden=(action "onHide")
       context=".pusher:first"
     )
   }}

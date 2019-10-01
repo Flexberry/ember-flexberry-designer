@@ -72,7 +72,7 @@ export default Service.extend(Evented, {
 
     if (unsavedData) {
       this.set('openingItem', currentItem);
-      this.trigger('showCloseDialogTrigger');
+      this.trigger('showCloseDialogTrigger', sheetName);
     } else {
       //const primitivesJsonData = this.getJsonFromDiagramModel(this.getSheetModel(sheetName));
       //this.set('originJsonDiagramData', primitivesJsonData);
@@ -103,9 +103,9 @@ export default Service.extend(Evented, {
     let currentSheet = $(`.fd-sheet.${sheetName}`);
 
     const unsavedData = this.findUnsavedSheetData(sheetName);
-    
+
     if (unsavedData) {
-      this.trigger('showCloseDialogTrigger');
+      this.trigger('showCloseDialogTrigger', sheetName);
     } else {
       this.trigger('closeSheetTriggered', sheetName);
       this.set(`sheetSettings.visibility.${sheetName}`, false);
@@ -132,7 +132,7 @@ export default Service.extend(Evented, {
         $('.content-mini', currentSheet).css({ width: '' });
         $('.toggle-sidebar').removeClass('no-delay');
       }, 1000);
-    } 
+    }
   },
 
   /**
@@ -176,7 +176,7 @@ export default Service.extend(Evented, {
       this.trigger('showCloseDialogTrigger', sheetName);
     } else {
       this.closeSheet(sheetName);
-      this.closeSheet(viewName);        
+      this.closeSheet(viewName);
     }
   },
 
@@ -311,7 +311,7 @@ export default Service.extend(Evented, {
     let currentItemModel = this.get(`sheetSettings.currentItem.${sheetName}.model.data`);
 
     return currentItemModel;
-  },  
+  },
 
   /**
     Expands specified sheet.
@@ -329,4 +329,15 @@ export default Service.extend(Evented, {
       _this.trigger('diagramResizeTriggered', sheetName, containsName);
     }, speed);
   },
+
+  /**
+    Rollback currentItem.
+
+     @method rollbackCurrentItem
+     @param {String} sheetName Sheet's component name
+  */
+  rollbackCurrentItem(sheetName) {
+    let model = this.getSheetModel(sheetName);
+    model.rollbackAttributes();
+  }
 });

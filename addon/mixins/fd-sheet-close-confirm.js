@@ -6,50 +6,57 @@ export default Mixin.create({
     Flag activate confirm close dialog.
 
     @private
-    @property _showConfirmDialog
+    @property show
     @type Boolean
     @default false
   */
-  _showConfirmDialog: false,
+  show: false,
+
+  /**
+    Type message box.
+
+    @property isError
+    @type Object
+    @default false
+  */
+  isError: false,
+
+  /**
+    Message text value.
+
+    @property messageText
+    @type String
+  */
+  messageText: undefined,
 
   init() {
     this._super(...arguments);
     this.get('fdSheetService').on('showCloseDialogTrigger', this, this.showCloseDialog);
-    this.get('fdSheetService').on('hideCloseDialogTrigger', this, this.hideCloseDialog);    
+    this.get('fdSheetService').on('hideCloseDialogTrigger', this, this.hideCloseDialog);
   },
-  
+
   /**
     Show confirm close dialog when unsaved data exist on sheet.
-    
+
     @method showCloseDialog
   */
-  showCloseDialog() {
-    this.set('_showConfirmDialog', true);
+  showCloseDialog(sheetName) {
+    this.set('isError', false);
+    this.set('sheetName', sheetName);
+    this.set('messageText', this.get('i18n').t('forms.fd-application-model.').toString());
+    this.set('show', true);
   },
 
   /**
     Hide confirm close dialog.
-    
+
     @method hideCloseDialog
   */
   hideCloseDialog() {
     const sheetService = this.get('fdSheetService');
     sheetService.set('abortedTransitionFromSheet', undefined);
-    sheetService.set('openingSheetName', '');
     sheetService.set('openingItem', undefined);
-    this.set('_showConfirmDialog', false);
-  },
-
-  /**
-    Save and close/
-
-     @method saveSheet
-  */
-  saveAndClose() {
-    const selectedElement = this.get('selectedElement');
-    if (!isNone(selectedElement)) {
-      this.send('save', true);
-    }
+    this.set('show', false);
   },
 
   /**
@@ -73,22 +80,9 @@ export default Mixin.create({
     */
     closeWithoutSaving() {
       const sheetService = this.get('fdSheetService');
-
-      const selectedElement = this.get('selectedElement');
-      const currentItemModel = selectedElement.get('model.data');
-      currentItemModel.rollbackAttributes();
-
-      const sheetName = selectedElement.get('sheetComponentName');
+      const sheetName = this.get('sheetName');
+      sheetService.rollbackCurrentItem(sheetName);
       sheetService.confirmClose(sheetName);
-    },
-
-    /**
-      Button action save and close sheet.
-
-      @method actions.closeWithSaving
-    */
-    closeWithSaving() {
-      this.saveAndClose();
     },
 
     /**

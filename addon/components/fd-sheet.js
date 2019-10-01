@@ -28,12 +28,12 @@ export default Component.extend({
   */
   fdSheetService: service(),
 
-  /**	
-    Sheet component name.	
-    @property sheetComponentName	
-    @type String	
-    @default ''	
-  */	
+  /**
+    Sheet component name.
+    @property sheetComponentName
+    @type String
+    @default ''
+  */
   sheetComponentName: '',
 
   /**
@@ -61,7 +61,7 @@ export default Component.extend({
       `fdSheetService.sheetSettings.visibility.${this.get('sheetComponentName')}:visible`,
       `fdSheetService.sheetSettings.expanded.${this.get('sheetComponentName')}:expand`,
     ]);
-  },  
+  },
 
   actions: {
     /**
@@ -72,7 +72,7 @@ export default Component.extend({
     closeSheet() {
       const sheetComponentName = this.get('sheetComponentName');
       this.get('fdSheetService').closeSheet(sheetComponentName);
-    },   
+    },
 
     /**
       Expanding sheet.
@@ -89,8 +89,8 @@ export default Component.extend({
 
       @method actions.save
     */
-    save(close) {
-      this.get('saveController')(close)
+    save() {
+      this.get('saveController')()
     },
 
     /**
