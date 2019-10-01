@@ -5,6 +5,7 @@ import StdClass from '../../objects/uml-primitives/fd-uml-std-class';
 import State from '../../objects/uml-primitives/fd-uml-state';
 import ComplexTransitionH from '../../objects/uml-primitives/fd-uml-complex-transition';
 import ComplexTransitionV from '../../objects/uml-primitives/fd-uml-complex-transition';
+import EventMessage from '../../objects/uml-primitives/fd-uml-event-message';
 import Connection from '../../objects/uml-primitives/fd-uml-connection';
 import History from '../../objects/uml-primitives/fd-uml-history';
 import DeepHistory from '../../objects/uml-primitives/fd-uml-history';
@@ -260,8 +261,36 @@ export default Mixin.create({
       @method actions.addEventMessage
       @param {jQuery.Event} e event.
      */
-    addEventMessage() {
+    addEventMessage(e) {
       // TODO Add action when create primitive 'EventMessage' TFS 169738
+
+      this.createLinkData((function(linkProperties) {
+        let jsonObject = getJsonForLink(
+          'STORMCASE.UML.std.EventMessage, UMLSTD',
+          linkProperties.source,
+          null,
+          linkProperties.target,
+          null,
+          A(),
+          { Name: '' },
+          { NamePos: 0.0 },
+          undefined,
+          {'segmNo': linkProperties.segmNo, 'percent': linkProperties.percent}
+        );
+
+        let eventMessageObject =  EventMessage.create({ primitive: jsonObject });
+        eventMessageObject.set('vertices', linkProperties.points || A());
+
+        this._addToPrimitives(eventMessageObject);
+
+        return eventMessageObject.JointJS();
+      }).bind(this), e
+      //,      A(['flexberry.uml.Connection', 'flexberry.uml.StdClass', 'flexberry.uml.CompositeState' ])
+      //)
+      ,{
+        start: A(['flexberry.uml.Connection']),
+        end: A(['flexberry.uml.StdClass', 'flexberry.uml.CompositeState'])
+      })
     },
   }
 });
