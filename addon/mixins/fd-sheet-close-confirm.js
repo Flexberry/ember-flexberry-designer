@@ -56,20 +56,16 @@ export default Mixin.create({
     const sheetService = this.get('fdSheetService');
     sheetService.set('abortedTransitionFromSheet', undefined);
     sheetService.set('openingItem', undefined);
-    this.set('show', false);
   },
 
   /**
     Close sheet after save data/
 
      @method closeAfterSave
-     @param {Boolean} close close after save
-     @param {String} sheetName name of closing sheet
   */
-  closeAfterSaveConfirm(close, sheetName) {
-    if (close && !isNone(sheetName)) {
-      this.get('fdSheetService').confirmClose(sheetName);
-    }
+  closeAfterSaveConfirm() {
+    const sheetName = this.get('sheetName');
+    this.get('fdSheetService').confirmClose(sheetName);
   },
 
   actions: {

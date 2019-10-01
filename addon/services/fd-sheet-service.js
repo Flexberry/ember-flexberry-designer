@@ -6,13 +6,23 @@ import { isBlank, isNone } from '@ember/utils';
 
 export default Service.extend(Evented, {
   /**
-    View component name when closing stopping by confirm close.
+    Origin json diagram data.
 
-    @property _viewNameStopedClose
+    @private
+    @property _originJsonDiagramData
     @type String
-    @default ''
+    @default undefined
   */
-  _viewNameStopedClose: '',
+  _originJsonDiagramData: undefined,
+
+  /**
+    Item of sheet that opening was abort and must continue after confirm.
+
+    @property _openingItem
+    @type Object
+    @default undefined
+  */
+  openingItem: undefined,
 
   sheetSettings: undefined,
 
@@ -23,25 +33,7 @@ export default Service.extend(Evented, {
     @type Object
     @default undefined
   */
-  abortedTransitionFromSheet: undefined,
-
-  /**
-    Item of sheet that opening was abort and must continue after confirm.
-
-    @property openingItem
-    @type Object
-    @default undefined
-  */
-  openingItem: undefined,
-
-  /**
-    Origin json diagram data.
-
-    @property originJsonDiagramData
-    @type String
-    @default ''
-  */
-  //originJsonDiagramData: '',
+  abortedTransitionFromSheet: undefined,  
 
   init() {
     this._super(...arguments);
@@ -74,8 +66,8 @@ export default Service.extend(Evented, {
       this.set('openingItem', currentItem);
       this.trigger('showCloseDialogTrigger', sheetName);
     } else {
-      //const primitivesJsonData = this.getJsonFromDiagramModel(this.getSheetModel(sheetName));
-      //this.set('originJsonDiagramData', primitivesJsonData);
+      const primitivesJsonData = this.getJsonFromDiagramModel(this.getSheetModel(sheetName));
+      this.set('_originJsonDiagramData', primitivesJsonData);
 
       this.trigger('openSheetTriggered', sheetName, currentItem);
       this.set(`sheetSettings.visibility.${sheetName}`, true);
@@ -142,16 +134,15 @@ export default Service.extend(Evented, {
      @param {String} sheetName Sheet's component name
   */
   confirmClose(sheetName) {
+    this.set('_originJsonDiagramData', undefined);
     const abortedTransition = this.get('abortedTransitionFromSheet');
     const openingItem = this.get('openingItem');
 
     if (!isNone(abortedTransition)) {
       abortedTransition.retry();
-      this.closeSheet(sheetName);
-      this.closeSheet(this.get('_viewNameStopedClose'));
     } else if (!isNone(openingItem)) {
       this.openSheet(sheetName, openingItem);
-    } else {
+    } else  {
       this.closeSheet(sheetName);
     }
 
@@ -166,8 +157,7 @@ export default Service.extend(Evented, {
      @param {String} sheetName Sheet's component name
      @param {String} viewName View's component name
   */
-  transitionFromSheet(transition, sheetName, viewName) {
-    this.set('_viewNameStopedClose', viewName);
+  transitionFromSheet(transition, sheetName) {
     const isUnsavedData = this.findUnsavedSheetData(sheetName);
 
     if (isUnsavedData) {
@@ -176,7 +166,6 @@ export default Service.extend(Evented, {
       this.trigger('showCloseDialogTrigger', sheetName);
     } else {
       this.closeSheet(sheetName);
-      this.closeSheet(viewName);
     }
   },
 
@@ -265,18 +254,30 @@ export default Service.extend(Evented, {
     let isDirty = false;
 
     if (!isNone(currentItemModel)) {
-      const currentDiagramPrimitivesJson = this.getJsonFromDiagramModel(currentItemModel);
-      let diagramHasChanges = false;
+      let diagramHasChanges = this.findDiagramChanges();
       let sheetHasChanges = currentItemModel.hasDirtyAttributes;
-      if (!isNone(currentDiagramPrimitivesJson)) {
-        const originDiagramPrimitivesJson = currentItemModel.get('primitivesJsonString');
-        diagramHasChanges = (!isNone(originDiagramPrimitivesJson)) ? (currentDiagramPrimitivesJson !== originDiagramPrimitivesJson) : false;
-      }
 
       isDirty = (diagramHasChanges || sheetHasChanges);
     }
 
     return isDirty;
+  },
+
+  /**
+    Check if sheet has unsaved data.
+
+     @method findDiagramChanges
+     @param {diagramModel} sheetName item diagram model
+  */
+  findDiagramChanges(diagramModel) {
+    let hasChanges = false;
+    const currentDiagramPrimitivesJson = this.getJsonFromDiagramModel(diagramModel);
+    if (!isNone(currentDiagramPrimitivesJson)) {
+      const originDiagramPrimitivesJson = this.get('originJsonDiagramData');
+      hasChanges = (!isNone(originDiagramPrimitivesJson)) ? (currentDiagramPrimitivesJson !== originDiagramPrimitivesJson) : false;
+    }
+
+    return hasChanges;
   },
 
   /**

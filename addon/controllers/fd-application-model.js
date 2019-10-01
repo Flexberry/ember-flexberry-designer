@@ -424,9 +424,9 @@ export default Controller.extend(FdSaveHasManyRelationshipsMixin, FdSheetCloseCo
       })
       .then(() => {
         this.updateClassModel(model);
-
-        const selectedSheetName = selectedElement.get('sheetComponentName');
-        this.closeAfterSaveConfirm(closeAfter, selectedSheetName);
+        if (closeAfter) {
+          this.closeAfterSaveConfirm();
+        }
       })
       .catch((error) => {
         this.set('isError', true);

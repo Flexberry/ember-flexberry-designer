@@ -534,8 +534,9 @@ export default Controller.extend(FdSaveHasManyRelationshipsMixin, FdSheetCloseCo
           this.set('isDiagramVisible', true);
         });
       }).then(() => {
-        const selectedSheetName = selectedElement.get('sheetComponentName');
-        this.closeAfterSaveConfirm(closeAfter, selectedSheetName);
+        if (closeAfter) {
+          this.closeAfterSaveConfirm();
+        }
       })
       .catch((error) => {
         this.set('error', error);
