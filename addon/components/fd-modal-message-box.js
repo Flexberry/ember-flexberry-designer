@@ -1,4 +1,5 @@
 import Component from '@ember/component';
+import { isNone } from '@ember/utils';
 import layout from '../templates/components/fd-modal-message-box';
 
 export default Component.extend({
@@ -46,15 +47,60 @@ export default Component.extend({
   */
   isError: false,
 
+  /**
+    Sheet component name.
+
+    @property sheetName
+    @type String
+  */
+  sheetName: undefined,
+
   actions: {
 
     /**
       Approve button action.
 
-      @method actions.approve
+      @method actions.onApprove
     */
-    approve() {
-      this.get('onApprove')();
+    onApprove() {
+      let approve = this.get('approve');
+      if (!this.get('isError') && !isNone(approve)) {
+        let sheetName = this.get('sheetName');
+        if (typeof approve === 'function') {
+          approve(true);
+        } else if (typeof approve === 'object' && !isNone(approve[sheetName])) {
+          approve[sheetName](true);
+        }
+      }
+
+      this.set('show', false);
+    },
+
+    onDeny() {
+      let deny = this.get('deny');
+      if (!this.get('isError') && !isNone(deny)) {
+        let sheetName = this.get('sheetName');
+        if (typeof deny === 'function') {
+          deny(true);
+        } else if (typeof deny === 'object' && !isNone(deny[sheetName])) {
+          deny[sheetName](true);
+        }
+      }
+
+      this.set('show', false);
+    },
+
+    onHide() {
+      let hide = this.get('hide');
+      if (!this.get('isError') && !isNone(hide)) {
+        let sheetName = this.get('sheetName');
+        if (typeof hide === 'function') {
+          hide(true);
+        } else if (typeof hide === 'object' && !isNone(hide[sheetName])) {
+          hide[sheetName](true);
+        }
+      }
+
       this.set('show', false);
     }
   }
