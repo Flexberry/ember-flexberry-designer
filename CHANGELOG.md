@@ -3,16 +3,28 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
-## [0.9.0-beta.1] - 2019-09-19
+## [0.9.0] - 2019-10-02
 ### Added
 * Edit form for editforms.
+* Edit form for listforms.
 * Integration of application model form and diagrams.
 * Add unload store.
+* Log error.
+* Clear store in choose project.
+* Input in cod dpd std diagrams primitives.
+* Dark and blue style theme.
+* Dynamic theme changes.
+* Show error model message.
 
 ### Fixed
 * Remove the delete button when creating a new record.
 * Fix locales.
 * Update model projections.
+* Loop in inheritance.
+* Fix coordinates in firefox.
+* Fix style view and toolbar for diagrams.
+* Fix save diagrams.
+* Fix delete diagrams.
 
 ## [0.8.1-beta.2] - 2019-09-12
 ### Fixed
