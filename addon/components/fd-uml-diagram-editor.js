@@ -247,6 +247,11 @@ FdActionsForUcdPrimitivesMixin, {
             linkProperties.percent = options.percent;
           }
           let newLink = jointjsCallback(linkProperties);
+
+          if (newLink.get('type') == 'flexberry.uml.EventMessage' && type !== 'flexberry.uml.Connection') {
+            return null;
+          }
+
           newLink.set({ 'startClassRepObj': { id: get(model, 'objectModel.repositoryObject') } });
           this.set('newLink', newLink);
           return newLink;
@@ -277,8 +282,8 @@ FdActionsForUcdPrimitivesMixin, {
             return false;
           }
 
-          if (newLink.get('type') == 'flexberry.uml.EventMessage' && this.sourceElementType !== 'flexberry.uml.Connection' && 
-          ( type !== 'flexberry.uml.StdClass' || type !== 'flexberry.uml.CompositeState' )) {
+          if (newLink.get('type') == 'flexberry.uml.EventMessage' && this.sourceElementType == 'flexberry.uml.Connection' && 
+          !( type == 'flexberry.uml.StdClass' || type == 'flexberry.uml.CompositeState' )) {
             return false;
           }
 
