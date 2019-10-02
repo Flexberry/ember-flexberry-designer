@@ -66,39 +66,21 @@ export default Mixin.create({
   },
 
   /**
-    Hide confirm close dialog.
-
-    @method hideCloseDialog
-  */
-  hideCloseDialog() {
-    const sheetService = this.get('fdSheetService');
-    sheetService.set('abortedTransitionFromSheet', undefined);
-  },
-
-  /**
     Close sheet when it confirmed.
 
      @method confirmClose
   */
   confirmClose() {
     const sheetName = this.get('sheetComponentName');
-
     const sheetService = this.get('fdSheetService');
-    
     sheetService.set('_originJsonDiagramData', undefined);
-
-    const abortedTransition = sheetService.get('abortedTransitionFromSheet');
     const openingItem = this.get('openingItem');
 
-    if (!isNone(abortedTransition)) {
-      abortedTransition.retry();
-    } else if (!isNone(openingItem)) {
+    if (!isNone(openingItem)) {
       sheetService.openSheet(sheetName, openingItem);
     } else  {
       sheetService.closeSheet(sheetName);
     }
-
-    this.hideCloseDialog();
   },
 
   /**
@@ -121,15 +103,6 @@ export default Mixin.create({
       const sheetName = this.get('sheetComponentName');
       sheetService.rollbackCurrentItem(sheetName);
       this.confirmClose();
-    },
-
-    /**
-      Close Dialog
-
-      @method actions.closeDialog
-    */
-    closeDialog() {
-      this.hideCloseDialog();
     }
   }
 });

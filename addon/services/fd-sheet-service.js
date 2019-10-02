@@ -3,8 +3,10 @@ import Evented from '@ember/object/evented';
 import $ from 'jquery';
 import { later, schedule } from '@ember/runloop';
 import { isBlank, isNone } from '@ember/utils';
+import { inject as service } from '@ember/service';
 
 export default Service.extend(Evented, {
+  router: service(),
   /**
     Origin json diagram data.
 
@@ -51,7 +53,6 @@ export default Service.extend(Evented, {
   */
   openSheet(sheetName, currentItem) {
     const unsavedData = this.findUnsavedSheetData(sheetName);
-    this.set('abortedTransitionFromSheet', undefined);
 
     if (unsavedData) {
       this.trigger('confirmCloseTrigger', sheetName, currentItem);
@@ -115,6 +116,19 @@ export default Service.extend(Evented, {
         $('.content-mini', currentSheet).css({ width: '' });
         $('.toggle-sidebar').removeClass('no-delay');
       }, 1000);
+    }
+
+    let abortedTransitionFromSheet = this.get('abortedTransitionFromSheet');
+
+    if (!isNone(abortedTransitionFromSheet)) {
+      let currentRouteName = this.get('router').get('currentRouteName');
+      let targetRouteName = abortedTransitionFromSheet.targetName;
+
+      if (currentRouteName === targetRouteName) {
+        this.set('abortedTransitionFromSheet', undefined);
+      } else {
+        abortedTransitionFromSheet.retry();
+      }
     }
   },
 
