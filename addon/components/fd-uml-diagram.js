@@ -157,6 +157,9 @@ export default Component.extend({
         case 'addNoteConnector':
           this._enableWrapLinks();
           break;
+        case 'addEventMessage':
+            this._enableWrapLinksForEventMessage();
+            break;
         case 'addInheritance':
           this._enableWrapBaseLinks();
           break;
@@ -338,6 +341,38 @@ export default Component.extend({
           this.set('draggedLinkView', linkView);
           break;
         }
+        case 'addEventMessage':
+          {
+            if (editMode === 'addEventMessage' && !this._haveNote()) {
+              return;
+            }
+            let startDragLink = this.get('startDragLink');
+            let newLink = startDragLink(options);
+            if (editMode === 'addInheritance') {
+              newLink.attr('.marker-source', {'display':'none'});
+            }
+            this.set('draggedLink', newLink);
+            let graph = this.get('graph');
+            let paper = this.get('paper');
+            let linkView = newLink
+              .set({ 'target': { x: x, y: y } })
+              .addTo(graph).findView(paper);
+            this.set('isLinkAdding', true);
+            let links = graph.getLinks();
+            for (let i = 0; i < links.length; i+=1) {
+              let  link = links[i];
+              let view = link.findView(paper);
+                view.$el.addClass('edit-disabled');
+            }
+            $(document).on({
+              'mousemove.link': this._onDrag.bind(this)
+            }, {
+              paper: paper,
+              element: newLink
+            });
+            this.set('draggedLinkView', linkView);
+            break;
+          }
         default:
           if (isNone(this.get('draggedLink'))) {
             return;
@@ -1170,6 +1205,20 @@ export default Component.extend({
       view.$el.removeClass('edit-disabled');
       view.$el.addClass('linktools-disabled');
       view.options.interactive.vertexAdd = false;
+    }
+  },
+
+  _enableWrapLinksForEventMessage: function() {
+    let paper = this.paper;
+    let links = paper.model.getLinks();
+    for (let i = 0; i < links.length; i+=1) {
+      let  link = links[i];
+      let view = link.findView(paper);
+      if (link.get('type') == 'flexberry.uml.Connection' && !link.connectedToLine()) {
+        view.$el.removeClass('edit-disabled');
+        view.$el.addClass('linktools-disabled');
+        view.options.interactive.vertexAdd = false;
+      }
     }
   },
 

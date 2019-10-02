@@ -262,8 +262,6 @@ export default Mixin.create({
       @param {jQuery.Event} e event.
      */
     addEventMessage(e) {
-      // TODO Add action when create primitive 'EventMessage' TFS 169738
-
       this.createLinkData((function(linkProperties) {
         let jsonObject = getJsonForLink(
           'STORMCASE.UML.std.EventMessage, UMLSTD',
@@ -284,13 +282,8 @@ export default Mixin.create({
         this._addToPrimitives(eventMessageObject);
 
         return eventMessageObject.JointJS();
-      }).bind(this), e
-      //,      A(['flexberry.uml.Connection', 'flexberry.uml.StdClass', 'flexberry.uml.CompositeState' ])
-      //)
-      ,{
-        start: A(['flexberry.uml.Connection']),
-        end: A(['flexberry.uml.StdClass', 'flexberry.uml.CompositeState'])
-      })
+        // Настройка объектов, к которым присоединяется происходит в fd-uml-diagram.
+      }).bind(this), e);
     },
   }
 });
