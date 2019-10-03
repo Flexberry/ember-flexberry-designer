@@ -337,10 +337,15 @@
 {{/fd-sheet}}
 
 {{#if show}}
-  {{flexberry-dialog
+  {{fd-modal-message-box
     caption=(t "components.fd-modal-message-box.confirmation-caption")
     content=messageText
-    approve=(action "closeWithSaving")
+    isError=false
+    sheetName=sheetName
+    approve=(hash 
+      application-model-sheet=(action "save")
+      view-sheet=(action "saveView")
+    )
     deny=(action "closeWithoutSaving")
     hide=(action "closeDialog")
     approveButtonCaption=(t "components.fd-modal-message-box.confirmation-approve")
