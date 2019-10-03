@@ -23,14 +23,6 @@ export default Mixin.create({
   */
   show: false,
 
-  showFlagObserver: observer('show', function() {
-    const show = this.get('show');
-    if (!show) {
-      const sheetService = this.get('fdSheetService');
-      sheetService.set('abortedTransitionFromSheet', undefined);
-    }
-  }),
-
   /**
     Type message box.
 
@@ -46,7 +38,20 @@ export default Mixin.create({
     @property messageText
     @type String
   */
-  messageText: undefined,  
+  messageText: undefined,
+
+  /**
+    Ember.observer, watching show flag and reset data in fd-heet-service.
+
+    @method _showFlagObserver
+  */
+  _showFlagObserver: observer('show', function() {
+    const show = this.get('show');
+    if (!show) {
+      const sheetService = this.get('fdSheetService');
+      sheetService.set('abortedTransitionFromSheet', undefined);
+    }
+  }),
 
   init() {
     this._super(...arguments);
