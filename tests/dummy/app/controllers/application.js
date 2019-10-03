@@ -5,6 +5,7 @@ import { A } from '@ember/array';
 import { isNone } from '@ember/utils';
 import { later } from '@ember/runloop';
 import $ from 'jquery';
+import config from '../config/environment';
 
 export default Controller.extend({
   fdSheetService: service(),
@@ -113,6 +114,12 @@ export default Controller.extend({
         icon: 'icon-fd-view'
       },
       {
+        link: 'i-i-s-caseberry-logging-objects-application-log-l',
+        caption: i18n.t('forms.application.sitemap.root.i-i-s-caseberry-logging-objects-application-log-l.caption'),
+        title: i18n.t('forms.application.sitemap.root.i-i-s-caseberry-logging-objects-application-log-l.title'),
+        icon: 'bug'
+      },
+      {
         link: '',
         caption: i18n.t('forms.application.sitemap.root.fd-requests.caption'),
         title: i18n.t('forms.application.sitemap.root.fd-requests.title'),
@@ -212,7 +219,7 @@ export default Controller.extend({
       }
 
       let theme = $('.flexberry-dropdown.theme div.text').text();
-      let rootURL = this.get('router.location.location.origin');
+      let rootURL = this.get('router.location.location.origin') + config.rootURL;
       sheet.setAttribute('href', `${rootURL}/assets/${theme}.css`);
     },
 

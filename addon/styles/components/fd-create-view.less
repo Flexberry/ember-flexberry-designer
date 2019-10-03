@@ -1,4 +1,4 @@
-.fd-sheet .ui.grid.fd-list.view-definition {
+.ui.grid.fd-list.view-definition {
   margin: 0;
 
   > .row {
@@ -30,12 +30,14 @@
   }
 
   input[type="text"] {
-    padding: 0 calc(~'@{leftIndent}');
+    padding-left: @leftIndent;
+    text-overflow: ellipsis;
   }
 
   .fd-view-attr-name input[type="text"]{
     font-weight: bold;
     color: @lightTextColor + @sidebarBg;
+    padding-right: @leftIndent;
   }
 }
 
@@ -47,10 +49,18 @@
   font-size: 0.6rem;
 }
 
-.ui.equal.width.grid.fd-view-table-attr .column {
-  padding: 0;
-  &.buttons {
-    padding-right: 0.7em;
+.ui.equal.width.grid.fd-view-table-attr {
+  // > .column {
+  //   height: 100%;
+  //   .display-flex();
+  //   .flex-direction(column);
+  // }
+
+  .column {
+    padding: 0;
+    &.buttons {
+      padding-right: 0.7em;
+    }
   }
 }
 
@@ -64,9 +74,32 @@
   }
 }
 
-.fd-view-table-attr .ui.vertical.buttons .ui.button {
-  background: @sidebarBg none;
-  margin-bottom: @toolbarBtnsmargin;
+// .fd-create-view {
+//   height: 100%;
+//   .display-flex();
+//   .flex-direction(column);
+// }
+
+.fd-view-table-attr {
+  // height: 100%;
+  // .flex-grow(2);
+
+  > .column {
+    .fd-ember-jstree{
+      height: 100%;
+      // .display-flex();
+      // .flex-direction(column);
+    }
+  }
+
+  .ui.vertical.buttons .ui.button {
+    background: @sidebarBg none;
+    margin-bottom: @toolbarBtnsmargin;
+  }
+}
+
+.fd-view-table-attr {
+  // .flex-grow(1);
 }
 
 .fd-view-buttons {
@@ -74,3 +107,9 @@
   margin-bottom: auto;
 }
 
+.overflow-panel {
+  overflow: auto;
+  transition: max-height .3s;
+  max-height: 100%;
+  // .flex-grow(1);
+}

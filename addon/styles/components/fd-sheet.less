@@ -21,10 +21,10 @@
 
   .content-mini {
     height: 100%;
-    padding: 0 0 1em;
-    transition: opacity 0.5s ease-in-out, background-color 1s;
     width: 50%;
     position: relative;
+    .display-flex();
+    .flex-direction(column);
     .transition(~'opacity 0.5s ease-in-out, background-color 1s');
   }
 
@@ -34,8 +34,8 @@
 
   .fd-sheet-body{
     overflow: auto;
-    height: calc(~'100vh - 9.375rem - @{footerHeight}');//toolbar height
     padding: 1em @fdSheetPadding;
+    .flex-grow(1);
   }
 
   .fd-sheet-toolbar {
