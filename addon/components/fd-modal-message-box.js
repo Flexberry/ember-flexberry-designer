@@ -45,5 +45,7 @@ export default FlexberryDialogComponent.extend({
         return e.closeDialog;
       },
     });
+
+    this.set('_dialog', newDialog);
   },
 });
