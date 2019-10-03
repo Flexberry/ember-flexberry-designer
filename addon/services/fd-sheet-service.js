@@ -3,20 +3,8 @@ import Evented from '@ember/object/evented';
 import $ from 'jquery';
 import { later, schedule } from '@ember/runloop';
 import { isBlank, isNone } from '@ember/utils';
-import { inject as service } from '@ember/service';
 
 export default Service.extend(Evented, {
-  router: service(),
-  /**
-    Origin json diagram data.
-
-    @private
-    @property _originJsonDiagramData
-    @type String
-    @default undefined
-  */
-  _originJsonDiagramData: undefined,
-
   sheetSettings: undefined,
 
   /**
@@ -60,9 +48,6 @@ export default Service.extend(Evented, {
       this.trigger('openSheetTriggered', sheetName, currentItem);
       this.set(`sheetSettings.visibility.${sheetName}`, true);
       this.set(`sheetSettings.currentItem.${sheetName}`, currentItem);
-
-      const primitivesJsonData = this.getJsonFromDiagramModel(this.getSheetModel(sheetName));
-      this.set('_originJsonDiagramData', primitivesJsonData);
 
       $('.pushable').addClass('fade');
       $('.fd-sheet.visible.expand .content-mini').addClass('fade');
@@ -121,14 +106,7 @@ export default Service.extend(Evented, {
     let abortedTransitionFromSheet = this.get('abortedTransitionFromSheet');
 
     if (!isNone(abortedTransitionFromSheet)) {
-      let currentRouteName = this.get('router').get('currentRouteName');
-      let targetRouteName = abortedTransitionFromSheet.targetName;
-
-      if (currentRouteName === targetRouteName) {
-        this.set('abortedTransitionFromSheet', undefined);
-      } else {
         abortedTransitionFromSheet.retry();
-      }
     }
   },
 
@@ -237,48 +215,10 @@ export default Service.extend(Evented, {
     let isDirty = false;
 
     if (!isNone(currentItemModel)) {
-      let diagramHasChanges = this.findDiagramChanges(currentItemModel);
-      let sheetHasChanges = currentItemModel.hasDirtyAttributes;
-
-      isDirty = (diagramHasChanges || sheetHasChanges);
+      isDirty = currentItemModel.hasDirtyAttributes;
     }
 
     return isDirty;
-  },
-
-  /**
-    Check if sheet has unsaved data.
-
-     @method findDiagramChanges
-     @param {diagramModel} sheetName item diagram model
-  */
-  findDiagramChanges(diagramModel) {
-    let hasChanges = false;
-    const currentDiagramPrimitivesJson = this.getJsonFromDiagramModel(diagramModel);
-    if (!isNone(currentDiagramPrimitivesJson)) {
-      const originDiagramPrimitivesJson = this.get('_originJsonDiagramData');
-      hasChanges = (!isNone(originDiagramPrimitivesJson)) ? (currentDiagramPrimitivesJson !== originDiagramPrimitivesJson) : false;
-    }
-
-    return hasChanges;
-  },
-
-  /**
-    Get sheet model.
-
-    @method getSheetModel
-    @param {Object} diagramModel model
-  */
-  getJsonFromDiagramModel(diagramModel) {
-    let jsonString = undefined;
-    if (!isNone(diagramModel)) {
-      const primitives = diagramModel.get('primitives');
-      if (!isNone(primitives)) {
-        jsonString = JSON.stringify(primitives);
-      }
-    }
-
-    return jsonString;
   },
 
   /**

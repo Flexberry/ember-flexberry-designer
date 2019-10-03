@@ -86,8 +86,6 @@ export default Component.extend({
           deny[sheetName](true);
         }
       }
-
-      this.set('show', false);
     },
 
     onHide() {
@@ -100,8 +98,6 @@ export default Component.extend({
           hide[sheetName](true);
         }
       }
-
-      this.set('show', false);
     }
   }
 });

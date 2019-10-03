@@ -1,5 +1,6 @@
 import Mixin from '@ember/object/mixin';
 import { isNone } from '@ember/utils';
+import { observer } from '@ember/object';
 
 export default Mixin.create({
   /**
@@ -11,6 +12,14 @@ export default Mixin.create({
     @default false
   */
   show: false,
+
+  showFlagObserver: observer('show', function() {
+    const show = this.get('show');
+    if (!show) {
+      const sheetService = this.get('fdSheetService');
+      sheetService.set('abortedTransitionFromSheet', undefined);
+    }
+  }),
 
   /**
     Type message box.
@@ -55,7 +64,7 @@ export default Mixin.create({
 
     if (sheetComponentName === sheetName) {
       this.set('isError', false);
-      this.set('messageText', this.get('i18n').t('forms.fd-application-model.').toString());
+      this.set('messageText', this.get('i18n').t('components.fd-modal-message-box.confirmation-text').toString());
 
       this.set('sheetName', sheetName);
       const openingItem = (this.get('selectedElement') !== currentItem) ? currentItem : undefined;
@@ -73,7 +82,6 @@ export default Mixin.create({
   confirmClose() {
     const sheetName = this.get('sheetComponentName');
     const sheetService = this.get('fdSheetService');
-    sheetService.set('_originJsonDiagramData', undefined);
     const openingItem = this.get('openingItem');
 
     if (!isNone(openingItem)) {
@@ -81,6 +89,8 @@ export default Mixin.create({
     } else  {
       sheetService.closeSheet(sheetName);
     }
+
+    this.set('show', false);
   },
 
   /**
@@ -103,6 +113,24 @@ export default Mixin.create({
       const sheetName = this.get('sheetComponentName');
       sheetService.rollbackCurrentItem(sheetName);
       this.confirmClose();
+    },
+
+    /**
+      Button action save and close sheet.
+
+      @method actions.closeWithSaving
+    */
+    closeWithSaving() {
+      this.send('save', true);
+    },
+
+    /**
+      Button action close confirm dialog.
+
+      @method actions.closeDialog
+    */
+    closeDialog() {
+      this.set('show', false);
     }
   }
 });

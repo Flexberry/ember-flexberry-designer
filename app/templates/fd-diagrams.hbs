@@ -253,16 +253,16 @@
   {{/if}}
 {{/fd-sheet}}
 
-{{fd-modal-message-box
-  show=show
-  isError=isError
-  messageText=messageText
-  componentName='fd-diagrams'
-  sheetName=sheetName
-  approve=(hash
-    diagrams-sheet=(action "save")
-  )
-  deny=(action "closeWithoutSaving")
-  hide=(action "closeDialog")
-}}
+{{#if show}}
+  {{flexberry-dialog
+    caption=(t "components.fd-modal-message-box.confirmation-caption")
+    content=messageText
+    approve=(action "closeWithSaving")
+    deny=(action "closeWithoutSaving")
+    hide=(action "closeDialog")
+    approveButtonCaption=(t "components.fd-modal-message-box.confirmation-approve")
+    denyButtonCaption=(t "components.fd-modal-message-box.confirmation-deny")
+    visible=true
+  }}
+{{/if}}
 
