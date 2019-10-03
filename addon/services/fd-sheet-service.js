@@ -103,7 +103,7 @@ export default Service.extend(Evented, {
       }, 1000);
     }
 
-    let abortedTransitionFromSheet = this.get('abortedTransitionFromSheet');
+    const abortedTransitionFromSheet = this.get('abortedTransitionFromSheet');
 
     if (!isNone(abortedTransitionFromSheet)) {
         abortedTransitionFromSheet.retry();
@@ -113,10 +113,9 @@ export default Service.extend(Evented, {
   /**
     Transition from opened sheet.
 
-     @method closeSheet
+     @method transitionFromSheet
      @param {Object} transition Transition
      @param {String} sheetName Sheet's component name
-     @param {String} viewName View's component name
   */
   transitionFromSheet(transition, sheetName) {
     const isUnsavedData = this.findUnsavedSheetData(sheetName);
@@ -232,7 +231,7 @@ export default Service.extend(Evented, {
       return null;
     }
 
-    let currentItemModel = this.get(`sheetSettings.currentItem.${sheetName}.model.data`);
+    const currentItemModel = this.get(`sheetSettings.currentItem.${sheetName}.model.data`);
 
     return currentItemModel;
   },
@@ -261,7 +260,7 @@ export default Service.extend(Evented, {
      @param {String} sheetName Sheet's component name
   */
   rollbackCurrentItem(sheetName) {
-    let model = this.getSheetModel(sheetName);
+    const model = this.getSheetModel(sheetName);
     model.rollbackAttributes();
   }
 });

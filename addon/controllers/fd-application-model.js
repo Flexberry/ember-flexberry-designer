@@ -447,7 +447,7 @@ export default Controller.extend(FdSaveHasManyRelationshipsMixin, FdSheetCloseCo
       let view = this.get('selectedView');
       this.get('appState').loading();
       view.save()
-      .catch((messageText) => {
+      .catch((error) => {
         this.set('isError', true);
         this.set('messageText', error.message);
         this.set('show', true);

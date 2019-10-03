@@ -610,7 +610,7 @@ export default Controller.extend(FdSaveHasManyRelationshipsMixin, FdSheetCloseCo
 
       @method actions.saveEditableObject
     */
-    saveEditableObject(close) {
+    saveEditableObject() {
       let editableObject = this.get('editableObject');
       let objectModel = this.get('editableObjectModel');
       this.get('appState').loading();

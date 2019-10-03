@@ -4,6 +4,16 @@ import { observer } from '@ember/object';
 
 export default Mixin.create({
   /**
+    Item of sheet that opening was abort and must continue after confirm.
+
+    @private
+    @property _openingItem
+    @type Object
+    @default undefined
+  */
+  _openingItem: undefined,
+
+  /**
     Flag activate confirm close dialog.
 
     @private
@@ -36,16 +46,7 @@ export default Mixin.create({
     @property messageText
     @type String
   */
-  messageText: undefined,
-
-  /**
-    Item of sheet that opening was abort and must continue after confirm.
-
-    @property _openingItem
-    @type Object
-    @default undefined
-  */
-  openingItem: undefined,
+  messageText: undefined,  
 
   init() {
     this._super(...arguments);
@@ -60,7 +61,7 @@ export default Mixin.create({
      @param {Object} currentItem Current list item
   */
   showCloseDialog(sheetName, currentItem) {    
-    let sheetComponentName = this.get('sheetComponentName');
+    const sheetComponentName = this.get('sheetComponentName');
 
     if (sheetComponentName === sheetName) {
       this.set('isError', false);
@@ -68,7 +69,7 @@ export default Mixin.create({
 
       this.set('sheetName', sheetName);
       const openingItem = (this.get('selectedElement') !== currentItem) ? currentItem : undefined;
-      this.set('openingItem', openingItem);
+      this.set('_openingItem', openingItem);
     
       this.set('show', true);
     }
@@ -82,7 +83,7 @@ export default Mixin.create({
   confirmClose() {
     const sheetName = this.get('sheetComponentName');
     const sheetService = this.get('fdSheetService');
-    const openingItem = this.get('openingItem');
+    const openingItem = this.get('_openingItem');
 
     if (!isNone(openingItem)) {
       sheetService.openSheet(sheetName, openingItem);

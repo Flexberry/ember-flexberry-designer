@@ -65,12 +65,12 @@ export default Component.extend({
 
   actions: {
     /**
-      Closing sheet action on close button.
+      Closing sheet.
 
       @method actions.closeSheet
     */
     closeSheet() {
-      const sheetComponentName = this.get('sheetComponentName');
+      let sheetComponentName = this.get('sheetComponentName');
       this.get('fdSheetService').closeSheet(sheetComponentName);
     },
 
@@ -90,7 +90,7 @@ export default Component.extend({
       @method actions.save
     */
     save() {
-      this.get('saveController')()
+      this.get('saveController')();
     },
 
     /**
@@ -109,6 +109,6 @@ export default Component.extend({
     */
     customButtonAction() {
       this.get('customButtonController')();
-    }
+    },
   }
 });
