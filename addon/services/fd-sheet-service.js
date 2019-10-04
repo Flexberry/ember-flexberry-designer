@@ -213,7 +213,8 @@ export default Service.extend(Evented, {
     let isDirty = false;
 
     if (!isNone(currentItemModel)) {
-      isDirty = currentItemModel.hasDirtyAttributes;
+      const hasDirtyAttributes = currentItemModel.get('hasDirtyAttributes');
+      isDirty = (!isNone(hasDirtyAttributes)) ? hasDirtyAttributes : false;
     }
 
     return isDirty;
@@ -230,7 +231,7 @@ export default Service.extend(Evented, {
       return null;
     }
 
-    const currentItemModel = this.get(`sheetSettings.currentItem.${sheetName}.model.data`);
+    const currentItemModel = this.get(`sheetSettings.currentItem.${sheetName}`);
 
     return currentItemModel;
   },

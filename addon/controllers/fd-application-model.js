@@ -461,7 +461,7 @@ export default Controller.extend(FdSaveHasManyRelationshipsMixin, FdSheetCloseCo
     */
     openViewSheet(view) {
       this.set('selectedView', view);
-      this.get('fdSheetService').openSheet(this.get('sheetViewName'));
+      this.get('fdSheetService').openSheet(this.get('sheetViewName'), view);
     },
 
     /**
@@ -526,7 +526,7 @@ export default Controller.extend(FdSaveHasManyRelationshipsMixin, FdSheetCloseCo
       if (stereotype === '«businessserver»') {
         let bsInClass = this.get('model.classes').filterBy('bs.data.id', selectedElement.id);
         if (bsInClass.length > 0) {
-          errorText = this.get('i18n').t('forms.fd-application-model.error-message.exist-class').toString() + A(bsInClass).get('firstObject.settings.data.name');
+          const errorText = this.get('i18n').t('forms.fd-application-model.error-message.exist-class').toString() + A(bsInClass).get('firstObject.settings.data.name');
           this.showErrorMessage(errorText);
           return;
         }
