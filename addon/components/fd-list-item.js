@@ -55,7 +55,7 @@ export default Component.extend({
     this._super(...arguments);
 
     this.get('fdSheetService').on('openSheetTriggered', this, function(sheetName, currentItem) {
-      if (sheetName, currentItem === this) {
+      if (currentItem === this) {
         this.set('model.active', true);
       }
     });
