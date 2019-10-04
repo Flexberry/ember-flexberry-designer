@@ -117,7 +117,7 @@ export default Mixin.create({
       @method actions.closeWithSaving
     */
     closeWithSaving() {
-      this.send('close', true);
+      this.send('save', true);
     },
 
     /**
