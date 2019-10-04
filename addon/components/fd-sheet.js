@@ -4,6 +4,7 @@ import layout from '../templates/components/fd-sheet';
 
 export default Component.extend({
   layout,
+
   /**
     Custom button visible.
 
@@ -21,20 +22,20 @@ export default Component.extend({
   customButtonTitle: undefined,
 
   /**
-    Service for managing the state of the component.
-
-    @property fdSheetService
-    @type FdSheetService
-  */
-  fdSheetService: service(),
-
-  /**
     Sheet component name.
     @property sheetComponentName
     @type String
     @default ''
   */
   sheetComponentName: '',
+
+  /**
+    Service for managing the state of the component.
+
+    @property fdSheetService
+    @type FdSheetService
+  */
+  fdSheetService: service(),
 
   /**
     Flag: indicates whether to show toolbar.
