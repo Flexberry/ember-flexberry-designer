@@ -253,17 +253,13 @@
   {{/if}}
 {{/fd-sheet}}
 
-{{#if _showErrorDialog}}
-  {{#modal-dialog
-    title=_classErrors
-    useOkButton=false
-    useCloseButton=false
-    settings=(hash
-      onHidden=(action set "_showErrorDialog" false)
-      context=".pusher:first"
-    )
+{{#if show}}
+  {{fd-modal-message-box
+    isError=isError
+    messageText=messageText
+    sheetName=modalSheetName
+    approve=(action "closeWithSaving")
+    deny=(action "closeWithoutSaving")
+    hide=(action set "show" false)
   }}
-  {{/modal-dialog}}
 {{/if}}
-
-{{fd-modal-message-box show=show isError=true messageText=error componentName='fd-diagrams'}}

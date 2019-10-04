@@ -58,4 +58,11 @@
 {{/fd-sheet}}
 {{/if}}
 
-{{fd-modal-message-box show=show isError=true messageText=error componentName='fd-navigation'}}
+{{#if show}}
+  {{fd-modal-message-box
+    isError=true
+    messageText=error
+    hide=(action set "show" false)
+    visible=show
+  }}
+{{/if}}

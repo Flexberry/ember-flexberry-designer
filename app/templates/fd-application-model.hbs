@@ -336,4 +336,13 @@
 
 {{/fd-sheet}}
 
-{{fd-modal-message-box show=show isError=true messageText=error componentName='fd-application-model'}}
+{{#if show}}
+  {{fd-modal-message-box
+    isError=isError
+    messageText=messageText
+    sheetName=modalSheetName
+    approve=(action "closeWithSaving")
+    deny=(action "closeWithoutSaving")
+    hide=(action set "show" false)
+  }}
+{{/if}}

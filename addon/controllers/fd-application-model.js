@@ -5,13 +5,14 @@ import { A } from '@ember/array';
 import { inject as service } from '@ember/service';
 import { updateStrByObjects } from '../utils/fd-update-str-value';
 import { translationMacro as t } from 'ember-i18n';
+import FdSheetCloseConfirm from '../mixins/fd-sheet-close-confirm';
 import $ from 'jquery';
 import { resolve, reject } from 'rsvp';
 import { createClassPrimitive, deletePrimitives } from '../utils/fd-update-class-diagram';
 
 import FdSaveHasManyRelationshipsMixin from '../mixins/fd-save-has-many-relationships';
 
-export default Controller.extend(FdSaveHasManyRelationshipsMixin, {
+export default Controller.extend(FdSaveHasManyRelationshipsMixin, FdSheetCloseConfirm, {
 
   /**
    Service that get current project contexts.
@@ -400,9 +401,11 @@ export default Controller.extend(FdSaveHasManyRelationshipsMixin, {
       Save 'selectedElement'.
 
        @method actions.save
+       @param {Boolean} closeAfter close after save
     */
-    save() {
-      let model = this.get('selectedElement.model.data');
+    save(closeAfter) {
+      const selectedElement = this.get('selectedElement');
+      let model = selectedElement.get('model.data');
       this.get('appState').loading();
       updateStrByObjects(model);
 
@@ -421,9 +424,13 @@ export default Controller.extend(FdSaveHasManyRelationshipsMixin, {
       })
       .then(() => {
         this.updateClassModel(model);
+        if (closeAfter) {
+          this.confirmClose(this.get('sheetComponentName'));
+        }
       })
       .catch((error) => {
-        this.set('error', error.message);
+        this.set('isError', true);
+        this.set('messageText', error.message);
         this.set('show', true);
       })
       .finally(() => {
@@ -441,7 +448,8 @@ export default Controller.extend(FdSaveHasManyRelationshipsMixin, {
       this.get('appState').loading();
       view.save()
       .catch((error) => {
-        this.set('error', error.message);
+        this.set('isError', true);
+        this.set('messageText', error.message);
         this.set('show', true);
       })
       .finally(() => {
@@ -522,7 +530,8 @@ export default Controller.extend(FdSaveHasManyRelationshipsMixin, {
       if (stereotype === '«businessserver»') {
         let bsInClass = this.get('model.classes').filterBy('bs.data.id', selectedElement.id);
         if (bsInClass.length > 0) {
-          this.set('error', this.get('i18n').t('forms.fd-application-model.error-message.exist-class').toString() + A(bsInClass).get('firstObject.settings.data.name'));
+          this.set('isError', true);
+          this.set('messageText', this.get('i18n').t('forms.fd-application-model.error-message.exist-class').toString() + A(bsInClass).get('firstObject.settings.data.name'));
           this.set('show', true);
           return;
         }
@@ -558,7 +567,8 @@ export default Controller.extend(FdSaveHasManyRelationshipsMixin, {
         this.get('fdSheetService').closeSheet(this.get('sheetComponentName'));
       })
       .catch((error) => {
-        this.set('error', error.message);
+        this.set('isError', true);
+        this.set('messageText', error.message);
         this.set('show', true);
       })
       .finally(() => {
@@ -581,7 +591,8 @@ export default Controller.extend(FdSaveHasManyRelationshipsMixin, {
         this.get('fdSheetService').closeSheet(this.get('sheetViewName'));
       })
       .catch((error) => {
-        this.set('error', error.message);
+        this.set('isError', true);
+        this.set('messageText', error.message);
         this.set('show', true);
       })
       .finally(() => {

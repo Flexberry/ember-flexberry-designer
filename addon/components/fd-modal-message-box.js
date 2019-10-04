@@ -1,41 +1,9 @@
-import Component from '@ember/component';
+import { translationMacro as t } from 'ember-i18n';
 import layout from '../templates/components/fd-modal-message-box';
+import FlexberryDialogComponent from 'ember-flexberry/components/flexberry-dialog';
 
-export default Component.extend({
+export default FlexberryDialogComponent.extend({
   layout,
-
-  /**
-    Title text value.
-
-    @property titleText
-    @type String
-  */
-  titleText: undefined,
-
-  /**
-    Message text value.
-
-    @property messageText
-    @type String
-  */
-  messageText: undefined,
-
-  /**
-    Model component name.
-
-    @property componentName
-    @type String
-  */
-  componentName: undefined,
-
-  /**
-    Flag: indicates whether to show modal.
-
-    @property show
-    @type Object
-    @default false
-  */
-  show: false,
 
   /**
     Flag: indicates whether to show modal button.
@@ -46,16 +14,46 @@ export default Component.extend({
   */
   isError: false,
 
-  actions: {
+  /**
+    Sheet component name.
+    @property sheetName
+    @type String
+  */
+  sheetName: undefined,
 
-    /**
-      Approve button action.
+  /**
+    Message text value.
 
-      @method actions.approve
-    */
-    approve() {
-      this.get('onApprove')();
-      this.set('show', false);
-    }
-  }
+    @property messageText
+    @type String
+    @default undefined
+  */
+  messageText: undefined,
+
+  /**
+    Flag: indicates whether dialog is visible or not.
+    If true, then dialog will be shown, otherwise dialog will be closed.
+    @property visible
+    @type Boolean
+    @default false
+  */
+  visible: true,
+
+  /**
+    Component's approve button caption.
+
+    @property approveButtonCaption
+    @type String
+    @default t('components.fd-modal-message-box.confirmation-approve')
+  */
+  approveButtonCaption: t('components.fd-modal-message-box.confirmation-approve'),
+
+  /**
+    Component's deny button caption.
+
+    @property denyButtonCaption
+    @type String
+    @default t('components.fd-modal-message-box.confirmation-deny')
+  */
+  denyButtonCaption: t('components.fd-modal-message-box.confirmation-deny'),
 });

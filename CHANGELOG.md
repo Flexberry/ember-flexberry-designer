@@ -2,6 +2,8 @@
 All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
+### Added
+* Check unsaved data on sheet.
 
 ## [0.9.0] - 2019-10-02
 ### Added

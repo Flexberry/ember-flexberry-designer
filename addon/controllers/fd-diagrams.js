@@ -12,13 +12,14 @@ import FdUmlElement from '../objects/uml-primitives/fd-uml-element';
 import FdUmlLink from '../objects/uml-primitives/fd-uml-link';
 
 import FdSaveHasManyRelationshipsMixin from '../mixins/fd-save-has-many-relationships';
+import FdSheetCloseConfirm from '../mixins/fd-sheet-close-confirm';
 import { updateObjectByStr, updateStrByObjects } from '../utils/fd-update-str-value';
 
 const getActualValue = (value, currentValue) => {
   return isBlank(value) && isBlank(currentValue) ? currentValue : value;
 };
 
-export default Controller.extend(FdSaveHasManyRelationshipsMixin, {
+export default Controller.extend(FdSaveHasManyRelationshipsMixin, FdSheetCloseConfirm, {
   /**
     Stores the value of the `attributesStr` property from the `editableObject`, before opening the edit form.
 
@@ -568,8 +569,9 @@ export default Controller.extend(FdSaveHasManyRelationshipsMixin, {
 
        @method actions.save
     */
-    save() {
-      let model = this.get('selectedElement.model.data');
+    save(closeAfter) {
+      const selectedElement = this.get('selectedElement');
+      let model = selectedElement.get('model.data');
       this.get('appState').loading();
 
       let isNew = false;
@@ -589,6 +591,10 @@ export default Controller.extend(FdSaveHasManyRelationshipsMixin, {
         schedule('afterRender', this, function() {
           this.set('isDiagramVisible', true);
         });
+      }).then(() => {
+        if (closeAfter) {
+          this.confirmClose(this.get('sheetComponentName'));
+        }
       })
       .catch((error) => {
         this.set('error', error.message);

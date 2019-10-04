@@ -12,7 +12,7 @@
   <div class="ui stackable grid fd-list-edited">
     {{#each model.generations as |generation|}}
       <div class="row">
-        <div class="wide column">{{link-to (moment-format generation.startTime "DD.MM.YYYY") "fd-generation.list.log" generation.id}}</div>
+        <div class="wide column">{{link-to (moment-format generation.startTime "DD.MM.YYYY HH:mm:ss") "fd-generation.list.log" generation.id}}</div>
       </div>
     {{/each}}
   </div>
