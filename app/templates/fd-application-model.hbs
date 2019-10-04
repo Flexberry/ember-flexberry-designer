@@ -338,18 +338,10 @@
 
 {{#if show}}
   {{fd-modal-message-box
-    caption=(t "components.fd-modal-message-box.confirmation-caption")
-    content=messageText
     isError=false
-    sheetName=sheetName
-    approve=(hash 
-      application-model-sheet=(action "save")
-      view-sheet=(action "saveView")
-    )
+    approve=(action "closeWithSaving")
     deny=(action "closeWithoutSaving")
     hide=(action "closeDialog")
-    approveButtonCaption=(t "components.fd-modal-message-box.confirmation-approve")
-    denyButtonCaption=(t "components.fd-modal-message-box.confirmation-deny")
     visible=true
   }}
 {{/if}}

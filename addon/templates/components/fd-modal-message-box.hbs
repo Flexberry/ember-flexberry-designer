@@ -1,9 +1,9 @@
 <i class="{{flexberryClassNames.closeButton}} close icon"></i>
 <div class="{{flexberryClassNames.header}} header">
-  {{caption}}
+  {{if isError (t "components.fd-modal-message-box.error-caption") (t "components.fd-modal-message-box.confirmation-caption")}}
 </div>
 <div class="{{flexberryClassNames.content}} content {{contentClass}}">
-  {{content}}
+  {{messageText}}
   {{yield}}
 </div>
 

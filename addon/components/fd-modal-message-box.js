@@ -1,4 +1,4 @@
-import { isNone } from '@ember/utils';
+import { translationMacro as t } from 'ember-i18n';
 import layout from '../templates/components/fd-modal-message-box';
 import FlexberryDialogComponent from 'ember-flexberry/components/flexberry-dialog';
 
@@ -15,37 +15,29 @@ export default FlexberryDialogComponent.extend({
   isError: false,
 
   /**
-    Sheet component name.
+    Message text value.
 
-    @property sheetName
+    @property messageText
     @type String
+    @default t('components.fd-modal-message-box.confirmation-text')
   */
-  sheetName: undefined,
+  messageText: t('components.fd-modal-message-box.confirmation-text'),
 
   /**
-      Initializes DOM-related component's properties.
-    */
-   didInsertElement() {
-    this._super(...arguments);
-    let dialog = this.get('_dialog');
-    let newDialog = dialog.modal({
-      onApprove: () => {
-        let approve = this.get('approve');        
-        let e = { closeDialog: true, target: this.get('_dialog') };
+    Component's approve button caption.
 
-        if (!this.get('isError') && !isNone(approve)) {
-          let sheetName = this.get('sheetName');
-          if (typeof approve === 'function') {
-            approve(true);
-          } else if (typeof approve === 'object' && !isNone(approve[sheetName])) {
-            approve[sheetName](true);
-          }
-        }
+    @property approveButtonCaption
+    @type String
+    @default t('components.fd-modal-message-box.confirmation-approve')
+  */
+  approveButtonCaption: t('components.fd-modal-message-box.confirmation-approve'),
 
-        return e.closeDialog;
-      },
-    });
+  /**
+    Component's deny button caption.
 
-    this.set('_dialog', newDialog);
-  },
+    @property denyButtonCaption
+    @type String
+    @default t('components.fd-modal-message-box.confirmation-deny')
+  */
+  denyButtonCaption: t('components.fd-modal-message-box.confirmation-deny'),
 });

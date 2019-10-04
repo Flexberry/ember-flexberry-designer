@@ -33,14 +33,6 @@ export default Mixin.create({
   isError: false,
 
   /**
-    Message text value.
-
-    @property messageText
-    @type String
-  */
-  messageText: undefined,
-
-  /**
     Ember.observer, watching show flag and reset data in fd-heet-service.
 
     @method _showFlagObserver
@@ -70,8 +62,6 @@ export default Mixin.create({
 
     if (sheetComponentName === sheetName) {
       this.set('isError', false);
-      this.set('messageText', this.get('i18n').t('components.fd-modal-message-box.confirmation-text').toString());
-
       this.set('sheetName', sheetName);
       const openingItem = (this.get('selectedElement') !== currentItem) ? currentItem : undefined;
       this.set('_openingItem', openingItem);
@@ -127,7 +117,7 @@ export default Mixin.create({
       @method actions.closeWithSaving
     */
     closeWithSaving() {
-      this.send('save', true);
+      this.send('close', true);
     },
 
     /**
