@@ -19,9 +19,9 @@ export default FlexberryDialogComponent.extend({
 
     @property messageText
     @type String
-    @default t('components.fd-modal-message-box.confirmation-text')
+    @default undefined
   */
-  messageText: t('components.fd-modal-message-box.confirmation-text'),
+  messageText: undefined,
 
   /**
     Component's approve button caption.

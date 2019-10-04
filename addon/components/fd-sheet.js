@@ -23,6 +23,7 @@ export default Component.extend({
 
   /**
     Sheet component name.
+
     @property sheetComponentName
     @type String
     @default ''

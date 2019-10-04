@@ -339,6 +339,7 @@
 {{#if show}}
   {{fd-modal-message-box
     isError=false
+    messageText=messageText
     approve=(action "closeWithSaving")
     deny=(action "closeWithoutSaving")
     hide=(action "closeDialog")
