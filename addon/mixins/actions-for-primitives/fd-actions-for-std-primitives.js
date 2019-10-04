@@ -283,7 +283,8 @@ export default Mixin.create({
 
         return eventMessageObject.JointJS();
         // Настройка объектов, к которым присоединяется происходит в fd-uml-diagram.
-      }).bind(this), e);
+      }).bind(this), e , A(['flexberry.uml.Connection', 'flexberry.uml.StdClass', 'flexberry.uml.CompositeState']));
     },
+
   }
 });
