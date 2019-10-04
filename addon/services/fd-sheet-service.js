@@ -14,7 +14,7 @@ export default Service.extend(Evented, {
     @type Object
     @default undefined
   */
-  abortedTransitionFromSheet: undefined,  
+  abortedTransitionFromSheet: undefined,
 
   init() {
     this._super(...arguments);
@@ -69,16 +69,15 @@ export default Service.extend(Evented, {
      @param {String} sheetName Sheet's component name
   */
   closeSheet(sheetName) {
-    let currentSheet = $(`.fd-sheet.${sheetName}`);
-
     const unsavedData = this.findUnsavedSheetData(sheetName);
 
     if (unsavedData) {
-      this.trigger('confirmCloseTrigger', sheetName, this.get(`sheetSettings.currentItem.${sheetName}`));
+      this.trigger('confirmCloseTrigger', sheetName, undefined);
     } else {
       this.trigger('closeSheetTriggered', sheetName);
       this.set(`sheetSettings.visibility.${sheetName}`, false);
       this.set(`sheetSettings.expanded.${sheetName}`, false);
+      let currentSheet = $(`.fd-sheet.${sheetName}`);
 
       if ($('.fd-sheet.visible').length < 2) {
         $('.pushable').removeClass('fade');
@@ -123,7 +122,7 @@ export default Service.extend(Evented, {
     if (isUnsavedData) {
       transition.abort();
       this.set('abortedTransitionFromSheet', transition);
-      this.trigger('confirmCloseTrigger', sheetName, this.get(`sheetSettings.currentItem.${sheetName}`));
+      this.trigger('confirmCloseTrigger', sheetName, undefined);
     } else {
       this.closeSheet(sheetName);
     }

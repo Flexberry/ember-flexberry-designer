@@ -51,6 +51,16 @@ export default Component.extend({
   */
   fdSheetService: service(),
 
+  init() {
+    this._super(...arguments);
+
+    this.get('fdSheetService').on('openSheetTriggered', this, function(sheetName, currentItem) {
+      if (sheetName, currentItem === this) {
+        this.set('model.active', true);
+      }
+    });
+  },
+
   actions: {
     /**
       Opening sheet.
@@ -60,7 +70,6 @@ export default Component.extend({
     */
     openSheet(currentItem) {
       this.get('fdSheetService').openSheet(this.get('sheetComponentName'), currentItem);
-      this.set('model.active', true);
     }
   }
 });

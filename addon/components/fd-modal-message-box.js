@@ -15,6 +15,13 @@ export default FlexberryDialogComponent.extend({
   isError: false,
 
   /**
+    Sheet component name.
+    @property sheetName
+    @type String
+  */
+  sheetName: undefined,
+
+  /**
     Message text value.
 
     @property messageText
@@ -22,6 +29,15 @@ export default FlexberryDialogComponent.extend({
     @default undefined
   */
   messageText: undefined,
+
+  /**
+    Flag: indicates whether dialog is visible or not.
+    If true, then dialog will be shown, otherwise dialog will be closed.
+    @property visible
+    @type Boolean
+    @default false
+  */
+  visible: true,
 
   /**
     Component's approve button caption.

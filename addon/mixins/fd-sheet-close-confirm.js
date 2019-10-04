@@ -42,15 +42,23 @@ export default Mixin.create({
   messageText: undefined,
 
   /**
+    Sheet component name.
+
+    @property modalSheetName
+    @type String
+  */
+  modalSheetName: undefined,
+
+  /**
     Ember.observer, watching show flag and reset data in fd-heet-service.
 
     @method _showFlagObserver
   */
   _showFlagObserver: observer('show', function() {
-    const show = this.get('show');
-    if (!show) {
-      const sheetService = this.get('fdSheetService');
-      sheetService.set('abortedTransitionFromSheet', undefined);
+    if (!this.get('show')) {
+      this.get('fdSheetService').set('abortedTransitionFromSheet', undefined);
+      this.set('modalSheetName', undefined);
+      this.set('_openingItem', undefined);
     }
   }),
 
@@ -63,19 +71,17 @@ export default Mixin.create({
     Show confirm close dialog when unsaved data exist on sheet.
 
     @method showCloseDialog
-     @param {String} sheetName Sheet's dbName
-     @param {Object} currentItem Current list item
+    @param {String} sheetName Sheet's dbName
+    @param {Object} currentItem Current list item
   */
-  showCloseDialog(sheetName, currentItem) {    
-    const sheetComponentName = this.get('sheetComponentName');
-
+  showCloseDialog(sheetName, currentItem) {
+    let sheetComponentName = this.get('sheetComponentName');
     if (sheetComponentName === sheetName) {
       this.set('isError', false);
       this.set('messageText', this.get('i18n').t('components.fd-modal-message-box.confirmation-text').toString());
-      this.set('sheetName', sheetName);
-      const openingItem = (this.get('selectedElement') !== currentItem) ? currentItem : undefined;
-      this.set('_openingItem', openingItem);
-    
+      this.set('modalSheetName', sheetName);
+      this.set('_openingItem', currentItem);
+
       this.set('show', true);
     }
   },
@@ -83,10 +89,10 @@ export default Mixin.create({
   /**
     Close sheet when it confirmed.
 
-     @method confirmClose
+    @method confirmClose
+    @param {String} sheetName Sheet's dbName
   */
-  confirmClose() {
-    const sheetName = this.get('sheetComponentName');
+  confirmClose(sheetName) {
     const sheetService = this.get('fdSheetService');
     const openingItem = this.get('_openingItem');
 
@@ -99,15 +105,6 @@ export default Mixin.create({
     this.set('show', false);
   },
 
-  /**
-    Close sheet after save data/
-
-     @method closeAfterSaveConfirm
-  */
-  closeAfterSaveConfirm() {
-    this.confirmClose();
-  },
-
   actions: {
     /**
       Button action close sheet without saving.
@@ -115,10 +112,9 @@ export default Mixin.create({
       @method actions.closeWithoutSaving
     */
     closeWithoutSaving() {
-      const sheetService = this.get('fdSheetService');
-      const sheetName = this.get('sheetComponentName');
-      sheetService.rollbackCurrentItem(sheetName);
-      this.confirmClose();
+      const sheetName = this.get('modalSheetName')
+      this.get('fdSheetService').rollbackCurrentItem(sheetName);
+      this.confirmClose(sheetName);
     },
 
     /**
@@ -127,16 +123,9 @@ export default Mixin.create({
       @method actions.closeWithSaving
     */
     closeWithSaving() {
+
+      // TODO переместить в контроллер.
       this.send('save', true);
-    },
-
-    /**
-      Button action close confirm dialog.
-
-      @method actions.closeDialog
-    */
-    closeDialog() {
-      this.set('show', false);
     }
   }
 });

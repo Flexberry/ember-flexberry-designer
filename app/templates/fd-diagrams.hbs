@@ -255,12 +255,11 @@
 
 {{#if show}}
   {{fd-modal-message-box
-    isError=false
+    isError=isError
     messageText=messageText
+    sheetName=modalSheetName
     approve=(action "closeWithSaving")
     deny=(action "closeWithoutSaving")
-    hide=(action "closeDialog")
-    visible=true
+    hide=(action set "show" false)
   }}
 {{/if}}
-

@@ -593,7 +593,7 @@ export default Controller.extend(FdSaveHasManyRelationshipsMixin, FdSheetCloseCo
         });
       }).then(() => {
         if (closeAfter) {
-          this.closeAfterSaveConfirm();
+          this.confirmClose(this.get('sheetComponentName'));
         }
       })
       .catch((error) => {
