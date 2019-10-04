@@ -95,6 +95,8 @@ Router.map(function () {
   { path: 'fd-view-edit-form/:id' });
   this.route('fd-view-edit-form.new',
   { path: 'fd-view-edit-form/new' });
+  this.route('fd-print-form',
+  { path: 'fd-print-form/:id?inframe=1' });
 
   this.route('fd-visual-edit-form');
   this.route('fd-editform-constructor', { path: 'fd-editform-constructor/:id' }, function() {

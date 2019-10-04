@@ -8,7 +8,7 @@
         <button class="ui button" {{action 'customButtonAction'}}>
           {{t customButtonTitle}}
         </button>
-      {{/if}}
+      {{/if}}      
       {{#if toolbarVisible}}
         <button class="ui button" {{action 'save'}}>
           {{t "components.fd-sheet.save-caption"}}
@@ -22,6 +22,11 @@
       <button class="ui icon button" {{action 'expand'}}>
         <i class="icon-fd-resize icon" ></i>
       </button>
+      {{#if printButtonVisible}}
+        <button class="ui icon button" {{action 'printButtonAction'}}>
+          <i class="print icon" ></i>
+        </button>
+      {{/if}}
       <button class="ui icon button" {{action 'closeSheet'}}>
         <i class="icon-fd-x-mark icon" ></i>
       </button>
