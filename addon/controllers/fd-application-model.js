@@ -429,9 +429,7 @@ export default Controller.extend(FdSaveHasManyRelationshipsMixin, FdSheetCloseCo
         }
       })
       .catch((error) => {
-        this.set('isError', true);
-        this.set('messageText', error.message);
-        this.set('show', true);
+        this.showErrorMessage(error.message);
       })
       .finally(() => {
         this.get('appState').reset();
@@ -448,9 +446,7 @@ export default Controller.extend(FdSaveHasManyRelationshipsMixin, FdSheetCloseCo
       this.get('appState').loading();
       view.save()
       .catch((error) => {
-        this.set('isError', true);
-        this.set('messageText', error.message);
-        this.set('show', true);
+        this.showErrorMessage(error.message);
       })
       .finally(() => {
         this.get('appState').reset();
@@ -530,9 +526,8 @@ export default Controller.extend(FdSaveHasManyRelationshipsMixin, FdSheetCloseCo
       if (stereotype === '«businessserver»') {
         let bsInClass = this.get('model.classes').filterBy('bs.data.id', selectedElement.id);
         if (bsInClass.length > 0) {
-          this.set('isError', true);
-          this.set('messageText', this.get('i18n').t('forms.fd-application-model.error-message.exist-class').toString() + A(bsInClass).get('firstObject.settings.data.name'));
-          this.set('show', true);
+          errorText = this.get('i18n').t('forms.fd-application-model.error-message.exist-class').toString() + A(bsInClass).get('firstObject.settings.data.name');
+          this.showErrorMessage(errorText);
           return;
         }
       }
@@ -567,9 +562,7 @@ export default Controller.extend(FdSaveHasManyRelationshipsMixin, FdSheetCloseCo
         this.get('fdSheetService').closeSheet(this.get('sheetComponentName'));
       })
       .catch((error) => {
-        this.set('isError', true);
-        this.set('messageText', error.message);
-        this.set('show', true);
+        this.showErrorMessage(error.message);
       })
       .finally(() => {
         this.get('appState').reset();
@@ -591,9 +584,7 @@ export default Controller.extend(FdSaveHasManyRelationshipsMixin, FdSheetCloseCo
         this.get('fdSheetService').closeSheet(this.get('sheetViewName'));
       })
       .catch((error) => {
-        this.set('isError', true);
-        this.set('messageText', error.message);
-        this.set('show', true);
+        this.showErrorMessage(error.message);
       })
       .finally(() => {
         this.get('appState').reset();

@@ -87,6 +87,18 @@ export default Mixin.create({
   },
 
   /**
+    Show error message dialog.
+
+    @method showErrorMessage
+    @param {String} errorText error message text
+  */
+  showErrorMessage(errorText) {
+    this.set('isError', true);
+    this.set('messageText', errorText.message);
+    this.set('show', true);
+  },
+
+  /**
     Close sheet when it confirmed.
 
     @method confirmClose

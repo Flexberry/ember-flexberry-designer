@@ -141,25 +141,6 @@ export default Controller.extend(FdSaveHasManyRelationshipsMixin, FdSheetCloseCo
   emptyReferenceCountItems: A(),
 
   /**
-    Flag: indicates whether to show modal dialog.
-
-    @private
-    @property _showErrorDialog
-    @type Boolean
-    @default false
-  */
-  _showErrorDialog: false,
-
-  /**
-    Class errors text.
-
-    @private
-    @property _classErrors
-    @type String
-  */
-  _classErrors: undefined,
-
-  /**
     Flag: indicates whether to show create editing panel.
 
     @property isAddMode
@@ -597,8 +578,7 @@ export default Controller.extend(FdSaveHasManyRelationshipsMixin, FdSheetCloseCo
         }
       })
       .catch((error) => {
-        this.set('error', error.message);
-        this.set('show', true);
+        this.showErrorMessage(error.message);
       })
       .finally(() => {
         this.get('appState').reset();
@@ -622,8 +602,7 @@ export default Controller.extend(FdSaveHasManyRelationshipsMixin, FdSheetCloseCo
       editableObject.save()
       .then(() => this.saveHasManyRelationships(editableObject))
       .catch((error) => {
-        this.set('error', error.message);
-        this.set('show', true);
+        this.showErrorMessage(error.message);
       })
       .finally(() => {
         this.get('appState').reset();
@@ -655,8 +634,7 @@ export default Controller.extend(FdSaveHasManyRelationshipsMixin, FdSheetCloseCo
 
         this.get('fdSheetService').openSheet(this.get('objectEditFormSheet'));
       } else {
-        this.set('_classErrors', objectsIsUpdate);
-        this.set('_showErrorDialog', true);
+        this.showErrorMessage(objectsIsUpdate);
       }
     },
 
@@ -753,8 +731,7 @@ export default Controller.extend(FdSaveHasManyRelationshipsMixin, FdSheetCloseCo
         this.get('fdSheetService').closeSheet(this.get('sheetComponentName'));
       })
       .catch((error) => {
-        this.set('error', error.message);
-        this.set('show', true);
+        this.showErrorMessage(error.message);
       })
       .finally(() => {
         this.get('appState').reset();
