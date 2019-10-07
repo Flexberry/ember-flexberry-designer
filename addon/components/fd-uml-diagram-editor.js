@@ -248,7 +248,7 @@ FdActionsForUcdPrimitivesMixin, {
           }
           let newLink = jointjsCallback(linkProperties);
 
-          if (newLink.get('type') == 'flexberry.uml.EventMessage' && type !== 'flexberry.uml.Connection') {
+          if (newLink.get('type') === 'flexberry.uml.EventMessage' && type !== 'flexberry.uml.Connection') {
             return null;
           }
 
@@ -282,8 +282,8 @@ FdActionsForUcdPrimitivesMixin, {
             return false;
           }
 
-          if (newLink.get('type') == 'flexberry.uml.EventMessage' && this.sourceElementType == 'flexberry.uml.Connection' && 
-          !( type == 'flexberry.uml.StdClass' || type == 'flexberry.uml.CompositeState' )) {
+          if (newLink.get('type') === 'flexberry.uml.EventMessage' && this.sourceElementType === 'flexberry.uml.Connection' && 
+          !( type === 'flexberry.uml.StdClass' || type === 'flexberry.uml.CompositeState' )) {
             return false;
           }
 
