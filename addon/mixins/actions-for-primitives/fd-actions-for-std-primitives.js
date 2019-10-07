@@ -251,13 +251,13 @@ export default Mixin.create({
 
         return newTransitionObject.JointJS();
 
-      }).bind(this), e,
+      }).bind((this), e,
       {
         start: A(['flexberry.uml.State', 'flexberry.uml.ComplexTransitionH', 'flexberry.uml.ComplexTransitionV', 'flexberry.uml.StateEx',
         'flexberry.uml.History', 'flexberry.uml.DeepHistory', 'flexberry.uml.StartState']),
         end: A(['flexberry.uml.State', 'flexberry.uml.ComplexTransitionH', 'flexberry.uml.ComplexTransitionV', 'flexberry.uml.StateEx',
         'flexberry.uml.History', 'flexberry.uml.DeepHistory', 'flexberry.uml.FinalState'])
-      }
+      }))
     },
 
     /**
