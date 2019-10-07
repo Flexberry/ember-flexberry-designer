@@ -282,7 +282,10 @@ export default Mixin.create({
         this._addToPrimitives(eventMessageObject);
 
         return eventMessageObject.JointJS();
-      }).bind(this), e , A(['flexberry.uml.Connection', 'flexberry.uml.StdClass', 'flexberry.uml.CompositeState']));
+      }).bind(this), e ,  {
+        start: A(['flexberry.uml.Connection']),
+        end: A(['flexberry.uml.StdClass', 'flexberry.uml.CompositeState'])
+      });
     },
 
   }
