@@ -5,6 +5,7 @@ import StdClass from '../../objects/uml-primitives/fd-uml-std-class';
 import State from '../../objects/uml-primitives/fd-uml-state';
 import ComplexTransitionH from '../../objects/uml-primitives/fd-uml-complex-transition';
 import ComplexTransitionV from '../../objects/uml-primitives/fd-uml-complex-transition';
+import EventMessage from '../../objects/uml-primitives/fd-uml-event-message';
 import Connection from '../../objects/uml-primitives/fd-uml-connection';
 import History from '../../objects/uml-primitives/fd-uml-history';
 import DeepHistory from '../../objects/uml-primitives/fd-uml-history';
@@ -31,7 +32,7 @@ export default Mixin.create({
         let jsonObject = getJsonForElement(
           'STORMCASE.UML.std.Class, UMLSTD',
           { x, y },
-          { width: 100, height: 40 },
+          { width: 80, height: 30 },
           { Name: '' },
           { InitialFolded: false, Folded: false }
         );
@@ -54,8 +55,8 @@ export default Mixin.create({
         let jsonObject = getJsonForElement(
           'STORMCASE.UML.std.State, UMLSTD',
           { x, y },
-          { width: 100, height: 40 },
-          { Name: '' },
+          { width: 80, height: 30 },
+          { Name: '', Text: ''},
           { InitialFolded: false, Folded: false }
         );
         let newStateObject = State.create({ primitive: jsonObject });
@@ -77,8 +78,8 @@ export default Mixin.create({
         let jsonObject = getJsonForElement(
           'STORMCASE.UML.std.StateEx, UMLSTD',
           { x, y },
-          { width: 100, height: 40 },
-          { Name: '' },
+          { width: 80, height: 60 },
+          { Name: '', Text: ''},
           { InitialFolded: false, Folded: false }
         );
         let newStateExObject = StateEx.create({ primitive: jsonObject });
@@ -110,6 +111,7 @@ export default Mixin.create({
         let jsonObject = getJsonForElement(
           'STORMCASE.UML.std.History, UMLSTD',
           { x, y },
+          { width: 20, height: 20 },
         );
         let newHistoryObject = History.create({ primitive: jsonObject });
 
@@ -130,6 +132,7 @@ export default Mixin.create({
         let jsonObject = getJsonForElement(
           'STORMCASE.UML.std.DeepHistory, UMLSTD',
           { x, y },
+          { width: 20, height: 20 },
         );
         let newDeepHistoryObject = DeepHistory.create({ primitive: jsonObject });
 
@@ -150,6 +153,7 @@ export default Mixin.create({
         let jsonObject = getJsonForElement(
           'STORMCASE.UML.std.DeepHistory, UMLSTD',
           { x, y },
+          { width: 20, height: 20 },
         );
         let newStartStateObject = StartState.create({ primitive: jsonObject });
 
@@ -170,6 +174,7 @@ export default Mixin.create({
         let jsonObject = getJsonForElement(
           'STORMCASE.UML.std.DeepHistory, UMLSTD',
           { x, y },
+          { width: 20, height: 20 },
         );
         let newFinalStateObject = FinalState.create({ primitive: jsonObject });
 
@@ -190,7 +195,7 @@ export default Mixin.create({
         let jsonObject = getJsonForElement(
           'STORMCASE.UML.std.ComplexTransitionH, UMLSTD',
           { x, y },
-          { width: 200 },
+          { width: 2, height: 20 },
         );
         let newComplexTransitionHObject = ComplexTransitionH.create({ primitive: jsonObject });
 
@@ -211,7 +216,7 @@ export default Mixin.create({
         let jsonObject = getJsonForElement(
           'STORMCASE.UML.std.ComplexTransitionV, UMLSTD',
           { x, y },
-          { width: 200 },
+          { width: 20, height: 2 },
         );
         let newComplexTransitionVObject = ComplexTransitionV.create({ primitive: jsonObject });
 
@@ -246,8 +251,13 @@ export default Mixin.create({
 
         return newTransitionObject.JointJS();
 
-      }).bind(this), e, A(['flexberry.uml.State', 'flexberry.uml.StateEx', 'flexberry.uml.ComplexTransitionH', 'flexberry.uml.ComplexTransitionV',
-      'flexberry.uml.History', 'flexberry.uml.DeepHistory', 'flexberry.uml.StartState', 'flexberry.uml.FinalState', ]));
+      }).bind((this), e,
+      {
+        start: A(['flexberry.uml.State', 'flexberry.uml.ComplexTransitionH', 'flexberry.uml.ComplexTransitionV', 'flexberry.uml.StateEx',
+        'flexberry.uml.History', 'flexberry.uml.DeepHistory', 'flexberry.uml.StartState']),
+        end: A(['flexberry.uml.State', 'flexberry.uml.ComplexTransitionH', 'flexberry.uml.ComplexTransitionV', 'flexberry.uml.StateEx',
+        'flexberry.uml.History', 'flexberry.uml.DeepHistory', 'flexberry.uml.FinalState'])
+      }))
     },
 
     /**
@@ -256,8 +266,32 @@ export default Mixin.create({
       @method actions.addEventMessage
       @param {jQuery.Event} e event.
      */
-    addEventMessage() {
-      // TODO Add action when create primitive 'EventMessage' TFS 169738
+    addEventMessage(e) {
+      this.createLinkData((function(linkProperties) {
+        let jsonObject = getJsonForLink(
+          'STORMCASE.UML.std.EventMessage, UMLSTD',
+          linkProperties.source,
+          null,
+          linkProperties.target,
+          null,
+          A(),
+          { Name: '' },
+          { NamePos: 0.0 },
+          undefined,
+          {'segmNo': linkProperties.segmNo, 'percent': linkProperties.percent}
+        );
+
+        let eventMessageObject =  EventMessage.create({ primitive: jsonObject });
+        eventMessageObject.set('vertices', linkProperties.points || A());
+
+        this._addToPrimitives(eventMessageObject);
+
+        return eventMessageObject.JointJS();
+      }).bind(this), e ,  {
+        start: A(['flexberry.uml.Connection']),
+        end: A(['flexberry.uml.StdClass', 'flexberry.uml.CompositeState'])
+      });
     },
+
   }
 });

@@ -6,6 +6,7 @@ import STDModel from './fd-std';
 
 import FdUmlNote from '../objects/uml-primitives/fd-uml-note';
 import FdUmlNoteConnector from '../objects/uml-primitives/fd-uml-note-connector';
+import FdUmlEventMessage from '../objects/uml-primitives/fd-uml-event-message';
 import FdUmlStateEx from '../objects/uml-primitives/fd-uml-state-ex';
 import FdUmlStdClass from '../objects/uml-primitives/fd-uml-std-class';
 import FdUmlState from '../objects/uml-primitives/fd-uml-state';
@@ -73,6 +74,7 @@ let Model = STDModel.extend(DevUMLSTDMixin, {
           break;
 
         case 'STORMCASE.UML.std.EventMessage, UMLSTD': // TODO need fix primitive EventMessage 169738
+          result.pushObject(FdUmlEventMessage.create({ primitive }));
           break;
 
         case 'STORMCASE.UML.std.ConcurrentState, UMLSTD': // TODO need create primitive ConcurrentState 169738
