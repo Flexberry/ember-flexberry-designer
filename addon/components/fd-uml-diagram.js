@@ -127,6 +127,15 @@ export default Component.extend({
   highlightedElement: undefined,
 
   /**
+    Elements with connection restrictions.
+    _changeSource and _changeTarget trigger on them.
+
+    @property limitСonnectionElements
+   @type {Array}
+  */
+  limitСonnectionElements: A(['flexberry.uml.NoteConnector', 'flexberry.uml.Generalization', 'flexberry.uml.EventMessage']),
+
+  /**
     Add handlers on pointer events.
 
     @method pointerEvents
@@ -233,21 +242,18 @@ export default Component.extend({
 
     graph.addCells(links.map(function(l) {
       let link = l.JointJS();
-      switch (link.prop('type')) {
-        case 'flexberry.uml.Aggregation':
-        case 'flexberry.uml.Association':
-        case 'flexberry.uml.Generalization':
-          if ('anchor' in link.attributes.source) {
-            link.attr('.marker-source', {'display':'none'});
-          }
+      if (_this.get('limitСonnectionElements').includes(link.prop('type'))) {
+        if ('anchor' in link.attributes.source) {
+          link.attr('.marker-source', {'display':'none'});
+        }
 
-          if ('anchor' in link.attributes.target) {
-            link.attr('.marker-target', {'display':'none'});
-          }
+        if ('anchor' in link.attributes.target) {
+          link.attr('.marker-target', {'display':'none'});
+        }
+
+        link.on('change:source', _this._changeSource, _this);
+        link.on('change:target', _this._changeTarget, _this);
       }
-
-      link.on('change:source', _this._changeSource, _this);
-      link.on('change:target', _this._changeTarget, _this);
 
       return link;
     }
@@ -354,9 +360,11 @@ export default Component.extend({
       }
     } else {
       if (this.get('endDragLink')(options)) {
-        let newLink = this.get('draggedLink');
-        newLink.on('change:source', this._changeSource, this);
-        newLink.on('change:target', this._changeTarget, this);
+        let link = this.get('draggedLink');
+        if (this.get('limitСonnectionElements').includes(link.attributes.type)) {
+          link.on('change:source', this._changeSource, this);
+          link.on('change:target', this._changeTarget, this);
+        }
         this._clearLinksData();
       }
     }
@@ -421,9 +429,11 @@ export default Component.extend({
       }
     } else {
       if (this.get('endDragLink')(options)) {
-        let newLink = this.get('draggedLink');
-        newLink.on('change:source', this._changeSource, this);
-        newLink.on('change:target', this._changeTarget, this);
+        let link = this.get('draggedLink');
+        if (this.get('limitСonnectionElements').includes(link.attributes.type)) {
+          link.on('change:source', this._changeSource, this);
+          link.on('change:target', this._changeTarget, this);
+        }
         this._clearLinksData();
       }
     }
@@ -1232,44 +1242,41 @@ export default Component.extend({
     @param {JQuery.Event} event
    */
   _changeSource(event) {
-    // EventMessage source can end only Connection (Переход).
-    if (event.attributes.type == 'flexberry.uml.EventMessage') {
-      if (event.attributes.source.id !== undefined) {
+    // Check event is link connect. 
+    if (!isNone(event.attributes.source.id)) {
+      // EventMessage source can end only Connection (Переход).
+      if (event.prop('type') === 'flexberry.uml.EventMessage') {
         let model = event.collection.models;
         let sourceObject = model.find(x => x.id === event.attributes.source.id);
 
-        if (sourceObject.attributes.type != 'flexberry.uml.Connection') {
+        if (sourceObject.attributes.type !== 'flexberry.uml.Connection') {
           event.attributes.source.id = null;
         } 
       }
-    }
-    
-    // One of end NoteConnector must be Note.
-    if (event.attributes.type == 'flexberry.uml.NoteConnector') {
-      if (event.attributes.source.id !== undefined) {
+      
+      // One of end NoteConnector must be Note.
+      if (event.prop('type') === 'flexberry.uml.NoteConnector') {
         let model = event.collection.models;
         let sourceObject = model.find(x => x.id === event.attributes.source.id);
         let targetObject = model.find(x => x.id === event.attributes.target.id);
 
-        if (!(sourceObject.attributes.type != 'flexberry.uml.Note' && targetObject.attributes.type == 'flexberry.uml.Note' ||
-        sourceObject.attributes.type == 'flexberry.uml.Note' && targetObject.attributes.type != 'flexberry.uml.Note')) {
+        if (!(sourceObject.attributes.type !== 'flexberry.uml.Note' && targetObject.attributes.type === 'flexberry.uml.Note' ||
+        sourceObject.attributes.type === 'flexberry.uml.Note' && targetObject.attributes.type !== 'flexberry.uml.Note')) {
           event.attributes.source.id = null;
-        } 
+        }
       }
-    }
 
-    // Generalization source can start only Generalization, TemplateClass and Class.
-    if (event.attributes.type == 'flexberry.uml.Generalization') {
-      if (event.attributes.source.id !== undefined) {
+      // Generalization source can start only Generalization, TemplateClass and Class.
+      if (event.prop('type') === 'flexberry.uml.Generalization') {
         let model = event.collection.models;
         let sourceObject = model.find(x => x.id === event.attributes.source.id);
 
-        if (!(sourceObject.attributes.type == 'flexberry.uml.Generalization' || sourceObject.attributes.type == 'flexberry.uml.TemplateClass' ||
-        sourceObject.attributes.type == 'flexberry.uml.Class')) {
+        if (!(sourceObject.attributes.type === 'flexberry.uml.Generalization' || sourceObject.attributes.type === 'flexberry.uml.TemplateClass' ||
+        sourceObject.attributes.type === 'flexberry.uml.Class')) {
           event.attributes.source.id = null;
         } 
 
-        if (event.attributes.target.id == event.attributes.source.id) {
+        if (event.attributes.target.id === event.attributes.source.id) {
           event.attributes.source.id = null;
         } 
       }
@@ -1283,45 +1290,42 @@ export default Component.extend({
     @param {JQuery.Event} event
    */
   _changeTarget(event) {
-    // EventMessage source can start only StdClass and CompositeState.
-    if (event.attributes.type == 'flexberry.uml.EventMessage') {
-      if (event.attributes.target.id !== undefined) {
+    // Check event is link connect. 
+    if (!isNone(event.attributes.target.id)) {
+      // EventMessage source can start only StdClass and CompositeState.
+      if (event.prop('type') === 'flexberry.uml.EventMessage') {
         let model = event.collection.models;
         let targetObject = model.find(x => x.id === event.attributes.target.id);
 
-        if (!(targetObject.attributes.type == 'flexberry.uml.StdClass' || targetObject.attributes.type == 'flexberry.uml.CompositeState')) {
+        if (!(targetObject.attributes.type === 'flexberry.uml.StdClass' || targetObject.attributes.type === 'flexberry.uml.CompositeState')) {
           event.attributes.target.id = null;
         } 
       }
-    }
-    
-    // One of end NoteConnector must be Note.
-    if (event.attributes.type == 'flexberry.uml.NoteConnector') {
-      if (event.attributes.target.id !== undefined) {
+      
+      // One of end NoteConnector must be Note.
+      if (event.prop('type') === 'flexberry.uml.NoteConnector') {
         let model = event.collection.models;
         let sourceObject = model.find(x => x.id === event.attributes.source.id);
         let targetObject = model.find(x => x.id === event.attributes.target.id);
 
-        if (!(sourceObject.attributes.type != 'flexberry.uml.Note' && targetObject.attributes.type == 'flexberry.uml.Note' ||
-        sourceObject.attributes.type == 'flexberry.uml.Note' && targetObject.attributes.type != 'flexberry.uml.Note')) {
+        if (!(sourceObject.attributes.type != 'flexberry.uml.Note' && targetObject.attributes.type === 'flexberry.uml.Note' ||
+        sourceObject.attributes.type === 'flexberry.uml.Note' && targetObject.attributes.type !== 'flexberry.uml.Note')) {
           event.attributes.target.id = null;
         } 
       }
-    }
 
-    // Generalization source can start only TemplateClass and Class.
-    // Generalization cannot end on the starting object.
-    if (event.attributes.type == 'flexberry.uml.Generalization') {
-      if (event.attributes.target.id !== undefined) {
+      // Generalization source can start only TemplateClass and Class.
+      // Generalization cannot end on the starting object.
+      if (event.prop('type') === 'flexberry.uml.Generalization') {
         let model = event.collection.models;
         let targetObject = model.find(x => x.id === event.attributes.target.id);
 
-        if (!(targetObject.attributes.type == 'flexberry.uml.TemplateClass' ||
-        targetObject.attributes.type == 'flexberry.uml.Class')) {
+        if (!(targetObject.attributes.type === 'flexberry.uml.TemplateClass' ||
+        targetObject.attributes.type === 'flexberry.uml.Class')) {
           event.attributes.target.id = null;
         } 
 
-        if (event.attributes.target.id == event.attributes.source.id) {
+        if (event.attributes.target.id === event.attributes.source.id) {
           event.attributes.target.id = null;
         } 
       }
