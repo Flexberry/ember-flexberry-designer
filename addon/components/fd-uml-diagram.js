@@ -354,6 +354,9 @@ export default Component.extend({
       }
     } else {
       if (this.get('endDragLink')(options)) {
+        let newLink = this.get('draggedLink');
+        newLink.on('change:source', this._changeSource, this);
+        newLink.on('change:target', this._changeTarget, this);
         this._clearLinksData();
       }
     }
@@ -418,6 +421,9 @@ export default Component.extend({
       }
     } else {
       if (this.get('endDragLink')(options)) {
+        let newLink = this.get('draggedLink');
+        newLink.on('change:source', this._changeSource, this);
+        newLink.on('change:target', this._changeTarget, this);
         this._clearLinksData();
       }
     }
