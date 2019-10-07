@@ -283,7 +283,7 @@ FdActionsForUcdPrimitivesMixin, {
           }
 
           if (newLink.get('type') === 'flexberry.uml.EventMessage' && this.sourceElementType === 'flexberry.uml.Connection' && 
-          !( type === 'flexberry.uml.StdClass' || type === 'flexberry.uml.CompositeState' )) {
+          !(type === 'flexberry.uml.StdClass' || type === 'flexberry.uml.CompositeState')) {
             return false;
           }
 
