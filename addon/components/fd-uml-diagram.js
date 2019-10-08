@@ -3,10 +3,10 @@
 */
 
 import Component from '@ember/component';
-import { computed, get, observer } from '@ember/object';
+import { computed, observer } from '@ember/object';
 import { isNone, isBlank } from '@ember/utils';
 import { inject as service } from '@ember/service';
-import { A, isArray } from '@ember/array';
+import { A } from '@ember/array';
 
 import $ from 'jquery';
 import joint from 'npm:jointjs';
