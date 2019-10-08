@@ -63,12 +63,20 @@
 
 .ui.sidebar.main.menu {
   height: calc(~"100vh - @{headerHeight} - @{footerHeight}") !important;
+  overflow-x: hidden!important;
   padding: 3.5rem 0;
   top: @headerHeight;
-
   transform: translate3d(0, 0, 0);
+  .transition(width 300ms);
   visibility: visible;
   z-index: -1;
+
+  .display-flex();
+  .flex-direction(column);
+  justify-content: space-between;
+  align-content: stretch;
+  
+  min-height: 100%;
 
   .item .icon {
     color: @sidebarIconColor;
@@ -85,11 +93,26 @@
     white-space: nowrap;
   }
 
+  .sitemap-bottom {
+    .flex(0 1 auto);
+  }
+
+  & .flexberry-sitemap-top {
+    .flex(1 1 auto);
+  }
+
   &.sidebar-mini {
     width: @sidebarMiniWidth;
 
     .item {
       font-size: 0;
+      padding-left: 0;
+      padding-right: 0;
+      text-align: center;
+
+      .icon {
+        margin-right: 0;
+      }
     }
   }
 
@@ -102,11 +125,20 @@
 
     ~ .ui.button.toggle-sidebar {
       opacity: 0;
+      pointer-events: none;
     }
     .ui.button.toggle-sidebar-visible {
       opacity: 1;
     }
   }
+
+  .current-project-name-header,
+  .current-project-name {
+    .icon {
+      visibility: hidden;
+    }
+  }
+
 
   .item.current-project-name-header {
     color: @lightTextColor;
@@ -133,4 +165,10 @@
 .ui.left.sidebar ~ .pusher {
   -webkit-transform: translate3d(@sidebarMiniWidth, 0, 0);
   transform: translate3d(@sidebarMiniWidth, 0, 0);
+}
+
+
+.item.current-project-name div {
+  overflow: hidden;
+  text-overflow: ellipsis;
 }

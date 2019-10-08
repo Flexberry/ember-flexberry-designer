@@ -1,0 +1,2 @@
+@headerBackground: @pageBackground;
+@contentBackground: @pageBackground;
