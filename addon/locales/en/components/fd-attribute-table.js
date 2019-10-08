@@ -1,5 +1,9 @@
 export default {
   'attribute': {
+    'value': 'Possible value',
+    'value-placeholder': 'Enter a possible value',
+    'default-value': 'Default value',
+    'default-value-placeholder': 'Enter the default value',
     'name': 'Attribute name',
     'name-placeholder': 'Enter name',
     'caption': 'Caption',

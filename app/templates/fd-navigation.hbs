@@ -1,1 +1,68 @@
-{{outlet}}
+<h2 class="form-header">{{t "forms.fd-navigation.caption"}}</h2>
+{{#if applicationClassIsAbsent}}
+  {{fd-button
+    caption=(t "forms.fd-navigation.create-prototype-button-text")
+    click=(action "createPrototype")
+  }}
+{{else}}
+
+<div class="fd-projects-toolbar">
+  {{fd-button
+    caption=(t "forms.fd-navigation.root-folder")
+    click=(action "addRootFolder")
+  }}
+</div>
+
+{{fd-ember-jstree
+  actionReceiver=actionReceiver
+  data=model.tree
+  searchTermPlaceholder=(t "forms.fd-navigation.search")
+  selectedNodes=selectedNodes
+  treeObject=treeObject
+  typesOptions=typesOptions
+  plugins=plugins
+  selectNodeAction=(action 'selectNodeAction')
+  moveNodeAction=(action 'moveNodeAction')
+}}
+
+{{#fd-sheet
+  title=(if isAddMode (t "components.fd-create-node-editing-panel.create-page") (concat (t "forms.fd-navigation.caption-sheet") selectedNode.text))
+  saveController=(action 'save')
+  deleteController=(action 'deleteNode')
+  sheetComponentName=sheetComponentName
+  readonly=true
+  toolbarVisible=(not isAddMode)
+
+  customButtonVisible=isAddMode
+  customButtonTitle=customButtonTitle
+  customButtonController=(action set 'isAddMode' false)
+}}
+  {{#if isAddMode}}
+    {{fd-navigation-editing-panels/fd-create-node-editing-panel
+      forms=model.forms
+      addSubFormAction=(action 'addSubForm')
+    }}
+  {{else}}
+    {{#if (eq selectedNode.original.type 'folder')}}
+      {{fd-navigation-editing-panels/fd-folder-editing-panel
+        node=selectedNode
+        openPanelCreateSubFormAction=(action set 'isAddMode' true)
+        addSubFolderAction=(action 'addSubFolder')
+      }}
+    {{else}}
+      {{fd-navigation-editing-panels/fd-property-editing-panel
+        node=selectedNode
+      }}
+    {{/if}}
+  {{/if}}
+{{/fd-sheet}}
+{{/if}}
+
+{{#if show}}
+  {{fd-modal-message-box
+    isError=true
+    messageText=error
+    hide=(action set "show" false)
+    visible=show
+  }}
+{{/if}}

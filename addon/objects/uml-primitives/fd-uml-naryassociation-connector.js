@@ -1,10 +1,11 @@
 /**
   @module ember-flexberry-designer
 */
+import joint from 'npm:jointjs';
+
 import FdUmlLink from './fd-uml-link';
 import { Association } from './fd-uml-association';
 import { DescriptionView } from './links-view/fd-description-view';
-import joint from 'npm:jointjs';
 
 /**
   An object that describes an NAryAssociationConnector link on the UML diagram.
@@ -20,7 +21,8 @@ export default FdUmlLink.extend({
     @method JointJS
   */
   JointJS() {
-    let properties = this.getProperties('id', 'source', 'target', 'vertices', 'labels', 'startPoint', 'endPoint');
+    let properties = this.getProperties('id', 'source', 'target', 'vertices', 'labels');
+    properties.objectModel = this;
     return new NAryAssociationConnector(properties);
   },
 });
@@ -40,9 +42,6 @@ export let NAryAssociationConnector = Association.define('flexberry.uml.NAryAsso
     switch (labelName) {
       case 'description':
         return 0.1;
-      default:
-        // eslint-disable-next-line no-console
-        console.log('ERROR - choose correct label name');
     }
   }
 });

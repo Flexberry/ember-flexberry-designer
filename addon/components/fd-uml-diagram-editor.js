@@ -1,7 +1,7 @@
 import Component from '@ember/component';
 import { inject as service } from '@ember/service';
 import { A, isArray } from '@ember/array';
-import { computed } from '@ember/object';
+import { computed, get } from '@ember/object';
 import { isNone, isBlank } from '@ember/utils';
 import { next } from '@ember/runloop';
 import $ from 'jquery';
@@ -38,12 +38,30 @@ FdActionsForUcdPrimitivesMixin, {
   fdSheetService: service(),
 
   /**
+    Flag indicates when edit panel toolbar is collapsed.
+
+    @property _collapseEditPanelToolbar
+    @type Boolean
+    @default false
+    @private
+  */
+  _collapseEditPanelToolbar: false,
+
+  /**
     Array elements to interact.
 
     @property interactionElements
     @type Array
   */
   interactionElements: A(),
+
+  /**
+   Array items with empty reference count.
+
+   @property emptyReferenceCountItems
+   @type {Array}
+   */
+  emptyReferenceCountItems: A(),
 
   /**
     Function for create element.
@@ -94,14 +112,44 @@ FdActionsForUcdPrimitivesMixin, {
   currentTargetElement: undefined,
 
   /**
-    Stores classes that was created, but not yet saved, in the diagram.
+    Сurrent pressed button is pointer.
 
-    @property createdClasses
-    @type Ember.Array
+    @property currentTargetElementIsPointer
+    @type Bool
   */
-  createdClasses: A(),
+  currentTargetElementIsPointer: computed('currentTargetElement', function() {
+    let currentTargetElement = this.get('currentTargetElement');
+    if (!isNone(currentTargetElement)) {
+      return currentTargetElement.hasClass('pointer-button');
+    }
+
+    return true;
+  }),
+
+  /**
+    Сurrent diagram's paper.
+
+    @property paper
+    @type joint.dia.Paper
+  */
+  paper: undefined,
 
   classNames: ['fd-uml-diagram-editor'],
+
+  attributeBindings: ['spellcheck'],
+
+  /**
+    Disable spellcheck for diagram elements.
+
+    @property spellcheck
+    @type Boolean
+  */
+  spellcheck: false,
+
+  /**
+   Type source element of Link
+   */
+  sourceElementType: undefined,
 
   diagramType: computed('model.constructor.modelName', function() {
     let type = this.get('model.constructor.modelName');
@@ -112,20 +160,42 @@ FdActionsForUcdPrimitivesMixin, {
     return type.split('-').pop();
   }),
 
-  /**
-    See [EmberJS API](https://emberjs.com/).
-
-    @method didInsertElement
-  */
-  didInsertElement() {
+  init() {
     this._super(...arguments);
+
+    this.get('fdSheetService').on('diagramResizeTriggered', this, this._fitToContent);
 
     next(() => {
       this.get('fdSheetService').toolbarDiagramPosition();
     });
   },
 
+  /**
+   Called when the element of the view is going to be destroyed.
+   For more information see [willDestroyElement](http://emberjs.com/api/classes/Ember.Component.html#event_willDestroyElement) event of [Ember.Component](http://emberjs.com/api/classes/Ember.Component.html).
+ */
+ willDestroyElement() {
+   this._super(...arguments);
+
+   this.get('fdSheetService').off('diagramResizeTriggered', this, this._fitToContent);
+ },
+
   actions: {
+    /**
+      Normalize paper's size
+
+      @method actions.fitToContent
+    */
+    fitToContent() {
+      let paper = this.get('paper');
+      if (isNone(paper) || !this.$()) {
+        return;
+      }
+
+      let minWidth = this.$().width();
+      let minHeight = this.$().height() - this.$('.fd-uml-diagram-toolbar').height();
+      paper.fitToContent({ minWidth, minHeight, padding: 10 });
+    },
 
     /**
       Handler event blankPointerClick
@@ -169,8 +239,15 @@ FdActionsForUcdPrimitivesMixin, {
 
         if ((isNone(interactionElements) || (isArray(interactionElements) && interactionElements.includes(type)) ||
          (isArray(interactionElements.start) && interactionElements.start.includes(type)))) {
+          this.sourceElementType =  type;
           let jointjsCallback = this.get('jointjsCallback');
-          let newLink = jointjsCallback({ source: model.id, startClassRepObj: model.repositoryObject });
+          let linkProperties = { source: model.id };
+          if ('segmNo' in options && options['segmNo'] >= 0) {
+            linkProperties.segmNo = options.segmNo;
+            linkProperties.percent = options.percent;
+          }
+          let newLink = jointjsCallback(linkProperties);
+          newLink.set({ 'startClassRepObj': { id: get(model, 'objectModel.repositoryObject') } });
           this.set('newLink', newLink);
           return newLink;
         }
@@ -187,18 +264,41 @@ FdActionsForUcdPrimitivesMixin, {
       let type = this.get('type');
       if (type === 'Link') {
         let element = options.element;
-        let model = element.model.attributes;
-        let type = model.type;
+        let model = element.model;
+        let attributes = model.attributes;
+        let type = attributes.type;
         let interactionElements = this.get('interactionElements');
+        let newLink = this.get('newLink');
 
         if ((isNone(interactionElements) || (isArray(interactionElements) && interactionElements.includes(type)) ||
-         (isArray(interactionElements.start) && interactionElements.start.includes(type)))) {
-          let newLink = this.get('newLink');
-          newLink.set({ 'target': { id: model.id }, 'endClassRepObj': { id: model.repositoryObject } });
+         (isArray(interactionElements.end) && interactionElements.end.includes(type)))
+        ) {
+          if (newLink.get('type') == 'flexberry.uml.NoteConnector' && this.sourceElementType !== 'flexberry.uml.Note' &&  type !== 'flexberry.uml.Note') {
+            return false;
+          }
+
+          let target = { id: attributes.id};
+          if (model.isLink()) {
+            let segmNo = model.isLink() ? options.segmNo : -1;
+            let percent = model.isLink() ? options.percent : 0;
+            let anchor = {
+              name: 'connectionSegmRatio',
+              args: {
+                segmNo: segmNo,
+                percent: percent
+              }
+            };
+            target.segmNo = segmNo;
+            target.percent = percent;
+            target.anchor = anchor;
+          }
+
+          newLink.set({ 'target': target, 'endClassRepObj': { id: get(attributes, 'objectModel.repositoryObject') } });
           let storeCallback = this.get('storeCallback');
           if (storeCallback) {
             let linkRecord = storeCallback({ startClassRepObj: newLink.get('startClassRepObj'), endClassRepObj: newLink.get('endClassRepObj') });
             newLink.set({ 'repositoryObject': linkRecord });
+            this.paper.trigger('checkexistelements', newLink.get('objectModel'), this.paper.findViewByModel(newLink));
           }
 
           this.clearData();
@@ -217,15 +317,19 @@ FdActionsForUcdPrimitivesMixin, {
     */
     blankContextMenu() {
       let type = this.get('type');
-      if (!isNone(type)) {
+      if (type === 'Link') {
         let newLink = this.get('newLink');
         if (newLink.vertices().length === 0) {
+          let primitives = this.get('model.primitives');
+          let linkPrimitive = primitives.findBy('id', newLink.get('id'));
+          primitives.removeObject(linkPrimitive);
           this.clearData();
           return true;
         } else {
-          let newLink = this.get('newLink');
           newLink.removeVertex(-1);
         }
+      } else if (type === 'Object') {
+        this.clearData();
       }
 
       return false;
@@ -250,8 +354,31 @@ FdActionsForUcdPrimitivesMixin, {
      */
     toolbarButtonClicked(buttonName, e) {
       if (!isBlank(buttonName)) {
+        this.paper.fDDEditMode = buttonName;
+        switch (buttonName) {
+          case 'pointerClick':
+            this._enableEditLinks();
+            break;
+          case 'addNoteConnector':
+            this._enableWrapLinks();
+            break;
+          case 'addInheritance':
+            this._enableWrapBaseLinks();
+            break;
+          default:
+            this._disableEditLinks();
+        }
         this.send(buttonName, e);
       }
+    },
+
+    /**
+      Handler for click on toolbar collapse edit panel button.
+
+      @method actions.collapseEditPanelToolbar
+     */
+    collapseEditPanelToolbar() {
+      this.toggleProperty('_collapseEditPanelToolbar');
     }
   },
 
@@ -299,6 +426,7 @@ FdActionsForUcdPrimitivesMixin, {
   clearData() {
     this._clearProperties();
     this._resetCurrentTargetElement();
+    this._enableEditLinks();
   },
 
   /**
@@ -313,6 +441,58 @@ FdActionsForUcdPrimitivesMixin, {
     this.set('type', undefined);
     this.set('interactionElements', A());
     this.set('newLink', undefined);
+  },
+
+  _enableEditLinks: function() {
+    let paper = this.paper;
+    let links = paper.model.getLinks();
+    for (let i = 0; i < links.length; i+=1) {
+      let  link = links[i];
+      let view = link.findView(paper);
+      view.$el.removeClass('edit-disabled');
+      view.$el.removeClass('linktools-disabled');
+      if ('vertexAdd' in view.options.interactive) {
+        delete view.options.interactive.vertexAdd;
+      }
+    }
+  },
+
+  _enableWrapBaseLinks: function() {
+    let paper = this.paper;
+    let links = paper.model.getLinks();
+    for (let i = 0; i < links.length; i+=1) {
+      let  link = links[i];
+      let view = link.findView(paper);
+      if (link.get('type') == 'flexberry.uml.Generalization' && !link.connectedToLine()) {
+        view.$el.removeClass('edit-disabled');
+        view.$el.addClass('linktools-disabled');
+        view.options.interactive.vertexAdd = false;
+      } else {
+        view.$el.addClass('edit-disabled');
+      }
+    }
+  },
+
+  _enableWrapLinks: function() {
+    let paper = this.paper;
+    let links = paper.model.getLinks();
+    for (let i = 0; i < links.length; i+=1) {
+      let  link = links[i];
+      let view = link.findView(paper);
+      view.$el.removeClass('edit-disabled');
+      view.$el.addClass('linktools-disabled');
+      view.options.interactive.vertexAdd = false;
+    }
+  },
+
+  _disableEditLinks: function() {
+    let paper = this.paper;
+    let links = paper.model.getLinks();
+    for (let i = 0; i < links.length; i+=1) {
+      let  link = links[i];
+      let view = link.findView(paper);
+      view.$el.addClass('edit-disabled');
+    }
   },
 
   /**
@@ -342,6 +522,19 @@ FdActionsForUcdPrimitivesMixin, {
     let pointer = this.$('.pointer-button');
     pointer.addClass('active');
     this.set('currentTargetElement', pointer);
+  },
+
+  /**
+    Resize diagram.
+
+    @method _fitToContent
+    @private
+  */
+  _fitToContent(sheetName, containsName) {
+    let sheetComponentName = this.get('sheetComponentName');
+    if (containsName ? sheetName.includes(sheetComponentName) : sheetComponentName === sheetName) {
+      this.get('actions.fitToContent').bind(this)();
+    }
   },
 
   /**

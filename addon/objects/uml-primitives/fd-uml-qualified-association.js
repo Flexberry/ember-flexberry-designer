@@ -3,8 +3,9 @@
 */
 
 import { computed } from '@ember/object';
-
 import joint from 'npm:jointjs';
+import { isNone } from '@ember/utils';
+
 import FdUmlLink from './fd-uml-link';
 import { Link } from './fd-uml-link';
 import { QualifiedView } from './links-view/fd-qualified-view';
@@ -38,7 +39,8 @@ export default FdUmlLink.extend({
     @method JointJS
   */
   JointJS() {
-    let properties = this.getProperties('id', 'source', 'target', 'vertices', 'labels', 'startPoint', 'endPoint');
+    let properties = this.getProperties('id', 'source', 'target', 'vertices', 'labels');
+    properties.objectModel = this;
     return new QualifiedAssociation(properties);
   },
 });
@@ -59,6 +61,10 @@ export let QualifiedAssociation = Link.define('flexberry.uml.QualifiedAssociatio
     rect: { visibility: 'hidden' }
   }
 }, {
+  initialize: function() {
+    Link.prototype.initialize.apply(this, arguments);
+  },
+
   getLabelDistance: function (labelName, isVertical) {
     switch (labelName) {
       case 'qualified':
@@ -69,27 +75,23 @@ export let QualifiedAssociation = Link.define('flexberry.uml.QualifiedAssociatio
         return isVertical ? -10 : -5;
       case 'description':
         return 0.5;
-      default:
-        // eslint-disable-next-line no-console
-        console.log('ERROR - choose correct label name');
     }
   }
 });
 
 joint.shapes.flexberry.uml.QualifiedAssociationView = QualifiedView.extend({
-  template: [
-    '<div class="input-buffer"></div>',
-    '<div class="uml-link-inputs">',
-    '<input type="text" class="description-input underline-text" value="" />',
-    '</div>',
-    '<div class="uml-link-inputs">',
-    '<input type="text" class="start-role-input" value="" />',
-    '</div>',
-    '<div class="uml-link-inputs">',
-    '<input type="text" class="end-role-input" value="" />',
-    '</div>',
-    '<div class="uml-link-inputs">',
-    '<input type="text" class="qualified-input" value="" />',
-    '</div>'
-  ].join(''),
+  setColors() {
+    QualifiedView.prototype.setColors.apply(this, arguments);
+
+    const brushColor = this.getBrushColor();
+    const textColor = this.getTextColor();
+
+    if (!isNone(textColor)) {
+      this.model.attr('.marker-source/stroke', textColor);
+    }
+
+    if (!isNone(brushColor)) {
+      this.model.attr('.marker-source/fill', brushColor);
+    }
+  }
 });

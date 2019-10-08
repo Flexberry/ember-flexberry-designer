@@ -5,6 +5,7 @@ import { A } from '@ember/array';
 import { isNone } from '@ember/utils';
 import { later } from '@ember/runloop';
 import $ from 'jquery';
+import config from '../config/environment';
 
 export default Controller.extend({
   fdSheetService: service(),
@@ -32,6 +33,8 @@ export default Controller.extend({
     @type AppStateService
   */
   appState: service(),
+
+  router: service(),
 
   /**
     Current project name from stageModel
@@ -111,6 +114,12 @@ export default Controller.extend({
         icon: 'icon-fd-view'
       },
       {
+        link: 'i-i-s-caseberry-logging-objects-application-log-l',
+        caption: i18n.t('forms.application.sitemap.root.i-i-s-caseberry-logging-objects-application-log-l.caption'),
+        title: i18n.t('forms.application.sitemap.root.i-i-s-caseberry-logging-objects-application-log-l.title'),
+        icon: 'bug'
+      },
+      {
         link: '',
         caption: i18n.t('forms.application.sitemap.root.fd-requests.caption'),
         title: i18n.t('forms.application.sitemap.root.fd-requests.title'),
@@ -143,6 +152,15 @@ export default Controller.extend({
   locales: undefined,
 
   /**
+    Themes supported by application.
+
+    @property themes
+    @type String[]
+    @default ['light', 'dark', 'blue']
+  */
+   themes: undefined,
+
+  /**
     Handles changes in userSettingsService.isUserSettingsServiceEnabled.
 
     @method _userSettingsServiceChanged
@@ -157,6 +175,8 @@ export default Controller.extend({
   */
   init() {
     this._super(...arguments);
+
+    this.set('themes', ['light', 'dark', 'blue']);
 
     this.set('locales', ['ru', 'en']);
 
@@ -192,6 +212,16 @@ export default Controller.extend({
   sidebarMiniWidth: '60px',
 
   actions: {
+    changeTheme() {
+      let sheet = document.querySelector('#theme');
+      if (!sheet) {
+        return
+      }
+
+      let theme = $('.flexberry-dropdown.theme div.text').text();
+      let rootURL = this.get('router.location.location.origin') + config.rootURL;
+      sheet.setAttribute('href', `${rootURL}/assets/${theme}.css`);
+    },
 
     /**
       Call `updateWidthTrigger` for `objectlistviewEventsService`.
@@ -221,7 +251,7 @@ export default Controller.extend({
       let visibleSheets = $('.fd-sheet.visible').toArray();
       visibleSheets.forEach((item) => {
         if ($(item).hasClass('expand')) {
-          this.get('fdSheetService').animatingSheetContent($(item).attr('class').replace(/ /g, '.'), contentWidth, 250);
+          this.get('fdSheetService').animatingSheetContent($(item).attr('class').replace(/ /g, '.'), contentWidth, 250, true);
         } else {
 
           // That the sheet remained in its place and did not go along with the content.
@@ -229,16 +259,21 @@ export default Controller.extend({
           $(item).css({ 'transform': sheetTranslate });
         }
       });
+      if (!sidebarVisible) {
+        sidebar.toggleClass('sidebar-mini');
+      }
 
       // Animated increases the width of the page content.
       $('.full.height .flexberry-vertical-form').css({ opacity: 0.2 });
       later(function() {
         $('.full.height .flexberry-vertical-form').css({ opacity: '' });
         $('.full.height').css({ width: contentWidth });
+        if (sidebarVisible) {
+          sidebar.toggleClass('sidebar-mini');
+        }
       }, 250);
 
       later(this, function() {
-        sidebar.toggleClass('sidebar-mini');
 
         // For reinit overflowed tabs.
         $(window).trigger('resize');

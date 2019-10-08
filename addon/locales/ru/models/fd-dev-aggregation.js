@@ -153,6 +153,9 @@ export default {
       endRoleStored: {
         __caption__: ''
       },
+      endRoleStr: {
+        __caption__: ''
+      },
       startMultiplicity: {
         __caption__: ''
       },
@@ -160,6 +163,9 @@ export default {
         __caption__: ''
       },
       startRoleAccessModifier: {
+        __caption__: ''
+      },
+      startRoleStr: {
         __caption__: ''
       },
       referenceCount: {

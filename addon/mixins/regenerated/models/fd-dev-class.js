@@ -135,7 +135,7 @@ export let Model = Mixin.create({
     let result = (this.containersCompute && typeof this.containersCompute === 'function') ? this.containersCompute() : null;
     this.set('containers', result);
   },
-  containersStr: DS.attr('containers-tree'),
+  containersStr: DS.attr('string'),
   /**
     Non-stored property.
 
@@ -1265,7 +1265,8 @@ export let defineProjections = function (modelClass) {
         class: belongsTo('fd-dev-class', '', {
           name: attr('')
         })
-      })
+      }),
+      dataObjectTypesStr: attr(''),
     }),
     attributes: hasMany('fd-dev-attribute', '', {
       name: attr(''),
@@ -1273,12 +1274,17 @@ export let defineProjections = function (modelClass) {
       notNull: attr(''),
       defaultValue: attr(''),
       description: attr(''),
-      accessModifier: attr('')
+      accessModifier: attr(''),
+      stored: attr(''),
+      caption: attr('')
     }),
     methods: hasMany('fd-dev-method', '', {
       accessModifier: attr(''),
       type: attr(''),
-      name: attr('')
+      name: attr(''),
+      isEvent: attr(''),
+      parametersStr: attr(''),
+      typeParametersStr:attr(''),
     })
   });
   modelClass.defineProjection('Generator', 'fd-dev-class', {

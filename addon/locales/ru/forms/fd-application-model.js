@@ -19,5 +19,13 @@ export default {
   'application-caption': 'Приложение',
   'userform-caption': 'Пользовательская форма',
   'userstereotype-caption': 'Сущность с пользовательским стереотипом',
-  'parent-caption': 'Предки первого уровня'
+  'parent-caption': 'Предки первого уровня',
+  'create-class-caption': 'Создать класс',
+  cancel: 'Отменить',
+  'error-message': {
+    'empty-class': 'Имя у класса не может быть пустое',
+    'exist-class': 'Класс с таким именем уже существует',
+    'view-form': 'Составное представление не указано',
+    'bs-delete': 'BusinessServer используется другими классами:',
+  }
 };

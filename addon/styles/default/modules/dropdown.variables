@@ -1,5 +1,4 @@
 @selectionBorder: none;
-@selectionPadding: 0;
 @selectionMinHeight: 1em;
 
 /* Visible Hover */
@@ -22,3 +21,9 @@
 /* Selected */
 @selectedBackground: @overlayColor;
 @selectedTextColor: @textColor;
+
+/* Menu */
+@menuBackground: @fdSheetBg;
+
+/* Menu Item */
+@selectionItemDivider: @sidebarBg;

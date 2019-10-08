@@ -3,6 +3,8 @@
 */
 
 import { computed } from '@ember/object';
+import { isArray } from '@ember/array';
+import { isNone } from '@ember/utils';
 import $ from 'jquery';
 import joint from 'npm:jointjs';
 
@@ -23,14 +25,24 @@ export default FdUmlElement.extend({
     @property name
     @type String
   */
-  name: computed.alias('primitive.Name.Text'),
+  name: computed('primitive.Name.Text', {
+    get() {
+      return this.get('primitive.Name.Text');
+    },
+    set(key, value) {
+      let nameTxt = (isArray(value)) ? value.join('\n') : value;
+      this.set('primitive.Name.Text', nameTxt);
+      return value;
+    },
+  }),
 
   /**See {{#crossLink "FdUmlPrimitive/JointJS:method"}}here{{/crossLink}}.
 
     @method JointJS
   */
   JointJS() {
-    let properties = this.getProperties('id', 'name', 'size', 'position');
+    let properties = this.getProperties('id', 'size', 'position');
+    properties.objectModel = this;
     return new MultiObject(properties);
   },
 });
@@ -48,29 +60,15 @@ export let MultiObject = BaseObject.define('flexberry.uml.MultiObject', {
   attrs: {
     '.back-rect': { 'stroke': 'black', 'stroke-width': 1, 'fill': '#ffffff', 'fill-opacity': 0, 'mask': 'url(#custom-mask)' },
     '.view-rect': { 'x': -1, 'y': -1, 'fill': 'white' },
-    '.not-view-rect': { 'x': -3, 'y': -6, 'fill': 'black' }
-  }
-}, {
-  updateRectangles: function () {
-    BaseObject.prototype.updateRectangles.apply(this, arguments);
-
-    let attrs = this.get('attrs');
-    let backRectTransY = 6;
-    attrs['.back-rect'].transform = 'translate(3, ' + backRectTransY + ')';
-    attrs['.back-rect'].height = this.size().height;
-    attrs['.back-rect'].width = this.size().width;
-
-    attrs['.view-rect'].height = this.size().height + 2;
-    attrs['.view-rect'].width = this.size().width + 2;
-
-    attrs['.not-view-rect'].height = this.size().height;
-    attrs['.not-view-rect'].width = this.size().width;
-
-    let newWidth = this.size().width;
-    let newHeight = this.size().height + backRectTransY;
-    this.resize(newWidth, newHeight);
+    '.not-view-rect': { 'x': -3, 'y': -4, 'fill': 'black' }
   },
 
+  // Minimum width.
+  minWidth: 80,
+
+  // Minimum height.
+  minHeight: 30,
+}, {
   markup: [
     '<g class="rotatable">',
     '<defs>',
@@ -81,7 +79,13 @@ export let MultiObject = BaseObject.define('flexberry.uml.MultiObject', {
     '</defs>',
     '<rect class="back-rect"/><rect class="flexberry-uml-header-rect"/>',
     '</g>'
-  ].join('')
+  ].join(''),
+
+  getRectangles() {
+    return [
+      { type: 'header', element: this },
+    ];
+  },
 });
 
 joint.shapes.flexberry.uml.MultiObjectView = joint.shapes.flexberry.uml.BaseObjectView.extend({
@@ -99,10 +103,48 @@ joint.shapes.flexberry.uml.MultiObjectView = joint.shapes.flexberry.uml.BaseObje
     let viewMaskId = $(mask).children('.view-rect').attr('id');
     let maskId = 'mask_mo_' + viewMaskId;
     mask.setAttribute('id', maskId);
-    let attrs = this.model.get('attrs');
-    attrs['.back-rect'].mask = 'url(#' + maskId + ')';
-    this.model.updateRectangles();
+    this.model.attr('.back-rect/mask', 'url(#' + maskId + ')');
+    this.updateRectangles();
+    this.update();
 
     return this;
   },
+
+  updateRectangles: function () {
+    joint.shapes.flexberry.uml.BaseObjectView.prototype.updateRectangles.apply(this, arguments);
+
+    const size = this.model.size();
+
+    this.model.attr('.back-rect/transform', 'translate(4, 4)');
+    this.model.attr('.back-rect/height', size.height);
+    this.model.attr('.back-rect/width', size.width);
+
+    this.model.attr('.view-rect/height', size.height + 2);
+    this.model.attr('.view-rect/width', size.width + 2);
+
+    this.model.attr('.not-view-rect/height', size.height);
+    this.model.attr('.not-view-rect/width', size.width);
+
+    this.update();
+    if (this.model.get('highlighted')) {
+      this.unhighlight();
+      this.highlight();
+    }
+  },
+
+  setColors() {
+    joint.shapes.flexberry.uml.BaseObjectView.prototype.setColors.apply(this, arguments);
+
+    const textColor = this.getTextColor();
+    const brushColor = this.getBrushColor();
+
+    if (!isNone(brushColor)) {
+      this.model.attr('.back-rect/fill-opacity', 1);
+      this.model.attr('.back-rect/fill', brushColor);
+    }
+
+    if (!isNone(textColor)) {
+      this.model.attr('.back-rect/stroke', textColor);
+    }
+  }
 });

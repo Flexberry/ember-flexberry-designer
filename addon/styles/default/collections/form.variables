@@ -5,3 +5,5 @@
 @textAreaMinHeight: 2em;
 @inputPlaceholderFocusColor: transparent;
 @inputPlaceholderColor: @lightTextColor;
+
+@loaderDimmerColor: @loaderDimmerColorGlobal;

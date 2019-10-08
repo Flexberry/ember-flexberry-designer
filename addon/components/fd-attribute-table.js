@@ -5,7 +5,7 @@ import layout from '../templates/components/fd-attribute-table';
 
 export default Component.extend({
   layout,
-  classNames: ['row'],
+  classNames: ['ui equal width grid fd-table'],
 
   /**
     Table headers.
@@ -48,10 +48,48 @@ export default Component.extend({
   */
   selectedValues: undefined,
 
+  /**
+    Flag: indicates whether to show toolbar.
+
+    @property toolbarVisible
+    @type Bool
+    @default true
+  */
+  toolbarVisible: true,
+
+  /**
+    Flag: indicates whether button is readonly.
+
+    @property readonlyButton
+    @type Bool
+    @default false
+  */
+  readonlyButton: false,
+
+  /**
+    Flag: indicates whether property is readonly.
+
+    @property readonly
+    @type Boolean
+    @default false
+   */
+  readonly: false,
+
+  /**
+    Flag: indicates whether show edit button in row.
+
+    @property editButtonInRow
+    @type Boolean
+    @default false
+   */
+  editButtonInRow: false,
+
   init() {
     this._super(...arguments);
 
-    this.set('selectedValues', A());
+    if (isNone(this.get('selectedValues'))) {
+      this.set('selectedValues', A());
+    }
   },
 
   actions: {
@@ -62,7 +100,10 @@ export default Component.extend({
       @method actions.createValue
     */
     createValue() {
-      this.get('create')();
+      let createAction = this.get('create');
+      if (!isNone(createAction)) {
+        createAction();
+      }
     },
 
     /**
@@ -107,6 +148,19 @@ export default Component.extend({
       let dropdownChange = this.get('dropdownChange');
       if (!isNone(dropdownChange)) {
         dropdownChange(model, value);
+      }
+    },
+
+    /**
+      Method edit value from table.
+
+      @method editButtonInRowAction
+      @param {Object} value value.
+    */
+    editButtonInRowAction(value) {
+      let editAction = this.get('edit');
+      if (!isNone(editAction)) {
+        editAction(value);
       }
     }
   }

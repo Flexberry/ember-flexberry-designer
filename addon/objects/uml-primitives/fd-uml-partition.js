@@ -3,6 +3,8 @@
 */
 
 import { computed } from '@ember/object';
+import { isArray } from '@ember/array';
+import joint from 'npm:jointjs';
 
 import FdUmlElement from './fd-uml-element';
 import { BaseObject } from './fd-uml-baseobject';
@@ -16,12 +18,21 @@ import { BaseObject } from './fd-uml-baseobject';
 export default FdUmlElement.extend({
 
   /**
-    The name of the class.
+    The name of the partition.
 
     @property name
     @type String
   */
-  name: computed.alias('primitive.Name.Text'),
+  name: computed('primitive.Name.Text', {
+    get() {
+      return this.get('primitive.Name.Text');
+    },
+    set(key, value) {
+      let nameTxt = (isArray(value)) ? value.join('\n') : value;
+      this.set('primitive.Name.Text', nameTxt);
+      return value;
+    },
+  }),
 
   /**
     See {{#crossLink "FdUmlPrimitive/JointJS:method"}}here{{/crossLink}}.
@@ -29,7 +40,8 @@ export default FdUmlElement.extend({
     @method JointJS
   */
   JointJS() {
-    let properties = this.getProperties('id', 'name', 'size', 'position');
+    let properties = this.getProperties('id', 'size', 'position');
+    properties.objectModel = this;
     return new Partition(properties);
   },
 });
@@ -45,41 +57,55 @@ export default FdUmlElement.extend({
 */
 export let Partition = BaseObject.define('flexberry.uml.Partition', {
   attrs: {
-    text: {
-      'visibility': 'visible'
-    },
-    '.flexberry-uml-header-text':
-    {
-      'font-weight': 'bold',
-      'ref-y': 0,
-      'y-alignment': 'start'
-    },
     '.flexberry-uml-header-rect':
     {
       'stroke': 'black',
       'stroke-width': 1,
       'fill': '#ffffff',
-      'fill-opacity': '0.0'
+      'fill-opacity': 0
     },
   },
+
+  // Minimum height.
+  minHeight: 17,
+
   heightPadding: 60
 }, {
   markup: [
     '<g class="rotatable">',
-    '<g class="scalable">',
     '<rect class="flexberry-uml-header-rect"/>',
     '</g>',
-    '<text class="flexberry-uml-header-text"/>',
-    '</g>'
   ].join(''),
+
   initialize: function () {
     BaseObject.prototype.initialize.apply(this, arguments);
     this.on('change', function() {
       this.toBack({ deep: true });
     });
   },
-
-  updateRectangles: function () {
-    this.updateRectanglesOld();
-  }
+  
+  getRectangles() {
+    return [
+      { type: 'header', element: this }
+    ];
+  },
 });
+
+joint.shapes.flexberry.uml.PartitionView = joint.shapes.flexberry.uml.BaseObjectView.extend({
+  template: [
+    '<div class="uml-class-inputs">',
+    '<textarea class="class-name-input header-input" value="" rows="1" wrap="off"></textarea>',
+    '<div class="input-buffer"></div>',
+    '</div>'
+  ].join(''),
+});
+
+joint.shapes.flexberry.uml.PartitionView = joint.shapes.flexberry.uml.BaseObjectView.extend({
+  template: [
+    '<div class="uml-class-inputs">',
+    '<textarea class="class-name-input header-input" value="" rows="1" wrap="off"></textarea>',
+    '<div class="input-buffer"></div>',
+    '</div>'
+  ].join('')
+});
+

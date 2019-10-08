@@ -1,11 +1,12 @@
 /**
   @module ember-flexberry-designer
 */
+import joint from 'npm:jointjs';
+import { isNone } from '@ember/utils';
 
 import FdUmlLink from './fd-uml-link';
 import { Link } from './fd-uml-link';
 import { MultiplicityView } from './links-view/fd-multiplicity-view';
-import joint from 'npm:jointjs';
 
 /**
   An object that describes a link of the composition type on the UML diagram.
@@ -21,7 +22,8 @@ export default FdUmlLink.extend({
     @method JointJS
   */
   JointJS() {
-    let properties = this.getProperties('id', 'repositoryObject', 'source', 'target', 'vertices', 'labels', 'startPoint', 'endPoint');
+    let properties = this.getProperties('id', 'source', 'target', 'vertices', 'labels');
+    properties.objectModel = this;
     return new Composition(properties);
   },
 });
@@ -52,11 +54,19 @@ export let Composition = Link.define('flexberry.uml.Composition', {
         return isVertical ? -10 : -5;
       case 'description':
         return 0.5;
-      default:
-        // eslint-disable-next-line no-console
-        console.log('ERROR - choose correct label name');
     }
   }
 });
 
-joint.shapes.flexberry.uml.CompositionView = MultiplicityView;
+joint.shapes.flexberry.uml.CompositionView = MultiplicityView.extend({
+  setColors() {
+    MultiplicityView.prototype.setColors.apply(this, arguments);
+
+    const textColor = this.getTextColor();
+
+    if (!isNone(textColor)) {
+      this.model.attr('.marker-source/stroke', textColor);
+      this.model.attr('.marker-source/fill', textColor);
+    }
+  }
+});

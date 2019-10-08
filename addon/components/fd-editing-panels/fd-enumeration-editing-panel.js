@@ -25,22 +25,24 @@ export default Component.extend(FdUpdateAttributeValueMixin, {
   */
   tableViewAttribute: computed(() => (
     A([{
-        columnCaption: 'components.fd-attribute-table.attribute.name',
-        columnProperty: 'name',
-        attrPlaceholder: 'components.fd-attribute-table.attribute.name-placeholder',
-        columnClass: 'three'
-      },
-      {
-        columnCaption: 'components.fd-attribute-table.attribute.caption',
-        columnProperty: 'caption',
-        attrPlaceholder: 'components.fd-attribute-table.attribute.caption-placeholder',
-        columnClass: 'four'
-      },
-      {
-        columnCaption: 'components.fd-attribute-table.attribute.description',
-        columnProperty: 'description',
-        attrPlaceholder: 'components.fd-attribute-table.attribute.description-placeholder',
-        columnClass: 'four'
-      }])
+      columnCaption: 'components.fd-attribute-table.attribute.value',
+      columnProperty: 'name',
+      attrPlaceholder: 'components.fd-attribute-table.attribute.value-placeholder',
+    },
+    {
+      columnCaption: 'components.fd-attribute-table.attribute.description',
+      columnProperty: 'description',
+      attrPlaceholder: 'components.fd-attribute-table.attribute.description-placeholder',
+    },
+    {
+      columnCaption: 'components.fd-attribute-table.attribute.default-value',
+      columnProperty: 'defaultValue',
+      attrPlaceholder: 'components.fd-attribute-table.attribute.default-value-placeholder',
+    },
+    {
+      columnCaption: 'components.fd-attribute-table.attribute.caption',
+      columnProperty: 'caption',
+      attrPlaceholder: 'components.fd-attribute-table.attribute.caption-placeholder',
+    }])
   )),
 });

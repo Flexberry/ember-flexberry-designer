@@ -1,6 +1,7 @@
 @fdListColPadding: 0.5em;
-.ui.grid.fd-list {
-	.row {
+.ui.grid.fd-list,
+.ui.grid.fd-list-edited {
+	> .row {
 		border-bottom: @hr;
 		margin: 0 1rem;
 
@@ -13,13 +14,9 @@
 				margin-bottom: 0;
 			}
 		}
-
-		.light-text{
-			color: @lightTextColor;
-		}
 	}
 
-	.fd-list-item span{
+	.fd-list-item span {
 		padding: @fdListColPadding @leftIndent;
 
 		&:hover {
@@ -36,8 +33,43 @@
 		padding: @fdListColPadding 0;
 
 		.fd-search-input {
-			margin-top: @fdListColPadding;
+			margin-top: -@fdListColPadding;
+		}
+	}
+
+	.ui.selection.dropdown {
+		padding: 0 1.975em 0 0;
+	
+		.menu {
+			width: auto;
+		}
+
+		> .dropdown.icon {
+			padding: 0 0.91666667em;
+		}
+	}
+	.flexberry-toggler {
+		.title {
+			position: relative;
+			left: -1.6rem;
+			&.active {
+				margin-bottom: 1rem;
+			}
+		}
+
+		.flexberry-toggler-content {
+			.ui.grid {
+				margin-top: 0;
+			}
+			.row {
+				&:last-child {
+					border-bottom: none;
+				}
+			}
 		}
 	}
 }
-  
+
+.ui.grid.fd-list-edited > .row:first-child {
+	border-top: @hr;
+}  

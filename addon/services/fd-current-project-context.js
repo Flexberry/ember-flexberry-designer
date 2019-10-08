@@ -46,6 +46,14 @@ export default Service.extend({
   store: service('store'),
 
   /**
+    Router service of current application.
+
+    @property router
+    @type RouterService
+  */
+  router: service(),
+
+  /**
     Set current configuration.
 
     @method setCurrentConfiguration
@@ -86,8 +94,6 @@ export default Service.extend({
   */
   getCurrentConfigurationModel() {
     let configuration = this.get('context.configurationModel');
-
-    assert('Current configuration is not set.', configuration);
 
     return configuration;
   },
@@ -155,17 +161,20 @@ export default Service.extend({
   },
 
   /**
-    Get `id` of current stage.
+    Get current stage id.
 
     @method getCurrentStage
-    @return {String} Id of current stage.
+    @return {String} Current stage id.
   */
   getCurrentStage() {
-    let stage = this.get('context.stage');
+    let stageId = this.get('context.stage');
 
-    assert('Current stage is not set.', stage);
+    if (!stageId)
+    {
+      this._transitionToSelectStage();
+    }
 
-    return stage;
+    return stageId;
   },
 
   /**
@@ -175,11 +184,14 @@ export default Service.extend({
     @return {DS.Model} Current stage model.
   */
   getCurrentStageModel() {
-    let stage = this.get('context.stageModel');
+    let stageModel = this.get('context.stageModel');
 
-    assert('Current stage is not set.', stage);
+    if (!stageModel)
+    {
+      this._transitionToSelectStage();
+    }
 
-    return stage;
+    return stageModel;
   },
 
   /**
@@ -234,9 +246,19 @@ export default Service.extend({
     return system;
   },
 
+
   init() {
     this._super(...arguments);
 
     this.set('context', {});
+  },
+
+  /**
+    Perform transition to initial stage selection route.
+
+    @method _transitionToSelectStage
+  */
+  _transitionToSelectStage() {
+    this.get('router').transitionTo('fd-all-projects');
   }
 });

@@ -1,11 +1,11 @@
 /**
   @module ember-flexberry-designer
 */
-
-import FdUmlLink from './fd-uml-link';
-import { Link } from './fd-uml-link';
-import { DescriptionView } from './links-view/fd-description-view';
 import joint from 'npm:jointjs';
+import { isNone } from '@ember/utils';
+
+import FdUmlLink, { Link } from './fd-uml-link';
+import { DescriptionView } from './links-view/fd-description-view';
 
 /**
   An object that describes a link of the inheritance type on the UML diagram.
@@ -20,7 +20,8 @@ export default FdUmlLink.extend({
     @method JointJS
   */
   JointJS() {
-    let properties = this.getProperties('id', 'repositoryObject', 'source', 'target', 'vertices', 'labels', 'startPoint', 'endPoint');
+    let properties = this.getProperties('id', 'source', 'target', 'vertices', 'labels');
+    properties.objectModel = this;
     return new Generalization(properties);
   },
 });
@@ -41,4 +42,19 @@ export let Generalization = Link.define('flexberry.uml.Generalization', {
  }
 });
 
-joint.shapes.flexberry.uml.GeneralizationView = DescriptionView;
+joint.shapes.flexberry.uml.GeneralizationView = DescriptionView.extend({
+  setColors() {
+    DescriptionView.prototype.setColors.apply(this, arguments);
+
+    const textColor = this.getTextColor();
+    const brushColor = this.getBrushColor();
+
+    if (!isNone(textColor)) {
+      this.model.attr('.marker-source/stroke', textColor);
+    }
+
+    if (!isNone(brushColor)) {
+      this.model.attr('.marker-source/fill', brushColor);
+    }
+  }
+});

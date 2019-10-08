@@ -2,6 +2,94 @@
 All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
+
+## [0.9.1] - 2019-10-08
+### Fixed
+* Fix sidebar and list styles.
+
+## [0.9.0] - 2019-10-02
+### Added
+* Edit form for editforms.
+* Edit form for listforms.
+* Integration of application model form and diagrams.
+* Add unload store.
+* Log error.
+* Clear store in choose project.
+* Input in cod dpd std diagrams primitives.
+* Dark and blue style theme.
+* Dynamic theme changes.
+* Show error model message.
+
+### Fixed
+* Remove the delete button when creating a new record.
+* Fix locales.
+* Update model projections.
+* Loop in inheritance.
+* Fix coordinates in firefox.
+* Fix style view and toolbar for diagrams.
+* Fix save diagrams.
+* Fix delete diagrams.
+
+## [0.8.1-beta.2] - 2019-09-12
+### Fixed
+* Fix view styles.
+* Fix readonly link.
+* Fix delete class from model form.
+
+## [0.8.1-beta.1] - 2019-09-09
+### Fixed
+* Fix empty class nameStr.
+* Fix update str value with ru symvols.
+* Fix coordinates in firefox.
+
+## [0.8.0] - 2019-09-02
+### Added
+* Added navigation tree.
+* Added logic for create new class button.
+* Added logic for create new diagram button.
+* Added logic for delete class button.
+* Change text ability on activity diagram primitives.
+* Add primitives resizing on cad diagram.
+* Add text and background colors for primitives on cad diagram.
+* Add create prototype button.
+
+### Fixed
+* Fix new project creating.
+* Fix cad class attributes and methods parsing.
+* Fix `fd-button` type.
+
+### Changed
+* Change link to link realization to JointJS 3.
+
+## [0.7.0] - 2019-05-31
+### Added
+* Added json update when editing diagrams.
+* Added styles for the application generation page.
+* Added component "Round button".
+* Implemented join to connections for other primitives.
+* Added collapse button for diagram edit panel toolbar.
+* Added collapse button for class primitives.
+* Added highlight feature for cad elements.
+* Added check on exist diagram elements.
+* Added delete button for class primitives.
+* Button to open the object edit form from the diagram.
+* Roll back changes on diagram when close edit form or diagram.
+
+### Changed
+* Corrected the error when restarting the project.
+* Removed the ability to detach intermediate links from link-connectors.
+* Different stylistic edits.
+* The diagram in the `{{fd-uml-diagram}}` component now has an infinite size.
+* Links can't have empty source or target.
+* Optimized movement of diagram elements.
+
+### Fixed
+* Textarea size in elements cad diagram.
+* Fixed save cad diagram.
+* Fixed styles of the component "Table".
+* Saving unchanged objects on diagrams.
+
+## [0.6.0] - 2019-04-12
 ### Added
 * Edit form for the type map.
 * The application structure constructor:

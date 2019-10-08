@@ -1,8 +1,10 @@
 /**
   @module ember-flexberry-designer
 */
+import joint from 'npm:jointjs';
 
 import FdUmlLink, { Link } from './fd-uml-link';
+import { DescriptionView } from './links-view/fd-description-view';
 
 /**
   An object that describes an DesignPatternConnector on the UML diagram.
@@ -19,6 +21,7 @@ export default FdUmlLink.extend({
   */
   JointJS() {
     let properties = this.getProperties('id', 'source', 'target', 'vertices', 'labels');
+    properties.objectModel = this;
     return new DesignPatternConnector(properties);
   },
 });
@@ -35,9 +38,16 @@ export default FdUmlLink.extend({
 export let DesignPatternConnector = Link.define('flexberry.uml.DesignPatternConnector', {
   attrs: {
     '.connection': { stroke: 'black', 'stroke-width': 1, 'stroke-dasharray': '3 2' },
-    text: { 'font-size': '12', 'font-family': 'Arial, helvetica, sans-serif' }
+    text: { visibility: 'hidden' },
+    rect: { visibility: 'hidden' }
   },
-  labels: [{
-    position: { distance: 50 }, attrs: { text: { text: '' } }
-  }]
+}, {
+  getLabelDistance: function (labelName) {
+    switch (labelName) {
+      case 'description':
+        return 0.1;
+    }
+  }
 });
+
+joint.shapes.flexberry.uml.DesignPatternConnectorView = DescriptionView;

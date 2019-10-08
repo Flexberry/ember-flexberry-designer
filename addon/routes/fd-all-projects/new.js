@@ -42,6 +42,9 @@ export default Route.extend({
   */
   resetController(controller) {
     controller.set('projectName', undefined);
+    controller.set('productName', undefined);
+    controller.set('projectDescription', undefined);
+    controller.set('accessIsPublic', true);
 
     return this._super(...arguments);
   },

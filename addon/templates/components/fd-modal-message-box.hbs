@@ -1,0 +1,21 @@
+<i class="{{flexberryClassNames.closeButton}} close icon"></i>
+<div class="{{flexberryClassNames.header}} header">
+  {{if isError (t "components.fd-modal-message-box.error-caption") (t "components.fd-modal-message-box.confirmation-caption")}}
+</div>
+<div class="{{flexberryClassNames.content}} content {{contentClass}}">
+  {{messageText}}
+  {{yield}}
+</div>
+
+{{#if (not isError)}}
+  <div class="{{flexberryClassNames.toolbar}} actions">
+    {{flexberry-button
+      class=(concat flexberryClassNames.approveButton " approve positive")
+      caption=approveButtonCaption
+    }}
+    {{flexberry-button
+      class=(concat flexberryClassNames.cancelButton " deny negative")
+      caption=denyButtonCaption
+    }}
+  </div>
+{{/if}}

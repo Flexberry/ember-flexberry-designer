@@ -1,19 +1,130 @@
-<div class="ui stackable grid fd-list">
-
-  <div class="panel-wrapper">
-    <div class="closable panel-left">
-      <div class="ui segments">
-        <div class="ui segment">
-          {{t "components.fd-create-view.attributes-tree.caption"}}
-        </div>
-        {{
-          fd-ember-jstree
-          actionReceiver=jstreeActionReceiver
-          data=tree
-          loadDataNode=loadDataNode
-          searchTermPlaceholder=(t "components.fd-create-view.attributes-tree.search")
-        }}
+<div class="ui equal width grid fd-view-table-attr">
+  <div class="column">
+    {{fd-ember-jstree
+      data=tree
+      selectedNodes=selectedNodes
+      loadDataNode=loadDataNode
+      searchTerm=searchTerm
+      treeObject=treeObject
+    }}
+  </div>
+  <div class="fd-view-buttons">
+    <div class="ui vertical buttons">
+      <button class="ui button icon {{if selectedNode '' 'disabled'}}" {{action 'addNodeInDefinition'}}>
+        <i class="arrow right icon"></i>
+      </button>
+      <button class="ui button icon {{if selectedProperty '' 'disabled'}}" {{action 'changeOrderDefinition' true}}>
+        <i class="arrow up icon"></i>
+      </button>
+      <button class="ui button icon {{if selectedProperty '' 'disabled'}}" {{action 'changeOrderDefinition' false}}>
+        <i class="arrow down icon"></i>
+      </button>
+    </div>
+  </div>
+  <div class="column">
+    {{fd-search-input
+      value=searchValue
+      class="field"
+    }}
+    <div class="overflow-panel">
+      <div class="ui grid fd-list view-definition">
+        {{#each view.definitionArray as |definition|}}
+          {{fd-view-definition-item
+            definition=definition
+            filterValue=searchValue
+            selectedProperty=selectedProperty
+            selectedPropertyType=selectedPropertyType
+            delete=(action 'deleteDefinitionItem')
+          }}
+        {{/each}}
       </div>
     </div>
   </div>
 </div>
+
+{{#if selectedProperty}}
+  <div class="ui stackable grid fd-list fd-attr-prop">
+
+    <div class="row">
+      <div class="five wide column">
+        {{t "components.fd-create-view.settings-view.path"}}
+      </div>
+      <div class="eleven wide column light-text">
+        {{flexberry-textbox
+          value=selectedProperty.path
+          class='fluid input'
+          placeholder=(t "components.fd-create-view.settings-view.path-placeholder")
+        }}
+      </div>
+    </div>
+
+    {{#if (eq selectedPropertyType 'isMaster')}}
+      <div class="row">
+        <div class="five wide column">
+          {{t "components.fd-create-view.settings-master.lookup-type"}}
+        </div>
+        <div class="eleven wide column light-text">
+          {{flexberry-dropdown
+            onChange=(action "changeLookupType")
+            items=(array 'default' 'standard' 'combo')
+            value=selectedProperty.lookupType
+          }}
+        </div>
+      </div>
+
+      {{#if (not-eq selectedProperty.lookupType 'default')}}
+        <div class="row">
+          <div class="five wide column">
+            {{t "components.fd-create-view.settings-master.master-property"}}
+          </div>
+          <div class="eleven wide column light-text">
+            {{flexberry-textbox
+              value=selectedProperty.masterPropertyName
+              class='fluid input'
+              placeholder=(t "components.fd-create-view.settings-master.master-property-placeholder")
+            }}
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="five wide column">
+            {{t "components.fd-create-view.settings-master.sample-setting"}}
+          </div>
+          <div class="eleven wide column light-text">
+            {{flexberry-textbox
+              value=selectedProperty.masterCustomizationString
+              class='fluid input'
+              placeholder=(t "components.fd-create-view.settings-master.sample-setting-placeholder")
+            }}
+          </div>
+        </div>
+      {{/if}}
+    {{/if}}
+
+    {{#if (eq selectedPropertyType 'isDetail')}}
+      <div class="row">
+        <div class="five wide column">
+          {{t "components.fd-create-view.settings-detail.view"}}
+        </div>
+        <div class="eleven wide column light-text">
+          {{flexberry-dropdown
+            items=detailView
+            needChecksOnValue=false
+            value=selectedProperty.detailViewName
+          }}
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="five wide column">
+          {{t "components.fd-create-view.settings-detail.load-on-load-agregator"}}
+        </div>
+        <div class="eleven wide column light-text">
+          {{flexberry-checkbox
+            value=selectedProperty.loadOnLoadAgregator
+          }}
+        </div>
+      </div>
+    {{/if}}
+  </div>
+{{/if}}

@@ -1,5 +1,6 @@
 import { A } from '@ember/array';
 import { inject as service } from '@ember/service';
+import { isBlank } from '@ember/utils';
 import EditFormRoute from 'ember-flexberry/routes/edit-form';
 import FdFormCheckTransitionMixin from '../mixins/fd-form-check-transition';
 
@@ -32,7 +33,7 @@ export default EditFormRoute.extend(FdFormCheckTransitionMixin, {
     let allClasses = this.get('store').peekAll('fd-dev-class');
     let classesCurrentStage = allClasses.filterBy('stage.id', stagePk);
     let implementations = classesCurrentStage.filter(function(item) {
-      return item.get('stereotype') === '«implementation»' || item.get('stereotype') === null;
+      return item.get('stereotype') === '«implementation»' || isBlank(item.get('stereotype'));
     });
 
     let implementationsName = A(implementations).map(i => i.get('name') || i.get('nameStr'));

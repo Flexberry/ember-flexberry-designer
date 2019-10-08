@@ -2,9 +2,11 @@
   @module ember-flexberry-designer
 */
 import { computed } from '@ember/object';
+import joint from 'npm:jointjs';
 
 import FdUmlLink from './fd-uml-link';
 import { Link } from './fd-uml-link';
+import { EmptyView } from './links-view/fd-empty-view';
 
 /**
   An object that describes an aggregation link on the UML diagram.
@@ -38,6 +40,7 @@ export default FdUmlLink.extend({
   */
   JointJS() {
     let properties = this.getProperties('id', 'source', 'target', 'labels');
+    properties.objectModel = this;
     return new ProcedureCall(properties);
   },
 });
@@ -95,3 +98,5 @@ export let ProcedureCall = Link.define('flexberry.uml.sequencediagramProcedureCa
     return;
   }
 });
+
+joint.shapes.flexberry.uml.ProcedureCallView = EmptyView;

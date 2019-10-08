@@ -5,13 +5,22 @@
 <form class="ui form flexberry-vertical-form">
   <div class="ui stackable grid fd-list">
     <div class="row">
-      <div class="two wide column light-text">
+      <div class="three wide column light-text">
         {{t "forms.fd-application-model.type-caption"}}
       </div>
-      <div class="fourteen wide column">
+      <div class="thirteen wide column">
         {{
           fd-search-input
           value=searchValue
+        }}
+      </div>
+    </div>
+    <div class="row">
+      <div class="right floated thirteen wide column">
+        {{
+          fd-button
+          caption=(t "forms.fd-application-model.create-class-caption")
+          click=(action 'openCreateClassEditPanel')
         }}
       </div>
     </div>
@@ -22,29 +31,31 @@
         fd-class-list-items
         entity=class
         sheetComponentName=sheetComponentName
+        createClassAction=(action 'createClass')
       }}
     {{/each}}
 
     {{!-- Enums --}}
     {{#if (not-eq filteredModel.enums.length 0)}}
     <div class="row">
-      <div class="two wide column light-text">
+      <div class="three wide column light-text">
         {{t "forms.fd-application-model.enum-caption"}}
       </div>
-      <div class="fourteen wide column">
+      <div class="thirteen wide column">
         {{#each filteredModel.enums as |enum|}}
           {{
             fd-list-item
             model=enum
-            caption=enum.name
+            caption=enum.data.name
             sheetComponentName=sheetComponentName
           }}
         {{/each}}
       </div>
-      <div class="right floated fourteen wide column">
+      <div class="right floated thirteen wide column">
         {{
           fd-button
           caption=(t "forms.fd-application-model.enum-caption")
+          click=(action 'createClass' '«enumeration»')
         }}
       </div>
     </div>
@@ -53,23 +64,24 @@
     {{!-- Type --}}
     {{#if (not-eq filteredModel.types.length 0)}}
     <div class="row">
-      <div class="two wide column light-text">
+      <div class="three wide column light-text">
         {{t "forms.fd-application-model.type-content-caption"}}
       </div>
-      <div class="fourteen wide column">
+      <div class="thirteen wide column">
         {{#each filteredModel.types as |type|}}
           {{
             fd-list-item
             model=type
-            caption=type.name
+            caption=type.data.name
             sheetComponentName=sheetComponentName
           }}
         {{/each}}
       </div>
-      <div class="right floated fourteen wide column">
+      <div class="right floated thirteen wide column">
         {{
           fd-button
           caption=(t "forms.fd-application-model.type-content-caption")
+          click=(action 'createClass' '«type»')
         }}
       </div>
     </div>
@@ -78,23 +90,24 @@
     {{!-- Typedef --}}
     {{#if (not-eq filteredModel.typedefs.length 0)}}
     <div class="row">
-      <div class="two wide column light-text">
+      <div class="three wide column light-text">
         {{t "forms.fd-application-model.typedef-caption"}}
       </div>
-      <div class="fourteen wide column">
+      <div class="thirteen wide column">
         {{#each filteredModel.typedefs as |typedef|}}
           {{
             fd-list-item
             model=typedef
-            caption=typedef.name
+            caption=typedef.data.name
             sheetComponentName=sheetComponentName
           }}
         {{/each}}
       </div>
-      <div class="right floated fourteen wide column">
+      <div class="right floated thirteen wide column">
         {{
           fd-button
           caption=(t "forms.fd-application-model.typedef-caption")
+          click=(action 'createClass' '«typedef»')
         }}
       </div>
     </div>
@@ -103,23 +116,24 @@
     {{!-- BS --}}
     {{#if (not-eq filteredModel.bs.length 0)}}
     <div class="row">
-      <div class="two wide column light-text">
+      <div class="three wide column light-text">
         {{t "forms.fd-application-model.bs-caption"}}
       </div>
-      <div class="fourteen wide column">
+      <div class="thirteen wide column">
         {{#each filteredModel.bs as |bs|}}
           {{
             fd-list-item
             model=bs
-            caption=bs.name
+            caption=bs.data.name
             sheetComponentName=sheetComponentName
           }}
         {{/each}}
       </div>
-      <div class="right floated fourteen wide column">
+      <div class="right floated thirteen wide column">
         {{
           fd-button
           caption=(t "forms.fd-application-model.bs-caption")
+          click=(action 'createClass' '«businessserver»')
         }}
       </div>
     </div>
@@ -128,23 +142,24 @@
     {{!-- Interface --}}
     {{#if (not-eq filteredModel.interfaces.length 0)}}
     <div class="row">
-      <div class="two wide column light-text">
+      <div class="three wide column light-text">
         {{t "forms.fd-application-model.interface-caption"}}
       </div>
-      <div class="fourteen wide column">
+      <div class="thirteen wide column">
         {{#each filteredModel.interfaces as |interface|}}
           {{
             fd-list-item
             model=interface
-            caption=interface.name
+            caption=interface.data.name
             sheetComponentName=sheetComponentName
           }}
         {{/each}}
       </div>
-      <div class="right floated fourteen wide column">
+      <div class="right floated thirteen wide column">
         {{
           fd-button
           caption=(t "forms.fd-application-model.interface-caption")
+          click=(action 'createClass' '«interface»')
         }}
       </div>
     </div>
@@ -153,23 +168,24 @@
     {{!-- External --}}
     {{#if (not-eq filteredModel.externals.length 0)}}
     <div class="row">
-      <div class="two wide column light-text">
+      <div class="three wide column light-text">
         {{t "forms.fd-application-model.external-caption"}}
       </div>
-      <div class="fourteen wide column">
+      <div class="thirteen wide column">
         {{#each filteredModel.externals as |external|}}
           {{
             fd-list-item
             model=external
-            caption=external.name
+            caption=external.data.name
             sheetComponentName=sheetComponentName
           }}
         {{/each}}
       </div>
-      <div class="right floated fourteen wide column">
+      <div class="right floated thirteen wide column">
         {{
           fd-button
           caption=(t "forms.fd-application-model.external-caption")
+          click=(action 'createClass' '«external»')
         }}
       </div>
     </div>
@@ -178,23 +194,24 @@
     {{!-- Extinterface --}}
     {{#if (not-eq filteredModel.extinterfaces.length 0)}}
     <div class="row">
-      <div class="two wide column light-text">
+      <div class="three wide column light-text">
         {{t "forms.fd-application-model.extinterface-caption"}}
       </div>
-      <div class="fourteen wide column">
+      <div class="thirteen wide column">
         {{#each filteredModel.extinterfaces as |extinterface|}}
           {{
             fd-list-item
             model=extinterface
-            caption=extinterface.name
+            caption=extinterface.data.name
             sheetComponentName=sheetComponentName
           }}
         {{/each}}
       </div>
-      <div class="right floated fourteen wide column">
+      <div class="right floated thirteen wide column">
         {{
           fd-button
           caption=(t "forms.fd-application-model.extinterface-caption")
+          click=(action 'createClass' '«externalinterface»')
         }}
       </div>
     </div>
@@ -203,23 +220,23 @@
     {{!-- Applications --}}
     {{#if (not-eq filteredModel.applications.length 0)}}
     <div class="row">
-      <div class="two wide column light-text">
+      <div class="three wide column light-text">
         {{t "forms.fd-application-model.application-caption"}}
       </div>
-      <div class="fourteen wide column">
+      <div class="thirteen wide column">
         {{#each filteredModel.applications as |application|}}
           {{
             fd-list-item
             model=application
-            caption=application.name
+            caption=application.data.name
             sheetComponentName=sheetComponentName
           }}
         {{/each}}
       </div>
-      <div class="right floated fourteen wide column">
-        {{
-          fd-button
+      <div class="right floated thirteen wide column">
+        {{fd-button
           caption=(t "forms.fd-application-model.application-caption")
+          click=(action 'createClass' '«application»')
         }}
       </div>
     </div>
@@ -228,23 +245,22 @@
     {{!-- Userforms --}}
     {{#if (not-eq filteredModel.userforms.length 0)}}
     <div class="row">
-      <div class="two wide column light-text">
+      <div class="three wide column light-text">
         {{t "forms.fd-application-model.userform-caption"}}
       </div>
-      <div class="fourteen wide column">
+      <div class="thirteen wide column">
         {{#each filteredModel.userforms as |userform|}}
-          {{
-            fd-list-item
+          {{fd-list-item
             model=userform
-            caption=userform.name
+            caption=userform.data.name
             sheetComponentName=sheetComponentName
           }}
         {{/each}}
       </div>
-      <div class="right floated fourteen wide column">
-        {{
-          fd-button
+      <div class="right floated thirteen wide column">
+        {{fd-button
           caption=(t "forms.fd-application-model.userform-caption")
+          click=(action 'createClass' '«userform»')
         }}
       </div>
     </div>
@@ -253,23 +269,22 @@
     {{!-- Userstereotypes --}}
     {{#if (not-eq filteredModel.userstereotypes.length 0)}}
     <div class="row">
-      <div class="two wide column light-text">
+      <div class="three wide column light-text">
         {{t "forms.fd-application-model.userstereotype-caption"}}
       </div>
-      <div class="fourteen wide column">
+      <div class="thirteen wide column">
         {{#each filteredModel.userstereotypes as |userstereotype|}}
-          {{
-            fd-list-item
+          {{fd-list-item
             model=userstereotype
-            caption=userstereotype.name
+            caption=userstereotype.data.name
             sheetComponentName=sheetComponentName
           }}
         {{/each}}
       </div>
-      <div class="right floated fourteen wide column">
-        {{
-          fd-button
+      <div class="right floated thirteen wide column">
+        {{fd-button
           caption=(t "forms.fd-application-model.userstereotype-caption")
+          click=(action 'createClass' '«custom»')
         }}
       </div>
     </div>
@@ -278,33 +293,56 @@
   </div>
 </form>
 {{#fd-sheet
-  title=selectedElement.model.name
+  title=computedTitle
   saveController=(action 'save')
+  deleteController=(action 'delete')
   sheetComponentName=sheetComponentName
-  readonly=true
+  readonly=(not selectedElement.model.data.isNew)
+  toolbarVisible=(not isAddMode)
+  isNewModel=selectedElement.model.data.isNew
 }}
-  {{#if (known-for-type (concat "fd-editing-panels/fd-" componentNamePart "-editing-panel"))}}
-    {{component (concat "fd-editing-panels/fd-" componentNamePart "-editing-panel")
-      model=selectedElement.model
-      openViewSheetController=(action 'openViewSheet')
+  {{#if isAddMode}}
+    {{fd-editing-panels/fd-create-entity
+      createClassAction=(action 'createClass')
     }}
   {{else}}
-    {{fd-editing-panels/fd-custom-editing-panel
-      model=selectedElement.model
-    }}
+    {{#if (known-for-type (concat "fd-editing-panels/fd-" componentNamePart "-editing-panel"))}}
+      {{component (concat "fd-editing-panels/fd-" componentNamePart "-editing-panel")
+        model=selectedElement.model.data
+        dataobject=selectedElement.dataobject
+        openViewSheetController=(action 'openViewSheet')
+      }}
+    {{else}}
+      {{fd-editing-panels/fd-custom-editing-panel
+        model=selectedElement.model.data
+      }}
+    {{/if}}
   {{/if}}
-
 {{/fd-sheet}}
 
 {{#fd-sheet
-  title=selectedElement.model.name
-  saveController=(action 'save')
+  title=selectedView.name
+  saveController=(action 'saveView')
+  deleteController=(action 'deleteView')
   sheetComponentName=sheetViewName
   readonly=false
+  isNewModel=selectedView.isNew
 }}
-  {{!--{{fd-editing-panels/fd-create-view
-    model=selectedElement.model
+
+  {{fd-editing-panels/fd-create-view
+    model=selectedElement.model.data
     view=selectedView
-  }}--}}
+  }}
 
 {{/fd-sheet}}
+
+{{#if show}}
+  {{fd-modal-message-box
+    isError=isError
+    messageText=messageText
+    sheetName=modalSheetName
+    approve=(action "closeWithSaving")
+    deny=(action "closeWithoutSaving")
+    hide=(action set "show" false)
+  }}
+{{/if}}
