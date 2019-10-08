@@ -1,3 +1,5 @@
+// Add autoprefixer after the node becomes version 8
+
 .text-shadow (@string: 0 1px 3px rgba(0, 0, 0, 0.25)) {
 	text-shadow: @string;
 }
@@ -138,12 +140,13 @@
 }
 
 .display-flex {
-  display: -webkit-box;      /* OLD - iOS 6-, Safari 3.1-6 */
-  display: -moz-box;         /* OLD - Firefox 19- (buggy but mostly works) */
-  display: -ms-flexbox;      /* TWEENER - IE 10 */
-  display: -webkit-flex;     /* NEW - Chrome */
-  display: flex;             /* NEW, Spec - Opera 12.1, Firefox 20+ */
+  display: -webkit-box  !important;     /* OLD - iOS 6-, Safari 3.1-6 */
+  display: -moz-box     !important;     /* OLD - Firefox 19- (buggy but mostly works) */
+  display: -ms-flexbox  !important;     /* TWEENER - IE 10 */
+  display: -webkit-flex !important;     /* NEW - Chrome */
+  display: flex         !important;     /* NEW, Spec - Opera 12.1, Firefox 20+ */
  }
+
 
  .flex-grow (@int: 1) {
   -webkit-box-flex:  @int;
@@ -178,4 +181,10 @@
   -webkit-flex-direction: @value;
   -ms-flex-direction: @value;
   flex-direction: @value;
+}
+
+.flex(@columns: initial) {
+  -webkit-flex: @columns;
+      -ms-flex: @columns;
+          flex: @columns;
 }

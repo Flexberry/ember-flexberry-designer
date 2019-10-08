@@ -26,7 +26,8 @@ h1 {
   font-weight: 300;
 }
 
-h2,
+.flexberry-content > .ui.main.container.fluid > h3,
+.flexberry-content > .ui.main.container.fluid > h2,
 .ui.form .form-header {
   margin-bottom: 2em;
   font-weight: normal;
@@ -36,12 +37,6 @@ h2,
 
 .ui.main.container.fluid {
   padding: 5em 4em 3em;
-}
-
-.sitemap-bottom {
-  position: absolute;
-  bottom: 0;
-  width: 100%;
 }
 
 .ui.toggle-sidebar.button {
@@ -97,6 +92,7 @@ h2,
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  opacity: 0.6;
 }
 
 .light-text {
@@ -165,4 +161,369 @@ h2,
   .ui.button {
     margin: auto;
   }
+}
+
+@border-color: rgba(101, 15, 139, 0.3);
+@hover-button-color: #10c0de;
+
+.loading-message {
+  text-align: center;
+  color: #aaa;
+}
+
+#example-mobile {
+  .flexberry-content {
+    padding: 0px 10px 2em 10px;
+    border-bottom: none;
+    height: 100%;
+  }
+}
+
+i.icon.exit:before {
+  content: "\e81e";
+  font-family: Crimean;
+}
+
+.ui.sidebar.main.menu .exitItem {
+  position: relative;
+
+  > * {
+    .transition(opacity 300ms ease);
+  }
+
+  > div {
+    position: absolute;
+    top: 0;
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+
+  > a.item {
+    .opacity(0);
+  }
+
+  &:hover {
+    > a {
+      .opacity(1);
+    }
+    > div {
+      .opacity(0);
+    }
+  }
+}
+
+.fd-centered-new-form .ui.floating.message {
+  background: #fff;
+  margin-bottom: 3em;
+  border: none;
+  padding: 1.5em;
+  line-height: 1.5em;
+  .box-shadow(0px 0px 25px 0px rgba(34, 36, 38, 0.15));
+
+  .header {
+    font-weight: normal;
+  }
+}
+
+.hidden {
+  display: none !important;
+}
+
+// flexberry-colsconfig
+.flexberry-colsconfig {
+  .show-columns {
+    width: 60px;
+  }
+  .columns-order {
+    width: 100px;
+  }
+}
+
+.ui.button.cols-config-apply {
+  color: @toolbarButtonColor;
+}
+.flexberry-colsconfig.content {
+  .ui.icon.tiny.button,
+  .ui.icon.tiny.button.no-margin {
+    margin: 2px;
+    color: @toolbarButtonColor;
+  }
+
+  .ui.icon.tiny.button {
+    border-color: @border-color;
+  }
+
+  .ui.icon.tiny.button {
+    margin: 2px;
+    float: left;
+    width: 30px;
+    height: 30px;
+    padding: 0;
+  }
+
+  tbody {
+    max-height: 350px;
+    display: block;
+    overflow-y: scroll;
+
+    td {
+      &:nth-child(1) {
+        width: 60px;
+      }
+      &:nth-child(2) {
+        width: 100px;
+      }
+      &:nth-child(4) {
+        width: 90px;
+      }
+      &:nth-child(5) {
+        width: 70px;
+
+        & input {
+          width: 49px;
+        }
+      }
+      &:nth-child(6) {
+        width: 94px;
+      }
+    }
+  }
+
+  tr {
+    display: table;
+    width: 100%;
+    table-layout: fixed;
+  }
+
+  tfoot {
+    th {
+      &:nth-child(2) {
+        width: 104px;
+      }
+
+      #perPageValueInput {
+        width: 82px;
+      }
+
+      #columnConfigurtionSettingName {
+        height: 35px;
+      }
+
+      #columnConfigurtionButtonSave {
+        font-size: 1em;
+        border-radius: 50px;
+        margin-left: 10px;
+        z-index: 1;
+        border-color: @border-color;
+
+        &:hover,
+        &:focus,
+        &:active,
+        &.active {
+          border: solid 1px @hover-button-color;
+          color: #fff;
+          background: @hover-button-color;
+        }
+      }
+    }
+
+    tr:last-child th:last-child {
+      width: 160px;
+      border-left: none;
+    }
+  }
+
+  thead th {
+    &:nth-child(4) {
+      width: 90px;
+    }
+    &:nth-child(5) {
+      width: 70px;
+    }
+    &:nth-child(6) {
+      width: 104px;
+    }
+  }
+}
+
+// Firefox correct
+@-moz-document url-prefix() {
+  .flexberry-colsconfig.content {
+    & thead th:nth-child(6) {
+      width: 112px;
+    }
+
+    & tfoot th:nth-child(2) {
+      width: 112px;
+    }
+  }
+}
+
+@media only screen and (max-width: 767px) {
+  .flexberry-colsconfig.content{
+    tbody{
+      height: 302px;
+
+      td:nth-child(2) {
+        width: 50px;
+      }
+    }
+  }
+}
+
+// list form styles from blue-sky theme
+.ui.button.create-button,
+.ui.button.save-button,
+.ui.button.save-close-button,
+.ui.button.save-del-button,
+.ui.button.delete-button {
+  padding: 10px 18px;
+}
+i.icon.file.excel.outline:before,
+i.icon.filter:before,
+i.icon.refresh:before,
+i.icon.search:before,
+i.icon.table:before,
+i.icon.trash:before {
+  font-family: Crimean;
+}
+// refresh button
+.ui.button.refresh-button {
+  font-size: 0;
+  padding: 0 20px 0 0;
+  background: none;
+}
+i.icon.refresh:before {
+  content: "\e807";
+  font-size: 1.6rem;
+  color: #7dd4b4;
+}
+// delete button
+.ui.button.delete-button {
+  font-size: 0;
+  background: none;
+}
+.delete-button:before {
+  content: "\e814";
+  font-family: 'Crimean';
+  font-size: 1.7rem;
+  color: #ff3d00;
+}
+// sort col button
+i.icon.table:before {
+  content: "\e819";
+}
+.ui.icon.buttons .config-button.button,
+.ui.icon.button.config-button {
+  padding-top: 0;
+  .icon {
+    line-height: 0.9;
+  }
+}
+.ui.dropdown.icon.button > .dropdown.icon {
+  margin-left: -10px!important;
+  margin-top: -3px!important;
+}
+.ui.buttons:not(.basic):not(.inverted) > .button,
+.ui.buttons > .ui.button:not(.basic):not(.inverted) {
+  border: none;
+  background: 0 0!important;
+}
+.nav-bar .ui.buttons:not(.basic):not(.inverted) > .button,
+.nav-bar .ui.buttons > .ui.button:not(.basic):not(.inverted) {
+  padding: .74em .8571em!important;
+}
+.ui.basic.buttons {
+  border: none;
+}
+.ui.icon.dropdown > .icon.dropdown:before {
+  font-size: 20px;
+}
+i.icon.check-square-o:before {
+  content: "\f046";
+  font-size: 20px;
+}
+i.icon.check-all-square-o:before {
+  content: "\e815";
+  font-family: Crimean;
+  font-size: 20px;
+}
+.ui.button.delete-button:active,
+.ui.button.delete-button:focus,
+.ui.check-all-at-page-button.button,
+.ui.clear-sorting-button.button .ui.check-all-button.button {
+  border: none;
+  background: 0 0;
+}
+.ui.check-all-button.button {
+  border: 0;
+  background: 0 0;
+}
+.ui.check-all-at-page-button.button,
+.ui.check-all-button.button {
+  width: 25px;
+  text-align: center;
+  margin: 0;
+  padding: 0;
+  height: 25px;
+}
+.ui.clear-sorting-button.button {
+  padding: 0;
+  height: 25px;
+  width: 10px;
+  text-align: center;
+  border: 0;
+  background: 0 0;
+  margin: 0;
+}
+// olv pager start
+.next-page-button:before,
+.prev-page-button:before {
+  font-family: Icons;
+}
+.prev-page-button:before {
+  content: "\f053";
+  font-size: 14px;
+  opacity: 1;
+}
+.next-page-button:before {
+  content: "\f054";
+  font-size: 14px;
+  opacity: 1;
+}
+// olv pager end
+.object-list-view-container {
+  font-size: 14px;
+}
+
+// olv cols config
+.ui.buttons.cols-config>.ui.dropdown:last-child .menu,
+.ui.buttons.export-config>.ui.dropdown:last-child .menu {
+  left: auto;
+  right: -10em;
+}
+.ui.dropdown .menu .menu {
+  left: 100%!important;
+  right: auto!important;
+}
+i.icon.chevron.up:before {
+  content: "\f077";
+  font-family: Icons;
+}
+i.icon.chevron.down:before {
+  content: "\f078";
+  font-family: Icons;
+}
+
+.ui.toggle.checkbox input:checked ~ .box:before,
+.ui.toggle.checkbox input:checked ~ label:before {
+  content: '';
+}
+
+// olv cols config end
+
+.fd-item {
+  background-image: url(images/fd-item.png);
+  background-repeat: no-repeat;
+  background-position-y: 50%;
 }
