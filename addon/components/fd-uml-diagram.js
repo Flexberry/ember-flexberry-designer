@@ -181,7 +181,8 @@ export default Component.extend({
     let paper = this.set('paper', new joint.dia.Paper({
       el: this.get('element'),
       model: graph,
-      connectionStrategy: joint.connectionStrategies.pinAbsolute,
+      connectionStrategy: joint.connectionStrategies.toPointConnection,
+      defaultConnectionPoint: joint.connectionPoints.toPointConnection,
       restrictTranslate: ({ paper }) => {
         let area = paper.getArea();
         return { x: 0, y: 0, width: area.width * 2, height: area.height * 2 };

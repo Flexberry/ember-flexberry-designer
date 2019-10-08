@@ -72,7 +72,67 @@ export default EmberObject.extend({
   },
 });
 
+joint.connectionPoints.toPointConnection = function(endPathSegmentLine, endView) {
+  let objectModel = this.model.get('objectModel');
+  let sourceId = get(this, 'sourceView.model.id');
+  let targetId = get(this, 'targetView.model.id');
+  let startPoint, endPoint;
 
+  if (sourceId === endView.model.id && !isNone(targetId)) {
+    const sourcePosition = get(this, 'sourceView.model.attributes.position');
+    if (!objectModel.get('startPointRef')) {
+      objectModel.set('startPointRef', { x: sourcePosition.x - objectModel.get('startPoint.x'), y: sourcePosition.y - objectModel.get('startPoint.y') });
+    }
+
+    objectModel.set('startPoint', { x: sourcePosition.x - objectModel.get('startPointRef.x'), y: sourcePosition.y - objectModel.get('startPointRef.y') });
+    endPoint = new joint.g.Point(objectModel.get('startPoint'));
+    startPoint = new joint.g.Point(objectModel.get('endPoint'));
+  } else if (targetId === endView.model.id && !isNone(sourceId)) {
+    const targetPosition = get(this, 'targetView.model.attributes.position');
+    if (!objectModel.get('endPointRef')) {
+      objectModel.set('endPointRef', { x: targetPosition.x - objectModel.get('endPoint.x'), y: targetPosition.y - objectModel.get('endPoint.y') });
+    }
+
+    objectModel.set('endPoint', { x: targetPosition.x - objectModel.get('endPointRef.x'), y: targetPosition.y - objectModel.get('endPointRef.y') });
+    endPoint = new joint.g.Point(objectModel.get('endPoint'));
+    startPoint = new joint.g.Point(objectModel.get('startPoint'));
+  } else {
+    if (isNone(targetId)) {
+      endPoint = objectModel.get('startPoint');
+      startPoint = endPathSegmentLine.end;
+      objectModel.set('endPointRef', undefined);
+    } else if (isNone(sourceId)) {
+      endPoint = objectModel.get('endPoint');
+      startPoint = endPathSegmentLine.start;
+      objectModel.set('startPointRef', undefined);
+    }
+  }
+
+  let bbox = endView.model.getBBox();
+
+  if (objectModel.get('vertices.length') === 0) {
+    endPathSegmentLine.start.x = startPoint.x;
+    endPathSegmentLine.start.y = startPoint.y;
+  }
+
+  endPathSegmentLine.end.x = endPoint.x;
+  endPathSegmentLine.end.y = endPoint.y;
+
+  let intersections = bbox.intersectionWithLine(endPathSegmentLine);
+  return isArray(intersections) ? intersections[0] : bbox.pointNearestToPoint(endPoint);
+};
+
+
+joint.connectionStrategies.toPointConnection = function(end, endView, endMagnet, coords) {
+  end.connectionPoint = {
+    name: 'toPointConnection',
+    args: {
+      coords: coords
+    }
+  };
+
+  return end;
+};
 
 joint.highlighters.strokeAndButtons = {
   _buttons: {},
