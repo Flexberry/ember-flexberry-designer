@@ -1699,16 +1699,21 @@ define('dummy/controllers/application', ['exports', 'dummy/config/environment'],
             Ember.$(item).css({ 'transform': sheetTranslate });
           }
         });
+        if (!sidebarVisible) {
+          sidebar.toggleClass('sidebar-mini');
+        }
 
         // Animated increases the width of the page content.
         Ember.$('.full.height .flexberry-vertical-form').css({ opacity: 0.2 });
         Ember.run.later(function () {
           Ember.$('.full.height .flexberry-vertical-form').css({ opacity: '' });
           Ember.$('.full.height').css({ width: contentWidth });
+          if (sidebarVisible) {
+            sidebar.toggleClass('sidebar-mini');
+          }
         }, 250);
 
         Ember.run.later(this, function () {
-          sidebar.toggleClass('sidebar-mini');
 
           // For reinit overflowed tabs.
           Ember.$(window).trigger('resize');
@@ -4276,6 +4281,11 @@ define('dummy/ember-flexberry-designer/tests/addon.lint-test', [], function () {
   QUnit.test('addon/helpers/known-for-type.js', function (assert) {
     assert.expect(1);
     assert.ok(true, 'addon/helpers/known-for-type.js should pass ESLint\n\n');
+  });
+
+  QUnit.test('addon/initializers/flexberry-objectlistview.js', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'addon/initializers/flexberry-objectlistview.js should pass ESLint\n\n');
   });
 
   QUnit.test('addon/locales/en/components/fd-application-editing-panel.js', function (assert) {
@@ -9658,6 +9668,11 @@ define('dummy/ember-flexberry-designer/tests/app.lint-test', [], function () {
     assert.ok(true, 'app/helpers/known-for-type.js should pass ESLint\n\n');
   });
 
+  QUnit.test('app/initializers/flexberry-objectlistview.js', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'app/initializers/flexberry-objectlistview.js should pass ESLint\n\n');
+  });
+
   QUnit.test('app/models/fd-ad.js', function (assert) {
     assert.expect(1);
     assert.ok(true, 'app/models/fd-ad.js should pass ESLint\n\n');
@@ -12017,6 +12032,25 @@ define('dummy/initializers/flexberry-enum', ['exports', 'ember-flexberry-data/in
     enumerable: true,
     get: function () {
       return _flexberryEnum.initialize;
+    }
+  });
+});
+define('dummy/initializers/flexberry-objectlistview', ['exports', 'ember-flexberry-designer/initializers/flexberry-objectlistview'], function (exports, _flexberryObjectlistview) {
+  'use strict';
+
+  Object.defineProperty(exports, "__esModule", {
+    value: true
+  });
+  Object.defineProperty(exports, 'default', {
+    enumerable: true,
+    get: function () {
+      return _flexberryObjectlistview.default;
+    }
+  });
+  Object.defineProperty(exports, 'initialize', {
+    enumerable: true,
+    get: function () {
+      return _flexberryObjectlistview.initialize;
     }
   });
 });
@@ -16822,7 +16856,7 @@ define("dummy/templates/application", ["exports"], function (exports) {
   Object.defineProperty(exports, "__esModule", {
     value: true
   });
-  exports.default = Ember.HTMLBars.template({ "id": "rO1cMonD", "block": "{\"symbols\":[],\"statements\":[[4,\"if\",[[22,[\"isInAcceptanceTestMode\"]]],null,{\"statements\":[[0,\"  \"],[1,[20,\"outlet\"],false],[0,\"\\n  \"],[1,[26,\"outlet\",[\"modal\"],null],false],[0,\"\\n\"]],\"parameters\":[]},{\"statements\":[[4,\"flexberry-sidebar\",null,[[\"class\",\"settings\"],[\"vertical main menu visible uncover\",[26,\"hash\",null,[[\"closable\",\"dimPage\",\"onShow\",\"onHidden\"],[false,false,[26,\"action\",[[21,0,[]],\"updateWidth\"],null],[26,\"action\",[[21,0,[]],\"updateWidth\"],null]]]]]],{\"statements\":[[4,\"if\",[[22,[\"currentProjectName\"]]],null,{\"statements\":[[0,\"    \"],[6,\"div\"],[10,\"class\",\"item current-project-name-header\"],[8],[0,\"\\n      \"],[6,\"div\"],[8],[0,\"\\n        \"],[6,\"i\"],[10,\"class\",\"icon\"],[8],[9],[0,\"\\n        \"],[1,[26,\"t\",[\"forms.application.sitemap.root.fd-current-project-name-header.caption\"],null],false],[0,\"\\n      \"],[9],[0,\"\\n    \"],[9],[0,\"\\n     \"],[6,\"div\"],[10,\"class\",\"item current-project-name\"],[8],[0,\"\\n      \"],[6,\"div\"],[8],[0,\"\\n        \"],[6,\"i\"],[10,\"class\",\"icon\"],[8],[9],[0,\"\\n        \"],[1,[20,\"currentProjectName\"],false],[0,\"\\n      \"],[9],[0,\"\\n    \"],[9],[0,\"\\n    \"],[1,[26,\"flexberry-sitemap\",null,[[\"sitemap\"],[[22,[\"sitemap\"]]]]],false],[0,\"\\n\"]],\"parameters\":[]},null],[0,\"\\n  \"],[6,\"button\"],[10,\"class\",\"ui toggle-sidebar-visible icon button\"],[3,\"action\",[[21,0,[]],\"toggleSidebar\"]],[8],[0,\"\\n    \"],[6,\"i\"],[10,\"class\",\"caret left icon\"],[8],[9],[0,\"\\n  \"],[9],[0,\"\\n\\n  \"],[6,\"div\"],[10,\"class\",\"sitemap-bottom\"],[8],[0,\"\\n    \"],[1,[26,\"flexberry-sitemap\",null,[[\"sitemap\"],[[22,[\"sitemapBottom\"]]]]],false],[0,\"\\n  \"],[9],[0,\"\\n\"]],\"parameters\":[]},null],[6,\"button\"],[10,\"class\",\"ui toggle-sidebar icon button\"],[3,\"action\",[[21,0,[]],\"toggleSidebar\"]],[8],[0,\"\\n  \"],[6,\"i\"],[10,\"class\",\"caret right icon\"],[8],[9],[0,\"\\n\"],[9],[0,\"\\n\"],[1,[26,\"outlet\",[\"right-sidebar\"],null],false],[0,\"\\n\\n\"],[6,\"div\"],[10,\"id\",\"example\"],[10,\"class\",\"pusher\"],[8],[0,\"\\n  \"],[6,\"div\"],[11,\"class\",[27,[\"ui form \",[22,[\"appState\",\"state\"]]]]],[8],[0,\"\\n    \"],[6,\"div\"],[10,\"class\",\"full height\"],[8],[0,\"\\n      \"],[6,\"div\"],[10,\"class\",\"flexberry-content\"],[8],[0,\"\\n        \"],[6,\"div\"],[10,\"class\",\"ui main container fluid\"],[8],[0,\"\\n          \"],[1,[20,\"outlet\"],false],[0,\"\\n        \"],[9],[0,\"\\n      \"],[9],[0,\"\\n    \"],[9],[0,\"\\n  \"],[9],[0,\"\\n\"],[9],[0,\"\\n\"],[6,\"div\"],[10,\"class\",\"ui main container\"],[8],[0,\"\\n  \"],[1,[26,\"outlet\",[\"modal\"],null],false],[0,\"\\n\"],[9],[0,\"\\n\"],[6,\"div\"],[10,\"class\",\"ui vertical footer segment\"],[8],[0,\"\\n  \"],[6,\"div\"],[10,\"class\",\"ui container flex-container\"],[8],[0,\"\\n    \"],[6,\"div\"],[10,\"class\",\"social-icons\"],[8],[0,\"\\n      \"],[6,\"a\"],[10,\"target\",\"_blank\"],[10,\"class\",\"brand item btn-social\"],[10,\"href\",\"http://vk.com/flexberry\"],[8],[0,\"\\n        \"],[14,\"svg-icons/social-icons/vk\",[]],[0,\"\\n        \"],[9],[0,\"\\n      \"],[6,\"a\"],[10,\"target\",\"_blank\"],[10,\"class\",\"brand item btn-social\"],[10,\"href\",\"https://www.facebook.com/groups/Flexberry/\"],[8],[0,\"\\n        \"],[14,\"svg-icons/social-icons/facebook\",[]],[0,\"\\n      \"],[9],[0,\"\\n      \"],[6,\"a\"],[10,\"target\",\"_blank\"],[10,\"class\",\"brand item btn-social\"],[10,\"href\",\"https://twitter.com/Flexberry\"],[8],[0,\"\\n        \"],[14,\"svg-icons/social-icons/twitter\",[]],[0,\"\\n      \"],[9],[0,\"\\n      \"],[6,\"a\"],[10,\"target\",\"_blank\"],[10,\"class\",\"brand item btn-social\"],[10,\"href\",\"https://github.com/Flexberry\"],[8],[0,\"\\n        \"],[14,\"svg-icons/social-icons/github\",[]],[0,\"\\n      \"],[9],[0,\"\\n      \"],[6,\"a\"],[10,\"target\",\"_blank\"],[10,\"class\",\"brand item btn-social\"],[10,\"href\",\"http://www.youtube.com/user/FlexberryPLATFORM\"],[8],[0,\"\\n        \"],[14,\"svg-icons/social-icons/youtube\",[]],[0,\"\\n      \"],[9],[0,\"\\n      \"],[6,\"a\"],[10,\"target\",\"_blank\"],[10,\"class\",\"brand item btn-social\"],[10,\"href\",\"https://gitter.im/Flexberry\"],[8],[0,\"\\n        \"],[14,\"svg-icons/social-icons/gitter\",[]],[0,\"\\n      \"],[9],[0,\"\\n    \"],[9],[0,\"\\n    \"],[6,\"div\"],[10,\"class\",\"ui text menu\"],[8],[0,\"\\n      \"],[1,[26,\"t\",[\"forms.application.footer.application-name\"],null],false],[0,\"\\n      \"],[6,\"div\"],[10,\"class\",\"copyright-text\"],[8],[0,\"\\n        \"],[1,[26,\"t\",[\"forms.application.footer.copyright\"],null],false],[0,\"\\n      \"],[9],[0,\"\\n    \"],[9],[0,\"\\n    \"],[6,\"div\"],[10,\"class\",\"right menu\"],[8],[0,\"\\n      \"],[1,[26,\"flexberry-dropdown\",null,[[\"class\",\"items\",\"value\",\"onChange\",\"direction\"],[\"compact theme\",[22,[\"themes\"]],\"light\",[26,\"action\",[[21,0,[]],\"changeTheme\"],null],\"upward\"]]],false],[0,\"\\n      \"],[1,[26,\"flexberry-dropdown\",null,[[\"class\",\"items\",\"value\",\"placeholder\",\"direction\"],[\"compact\",[22,[\"locales\"]],[22,[\"i18n\",\"locale\"]],[26,\"t\",[\"forms.application.header.menu.language-dropdown.placeholder\"],null],\"upward\"]]],false],[0,\"\\n    \"],[9],[0,\"\\n  \"],[9],[0,\"\\n\"],[9],[0,\"\\n\"]],\"parameters\":[]}]],\"hasEval\":true}", "meta": { "moduleName": "dummy/templates/application.hbs" } });
+  exports.default = Ember.HTMLBars.template({ "id": "2oE8KeRm", "block": "{\"symbols\":[],\"statements\":[[4,\"if\",[[22,[\"isInAcceptanceTestMode\"]]],null,{\"statements\":[[0,\"  \"],[1,[20,\"outlet\"],false],[0,\"\\n  \"],[1,[26,\"outlet\",[\"modal\"],null],false],[0,\"\\n\"]],\"parameters\":[]},{\"statements\":[[4,\"flexberry-sidebar\",null,[[\"class\",\"settings\"],[\"vertical main menu visible uncover\",[26,\"hash\",null,[[\"closable\",\"dimPage\",\"onShow\",\"onHidden\"],[false,false,[26,\"action\",[[21,0,[]],\"updateWidth\"],null],[26,\"action\",[[21,0,[]],\"updateWidth\"],null]]]]]],{\"statements\":[[4,\"if\",[[22,[\"currentProjectName\"]]],null,{\"statements\":[[0,\"    \"],[6,\"div\"],[10,\"class\",\"item current-project-name-header\"],[8],[0,\"\\n      \"],[6,\"div\"],[8],[0,\"\\n        \"],[6,\"i\"],[10,\"class\",\"icon icon-fd-diagram\"],[8],[9],[0,\"\\n        \"],[1,[26,\"t\",[\"forms.application.sitemap.root.fd-current-project-name-header.caption\"],null],false],[0,\"\\n      \"],[9],[0,\"\\n    \"],[9],[0,\"\\n    \"],[6,\"div\"],[10,\"class\",\"item current-project-name\"],[8],[0,\"\\n      \"],[6,\"div\"],[8],[0,\"\\n        \"],[6,\"i\"],[10,\"class\",\"icon icon-fd-diagram\"],[8],[9],[0,\"\\n        \"],[1,[20,\"currentProjectName\"],false],[0,\"\\n      \"],[9],[0,\"\\n    \"],[9],[0,\"\\n    \"],[1,[26,\"flexberry-sitemap\",null,[[\"sitemap\",\"class\"],[[22,[\"sitemap\"]],\"flexberry-sitemap-top\"]]],false],[0,\"\\n\"]],\"parameters\":[]},null],[0,\"  \"],[6,\"div\"],[10,\"class\",\"flexberry-sitemap-top\"],[8],[9],[0,\"\\n  \\n  \"],[6,\"button\"],[10,\"class\",\"ui toggle-sidebar-visible icon button\"],[3,\"action\",[[21,0,[]],\"toggleSidebar\"]],[8],[0,\"\\n    \"],[6,\"i\"],[10,\"class\",\"caret left icon\"],[8],[9],[0,\"\\n  \"],[9],[0,\"\\n  \"],[1,[26,\"flexberry-sitemap\",null,[[\"sitemap\",\"class\"],[[22,[\"sitemapBottom\"]],\"sitemap-bottom\"]]],false],[0,\"\\n\"]],\"parameters\":[]},null],[0,\"\\n\"],[6,\"button\"],[10,\"class\",\"ui toggle-sidebar icon button\"],[3,\"action\",[[21,0,[]],\"toggleSidebar\"]],[8],[0,\"\\n  \"],[6,\"i\"],[10,\"class\",\"caret right icon\"],[8],[9],[0,\"\\n\"],[9],[0,\"\\n\"],[1,[26,\"outlet\",[\"right-sidebar\"],null],false],[0,\"\\n\\n\"],[6,\"div\"],[10,\"id\",\"example\"],[10,\"class\",\"pusher\"],[8],[0,\"\\n  \"],[6,\"div\"],[11,\"class\",[27,[\"ui form \",[22,[\"appState\",\"state\"]]]]],[8],[0,\"\\n    \"],[6,\"div\"],[10,\"class\",\"full height\"],[8],[0,\"\\n      \"],[6,\"div\"],[10,\"class\",\"flexberry-content\"],[8],[0,\"\\n        \"],[6,\"div\"],[10,\"class\",\"ui main container fluid\"],[8],[0,\"\\n          \"],[1,[20,\"outlet\"],false],[0,\"\\n        \"],[9],[0,\"\\n      \"],[9],[0,\"\\n    \"],[9],[0,\"\\n  \"],[9],[0,\"\\n\"],[9],[0,\"\\n\"],[6,\"div\"],[10,\"class\",\"ui main container\"],[8],[0,\"\\n  \"],[1,[26,\"outlet\",[\"modal\"],null],false],[0,\"\\n\"],[9],[0,\"\\n\"],[6,\"div\"],[10,\"class\",\"ui vertical footer segment\"],[8],[0,\"\\n  \"],[6,\"div\"],[10,\"class\",\"ui container flex-container\"],[8],[0,\"\\n    \"],[6,\"div\"],[10,\"class\",\"social-icons\"],[8],[0,\"\\n      \"],[6,\"a\"],[10,\"target\",\"_blank\"],[10,\"class\",\"brand item btn-social\"],[10,\"href\",\"http://vk.com/flexberry\"],[8],[0,\"\\n        \"],[14,\"svg-icons/social-icons/vk\",[]],[0,\"\\n        \"],[9],[0,\"\\n      \"],[6,\"a\"],[10,\"target\",\"_blank\"],[10,\"class\",\"brand item btn-social\"],[10,\"href\",\"https://www.facebook.com/groups/Flexberry/\"],[8],[0,\"\\n        \"],[14,\"svg-icons/social-icons/facebook\",[]],[0,\"\\n      \"],[9],[0,\"\\n      \"],[6,\"a\"],[10,\"target\",\"_blank\"],[10,\"class\",\"brand item btn-social\"],[10,\"href\",\"https://twitter.com/Flexberry\"],[8],[0,\"\\n        \"],[14,\"svg-icons/social-icons/twitter\",[]],[0,\"\\n      \"],[9],[0,\"\\n      \"],[6,\"a\"],[10,\"target\",\"_blank\"],[10,\"class\",\"brand item btn-social\"],[10,\"href\",\"https://github.com/Flexberry\"],[8],[0,\"\\n        \"],[14,\"svg-icons/social-icons/github\",[]],[0,\"\\n      \"],[9],[0,\"\\n      \"],[6,\"a\"],[10,\"target\",\"_blank\"],[10,\"class\",\"brand item btn-social\"],[10,\"href\",\"http://www.youtube.com/user/FlexberryPLATFORM\"],[8],[0,\"\\n        \"],[14,\"svg-icons/social-icons/youtube\",[]],[0,\"\\n      \"],[9],[0,\"\\n      \"],[6,\"a\"],[10,\"target\",\"_blank\"],[10,\"class\",\"brand item btn-social\"],[10,\"href\",\"https://gitter.im/Flexberry\"],[8],[0,\"\\n        \"],[14,\"svg-icons/social-icons/gitter\",[]],[0,\"\\n      \"],[9],[0,\"\\n    \"],[9],[0,\"\\n    \"],[6,\"div\"],[10,\"class\",\"ui text menu\"],[8],[0,\"\\n      \"],[1,[26,\"t\",[\"forms.application.footer.application-name\"],null],false],[0,\"\\n      \"],[6,\"div\"],[10,\"class\",\"copyright-text\"],[8],[0,\"\\n        \"],[1,[26,\"t\",[\"forms.application.footer.copyright\"],null],false],[0,\"\\n      \"],[9],[0,\"\\n    \"],[9],[0,\"\\n    \"],[6,\"div\"],[10,\"class\",\"right menu\"],[8],[0,\"\\n      \"],[1,[26,\"flexberry-dropdown\",null,[[\"class\",\"items\",\"value\",\"onChange\",\"settings\"],[\"compact theme\",[22,[\"themes\"]],\"light\",[26,\"action\",[[21,0,[]],\"changeTheme\"],null],[26,\"hash\",null,[[\"direction\"],[\"upward\"]]]]]],false],[0,\"\\n      \"],[1,[26,\"flexberry-dropdown\",null,[[\"class\",\"items\",\"value\",\"placeholder\",\"settings\"],[\"compact\",[22,[\"locales\"]],[22,[\"i18n\",\"locale\"]],[26,\"t\",[\"forms.application.header.menu.language-dropdown.placeholder\"],null],[26,\"hash\",null,[[\"direction\"],[\"upward\"]]]]]],false],[0,\"\\n    \"],[9],[0,\"\\n  \"],[9],[0,\"\\n\"],[9],[0,\"\\n\"]],\"parameters\":[]}]],\"hasEval\":true}", "meta": { "moduleName": "dummy/templates/application.hbs" } });
 });
 define("dummy/templates/class-diagram-primitives-demo", ["exports"], function (exports) {
   "use strict";
