@@ -3,10 +3,10 @@
 */
 
 import Component from '@ember/component';
-import { computed, observer } from '@ember/object';
+import { computed, get, observer } from '@ember/object';
 import { isNone, isBlank } from '@ember/utils';
 import { inject as service } from '@ember/service';
-import { A } from '@ember/array';
+import { A, isArray } from '@ember/array';
 
 import $ from 'jquery';
 import joint from 'npm:jointjs';
@@ -181,7 +181,8 @@ export default Component.extend({
     let paper = this.set('paper', new joint.dia.Paper({
       el: this.get('element'),
       model: graph,
-      connectionStrategy: joint.connectionStrategies.pinAbsolute,
+      connectionStrategy: joint.connectionStrategies.toPointConnection,
+      defaultConnectionPoint: joint.connectionPoints.toPointConnection,
       restrictTranslate: ({ paper }) => {
         let area = paper.getArea();
         return { x: 0, y: 0, width: area.width * 2, height: area.height * 2 };
