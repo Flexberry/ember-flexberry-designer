@@ -259,16 +259,21 @@ export default Controller.extend({
           $(item).css({ 'transform': sheetTranslate });
         }
       });
+      if (!sidebarVisible) {
+        sidebar.toggleClass('sidebar-mini');
+      }
 
       // Animated increases the width of the page content.
       $('.full.height .flexberry-vertical-form').css({ opacity: 0.2 });
       later(function() {
         $('.full.height .flexberry-vertical-form').css({ opacity: '' });
         $('.full.height').css({ width: contentWidth });
+        if (sidebarVisible) {
+          sidebar.toggleClass('sidebar-mini');
+        }
       }, 250);
 
       later(this, function() {
-        sidebar.toggleClass('sidebar-mini');
 
         // For reinit overflowed tabs.
         $(window).trigger('resize');
