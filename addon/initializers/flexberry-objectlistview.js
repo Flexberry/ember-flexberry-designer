@@ -1,6 +1,5 @@
 import FlexberryObjectlistviewComponent from 'ember-flexberry/components/flexberry-objectlistview';
 
-// import confirmDialogYesNo from '../utils/confirmDialog';
 /**
   Инициализирует некоторые настройки компонента flexberry-objectlistview для всех его экземпляров в приложении.
 
