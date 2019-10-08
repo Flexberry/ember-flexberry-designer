@@ -3,6 +3,10 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+## [0.9.2] - 2019-10-08
+### Added
+* Add connection points for links.
+
 ## [0.9.1] - 2019-10-08
 ### Fixed
 * Fix sidebar and list styles.
