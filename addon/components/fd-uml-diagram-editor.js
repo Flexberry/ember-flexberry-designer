@@ -271,7 +271,7 @@ FdActionsForUcdPrimitivesMixin, {
         let newLink = this.get('newLink');
 
         if ((isNone(interactionElements) || (isArray(interactionElements) && interactionElements.includes(type)) ||
-         (isArray(interactionElements.start) && interactionElements.start.includes(type)))
+         (isArray(interactionElements.end) && interactionElements.end.includes(type)))
         ) {
           if (newLink.get('type') == 'flexberry.uml.NoteConnector' && this.sourceElementType !== 'flexberry.uml.Note' &&  type !== 'flexberry.uml.Note') {
             return false;

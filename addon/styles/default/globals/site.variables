@@ -25,6 +25,7 @@
 --------------------*/
 @textColor           : rgba(0, 0, 0, 0.75);
 @lightTextColor      : rgba(0, 0, 0, 0.35);
+@darkTextColor: @textColor;
 
 /* Цвет иконок сайдбара */
 @sidebarIconColor    : rgba(0, 0, 0, 0.50);

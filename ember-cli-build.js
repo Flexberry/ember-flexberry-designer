@@ -25,6 +25,7 @@ module.exports = function(defaults) {
 
     fingerprint: {
       exclude: ['light', 'dark', 'blue'],
+      extensions: ['js', 'css', 'map']
     }
 
     // Add options here
@@ -46,7 +47,11 @@ module.exports = function(defaults) {
   app.import('vendor/fonts/icons.ttf', { destDir: 'assets/fonts' });
   app.import('vendor/fonts/icons.woff', { destDir: 'assets/fonts' });
   app.import('vendor/fonts/icons.woff2', { destDir: 'assets/fonts' });
-
+  app.import('vendor/fonts/crim.eot', { destDir: 'assets/fonts' });
+  app.import('vendor/fonts/crim.svg', { destDir: 'assets/fonts' });
+  app.import('vendor/fonts/crim.ttf', { destDir: 'assets/fonts' });
+  app.import('vendor/fonts/crim.woff', { destDir: 'assets/fonts' });
+  app.import('vendor/fonts/crim.woff2', { destDir: 'assets/fonts' });
   app.import('vendor/fonts/fd-icons.eot', { destDir: 'assets/fonts' });
   app.import('vendor/fonts/fd-icons.ttf', { destDir: 'assets/fonts' });
   app.import('vendor/fonts/fd-icons.woff', { destDir: 'assets/fonts' });
