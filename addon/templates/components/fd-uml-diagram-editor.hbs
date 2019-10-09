@@ -14,7 +14,7 @@
 }}
 
 {{#if (known-for-type (concat "fd-uml-diagram-toolbars/fd-" diagramType "-toolbar"))}}
-  <div class="fd-uml-diagram-toolbar {{if _collapseEditPanelToolbar "hidden"}}">
+  <div class="fd-uml-diagram-toolbar {{if _collapseEditPanelToolbar "fd-toolbar-hidden"}}">
     <button class="ui toggle-diagram-toolbar icon button" onclick={{action 'collapseEditPanelToolbar'}}>
       <i class="caret {{if _collapseEditPanelToolbar "up" "down"}} icon"></i>
     </button>
