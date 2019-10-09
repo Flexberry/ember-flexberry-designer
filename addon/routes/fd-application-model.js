@@ -58,6 +58,8 @@ export default Route.extend({
       extinterfaces: undefined,
       interfaces: undefined,
       userforms: undefined,
+      maplayers: undefined,
+      maplayerstyles: undefined,
       userstereotypes: undefined
     };
 
@@ -155,6 +157,16 @@ export default Route.extend({
     let wrapUserforms = this.wrapModel(userforms);
     modelHash.userforms = A(wrapUserforms);
 
+    // Maplayers.
+    let maplayers = classesCurrentStage.filterBy('stereotype', '«maplayer»');
+    let wrapMaplayers = this.wrapModel(maplayers);
+    modelHash.maplayers = A(wrapMaplayers);
+
+    // Maplayerstyles.
+    let maplayerstyles = classesCurrentStage.filterBy('stereotype', '«maplayerstyle»');
+    let wrapMaplayerstyles = this.wrapModel(maplayerstyles);
+    modelHash.maplayerstyles = A(wrapMaplayerstyles);
+
     // Userstereotypes.
     let designerStereotypes = A([
       '«implementation»',
@@ -168,7 +180,9 @@ export default Route.extend({
       '«external»',
       '«externalinterface»',
       '«interface»',
-      '«userform»'
+      '«userform»',
+      '«maplayer»',
+      '«maplayerstyle»'
     ]);
     let userstereotypes = classesCurrentStage.filter(function(item) {
       return !designerStereotypes.includes(item.get('stereotype')) && !isBlank(item.get('stereotype'));

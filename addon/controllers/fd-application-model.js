@@ -336,6 +336,12 @@ export default Controller.extend(FdSaveHasManyRelationshipsMixin, FdSheetCloseCo
       case '«userform»':
         findArray = this.get('model.userforms');
         break;
+      case '«maplayer»':
+        findArray = this.get('model.maplayers');
+        break;
+      case '«maplayerstyle»':
+        findArray = this.get('model.maplayerstyles');
+        break;
       default:
         findArray = this.get('model.userstereotypes');
     }
