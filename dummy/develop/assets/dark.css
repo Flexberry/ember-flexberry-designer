@@ -70089,7 +70089,7 @@ body.pushable > .pusher {
   position: relative;
   z-index: 1;
 }
-.fd-uml-diagram-toolbar.hidden {
+.fd-uml-diagram-toolbar.fd-toolbar-hidden {
   -webkit-transform: translate(-50%, 100%);
   -moz-transform: translate(-50%, 100%);
   -ms-transform: translate(-50%, 100%);
