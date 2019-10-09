@@ -24,6 +24,10 @@ export default {
   'application-it-is': ' – a class that stores general information about the generated application',
   'userform-caption': 'Userform',
   'userform-it-is': ' – a class that represents an «empty»  application form that can also be added to the menu structure',
+  'maplayer-caption': 'Map layer',
+  'maplayer-it-is': ' – a class that sets the configuration of the GIS subsystem layer',
+  'maplayerstyle-caption': 'Map layer style',
+  'maplayerstyle-it-is': ' – a class that sets up the appearance of the GIS subsystem layer',
   'userstereotype-caption': 'Entity with a user stereotype',
   'userstereotype-it-is': ' – a class with arbitrary semantics which source code should not be generated in the application',
 };
