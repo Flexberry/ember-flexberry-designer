@@ -1,0 +1,30 @@
+<div class="ui card">
+  <div class="content">
+
+    <div class="two fields">
+      <div class="field">
+        <h3 class="header">Flexberry GIS</h3>
+        <i class="massive map icon"></i>
+      </div>
+      {{#if model}}
+        <div class="field">
+          <div>{{"Имя"}}</div>
+          <div class="description">
+            {{flexberry-textbox
+              value=model
+              class='fluid input'
+              placeholder="placeholder"
+            }}
+          </div>
+        </div>
+      {{/if}}
+    </div>
+
+    <div class="right floated">
+      {{flexberry-checkbox
+        value=model
+        class='fluid input'
+      }}
+    </div>
+  </div>
+</div>

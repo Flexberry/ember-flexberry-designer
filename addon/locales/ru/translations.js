@@ -144,6 +144,8 @@ import FdPropertyEditingPanel from './components/fd-property-editing-panel';
 import FdViewDefinitionItem from './components/fd-view-definition-item';
 import FdfModalMessageBox from './components/fd-modal-message-box';
 import FdApplicationModelForm from './forms/fd-application-model';
+import FdArchitectureForm from './forms/fd-architecture';
+import FdGisSubsystem from './components/fd-gis-subsystem';
 
 const translations = {};
 $.extend(true, translations, EmberFlexberryTranslations);
@@ -428,6 +430,7 @@ $.extend(true, translations, {
     'fd-application-model': FdApplicationModelForm,
     'fd-diagrams': FdDiagramForm,
     'fd-navigation': FdNavigationForm,
+    'fd-architecture': FdArchitectureForm,
   },
 
   components: {
@@ -457,6 +460,7 @@ $.extend(true, translations, {
     'fd-create-diagrams': FdCreateDiagrams,
     'fd-view-definition-item': FdViewDefinitionItem,
     'fd-modal-message-box': FdfModalMessageBox,
+    'fd-gis-subsystem': FdGisSubsystem,
   }
 
 });
