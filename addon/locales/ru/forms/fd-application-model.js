@@ -18,6 +18,8 @@ export default {
   'extinterface-caption': 'Внешний интерфейс',
   'application-caption': 'Приложение',
   'userform-caption': 'Пользовательская форма',
+  'maplayer-caption': 'Слой карты',
+  'maplayerstyle-caption': 'Стиль слоя карты',
   'userstereotype-caption': 'Сущность с пользовательским стереотипом',
   'parent-caption': 'Предки первого уровня',
   'create-class-caption': 'Создать класс',

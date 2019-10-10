@@ -133,6 +133,8 @@ import FdBsEditingPanel from './components/fd-businessserver-editing-panel';
 import FdEnumEditingPanel from './components/fd-enumeration-editing-panel';
 import FdEditFormEditingPanel from './components/fd-editform-editing-panel';
 import FdListFormEditingPanel from './components/fd-listform-editing-panel';
+import FdMaplayerFormEditingPanel from './components/fd-maplayer-editing-panel';
+import FdMaplayerstyleFormEditingPanel from './components/fd-maplayerstyle-editing-panel';
 import FdCreateView from './components/fd-create-view';
 import FdCreateEntity from './components/fd-create-entity';
 import FdCreateDiagrams from './components/fd-create-diagrams';
@@ -445,6 +447,8 @@ $.extend(true, translations, {
     'fd-enumeration-editing-panel': FdEnumEditingPanel,
     'fd-editform-editing-panel': FdEditFormEditingPanel,
     'fd-listform-editing-panel': FdListFormEditingPanel,
+    'fd-maplayer-editing-panel': FdMaplayerFormEditingPanel,
+    'fd-maplayerstyle-editing-panel': FdMaplayerstyleFormEditingPanel,
     'fd-create-view': FdCreateView,
     'fd-sheet': FdSheet,
     'fd-create-node-editing-panel': FdCreateNodeEditingPanel,
