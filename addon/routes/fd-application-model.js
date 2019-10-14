@@ -206,6 +206,10 @@ export default Route.extend({
     controller.set('isAddMode', false);
     controller.set('sheetComponentName', this.get('sheetComponentName'));
     controller.set('sheetViewName', this.get('sheetViewName'));
+    controller.set('readonlyMode', {
+      sheetComponentName: true,
+      sheetViewName: true
+    });
   },
 
   /**

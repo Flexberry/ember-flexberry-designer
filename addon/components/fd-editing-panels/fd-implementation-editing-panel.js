@@ -5,12 +5,14 @@ import { A } from '@ember/array';
 import FdUpdateBsValueMixin from '../../mixins/fd-editing-panels/fd-update-bs-value';
 import FdUpdateAttributeValueMixin from '../../mixins/fd-editing-panels/fd-update-attribute-value';
 import FdUpdateMethodeValueMixin from '../../mixins/fd-editing-panels/fd-update-method-value';
+import FdReadonlyModeMixin from '../../mixins/fd-editing-panels/fd-readonly-mode';
 import layout from '../../templates/components/fd-editing-panels/fd-implementation-editing-panel';
 
 export default Component.extend(
   FdUpdateBsValueMixin,
   FdUpdateAttributeValueMixin,
-  FdUpdateMethodeValueMixin, {
+  FdUpdateMethodeValueMixin,
+  FdReadonlyModeMixin, {
   layout,
 
   /**

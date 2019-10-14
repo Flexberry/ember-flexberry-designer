@@ -1,8 +1,9 @@
 import Component from '@ember/component';
 import { isBlank } from '@ember/utils';
+import FdReadonlyModeMixin from '../../mixins/fd-editing-panels/fd-readonly-mode';
 import layout from '../../templates/components/fd-editing-panels/fd-custom-editing-panel';
 
-export default Component.extend({
+export default Component.extend(FdReadonlyModeMixin, {
   layout,
 
   /**

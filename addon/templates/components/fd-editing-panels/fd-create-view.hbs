@@ -10,13 +10,13 @@
   </div>
   <div class="fd-view-buttons">
     <div class="ui vertical buttons">
-      <button class="ui button icon {{if selectedNode '' 'disabled'}}" {{action 'addNodeInDefinition'}}>
+      <button class="ui button icon {{if (and (not readonly) selectedNode) '' 'disabled'}}" {{action 'addNodeInDefinition'}}>
         <i class="arrow right icon"></i>
       </button>
-      <button class="ui button icon {{if selectedProperty '' 'disabled'}}" {{action 'changeOrderDefinition' true}}>
+      <button class="ui button icon {{if (and (not readonly) selectedProperty) '' 'disabled'}}" {{action 'changeOrderDefinition' true}}>
         <i class="arrow up icon"></i>
       </button>
-      <button class="ui button icon {{if selectedProperty '' 'disabled'}}" {{action 'changeOrderDefinition' false}}>
+      <button class="ui button icon {{if (and (not readonly) selectedProperty) '' 'disabled'}}" {{action 'changeOrderDefinition' false}}>
         <i class="arrow down icon"></i>
       </button>
     </div>
@@ -35,6 +35,7 @@
             selectedProperty=selectedProperty
             selectedPropertyType=selectedPropertyType
             delete=(action 'deleteDefinitionItem')
+            readonly=readonly
           }}
         {{/each}}
       </div>
@@ -54,6 +55,7 @@
           value=selectedProperty.path
           class='fluid input'
           placeholder=(t "components.fd-create-view.settings-view.path-placeholder")
+          readonly=readonly
         }}
       </div>
     </div>
@@ -68,6 +70,7 @@
             onChange=(action "changeLookupType")
             items=(array 'default' 'standard' 'combo')
             value=selectedProperty.lookupType
+            readonly=readonly
           }}
         </div>
       </div>
@@ -82,6 +85,7 @@
               value=selectedProperty.masterPropertyName
               class='fluid input'
               placeholder=(t "components.fd-create-view.settings-master.master-property-placeholder")
+              readonly=readonly
             }}
           </div>
         </div>
@@ -95,6 +99,7 @@
               value=selectedProperty.masterCustomizationString
               class='fluid input'
               placeholder=(t "components.fd-create-view.settings-master.sample-setting-placeholder")
+              readonly=readonly
             }}
           </div>
         </div>
@@ -111,6 +116,7 @@
             items=detailView
             needChecksOnValue=false
             value=selectedProperty.detailViewName
+            readonly=readonly
           }}
         </div>
       </div>
@@ -122,6 +128,7 @@
         <div class="eleven wide column light-text">
           {{flexberry-checkbox
             value=selectedProperty.loadOnLoadAgregator
+            readonly=readonly
           }}
         </div>
       </div>

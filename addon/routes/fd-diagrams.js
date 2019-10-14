@@ -32,6 +32,15 @@ export default Route.extend({
   sheetComponentName: 'diagrams-sheet',
 
   /**
+    Name for sheet with object edit form.
+
+    @property objectEditFormSheet
+    @type String
+    @default 'objectEditFormSheet'
+  */
+  objectEditFormSheet: 'objectEditFormSheet',
+
+  /**
     A hook you can implement to convert the URL into the model for this route.
     [More info](http://emberjs.com/api/classes/Ember.Route.html#method_model).
 
@@ -108,6 +117,11 @@ export default Route.extend({
 
     controller.set('isAddMode', false);
     controller.set('sheetComponentName', this.get('sheetComponentName'));
+    controller.set('objectEditFormSheet', this.get('objectEditFormSheet'));
+    controller.set('readonlyMode', {
+      sheetComponentName: true,
+      objectEditFormSheet: true
+    });
   },
 
   /**

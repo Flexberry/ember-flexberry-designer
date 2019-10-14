@@ -1,12 +1,13 @@
 import Component from '@ember/component';
 import FdUpdateFormviewValueMixin from '../../mixins/fd-editing-panels/fd-update-formview-value';
+import FdReadonlyModeMixin from '../../mixins/fd-editing-panels/fd-readonly-mode';
 import layout from '../../templates/components/fd-editing-panels/fd-listform-editing-panel';
 import { on } from '@ember/object/evented';
 import { observer } from '@ember/object';
 import { isNone, isBlank } from '@ember/utils';
 import { A } from '@ember/array';
 import { inject as service } from '@ember/service';
-export default Component.extend(FdUpdateFormviewValueMixin, {
+export default Component.extend(FdUpdateFormviewValueMixin, FdReadonlyModeMixin, {
   layout,
 
   /**

@@ -83,6 +83,14 @@ export default Controller.extend(FdSaveHasManyRelationshipsMixin, FdSheetCloseCo
   sheetViewName: '',
 
   /**
+    Object with flags indicates whether edit panel is readonly.
+
+    @property readonlyMode
+    @type Object
+  */
+  readonlyMode: undefined,
+
+  /**
     Flag: indicates whether to show create editing panel.
 
     @property isAddMode
@@ -241,6 +249,7 @@ export default Controller.extend(FdSaveHasManyRelationshipsMixin, FdSheetCloseCo
     if (sheetComponentName === sheetName) {
       this.deactivateListItem();
       this.closeViewSheet();
+      this.set('readonlyMode.sheetComponentName', true);
       this.set('selectedElement', currentItem);
       if (!isNone(currentItem)) {
         this.set('isAddMode', false);
@@ -260,11 +269,13 @@ export default Controller.extend(FdSaveHasManyRelationshipsMixin, FdSheetCloseCo
     if (sheetComponentName === sheetName) {
       this.deactivateListItem();
       this.closeViewSheet();
+      this.set('readonlyMode.sheetComponentName', true);
       this.set('selectedElement', undefined);
     } else if (sheetViewName === sheetName) {
       let selectedView = this.get('selectedView');
       if (!isNone(selectedView)) {
         selectedView.rollbackAll();
+        this.set('readonlyMode.sheetViewName', true);
         this.set('selectedView', undefined);
       }
     }
