@@ -1,5 +1,5 @@
 import Component from '@ember/component';
-import layout from '../../templates/components/fd-editing-panels/fd-maplayer-editing-panel';
+import layout from '../../templates/components/fd-editing-panels/fd-geolayerstyle-editing-panel';
 
 export default Component.extend({
   layout,
