@@ -208,13 +208,29 @@ export default Controller.extend(FdSaveHasManyRelationshipsMixin, FdSheetCloseCo
   }),
 
   /**
+    Update model for sort
+
+    @method sortModel
+  */
+  sortModel: computed('model', function() {
+    let model = this.get('model');
+    let newModel = {};
+    for (let prop in model) {
+      let newdata = model[prop].sortBy('data.name');
+      newModel[prop] = A(newdata);
+    }
+
+    return newModel;
+  }),
+
+  /**
     Update model for search
 
     @method filteredModel
   */
-  filteredModel: computed('model', 'searchValue', function() {
+  filteredModel: computed('sortModel', 'searchValue', function() {
     let searchStr = this.get('searchValue');
-    let model = this.get('model');
+    let model = this.get('sortModel');
 
     if (isBlank(searchStr)) {
       return model;
@@ -566,6 +582,24 @@ export default Controller.extend(FdSaveHasManyRelationshipsMixin, FdSheetCloseCo
       return reject({ message: this.get('i18n').t('forms.fd-diagrams.error-message.empty-class').toString() });
     }
 
+    let modelName = model.get('name');
+    if (isBlank(modelName)) {
+      return reject({ message: this.get('i18n').t('forms.fd-diagrams.error-message.empty-diagram').toString() });
+    }
+
+    if (model.get('isNew')) {
+      // Get current diagrams.
+      let allDiagrams = this.get('store').peekAll(`${model.constructor.modelName}`);
+      let diagramsCurrentStage = allDiagrams.filterBy('subsystem.stage.id', this.get('currentProjectContext').getCurrentStage());
+      let currentDiagram = A(diagramsCurrentStage).find((a) => {
+        return a.get('name') === modelName && !isNone(a.get('id'));
+      });
+
+      if (!isNone(currentDiagram)) {
+        return reject({ message: this.get('i18n').t('forms.fd-diagrams.error-message.exist-diagram').toString() });
+      }
+    }
+
     let errorMessage = this.checkForLooping();
     if (!isBlank(errorMessage)) {
       return reject({ message: errorMessage });
@@ -588,6 +622,8 @@ export default Controller.extend(FdSaveHasManyRelationshipsMixin, FdSheetCloseCo
       let isNew = false;
       if (model.get('isNew')) {
         isNew = true;
+      } else if ('name' in model.changedAttributes()) {
+        this.notifyPropertyChange('model');
       }
 
       this.validateData(model)
@@ -608,7 +644,8 @@ export default Controller.extend(FdSaveHasManyRelationshipsMixin, FdSheetCloseCo
         }
       })
       .catch((error) => {
-        this.set('error', error.message);
+        this.set('isError', true);
+        this.set('messageText', error.message);
         this.set('show', true);
       })
       .finally(() => {
@@ -629,11 +666,16 @@ export default Controller.extend(FdSaveHasManyRelationshipsMixin, FdSheetCloseCo
       updateStrByObjects(editableObject);
       objectModel.set('attributes', editableObject.get('attributesStr').split('\n'));
       objectModel.set('methods', editableObject.get('methodsStr').split('\n'));
+      if (editableObject.get('isNew')) {
+        editableObject.set('nameStr', editableObject.get('name'));
+      }
+
       this.get('fdDiagramService').updateJointObjectOnDiagram(objectModel.get('id'));
       editableObject.save()
       .then(() => this.saveHasManyRelationships(editableObject))
       .catch((error) => {
-        this.set('error', error.message);
+        this.set('isError', true);
+        this.set('messageText', error.message);
         this.set('show', true);
       })
       .finally(() => {
@@ -764,7 +806,8 @@ export default Controller.extend(FdSaveHasManyRelationshipsMixin, FdSheetCloseCo
         this.get('fdSheetService').closeSheet(this.get('sheetComponentName'));
       })
       .catch((error) => {
-        this.set('error', error.message);
+        this.set('isError', true);
+        this.set('messageText', error.message);
         this.set('show', true);
       })
       .finally(() => {
