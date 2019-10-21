@@ -12,6 +12,8 @@ export default {
   'error-message': {
     'empty-class': 'Classes with an empty name exist on the diagram',
     'loop-inheritance': 'Loop found in inheritance links',
-    'two-childs': 'Cannot be multiple childs'
+    'two-childs': 'Cannot be multiple childs',
+    'empty-diagram': 'Diagram name cannot be empty',
+    'exist-diagram': 'Diagram with the same name already exists.',
   }
 };

@@ -54,43 +54,50 @@ export default Route.extend({
     // Get current ad diagrams.
     let allAdDiagrams = store.peekAll('fd-dev-uml-ad');
     let adDiagramsCurrentStage = allAdDiagrams.filterBy('subsystem.stage.id', stage.get('id'));
-    let wrapAdDiagramsCurrentStage = this.wrapModel(adDiagramsCurrentStage);
+    let adDiagramsCurrentStageSort = adDiagramsCurrentStage.sortBy('name');
+    let wrapAdDiagramsCurrentStage = this.wrapModel(adDiagramsCurrentStageSort);
     modelHash.ad = A(wrapAdDiagramsCurrentStage);
 
     // Get current cad diagrams.
     let allCadDiagrams = store.peekAll('fd-dev-uml-cad');
     let cadDiagramsCurrentStage = allCadDiagrams.filterBy('subsystem.stage.id', stage.get('id'));
-    let wrapCadDiagramsCurrentStage = this.wrapModel(cadDiagramsCurrentStage);
+    let cadDiagramsCurrentStageSort = cadDiagramsCurrentStage.sortBy('name');
+    let wrapCadDiagramsCurrentStage = this.wrapModel(cadDiagramsCurrentStageSort);
     modelHash.cad = A(wrapCadDiagramsCurrentStage);
 
     // Get current cod diagrams.
     let allCodDiagrams = store.peekAll('fd-dev-uml-cod');
     let codDiagramsCurrentStage = allCodDiagrams.filterBy('subsystem.stage.id', stage.get('id'));
-    let wrapCodDiagramsCurrentStage = this.wrapModel(codDiagramsCurrentStage);
+    let codDiagramsCurrentStageSort = codDiagramsCurrentStage.sortBy('name');
+    let wrapCodDiagramsCurrentStage = this.wrapModel(codDiagramsCurrentStageSort);
     modelHash.cod = A(wrapCodDiagramsCurrentStage);
 
     // Get current dpd diagrams.
     let allDpdDiagrams = store.peekAll('fd-dev-uml-dpd');
     let dpdDiagramsCurrentStage = allDpdDiagrams.filterBy('subsystem.stage.id', stage.get('id'));
-    let wrapDpdDiagramsCurrentStage = this.wrapModel(dpdDiagramsCurrentStage);
+    let dpdDiagramsCurrentStageSort = dpdDiagramsCurrentStage.sortBy('name');
+    let wrapDpdDiagramsCurrentStage = this.wrapModel(dpdDiagramsCurrentStageSort);
     modelHash.dpd = A(wrapDpdDiagramsCurrentStage);
 
     // Get current sd diagrams.
     let allSdDiagrams = store.peekAll('fd-dev-uml-sd');
     let sdDiagramsCurrentStage = allSdDiagrams.filterBy('subsystem.stage.id', stage.get('id'));
-    let wrapSdDiagramsCurrentStage = this.wrapModel(sdDiagramsCurrentStage);
+    let sdDiagramsCurrentStageSort = sdDiagramsCurrentStage.sortBy('name');
+    let wrapSdDiagramsCurrentStage = this.wrapModel(sdDiagramsCurrentStageSort);
     modelHash.sd = A(wrapSdDiagramsCurrentStage);
 
     // Get current std diagrams.
     let allStdDiagrams = store.peekAll('fd-dev-uml-std');
     let stdDiagramsCurrentStage = allStdDiagrams.filterBy('subsystem.stage.id', stage.get('id'));
-    let wrapStdDiagramsCurrentStage = this.wrapModel(stdDiagramsCurrentStage);
+    let stdDiagramsCurrentStageSort = stdDiagramsCurrentStage.sortBy('name');
+    let wrapStdDiagramsCurrentStage = this.wrapModel(stdDiagramsCurrentStageSort);
     modelHash.std = A(wrapStdDiagramsCurrentStage);
 
     // Get current ucd diagrams.
     let allUcdDiagrams = store.peekAll('fd-dev-uml-ucd');
     let ucdDiagramsCurrentStage = allUcdDiagrams.filterBy('subsystem.stage.id', stage.get('id'));
-    let wrapUcdDiagramsCurrentStage = this.wrapModel(ucdDiagramsCurrentStage);
+    let ucdDiagramsCurrentStageSort = ucdDiagramsCurrentStage.sortBy('name');
+    let wrapUcdDiagramsCurrentStage = this.wrapModel(ucdDiagramsCurrentStageSort);
     modelHash.ucd = A(wrapUcdDiagramsCurrentStage);
 
     return modelHash;

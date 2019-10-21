@@ -142,13 +142,35 @@ export default Controller.extend(FdSaveHasManyRelationshipsMixin, FdSheetCloseCo
   }),
 
   /**
+    Update model for sort
+
+    @method sortModel
+  */
+  sortModel: computed('model', function() {
+    let model = this.get('model');
+    let newClasses = model.classes.sortBy('settings.data.name');
+    let newModel = {
+      classes: A(newClasses)
+    };
+
+    for (let prop in model) {
+      if (prop !== 'classes') {
+        let newdata = model[prop].sortBy('data.name');
+        newModel[prop] = A(newdata);
+      }
+    }
+
+    return newModel;
+  }),
+
+  /**
     Update model for search
 
     @method filteredModel
   */
-  filteredModel: computed('model', 'searchValue', function() {
+  filteredModel: computed('sortModel', 'searchValue', function() {
     let searchStr = this.get('searchValue');
-    let model = this.get('model');
+    let model = this.get('sortModel');
 
     if (isBlank(searchStr)) {
       return model;
