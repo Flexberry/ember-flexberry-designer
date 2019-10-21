@@ -1,6 +1,6 @@
 import Component from '@ember/component';
 import FdReadonlyModeMixin from '../../mixins/fd-editing-panels/fd-readonly-mode';
-import layout from '../../templates/components/fd-editing-panels/fd-maplayerstyle-editing-panel';
+import layout from '../../templates/components/fd-editing-panels/fd-geolayerstyle-editing-panel';
 
 export default Component.extend(FdReadonlyModeMixin, {
   layout,

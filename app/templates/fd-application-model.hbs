@@ -266,49 +266,49 @@
     </div>
     {{/if}}
 
-    {{!-- Maplayers --}}
-    {{#if (not-eq filteredModel.maplayers.length 0)}}
+    {{!-- Geolayers --}}
+    {{#if (not-eq filteredModel.geolayers.length 0)}}
     <div class="row">
       <div class="three wide column light-text">
-        {{t "forms.fd-application-model.maplayer-caption"}}
+        {{t "forms.fd-application-model.geolayer-caption"}}
       </div>
       <div class="thirteen wide column">
-        {{#each filteredModel.maplayers as |maplayer|}}
+        {{#each filteredModel.geolayers as |geolayer|}}
           {{fd-list-item
-            model=maplayer
-            caption=maplayer.data.name
+            model=geolayer
+            caption=geolayer.data.name
             sheetComponentName=sheetComponentName
           }}
         {{/each}}
       </div>
       <div class="right floated thirteen wide column">
         {{fd-button
-          caption=(t "forms.fd-application-model.maplayer-caption")
-          click=(action 'createClass' '«maplayer»')
+          caption=(t "forms.fd-application-model.geolayer-caption")
+          click=(action 'createClass' '«geolayer»')
         }}
       </div>
     </div>
     {{/if}}
 
-    {{!-- Maplayerstyles --}}
-    {{#if (not-eq filteredModel.maplayerstyles.length 0)}}
+    {{!-- Geolayerstyles --}}
+    {{#if (not-eq filteredModel.geolayerstyles.length 0)}}
     <div class="row">
       <div class="three wide column light-text">
-        {{t "forms.fd-application-model.maplayerstyle-caption"}}
+        {{t "forms.fd-application-model.geolayerstyle-caption"}}
       </div>
       <div class="thirteen wide column">
-        {{#each filteredModel.maplayerstyles as |maplayerstyle|}}
+        {{#each filteredModel.geolayerstyles as |geolayerstyle|}}
           {{fd-list-item
-            model=maplayerstyle
-            caption=maplayerstyle.data.name
+            model=geolayerstyle
+            caption=geolayerstyle.data.name
             sheetComponentName=sheetComponentName
           }}
         {{/each}}
       </div>
       <div class="right floated thirteen wide column">
         {{fd-button
-          caption=(t "forms.fd-application-model.maplayerstyle-caption")
-          click=(action 'createClass' '«maplayerstyle»')
+          caption=(t "forms.fd-application-model.geolayerstyle-caption")
+          click=(action 'createClass' '«geolayerstyle»')
         }}
       </div>
     </div>

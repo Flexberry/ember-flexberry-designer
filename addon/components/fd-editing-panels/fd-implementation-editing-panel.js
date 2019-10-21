@@ -97,6 +97,16 @@ export default Component.extend(
     */
     openViewSheet(selectView) {
       this.get('openViewSheetController')(selectView);
+    },
+
+    /**
+      Changes AccessType.
+
+      @method actions.changeAccessType
+      @param {Object} value An object with a new value in the `checked` property.
+    */
+    changeAccessType(value) {
+      this.set('model.accessType', value.checked ? 'this' : 'none');
     }
   }
 });

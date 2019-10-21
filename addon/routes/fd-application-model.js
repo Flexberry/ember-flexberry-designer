@@ -58,8 +58,8 @@ export default Route.extend({
       extinterfaces: undefined,
       interfaces: undefined,
       userforms: undefined,
-      maplayers: undefined,
-      maplayerstyles: undefined,
+      geolayers: undefined,
+      geolayerstyles: undefined,
       userstereotypes: undefined
     };
 
@@ -157,15 +157,15 @@ export default Route.extend({
     let wrapUserforms = this.wrapModel(userforms);
     modelHash.userforms = A(wrapUserforms);
 
-    // Maplayers.
-    let maplayers = classesCurrentStage.filterBy('stereotype', '«maplayer»');
-    let wrapMaplayers = this.wrapModel(maplayers);
-    modelHash.maplayers = A(wrapMaplayers);
+    // Geolayers.
+    let geolayers = classesCurrentStage.filterBy('stereotype', '«geolayer»');
+    let wrapGeolayers = this.wrapModel(geolayers);
+    modelHash.geolayers = A(wrapGeolayers);
 
-    // Maplayerstyles.
-    let maplayerstyles = classesCurrentStage.filterBy('stereotype', '«maplayerstyle»');
-    let wrapMaplayerstyles = this.wrapModel(maplayerstyles);
-    modelHash.maplayerstyles = A(wrapMaplayerstyles);
+    // Geolayerstyles.
+    let geolayerstyles = classesCurrentStage.filterBy('stereotype', '«geolayerstyle»');
+    let wrapGeolayerstyles = this.wrapModel(geolayerstyles);
+    modelHash.geolayerstyles = A(wrapGeolayerstyles);
 
     // Userstereotypes.
     let designerStereotypes = A([
@@ -181,8 +181,8 @@ export default Route.extend({
       '«externalinterface»',
       '«interface»',
       '«userform»',
-      '«maplayer»',
-      '«maplayerstyle»'
+      '«geolayer»',
+      '«geolayerstyle»'
     ]);
     let userstereotypes = classesCurrentStage.filter(function(item) {
       return !designerStereotypes.includes(item.get('stereotype')) && !isBlank(item.get('stereotype'));
