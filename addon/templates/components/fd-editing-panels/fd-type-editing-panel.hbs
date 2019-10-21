@@ -9,6 +9,7 @@
         value=model.description
         class='fluid input'
         placeholder=(t "components.fd-type-editing-panel.description-placeholder")
+        readonly=readonly
       }}
     </div>
   </div>
@@ -22,6 +23,7 @@
         value=model.packet
         class='fluid input'
         placeholder=(t "components.fd-type-editing-panel.packet-placeholder")
+        readonly=readonly
       }}
     </div>
   </div>
@@ -35,6 +37,7 @@
         value=model.namespacePostfix
         class='fluid input'
         placeholder=(t "components.fd-type-editing-panel.namespace-postfix-placeholder")
+        readonly=readonly
       }}
     </div>
   </div>
@@ -45,6 +48,7 @@
     model=model.storeInstancesInTypeXML
     create=(action 'createStoreInstancesInType')
     delete=(action 'deleteStoreInstancesInType')
+    readonly=readonly
   }}
 
 </div>

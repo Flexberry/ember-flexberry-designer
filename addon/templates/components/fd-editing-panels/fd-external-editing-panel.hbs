@@ -10,6 +10,7 @@
         value=stageValue
         class='compact'
         onChange=(if deactivateActions '' (action "changeStageValue"))
+        readonly=readonly
       }}
       {{#if stageValue}}
         {{flexberry-dropdown
@@ -17,6 +18,7 @@
           value=classValue
           class='compact'
           onChange=(if deactivateActions '' (action "changeClassValue"))
+          readonly=readonly
         }}
       {{/if}}
 
@@ -32,6 +34,7 @@
         value=model.packet
         class='fluid input'
         placeholder=(t "components.fd-external-editing-panel.packet-placeholder")
+        readonly=readonly
       }}
     </div>
   </div>
@@ -45,6 +48,7 @@
         value=model.namespacePostfix
         class='fluid input'
         placeholder=(t "components.fd-external-editing-panel.namespace-postfix-placeholder")
+        readonly=readonly
       }}
     </div>
   </div>
@@ -55,6 +59,7 @@
     model=model.storeInstancesInTypeXML
     create=(action 'createStoreInstancesInType')
     delete=(action 'deleteStoreInstancesInType')
+    readonly=readonly
   }}
 
 </div>

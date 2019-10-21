@@ -127,6 +127,38 @@ export default Component.extend({
   highlightedElement: undefined,
 
   /**
+    Object with flags indicates whether diagram is readonly.
+
+    @property readonly
+    @type Boolean
+  */
+  readonly: false,
+
+  readonlyObserver: observer('readonly', function() {
+    let paper = this.get('paper');
+    if (isNone(paper)) {
+      return;
+    }
+
+    if (this.get('readonly')) {
+      $(paper.el).find('input,textarea').addClass('click-disabled');
+      paper.setInteractivity(false);
+      paper.off('element:pointermove', this._ghostElementMove, this);
+      paper.off('element:pointerup', this._ghostElementRemove, this);
+    } else {
+      $(paper.el).find('input,textarea').removeClass('click-disabled');
+      paper.setInteractivity({ elementMove: false });
+      paper.on('element:pointermove', this._ghostElementMove, this);
+      paper.on('element:pointerup', this._ghostElementRemove, this);
+      let highlightedElement = this.get('highlightedElement');
+      if (highlightedElement) {
+        highlightedElement.unhighlight();
+        this.set('highlightedElement', null);
+      }
+    }
+  }),
+
+  /**
     Add handlers on pointer events.
 
     @method pointerEvents
@@ -265,6 +297,7 @@ export default Component.extend({
     fitPaperToContent();
 
     this.get('fdDiagramService').on('updateJointObjectViewTriggered', this, this._updateJointObjectView);
+    this.get('readonlyObserver').apply(this);
   },
 
   /**

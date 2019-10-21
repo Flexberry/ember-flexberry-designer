@@ -58,8 +58,8 @@ export default Route.extend({
       extinterfaces: undefined,
       interfaces: undefined,
       userforms: undefined,
-      maplayers: undefined,
-      maplayerstyles: undefined,
+      geolayers: undefined,
+      geolayerstyles: undefined,
       userstereotypes: undefined
     };
 
@@ -167,17 +167,17 @@ export default Route.extend({
     let wrapUserforms = this.wrapModel(userformsSort);
     modelHash.userforms = A(wrapUserforms);
 
-    // Maplayers.
-    let maplayers = classesCurrentStage.filterBy('stereotype', '«maplayer»');
-    let maplayersSort = A(maplayers).sortBy('name');
-    let wrapMaplayers = this.wrapModel(maplayersSort);
-    modelHash.maplayers = A(wrapMaplayers);
+    // Geolayers.
+    let geolayers = classesCurrentStage.filterBy('stereotype', '«geolayer»');
+    let geolayersSort = A(geolayers).sortBy('name');
+    let wrapGeolayers = this.wrapModel(geolayersSort);
+    modelHash.geolayers = A(wrapGeolayers);
 
-    // Maplayerstyles.
-    let maplayerstyles = classesCurrentStage.filterBy('stereotype', '«maplayerstyle»');
-    let maplayerstylesSort = A(maplayerstyles).sortBy('name');
-    let wrapMaplayerstyles = this.wrapModel(maplayerstylesSort);
-    modelHash.maplayerstyles = A(wrapMaplayerstyles);
+    // Geolayerstyles.
+    let geolayerstyles = classesCurrentStage.filterBy('stereotype', '«geolayerstyle»');
+    let geolayerstylesSort = A(geolayerstyles).sortBy('name');
+    let wrapGeolayerstyles = this.wrapModel(geolayerstylesSort);
+    modelHash.geolayerstyles = A(wrapGeolayerstyles);
 
     // Userstereotypes.
     let designerStereotypes = A([
@@ -193,8 +193,8 @@ export default Route.extend({
       '«externalinterface»',
       '«interface»',
       '«userform»',
-      '«maplayer»',
-      '«maplayerstyle»'
+      '«geolayer»',
+      '«geolayerstyle»'
     ]);
     let userstereotypes = classesCurrentStage.filter(function(item) {
       return !designerStereotypes.includes(item.get('stereotype')) && !isBlank(item.get('stereotype'));
@@ -219,6 +219,10 @@ export default Route.extend({
     controller.set('isAddMode', false);
     controller.set('sheetComponentName', this.get('sheetComponentName'));
     controller.set('sheetViewName', this.get('sheetViewName'));
+    controller.set('readonlyMode', {
+      sheetComponentName: true,
+      sheetViewName: true
+    });
   },
 
   /**
