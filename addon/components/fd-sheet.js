@@ -133,7 +133,7 @@ export default Component.extend({
       let jqElements0 = $("html");
       let model = this.get('targetObject.selectedElement.model.data');
       let store = this.get('targetObject.store');
-      var printWindow = window.open('/#/?inframe=1', '_blank');
+      var printWindow = window.open('/#/fd-print-form?inframe=1', '_blank');
       //window.open('', '_blank');
       //document.write(jqElements);
       if (printWindow) {
@@ -162,15 +162,19 @@ export default Component.extend({
         // el3.appendChild(jqElements[0]);
         // printDocument.append(body);
 
-        printDocument.write(jqElements0[0].innerHTML);
+
+
+        //printDocument.write(jqElements0[0].innerHTML);
+
+
 
         // el.setAttributeNS(null, 'class', 'ui form');
         // printDocument.append(el);
         // printDocument.append(jqElements);
 
        
-        // printDocument.write('<html class="desktop landscape"><head><style type="text/css"></style></head><body class="ember-application"><div class="ui form "><div class="full height"><div class="flexberry-content"><div class="ui main container fluid"><div id="ember2085" class="fd-sheet diagrams-sheet visible ember-view" style="transform: translate3d(calc(50% - 300px), 0px, 0px);"><div class="content-mini"><div class="fd-sheet-body"><div id="ember2248" class="fd-uml-diagram-editor ember-view"><div id="ember2263" class="ember-view joint-paper joint-theme-default" style="width: 640px; height: 571px; margin-bottom: 119px;">' + jqElements[0].innerHTML
-        //  + '</div></div></div></div></div></div></div></div></div></body></html>');
+        printDocument.write('<html class="desktop landscape"><head><link integrity="" rel="stylesheet" href="/assets/vendor.css"><link id="theme" integrity="" rel="stylesheet" href="/assets/light.css"><style type="text/css"></style></head><body class="ember-application"><div class="ui form "><div class="full height"><div class="flexberry-content"><div class="ui main container fluid"><div id="ember2085" class="fd-sheet diagrams-sheet visible ember-view" style="transform: translate3d(calc(50% - 300px), 0px, 0px);"><div class="content-mini"><div class="fd-sheet-body"><div id="ember2248" class="fd-uml-diagram-editor ember-view"><div id="ember2263" class="ember-view joint-paper joint-theme-default" style="width: 640px; height: 571px; margin-bottom: 119px;">' + jqElements[0].innerHTML
+         + '</div></div></div></div></div></div></div></div></div></body></html>');
 
         //printDocument.write('<html><head><style>@media print { @page { padding: 0; margin: 0; } }</style><title>' 
         //+ (options.text ? options.text : '') 
