@@ -1,6 +1,7 @@
 import FlexberryButtonComponent from 'ember-flexberry/components/flexberry-button';
 import layout from '../templates/components/fd-round-button';
 import { next } from '@ember/runloop';
+import { isNone } from '@ember/utils';
 import $ from 'jquery';
 
 export default FlexberryButtonComponent.extend({
@@ -23,7 +24,10 @@ export default FlexberryButtonComponent.extend({
 
   actions: {
     buttonClicked(param) {
-      this.onButtonClicked(param);
+      let onButtonClick = this.onButtonClicked;
+      if (!isNone(onButtonClick)) {
+        onButtonClick(param);
+      }
     }
   }
 });

@@ -315,6 +315,11 @@ joint.util.setByPath(joint.shapes, 'flexberry.uml.PrimitiveElementView', primiti
 
 joint.shapes.flexberry.uml.PrimitiveElementView = joint.dia.ElementView.extend({
   getButtons() {
+    let readonly = this.paper.options.interactive;
+    if (!readonly && typeof readonly !== 'object') {
+      return A([]);
+    }
+
     return A([{
       name: 'remove-button',
       text: '&#xf00d',
@@ -328,6 +333,11 @@ joint.shapes.flexberry.uml.PrimitiveElementView = joint.dia.ElementView.extend({
   },
 
   getSizeChangers() {
+    let readonly = this.paper.options.interactive;
+    if (!readonly && typeof readonly !== 'object') {
+      return A([]);
+    }
+
     return A([{
       name: 'right-size-button',
       text: '&#xf0da',
@@ -424,4 +434,3 @@ joint.shapes.flexberry.uml.PrimitiveElementView = joint.dia.ElementView.extend({
     }
   }
 });
-

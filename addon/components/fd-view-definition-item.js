@@ -43,6 +43,15 @@ export default Component.extend({
   filterValue: '',
 
   /**
+    Flag: indicates whether property is readonly.
+
+    @property readonly
+    @type Boolean
+    @default true
+   */
+  readonly: false,
+
+  /**
     Type definition property.
 
     @property type

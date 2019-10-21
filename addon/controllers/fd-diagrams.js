@@ -120,9 +120,9 @@ export default Controller.extend(FdSaveHasManyRelationshipsMixin, FdSheetCloseCo
 
     @property objectEditFormSheet
     @type String
-    @default 'objectEditFormSheet'
+    @default ''
   */
-  objectEditFormSheet: 'objectEditFormSheet',
+  objectEditFormSheet: '',
 
   /**
     The part of the name for the component with the object edit form, corresponds to the stereotype.
@@ -167,6 +167,14 @@ export default Controller.extend(FdSaveHasManyRelationshipsMixin, FdSheetCloseCo
     @default false
   */
   isAddMode: false,
+
+  /**
+    Object with flags indicates whether edit panel is readonly.
+
+    @property readonlyMode
+    @type Object
+  */
+  readonlyMode: undefined,
 
   /**
     Ember.observer, watching property `searchValue` and send action from 'fd-sheet' component.
@@ -300,6 +308,7 @@ export default Controller.extend(FdSaveHasManyRelationshipsMixin, FdSheetCloseCo
         this.set('isAddMode', false);
       }
 
+      this.set('readonlyMode.sheetComponentName', true);
       schedule('afterRender', this, function() {
         this.set('isDiagramVisible', true);
       });
@@ -315,6 +324,7 @@ export default Controller.extend(FdSaveHasManyRelationshipsMixin, FdSheetCloseCo
   closeSheet(sheetName) {
     if (this.get('sheetComponentName') === sheetName) {
       this.deactivateListItem();
+      this.set('readonlyMode.sheetComponentName', true);
       this.set('selectedElement', undefined);
     } else if (this.get('objectEditFormSheet') === sheetName) {
       let editableObject = this.get('editableObject');
@@ -330,6 +340,7 @@ export default Controller.extend(FdSaveHasManyRelationshipsMixin, FdSheetCloseCo
       this.set('editableObjectModel', undefined);
       this.set('_attributesStr', undefined);
       this.set('_methodsStr', undefined);
+      this.set('readonlyMode.objectEditFormSheet', true);
     }
   },
 

@@ -7,12 +7,13 @@ import FdAttributesTree from '../../objects/fd-attributes-tree';
 import FdViewAttributesProperty from '../../objects/fd-view-attributes-property';
 import FdViewAttributesMaster from '../../objects/fd-view-attributes-master';
 import FdViewAttributesDetail from '../../objects/fd-view-attributes-detail';
+import FdReadonlyModeMixin from '../../mixins/fd-editing-panels/fd-readonly-mode';
 import { getDataForBuildTree, getClassTreeNode, getAssociationTreeNode, getAggregationTreeNode, getDetailView } from '../../utils/fd-attributes-for-tree';
 import layout from '../../templates/components/fd-editing-panels/fd-create-view';
 import $ from 'jquery';
 import { next } from '@ember/runloop';
 
-export default Component.extend({
+export default Component.extend(FdReadonlyModeMixin, {
   layout,
 
   /**

@@ -69,6 +69,14 @@ export default Controller.extend({
   isAddMode: false,
 
   /**
+    Object with flags indicates whether edit panel is readonly.
+
+    @property readonlyMode
+    @type Object
+  */
+  readonlyMode: undefined,
+
+  /**
     Custom button title.
 
     @property customButtonTitle
@@ -95,6 +103,20 @@ export default Controller.extend({
       valid_children: ['folder']
     }
   })),
+
+  /**
+    Dnd settings for jsTree.
+
+    @property typesOptions
+    @type Object
+  */
+  dndOptions: computed(function() {
+    return {
+      'is_draggable': function () {
+        return !this.get('readonlyMode.sheetComponentName');
+      }.bind(this)
+    }
+  }),
 
   /**
     Indicates when application class is absent.
@@ -124,6 +146,16 @@ export default Controller.extend({
     */
     save() {
       this._saveTree();
+      this.set('readonlyMode.sheetComponentName', true);
+    },
+
+    /**
+      Off readonlyMode.
+
+       @method actions.edit
+    */
+    edit() {
+      this.set('readonlyMode.sheetComponentName', false);
     },
 
     /**
@@ -138,6 +170,7 @@ export default Controller.extend({
 
       this._saveTree();
       this.get('fdSheetService').closeSheet(this.get('sheetComponentName'));
+      this.set('readonlyMode.sheetComponentName', true);
     },
 
     /**

@@ -345,7 +345,8 @@
   saveController=(action 'save')
   deleteController=(action 'delete')
   sheetComponentName=sheetComponentName
-  readonly=(not selectedElement.model.data.isNew)
+  readonlyMode=readonlyMode.sheetComponentName
+  nameIsReadonly=(not selectedElement.model.data.isNew)
   toolbarVisible=(not isAddMode)
   isNewModel=selectedElement.model.data.isNew
 }}
@@ -357,12 +358,14 @@
     {{#if (known-for-type (concat "fd-editing-panels/fd-" componentNamePart "-editing-panel"))}}
       {{component (concat "fd-editing-panels/fd-" componentNamePart "-editing-panel")
         model=selectedElement.model.data
+        readonlyMode=readonlyMode.sheetComponentName
         dataobject=selectedElement.dataobject
         openViewSheetController=(action 'openViewSheet')
       }}
     {{else}}
       {{fd-editing-panels/fd-custom-editing-panel
         model=selectedElement.model.data
+        readonlyMode=readonlyMode.sheetComponentName
       }}
     {{/if}}
   {{/if}}
@@ -373,13 +376,14 @@
   saveController=(action 'saveView')
   deleteController=(action 'deleteView')
   sheetComponentName=sheetViewName
-  readonly=false
+  readonlyMode=readonlyMode.sheetViewName
   isNewModel=selectedView.isNew
 }}
 
   {{fd-editing-panels/fd-create-view
     model=selectedElement.model.data
     view=selectedView
+    readonlyMode=readonlyMode.sheetViewName
   }}
 
 {{/fd-sheet}}

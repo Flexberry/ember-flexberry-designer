@@ -218,6 +218,7 @@
   sheetComponentName=sheetComponentName
   toolbarVisible=(not isAddMode)
   isNewModel=selectedElement.model.data.isNew
+  readonlyMode=readonlyMode.sheetComponentName
 }}
   {{#if isAddMode}}
     {{fd-editing-panels/fd-create-diagrams
@@ -229,6 +230,7 @@
         model=selectedElement.model.data
         emptyReferenceCountItems=emptyReferenceCountItems
         sheetComponentName=sheetComponentName
+        readonlyMode=readonlyMode.sheetComponentName
         openEditFormAction=(action "openObjectEditForm")
       }}
     {{/if}}
@@ -239,16 +241,19 @@
   title=editableObject.name
   saveController=(action "saveEditableObject")
   sheetComponentName=objectEditFormSheet
-  readonly=true
-  isNewModel=true
+  nameIsReadonly=true
+  deleteVisible=true
+  readonlyMode=readonlyMode.objectEditFormSheet
 }}
   {{#if (known-for-type (concat "fd-editing-panels/fd-" objectEditFormNamePart "-editing-panel"))}}
     {{component (concat "fd-editing-panels/fd-" objectEditFormNamePart "-editing-panel")
       model=editableObject
+      readonlyMode=readonlyMode.objectEditFormSheet
     }}
   {{else}}
     {{fd-editing-panels/fd-custom-editing-panel
       model=editableObject
+      readonlyMode=readonlyMode.objectEditFormSheet
     }}
   {{/if}}
 {{/fd-sheet}}
