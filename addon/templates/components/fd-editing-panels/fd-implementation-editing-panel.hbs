@@ -126,6 +126,135 @@
     {{/flexberry-toggler}}
   </div>
 
+  <div class="row">
+    {{#flexberry-toggler
+        caption=(t 'components.fd-implementation-editing-panel.toggler-authority-caption')
+        expanded=false
+    }}
+    <div class="ui grid fd-list">
+      <div class="row">
+        <div class="five wide column">
+          <div>{{t "components.fd-implementation-editing-panel.accesstype-caption"}}</div>
+        </div>
+        <div class="eleven wide column light-text">
+          {{flexberry-checkbox
+            onChange=(action "changeAccessType")
+            value=(eq model.accessType "this")
+            class='fluid input'
+            readonly=readonly
+          }}
+        </div>
+      </div>
+      <div class="row">
+        <div class="five wide column">
+          <div>{{t "components.fd-implementation-editing-panel.audit-enabled-caption"}}</div>
+        </div>
+        <div class="eleven wide column light-text">
+          {{flexberry-checkbox
+            value=model.auditEnabled
+            class='fluid input'
+            readonly=readonly
+          }}
+        </div>
+      </div>
+      <div class="row">
+        <div class="five wide column">
+          <div>{{t "components.fd-implementation-editing-panel.use-default-view-caption"}}</div>
+        </div>
+        <div class="eleven wide column light-text">
+          {{flexberry-checkbox
+            value=model.useDefaultView
+            class='fluid input'
+            readonly=readonly
+          }}
+        </div>
+      </div>
+      <div class="row">
+        <div class="five wide column">
+          <div>{{t "components.fd-implementation-editing-panel.insert-audit-caption"}}</div>
+        </div>
+        <div class="two wide column light-text">
+          {{flexberry-checkbox
+            value=model.insertAudit
+            class='fluid input'
+            readonly=readonly
+          }}
+        </div>
+        <div class="five wide column">
+          <div>{{t "components.fd-implementation-editing-panel.insert-audit-view-name-caption"}}</div>
+        </div>
+        <div class="four wide column light-text">
+          {{flexberry-textbox
+            value=model.insertAuditViewName
+            class=(concat 'fluid input' (if model.insertAudit '' ' disabled'))
+            placeholder=(t "components.fd-implementation-editing-panel.insert-audit-view-name-placeholder")
+            readonly=readonly
+          }}
+        </div>
+      </div>
+      <div class="row">
+        <div class="five wide column">
+          <div>{{t "components.fd-implementation-editing-panel.delete-audit-caption"}}</div>
+        </div>
+        <div class="two wide column light-text">
+          {{flexberry-checkbox
+            value=model.deleteAudit
+            class='fluid input'
+            readonly=readonly
+          }}
+        </div>
+        <div class="five wide column">
+          <div>{{t "components.fd-implementation-editing-panel.delete-audit-view-name-caption"}}</div>
+        </div>
+        <div class="four wide column light-text">
+          {{flexberry-textbox
+            value=model.deleteAuditViewName
+            class=(concat 'fluid input' (if model.deleteAudit '' ' disabled'))
+            placeholder=(t "components.fd-implementation-editing-panel.delete-audit-view-name-placeholder")
+            readonly=readonly
+          }}
+        </div>
+      </div>
+      <div class="row">
+        <div class="five wide column">
+          <div>{{t "components.fd-implementation-editing-panel.update-audit-caption"}}</div>
+        </div>
+        <div class="two wide column light-text">
+          {{flexberry-checkbox
+            value=model.updateAudit
+            class='fluid input'
+            readonly=readonly
+          }}
+        </div>
+        <div class="five wide column">
+          <div>{{t "components.fd-implementation-editing-panel.update-audit-view-name-caption"}}</div>
+        </div>
+        <div class="four wide column light-text">
+          {{flexberry-textbox
+            value=model.updateAuditViewName
+            class=(concat 'fluid input' (if model.updateAudit '' ' disabled'))
+            placeholder=(t "components.fd-implementation-editing-panel.update-audit-view-name-placeholder")
+            readonly=readonly
+          }}
+        </div>
+      </div>
+      <div class="row">
+        <div class="five wide column">
+          <div>{{t "components.fd-implementation-editing-panel.form-url-caption"}}</div>
+        </div>
+        <div class="eleven wide column light-text">
+          {{flexberry-textbox
+            value=model.formUrl
+            class='fluid input'
+            placeholder=(t "components.fd-implementation-editing-panel.form-url-placeholder")
+            readonly=readonly
+          }}
+        </div>
+      </div>
+    </div>
+    {{/flexberry-toggler}}
+  </div>
+
   {{fd-attribute-table
     tableView=tableViewAttribute
     buttonCaption=attributeButton
