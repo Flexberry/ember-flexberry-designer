@@ -18,14 +18,6 @@ export default Controller.extend(FdSheetCloseConfirm, {
   currentProjectContext: service('fd-current-project-context'),
 
   /**
-    Service for managing the state of the application.
-
-    @property appState
-    @type AppStateService
-  */
-  appState: service(),
-
-  /**
     Service for managing the state of the sheet component.
 
     @property fdSheetService
@@ -149,7 +141,6 @@ export default Controller.extend(FdSheetCloseConfirm, {
   }),
 
   actions: {
-
     /**
       Create new class.
 

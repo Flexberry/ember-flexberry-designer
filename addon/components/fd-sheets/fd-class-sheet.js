@@ -24,11 +24,11 @@ export default FdBaseSheet.extend({
   /**
     Sheet view name.
 
-    @property sheetViewName
+    @property nestedSheetName
     @type String
     @default 'view-sheet'
   */
-  sheetViewName: 'view-sheet',
+  nestedSheetName: 'view-sheet',
 
   /**
     Data.
@@ -99,7 +99,6 @@ export default FdBaseSheet.extend({
   */
   openSheet(sheetName, currentItem) {
     this.deactivateListItem();
-    this.closeViewSheet();
     this.set('readonlyMode', true);
     this.set('selectedValue', currentItem);
     if (!isNone(currentItem)) {
@@ -115,22 +114,8 @@ export default FdBaseSheet.extend({
   */
   closeSheet() {
     this.deactivateListItem();
-    this.closeViewSheet();
     this.set('readonlyMode', true);
     this.set('selectedValue', undefined);
-  },
-
-  /**
-    Closing view sheet.
-
-     @method closeViewSheet
-  */
-  closeViewSheet() {
-    let sheetViewName = this.get('sheetViewName');
-    let fdSheetService = this.get('fdSheetService');
-    if (fdSheetService.isVisible(sheetViewName)) {
-      fdSheetService.closeSheet(sheetViewName);
-    }
   },
 
   /**
@@ -282,16 +267,6 @@ export default FdBaseSheet.extend({
   },
 
   actions: {
-    /**
-      Opening sheet 'view-sheet'.
-
-       @method actions.openViewSheet
-       @param {Object} view view
-    */
-    openViewSheet(view) {
-      this.get('fdSheetService').openSheet(this.get('sheetViewName'), view);
-    },
-
     /**
       Save 'selectedValue'.
 

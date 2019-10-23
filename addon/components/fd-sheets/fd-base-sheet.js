@@ -1,6 +1,7 @@
 import Component from '@ember/component';
 import FdSaveHasManyRelationshipsMixin from '../../mixins/fd-save-has-many-relationships';
 import { inject as service } from '@ember/service';
+import { isBlank } from '@ember/utils';
 import { assert } from '@ember/debug';
 
 export default Component.extend(FdSaveHasManyRelationshipsMixin, {
@@ -54,6 +55,15 @@ export default Component.extend(FdSaveHasManyRelationshipsMixin, {
   sheetComponentName: '',
 
   /**
+    Child sheet component name.
+
+    @property nestedSheetName
+    @type String
+    @default ''
+  */
+  nestedSheetName: '',
+
+  /**
     Flag: indicates whether property is readonly.
 
     @property readonlyMode
@@ -93,6 +103,7 @@ export default Component.extend(FdSaveHasManyRelationshipsMixin, {
   openSheetBase(sheetName, currentItem) {
     let sheetComponentName = this.get('sheetComponentName');
     if (sheetComponentName === sheetName) {
+      this.closeNestedSheet();
       this.openSheet(sheetName, currentItem);
     }
   },
@@ -106,7 +117,20 @@ export default Component.extend(FdSaveHasManyRelationshipsMixin, {
   closeSheetBase(sheetName) {
     let sheetComponentName = this.get('sheetComponentName');
     if (sheetComponentName === sheetName) {
+      this.closeNestedSheet();
       this.closeSheet(sheetName);
+    }
+  },
+
+  /**
+    Closing nested sheet.
+
+     @method closeNestedSheet
+  */
+  closeNestedSheet() {
+    let nestedSheetName = this.get('nestedSheetName');
+    if (!isBlank(nestedSheetName) && this.get('fdSheetService').isVisible(nestedSheetName)) {
+      this.get('fdSheetService').closeSheet(nestedSheetName);
     }
   },
 
@@ -130,4 +154,19 @@ export default Component.extend(FdSaveHasManyRelationshipsMixin, {
   closeSheet(sheetName) {
     assert(`Please specify 'closeSheet' method for '${sheetName}' sheet compoenent`);
   },
+
+  actions: {
+    /**
+      Opening nested sheet.
+
+       @method openNestedSheet
+       @param {Object} object The object to edit
+    */
+    openNestedSheet(object) {
+      let nestedSheetName = this.get('nestedSheetName');
+      if (!isBlank(nestedSheetName)) {
+        this.get('fdSheetService').openSheet(nestedSheetName, object);
+      }
+    },
+  }
 });

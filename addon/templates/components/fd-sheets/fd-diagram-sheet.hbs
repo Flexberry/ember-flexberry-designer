@@ -22,21 +22,17 @@
   </div>
   <div class="fd-sheet-body">
     {{#if isAddMode}}
-      {{fd-editing-panels/fd-create-entity
-        createClassAction=createClass
+      {{fd-editing-panels/fd-create-diagrams
+        createDiagramAction=createDiagram
       }}
     {{else}}
-      {{#if (known-for-type (concat "fd-editing-panels/fd-" componentNamePart "-editing-panel"))}}
-        {{component (concat "fd-editing-panels/fd-" componentNamePart "-editing-panel")
+      {{#if isDiagramVisible}}
+        {{fd-uml-diagram-editor
           model=selectedValue.model.data
+          emptyReferenceCountItems=emptyReferenceCountItems
+          sheetComponentName=sheetComponentName
           readonlyMode=readonlyMode
-          dataobject=selectedValue.dataobject
-          openViewSheetController=(action 'openNestedSheet')
-        }}
-      {{else}}
-        {{fd-editing-panels/fd-custom-editing-panel
-          model=selectedValue.model.data
-          readonlyMode=readonlyMode
+          openEditFormAction=(action "openNestedSheet")
         }}
       {{/if}}
     {{/if}}
