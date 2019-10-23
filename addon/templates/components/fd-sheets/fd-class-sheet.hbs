@@ -1,0 +1,44 @@
+<div class="content-mini">
+  <div class="ui {{if loadingState "active"}} inverted dimmer">
+    <div class="ui text loader"></div>
+  </div>
+  <div class="fd-sheet-header">
+    {{fd-sheets/fd-sheets-tool-bar
+      sheetComponentName=sheetComponentName
+      readonlyMode=readonlyMode
+      isNewModel=selectedValue.model.data.isNew
+      sheetButtons=(array 'delete' 'save')
+      toolbarVisible=(not isAddMode)
+      saveSheet=(action 'save')
+      deleteSheet=(action 'delete')
+    }}
+    {{flexberry-textbox
+      value=computedTitle
+      placeholder=(t "components.fd-sheets-tool-bar.placeholder-caption")
+      readonly=(not selectedValue.model.data.isNew)
+      class='form-header fluid'
+      maxlength=maxlength
+    }}
+  </div>
+  <div class="fd-sheet-body">
+    {{#if isAddMode}}
+      {{fd-editing-panels/fd-create-entity
+        createClassAction=createClass
+      }}
+    {{else}}
+      {{#if (known-for-type (concat "fd-editing-panels/fd-" componentNamePart "-editing-panel"))}}
+        {{component (concat "fd-editing-panels/fd-" componentNamePart "-editing-panel")
+          model=selectedValue.model.data
+          readonlyMode=readonlyMode
+          dataobject=selectedValue.dataobject
+          openViewSheetController=(action 'openViewSheet')
+        }}
+      {{else}}
+        {{fd-editing-panels/fd-custom-editing-panel
+          model=selectedValue.model.data
+          readonlyMode=readonlyMode
+        }}
+      {{/if}}
+    {{/if}}
+  </div>
+</div>

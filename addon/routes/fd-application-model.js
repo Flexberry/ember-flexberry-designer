@@ -29,16 +29,7 @@ export default Route.extend({
     @type String
     @default 'application-model-sheet'
   */
-  sheetComponentName: 'application-model-sheet',
-
-  /**
-    Sheet view name.
-
-    @property sheetViewName
-    @type String
-    @default 'view-sheet'
-  */
-  sheetViewName: 'view-sheet',
+  sheetComponentName: 'class-sheet',
 
   /**
     A hook you can implement to convert the URL into the model for this route.
@@ -218,11 +209,6 @@ export default Route.extend({
 
     controller.set('isAddMode', false);
     controller.set('sheetComponentName', this.get('sheetComponentName'));
-    controller.set('sheetViewName', this.get('sheetViewName'));
-    controller.set('readonlyMode', {
-      sheetComponentName: true,
-      sheetViewName: true
-    });
   },
 
   /**

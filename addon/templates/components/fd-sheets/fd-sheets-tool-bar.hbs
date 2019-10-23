@@ -1,0 +1,31 @@
+<div class="fd-sheet-toolbar">
+  {{#if customButtonVisible}}
+    <button class="ui button" {{action 'customButtonAction'}}>
+      {{t customButtonTitle}}
+    </button>
+  {{/if}}
+  {{#if toolbarVisible}}
+    {{#if (and readonlyMode (not isNewModel))}}
+      <button class="ui button" {{action 'edit'}}>
+        {{t "components.fd-sheets-tool-bar.edit-caption"}}
+      </button>
+    {{else}}
+      {{#if buttonVisible.save}}
+        <button class="ui button" {{action 'save'}}>
+          {{t "components.fd-sheets-tool-bar.save-caption"}}
+        </button>
+      {{/if}}
+      {{#if (and (not isNewModel) buttonVisible.delete)}}
+        <button class="ui icon button" {{action 'delete'}}>
+          <i class="icon-fd-trash-can icon" ></i>
+        </button>
+      {{/if}}
+    {{/if}}
+  {{/if}}
+  <button class="ui icon button" {{action 'expand'}}>
+    <i class="icon-fd-resize icon" ></i>
+  </button>
+  <button class="ui icon button" {{action 'closeSheet'}}>
+    <i class="icon-fd-x-mark icon" ></i>
+  </button>
+</div>
