@@ -144,9 +144,7 @@ export default FdBaseSheet.extend({
       selectedValue.save()
       .then(() => this.saveHasManyRelationships(selectedValue))
       .catch((error) => {
-        this.set('isError', true);
-        this.set('messageText', error.message);
-        this.set('show', true);
+        this.get('fdDialogService').showErrorMessage(error.message);
       })
       .finally(() => {
         this.get('appState').reset();

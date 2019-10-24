@@ -452,9 +452,7 @@ export default FdBaseSheet.extend({
         }
       })
       .catch((error) => {
-        this.set('isError', true);
-        this.set('messageText', error.message);
-        this.set('show', true);
+        this.get('fdDialogService').showErrorMessage(error.message);
       })
       .finally(() => {
         this.get('appState').reset();
@@ -520,9 +518,7 @@ export default FdBaseSheet.extend({
         this.get('fdSheetService').closeSheet(this.get('sheetComponentName'));
       })
       .catch((error) => {
-        this.set('isError', true);
-        this.set('messageText', error.message);
-        this.set('show', true);
+        this.get('fdDialogService').showErrorMessage(error.message);
       })
       .finally(() => {
         this.get('appState').reset();
