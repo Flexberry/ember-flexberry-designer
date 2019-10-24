@@ -11,7 +11,7 @@ export default FdBaseSheet.extend({
 
     @property sheetComponentName
     @type String
-    @default 'class-sheet'
+    @default 'view-sheet'
   */
   sheetComponentName: 'view-sheet',
 
