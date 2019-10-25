@@ -1,6 +1,8 @@
 import { translationMacro as t } from 'ember-i18n';
 import layout from '../templates/components/fd-modal-message-box';
+import $ from 'jquery';
 import FlexberryDialogComponent from 'ember-flexberry/components/flexberry-dialog';
+
 import { computed } from '@ember/object';
 
 export default FlexberryDialogComponent.extend({
@@ -100,6 +102,6 @@ export default FlexberryDialogComponent.extend({
   */
   didInsertElement() {
     this._super(...arguments);
-    $('.modal').modal('attach events', '.flexberry-dialog-close-button');
+    $(this.element).modal('attach events', '.flexberry-dialog-close-button')
   }
 });
