@@ -1,2 +1,5 @@
 @headerBackground: @pageBackground;
 @contentBackground: @pageBackground;
+
+@basicModalHeaderColor: @veryStrongTransparentWhite;
+@basicModalColor: @veryStrongTransparentWhite;

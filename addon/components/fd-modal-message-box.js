@@ -1,9 +1,34 @@
 import { translationMacro as t } from 'ember-i18n';
 import layout from '../templates/components/fd-modal-message-box';
 import FlexberryDialogComponent from 'ember-flexberry/components/flexberry-dialog';
+import { computed } from '@ember/object';
 
 export default FlexberryDialogComponent.extend({
   layout,
+
+  /**
+    See [EmberJS API](https://emberjs.com/api/).
+
+    @property classNames
+  */
+  classNames: ['basic'],
+
+  /**
+    Flag: indicates whether dialog is closable (can be closed on it's dimmer click).
+    @property closable
+    @type Boolean
+    @default true
+  */
+  closable: true,
+
+  /**
+    Сomponent icon class to display in the header.
+
+    @property headerIcon
+    @type String
+    @default undefined
+  */
+  headerIcon: undefined,
 
   /**
     Flag: indicates whether to show modal button.
@@ -56,4 +81,25 @@ export default FlexberryDialogComponent.extend({
     @default t('components.fd-modal-message-box.confirmation-deny')
   */
   denyButtonCaption: t('components.fd-modal-message-box.confirmation-deny'),
+
+  /**
+    Component's close button caption.
+
+    @property closeButtonCaption
+    @type String
+  */
+  closeButtonCaption: computed('isError', 'i18n.locale', function() {
+    let i18n = this.get('i18n');
+    return this.get('isError') ? i18n.t('components.fd-modal-message-box.confirmation-close') : i18n.t('components.fd-modal-message-box.confirmation-cancel');
+  }),
+
+  /**
+    See [EmberJS API](https://emberjs.com/).
+
+    @method didInsertElement
+  */
+  didInsertElement() {
+    this._super(...arguments);
+    $('.modal').modal('attach events', '.flexberry-dialog-close-button');
+  }
 });

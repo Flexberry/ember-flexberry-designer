@@ -15,11 +15,15 @@ export default FlexberryButtonComponent.extend({
 
   colorClass: ' ',
 
+  /**
+    Components class names bindings.
+    @property classNameBindings
+    @type String[]
+  */
+  classNameBindings: ['colorClass'],
+
   didInsertElement() {
     this._super(...arguments);
-    next(() => {
-      $(this.element).addClass(this.get('colorClass'));
-    });
   },
 
   actions: {
