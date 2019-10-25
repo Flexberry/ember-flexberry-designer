@@ -52,8 +52,8 @@ export default FdBaseSheet.extend({
     Opening sheet.
 
      @method openSheet
-     @param {String} sheetName Sheet's dbName
-     @param {Object} currentItem Current list item
+     @param {String} sheetName Sheet's name.
+     @param {Object} currentItem Current list item.
   */
   openSheet(sheetName, currentItem) {
     this.set('isAddMode', false);
@@ -64,7 +64,7 @@ export default FdBaseSheet.extend({
     Closing sheet.
 
      @method closeSheet
-     @param {String} sheetName Sheet's dbName
+     @param {String} sheetName Sheet's name.
   */
   closeSheet() {
     const treeObject = this.get('treeObject');

@@ -94,8 +94,8 @@ export default FdBaseSheet.extend({
     Opening sheet.
 
      @method openSheet
-     @param {String} sheetName Sheet's dbName
-     @param {Object} currentItem Current list item
+     @param {String} sheetName Sheet's name.
+     @param {Object} currentItem Current list item.
   */
   openSheet(sheetName, currentItem) {
     this.deactivateListItem();
@@ -172,7 +172,7 @@ export default FdBaseSheet.extend({
     Save changes in primitives.
 
     @method savePrimitives
-    @param {Object} model diagram model.
+    @param {Object} model Diagram model.
   */
   savePrimitives(model) {
     let promises = A();
@@ -379,7 +379,7 @@ export default FdBaseSheet.extend({
     Check data for correctness.
 
     @method validateData
-    @param {Object} model diagram model.
+    @param {Object} model Diagram model.
   */
   validateData(model) {
     let emptyClass = model.get('primitives').find((p) => {
@@ -421,6 +421,7 @@ export default FdBaseSheet.extend({
       Save 'selectedValue'.
 
        @method actions.save
+       @param {Boolean} closeAfter Close after save.
     */
     save(closeAfter) {
       const selectedValue = this.get('selectedValue');

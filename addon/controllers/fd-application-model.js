@@ -68,7 +68,7 @@ export default Controller.extend(FdSheetCloseConfirm, {
   }),
 
   /**
-    Update model for sort
+    Update model for sort.
 
     @method sortModel
   */
@@ -90,7 +90,7 @@ export default Controller.extend(FdSheetCloseConfirm, {
   }),
 
   /**
-    Update model for search
+    Update model for search.
 
     @method filteredModel
   */
@@ -145,8 +145,8 @@ export default Controller.extend(FdSheetCloseConfirm, {
       Create new class.
 
        @method actions.createClass
-       @param {String} stereotype stereotype
-       @param {Object} dataobject dataobject for list and edit form.
+       @param {String} stereotype Stereotype.
+       @param {Object} dataobject Dataobject for list and edit form.
     */
     createClass(stereotype, dataobject) {
       let store = this.get('store');
@@ -186,7 +186,7 @@ export default Controller.extend(FdSheetCloseConfirm, {
     },
 
     /**
-      This method will notify all observers that the model changed value
+      This method will notify all observers that the model changed value.
 
        @method actions.updateModel
     */

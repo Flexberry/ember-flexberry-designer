@@ -144,7 +144,7 @@ export default Controller.extend(FdSheetCloseConfirm, {
       Add sub folder in tree.
 
        @method actions.addSubFolder
-       @param {Object} node jstree node
+       @param {Object} node Jstree node.
     */
     addSubFolder(node) {
       let jstree = this.get('treeObject').jstree(true);
@@ -165,8 +165,8 @@ export default Controller.extend(FdSheetCloseConfirm, {
       Add sub form in tree.
 
        @method actions.addSubForm
-       @param {Object} nodes jstree nodes
-       @param {Object} selectedNode selected node
+       @param {Object} nodes Jstree nodes.
+       @param {Object} selectedNode Selected node.
     */
     addSubForm(nodes, selectedNode) {
       let jstree = this.get('treeObject').jstree(true);
@@ -275,9 +275,9 @@ export default Controller.extend(FdSheetCloseConfirm, {
     Find free id and text in tree.
 
      @method _findFreeNodeData
-     @param {String} node tree node
-     @param {String} text text part
-     @param {String} id text part
+     @param {String} node Tree node.
+     @param {String} text Text part.
+     @param {String} id Text part.
   */
   _findFreeNodeData(node, text, id) {
     let jstree = this.get('treeObject').jstree(true);

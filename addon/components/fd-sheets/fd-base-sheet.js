@@ -97,8 +97,8 @@ export default Component.extend(FdSaveHasManyRelationshipsMixin, {
     Opening sheet base method.
 
      @method openSheetBase
-     @param {String} sheetName Sheet's dbName
-     @param {Object} currentItem Current list item
+     @param {String} sheetName Sheet's name.
+     @param {Object} currentItem Current list item.
   */
   openSheetBase(sheetName, currentItem) {
     let sheetComponentName = this.get('sheetComponentName');
@@ -112,7 +112,7 @@ export default Component.extend(FdSaveHasManyRelationshipsMixin, {
     Closing sheet base method.
 
      @method closeSheetBase
-     @param {String} sheetName Sheet's dbName
+     @param {String} sheetName Sheet's name.
   */
   closeSheetBase(sheetName) {
     let sheetComponentName = this.get('sheetComponentName');
@@ -138,8 +138,8 @@ export default Component.extend(FdSaveHasManyRelationshipsMixin, {
     Opening sheet.
 
      @method openSheet
-     @param {String} sheetName Sheet's dbName
-     @param {Object} currentItem Current list item
+     @param {String} sheetName Sheet's name.
+     @param {Object} currentItem Current list item.
   */
   openSheet(sheetName) {
     assert(`Please specify 'openSheet' method for '${sheetName}' sheet compoenent`);
@@ -149,7 +149,7 @@ export default Component.extend(FdSaveHasManyRelationshipsMixin, {
     Closing sheet.
 
      @method closeSheet
-     @param {String} sheetName Sheet's dbName
+     @param {String} sheetName Sheet's name.
   */
   closeSheet(sheetName) {
     assert(`Please specify 'closeSheet' method for '${sheetName}' sheet compoenent`);
@@ -160,7 +160,7 @@ export default Component.extend(FdSaveHasManyRelationshipsMixin, {
       Opening nested sheet.
 
        @method openNestedSheet
-       @param {Object} object The object to edit
+       @param {Object} object The object to edit.
     */
     openNestedSheet(object) {
       let nestedSheetName = this.get('nestedSheetName');

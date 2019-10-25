@@ -80,8 +80,8 @@ export default FdBaseSheet.extend({
     Opening sheet.
 
      @method openSheet
-     @param {String} sheetName Sheet's dbName
-     @param {Object} currentItem Current list item
+     @param {String} sheetName Sheet's name.
+     @param {Object} currentItem Current list item.
   */
   openSheet(sheetName, currentItem) {
     let store = this.get('store');

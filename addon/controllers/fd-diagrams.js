@@ -65,7 +65,7 @@ export default Controller.extend(FdSheetCloseConfirm, {
   }),
 
   /**
-    Update model for sort
+    Update model for sort.
 
     @method sortModel
   */
@@ -81,7 +81,7 @@ export default Controller.extend(FdSheetCloseConfirm, {
   }),
 
   /**
-    Update model for search
+    Update model for search.
 
     @method filteredModel
   */
@@ -116,7 +116,7 @@ export default Controller.extend(FdSheetCloseConfirm, {
       Create new diagram.
 
        @method actions.createDiagram
-       @param {String} modelNamePart part modelName
+       @param {String} modelNamePart Part modelName.
     */
     createDiagram(modelNamePart) {
       let store = this.get('store');
@@ -145,7 +145,7 @@ export default Controller.extend(FdSheetCloseConfirm, {
     },
 
     /**
-      This method will notify all observers that the model changed value
+      This method will notify all observers that the model changed value.
 
        @method actions.updateModel
     */

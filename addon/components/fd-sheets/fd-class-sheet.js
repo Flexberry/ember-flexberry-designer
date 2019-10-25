@@ -94,8 +94,8 @@ export default FdBaseSheet.extend({
     Opening sheet.
 
      @method openSheet
-     @param {String} sheetName Sheet's dbName
-     @param {Object} currentItem Current list item
+     @param {String} sheetName Sheet's name.
+     @param {Object} currentItem Current list item.
   */
   openSheet(sheetName, currentItem) {
     this.deactivateListItem();
@@ -110,7 +110,7 @@ export default FdBaseSheet.extend({
     Closing sheet.
 
      @method closeSheet
-     @param {String} sheetName Sheet's dbName
+     @param {String} sheetName Sheet's name.
   */
   closeSheet() {
     this.deactivateListItem();
@@ -152,7 +152,7 @@ export default FdBaseSheet.extend({
     Find array in model.
 
      @method getModelArrayByStereotype
-     @param {Object} model model object
+     @param {Object} model Model object.
   */
   getModelArrayByStereotype(model) {
     let findArray;
@@ -236,7 +236,7 @@ export default FdBaseSheet.extend({
     Check data for correctness.
 
     @method validateData
-    @param {Object} model class model.
+    @param {Object} model Class model.
   */
   validateData(model) {
     let modelName = model.get('name');
@@ -271,7 +271,7 @@ export default FdBaseSheet.extend({
       Save 'selectedValue'.
 
        @method actions.save
-       @param {Boolean} closeAfter close after save
+       @param {Boolean} closeAfter Close after save.
     */
     save(closeAfter) {
       const selectedValue = this.get('selectedValue');
