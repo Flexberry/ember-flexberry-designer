@@ -2888,7 +2888,7 @@ define('dummy/controllers/fd-generation-process-form/new', ['exports', 'ember-fl
     }
   });
 });
-define('dummy/controllers/fd-generation/first', ['exports', 'ember-flexberry-designer/controllers/fd-generation/first'], function (exports, _first) {
+define('dummy/controllers/fd-generation', ['exports', 'ember-flexberry-designer/controllers/fd-generation'], function (exports, _fdGeneration) {
   'use strict';
 
   Object.defineProperty(exports, "__esModule", {
@@ -2897,33 +2897,7 @@ define('dummy/controllers/fd-generation/first', ['exports', 'ember-flexberry-des
   Object.defineProperty(exports, 'default', {
     enumerable: true,
     get: function () {
-      return _first.default;
-    }
-  });
-});
-define('dummy/controllers/fd-generation/list', ['exports', 'ember-flexberry-designer/controllers/fd-generation/list'], function (exports, _list) {
-  'use strict';
-
-  Object.defineProperty(exports, "__esModule", {
-    value: true
-  });
-  Object.defineProperty(exports, 'default', {
-    enumerable: true,
-    get: function () {
-      return _list.default;
-    }
-  });
-});
-define('dummy/controllers/fd-generation/list/log', ['exports', 'ember-flexberry-designer/controllers/fd-generation/list/log'], function (exports, _log) {
-  'use strict';
-
-  Object.defineProperty(exports, "__esModule", {
-    value: true
-  });
-  Object.defineProperty(exports, 'default', {
-    enumerable: true,
-    get: function () {
-      return _log.default;
+      return _fdGeneration.default;
     }
   });
 });
@@ -4241,21 +4215,6 @@ define('dummy/ember-flexberry-designer/tests/addon.lint-test', [], function () {
   QUnit.test('addon/controllers/fd-generation.js', function (assert) {
     assert.expect(1);
     assert.ok(true, 'addon/controllers/fd-generation.js should pass ESLint\n\n');
-  });
-
-  QUnit.test('addon/controllers/fd-generation/first.js', function (assert) {
-    assert.expect(1);
-    assert.ok(true, 'addon/controllers/fd-generation/first.js should pass ESLint\n\n');
-  });
-
-  QUnit.test('addon/controllers/fd-generation/list.js', function (assert) {
-    assert.expect(1);
-    assert.ok(true, 'addon/controllers/fd-generation/list.js should pass ESLint\n\n');
-  });
-
-  QUnit.test('addon/controllers/fd-generation/list/log.js', function (assert) {
-    assert.expect(1);
-    assert.ok(true, 'addon/controllers/fd-generation/list/log.js should pass ESLint\n\n');
   });
 
   QUnit.test('addon/controllers/fd-inheritance-edit-form.js', function (assert) {
@@ -8123,21 +8082,6 @@ define('dummy/ember-flexberry-designer/tests/addon.lint-test', [], function () {
     assert.ok(true, 'addon/routes/fd-generation.js should pass ESLint\n\n');
   });
 
-  QUnit.test('addon/routes/fd-generation/first.js', function (assert) {
-    assert.expect(1);
-    assert.ok(true, 'addon/routes/fd-generation/first.js should pass ESLint\n\n');
-  });
-
-  QUnit.test('addon/routes/fd-generation/list.js', function (assert) {
-    assert.expect(1);
-    assert.ok(true, 'addon/routes/fd-generation/list.js should pass ESLint\n\n');
-  });
-
-  QUnit.test('addon/routes/fd-generation/list/log.js', function (assert) {
-    assert.expect(1);
-    assert.ok(true, 'addon/routes/fd-generation/list/log.js should pass ESLint\n\n');
-  });
-
   QUnit.test('addon/routes/fd-inheritance-edit-form.js', function (assert) {
     assert.expect(1);
     assert.ok(true, 'addon/routes/fd-inheritance-edit-form.js should pass ESLint\n\n');
@@ -9718,19 +9662,9 @@ define('dummy/ember-flexberry-designer/tests/app.lint-test', [], function () {
     assert.ok(true, 'app/controllers/fd-generation-process-form/new.js should pass ESLint\n\n');
   });
 
-  QUnit.test('app/controllers/fd-generation/first.js', function (assert) {
+  QUnit.test('app/controllers/fd-generation.js', function (assert) {
     assert.expect(1);
-    assert.ok(true, 'app/controllers/fd-generation/first.js should pass ESLint\n\n');
-  });
-
-  QUnit.test('app/controllers/fd-generation/list.js', function (assert) {
-    assert.expect(1);
-    assert.ok(true, 'app/controllers/fd-generation/list.js should pass ESLint\n\n');
-  });
-
-  QUnit.test('app/controllers/fd-generation/list/log.js', function (assert) {
-    assert.expect(1);
-    assert.ok(true, 'app/controllers/fd-generation/list/log.js should pass ESLint\n\n');
+    assert.ok(true, 'app/controllers/fd-generation.js should pass ESLint\n\n');
   });
 
   QUnit.test('app/controllers/fd-inheritance-edit-form.js', function (assert) {
@@ -10501,21 +10435,6 @@ define('dummy/ember-flexberry-designer/tests/app.lint-test', [], function () {
   QUnit.test('app/routes/fd-generation.js', function (assert) {
     assert.expect(1);
     assert.ok(true, 'app/routes/fd-generation.js should pass ESLint\n\n');
-  });
-
-  QUnit.test('app/routes/fd-generation/first.js', function (assert) {
-    assert.expect(1);
-    assert.ok(true, 'app/routes/fd-generation/first.js should pass ESLint\n\n');
-  });
-
-  QUnit.test('app/routes/fd-generation/list.js', function (assert) {
-    assert.expect(1);
-    assert.ok(true, 'app/routes/fd-generation/list.js should pass ESLint\n\n');
-  });
-
-  QUnit.test('app/routes/fd-generation/list/log.js', function (assert) {
-    assert.expect(1);
-    assert.ok(true, 'app/routes/fd-generation/list/log.js should pass ESLint\n\n');
   });
 
   QUnit.test('app/routes/fd-inheritance-edit-form.js', function (assert) {
@@ -14349,12 +14268,7 @@ define('dummy/router', ['exports', 'dummy/config/environment'], function (export
     this.route('fd-application-model');
     this.route('fd-diagrams');
     this.route('fd-navigation');
-    this.route('fd-generation', { path: 'generation' }, function () {
-      this.route('first');
-      this.route('list', { path: '' }, function () {
-        this.route('log', { path: ':generation_id' });
-      });
-    });
+    this.route('fd-generation', { path: 'generation' });
 
     this.route('fd-setting');
     this.route('fd-architecture');
@@ -15000,45 +14914,6 @@ define('dummy/routes/fd-generation', ['exports', 'ember-flexberry-designer/route
     enumerable: true,
     get: function () {
       return _fdGeneration.default;
-    }
-  });
-});
-define('dummy/routes/fd-generation/first', ['exports', 'ember-flexberry-designer/routes/fd-generation/first'], function (exports, _first) {
-  'use strict';
-
-  Object.defineProperty(exports, "__esModule", {
-    value: true
-  });
-  Object.defineProperty(exports, 'default', {
-    enumerable: true,
-    get: function () {
-      return _first.default;
-    }
-  });
-});
-define('dummy/routes/fd-generation/list', ['exports', 'ember-flexberry-designer/routes/fd-generation/list'], function (exports, _list) {
-  'use strict';
-
-  Object.defineProperty(exports, "__esModule", {
-    value: true
-  });
-  Object.defineProperty(exports, 'default', {
-    enumerable: true,
-    get: function () {
-      return _list.default;
-    }
-  });
-});
-define('dummy/routes/fd-generation/list/log', ['exports', 'ember-flexberry-designer/routes/fd-generation/list/log'], function (exports, _log) {
-  'use strict';
-
-  Object.defineProperty(exports, "__esModule", {
-    value: true
-  });
-  Object.defineProperty(exports, 'default', {
-    enumerable: true,
-    get: function () {
-      return _log.default;
     }
   });
 });
@@ -17872,31 +17747,7 @@ define("dummy/templates/fd-generation", ["exports"], function (exports) {
   Object.defineProperty(exports, "__esModule", {
     value: true
   });
-  exports.default = Ember.HTMLBars.template({ "id": "m80BJi9i", "block": "{\"symbols\":[],\"statements\":[[1,[20,\"outlet\"],false],[0,\"\\n\"]],\"hasEval\":false}", "meta": { "moduleName": "dummy/templates/fd-generation.hbs" } });
-});
-define("dummy/templates/fd-generation/first", ["exports"], function (exports) {
-  "use strict";
-
-  Object.defineProperty(exports, "__esModule", {
-    value: true
-  });
-  exports.default = Ember.HTMLBars.template({ "id": "3GP4liBn", "block": "{\"symbols\":[],\"statements\":[[6,\"div\"],[10,\"class\",\"fd-centered-new-form\"],[8],[0,\"\\n\\n  \"],[6,\"h1\"],[8],[1,[26,\"t\",[\"forms.fd-generation.generation-app\"],null],false],[9],[0,\"\\n\\n  \"],[6,\"div\"],[10,\"class\",\"ui stackable grid fd-list-edited\"],[8],[0,\"\\n    \"],[6,\"div\"],[10,\"class\",\"row\"],[8],[0,\"\\n      \"],[6,\"div\"],[10,\"class\",\"four wide column\"],[8],[1,[26,\"t\",[\"forms.fd-generation.git-url\"],null],false],[9],[0,\"\\n      \"],[6,\"div\"],[10,\"class\",\"twelve wide column\"],[8],[1,[26,\"flexberry-textbox\",null,[[\"value\",\"placeholder\"],[[22,[\"settings\",\"gitUrl\"]],[26,\"t\",[\"forms.fd-generation.git-url-placeholder\"],null]]]],false],[9],[0,\"\\n    \"],[9],[0,\"\\n    \"],[6,\"div\"],[10,\"class\",\"row\"],[8],[0,\"\\n      \"],[6,\"div\"],[10,\"class\",\"four wide column\"],[8],[1,[26,\"t\",[\"forms.fd-generation.login\"],null],false],[9],[0,\"\\n      \"],[6,\"div\"],[10,\"class\",\"twelve wide column\"],[8],[1,[26,\"flexberry-textbox\",null,[[\"value\",\"placeholder\"],[[22,[\"settings\",\"login\"]],[26,\"t\",[\"forms.fd-generation.login\"],null]]]],false],[9],[0,\"\\n    \"],[9],[0,\"\\n    \"],[6,\"div\"],[10,\"class\",\"row\"],[8],[0,\"\\n      \"],[6,\"div\"],[10,\"class\",\"four wide column\"],[8],[1,[26,\"t\",[\"forms.fd-generation.password\"],null],false],[9],[0,\"\\n      \"],[6,\"div\"],[10,\"class\",\"twelve wide column\"],[8],[1,[26,\"flexberry-textbox\",null,[[\"value\",\"placeholder\"],[[22,[\"settings\",\"password\"]],[26,\"t\",[\"forms.fd-generation.password\"],null]]]],false],[9],[0,\"\\n    \"],[9],[0,\"\\n\\n  \"],[9],[0,\"\\n  \"],[6,\"div\"],[10,\"class\",\"ui stackable grid\"],[8],[0,\"\\n    \"],[6,\"div\"],[10,\"class\",\"center aligned column\"],[8],[0,\"\\n      \"],[1,[26,\"fd-round-button\",null,[[\"iconClass\",\"colorClass\",\"caption\",\"onButtonClicked\"],[\"icon-fd-shipping-box\",\"blue\",[26,\"t\",[\"forms.fd-generation.save-and-generate\"],null],[26,\"action\",[[21,0,[]],\"saveAndGenerateClick\",[22,[\"settings\"]]],null]]]],false],[0,\"\\n    \"],[9],[0,\"\\n  \"],[9],[0,\"\\n\"],[9]],\"hasEval\":false}", "meta": { "moduleName": "dummy/templates/fd-generation/first.hbs" } });
-});
-define("dummy/templates/fd-generation/list", ["exports"], function (exports) {
-  "use strict";
-
-  Object.defineProperty(exports, "__esModule", {
-    value: true
-  });
-  exports.default = Ember.HTMLBars.template({ "id": "IwHYDb4T", "block": "{\"symbols\":[\"generation\"],\"statements\":[[6,\"h2\"],[8],[1,[26,\"t\",[\"forms.fd-generation.generation-list\"],null],false],[9],[0,\"\\n\"],[6,\"div\"],[10,\"class\",\"ui form\"],[8],[0,\"\\n  \"],[6,\"div\"],[10,\"class\",\"ui stackable grid\"],[8],[0,\"\\n    \"],[6,\"div\"],[10,\"class\",\"row\"],[8],[0,\"\\n      \"],[6,\"button\"],[10,\"class\",\"ui basic button table-btn\"],[3,\"action\",[[21,0,[]],\"generate\"]],[8],[0,\"\\n        \"],[1,[26,\"t\",[\"forms.fd-generation.generate-app\"],null],false],[0,\"\\n      \"],[9],[0,\"\\n      \"],[6,\"span\"],[10,\"class\",\"light-text\"],[8],[1,[26,\"t\",[\"forms.fd-generation.with-selected\"],null],false],[0,\" \"],[4,\"link-to\",[\"fd-setting\"],[[\"class\"],[\"fd-styled-link\"]],{\"statements\":[[1,[26,\"t\",[\"forms.fd-generation.settings\"],null],false]],\"parameters\":[]},null],[9],[0,\"\\n    \"],[9],[0,\"\\n  \"],[9],[0,\"\\n\\n  \"],[6,\"div\"],[10,\"class\",\"ui stackable grid fd-list-edited\"],[8],[0,\"\\n\"],[4,\"each\",[[22,[\"model\",\"generations\"]]],null,{\"statements\":[[0,\"      \"],[6,\"div\"],[10,\"class\",\"row\"],[8],[0,\"\\n        \"],[6,\"div\"],[10,\"class\",\"wide column\"],[8],[4,\"link-to\",[\"fd-generation.list.log\",[21,1,[\"id\"]]],null,{\"statements\":[[1,[26,\"moment-format\",[[21,1,[\"startTime\"]],\"DD.MM.YYYY HH:mm:ss\"],null],false]],\"parameters\":[]},null],[9],[0,\"\\n      \"],[9],[0,\"\\n\"]],\"parameters\":[1]},null],[0,\"  \"],[9],[0,\"\\n\"],[9],[0,\"\\n\\n\"],[4,\"fd-sheet\",null,[[\"title\",\"sheetComponentName\",\"toolbarVisible\"],[[26,\"t\",[\"forms.fd-generation.generation-log\"],null],[22,[\"sheetName\"]],false]],{\"statements\":[[0,\"  \"],[1,[20,\"outlet\"],false],[0,\"\\n\"]],\"parameters\":[]},null]],\"hasEval\":false}", "meta": { "moduleName": "dummy/templates/fd-generation/list.hbs" } });
-});
-define("dummy/templates/fd-generation/list/log", ["exports"], function (exports) {
-  "use strict";
-
-  Object.defineProperty(exports, "__esModule", {
-    value: true
-  });
-  exports.default = Ember.HTMLBars.template({ "id": "AN/uzXLV", "block": "{\"symbols\":[\"step\"],\"statements\":[[6,\"div\"],[10,\"class\",\"ui stackable grid fd-list-edited\"],[8],[0,\"\\n  \"],[6,\"div\"],[10,\"class\",\"row\"],[8],[0,\"\\n    \"],[6,\"div\"],[10,\"class\",\"five wide column\"],[8],[1,[26,\"t\",[\"forms.fd-generation.start-time\"],null],false],[9],[0,\"\\n    \"],[6,\"div\"],[10,\"class\",\"eleven wide column\"],[8],[1,[26,\"moment-format\",[[22,[\"generation\",\"startTime\"]],\"DD.MM.YYYY HH:mm:ss.SSS\"],null],false],[9],[0,\"\\n  \"],[9],[0,\"\\n  \"],[6,\"div\"],[10,\"class\",\"row\"],[8],[0,\"\\n    \"],[6,\"div\"],[10,\"class\",\"five wide column\"],[8],[1,[26,\"t\",[\"forms.fd-generation.end-time\"],null],false],[9],[0,\"\\n    \"],[6,\"div\"],[10,\"class\",\"eleven wide column\"],[8],[1,[26,\"moment-format\",[[22,[\"generation\",\"endTime\"]],\"DD.MM.YYYY HH:mm:ss.SSS\"],null],false],[9],[0,\"\\n  \"],[9],[0,\"\\n  \"],[6,\"div\"],[10,\"class\",\"row\"],[8],[0,\"\\n    \"],[6,\"div\"],[10,\"class\",\"five wide column\"],[8],[1,[26,\"t\",[\"forms.fd-generation.state\"],null],false],[9],[0,\"\\n    \"],[6,\"div\"],[10,\"class\",\"eleven wide column\"],[8],[1,[22,[\"generation\",\"state\"]],false],[9],[0,\"\\n  \"],[9],[0,\"\\n  \"],[6,\"div\"],[10,\"class\",\"row\"],[8],[0,\"\\n    \"],[6,\"div\"],[10,\"class\",\"five wide column\"],[8],[1,[26,\"t\",[\"forms.fd-generation.generation-reason\"],null],false],[9],[0,\"\\n    \"],[6,\"div\"],[10,\"class\",\"eleven wide column\"],[8],[1,[22,[\"generation\",\"generationReason\"]],false],[9],[0,\"\\n  \"],[9],[0,\"\\n  \"],[6,\"div\"],[10,\"class\",\"row\"],[8],[0,\"\\n    \"],[6,\"div\"],[10,\"class\",\"five wide column\"],[8],[1,[26,\"t\",[\"forms.fd-generation.user-name\"],null],false],[9],[0,\"\\n    \"],[6,\"div\"],[10,\"class\",\"eleven wide column\"],[8],[1,[22,[\"generation\",\"userName\"]],false],[9],[0,\"\\n  \"],[9],[0,\"\\n  \"],[6,\"div\"],[10,\"class\",\"row\"],[8],[0,\"\\n    \"],[6,\"div\"],[10,\"class\",\"five wide column\"],[8],[1,[26,\"t\",[\"forms.fd-generation.is-running\"],null],false],[9],[0,\"\\n    \"],[6,\"div\"],[10,\"class\",\"eleven wide column\"],[8],[1,[22,[\"generation\",\"isRunning\"]],false],[9],[0,\"\\n  \"],[9],[0,\"\\n  \"],[6,\"div\"],[10,\"class\",\"row\"],[8],[0,\"\\n    \"],[6,\"div\"],[10,\"class\",\"five wide column\"],[8],[1,[26,\"t\",[\"forms.fd-generation.percent-complete\"],null],false],[9],[0,\"\\n    \"],[6,\"div\"],[10,\"class\",\"eleven wide column\"],[8],[1,[22,[\"generation\",\"percentComplete\"]],false],[9],[0,\"\\n  \"],[9],[0,\"\\n\"],[9],[0,\"\\n\\n\"],[6,\"pre\"],[8],[0,\"\\n\"],[4,\"each\",[[22,[\"generationSteps\"]]],null,{\"statements\":[[0,\"[\"],[1,[26,\"moment-format\",[[21,1,[\"time\"]],\"DD.MM.YYYY HH:mm:ss.SSS\"],null],false],[0,\"]: \"],[1,[21,1,[\"text\"]],false],[0,\"\\n\"]],\"parameters\":[1]},null],[9]],\"hasEval\":false}", "meta": { "moduleName": "dummy/templates/fd-generation/list/log.hbs" } });
+  exports.default = Ember.HTMLBars.template({ "id": "N4f0gUzl", "block": "{\"symbols\":[\"other\",\"error\",\"success\",\"run\"],\"statements\":[[6,\"h2\"],[10,\"class\",\"form-header\"],[8],[0,\"\\n  \"],[1,[26,\"t\",[\"forms.fd-generation.generation-list\"],null],false],[0,\"\\n\"],[9],[0,\"\\n\\n\"],[6,\"form\"],[10,\"class\",\"ui form flexberry-vertical-form\"],[8],[0,\"\\n  \"],[6,\"div\"],[10,\"class\",\"ui stackable grid fd-list-edited\"],[8],[0,\"\\n    \"],[6,\"div\"],[10,\"class\",\"row\"],[8],[0,\"\\n      \"],[6,\"div\"],[10,\"class\",\"three wide column light-text\"],[8],[0,\"\\n        \"],[1,[26,\"t\",[\"forms.fd-diagrams.type-caption\"],null],false],[0,\"\\n      \"],[9],[0,\"\\n      \"],[6,\"div\"],[10,\"class\",\"thirteen wide column\"],[8],[0,\"\\n        \"],[1,[26,\"fd-search-input\",null,[[\"value\"],[[22,[\"searchValue\"]]]]],false],[0,\"\\n      \"],[9],[0,\"\\n    \"],[9],[0,\"\\n    \"],[6,\"div\"],[10,\"class\",\"row\"],[8],[0,\"\\n      \"],[6,\"button\"],[10,\"class\",\"ui basic button table-btn\"],[3,\"action\",[[21,0,[]],\"generate\"]],[8],[0,\"\\n        \"],[1,[26,\"t\",[\"forms.fd-generation.generate-app\"],null],false],[0,\"\\n      \"],[9],[0,\"\\n      \"],[6,\"span\"],[10,\"class\",\"light-text\"],[8],[1,[26,\"t\",[\"forms.fd-generation.with-selected\"],null],false],[0,\" \"],[4,\"link-to\",[\"fd-setting\"],[[\"class\"],[\"fd-styled-link\"]],{\"statements\":[[1,[26,\"t\",[\"forms.fd-generation.settings\"],null],false]],\"parameters\":[]},null],[9],[0,\"\\n    \"],[9],[0,\"\\n\\n\"],[4,\"if\",[[26,\"not-eq\",[[22,[\"filteredModel\",\"run\",\"length\"]],0],null]],null,{\"statements\":[[0,\"    \"],[6,\"div\"],[10,\"class\",\"row\"],[8],[0,\"\\n      \"],[6,\"div\"],[10,\"class\",\"three wide column light-text\"],[8],[0,\"\\n        \"],[1,[26,\"t\",[\"forms.fd-generation.run-caption\"],null],false],[0,\"\\n      \"],[9],[0,\"\\n      \"],[6,\"div\"],[10,\"class\",\"thirteen wide column\"],[8],[0,\"\\n\"],[4,\"each\",[[22,[\"filteredModel\",\"run\"]]],null,{\"statements\":[[0,\"          \"],[1,[26,\"fd-list-item\",null,[[\"model\",\"caption\",\"sheetComponentName\"],[[21,4,[]],[26,\"moment-format\",[[21,4,[\"data\",\"startTime\"]],\"DD.MM.YYYY HH:mm:ss\"],null],[22,[\"sheetComponentName\"]]]]],false],[0,\"\\n\"]],\"parameters\":[4]},null],[0,\"      \"],[9],[0,\"\\n    \"],[9],[0,\"\\n\"]],\"parameters\":[]},null],[0,\"\\n\"],[4,\"if\",[[26,\"not-eq\",[[22,[\"filteredModel\",\"success\",\"length\"]],0],null]],null,{\"statements\":[[0,\"    \"],[6,\"div\"],[10,\"class\",\"row\"],[8],[0,\"\\n      \"],[6,\"div\"],[10,\"class\",\"three wide column light-text\"],[8],[0,\"\\n        \"],[1,[26,\"t\",[\"forms.fd-generation.success-caption\"],null],false],[0,\"\\n      \"],[9],[0,\"\\n      \"],[6,\"div\"],[10,\"class\",\"thirteen wide column\"],[8],[0,\"\\n\"],[4,\"each\",[[22,[\"filteredModel\",\"success\"]]],null,{\"statements\":[[0,\"          \"],[1,[26,\"fd-list-item\",null,[[\"model\",\"caption\",\"sheetComponentName\"],[[21,3,[]],[26,\"moment-format\",[[21,3,[\"data\",\"startTime\"]],\"DD.MM.YYYY HH:mm:ss\"],null],[22,[\"sheetComponentName\"]]]]],false],[0,\"\\n\"]],\"parameters\":[3]},null],[0,\"      \"],[9],[0,\"\\n    \"],[9],[0,\"\\n\"]],\"parameters\":[]},null],[0,\"\\n\"],[4,\"if\",[[26,\"not-eq\",[[22,[\"filteredModel\",\"error\",\"length\"]],0],null]],null,{\"statements\":[[0,\"    \"],[6,\"div\"],[10,\"class\",\"row\"],[8],[0,\"\\n      \"],[6,\"div\"],[10,\"class\",\"three wide column light-text\"],[8],[0,\"\\n        \"],[1,[26,\"t\",[\"forms.fd-generation.error-caption\"],null],false],[0,\"\\n      \"],[9],[0,\"\\n      \"],[6,\"div\"],[10,\"class\",\"thirteen wide column\"],[8],[0,\"\\n\"],[4,\"each\",[[22,[\"filteredModel\",\"error\"]]],null,{\"statements\":[[0,\"          \"],[1,[26,\"fd-list-item\",null,[[\"model\",\"caption\",\"sheetComponentName\"],[[21,2,[]],[26,\"moment-format\",[[21,2,[\"data\",\"startTime\"]],\"DD.MM.YYYY HH:mm:ss\"],null],[22,[\"sheetComponentName\"]]]]],false],[0,\"\\n\"]],\"parameters\":[2]},null],[0,\"      \"],[9],[0,\"\\n    \"],[9],[0,\"\\n\"]],\"parameters\":[]},null],[0,\"\\n\"],[4,\"if\",[[26,\"not-eq\",[[22,[\"filteredModel\",\"other\",\"length\"]],0],null]],null,{\"statements\":[[0,\"    \"],[6,\"div\"],[10,\"class\",\"row\"],[8],[0,\"\\n      \"],[6,\"div\"],[10,\"class\",\"three wide column light-text\"],[8],[0,\"\\n        \"],[1,[26,\"t\",[\"forms.fd-generation.other-caption\"],null],false],[0,\"\\n      \"],[9],[0,\"\\n      \"],[6,\"div\"],[10,\"class\",\"thirteen wide column\"],[8],[0,\"\\n\"],[4,\"each\",[[22,[\"filteredModel\",\"other\"]]],null,{\"statements\":[[0,\"          \"],[1,[26,\"fd-list-item\",null,[[\"model\",\"caption\",\"sheetComponentName\"],[[21,1,[]],[26,\"moment-format\",[[21,1,[\"data\",\"startTime\"]],\"DD.MM.YYYY HH:mm:ss\"],null],[22,[\"sheetComponentName\"]]]]],false],[0,\"\\n\"]],\"parameters\":[1]},null],[0,\"      \"],[9],[0,\"\\n    \"],[9],[0,\"\\n\"]],\"parameters\":[]},null],[0,\"\\n  \"],[9],[0,\"\\n\"],[9],[0,\"\\n\\n\"],[1,[26,\"fd-sheets/fd-generation-sheet\",null,[[\"model\",\"updateModel\"],[[22,[\"model\"]],[26,\"action\",[[21,0,[]],\"updateModel\"],null]]]],false],[0,\"\\n\"]],\"hasEval\":false}", "meta": { "moduleName": "dummy/templates/fd-generation.hbs" } });
 });
 define("dummy/templates/fd-inheritance-edit-form", ["exports"], function (exports) {
   "use strict";

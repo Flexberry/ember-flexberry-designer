@@ -1169,21 +1169,6 @@ define('dummy/tests/tests.lint-test', [], function () {
     assert.ok(true, 'unit/controllers/fd-generation-process-form-test.js should pass ESLint\n\n');
   });
 
-  QUnit.test('unit/controllers/fd-generation/first-test.js', function (assert) {
-    assert.expect(1);
-    assert.ok(true, 'unit/controllers/fd-generation/first-test.js should pass ESLint\n\n');
-  });
-
-  QUnit.test('unit/controllers/fd-generation/list-test.js', function (assert) {
-    assert.expect(1);
-    assert.ok(true, 'unit/controllers/fd-generation/list-test.js should pass ESLint\n\n');
-  });
-
-  QUnit.test('unit/controllers/fd-generation/list/log-test.js', function (assert) {
-    assert.expect(1);
-    assert.ok(true, 'unit/controllers/fd-generation/list/log-test.js should pass ESLint\n\n');
-  });
-
   QUnit.test('unit/controllers/fd-inheritance-edit-form-test.js', function (assert) {
     assert.expect(1);
     assert.ok(true, 'unit/controllers/fd-inheritance-edit-form-test.js should pass ESLint\n\n');
@@ -1757,21 +1742,6 @@ define('dummy/tests/tests.lint-test', [], function () {
   QUnit.test('unit/routes/fd-generation-test.js', function (assert) {
     assert.expect(1);
     assert.ok(true, 'unit/routes/fd-generation-test.js should pass ESLint\n\n');
-  });
-
-  QUnit.test('unit/routes/fd-generation/first-test.js', function (assert) {
-    assert.expect(1);
-    assert.ok(true, 'unit/routes/fd-generation/first-test.js should pass ESLint\n\n');
-  });
-
-  QUnit.test('unit/routes/fd-generation/list-test.js', function (assert) {
-    assert.expect(1);
-    assert.ok(true, 'unit/routes/fd-generation/list-test.js should pass ESLint\n\n');
-  });
-
-  QUnit.test('unit/routes/fd-generation/list/log-test.js', function (assert) {
-    assert.expect(1);
-    assert.ok(true, 'unit/routes/fd-generation/list/log-test.js should pass ESLint\n\n');
   });
 
   QUnit.test('unit/routes/fd-inheritance-edit-form-test.js', function (assert) {
@@ -2753,48 +2723,6 @@ define('dummy/tests/unit/controllers/fd-generation-process-form-test', ['ember-q
     // Specify the other units that are required for this test.
     // needs: ['controller:foo']
     needs: ['service:appState', 'service:fd-current-project-context', 'service:fd-generation']
-  });
-
-  // Replace this with your real tests.
-  (0, _emberQunit.test)('it exists', function (assert) {
-    var controller = this.subject();
-    assert.ok(controller);
-  });
-});
-define('dummy/tests/unit/controllers/fd-generation/first-test', ['ember-qunit'], function (_emberQunit) {
-  'use strict';
-
-  (0, _emberQunit.moduleFor)('controller:fd-generation/first', 'Unit | Controller | fd-generation/first', {
-    // Specify the other units that are required for this test.
-    // needs: ['controller:foo']
-  });
-
-  // Replace this with your real tests.
-  (0, _emberQunit.test)('it exists', function (assert) {
-    var controller = this.subject();
-    assert.ok(controller);
-  });
-});
-define('dummy/tests/unit/controllers/fd-generation/list-test', ['ember-qunit'], function (_emberQunit) {
-  'use strict';
-
-  (0, _emberQunit.moduleFor)('controller:fd-generation/list', 'Unit | Controller | fd-generation/list', {
-    // Specify the other units that are required for this test.
-    // needs: ['controller:foo']
-  });
-
-  // Replace this with your real tests.
-  (0, _emberQunit.test)('it exists', function (assert) {
-    var controller = this.subject();
-    assert.ok(controller);
-  });
-});
-define('dummy/tests/unit/controllers/fd-generation/list/log-test', ['ember-qunit'], function (_emberQunit) {
-  'use strict';
-
-  (0, _emberQunit.moduleFor)('controller:fd-generation/list/log', 'Unit | Controller | fd-generation/list/log', {
-    // Specify the other units that are required for this test.
-    needs: ['controller:fd-generation.list']
   });
 
   // Replace this with your real tests.
@@ -4484,46 +4412,7 @@ define('dummy/tests/unit/routes/fd-generation-test', ['ember-qunit'], function (
 
   (0, _emberQunit.moduleFor)('route:fd-generation', 'Unit | Route | fd-generation', {
     // Specify the other units that are required for this test.
-    needs: ['service:fd-current-project-context']
-  });
-
-  (0, _emberQunit.test)('it exists', function (assert) {
-    var route = this.subject();
-    assert.ok(route);
-  });
-});
-define('dummy/tests/unit/routes/fd-generation/first-test', ['ember-qunit'], function (_emberQunit) {
-  'use strict';
-
-  (0, _emberQunit.moduleFor)('route:fd-generation/first', 'Unit | Route | fd-generation/first', {
-    // Specify the other units that are required for this test.
-    needs: ['service:fd-current-project-context']
-  });
-
-  (0, _emberQunit.test)('it exists', function (assert) {
-    var route = this.subject();
-    assert.ok(route);
-  });
-});
-define('dummy/tests/unit/routes/fd-generation/list-test', ['ember-qunit'], function (_emberQunit) {
-  'use strict';
-
-  (0, _emberQunit.moduleFor)('route:fd-generation/list', 'Unit | Route | fd-generation/list', {
-    // Specify the other units that are required for this test.
-    // needs: ['controller:foo']
-  });
-
-  (0, _emberQunit.test)('it exists', function (assert) {
-    var route = this.subject();
-    assert.ok(route);
-  });
-});
-define('dummy/tests/unit/routes/fd-generation/list/log-test', ['ember-qunit'], function (_emberQunit) {
-  'use strict';
-
-  (0, _emberQunit.moduleFor)('route:fd-generation/list/log', 'Unit | Route | fd-generation/list/log', {
-    // Specify the other units that are required for this test.
-    needs: ['service:fd-sheet-service']
+    needs: ['service:fd-current-project-context', 'service:fd-sheet-service']
   });
 
   (0, _emberQunit.test)('it exists', function (assert) {
