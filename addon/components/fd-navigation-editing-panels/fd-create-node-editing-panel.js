@@ -8,6 +8,15 @@ export default Component.extend({
   layout,
 
   /**
+    Node data.
+
+    @property node
+    @type Object
+    @default undefined
+  */
+  node: undefined,
+
+  /**
     Forms data.
 
     @property forms
@@ -86,7 +95,7 @@ export default Component.extend({
         url: url
       });
 
-      this.get('addSubFormAction')([node]);
+      this.get('addSubFormAction')([node], this.get('node'));
     },
 
     /**
@@ -107,7 +116,7 @@ export default Component.extend({
         }));
       });
 
-      this.get('addSubFormAction')(nodes);
+      this.get('addSubFormAction')(nodes, this.get('node'));
     }
   }
 });

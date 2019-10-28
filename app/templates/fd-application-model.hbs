@@ -340,53 +340,15 @@
 
   </div>
 </form>
-{{#fd-sheet
-  title=computedTitle
-  saveController=(action 'save')
-  deleteController=(action 'delete')
-  sheetComponentName=sheetComponentName
-  readonlyMode=readonlyMode.sheetComponentName
-  nameIsReadonly=(not selectedElement.model.data.isNew)
-  toolbarVisible=(not isAddMode)
-  isNewModel=selectedElement.model.data.isNew
-}}
-  {{#if isAddMode}}
-    {{fd-editing-panels/fd-create-entity
-      createClassAction=(action 'createClass')
-    }}
-  {{else}}
-    {{#if (known-for-type (concat "fd-editing-panels/fd-" componentNamePart "-editing-panel"))}}
-      {{component (concat "fd-editing-panels/fd-" componentNamePart "-editing-panel")
-        model=selectedElement.model.data
-        readonlyMode=readonlyMode.sheetComponentName
-        dataobject=selectedElement.dataobject
-        openViewSheetController=(action 'openViewSheet')
-      }}
-    {{else}}
-      {{fd-editing-panels/fd-custom-editing-panel
-        model=selectedElement.model.data
-        readonlyMode=readonlyMode.sheetComponentName
-      }}
-    {{/if}}
-  {{/if}}
-{{/fd-sheet}}
 
-{{#fd-sheet
-  title=selectedView.name
-  saveController=(action 'saveView')
-  deleteController=(action 'deleteView')
-  sheetComponentName=sheetViewName
-  readonlyMode=readonlyMode.sheetViewName
-  isNewModel=selectedView.isNew
+{{fd-sheets/fd-class-sheet
+  model=model
+  isAddMode=isAddMode
+  createClass=(action 'createClass')
+  updateModel=(action 'updateModel')
 }}
 
-  {{fd-editing-panels/fd-create-view
-    model=selectedElement.model.data
-    view=selectedView
-    readonlyMode=readonlyMode.sheetViewName
-  }}
-
-{{/fd-sheet}}
+{{fd-sheets/fd-view-sheet}}
 
 {{#if show}}
   {{fd-modal-message-box

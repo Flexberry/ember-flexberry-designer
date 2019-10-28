@@ -1,0 +1,40 @@
+<div class="content-mini">
+  <div class="ui {{if loadingState "active"}} inverted dimmer">
+    <div class="ui text loader"></div>
+  </div>
+  <div class="fd-sheet-header">
+    {{fd-sheets/fd-sheets-tool-bar
+      sheetComponentName=sheetComponentName
+      readonlyMode=readonlyMode
+      isNewModel=selectedValue.model.data.isNew
+      sheetButtons=(array 'delete' 'save')
+      toolbarVisible=(not isAddMode)
+      saveSheet=(action 'save')
+      deleteSheet=(action 'delete')
+    }}
+    {{flexberry-textbox
+      value=computedTitle
+      placeholder=(t "components.fd-sheets-tool-bar.placeholder-caption")
+      readonly=(not selectedValue.model.data.isNew)
+      class='form-header fluid'
+      maxlength=maxlength
+    }}
+  </div>
+  <div class="fd-sheet-body">
+    {{#if isAddMode}}
+      {{fd-editing-panels/fd-create-diagrams
+        createDiagramAction=createDiagram
+      }}
+    {{else}}
+      {{#if isDiagramVisible}}
+        {{fd-uml-diagram-editor
+          model=selectedValue.model.data
+          emptyReferenceCountItems=emptyReferenceCountItems
+          sheetComponentName=sheetComponentName
+          readonlyMode=readonlyMode
+          openEditFormAction=(action "openNestedSheet")
+        }}
+      {{/if}}
+    {{/if}}
+  </div>
+</div>

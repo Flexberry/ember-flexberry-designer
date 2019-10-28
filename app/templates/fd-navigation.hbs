@@ -6,7 +6,7 @@
   }}
 {{else}}
 
-  {{#if readonlyMode.sheetComponentName}}
+  {{#if readonlyMode}}
     <div class="fd-projects-toolbar">
       <button class="ui button basic circular" {{action "edit"}}>
         {{t "forms.fd-navigation.edit-caption"}}
@@ -21,61 +21,32 @@
     </div>
   {{/if}}
 
-{{fd-ember-jstree
-  actionReceiver=actionReceiver
-  data=model.tree
-  searchTermPlaceholder=(t "forms.fd-navigation.search")
-  selectedNodes=selectedNodes
-  treeObject=treeObject
-  typesOptions=typesOptions
-  dndOptions=dndOptions
-  plugins=plugins
-  selectNodeAction=(action 'selectNodeAction')
-  moveNodeAction=(action 'moveNodeAction')
-}}
+  {{fd-ember-jstree
+    actionReceiver=actionReceiver
+    data=model.tree
+    searchTermPlaceholder=(t "forms.fd-navigation.search")
+    treeObject=treeObject
+    typesOptions=typesOptions
+    dndOptions=dndOptions
+    plugins=plugins
+    selectNodeAction=(action 'selectNodeAction')
+    moveNodeAction=(action 'moveNodeAction')
+  }}
 
-{{#fd-sheet
-  title=(if isAddMode (t "components.fd-create-node-editing-panel.create-page") (concat (t "forms.fd-navigation.caption-sheet") selectedNode.text))
-  saveController=(action 'save')
-  deleteController=(action 'deleteNode')
-  sheetComponentName=sheetComponentName
-  readonly=true
-  toolbarVisible=(not isAddMode)
-
-  customButtonVisible=isAddMode
-  customButtonTitle=customButtonTitle
-  customButtonController=(action set 'isAddMode' false)
-
-  readonlyMode=readonlyMode.sheetComponentName
-}}
-  {{#if isAddMode}}
-    {{fd-navigation-editing-panels/fd-create-node-editing-panel
-      forms=model.forms
-      addSubFormAction=(action 'addSubForm')
-    }}
-  {{else}}
-    {{#if (eq selectedNode.original.type 'folder')}}
-      {{fd-navigation-editing-panels/fd-folder-editing-panel
-        node=selectedNode
-        openPanelCreateSubFormAction=(action set 'isAddMode' true)
-        addSubFolderAction=(action 'addSubFolder')
-        readonlyMode=readonlyMode.sheetComponentName
-      }}
-    {{else}}
-      {{fd-navigation-editing-panels/fd-property-editing-panel
-        node=selectedNode
-        readonlyMode=readonlyMode.sheetComponentName
-      }}
-    {{/if}}
-  {{/if}}
-{{/fd-sheet}}
+  {{fd-sheets/fd-navigation-sheet
+    model=model.forms
+    readonlyMode=readonlyMode
+    treeObject=treeObject
+    actionReceiver=actionReceiver
+    save=(action 'save')
+    addSubFolder=(action 'addSubFolder')
+    addSubForm=(action 'addSubForm')
+  }}
 {{/if}}
 
 {{#if show}}
   {{fd-modal-message-box
-    isError=true
-    messageText=error
-    hide=(action set "show" false)
-    visible=show
+    isError=isError
+    messageText=messageText
   }}
 {{/if}}
