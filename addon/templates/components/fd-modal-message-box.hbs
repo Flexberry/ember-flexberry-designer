@@ -1,21 +1,44 @@
-<i class="{{flexberryClassNames.closeButton}} close icon"></i>
-<div class="{{flexberryClassNames.header}} header">
+<div class="{{flexberryClassNames.header}} header ui icon">
+  {{#if isError}}
+   <i class="icon info"></i>
+  {{else}}
+    {{#if headerIcon}}
+      <i class="icon {{headerIcon}}"></i>
+    {{/if}}
+  {{/if}}
+
   {{if isError (t "components.fd-modal-message-box.error-caption") (t "components.fd-modal-message-box.confirmation-caption")}}
 </div>
-<div class="{{flexberryClassNames.content}} content {{contentClass}}">
+<div class="{{flexberryClassNames.content}} content {{contentClass}} text-align-center">
   {{messageText}}
   {{yield}}
 </div>
 
-{{#if (not isError)}}
-  <div class="{{flexberryClassNames.toolbar}} actions">
-    {{flexberry-button
-      class=(concat flexberryClassNames.approveButton " approve positive")
-      caption=approveButtonCaption
-    }}
-    {{flexberry-button
-      class=(concat flexberryClassNames.cancelButton " deny negative")
-      caption=denyButtonCaption
-    }}
+<div class="{{flexberryClassNames.toolbar}} ui stackable grid actions">
+  <div class="center aligned {{if (not isError) 'two'}} column row">
+    <div class="column">
+      {{fd-round-button
+        iconClass="icon-fd-x-mark-thin" 
+        class=(concat flexberryClassNames.closeButton " close")
+        colorClass="grey"
+        caption=closeButtonCaption
+      }}
+    </div>
+    {{#if (not isError)}}
+      <div class="column display-flex ">
+        {{fd-round-button
+          iconClass="icon-fd-cloud-upload-thin"
+          class=(concat flexberryClassNames.approveButton " approve")
+          colorClass="green"
+          caption=approveButtonCaption
+        }}
+        {{fd-round-button
+          iconClass="icon-fd-x-mark-thin"
+          class=(concat flexberryClassNames.cancelButton " deny")
+          colorClass="red"
+          caption=denyButtonCaption
+        }}
+      </div>
+    {{/if}}
   </div>
-{{/if}}
+</div>
