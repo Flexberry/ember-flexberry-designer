@@ -319,7 +319,7 @@ export default FdBaseSheet.extend({
     let modelPart = model.data.get('constructor.modelName').slice(11);
     this.get(`model.${modelPart}`).pushObject(model);
 
-    this.updateModel();
+    this.get('updateModel')();
   },
 
     /**
@@ -432,7 +432,7 @@ export default FdBaseSheet.extend({
       if (model.get('isNew')) {
         isNew = true;
       } else if ('name' in model.changedAttributes()) {
-        this.updateModel();
+        this.get('updateModel')();
       }
 
       this.validateData(model)

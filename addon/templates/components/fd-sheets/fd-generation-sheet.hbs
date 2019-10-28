@@ -5,7 +5,6 @@
   <div class="fd-sheet-header">
     {{fd-sheets/fd-sheets-tool-bar
       sheetComponentName=sheetComponentName
-      sheetComponentName=sheetName
       toolbarVisible=false
     }}
     {{flexberry-textbox
@@ -17,6 +16,40 @@
     }}
   </div>
   <div class="fd-sheet-body">
-
+    <div class="ui stackable grid fd-list-edited">
+      <div class="row">
+        <div class="five wide column">{{t "forms.fd-generation.start-time"}}</div>
+        <div class="eleven wide column">{{moment-format selectedValue.model.data.startTime "DD.MM.YYYY HH:mm:ss.SSS"}}</div>
+      </div>
+      <div class="row">
+        <div class="five wide column">{{t "forms.fd-generation.end-time"}}</div>
+        <div class="eleven wide column">{{moment-format selectedValue.model.data.endTime "DD.MM.YYYY HH:mm:ss.SSS"}}</div>
+      </div>
+      <div class="row">
+        <div class="five wide column">{{t "forms.fd-generation.state"}}</div>
+        <div class="eleven wide column">{{selectedValue.model.data.state}}</div>
+      </div>
+      <div class="row">
+        <div class="five wide column">{{t "forms.fd-generation.generation-reason"}}</div>
+        <div class="eleven wide column">{{selectedValue.model.data.generationReason}}</div>
+      </div>
+      <div class="row">
+        <div class="five wide column">{{t "forms.fd-generation.user-name"}}</div>
+        <div class="eleven wide column">{{selectedValue.model.data.userName}}</div>
+      </div>
+      <div class="row">
+        <div class="five wide column">{{t "forms.fd-generation.is-running"}}</div>
+        <div class="eleven wide column">{{selectedValue.model.data.isRunning}}</div>
+      </div>
+      <div class="row">
+        <div class="five wide column">{{t "forms.fd-generation.percent-complete"}}</div>
+        <div class="eleven wide column">{{selectedValue.model.data.percentComplete}}</div>
+      </div>
+    </div>
+    <pre>
+      {{#each generationSteps as |step|}}
+        [{{moment-format step.time "DD.MM.YYYY HH:mm:ss.SSS"}}]: {{step.text}}
+      {{/each}}
+    </pre>
   </div>
 </div>
