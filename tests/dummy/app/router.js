@@ -127,12 +127,7 @@ Router.map(function () {
   this.route('fd-application-model');
   this.route('fd-diagrams');
   this.route('fd-navigation');
-  this.route('fd-generation', { path: 'generation' }, function() {
-    this.route('first');
-    this.route('list', { path: '' }, function() {
-      this.route('log', { path: ':generation_id' });
-    });
-  });
+  this.route('fd-generation', { path: 'generation' });
 
   this.route('fd-setting');
   this.route('fd-architecture');
