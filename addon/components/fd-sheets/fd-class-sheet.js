@@ -139,11 +139,11 @@ export default FdBaseSheet.extend({
      @param {Object} modelSelectedValue Model object.
   */
   updateClassModel(modelSelectedValue) {
-    let stereotype = modelselectedValue.get('stereotype');
+    let stereotype = modelSelectedValue.get('stereotype');
     if (stereotype === '«implementation»' || isBlank(stereotype)) {
       let model = this.get('model');
-      let classObj = model.classes.findBy('settings.data.id', modelselectedValue.id);
-      let bs = modelselectedValue.get('businessServerClass');
+      let classObj = model.classes.findBy('settings.data.id', modelSelectedValue.id);
+      let bs = modelSelectedValue.get('businessServerClass');
       let bsModel = isNone(bs) ? null : { data: bs, active: false };
       set(classObj, 'bs', bsModel);
     }
