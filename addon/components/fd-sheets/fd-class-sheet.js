@@ -136,8 +136,9 @@ export default FdBaseSheet.extend({
     Update bs value in model.
 
      @method updateClassModel
+     @param {Object} modelSelectedValue Model object.
   */
-  updateClassModel(modelselectedValue) {
+  updateClassModel(modelSelectedValue) {
     let stereotype = modelselectedValue.get('stereotype');
     if (stereotype === '«implementation»' || isBlank(stereotype)) {
       let model = this.get('model');

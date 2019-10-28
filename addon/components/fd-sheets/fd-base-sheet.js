@@ -38,7 +38,7 @@ export default Component.extend(FdSaveHasManyRelationshipsMixin, {
   fdSheetService: service(),
 
   /**
-    Service for managing the state of the component.
+    Service for managing the message dialog.
 
     @property fdDialogService
     @type fdDialogService
@@ -64,7 +64,7 @@ export default Component.extend(FdSaveHasManyRelationshipsMixin, {
   nestedSheetName: '',
 
   /**
-    Flag: indicates whether property is readonly.
+    Flag: indicates whether sheet is readonly.
 
     @property readonlyMode
     @type Boolean
