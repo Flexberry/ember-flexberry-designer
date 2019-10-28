@@ -11841,7 +11841,7 @@ i.flag.zimbabwe:before {
   margin: calc(2rem -  0.14285714em ) 0em 1rem;
   padding: 0em 0em;
   font-family: 'Roboto', 'Helvetica Neue', Arial, Helvetica, sans-serif;
-  font-weight: bold;
+  font-weight: normal;
   line-height: 1.28571429em;
   text-transform: none;
   color: rgba(0, 0, 0, 0.75);
@@ -11974,7 +11974,7 @@ h5.ui.header .sub.header {
   font-size: 1.71428571em;
 }
 .ui.medium.header {
-  font-size: 1.28571429em;
+  font-size: 1.5em;
 }
 .ui.small.header {
   font-size: 1.07142857em;
@@ -12436,7 +12436,7 @@ a.ui.inverted.grey.header:hover {
         Sizing
 --------------------*/
 .ui.header:not(h1):not(h2):not(h3):not(h4):not(h5):not(h6) {
-  font-size: 1.28571429em;
+  font-size: 1.5em;
 }
 /*******************************
          Theme Overrides
@@ -22835,7 +22835,7 @@ a.ui.basic.black.label:hover {
         Basic
 --------------------*/
 .ui.basic.label {
-  background: none #FFFFFF;
+  background: transparent;
   border: 1px solid rgba(34, 36, 38, 0.15);
   color: rgba(0, 0, 0, 0.75);
   box-shadow: none;
@@ -22843,7 +22843,7 @@ a.ui.basic.black.label:hover {
 /* Link */
 a.ui.basic.label:hover {
   text-decoration: none;
-  background: none #FFFFFF;
+  background: transparent;
   color: rgba(0, 0, 0, 0.35);
   box-shadow: 1px solid rgba(34, 36, 38, 0.15);
   box-shadow: none;
@@ -23052,6 +23052,34 @@ a.ui.basic.label:hover {
 /*******************************
          Theme Overrides
 *******************************/
+.ui.basic.red.label {
+  background-color: transparent !important;
+}
+.ui.basic.red.labels a.label:hover,
+a.ui.basic.red.label:hover {
+  background-color: transparent !important;
+}
+.ui.basic.blue.label {
+  background-color: transparent !important;
+}
+.ui.basic.blue.labels a.label:hover,
+a.ui.basic.blue.label:hover {
+  background-color: transparent !important;
+}
+.ui.basic.green.label {
+  background-color: transparent !important;
+}
+.ui.basic.green.labels a.label:hover,
+a.ui.basic.green.label:hover {
+  background-color: transparent !important;
+}
+.ui.basic.grey.label {
+  background-color: transparent !important;
+}
+.ui.basic.grey.labels a.label:hover,
+a.ui.basic.grey.label:hover {
+  background-color: transparent !important;
+}
 /*!
  * # Semantic UI - List
  * http://github.com/semantic-org/semantic-ui/
@@ -53612,7 +53640,7 @@ select.ui.dropdown {
   border: none;
   border-radius: 0em;
   box-shadow: none !important;
-  color: #FFFFFF;
+  color: rgba(255, 255, 255, 0.65);
 }
 .ui.basic.modal > .header,
 .ui.basic.modal > .content,
@@ -53620,7 +53648,7 @@ select.ui.dropdown {
   background-color: transparent;
 }
 .ui.basic.modal > .header {
-  color: #FFFFFF;
+  color: rgba(255, 255, 255, 0.65);
 }
 .ui.basic.modal > .close {
   top: 1rem;
@@ -66443,6 +66471,9 @@ h1 {
 }
 .display-flex .ui.button {
   margin: auto;
+}
+.text-align-center {
+  text-align: center;
 }
 .loading-message {
   text-align: center;
