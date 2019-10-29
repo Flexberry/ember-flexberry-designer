@@ -5,6 +5,8 @@
 @fontName          : 'Roboto';
 @googleFontSizes   : '300,400,700,400italic,700italic';
 
+@veryStrongTransparentWhite: rgba(255, 255, 255, 0.65);
+
 /*-------------------
       Base Sizes
 --------------------*/
@@ -25,6 +27,7 @@
 --------------------*/
 @textColor           : rgba(0, 0, 0, 0.75);
 @lightTextColor      : rgba(0, 0, 0, 0.35);
+@darkTextColor: @textColor;
 
 /* Цвет иконок сайдбара */
 @sidebarIconColor    : rgba(0, 0, 0, 0.50);

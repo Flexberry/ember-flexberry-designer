@@ -266,6 +266,54 @@
     </div>
     {{/if}}
 
+    {{!-- Geolayers --}}
+    {{#if (not-eq filteredModel.geolayers.length 0)}}
+    <div class="row">
+      <div class="three wide column light-text">
+        {{t "forms.fd-application-model.geolayer-caption"}}
+      </div>
+      <div class="thirteen wide column">
+        {{#each filteredModel.geolayers as |geolayer|}}
+          {{fd-list-item
+            model=geolayer
+            caption=geolayer.data.name
+            sheetComponentName=sheetComponentName
+          }}
+        {{/each}}
+      </div>
+      <div class="right floated thirteen wide column">
+        {{fd-button
+          caption=(t "forms.fd-application-model.geolayer-caption")
+          click=(action 'createClass' '«geolayer»')
+        }}
+      </div>
+    </div>
+    {{/if}}
+
+    {{!-- Geolayerstyles --}}
+    {{#if (not-eq filteredModel.geolayerstyles.length 0)}}
+    <div class="row">
+      <div class="three wide column light-text">
+        {{t "forms.fd-application-model.geolayerstyle-caption"}}
+      </div>
+      <div class="thirteen wide column">
+        {{#each filteredModel.geolayerstyles as |geolayerstyle|}}
+          {{fd-list-item
+            model=geolayerstyle
+            caption=geolayerstyle.data.name
+            sheetComponentName=sheetComponentName
+          }}
+        {{/each}}
+      </div>
+      <div class="right floated thirteen wide column">
+        {{fd-button
+          caption=(t "forms.fd-application-model.geolayerstyle-caption")
+          click=(action 'createClass' '«geolayerstyle»')
+        }}
+      </div>
+    </div>
+    {{/if}}
+
     {{!-- Userstereotypes --}}
     {{#if (not-eq filteredModel.userstereotypes.length 0)}}
     <div class="row">
@@ -292,48 +340,24 @@
 
   </div>
 </form>
-{{#fd-sheet
-  title=computedTitle
-  saveController=(action 'save')
-  deleteController=(action 'delete')
-  sheetComponentName=sheetComponentName
-  readonly=(not selectedElement.model.data.isNew)
-  toolbarVisible=(not isAddMode)
-  isNewModel=selectedElement.model.data.isNew
-}}
-  {{#if isAddMode}}
-    {{fd-editing-panels/fd-create-entity
-      createClassAction=(action 'createClass')
-    }}
-  {{else}}
-    {{#if (known-for-type (concat "fd-editing-panels/fd-" componentNamePart "-editing-panel"))}}
-      {{component (concat "fd-editing-panels/fd-" componentNamePart "-editing-panel")
-        model=selectedElement.model.data
-        dataobject=selectedElement.dataobject
-        openViewSheetController=(action 'openViewSheet')
-      }}
-    {{else}}
-      {{fd-editing-panels/fd-custom-editing-panel
-        model=selectedElement.model.data
-      }}
-    {{/if}}
-  {{/if}}
-{{/fd-sheet}}
 
-{{#fd-sheet
-  title=selectedView.name
-  saveController=(action 'saveView')
-  deleteController=(action 'deleteView')
-  sheetComponentName=sheetViewName
-  readonly=false
-  isNewModel=selectedView.isNew
+{{fd-sheets/fd-class-sheet
+  model=model
+  isAddMode=isAddMode
+  createClass=(action 'createClass')
+  updateModel=(action 'updateModel')
 }}
 
-  {{fd-editing-panels/fd-create-view
-    model=selectedElement.model.data
-    view=selectedView
+{{fd-sheets/fd-view-sheet}}
+
+{{#if show}}
+  {{fd-modal-message-box
+    isError=isError
+    messageText=messageText
+    sheetName=modalSheetName
+    approve=(action "closeWithSaving")
+    deny=(action "closeWithoutSaving")
+    hide=(action set "show" false)
+    headerIcon='edit'
   }}
-
-{{/fd-sheet}}
-
-{{fd-modal-message-box show=show isError=true messageText=error componentName='fd-application-model'}}
+{{/if}}

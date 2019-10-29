@@ -1,5 +1,3 @@
-@veryStrongTransparentWhite: rgba(255, 255, 255, 0.65);
-
 @textColor: @veryStrongTransparentWhite;
 @lightTextColor: rgba(255, 255, 255, 0.25);
 @pageBackground: #3e3e3e;
@@ -18,3 +16,99 @@
 
 @toolbarButtonColor: @veryStrongTransparentWhite;
 @toolbarButtonBackground: @sidebarBg;
+
+
+// For olv
+
+.ui.form input:not([type]):focus,
+.ui.form input[type="date"]:focus,
+.ui.form input[type="datetime-local"]:focus,
+.ui.form input[type="email"]:focus,
+.ui.form input[type="number"]:focus,
+.ui.form input[type="password"]:focus,
+.ui.form input[type="search"]:focus,
+.ui.form input[type="tel"]:focus,
+.ui.form input[type="time"]:focus,
+.ui.form input[type="text"]:focus,
+.ui.form input[type="file"]:focus,
+.ui.form input[type="url"]:focus {
+  color: @veryStrongTransparentWhite;
+}
+
+.ui.form .password-div input[type="text"],
+.ui.form .username-div input[type="text"],
+.ui.form .full-name-div input[type="text"],
+.ui.form .password-div input[type="password"],
+.ui.form .username-div input[type="password"],
+.ui.form .full-name-div input[type="password"],
+.ui.form .password-div input[type="email"],
+.ui.form .username-div input[type="email"],
+.ui.form .full-name-div input[type="email"] {
+  background-color: @pageBackground;
+  -webkit-box-shadow:0 0 0 50px @pageBackground inset; /* Change the color to your own background color */
+  -webkit-text-fill-color: @veryStrongTransparentWhite;
+  color: @veryStrongTransparentWhite;
+}
+
+.flexberry-login h3,
+.flexberry-register h3,
+.flexberry-pwd-reset h3,
+.flexberry-user-profile h3 {
+  color: @veryStrongTransparentWhite;
+}
+
+.ui.vertical.footer.segment > .flex-container > .ui.text.menu {
+  color: @veryStrongTransparentWhite;
+}
+
+.fd-centered-new-form .ui.floating.message {
+  background: @pageBackground;
+}
+
+.ui.table {
+  background: @pageBackground;
+  color: @veryStrongTransparentWhite;
+  border: 1px solid #777;
+}
+
+.ui.table thead th {
+  background: @pageBackground;
+  border-bottom: 1px solid #777;
+}
+
+.ui.celled.table tr th, .ui.celled.table tr td {
+  border-left: 1px solid #777;
+}
+
+.ui.table tr td {
+  border-top: 1px solid #777;
+}
+
+.ui.selectable.table tbody tr:hover, .ui.table tbody tr td.selectable:hover {
+  background: #545454 !important;
+  color: @veryStrongTransparentWhite !important;
+}
+
+.ui.table tr.active, .ui.table td.active {
+  background: #545454 !important;
+  color: @veryStrongTransparentWhite !important;
+}
+
+.ui.striped.selectable.selectable.selectable.table tbody tr.active:hover {
+  background: #545454 !important;
+  color: @veryStrongTransparentWhite !important;
+}
+
+.ui.basic.label,
+.ui.basic.red.label,
+.ui.basic.green.label {
+  background-color: transparent !important;
+}
+
+.ui.button {
+  color: #777;
+}
+
+.ui.button:hover {
+  color: #777;
+}

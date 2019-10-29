@@ -10,13 +10,19 @@
         </button>
       {{/if}}      
       {{#if toolbarVisible}}
-        <button class="ui button" {{action 'save'}}>
-          {{t "components.fd-sheet.save-caption"}}
-        </button>
-        {{#if (not isNewModel)}}
-          <button class="ui icon button" {{action 'delete'}}>
-            <i class="icon-fd-trash-can icon" ></i>
+        {{#if (and readonlyMode (not isNewModel))}}
+          <button class="ui button" {{action 'edit'}}>
+            {{t "components.fd-sheet.edit-caption"}}
           </button>
+        {{else}}
+          <button class="ui button" {{action 'save'}}>
+            {{t "components.fd-sheet.save-caption"}}
+          </button>
+          {{#if (or (not isNewModel) deleteVisible)}}
+            <button class="ui icon button" {{action 'delete'}}>
+              <i class="icon-fd-trash-can icon" ></i>
+            </button>
+          {{/if}}
         {{/if}}
       {{/if}}
       <button class="ui icon button" {{action 'expand'}}>
@@ -34,7 +40,7 @@
     {{flexberry-textbox
       value=title
       placeholder=(t "components.fd-sheet.placeholder-caption")
-      readonly=readonly
+      readonly=(or nameIsReadonly (and readonlyMode (not isNewModel)))
       class='form-header fluid'
       maxlength=maxlength
     }}

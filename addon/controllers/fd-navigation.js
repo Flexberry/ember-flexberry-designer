@@ -2,13 +2,13 @@ import Controller from '@ember/controller';
 import { getOwner } from '@ember/application';
 import { inject as service } from '@ember/service';
 import { get, computed } from '@ember/object';
-import { A } from '@ember/array';
 import { isNone } from '@ember/utils';
+import FdSheetCloseConfirm from '../mixins/fd-sheet-close-confirm';
 import FdAppStructTree from '../objects/fd-appstruct-tree';
 import { deserialize, serialize } from '../utils/transforms-utils/fd-containers-tree';
 import FdPreloadStageMetadata from 'ember-flexberry-designer/utils/fd-preload-stage-metadata';
 
-export default Controller.extend({
+export default Controller.extend(FdSheetCloseConfirm, {
   /**
    Service that get current project contexts.
 
@@ -27,28 +27,20 @@ export default Controller.extend({
   appState: service(),
 
   /**
-    Value selected nodes.
-
-    @property selectedNodes
-    @type Object
-  */
-  selectedNodes: A(),
-
-  /**
-    Value selected node.
-
-    @property selectedNode
-    @type Object
-  */
-  selectedNode: computed.alias('selectedNodes.firstObject'),
-
-  /**
     Service for managing the state of the sheet component.
 
     @property fdSheetService
     @type FdSheetService
   */
   fdSheetService: service(),
+
+  /**
+    Service for managing the state of the component.
+
+    @property fdDialogService
+    @type fdDialogService
+  */
+  fdDialogService: service('fd-dialog-service'),
 
   /**
     Sheet component name.
@@ -60,22 +52,12 @@ export default Controller.extend({
   sheetComponentName: '',
 
   /**
-    Flag: indicates whether to show create editing panel.
+    Object with flags indicates whether edit panel is readonly.
 
-    @property isAddMode
-    @type Bool
-    @default false
+    @property readonlyMode
+    @type Object
   */
-  isAddMode: false,
-
-  /**
-    Custom button title.
-
-    @property customButtonTitle
-    @type String
-    @default 'forms.fd-navigation.cancel'
-  */
-  customButtonTitle: 'forms.fd-navigation.cancel',
+  readonlyMode: undefined,
 
   /**
     Type settings for jsTree.
@@ -95,6 +77,20 @@ export default Controller.extend({
       valid_children: ['folder']
     }
   })),
+
+  /**
+    Dnd settings for jsTree.
+
+    @property typesOptions
+    @type Object
+  */
+  dndOptions: computed(function() {
+    return {
+      'is_draggable': function () {
+        return !this.get('readonlyMode');
+      }.bind(this)
+    }
+  }),
 
   /**
     Indicates when application class is absent.
@@ -127,17 +123,12 @@ export default Controller.extend({
     },
 
     /**
-      Delete 'selectedNode'.
+      Off readonlyMode.
 
-       @method actions.deleteNode
+       @method actions.edit
     */
-    deleteNode() {
-      let jstree = this.get('treeObject').jstree(true);
-      let selectedNode = this.get('selectedNode');
-      jstree.delete_node(selectedNode);
-
-      this._saveTree();
-      this.get('fdSheetService').closeSheet(this.get('sheetComponentName'));
+    edit() {
+      this.set('readonlyMode', false);
     },
 
     /**
@@ -145,36 +136,15 @@ export default Controller.extend({
 
        @method actions.selectNodeAction
     */
-    selectNodeAction() {
-      this.set('isAddMode', false);
-      this.get('fdSheetService').openSheet(this.get('sheetComponentName'));
-    },
-
-    /**
-      Add root folder in tree.
-
-       @method actions.addRootFolder
-    */
-    addRootFolder() {
-      let jstree = this.get('treeObject').jstree(true);
-      let root = jstree.get_node('#');
-      let createData = this._findFreeNodeData(root, 'NewFolder', 'NF');
-      let folder = FdAppStructTree.create({
-        text: 'NewFolder' + createData.textIndex,
-        type: 'folder',
-        children: [],
-        id: 'NF' + createData.idIndex
-      });
-
-      jstree.create_node('#', folder, 'last', null, true);
-      this._saveTree();
+    selectNodeAction(node) {
+      this.get('fdSheetService').openSheet(this.get('sheetComponentName'), node);
     },
 
     /**
       Add sub folder in tree.
 
        @method actions.addSubFolder
-       @param {Object} node jstree node
+       @param {Object} node Jstree node.
     */
     addSubFolder(node) {
       let jstree = this.get('treeObject').jstree(true);
@@ -195,11 +165,11 @@ export default Controller.extend({
       Add sub form in tree.
 
        @method actions.addSubForm
-       @param {Object} nodes jstree nodes
+       @param {Object} nodes Jstree nodes.
+       @param {Object} selectedNode Selected node.
     */
-    addSubForm(nodes) {
+    addSubForm(nodes, selectedNode) {
       let jstree = this.get('treeObject').jstree(true);
-      let selectedNode = this.get('selectedNode');
       nodes.forEach((node) => {
         let createData = this._findFreeNodeData(selectedNode, '', 'NP');
         node.set('id', 'NP' + createData.idIndex);
@@ -208,6 +178,26 @@ export default Controller.extend({
 
       this.set('isAddMode', false);
       jstree.open_node(selectedNode);
+      this._saveTree();
+    },
+
+    /**
+      Add root folder in tree.
+
+       @method actions.addRootFolder
+    */
+    addRootFolder() {
+      let jstree = this.get('treeObject').jstree(true);
+      let root = jstree.get_node('#');
+      let createData = this._findFreeNodeData(root, 'NewFolder', 'NF');
+      let folder = FdAppStructTree.create({
+        text: 'NewFolder' + createData.textIndex,
+        type: 'folder',
+        children: [],
+        id: 'NF' + createData.idIndex
+      });
+
+      jstree.create_node('#', folder, 'last', null, true);
       this._saveTree();
     },
 
@@ -242,40 +232,13 @@ export default Controller.extend({
             });
         } else {
           this.get('appState').reset();
-          throw new Error(this.get('i18n').t('forms.fd-navigation.create-prototype-error'));
+          this.get('fdDialogService').showErrorMessage({ message: this.get('i18n').t('forms.fd-navigation.create-prototype-error') });
         }
       }).catch(() => {
         this.get('appState').reset();
-        throw new Error(this.get('i18n').t('forms.fd-navigation.create-prototype-error'));
+        this.get('fdDialogService').showErrorMessage({ message: this.get('i18n').t('forms.fd-navigation.create-prototype-error') });
       });
     },
-  },
-
-  init() {
-    this._super(...arguments);
-
-    this.get('fdSheetService').on('closeSheetTriggered', this, this.closeSheet);
-  },
-
-  /**
-    Closing sheet.
-
-     @method closeSheet
-     @param {String} sheetName Sheet's dbName
-  */
-  closeSheet(sheetName) {
-    let sheetComponentName = this.get('sheetComponentName');
-    if (sheetComponentName === sheetName) {
-      const treeObject = this.get('treeObject');
-      if (treeObject) {
-        let jstree = treeObject.jstree(true);
-        jstree.deselect_node(this.get('selectedNode'));
-        const actionReceiver = this.get('actionReceiver');
-        if (actionReceiver) {
-          actionReceiver.send('redraw');
-        }
-      }
-    }
   },
 
   /**
@@ -302,8 +265,7 @@ export default Controller.extend({
     app.save().then((newApp) => {
       _this.set('model.tree', deserialize(newApp.get('containersStr')));
     }).catch((error) => {
-      _this.set('error', error.message);
-      _this.set('show', true);
+      _this.get('fdDialogService').showErrorMessage(error.message);
     }).finally(() => {
       _this.get('appState').reset();
     });
@@ -313,9 +275,9 @@ export default Controller.extend({
     Find free id and text in tree.
 
      @method _findFreeNodeData
-     @param {String} node tree node
-     @param {String} text text part
-     @param {String} id text part
+     @param {String} node Tree node.
+     @param {String} text Text part.
+     @param {String} id Text part.
   */
   _findFreeNodeData(node, text, id) {
     let jstree = this.get('treeObject').jstree(true);

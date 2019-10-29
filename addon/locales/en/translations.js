@@ -133,10 +133,13 @@ import FdBsEditingPanel from './components/fd-businessserver-editing-panel';
 import FdEnumEditingPanel from './components/fd-enumeration-editing-panel';
 import FdEditFormEditingPanel from './components/fd-editform-editing-panel';
 import FdListFormEditingPanel from './components/fd-listform-editing-panel';
+import FdGeolayerFormEditingPanel from './components/fd-geolayer-editing-panel';
+import FdGeolayerstyleFormEditingPanel from './components/fd-geolayerstyle-editing-panel';
 import FdCreateView from './components/fd-create-view';
 import FdCreateEntity from './components/fd-create-entity';
 import FdCreateDiagrams from './components/fd-create-diagrams';
 import FdSheet from './components/fd-sheet';
+import FdSheetToolBar from './components/fd-sheets-tool-bar';
 import FdCreateNodeEditingPanel from './components/fd-create-node-editing-panel';
 import FdFolderEditingPanel from './components/fd-folder-editing-panel';
 import FdPropertyEditingPanel from './components/fd-property-editing-panel';
@@ -365,6 +368,10 @@ $.extend(true, translations, {
           'fd-current-project-name-header': {
             caption: 'Project',
             title: '',
+          },
+          'i-i-s-caseberry-logging-objects-application-log-l': {
+            caption: 'Log table',
+            title: '',
           }
         },
       }
@@ -441,8 +448,11 @@ $.extend(true, translations, {
     'fd-enumeration-editing-panel': FdEnumEditingPanel,
     'fd-editform-editing-panel': FdEditFormEditingPanel,
     'fd-listform-editing-panel': FdListFormEditingPanel,
+    'fd-geolayer-editing-panel': FdGeolayerFormEditingPanel,
+    'fd-geolayerstyle-editing-panel': FdGeolayerstyleFormEditingPanel,
     'fd-create-view': FdCreateView,
     'fd-sheet': FdSheet,
+    'fd-sheets-tool-bar': FdSheetToolBar,
     'fd-create-node-editing-panel': FdCreateNodeEditingPanel,
     'fd-folder-editing-panel': FdFolderEditingPanel,
     'fd-property-editing-panel': FdPropertyEditingPanel,

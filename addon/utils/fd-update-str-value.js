@@ -7,7 +7,7 @@ import RepositoryAccessModifier  from '../enums/s-t-o-r-m-c-a-s-e-repository-acc
 let updateAttributes = function(classObject, store) {
   const attributesStr = classObject.get('attributesStr');
   if (isNone(attributesStr) || isBlank(attributesStr.trim())) {
-    return '';
+    return;
   }
 
   const attributes = classObject.get('attributes');
@@ -57,8 +57,6 @@ let updateAttributes = function(classObject, store) {
       }
     }
   });
-
-  return '';
 };
 
 /**
@@ -67,7 +65,7 @@ let updateAttributes = function(classObject, store) {
 let updateMethods = function(classObject, store) {
   const methodsStr = classObject.get('methodsStr');
   if (isNone(methodsStr) || isBlank(methodsStr.trim())) {
-    return '';
+    return;
   }
 
   const methods = classObject.get('methods');
@@ -134,17 +132,14 @@ let updateMethods = function(classObject, store) {
       }
     }
   });
-
-  return '';
 };
 
 /**
   Update repositoryObjects by str properties.
 */
 let updateObjectByStr = function(classObject, store) {
-  let attrMessage = updateAttributes(classObject, store);
-  let methMessage = updateMethods(classObject, store);
-  return attrMessage + methMessage;
+  updateAttributes(classObject, store);
+  updateMethods(classObject, store);
 };
 
 /**
@@ -233,8 +228,6 @@ let updateMethodsStr = function(classObject) {
 let updateStrByObjects = function(classObject) {
   updateAttributesStr(classObject);
   updateMethodsStr(classObject);
-
-  return true;
 };
 
 

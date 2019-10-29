@@ -29,16 +29,7 @@ export default Route.extend({
     @type String
     @default 'application-model-sheet'
   */
-  sheetComponentName: 'application-model-sheet',
-
-  /**
-    Sheet view name.
-
-    @property sheetViewName
-    @type String
-    @default 'view-sheet'
-  */
-  sheetViewName: 'view-sheet',
+  sheetComponentName: 'class-sheet',
 
   /**
     A hook you can implement to convert the URL into the model for this route.
@@ -58,6 +49,8 @@ export default Route.extend({
       extinterfaces: undefined,
       interfaces: undefined,
       userforms: undefined,
+      geolayers: undefined,
+      geolayerstyles: undefined,
       userstereotypes: undefined
     };
 
@@ -83,7 +76,8 @@ export default Route.extend({
     let inheritanceCurrentStage = recordsInheritance.filterBy('stage.id', stage.get('id'));
 
     // Classes.
-    implementations.forEach((implementation) => {
+    let implementationsSort = A(implementations).sortBy('name');
+    implementationsSort.forEach((implementation) => {
       let classForms = forms.filter((form) => {
         let idParent = form.get('formViews').mapBy('view.class.id');
         if (idParent[0] === implementation.id) {
@@ -112,48 +106,69 @@ export default Route.extend({
 
     // Typedef.
     let typedefs = classesCurrentStage.filterBy('stereotype', '«typedef»');
-    let wrapTypedefs = this.wrapModel(typedefs);
+    let typedefsSort = A(typedefs).sortBy('name');
+    let wrapTypedefs = this.wrapModel(typedefsSort);
     modelHash.typedefs = A(wrapTypedefs);
 
     // Enums.
     let enums = classesCurrentStage.filterBy('stereotype', '«enumeration»');
-    let wrapEnums = this.wrapModel(enums);
+    let enumsSort = A(enums).sortBy('name');
+    let wrapEnums = this.wrapModel(enumsSort);
     modelHash.enums = A(wrapEnums);
 
     // Types.
     let types = classesCurrentStage.filterBy('stereotype', '«type»');
-    let wrapTypes = this.wrapModel(types);
+    let typesSort = A(types).sortBy('name');
+    let wrapTypes = this.wrapModel(typesSort);
     modelHash.types = A(wrapTypes);
 
     // Applications.
     let applications = classesCurrentStage.filterBy('stereotype', '«application»');
-    let wrapApplications = this.wrapModel(applications);
+    let applicationsSort = A(applications).sortBy('name');
+    let wrapApplications = this.wrapModel(applicationsSort);
     modelHash.applications = A(wrapApplications);
 
     // BS.
     let bs = classesCurrentStage.filterBy('stereotype', '«businessserver»');
-    let wrapBs = this.wrapModel(bs);
+    let bsSort = A(bs).sortBy('name');
+    let wrapBs = this.wrapModel(bsSort);
     modelHash.bs = A(wrapBs);
 
     // External.
     let externals = classesCurrentStage.filterBy('stereotype', '«external»');
-    let wrapExternals = this.wrapModel(externals);
+    let externalsSort = A(externals).sortBy('name');
+    let wrapExternals = this.wrapModel(externalsSort);
     modelHash.externals = A(wrapExternals);
 
     // Extinterface.
     let extinterfaces = classesCurrentStage.filterBy('stereotype', '«externalinterface»');
-    let wrapExtinterfaces = this.wrapModel(extinterfaces);
+    let extinterfacesSort = A(extinterfaces).sortBy('name');
+    let wrapExtinterfaces = this.wrapModel(extinterfacesSort);
     modelHash.extinterfaces = A(wrapExtinterfaces);
 
     // Interface.
     let interfaces = classesCurrentStage.filterBy('stereotype', '«interface»');
-    let wrapInterfaces = this.wrapModel(interfaces);
+    let interfacesSort = A(interfaces).sortBy('name');
+    let wrapInterfaces = this.wrapModel(interfacesSort);
     modelHash.interfaces = A(wrapInterfaces);
 
     // Userforms.
     let userforms = classesCurrentStage.filterBy('stereotype', '«userform»');
-    let wrapUserforms = this.wrapModel(userforms);
+    let userformsSort = A(userforms).sortBy('name');
+    let wrapUserforms = this.wrapModel(userformsSort);
     modelHash.userforms = A(wrapUserforms);
+
+    // Geolayers.
+    let geolayers = classesCurrentStage.filterBy('stereotype', '«geolayer»');
+    let geolayersSort = A(geolayers).sortBy('name');
+    let wrapGeolayers = this.wrapModel(geolayersSort);
+    modelHash.geolayers = A(wrapGeolayers);
+
+    // Geolayerstyles.
+    let geolayerstyles = classesCurrentStage.filterBy('stereotype', '«geolayerstyle»');
+    let geolayerstylesSort = A(geolayerstyles).sortBy('name');
+    let wrapGeolayerstyles = this.wrapModel(geolayerstylesSort);
+    modelHash.geolayerstyles = A(wrapGeolayerstyles);
 
     // Userstereotypes.
     let designerStereotypes = A([
@@ -168,12 +183,15 @@ export default Route.extend({
       '«external»',
       '«externalinterface»',
       '«interface»',
-      '«userform»'
+      '«userform»',
+      '«geolayer»',
+      '«geolayerstyle»'
     ]);
     let userstereotypes = classesCurrentStage.filter(function(item) {
       return !designerStereotypes.includes(item.get('stereotype')) && !isBlank(item.get('stereotype'));
     });
-    let wrapUserstereotypes = this.wrapModel(userstereotypes);
+    let userstereotypesSort = A(userstereotypes).sortBy('name');
+    let wrapUserstereotypes = this.wrapModel(userstereotypesSort);
     modelHash.userstereotypes = A(wrapUserstereotypes);
 
     return modelHash;
@@ -191,7 +209,6 @@ export default Route.extend({
 
     controller.set('isAddMode', false);
     controller.set('sheetComponentName', this.get('sheetComponentName'));
-    controller.set('sheetViewName', this.get('sheetViewName'));
   },
 
   /**
@@ -221,9 +238,8 @@ export default Route.extend({
 
       @method actions.willTransition
     */
-    willTransition() {
-      this.get('fdSheetService').closeSheet(this.get('sheetComponentName'));
-      this.get('fdSheetService').closeSheet(this.get('sheetViewName'));
+    willTransition(transition) {
+      this.get('fdSheetService').transitionFromSheet(transition, this.get('sheetComponentName'));
 
       this._super(...arguments);
     }

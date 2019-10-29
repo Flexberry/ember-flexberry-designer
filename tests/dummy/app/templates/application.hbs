@@ -15,27 +15,26 @@
   {{#if currentProjectName}}
     <div class="item current-project-name-header">
       <div>
-        <i class="icon"></i>
+        <i class="icon icon-fd-diagram"></i>
         {{t 'forms.application.sitemap.root.fd-current-project-name-header.caption'}}
       </div>
     </div>
-     <div class="item current-project-name">
+    <div class="item current-project-name">
       <div>
-        <i class="icon"></i>
+        <i class="icon icon-fd-diagram"></i>
         {{currentProjectName}}
       </div>
     </div>
-    {{flexberry-sitemap sitemap=sitemap}}
+    {{flexberry-sitemap sitemap=sitemap class="flexberry-sitemap-top"}}
   {{/if}}
-
+  <div class="flexberry-sitemap-top"></div>
+  
   <button {{action 'toggleSidebar'}} class="ui toggle-sidebar-visible icon button">
     <i class="caret left icon"></i>
   </button>
-
-  <div class="sitemap-bottom">
-    {{flexberry-sitemap sitemap=sitemapBottom}}
-  </div>
+  {{flexberry-sitemap sitemap=sitemapBottom class="sitemap-bottom"}}
 {{/flexberry-sidebar}}
+
 <button {{action 'toggleSidebar'}} class="ui toggle-sidebar icon button">
   <i class="caret right icon"></i>
 </button>
@@ -95,14 +94,14 @@
         items=themes
         value='light'
         onChange=(action 'changeTheme')
-        direction="upward"
+        settings=(hash direction="upward")
       }}
       {{flexberry-dropdown
         class="compact"
         items=locales
         value=i18n.locale
         placeholder=(t "forms.application.header.menu.language-dropdown.placeholder")
-        direction="upward"
+        settings=(hash direction="upward")
       }}
     </div>
   </div>

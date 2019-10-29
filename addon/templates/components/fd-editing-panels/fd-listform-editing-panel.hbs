@@ -9,6 +9,7 @@
         value=model.caption
         class='fluid input'
         placeholder=(t "components.fd-listform-editing-panel.caption-placeholder")
+        readonly=readonly
       }}
     </div>
   </div>
@@ -28,6 +29,7 @@
             value=model.description
             class='fluid input'
             placeholder=(t "components.fd-listform-editing-panel.description-placeholder")
+            readonly=readonly
           }}
         </div>
       </div>
@@ -41,6 +43,7 @@
             value=model.publishName
             class='fluid input'
             placeholder=(t "components.fd-listform-editing-panel.publish-name-placeholder")
+            readonly=readonly
           }}
         </div>
       </div>
@@ -54,6 +57,7 @@
             value=model.packet
             class='fluid input'
             placeholder=(t "components.fd-listform-editing-panel.packet-placeholder")
+            readonly=readonly
           }}
         </div>
       </div>
@@ -67,6 +71,7 @@
             value=model.namespacePostfix
             class='fluid input'
             placeholder=(t "components.fd-listform-editing-panel.namespace-postfix-placeholder")
+            readonly=readonly
           }}
         </div>
       </div>
@@ -84,6 +89,7 @@
         value=viewValue
         class='compact input'
         onChange=(action "changeViewValue")
+        readonly=readonly
       }}
     </div>
   </div>
@@ -98,6 +104,7 @@
         value=model.formViews.firstObject.dataObjectTypes.editContainerName
         class='compact input'
         needChecksOnValue=false
+        readonly=readonly
       }}
     </div>
   </div>
@@ -112,6 +119,7 @@
         value=model.formViews.firstObject.dataObjectTypes.newContainerName
         class='compact input'
         needChecksOnValue=false
+        readonly=readonly
       }}
     </div>
   </div>

@@ -63,6 +63,32 @@ export default Component.extend({
   */
  printButtonVisible: true,
 
+  /**
+    Flag: indicates whether to not show delete button.
+
+    @property deleteVisible
+    @type Bool
+  */
+  deleteVisible: false,
+
+  /**
+    Flag: indicates whether name textbox is readonly.
+
+    @property nameIsReadonly
+    @type Bool
+    @default false
+  */
+  nameIsReadonly: false,
+
+  /**
+    Flag: indicates whether property is readonly.
+
+    @property readonlyMode
+    @type Boolean
+    @default false
+   */
+  readonlyMode: false,
+
   init() {
     this._super(...arguments);
 
@@ -102,6 +128,7 @@ export default Component.extend({
     */
     save() {
       this.get('saveController')();
+      this.set('readonlyMode', true);
     },
 
     /**
@@ -111,6 +138,15 @@ export default Component.extend({
     */
     delete() {
       this.get('deleteController')();
+    },
+
+    /**
+      Off readonlyMode.
+
+      @method actions.edit
+    */
+    edit() {
+      this.set('readonlyMode', false);
     },
 
     /**

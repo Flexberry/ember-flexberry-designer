@@ -9,6 +9,7 @@
         value=model.description
         class='fluid input'
         placeholder=(t "components.fd-enumeration-editing-panel.description-placeholder")
+        readonly=readonly
       }}
     </div>
   </div>
@@ -22,6 +23,7 @@
         value=model.packet
         class='fluid input'
         placeholder=(t "components.fd-enumeration-editing-panel.packet-placeholder")
+        readonly=readonly
       }}
     </div>
   </div>
@@ -35,6 +37,7 @@
         value=model.namespacePostfix
         class='fluid input'
         placeholder=(t "components.fd-enumeration-editing-panel.namespace-postfix-placeholder")
+        readonly=readonly
       }}
     </div>
   </div>
@@ -44,5 +47,6 @@
     buttonCaption=attributeButton
     model=model.attributes
     create=(action 'createAttribute')
+    readonly=readonly
   }}
 </div>

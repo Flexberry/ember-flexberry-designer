@@ -4,8 +4,10 @@
 
 import Route from '@ember/routing/route';
 import { inject as service } from '@ember/service';
-import { hash } from 'rsvp';
+import { A, isArray } from '@ember/array';
+import { isNone } from '@ember/utils';
 import Builder from 'ember-flexberry-data/query/builder';
+import GenerationStateEnum from '../enums/new-platform-flexberry-web-designer-generation-state';
 
 /**
   Parent route for all forms of generation.
@@ -14,29 +16,32 @@ import Builder from 'ember-flexberry-data/query/builder';
   @extends Ember.Route
 */
 export default Route.extend({
+
   /**
-    Link to {{#crossLink "FdCurrentProjectContextService"}}{{/crossLink}}.
+   Service that get current project contexts.
 
-    @property projectContext
-    @type FdCurrentProjectContextService
+   @property currentProjectContext
+   @type {Class}
+   @default service()
+   */
+  currentProjectContext: service('fd-current-project-context'),
+
+  /**
+    Service for managing the state of the sheet component.
+
+    @property fdSheetService
+    @type FdSheetService
   */
-  projectContext: service('fd-current-project-context'),
+  fdSheetService: service(),
 
-  actions: {
-    /**
-      Starts generation, opens its log when it starts successfully.
+  /**
+    Sheet component name.
 
-      @method actions.generate
-    */
-    generate() {
-      let adapter = this.get('store').adapterFor('application');
-      let project = this.get('projectContext').getCurrentStage();
-
-      adapter.callFunction('Generate', { project }).then((result) => {
-        this.transitionTo('fd-generation.log', result.value);
-      });
-    },
-  },
+    @property sheetComponentName
+    @type String
+    @default 'generation-sheet'
+  */
+  sheetComponentName: 'generation-sheet',
 
   /**
     See [EmberJS API](https://emberjs.com/api/).
@@ -44,28 +49,85 @@ export default Route.extend({
     @method model
   */
   model() {
+    let modelHash = {
+      run: undefined,
+      success: undefined,
+      error: undefined,
+      other: undefined,
+    };
+
     let store = this.get('store');
     let modelName = 'fd-generation';
-    let projectionName = 'ListFormView';
+    let projectionName = 'EditFormView';
 
     let builder = new Builder(store)
       .from(modelName)
       .selectByProjection(projectionName)
-      .where('stage', 'eq', this.get('projectContext').getCurrentStage())
+      .where('stage', 'eq', this.get('currentProjectContext').getCurrentStage())
       .orderBy('startTime desc');
 
-    return hash({
-      generations: store.query(modelName, builder.build()),
+    return store.query(modelName, builder.build()).then((result) => {
+      let runningGenerations = result.filterBy('state', GenerationStateEnum.Running);
+      modelHash.run = this.wrapModel(runningGenerations);
+
+      let successGenerations = result.filterBy('state', GenerationStateEnum.Success);
+      modelHash.success = this.wrapModel(successGenerations);
+
+      let errorGenerations = result.filterBy('state', GenerationStateEnum.Error);
+      modelHash.error = this.wrapModel(errorGenerations);
+
+      let otherGenerations = result.filter(function(item) {
+        let state = item.get('state');
+        return (state === GenerationStateEnum.Canceled || state === GenerationStateEnum.Warn || state === GenerationStateEnum.Unknown);
+      });
+      modelHash.other = this.wrapModel(otherGenerations);
+
+      return modelHash;
     });
   },
 
   /**
-    See [EmberJS API](https://emberjs.com/api/).
+    A hook you can use to setup the controller for the current route.
+    [More info](https://www.emberjs.com/api/ember/release/classes/Route/methods/setupController?anchor=setupController).
 
-    @method afterModel
+    @method setupController
+    @param {<a href="https://emberjs.com/api/ember/release/classes/Controller">Controller</a>} controller
   */
-  afterModel({ generations }) {
-    let route = generations.get('length') === 0 ? 'first' : 'list';
-    this.transitionTo(`fd-generation.${route}`);
+  setupController(controller) {
+    this._super(...arguments);
+
+    controller.set('sheetComponentName', this.get('sheetComponentName'));
   },
+
+  /**
+    Wrap model data.
+
+    @method wrapModel
+    @param {Object} model
+  */
+  wrapModel(model) {
+    if (isNone(model)) {
+      return null;
+    }
+
+    if (isArray(model)) {
+      return A(model).map((element) => ({ data: element, active: false }));
+    } else {
+      return { data: model, active: false };
+    }
+  },
+
+  actions: {
+    /**
+      See [EmberJS API](https://emberjs.com/api/).
+
+      @method actions.willTransition
+      @param {Object} transition
+    */
+    willTransition() {
+      this.get('fdSheetService').closeSheet(this.get('sheetComponentName'));
+
+      this._super(...arguments);
+    },
+  }
 });

@@ -12,4 +12,13 @@ export default Component.extend({
     @default undefined
   */
   node: undefined,
+
+  /**
+    Flag: indicates whether property is readonly.
+
+    @property readonlyMode
+    @type Boolean
+    @default true
+   */
+  readonlyMode: true,
 });

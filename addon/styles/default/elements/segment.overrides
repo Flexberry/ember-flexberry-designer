@@ -1,6 +1,7 @@
 .ui.vertical.footer.segment > .flex-container {
   .right.menu {
     padding: 0 1em;
+    .display-flex();
   }
 
   > .ui.text.menu {

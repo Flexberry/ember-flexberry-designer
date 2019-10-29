@@ -1,41 +1,36 @@
-import Component from '@ember/component';
+import { translationMacro as t } from 'ember-i18n';
 import layout from '../templates/components/fd-modal-message-box';
+import $ from 'jquery';
+import FlexberryDialogComponent from 'ember-flexberry/components/flexberry-dialog';
 
-export default Component.extend({
+import { computed } from '@ember/object';
+
+export default FlexberryDialogComponent.extend({
   layout,
 
   /**
-    Title text value.
+    See [EmberJS API](https://emberjs.com/api/).
 
-    @property titleText
-    @type String
+    @property classNames
   */
-  titleText: undefined,
+  classNames: ['basic'],
 
   /**
-    Message text value.
-
-    @property messageText
-    @type String
+    Flag: indicates whether dialog is closable (can be closed on it's dimmer click).
+    @property closable
+    @type Boolean
+    @default true
   */
-  messageText: undefined,
+  closable: true,
 
   /**
-    Model component name.
+    Сomponent icon class to display in the header.
 
-    @property componentName
+    @property headerIcon
     @type String
+    @default undefined
   */
-  componentName: undefined,
-
-  /**
-    Flag: indicates whether to show modal.
-
-    @property show
-    @type Object
-    @default false
-  */
-  show: false,
+  headerIcon: undefined,
 
   /**
     Flag: indicates whether to show modal button.
@@ -46,16 +41,67 @@ export default Component.extend({
   */
   isError: false,
 
-  actions: {
+  /**
+    Sheet component name.
+    @property sheetName
+    @type String
+  */
+  sheetName: undefined,
 
-    /**
-      Approve button action.
+  /**
+    Message text value.
 
-      @method actions.approve
-    */
-    approve() {
-      this.get('onApprove')();
-      this.set('show', false);
-    }
+    @property messageText
+    @type String
+    @default undefined
+  */
+  messageText: undefined,
+
+  /**
+    Flag: indicates whether dialog is visible or not.
+    If true, then dialog will be shown, otherwise dialog will be closed.
+    @property visible
+    @type Boolean
+    @default false
+  */
+  visible: true,
+
+  /**
+    Component's approve button caption.
+
+    @property approveButtonCaption
+    @type String
+    @default t('components.fd-modal-message-box.confirmation-approve')
+  */
+  approveButtonCaption: t('components.fd-modal-message-box.confirmation-approve'),
+
+  /**
+    Component's deny button caption.
+
+    @property denyButtonCaption
+    @type String
+    @default t('components.fd-modal-message-box.confirmation-deny')
+  */
+  denyButtonCaption: t('components.fd-modal-message-box.confirmation-deny'),
+
+  /**
+    Component's close button caption.
+
+    @property closeButtonCaption
+    @type String
+  */
+  closeButtonCaption: computed('isError', 'i18n.locale', function() {
+    let i18n = this.get('i18n');
+    return this.get('isError') ? i18n.t('components.fd-modal-message-box.confirmation-close') : i18n.t('components.fd-modal-message-box.confirmation-cancel');
+  }),
+
+  /**
+    See [EmberJS API](https://emberjs.com/).
+
+    @method didInsertElement
+  */
+  didInsertElement() {
+    this._super(...arguments);
+    $(this.element).modal('attach events', '.flexberry-dialog-close-button')
   }
 });
