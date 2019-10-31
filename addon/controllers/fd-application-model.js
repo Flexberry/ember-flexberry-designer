@@ -63,8 +63,6 @@ export default Controller.extend(FdSheetCloseConfirm, {
     if (fdSheetService.isVisible(sheetComponentName)) {
       fdSheetService.closeSheet(sheetComponentName);
     }
-
-    this.closeViewSheet();
   }),
 
   /**
