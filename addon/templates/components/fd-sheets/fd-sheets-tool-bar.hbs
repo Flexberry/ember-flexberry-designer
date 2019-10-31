@@ -26,6 +26,12 @@
         <i class="print icon" ></i>
       </button>
     {{/if}}   
+    {{/if}}
+    {{#if (and (not isNewModel) buttonVisible.share)}}
+      <button class="ui icon button" {{action 'share'}}>
+        <i class="share alternate icon" ></i>
+      </button>
+    {{/if}}
   {{/if}}
   <button class="ui icon button" {{action 'expand'}}>
     <i class="icon-fd-resize icon" ></i>

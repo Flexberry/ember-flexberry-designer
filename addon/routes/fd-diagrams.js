@@ -1,9 +1,10 @@
 import Route from '@ember/routing/route';
+import FdShareLoadData from '../mixins/fd-share-load-data';
+import FdWrapperModel from '../mixins/fd-wrapper-model';
 import { inject as service } from '@ember/service';
-import { A, isArray } from '@ember/array';
-import { isNone } from '@ember/utils';
+import { A } from '@ember/array';
 
-export default Route.extend({
+export default Route.extend(FdWrapperModel, FdShareLoadData, {
 
   /**
    Service that get current project contexts.
@@ -115,24 +116,6 @@ export default Route.extend({
 
     controller.set('isAddMode', false);
     controller.set('sheetComponentName', this.get('sheetComponentName'));
-  },
-
-  /**
-    Wrap model data.
-
-    @method wrapModel
-    @param {Object} model
-  */
-  wrapModel(model) {
-    if (isNone(model)) {
-      return null;
-    }
-
-    if (isArray(model)) {
-      return A(model).map((element) => ({ data: element, active: false }));
-    } else {
-      return { data: model, active: false };
-    }
   },
 
   actions: {
