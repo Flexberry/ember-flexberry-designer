@@ -55,7 +55,7 @@ export default Route.extend(ModalApplicationRouteMixin, {
             });
         }
       });
-    } else {
+    } else  if (this.get('router.location.location.href').split('?').length < 2) {
       this.transitionTo('index');
     }
   }

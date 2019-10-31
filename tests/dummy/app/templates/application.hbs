@@ -39,6 +39,7 @@
   <i class="caret right icon"></i>
 </button>
 {{outlet 'right-sidebar'}}
+{{/unless}}
 
 <div id="example" class="pusher">
   <div class="ui form {{appState.state}}">
@@ -54,10 +55,6 @@
 <div class="ui main container">
   {{outlet "modal"}}
 </div>
-{{/unless}}
-
-
-
 
 {{#unless inframe}}
 	<div class="ui vertical footer segment">

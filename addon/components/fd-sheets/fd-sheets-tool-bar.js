@@ -145,5 +145,15 @@ export default Component.extend({
     customButtonAction() {
       this.get('customButtonSheet')();
     },
+
+         /**
+      Print button action.
+
+      @method actions.print
+    */
+    print() {    
+      let model = this.get('targetObject.selectedValue.model.data');    
+      window.open(`#/fd-print-form/${model.get('id')}?modelName=${model.get('constructor.modelName')}&inframe=1`);    
+    },
   }
 });
