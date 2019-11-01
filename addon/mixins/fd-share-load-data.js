@@ -60,12 +60,12 @@ export default Mixin.create({
   beforeModel: function(transition) {
     let queryParams = get(transition, 'queryParams');
     if (isNone(queryParams) || Object.keys(queryParams).length === 0) {
-      return;
+      return resolve();
     }
 
     let gotostage = get(queryParams, 'gotostage');
     if (isBlank(gotostage)) {
-      return;
+      return resolve();
     }
 
     let currentProjectContext = this.get('currentProjectContext');
