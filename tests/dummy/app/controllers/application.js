@@ -126,13 +126,13 @@ export default Controller.extend({
         icon: 'icon-fd-email'
       },
       {
-        link: '',
+        link: 'https://flexberry.github.io',
         caption: i18n.t('forms.application.sitemap.root.fd-docs.caption'),
         title: i18n.t('forms.application.sitemap.root.fd-docs.title'),
         icon: 'icon-fd-book'
       },
       {
-        link: '',
+        link: 'https://gitter.im/Flexberry',
         caption: i18n.t('forms.application.sitemap.root.fd-chat.caption'),
         title: i18n.t('forms.application.sitemap.root.fd-chat.title'),
         icon: 'icon-fd-speech-bubble'
