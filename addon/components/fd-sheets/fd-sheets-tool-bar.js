@@ -206,7 +206,7 @@ export default Component.extend({
       this.get('customButtonSheet')();
     },
 
-         /**
+    /**
       Print button action.
 
       @method actions.print

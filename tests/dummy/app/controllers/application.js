@@ -7,29 +7,7 @@ import { later } from '@ember/runloop';
 import $ from 'jquery';
 import config from '../config/environment';
 
-// export default Ember.Controller.extend({
-//   queryParams: {
-//     showinframe: 'inframe'
-//   },
-//   showinframe: null,
-//   shouldShowInFrame: function() {
-//     var inFrame = this.get('showinframe');
-//     return inFrame && inFrame.toLowerCase() === 'true';
-//   }.property('showinframe')
-  
-// //  ...
-// });
-
 export default Controller.extend({
-  // queryParams: {
-  //   showinframe: 'inframe'
-  // },
-  // showinframe: null,
-  // shouldShowInFrame: function() {
-  //   var inFrame = this.get('showinframe');
-  //   return inFrame && inFrame.toLowerCase() === 'true';
-  // }.property('showinframe'),
-
   queryParams: ['inframe'],
 
   inframe: 0,

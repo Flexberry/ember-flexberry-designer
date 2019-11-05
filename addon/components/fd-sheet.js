@@ -148,7 +148,5 @@ export default Component.extend({
     customButtonAction() {
       this.get('customButtonController')();
     },
-
-
   }
 });
