@@ -229,6 +229,8 @@ joint.shapes.flexberry.uml.ClassView = joint.shapes.flexberry.uml.PrimitiveEleme
     joint.shapes.flexberry.uml.PrimitiveElementView.prototype.initialize.apply(this, arguments);
 
     let _this = this;
+    let objectModel = this.model.get('objectModel');
+    this.model.set('minHeight', objectModel.get('collapsed') ? 34 : 64);
 
     // Prevent paper from handling pointerdown.
     this.$box.find('input, textarea').on('mousedown click', function(evt) {
@@ -482,6 +484,7 @@ joint.shapes.flexberry.uml.ClassView = joint.shapes.flexberry.uml.PrimitiveEleme
     let objectModel = this.model.get('objectModel');
     let collapsedToggle = !objectModel.get('collapsed');
     objectModel.set('collapsed', collapsedToggle);
+    this.model.set('minHeight', collapsedToggle ? 34 : 64);
     this.applyDisplayFromCollapseValue();
   },
 
