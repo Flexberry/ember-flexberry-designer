@@ -4,7 +4,8 @@ moduleFor('route:fd-generation', 'Unit | Route | fd-generation', {
   // Specify the other units that are required for this test.
   needs: [
     'service:fd-current-project-context',
-    'service:fd-sheet-service'
+    'service:fd-sheet-service',
+    'service:appState'
   ]
 });
 

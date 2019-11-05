@@ -5,7 +5,8 @@
   <div class="fd-sheet-header">
     {{fd-sheets/fd-sheets-tool-bar
       sheetComponentName=sheetComponentName
-      toolbarVisible=false
+      sheetButtons=(array 'share')
+      shareSheetValue=selectedValue.model.data
     }}
     {{flexberry-textbox
       value=(t "forms.fd-generation.generation-log")

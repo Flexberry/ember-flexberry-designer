@@ -3,9 +3,9 @@
 */
 
 import Route from '@ember/routing/route';
+import FdShareLoadData from '../mixins/fd-share-load-data';
+import FdWrapperModel from '../mixins/fd-wrapper-model';
 import { inject as service } from '@ember/service';
-import { A, isArray } from '@ember/array';
-import { isNone } from '@ember/utils';
 import Builder from 'ember-flexberry-data/query/builder';
 import GenerationStateEnum from '../enums/new-platform-flexberry-web-designer-generation-state';
 
@@ -15,7 +15,7 @@ import GenerationStateEnum from '../enums/new-platform-flexberry-web-designer-ge
   @class FdGenerationRoute
   @extends Ember.Route
 */
-export default Route.extend({
+export default Route.extend(FdWrapperModel, FdShareLoadData, {
 
   /**
    Service that get current project contexts.
@@ -97,24 +97,6 @@ export default Route.extend({
     this._super(...arguments);
 
     controller.set('sheetComponentName', this.get('sheetComponentName'));
-  },
-
-  /**
-    Wrap model data.
-
-    @method wrapModel
-    @param {Object} model
-  */
-  wrapModel(model) {
-    if (isNone(model)) {
-      return null;
-    }
-
-    if (isArray(model)) {
-      return A(model).map((element) => ({ data: element, active: false }));
-    } else {
-      return { data: model, active: false };
-    }
   },
 
   actions: {
