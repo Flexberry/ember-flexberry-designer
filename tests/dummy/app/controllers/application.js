@@ -120,12 +120,6 @@ export default Controller.extend({
         icon: 'bug'
       },
       {
-        link: '',
-        caption: i18n.t('forms.application.sitemap.root.fd-requests.caption'),
-        title: i18n.t('forms.application.sitemap.root.fd-requests.title'),
-        icon: 'icon-fd-email'
-      },
-      {
         link: 'https://flexberry.github.io',
         caption: i18n.t('forms.application.sitemap.root.fd-docs.caption'),
         title: i18n.t('forms.application.sitemap.root.fd-docs.title'),
