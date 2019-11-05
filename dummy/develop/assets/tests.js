@@ -4163,7 +4163,7 @@ define('dummy/tests/unit/routes/fd-application-model-test', ['ember-qunit'], fun
   (0, _emberQunit.moduleFor)('route:fd-application-model', 'Unit | Route | fd application model', {
     // Specify the other units that are required for this test.
     // needs: ['controller:foo']
-    needs: ['service:fd-current-project-context', 'service:fdSheetService']
+    needs: ['service:fd-current-project-context', 'service:fdSheetService', 'service:appState']
   });
 
   (0, _emberQunit.test)('it exists', function (assert) {
@@ -4330,7 +4330,7 @@ define('dummy/tests/unit/routes/fd-diagrams-test', ['ember-qunit'], function (_e
   (0, _emberQunit.moduleFor)('route:fd-diagrams', 'Unit | Route | fd diagrams', {
     // Specify the other units that are required for this test.
     // needs: ['controller:foo']
-    needs: ['service:fd-current-project-context', 'service:fdSheetService']
+    needs: ['service:fd-current-project-context', 'service:fdSheetService', 'service:appState']
   });
 
   (0, _emberQunit.test)('it exists', function (assert) {
@@ -4412,7 +4412,7 @@ define('dummy/tests/unit/routes/fd-generation-test', ['ember-qunit'], function (
 
   (0, _emberQunit.moduleFor)('route:fd-generation', 'Unit | Route | fd-generation', {
     // Specify the other units that are required for this test.
-    needs: ['service:fd-current-project-context', 'service:fd-sheet-service']
+    needs: ['service:fd-current-project-context', 'service:fd-sheet-service', 'service:appState']
   });
 
   (0, _emberQunit.test)('it exists', function (assert) {

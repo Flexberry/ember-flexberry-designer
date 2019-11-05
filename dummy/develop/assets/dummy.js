@@ -5977,6 +5977,11 @@ define('dummy/ember-flexberry-designer/tests/addon.lint-test', [], function () {
     assert.ok(true, 'addon/mixins/fd-save-has-many-relationships.js should pass ESLint\n\n');
   });
 
+  QUnit.test('addon/mixins/fd-share-load-data.js', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'addon/mixins/fd-share-load-data.js should pass ESLint\n\n');
+  });
+
   QUnit.test('addon/mixins/fd-sheet-close-confirm.js', function (assert) {
     assert.expect(1);
     assert.ok(true, 'addon/mixins/fd-sheet-close-confirm.js should pass ESLint\n\n');
@@ -5985,6 +5990,11 @@ define('dummy/ember-flexberry-designer/tests/addon.lint-test', [], function () {
   QUnit.test('addon/mixins/fd-work-panel-toggler.js', function (assert) {
     assert.expect(1);
     assert.ok(true, 'addon/mixins/fd-work-panel-toggler.js should pass ESLint\n\n');
+  });
+
+  QUnit.test('addon/mixins/fd-wrapper-model.js', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'addon/mixins/fd-wrapper-model.js should pass ESLint\n\n');
   });
 
   QUnit.test('addon/mixins/regenerated/models/fd-ad.js', function (assert) {
@@ -14318,6 +14328,13 @@ define('dummy/routes/application', ['exports', 'ember-flexberry/mixins/modal-app
     */
     currentProjectContext: Ember.inject.service('fd-current-project-context'),
 
+    /**
+      Router service of current application.
+      @property router
+      @type RouterService
+    */
+    router: Ember.inject.service(),
+
     activate: function activate() {
       var _this = this;
 
@@ -14350,7 +14367,7 @@ define('dummy/routes/application', ['exports', 'ember-flexberry/mixins/modal-app
             });
           }
         });
-      } else {
+      } else if (this.get('router.location.location.href').split('?').length < 2) {
         this.transitionTo('index');
       }
     }
