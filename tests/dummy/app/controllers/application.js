@@ -6,6 +6,7 @@ import { isNone } from '@ember/utils';
 import { later } from '@ember/runloop';
 import $ from 'jquery';
 import config from '../config/environment';
+import fade from 'ember-animated/transitions/fade';
 
 export default Controller.extend({
   /**
@@ -36,6 +37,7 @@ export default Controller.extend({
   */
   fdSheetService: service(),
 
+  transition: fade,
   /**
     Flag indicates sidebar visible
 
@@ -259,6 +261,9 @@ export default Controller.extend({
     toggleSidebar() {
       let sidebar = $('.ui.sidebar.main.menu');
       sidebar.sidebar('toggle');
+      sidebar.toggleClass('sidebar-mini');
+      $('.full.height').toggleClass('content-opened');
+
       let sidebarVisible = sidebar.hasClass('visible');
       this.set('_sidebarVisible', !sidebarVisible);
       let currentSidebarWidth = sidebarVisible ? this.sidebarMiniWidth : this.sidebarWidth;
@@ -273,25 +278,20 @@ export default Controller.extend({
       visibleSheets.forEach((item) => {
         if ($(item).hasClass('expand')) {
           this.get('fdSheetService').animatingSheetContent($(item).attr('class').replace(/ /g, '.'), contentWidth, 250, true);
+          let sheetTranslate = `translate3d(${currentSidebarWidth}, 0, 0)`;
+          $(item).css({ 'transform': sheetTranslate });
         } else {
 
           // That the sheet remained in its place and did not go along with the content.
-          let sheetTranslate = `translate3d(calc(50% - ${currentSidebarWidth}), 0, 0)`;
+          let sheetTranslate = `translate3d(50%, 0, 0)`;
           $(item).css({ 'transform': sheetTranslate });
         }
       });
-      if (!sidebarVisible) {
-        sidebar.toggleClass('sidebar-mini');
-      }
 
       // Animated increases the width of the page content.
       $('.full.height .flexberry-vertical-form').css({ opacity: 0.2 });
       later(function() {
         $('.full.height .flexberry-vertical-form').css({ opacity: '' });
-        $('.full.height').css({ width: contentWidth });
-        if (sidebarVisible) {
-          sidebar.toggleClass('sidebar-mini');
-        }
       }, 250);
 
       later(this, function() {

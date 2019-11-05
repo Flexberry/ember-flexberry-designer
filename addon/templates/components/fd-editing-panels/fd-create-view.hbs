@@ -28,7 +28,7 @@
     }}
     <div class="overflow-panel">
       <div class="ui grid fd-list view-definition">
-        {{#each view.definitionArray as |definition|}}
+        {{#animated-each view.definitionArray use=transition as |definition|}}
           {{fd-view-definition-item
             definition=definition
             filterValue=searchValue
@@ -37,13 +37,13 @@
             delete=(action 'deleteDefinitionItem')
             readonly=readonly
           }}
-        {{/each}}
+        {{/animated-each}}
       </div>
     </div>
   </div>
 </div>
 
-{{#if selectedProperty}}
+{{#animated-if selectedProperty use=transition}}
   <div class="ui stackable grid fd-list fd-attr-prop">
 
     <div class="row">
@@ -106,7 +106,7 @@
       {{/if}}
     {{/if}}
 
-    {{#if (eq selectedPropertyType 'isDetail')}}
+    {{#animated-if (eq selectedPropertyType 'isDetail') use=transition}}
       <div class="row">
         <div class="five wide column">
           {{t "components.fd-create-view.settings-detail.view"}}
@@ -132,6 +132,6 @@
           }}
         </div>
       </div>
-    {{/if}}
+    {{/animated-if}}
   </div>
-{{/if}}
+{{/animated-if}}

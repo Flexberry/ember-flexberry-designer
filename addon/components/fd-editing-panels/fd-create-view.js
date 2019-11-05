@@ -12,9 +12,11 @@ import { getDataForBuildTree, getClassTreeNode, getAssociationTreeNode, getAggre
 import layout from '../../templates/components/fd-editing-panels/fd-create-view';
 import $ from 'jquery';
 import { next } from '@ember/runloop';
+import fade from 'ember-animated/transitions/fade';
 
 export default Component.extend(FdReadonlyModeMixin, {
   layout,
+  transition: fade,
 
   /**
     Service for managing the state of the application.

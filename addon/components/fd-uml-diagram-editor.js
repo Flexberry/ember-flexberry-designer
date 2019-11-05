@@ -14,6 +14,7 @@ import FdActionsForActivityPrimitivesMixin from '../mixins/actions-for-primitive
 import FdAcrionsForSdPrimitivesMixin from '../mixins/actions-for-primitives/fd-actions-for-sd-primitives';
 import FdAcrionsForCommonPrimitivesMixin from '../mixins/actions-for-primitives/fd-actions-for-common-primitives';
 import FdActionsForUcdPrimitivesMixin from '../mixins/actions-for-primitives/fd-actions-for-ucd-primitives';
+import fade from 'ember-animated/transitions/fade';
 
 export default Component.extend(
 FdAcrionsForCadPrimitivesMixin,
@@ -26,6 +27,8 @@ FdAcrionsForCommonPrimitivesMixin,
 FdActionsForUcdPrimitivesMixin, {
 
   layout,
+
+  transition: fade,
 
   store: service(),
 

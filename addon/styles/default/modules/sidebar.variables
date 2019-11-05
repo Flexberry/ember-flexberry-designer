@@ -1,4 +1,5 @@
 @width: @sidebarWdth;
+@sidebarMiniWidth: 60px;
 
 @horizontalBoxShadow: none;
 @itemTransition: none;

@@ -1,5 +1,3 @@
-@sidebarMiniWidth: 60px;
-
 .pushable {
   overflow: hidden;
 
@@ -9,7 +7,10 @@
 }
 
 .full.height {
-  width: calc(~'100vw -  @{width}');
+  padding-left: @width;
+  &.content-opened {
+    padding-left: @sidebarMiniWidth;
+  }
 }
 
 // toggle sidebar buttons
@@ -118,7 +119,7 @@
   transform: translate3d(0, 0, 0);
   .transition(width 300ms);
   visibility: visible;
-  z-index: -1;
+  z-index: 10;
 
   .display-flex();
   .flex-direction(column);
@@ -203,21 +204,15 @@
   }
 }
 
-// Костыль для семантика
-.ui.visible.left.sidebar ~ .pusher {
-  -webkit-transform: translate3d(@sidebarWdth, 0, 0) !important;
-  transform: translate3d(@sidebarWdth, 0, 0) !important;
-}
-
-// Маленький сайдбар в 60px
-.ui.left.sidebar ~ .fixed,
-.ui.left.sidebar ~ .pusher {
-  -webkit-transform: translate3d(@sidebarMiniWidth, 0, 0);
-  transform: translate3d(@sidebarMiniWidth, 0, 0);
-}
-
 
 .item.current-project-name div {
   overflow: hidden;
   text-overflow: ellipsis;
+}
+
+.ui.visible.left.sidebar ~ .pusher {
+  -webkit-transform: translate3d(0, 0, 0) !important;
+  -moz-transform: translate3d(0, 0, 0) !important;
+  -ms-transform: translate3d(0, 0, 0) !important;
+  -o-transform: translate3d(0, 0, 0) !important;
 }

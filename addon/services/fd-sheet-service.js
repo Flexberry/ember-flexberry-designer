@@ -54,7 +54,7 @@ export default Service.extend(Evented, {
 
       let sidebarWidth = $('.ui.sidebar.main.menu').width();
 
-      let sheetTranslate = `translate3d(calc(50% - ${sidebarWidth}px), 0, 0)`;
+      let sheetTranslate = `translate3d(50%, 0, 0)`;
       $(`.fd-sheet.${sheetName}`).css({ 'transform': sheetTranslate });
 
       // Сбрасываем стиль с кнопки сайдбара.
@@ -136,12 +136,13 @@ export default Service.extend(Evented, {
   */
   expand(sheetName) {
     let sidebarWidth = $('.ui.sidebar.main.menu').width();
+    let sheetExpanded =  this.get(`sheetSettings.expanded.${sheetName}`);
 
     let currentSheet = $(`.fd-sheet.${sheetName}`);
-    let sheetTranslate =  `translate3d(calc(50% - ${sidebarWidth}px), 0, 0)`;
-    currentSheet.css({ 'transform': sheetTranslate });
+    let sheetTranslate =  sheetExpanded ? '50%' : `${sidebarWidth}px`;
+    let contentWidth = sheetExpanded ? '50%' : `calc(100% - ${sidebarWidth}px)`;
 
-    let contentWidth = this.get(`sheetSettings.expanded.${sheetName}`) ? '50%' : `calc(100% - ${sidebarWidth}px)`;
+    currentSheet.css({ 'transform': `translate3d(${sheetTranslate}, 0, 0)` });
 
     // Затемняем кнопку сайдбара.
     $('.toggle-sidebar').toggleClass('expanded');

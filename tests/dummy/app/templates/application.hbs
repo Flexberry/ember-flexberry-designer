@@ -12,7 +12,7 @@
     onHidden=(action "updateWidth")
   )
 }}
-  {{#if currentProjectName}}
+  {{#animated-if currentProjectName use=transition}}
     <div class="item current-project-name-header">
       <div>
         <i class="icon icon-fd-diagram"></i>
@@ -26,7 +26,7 @@
       </div>
     </div>
     {{fd-flexberry-sitemap sitemap=sitemap class="flexberry-sitemap-top"}}
-  {{/if}}
+  {{/animated-if}}
   <div class="flexberry-sitemap-top"></div>
 
   <button {{action 'toggleSidebar'}} class="ui toggle-sidebar-visible icon button"></button>
