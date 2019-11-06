@@ -212,8 +212,8 @@ export default Component.extend({
       @method actions.print
     */
     print() {    
-      let model = this.get('targetObject.selectedValue.model.data');    
-      window.open(`#/fd-print-form/${model.get('id')}?modelName=${model.get('constructor.modelName')}&inframe=1`);    
+      let model = this.get('targetObject.selectedValue.model.data');
+      window.open(`#/fd-print-form?gotostage=${model.get('subsystem.stage.id')}&gototype=${model.get('constructor.modelName')}&gotoobj=${model.get('id')}&inframe=1` );    
     },
   }
 });

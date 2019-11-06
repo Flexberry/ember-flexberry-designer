@@ -1,3 +1,3 @@
-import EditFormController from 'ember-flexberry/controllers/edit-form';
+import Controller from '@ember/controller';
 
-export default EditFormController;
+export default Controller;
