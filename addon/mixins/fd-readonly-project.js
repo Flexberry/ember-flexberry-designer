@@ -14,12 +14,12 @@ export default Mixin.create({
   fdReadonlyModeService: service('fd-readonly-mode-service'),
 
   /**
-    Flag: indicates whether backend is readonly.
+    Flag: indicates whether project is readonly.
 
-    @property readonlyModeOnBackend
+    @property readonlyModeProject
     @type Boolean
    */
-  readonlyModeOnBackend: computed(function() {
-    return this.get('fdReadonlyModeService').getReadonlyModeFromBackend();
+  readonlyModeProject: computed(function() {
+    return this.get('fdReadonlyModeService').getReadonlyModeProject();
   }),
 });

@@ -1,6 +1,5 @@
 import Service from '@ember/service';
 import { inject as service } from '@ember/service';
-import { resolve } from 'rsvp';
 
 export default Service.extend({
 
@@ -13,33 +12,29 @@ export default Service.extend({
   store: service('store'),
 
   /**
-    Value 'readonlyMode' from backend.
+    Value 'readonlyMode' project.
 
-    @property readonlyModeOnBackend
+    @property readonlyModeProject
     @type Bool
   */
-  readonlyModeOnBackend: false,
+  readonlyModeProject: false,
 
   /**
-    Return value 'readonlyModeOnBackend'.
+    Return value 'readonlyModeProject'.
 
-     @method getReadonlyModeFromBackend
+     @method getReadonlyModeProject
   */
-  getReadonlyModeFromBackend() {
-    return this.get('readonlyModeOnBackend');
+  getReadonlyModeProject() {
+    return this.get('readonlyModeProject');
   },
 
   /**
-    Get value readonlyMode from backend and set this in property.
+    Set readonlyMode Project in property.
 
-     @method setReadonlyModeFromBackend
+     @method setReadonlyModeProject
+     @param {Bool} value
   */
-  setReadonlyModeFromBackend() {
-    return this.get('store').adapterFor('application').callFunction('GetReadonlyModeSetting')
-    .then((result) => {
-      this.set('readonlyModeOnBackend', result.value);
-
-      return resolve();
-    });
+  setReadonlyModeProject(value) {
+    this.set('readonlyModeProject', value);
   }
 });

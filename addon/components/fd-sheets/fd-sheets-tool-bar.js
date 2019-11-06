@@ -1,11 +1,11 @@
 import Component from '@ember/component';
-import FdReadonlyFromBackendMixin from '../../mixins/fd-readonly-from-backend';
+import FdReadonlyProgectMixin from '../../mixins/fd-readonly-project';
 import { inject as service } from '@ember/service';
 import { computed } from '@ember/object';
 import { isNone } from '@ember/utils';
 import layout from '../../templates/components/fd-sheets/fd-sheets-tool-bar';
 
-export default Component.extend(FdReadonlyFromBackendMixin, {
+export default Component.extend(FdReadonlyProgectMixin, {
   layout,
 
   /**
