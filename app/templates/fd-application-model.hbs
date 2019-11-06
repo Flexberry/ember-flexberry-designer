@@ -21,6 +21,7 @@
           fd-button
           caption=(t "forms.fd-application-model.create-class-caption")
           click=(action 'openCreateClassEditPanel')
+          readonly=readonlyModeProject
         }}
       </div>
     </div>
@@ -32,6 +33,7 @@
         entity=class
         sheetComponentName=sheetComponentName
         createClassAction=(action 'createClass')
+        readonly=readonlyModeProject
       }}
     {{/each}}
 
@@ -56,6 +58,7 @@
           fd-button
           caption=(t "forms.fd-application-model.enum-caption")
           click=(action 'createClass' '«enumeration»')
+          readonly=readonlyModeProject
         }}
       </div>
     </div>
@@ -82,6 +85,7 @@
           fd-button
           caption=(t "forms.fd-application-model.type-content-caption")
           click=(action 'createClass' '«type»')
+          readonly=readonlyModeProject
         }}
       </div>
     </div>
@@ -108,6 +112,7 @@
           fd-button
           caption=(t "forms.fd-application-model.typedef-caption")
           click=(action 'createClass' '«typedef»')
+          readonly=readonlyModeProject
         }}
       </div>
     </div>
@@ -134,6 +139,7 @@
           fd-button
           caption=(t "forms.fd-application-model.bs-caption")
           click=(action 'createClass' '«businessserver»')
+          readonly=readonlyModeProject
         }}
       </div>
     </div>
@@ -160,6 +166,7 @@
           fd-button
           caption=(t "forms.fd-application-model.interface-caption")
           click=(action 'createClass' '«interface»')
+          readonly=readonlyModeProject
         }}
       </div>
     </div>
@@ -186,6 +193,7 @@
           fd-button
           caption=(t "forms.fd-application-model.external-caption")
           click=(action 'createClass' '«external»')
+          readonly=readonlyModeProject
         }}
       </div>
     </div>
@@ -212,6 +220,7 @@
           fd-button
           caption=(t "forms.fd-application-model.extinterface-caption")
           click=(action 'createClass' '«externalinterface»')
+          readonly=readonlyModeProject
         }}
       </div>
     </div>
@@ -237,6 +246,7 @@
         {{fd-button
           caption=(t "forms.fd-application-model.application-caption")
           click=(action 'createClass' '«application»')
+          readonly=readonlyModeProject
         }}
       </div>
     </div>
@@ -261,6 +271,7 @@
         {{fd-button
           caption=(t "forms.fd-application-model.userform-caption")
           click=(action 'createClass' '«userform»')
+          readonly=readonlyModeProject
         }}
       </div>
     </div>
@@ -285,6 +296,7 @@
         {{fd-button
           caption=(t "forms.fd-application-model.geolayer-caption")
           click=(action 'createClass' '«geolayer»')
+          readonly=readonlyModeProject
         }}
       </div>
     </div>
@@ -309,6 +321,7 @@
         {{fd-button
           caption=(t "forms.fd-application-model.geolayerstyle-caption")
           click=(action 'createClass' '«geolayerstyle»')
+          readonly=readonlyModeProject
         }}
       </div>
     </div>
@@ -333,6 +346,7 @@
         {{fd-button
           caption=(t "forms.fd-application-model.userstereotype-caption")
           click=(action 'createClass' '«custom»')
+          readonly=readonlyModeProject
         }}
       </div>
     </div>

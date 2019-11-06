@@ -1,4 +1,5 @@
 import Controller from '@ember/controller';
+import FdReadonlyProjectMixin from '../mixins/fd-readonly-project';
 import { getOwner } from '@ember/application';
 import { inject as service } from '@ember/service';
 import { get, computed } from '@ember/object';
@@ -8,7 +9,7 @@ import FdAppStructTree from '../objects/fd-appstruct-tree';
 import { deserialize, serialize } from '../utils/transforms-utils/fd-containers-tree';
 import FdPreloadStageMetadata from 'ember-flexberry-designer/utils/fd-preload-stage-metadata';
 
-export default Controller.extend(FdSheetCloseConfirm, {
+export default Controller.extend(FdSheetCloseConfirm, FdReadonlyProjectMixin, {
   /**
    Service that get current project contexts.
 

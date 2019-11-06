@@ -16,7 +16,7 @@
       </div>
     </div>
     <div class="row">
-      <button class="ui basic button table-btn" {{action "generate"}}>
+      <button class="ui basic button table-btn {{if readonlyModeProject 'disabled' ''}}" {{action "generate"}}>
         {{t "forms.fd-generation.generate-app"}}
       </button>
       <span class="light-text">{{t "forms.fd-generation.with-selected"}} {{link-to (t "forms.fd-generation.settings") "fd-setting"  class="fd-styled-link"}}</span>

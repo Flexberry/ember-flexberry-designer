@@ -1,4 +1,5 @@
 import Controller from '@ember/controller';
+import FdReadonlyProjectMixin from '../mixins/fd-readonly-project';
 import EmberObject, { computed, observer } from '@ember/object';
 import { isBlank, isNone } from '@ember/utils';
 import { A } from '@ember/array';
@@ -6,7 +7,7 @@ import { inject as service } from '@ember/service';
 import $ from 'jquery';
 import FdSheetCloseConfirm from '../mixins/fd-sheet-close-confirm';
 
-export default Controller.extend(FdSheetCloseConfirm, {
+export default Controller.extend(FdSheetCloseConfirm, FdReadonlyProjectMixin, {
 
   /**
    Service that get current project contexts.
