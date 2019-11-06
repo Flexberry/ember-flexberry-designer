@@ -8,11 +8,27 @@ import $ from 'jquery';
 import config from '../config/environment';
 
 export default Controller.extend({
+  /**
+    Sets whether to show decor elements on the page
+    inframe: 0 - the usual view of the page
+    inframe: 1 - page without footer, header, sidebar. Used for printing
+
+    @property queryParams
+    @type Number
+    @default 0
+  */
   queryParams: ['inframe'],
 
   inframe: 0,
 
+  /**
+    Service for managing the state of the component.
+
+    @property fdSheetService
+    @type FdSheetService
+  */
   fdSheetService: service(),
+
   /**
     Flag indicates sidebar visible
 
