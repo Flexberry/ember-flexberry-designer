@@ -9,9 +9,7 @@ import config from '../config/environment';
 
 export default Controller.extend({
   /**
-    Sets whether to show decor elements on the page
-    inframe: 0 - the usual view of the page
-    inframe: 1 - page without footer, header, sidebar. Used for printing
+    Array queryParams form
 
     @property queryParams
     @type Number
@@ -24,7 +22,7 @@ export default Controller.extend({
     inframe: 0 - the usual view of the page
     inframe: 1 - page without footer, header, sidebar. Used for printing
 
-    @property queryParams
+    @property inframe
     @type Number
     @default 0
   */
