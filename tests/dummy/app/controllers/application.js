@@ -19,6 +19,15 @@ export default Controller.extend({
   */
   queryParams: ['inframe'],
 
+  /**
+    Sets whether to show decor elements on the page
+    inframe: 0 - the usual view of the page
+    inframe: 1 - page without footer, header, sidebar. Used for printing
+
+    @property queryParams
+    @type Number
+    @default 0
+  */
   inframe: 0,
 
   /**
