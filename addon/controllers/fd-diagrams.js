@@ -1,11 +1,12 @@
 import Controller from '@ember/controller';
 import FdSheetCloseConfirm from '../mixins/fd-sheet-close-confirm';
+import FdReadonlyFromBackendMixin from '../mixins/fd-readonly-from-backend';
 import EmberObject, { computed, observer } from '@ember/object';
 import { inject as service } from '@ember/service';
 import { isBlank, isNone } from '@ember/utils';
 import { A } from '@ember/array';
 
-export default Controller.extend(FdSheetCloseConfirm, {
+export default Controller.extend(FdSheetCloseConfirm, FdReadonlyFromBackendMixin, {
 
   /**
    Service that get current project contexts.

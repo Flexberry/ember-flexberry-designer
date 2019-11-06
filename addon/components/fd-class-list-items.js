@@ -18,5 +18,14 @@ export default Component.extend({
     @type Object
     @default undefined
   */
-  entity: undefined
+  entity: undefined,
+
+  /**
+    Flag: indicates whether buttons is readonly.
+
+    @property readonly
+    @type Boolean
+    @default false
+   */
+  readonly: false,
 });

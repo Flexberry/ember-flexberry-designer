@@ -6,9 +6,11 @@
   {{/if}}
   {{#if toolbarVisible}}
     {{#if (and readonlyMode (not isNewModel))}}
-      <button class="ui button" {{action 'edit'}}>
-        {{t "components.fd-sheets-tool-bar.edit-caption"}}
-      </button>
+      {{#if (not readonlyModeOnBackend)}}
+        <button class="ui button" {{action 'edit'}}>
+          {{t "components.fd-sheets-tool-bar.edit-caption"}}
+        </button>
+      {{/if}}
     {{else}}
       {{#if buttonVisible.save}}
         <button class="ui button" {{action 'save'}}>

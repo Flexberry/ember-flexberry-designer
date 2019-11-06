@@ -3,6 +3,7 @@
 */
 
 import Controller from '@ember/controller';
+import FdReadonlyFromBackendMixin from '../mixins/fd-readonly-from-backend';
 import { inject as service } from '@ember/service';
 import { A } from '@ember/array';
 import { isNone, isBlank } from '@ember/utils';
@@ -16,7 +17,7 @@ import Builder from 'ember-flexberry-data/query/builder';
   @class FdGenerationListLogController
   @extends Ember.Controller
 */
-export default Controller.extend({
+export default Controller.extend(FdReadonlyFromBackendMixin, {
 
   /**
    Service that get current project contexts.

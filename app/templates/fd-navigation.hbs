@@ -3,15 +3,18 @@
   {{fd-button
     caption=(t "forms.fd-navigation.create-prototype-button-text")
     click=(action "createPrototype")
+    readonly=readonlyModeOnBackend
   }}
 {{else}}
 
   {{#if readonlyMode}}
-    <div class="fd-projects-toolbar">
-      <button class="ui button basic circular" {{action "edit"}}>
-        {{t "forms.fd-navigation.edit-caption"}}
-      </button>
-    </div>
+    {{#if (not readonlyModeOnBackend)}}
+      <div class="fd-projects-toolbar">
+        <button class="ui button basic circular" {{action "edit"}}>
+          {{t "forms.fd-navigation.edit-caption"}}
+        </button>
+      </div>
+    {{/if}}
   {{else}}
     <div class="fd-projects-toolbar">
       {{fd-button
