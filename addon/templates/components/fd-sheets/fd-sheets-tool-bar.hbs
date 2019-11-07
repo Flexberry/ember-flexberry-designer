@@ -23,6 +23,11 @@
         </button>
       {{/if}}
     {{/if}}
+    {{#if (and (not isNewModel) buttonVisible.print)}}
+      <button class="ui icon button" {{action 'print'}}>
+        <i class="print icon" ></i>
+      </button>
+    {{/if}}
     {{#if (and (not isNewModel) buttonVisible.share)}}
       <button class="ui icon button" {{action 'share'}}>
         <i class="share alternate icon" ></i>

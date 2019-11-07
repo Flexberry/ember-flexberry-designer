@@ -2,7 +2,8 @@
   {{outlet}}
   {{outlet "modal"}}
 {{else}}
-{{#flexberry-sidebar
+{{#unless inframe}}
+	{{#flexberry-sidebar
   class="vertical main menu visible uncover"
   settings=(hash
     closable=false
@@ -38,6 +39,7 @@
   <i class="caret right icon"></i>
 </button>
 {{outlet 'right-sidebar'}}
+{{/unless}}
 
 <div id="example" class="pusher">
   <div class="ui form {{appState.state}}">
@@ -53,7 +55,9 @@
 <div class="ui main container">
   {{outlet "modal"}}
 </div>
-<div class="ui vertical footer segment">
+
+{{#unless inframe}}
+	<div class="ui vertical footer segment">
   <div class="ui container flex-container">
     <div class="social-icons">
       <a target="_blank" class="brand item btn-social" href="http://vk.com/flexberry">
@@ -99,4 +103,5 @@
     </div>
   </div>
 </div>
+{{/unless}}
 {{/if}}

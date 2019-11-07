@@ -1,0 +1,14 @@
+﻿{
+  "propertyLookup": [],
+  "external": false,
+  "caption": "Application",
+  "name": "FdPrintForm",
+  "className": "PrintForm",
+  "attrs": [],
+  "projections": [
+    {
+      "modelName": "fd-diagram",
+      "modelProjection": "FdDiagram"
+    }
+  ]
+}
