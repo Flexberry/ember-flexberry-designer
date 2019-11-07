@@ -19832,6 +19832,12 @@ i.icon.times.rectangle:before {
 i.icon.times.rectangle.outline:before {
   content: "\f2d4";
 }
+.ui.button > .icon.icon-fd-cloud-upload-outline {
+  opacity: 1;
+}
+.ui.button > .icon.icon-fd-cloud-upload-outline::before {
+  float: right;
+}
 /*!
  * # Semantic UI - Image
  * http://github.com/semantic-org/semantic-ui/
@@ -52315,7 +52321,7 @@ a.ui.card:hover,
   height: 100%;
   text-align: center;
   vertical-align: middle;
-  background-color: rgba(0, 0, 0, 0.85);
+  background-color: rgba(1, 1, 1, 0.15);
   opacity: 0;
   line-height: 1;
   animation-fill-mode: both;
@@ -52443,7 +52449,7 @@ body.dimmable > .dimmer {
   opacity: 1;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.85);
+  background-color: rgba(1, 1, 1, 0.15);
   z-index: 1;
 }
 .ui.simple.inverted.dimmer {
@@ -56346,6 +56352,12 @@ select.ui.dropdown {
 /* Derived Responsive Sizes */
 /* Site Theme */
 /*******************************
+             Modal
+*******************************/
+/* Header */
+/* Content */
+/* Modal Actions */
+/*******************************
              Mix-ins
 *******************************/
 /*------------------
@@ -56367,7 +56379,7 @@ select.ui.dropdown {
   text-align: left;
   background: #FFFFFF;
   border: none;
-  box-shadow: 1px 3px 3px 0px rgba(0, 0, 0, 0.2), 1px 3px 15px 2px rgba(0, 0, 0, 0.2);
+  box-shadow: none;
   transform-origin: 50% 25%;
   border-radius: 0.25rem;
   user-select: text;
@@ -56412,10 +56424,10 @@ select.ui.dropdown {
   font-family: 'Roboto', 'Helvetica Neue', Arial, Helvetica, sans-serif;
   background: #3e3e3e;
   margin: 0em;
-  padding: 1.25rem 1.5rem;
+  padding: 2rem 2.5rem 1rem;
   box-shadow: none;
   color: rgba(255, 255, 255, 0.65);
-  border-bottom: 1px solid rgba(34, 36, 38, 0.15);
+  border-bottom: none;
 }
 .ui.modal > .header:not(.ui) {
   font-size: 1.4375rem;
@@ -56430,7 +56442,7 @@ select.ui.dropdown {
   width: 100%;
   font-size: 1em;
   line-height: 1.4;
-  padding: 1.5rem;
+  padding: 1rem 2.5rem 2rem;
   background: #3e3e3e;
 }
 .ui.modal > .image.content {
@@ -56479,10 +56491,10 @@ select.ui.dropdown {
      Actions
 ---------------*/
 .ui.modal > .actions {
-  background: #F9FAFB;
-  padding: 1rem 1rem;
-  border-top: 1px solid rgba(34, 36, 38, 0.15);
-  text-align: right;
+  background: #3e3e3e;
+  padding: 1rem 1rem 2rem;
+  border-top: none;
+  text-align: center;
 }
 .ui.modal .actions > .button {
   margin-left: 0.75em;
@@ -56592,7 +56604,7 @@ select.ui.dropdown {
   border: none;
   border-radius: 0em;
   box-shadow: none !important;
-  color: rgba(255, 255, 255, 0.65);
+  color: #FFFFFF;
 }
 .ui.basic.modal > .header,
 .ui.basic.modal > .content,
@@ -56600,7 +56612,7 @@ select.ui.dropdown {
   background-color: transparent;
 }
 .ui.basic.modal > .header {
-  color: rgba(255, 255, 255, 0.65);
+  color: #FFFFFF;
 }
 .ui.basic.modal > .close {
   top: 1rem;
@@ -56850,6 +56862,12 @@ select.ui.dropdown {
 /*******************************
          Theme Overrides
 *******************************/
+.ui.modal > .icon-fd-x-mark-thin {
+  cursor: pointer;
+  float: right;
+  padding-right: 1.5em;
+  padding-top: 1em;
+}
 /*!
  * # Semantic UI - Nag
  * http://github.com/semantic-org/semantic-ui/
@@ -59168,6 +59186,10 @@ a.ui.nag {
 /*******************************
          Theme Overrides
 *******************************/
+.share.button ~ .ui.popup {
+  font-size: 0.8rem;
+  padding: 0.5em 0.7em;
+}
 /*!
  * # Semantic UI - Progress Bar
  * http://github.com/semantic-org/semantic-ui/
@@ -64641,6 +64663,69 @@ body.pushable > .pusher {
 .full.height {
   width: calc(100vw -  300px);
 }
+.ui.button.toggle-sidebar {
+  background: rgba(0, 0, 0, 0.14);
+  border-radius: 0.5rem;
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+  left: 60px;
+  transition: opacity 500ms step-end;
+  z-index: 10;
+}
+.ui.button.toggle-sidebar,
+.ui.button.toggle-sidebar-visible {
+  width: 1.2em;
+  height: 2.3em;
+  position: absolute;
+  top: 1rem;
+}
+.ui.button.toggle-sidebar::before,
+.ui.button.toggle-sidebar-visible::before {
+  content: '';
+  position: absolute;
+  top: calc(50% - 0.4em);
+  border: 0.4em solid transparent;
+}
+.ui.button.toggle-sidebar::before {
+  left: 0;
+  border-left: 0.7em solid rgba(0, 0, 0, 0.24);
+}
+.ui.button.toggle-sidebar-visible {
+  background: #3e3e3e;
+  border-radius: 0.5rem;
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+  left: auto;
+  margin: 0;
+  opacity: 0;
+  right: 0;
+}
+.ui.button.toggle-sidebar-visible::after {
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+}
+.ui.button.toggle-sidebar-visible::before {
+  right: 0;
+  border-right: 0.7em solid rgba(0, 0, 0, 0.24);
+}
+.ui.button.toggle-sidebar::after {
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+  transition: opacity 0.1s;
+}
+.ui.button.toggle-sidebar.expanded.no-delay::after {
+  transition-delay: 0s;
+}
+.ui.button.toggle-sidebar.expanded::after {
+  opacity: 1;
+  transition: opacity 0.7s;
+  transition-delay: .7s;
+}
+.fade .ui.sidebar.main.menu .toggle-sidebar-visible::after,
+.fade .ui.sidebar.main.menu a.item.active::after,
+.fade .ui.sidebar.main.menu a.item:hover::after {
+  opacity: 1;
+}
 .toggle-sidebar-visible::after,
 .toggle-sidebar::after,
 .ui.sidebar.main.menu a.item.active::after,
@@ -64655,28 +64740,6 @@ body.pushable > .pusher {
   right: 0;
   transition: opacity 1s;
   opacity: 0;
-}
-.toggle-sidebar.expanded::after {
-  opacity: 1;
-  transition: opacity 0.7s;
-  transition-delay: .7s;
-}
-.toggle-sidebar.expanded.no-delay::after {
-  transition-delay: 0s;
-}
-.toggle-sidebar::after {
-  border-top-left-radius: 0;
-  border-bottom-left-radius: 0;
-  transition: opacity 0.1s;
-}
-.toggle-sidebar-visible::after {
-  border-top-right-radius: 0;
-  border-bottom-right-radius: 0;
-}
-.fade .ui.sidebar.main.menu .toggle-sidebar-visible::after,
-.fade .ui.sidebar.main.menu a.item.active::after,
-.fade .ui.sidebar.main.menu a.item:hover::after {
-  opacity: 1;
 }
 .ui.sidebar.main.menu {
   height: calc(100vh - 0px - 40px) !important;
@@ -69446,10 +69509,10 @@ body.pushable > .pusher {
   margin-right: 0.5em;
 }
 .jstree-default > .jstree-no-dots .jstree-closed > .jstree-ocl::before {
-  border-left: 15px solid #c0c0c0;
+  border-left: 14px solid #c0c0c0;
 }
 .jstree-default > .jstree-no-dots .jstree-open > .jstree-ocl::before {
-  border-top: 15px solid #c0c0c0;
+  border-top: 14px solid #c0c0c0;
 }
 .jstree-icon.jstree-ocl {
   background-image: none;
@@ -70224,34 +70287,6 @@ h1 {
 .ui.main.container.fluid {
   padding: 5em 4em 3em;
 }
-.ui.toggle-sidebar.button {
-  position: absolute;
-  background: rgba(0, 0, 0, 0.14);
-  left: 60px;
-  border-radius: 0.5rem;
-  border-top-left-radius: 0;
-  border-bottom-left-radius: 0;
-  padding: 15px 5px;
-  padding-left: 0;
-  z-index: 2;
-  top: 1rem;
-  z-index: 10;
-  transition: opacity 500ms step-end;
-}
-.ui.button.toggle-sidebar-visible {
-  border-radius: 0.5rem;
-  position: absolute;
-  background: #3e3e3e;
-  padding: 10px 5px;
-  top: 1rem;
-  right: 0;
-  left: auto;
-  margin: 0;
-  border-top-right-radius: 0;
-  border-bottom-right-radius: 0;
-  padding-right: 0;
-  opacity: 0;
-}
 .flexberry-vertical-form {
   transition: opacity 250ms;
 }
@@ -70308,6 +70343,10 @@ h1 {
   margin: auto;
   max-width: 60%;
   min-width: 700px;
+}
+.fd-centered-new-form .actions {
+  width: 60%;
+  margin: auto;
 }
 .fd-centered-new-form h1 {
   text-align: center;
