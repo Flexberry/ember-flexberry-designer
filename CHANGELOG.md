@@ -3,6 +3,10 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+## [0.10.1] - 2019-11-07
+### Fixed
+* Fix share button.
+
 ## [0.10.0] - 2019-11-07
 ### Added
 * Add audit and authority in class settings.
