@@ -70294,6 +70294,11 @@ h1 {
     font-size: 14px;
   }
 }
+@media print {
+  @page {
+    size: landscape;
+  }
+}
 .ui.grid.fd-projects-toolbar {
   margin-left: calc(-2.5rem - 1em);
   margin-top: 0;
