@@ -137,7 +137,6 @@ import FdGeolayerstyleFormEditingPanel from './components/fd-geolayerstyle-editi
 import FdCreateView from './components/fd-create-view';
 import FdCreateEntity from './components/fd-create-entity';
 import FdCreateDiagrams from './components/fd-create-diagrams';
-import FdSheet from './components/fd-sheet';
 import FdSheetToolBar from './components/fd-sheets-tool-bar';
 import FdCreateNodeEditingPanel from './components/fd-create-node-editing-panel';
 import FdFolderEditingPanel from './components/fd-folder-editing-panel';
@@ -450,7 +449,6 @@ $.extend(true, translations, {
     'fd-geolayer-editing-panel': FdGeolayerFormEditingPanel,
     'fd-geolayerstyle-editing-panel': FdGeolayerstyleFormEditingPanel,
     'fd-create-view': FdCreateView,
-    'fd-sheet': FdSheet,
     'fd-sheets-tool-bar': FdSheetToolBar,
     'fd-create-node-editing-panel': FdCreateNodeEditingPanel,
     'fd-folder-editing-panel': FdFolderEditingPanel,
