@@ -1,44 +1,23 @@
-<div class="{{flexberryClassNames.header}} header ui icon">
-  {{#if isError}}
-   <i class="icon info"></i>
-  {{else}}
-    {{#if headerIcon}}
-      <i class="icon {{headerIcon}}"></i>
-    {{/if}}
-  {{/if}}
-
+<i class="{{flexberryClassNames.closeButton}} icon icon-fd-x-mark-thin"></i>
+<div class="{{flexberryClassNames.header}} ui header">
   {{if isError (t "components.fd-modal-message-box.error-caption") (t "components.fd-modal-message-box.confirmation-caption")}}
 </div>
-<div class="{{flexberryClassNames.content}} content {{contentClass}} text-align-center">
+<div class="{{flexberryClassNames.content}} content {{contentClass}}">
   {{messageText}}
   {{yield}}
 </div>
 
-<div class="{{flexberryClassNames.toolbar}} ui stackable grid actions">
-  <div class="center aligned {{if (not isError) 'two'}} column row">
-    <div class="column">
-      {{fd-round-button
-        iconClass="icon-fd-x-mark-thin" 
-        class=(concat flexberryClassNames.closeButton " close")
-        colorClass="grey"
-        caption=closeButtonCaption
-      }}
-    </div>
-    {{#if (not isError)}}
-      <div class="column display-flex ">
-        {{fd-round-button
-          iconClass="icon-fd-cloud-upload-thin"
-          class=(concat flexberryClassNames.approveButton " approve")
-          colorClass="green"
-          caption=approveButtonCaption
-        }}
-        {{fd-round-button
-          iconClass="icon-fd-x-mark-thin"
-          class=(concat flexberryClassNames.cancelButton " deny")
-          colorClass="red"
-          caption=denyButtonCaption
-        }}
-      </div>
-    {{/if}}
+{{#if (not isError)}}
+  <div class="{{flexberryClassNames.toolbar}} actions">
+    {{fd-button
+      iconClass="icon-fd-x-mark-thin"
+      class=(concat flexberryClassNames.cancelButton " deny")
+      caption=denyButtonCaption
+    }}
+    {{fd-button
+      iconClass="icon-fd-cloud-upload-outline"
+      class=(concat flexberryClassNames.approveButton " approve blue")
+      caption=approveButtonCaption
+    }}
   </div>
-</div>
+{{/if}}

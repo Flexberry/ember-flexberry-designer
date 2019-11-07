@@ -12,6 +12,86 @@
   width: calc(~'100vw -  @{width}');
 }
 
+// toggle sidebar buttons
+.ui.button.toggle-sidebar {
+  background: @sidebarBg;
+  border-radius: @itemActiveBorderRadius;
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+  left: 60px;
+  transition: opacity 500ms step-end;
+  z-index: 10;
+  @iconBorder: 0.7em solid fadein(@sidebarBg, 10%);
+
+  &,
+  &-visible{
+    width: 1.2em;
+    height: 2.3em;
+    position: absolute;
+    top: 1rem;
+    &::before {
+      @iconHeight:0.4em;
+      content: '';
+      position: absolute;
+      top: calc(~'50% - @{iconHeight}');
+      border: @iconHeight solid transparent;
+    }
+  }
+
+  &::before {
+    left: 0;
+    border-left: @iconBorder;
+  }
+
+  &-visible {
+    background: @pageBackground;
+    border-radius: @itemActiveBorderRadius;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    left: auto;
+    margin: 0;
+    opacity: 0;
+    right: 0;
+
+    &::after {
+      border-top-right-radius: 0;
+      border-bottom-right-radius: 0;
+    }
+
+    &::before {
+      right: 0;
+      border-right: @iconBorder;
+    }
+  }
+
+  &::after {
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+    transition: opacity 0.1s;
+  }
+
+  &.expanded {
+    &.no-delay::after{
+      transition-delay: 0s;
+    }
+    &::after{
+      opacity: 1;
+      transition: opacity 0.7s;
+      transition-delay: .7s;
+    }
+  }
+}
+
+.fade .ui.sidebar.main.menu {
+  .toggle-sidebar-visible,
+  a.item.active,
+  a.item:hover {
+    &::after {
+      opacity: 1;
+    }
+  }
+}
+
 .toggle-sidebar-visible,
 .toggle-sidebar,
 .ui.sidebar.main.menu a.item.active,
@@ -27,37 +107,6 @@
     right: 0;
     transition: opacity 1s;
     opacity: 0;
-  }
-}
-
-.toggle-sidebar.expanded::after{
-  opacity: 1;
-  transition: opacity 0.7s;
-  transition-delay: .7s;
-}
-
-.toggle-sidebar.expanded.no-delay::after{
-  transition-delay: 0s;
-}
-
-.toggle-sidebar::after {
-  border-top-left-radius: 0;
-  border-bottom-left-radius: 0;
-  transition: opacity 0.1s;
-}
-
-.toggle-sidebar-visible::after {
-  border-top-right-radius: 0;
-  border-bottom-right-radius: 0;
-}
-
-.fade .ui.sidebar.main.menu {
-  .toggle-sidebar-visible,
-  a.item.active,
-  a.item:hover {
-    &::after {
-      opacity: 1;
-    }
   }
 }
 

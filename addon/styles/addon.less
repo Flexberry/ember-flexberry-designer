@@ -39,36 +39,6 @@ h1 {
   padding: 5em 4em 3em;
 }
 
-.ui.toggle-sidebar.button {
-  position: absolute;
-  background: @sidebarBg;
-  left: 60px;
-  border-radius: @itemActiveBorderRadius;
-  border-top-left-radius: 0;
-  border-bottom-left-radius: 0;
-  padding: 15px 5px;
-  padding-left: 0;
-  z-index: 2;
-  top: 1rem;
-  z-index: 10;
-  transition: opacity 500ms step-end;
-}
-
-.ui.button.toggle-sidebar-visible {
-  border-radius: @itemActiveBorderRadius;
-  position: absolute;
-  background: @pageBackground;
-  padding: 10px 5px;
-  top: 1rem;
-  right: 0;
-  left: auto;
-  margin: 0;
-  border-top-right-radius: 0;
-  border-bottom-right-radius: 0;
-  padding-right: 0;
-  opacity: 0;
-}
-
 .flexberry-vertical-form {
   transition: opacity 250ms;
 }
@@ -137,6 +107,11 @@ h1 {
   margin: auto;
   max-width: 60%;
   min-width: 700px;
+
+  .actions {
+    width: 60%;
+    margin: auto;
+  }
 
   h1 {
     text-align: center;
