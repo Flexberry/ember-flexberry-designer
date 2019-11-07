@@ -612,19 +612,6 @@ define('dummy/components/fd-search-input', ['exports', 'ember-flexberry-designer
     }
   });
 });
-define('dummy/components/fd-sheet', ['exports', 'ember-flexberry-designer/components/fd-sheet'], function (exports, _fdSheet) {
-  'use strict';
-
-  Object.defineProperty(exports, "__esModule", {
-    value: true
-  });
-  Object.defineProperty(exports, 'default', {
-    enumerable: true,
-    get: function () {
-      return _fdSheet.default;
-    }
-  });
-});
 define('dummy/components/fd-sheets/fd-base-sheet', ['exports', 'ember-flexberry-designer/components/fd-sheets/fd-base-sheet'], function (exports, _fdBaseSheet) {
   'use strict';
 
@@ -3937,11 +3924,6 @@ define('dummy/ember-flexberry-designer/tests/addon.lint-test', [], function () {
     assert.ok(true, 'addon/components/fd-search-input.js should pass ESLint\n\n');
   });
 
-  QUnit.test('addon/components/fd-sheet.js', function (assert) {
-    assert.expect(1);
-    assert.ok(true, 'addon/components/fd-sheet.js should pass ESLint\n\n');
-  });
-
   QUnit.test('addon/components/fd-sheets/fd-base-sheet.js', function (assert) {
     assert.expect(1);
     assert.ok(true, 'addon/components/fd-sheets/fd-base-sheet.js should pass ESLint\n\n');
@@ -4575,11 +4557,6 @@ define('dummy/ember-flexberry-designer/tests/addon.lint-test', [], function () {
   QUnit.test('addon/locales/en/components/fd-property-editing-panel.js', function (assert) {
     assert.expect(1);
     assert.ok(true, 'addon/locales/en/components/fd-property-editing-panel.js should pass ESLint\n\n');
-  });
-
-  QUnit.test('addon/locales/en/components/fd-sheet.js', function (assert) {
-    assert.expect(1);
-    assert.ok(true, 'addon/locales/en/components/fd-sheet.js should pass ESLint\n\n');
   });
 
   QUnit.test('addon/locales/en/components/fd-sheets-tool-bar.js', function (assert) {
@@ -5305,11 +5282,6 @@ define('dummy/ember-flexberry-designer/tests/addon.lint-test', [], function () {
   QUnit.test('addon/locales/ru/components/fd-property-editing-panel.js', function (assert) {
     assert.expect(1);
     assert.ok(true, 'addon/locales/ru/components/fd-property-editing-panel.js should pass ESLint\n\n');
-  });
-
-  QUnit.test('addon/locales/ru/components/fd-sheet.js', function (assert) {
-    assert.expect(1);
-    assert.ok(true, 'addon/locales/ru/components/fd-sheet.js should pass ESLint\n\n');
   });
 
   QUnit.test('addon/locales/ru/components/fd-sheets-tool-bar.js', function (assert) {
@@ -9425,11 +9397,6 @@ define('dummy/ember-flexberry-designer/tests/app.lint-test', [], function () {
   QUnit.test('app/components/fd-search-input.js', function (assert) {
     assert.expect(1);
     assert.ok(true, 'app/components/fd-search-input.js should pass ESLint\n\n');
-  });
-
-  QUnit.test('app/components/fd-sheet.js', function (assert) {
-    assert.expect(1);
-    assert.ok(true, 'app/components/fd-sheet.js should pass ESLint\n\n');
   });
 
   QUnit.test('app/components/fd-sheets/fd-base-sheet.js', function (assert) {
