@@ -15,8 +15,8 @@ All notable changes to this project will be documented in this file.
 ### Fixed
 * Fix diagram toolbar hidden.
 * Fix toggle sidebar button.
-* Remove rouns button.
-* Fix  modal window styles.
+* Remove round buttons.
+* Fix modal window styles.
 
 ## [0.9.2] - 2019-10-08
 ### Added
