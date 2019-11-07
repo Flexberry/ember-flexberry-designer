@@ -18,7 +18,7 @@
         </button>
       {{/if}}
       {{#if (and (not isNewModel) buttonVisible.delete)}}
-        <button class="ui icon button" {{action 'delete'}}>
+        <button class="ui icon button" {{action 'delete'}} title={{t "components.fd-sheets-tool-bar.delete-button-title"}}>
           <i class="icon-fd-trash-can icon" ></i>
         </button>
       {{/if}}
@@ -29,15 +29,15 @@
       </button>
     {{/if}}
     {{#if (and (not isNewModel) buttonVisible.share)}}
-      <button class="ui icon button" {{action 'share'}}>
-        <i class="share alternate icon" ></i>
+      <button class="ui icon button share" {{action 'share'}} data-content={{t "components.fd-sheets-tool-bar.share-button-data-content"}} title={{t "components.fd-sheets-tool-bar.share-button-title"}}>
+        <i class="{{if copied 'check' 'share alternate'}} icon"></i>
       </button>
     {{/if}}
   {{/if}}
-  <button class="ui icon button" {{action 'expand'}}>
+  <button class="ui icon button" {{action 'expand'}} title={{t "components.fd-sheets-tool-bar.expand-button-title"}}>
     <i class="icon-fd-resize icon" ></i>
   </button>
-  <button class="ui icon button" {{action 'closeSheet'}}>
+  <button class="ui icon button" {{action 'closeSheet'}} title={{t "components.fd-sheets-tool-bar.close-button-title"}}>
     <i class="icon-fd-x-mark icon" ></i>
   </button>
 </div>

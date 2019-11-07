@@ -1,5 +1,10 @@
 export default {
   'placeholder-caption': 'Enter name',
   'save-caption': 'Save',
-  'edit-caption': 'Edit'
+  'edit-caption': 'Edit',
+  'close-button-title': 'Close',
+  'expand-button-title': 'Expand',
+  'delete-button-title': 'Delete',
+  'share-button-title': 'Copy link',
+  'share-button-data-content': 'Copied!'
 };

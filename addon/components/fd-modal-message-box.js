@@ -8,13 +8,12 @@ import { computed } from '@ember/object';
 export default FlexberryDialogComponent.extend({
   layout,
 
-  /**
+    /**
     See [EmberJS API](https://emberjs.com/api/).
 
     @property classNames
   */
-  classNames: ['basic'],
-
+  classNames: ['tiny'],
   /**
     Flag: indicates whether dialog is closable (can be closed on it's dimmer click).
     @property closable

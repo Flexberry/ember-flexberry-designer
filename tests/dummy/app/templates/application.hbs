@@ -29,15 +29,11 @@
   {{/if}}
   <div class="flexberry-sitemap-top"></div>
 
-  <button {{action 'toggleSidebar'}} class="ui toggle-sidebar-visible icon button">
-    <i class="caret left icon"></i>
-  </button>
+  <button {{action 'toggleSidebar'}} class="ui toggle-sidebar-visible icon button"></button>
   {{fd-flexberry-sitemap sitemap=sitemapBottom class="sitemap-bottom"}}
 {{/flexberry-sidebar}}
 
-<button {{action 'toggleSidebar'}} class="ui toggle-sidebar icon button">
-  <i class="caret right icon"></i>
-</button>
+<button {{action 'toggleSidebar'}} class="ui toggle-sidebar icon button"></button>
 {{outlet 'right-sidebar'}}
 {{/unless}}
 

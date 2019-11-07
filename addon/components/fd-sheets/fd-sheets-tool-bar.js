@@ -4,6 +4,7 @@ import { inject as service } from '@ember/service';
 import { computed } from '@ember/object';
 import { isNone } from '@ember/utils';
 import layout from '../../templates/components/fd-sheets/fd-sheets-tool-bar';
+import { later } from '@ember/runloop';
 
 export default Component.extend(FdReadonlyProjectMixin, {
   layout,
@@ -196,6 +197,18 @@ export default Component.extend(FdReadonlyProjectMixin, {
       el.select();
       document.execCommand('copy');
       document.body.removeChild(el);
+
+      let sharePopup = this.$('.share.button');
+      sharePopup.popup({
+        on: 'manual',
+        position: 'bottom center',
+        inline: true
+      }).popup('show');
+      this.set('copied', true);
+      later(this, (function() {
+        sharePopup.popup('hide');
+        this.set('copied', false);
+      }), 2000);
     },
 
     /**
