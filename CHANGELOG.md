@@ -3,6 +3,21 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+## [0.10.0] - 2019-11-07
+### Added
+* Add audit and authority in class settings.
+* Add readonly mode.
+* Add sort data by name in list.
+* Add style for base modal window.
+* Add share button.
+* Add print diagrams.
+
+### Fixed
+* Fix diagram toolbar hidden.
+* Fix toggle sidebar button.
+* Remove round buttons.
+* Fix modal window styles.
+
 ## [0.9.2] - 2019-10-08
 ### Added
 * Add connection points for links.

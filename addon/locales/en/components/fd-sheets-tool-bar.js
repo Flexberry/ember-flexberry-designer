@@ -6,5 +6,6 @@ export default {
   'expand-button-title': 'Expand',
   'delete-button-title': 'Delete',
   'share-button-title': 'Copy link',
+  'print-button-title': 'Print',
   'share-button-data-content': 'Copied!'
 };

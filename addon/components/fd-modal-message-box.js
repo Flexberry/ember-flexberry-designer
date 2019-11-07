@@ -8,7 +8,7 @@ import { computed } from '@ember/object';
 export default FlexberryDialogComponent.extend({
   layout,
 
-    /**
+  /**
     See [EmberJS API](https://emberjs.com/api/).
 
     @property classNames
