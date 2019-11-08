@@ -5950,7 +5950,7 @@ define('dummy/tests/unit/services/fd-current-project-context-test', ['ember-data
   });
 
   (0, _emberQunit.moduleFor)('service:fd-current-project-context', 'Unit | Service | fd current project context', {
-    needs: ['model:fd-dev-system', 'model:fd-stage', 'model:fd-diagram', 'model:fd-diagram-link', 'model:fd-filelink', 'service:syncer'],
+    needs: ['model:fd-dev-system', 'model:fd-stage', 'model:fd-diagram', 'model:fd-diagram-link', 'model:fd-filelink', 'service:syncer', 'service:fd-readonly-mode-service'],
 
     beforeEach: function beforeEach() {
       Ember.getOwner(this).unregister('service:store');
