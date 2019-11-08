@@ -22,3 +22,5 @@
 @activeItemTextColor: @textColor;
 @hoverItemTextColor: @textColor;
 @activeHoverItemColor: @textColor;
+
+@verticalBoxShadow: none;

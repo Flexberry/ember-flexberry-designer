@@ -141,6 +141,10 @@
     padding: 0.6875rem 0.75rem;
     transition: @itemTransition;
     white-space: nowrap;
+
+    &:first-child {
+      margin-top: 0;
+    }
   }
 
   .sitemap-bottom {
