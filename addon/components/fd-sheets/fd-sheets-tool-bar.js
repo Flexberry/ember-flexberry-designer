@@ -170,7 +170,7 @@ export default Component.extend(FdReadonlyProjectMixin, {
       @method actions.share
     */
     share() {
-      let host = this.get('router.location.location.host');
+      let origin = this.get('router.location.location.origin');
       let hash = this.get('router.location.location.hash');
       let stage = `?gotostage=${this.get('currentProjectContext').getCurrentStage()}`;
       let object = '';
@@ -189,7 +189,7 @@ export default Component.extend(FdReadonlyProjectMixin, {
       var el = document.createElement('textarea');
 
       // Set value (string to be copied), set non-editable to avoid focus and move outside of view
-      el.value =  `${host}${hash}${stage}${object}`;
+      el.value =  `${origin}/${hash}${stage}${object}`;
       el.style = { display: 'none' };
       document.body.appendChild(el);
 
@@ -225,9 +225,9 @@ export default Component.extend(FdReadonlyProjectMixin, {
 
       @method actions.print
     */
-    print() {    
+    print() {
       let model = this.get('targetObject.selectedValue.model.data');
-      window.open(`#/fd-print-form?gotostage=${model.get('subsystem.stage.id')}&gototype=${model.get('constructor.modelName')}&gotoobj=${model.get('id')}&inframe=1` );    
+      window.open(`#/fd-print-form?gotostage=${model.get('subsystem.stage.id')}&gototype=${model.get('constructor.modelName')}&gotoobj=${model.get('id')}&inframe=1` );
     },
   }
 });
