@@ -38,7 +38,7 @@ before_install:
   - google-chrome-stable --headless --disable-gpu --no-sandbox --remote-debugging-port=9222 http://localhost &
 
 install:
-  - yarn
+  - yarn install --no-lockfile
   - bower install
 
 script:
