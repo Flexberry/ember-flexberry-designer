@@ -171,6 +171,7 @@ export default Component.extend(FdReadonlyProjectMixin, {
     */
     share() {
       let origin = this.get('router.location.location.origin');
+      let pathname = this.get('router.location.location.pathname');
       let hash = this.get('router.location.location.hash');
       let stage = `?gotostage=${this.get('currentProjectContext').getCurrentStage()}`;
       let object = '';
@@ -189,7 +190,7 @@ export default Component.extend(FdReadonlyProjectMixin, {
       var el = document.createElement('textarea');
 
       // Set value (string to be copied), set non-editable to avoid focus and move outside of view
-      el.value =  `${origin}/${hash}${stage}${object}`;
+      el.value =  `${origin}${pathname}${hash}${stage}${object}`;
       el.style = { display: 'none' };
       document.body.appendChild(el);
 
