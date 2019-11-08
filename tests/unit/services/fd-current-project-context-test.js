@@ -29,7 +29,8 @@ moduleFor('service:fd-current-project-context', 'Unit | Service | fd current pro
     'model:fd-diagram',
     'model:fd-diagram-link',
     'model:fd-filelink',
-    'service:syncer'
+    'service:syncer',
+    'service:fd-readonly-mode-service'
   ],
 
   beforeEach: function () {
