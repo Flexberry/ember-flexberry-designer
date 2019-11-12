@@ -1,4 +1,6 @@
 import Route from '@ember/routing/route';
+import { inject as service } from '@ember/service';
+import { isBlank } from '@ember/utils';
 
 export default Route.extend({
 
@@ -30,30 +32,24 @@ export default Route.extend({
     const subsystems = this.get('subsystems');
     const stage = this.get('currentProjectContext').getCurrentStage();
     const adapter = this.get('store').adapterFor('application');
-    const data = { project: stage, subsystems: subsystems };
+    const data = { 'project': stage, 'moduleSettingTypes': subsystems };
 
-    return null;
-    /*return adapter.callFunction('GetSubsystemsSettings', data, null, { withCredentials: true }).then((subsystemsSettings) => {
-      return subsystemsSettings.value;
-    });*/
+    return adapter.callAction('GetCurrentModuleSettings', data, null, { withCredentials: true }).then((subsystemsSettings) => {
+      let currentSubsystemsSettings = JSON.parse(subsystemsSettings.value);
+      let updateSubsystemsSettings = {};
+      for (let prop in currentSubsystemsSettings) {
+        let value = currentSubsystemsSettings[prop];
+        let newValue = !isBlank(value) ? JSON.parse(value) : {};
+        updateSubsystemsSettings[prop] = newValue;
+      }
+
+      return updateSubsystemsSettings;
+    });
   },
 
   init() {
     this._super(...arguments);
 
-    this.set('subsystems', ['gis-subsystem'/*, 'security-subsystem', 'audit-subsystem'*/]);
-  },
-
-  /**
-    A hook you can use to setup the controller for the current route.
-    [More info](https://www.emberjs.com/api/ember/release/classes/Route/methods/setupController?anchor=setupController).
-
-    @method setupController
-    @param {<a href="https://emberjs.com/api/ember/release/classes/Controller">Controller</a>} controller
-  */
-  setupController(controller) {
-    this._super(...arguments);
-
-    controller.set('subsystems', this.get('subsystems'));
-  },
+    this.set('subsystems', ['GisSubsystemSettings'/*, 'SecuritySubsystemSettings', 'AuditSubsystemSettings'*/]);
+  }
 });

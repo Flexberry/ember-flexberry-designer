@@ -3,17 +3,53 @@
 
     <div class="two fields">
       <div class="field">
-        <h3 class="header">Flexberry GIS</h3>
+        <h3 class="header">{{t "components.fd-gis-subsystem.name"}}</h3>
         <i class="massive map icon"></i>
       </div>
-      {{#if model}}
+      {{#if model.enabled}}
         <div class="field">
-          <div>{{"Имя"}}</div>
+          <div>{{t "components.fd-gis-subsystem.address"}}</div>
           <div class="description">
             {{flexberry-textbox
-              value=model
+              value=model.address
               class='fluid input'
-              placeholder="placeholder"
+              placeholder=(t 'components.fd-gis-subsystem.address-placeholder')
+            }}
+          </div>
+
+          <div>{{t "components.fd-gis-subsystem.login"}}</div>
+          <div class="description">
+            {{flexberry-textbox
+              value=model.login
+              class='fluid input'
+              placeholder=(t 'components.fd-gis-subsystem.login-placeholder')
+            }}
+          </div>
+
+          <div>{{t "components.fd-gis-subsystem.password"}}</div>
+          <div class="description">
+            {{flexberry-textbox
+              value=model.password
+              class='fluid input'
+              placeholder=(t 'components.fd-gis-subsystem.password-placeholder')
+            }}
+          </div>
+
+          <div>{{t "components.fd-gis-subsystem.type-database"}}</div>
+          <div class="description">
+            {{flexberry-dropdown
+              items=(flexberry-enum 'fd-database-type')
+              value=model.typeDatabase
+              class='compact'
+            }}
+          </div>
+
+          <div>{{t "components.fd-gis-subsystem.connection-string"}}</div>
+          <div class="description">
+            {{flexberry-textbox
+              value=model.connectionString
+              class='fluid input'
+              placeholder=(t 'components.fd-gis-subsystem.connection-string-placeholder')
             }}
           </div>
         </div>
@@ -22,7 +58,7 @@
 
     <div class="right floated">
       {{flexberry-checkbox
-        value=model
+        value=model.enabled
         class='fluid input'
       }}
     </div>
