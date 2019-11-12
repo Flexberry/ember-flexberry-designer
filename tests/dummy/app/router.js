@@ -95,6 +95,7 @@ Router.map(function () {
   { path: 'fd-view-edit-form/:id' });
   this.route('fd-view-edit-form.new',
   { path: 'fd-view-edit-form/new' });
+  this.route('fd-print-form');
 
   this.route('fd-visual-edit-form');
   this.route('fd-editform-constructor', { path: 'fd-editform-constructor/:id' }, function() {
@@ -127,12 +128,7 @@ Router.map(function () {
   this.route('fd-application-model');
   this.route('fd-diagrams');
   this.route('fd-navigation');
-  this.route('fd-generation', { path: 'generation' }, function() {
-    this.route('first');
-    this.route('list', { path: '' }, function() {
-      this.route('log', { path: ':generation_id' });
-    });
-  });
+  this.route('fd-generation', { path: 'generation' });
 
   this.route('fd-setting');
   this.route('fd-architecture');

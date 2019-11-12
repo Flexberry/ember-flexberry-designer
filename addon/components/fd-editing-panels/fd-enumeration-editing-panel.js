@@ -2,9 +2,10 @@ import Component from '@ember/component';
 import { computed } from '@ember/object';
 import { A } from '@ember/array';
 import FdUpdateAttributeValueMixin from '../../mixins/fd-editing-panels/fd-update-attribute-value';
+import FdReadonlyModeMixin from '../../mixins/fd-editing-panels/fd-readonly-mode';
 import layout from '../../templates/components/fd-editing-panels/fd-enumeration-editing-panel';
 
-export default Component.extend(FdUpdateAttributeValueMixin, {
+export default Component.extend(FdUpdateAttributeValueMixin, FdReadonlyModeMixin, {
   layout,
 
   /**

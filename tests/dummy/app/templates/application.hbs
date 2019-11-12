@@ -2,7 +2,8 @@
   {{outlet}}
   {{outlet "modal"}}
 {{else}}
-{{#flexberry-sidebar
+{{#unless inframe}}
+	{{#flexberry-sidebar
   class="vertical main menu visible uncover"
   settings=(hash
     closable=false
@@ -24,20 +25,17 @@
         {{currentProjectName}}
       </div>
     </div>
-    {{flexberry-sitemap sitemap=sitemap class="flexberry-sitemap-top"}}
+    {{fd-flexberry-sitemap sitemap=sitemap class="flexberry-sitemap-top"}}
   {{/if}}
   <div class="flexberry-sitemap-top"></div>
-  
-  <button {{action 'toggleSidebar'}} class="ui toggle-sidebar-visible icon button">
-    <i class="caret left icon"></i>
-  </button>
-  {{flexberry-sitemap sitemap=sitemapBottom class="sitemap-bottom"}}
+
+  <button {{action 'toggleSidebar'}} class="ui toggle-sidebar-visible icon button"></button>
+  {{fd-flexberry-sitemap sitemap=sitemapBottom class="sitemap-bottom"}}
 {{/flexberry-sidebar}}
 
-<button {{action 'toggleSidebar'}} class="ui toggle-sidebar icon button">
-  <i class="caret right icon"></i>
-</button>
+<button {{action 'toggleSidebar'}} class="ui toggle-sidebar icon button"></button>
 {{outlet 'right-sidebar'}}
+{{/unless}}
 
 <div id="example" class="pusher">
   <div class="ui form {{appState.state}}">
@@ -53,7 +51,9 @@
 <div class="ui main container">
   {{outlet "modal"}}
 </div>
-<div class="ui vertical footer segment">
+
+{{#unless inframe}}
+	<div class="ui vertical footer segment">
   <div class="ui container flex-container">
     <div class="social-icons">
       <a target="_blank" class="brand item btn-social" href="http://vk.com/flexberry">
@@ -99,4 +99,5 @@
     </div>
   </div>
 </div>
+{{/unless}}
 {{/if}}

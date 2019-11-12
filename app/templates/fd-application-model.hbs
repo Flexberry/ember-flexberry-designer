@@ -21,6 +21,7 @@
           fd-button
           caption=(t "forms.fd-application-model.create-class-caption")
           click=(action 'openCreateClassEditPanel')
+          readonly=readonlyModeProject
         }}
       </div>
     </div>
@@ -32,6 +33,7 @@
         entity=class
         sheetComponentName=sheetComponentName
         createClassAction=(action 'createClass')
+        readonly=readonlyModeProject
       }}
     {{/each}}
 
@@ -56,6 +58,7 @@
           fd-button
           caption=(t "forms.fd-application-model.enum-caption")
           click=(action 'createClass' '«enumeration»')
+          readonly=readonlyModeProject
         }}
       </div>
     </div>
@@ -82,6 +85,7 @@
           fd-button
           caption=(t "forms.fd-application-model.type-content-caption")
           click=(action 'createClass' '«type»')
+          readonly=readonlyModeProject
         }}
       </div>
     </div>
@@ -108,6 +112,7 @@
           fd-button
           caption=(t "forms.fd-application-model.typedef-caption")
           click=(action 'createClass' '«typedef»')
+          readonly=readonlyModeProject
         }}
       </div>
     </div>
@@ -134,6 +139,7 @@
           fd-button
           caption=(t "forms.fd-application-model.bs-caption")
           click=(action 'createClass' '«businessserver»')
+          readonly=readonlyModeProject
         }}
       </div>
     </div>
@@ -160,6 +166,7 @@
           fd-button
           caption=(t "forms.fd-application-model.interface-caption")
           click=(action 'createClass' '«interface»')
+          readonly=readonlyModeProject
         }}
       </div>
     </div>
@@ -186,6 +193,7 @@
           fd-button
           caption=(t "forms.fd-application-model.external-caption")
           click=(action 'createClass' '«external»')
+          readonly=readonlyModeProject
         }}
       </div>
     </div>
@@ -212,6 +220,7 @@
           fd-button
           caption=(t "forms.fd-application-model.extinterface-caption")
           click=(action 'createClass' '«externalinterface»')
+          readonly=readonlyModeProject
         }}
       </div>
     </div>
@@ -237,6 +246,7 @@
         {{fd-button
           caption=(t "forms.fd-application-model.application-caption")
           click=(action 'createClass' '«application»')
+          readonly=readonlyModeProject
         }}
       </div>
     </div>
@@ -261,54 +271,57 @@
         {{fd-button
           caption=(t "forms.fd-application-model.userform-caption")
           click=(action 'createClass' '«userform»')
+          readonly=readonlyModeProject
         }}
       </div>
     </div>
     {{/if}}
 
-    {{!-- Maplayers --}}
-    {{#if (not-eq filteredModel.maplayers.length 0)}}
+    {{!-- Geolayers --}}
+    {{#if (not-eq filteredModel.geolayers.length 0)}}
     <div class="row">
       <div class="three wide column light-text">
-        {{t "forms.fd-application-model.maplayer-caption"}}
+        {{t "forms.fd-application-model.geolayer-caption"}}
       </div>
       <div class="thirteen wide column">
-        {{#each filteredModel.maplayers as |maplayer|}}
+        {{#each filteredModel.geolayers as |geolayer|}}
           {{fd-list-item
-            model=maplayer
-            caption=maplayer.data.name
+            model=geolayer
+            caption=geolayer.data.name
             sheetComponentName=sheetComponentName
           }}
         {{/each}}
       </div>
       <div class="right floated thirteen wide column">
         {{fd-button
-          caption=(t "forms.fd-application-model.maplayer-caption")
-          click=(action 'createClass' '«maplayer»')
+          caption=(t "forms.fd-application-model.geolayer-caption")
+          click=(action 'createClass' '«geolayer»')
+          readonly=readonlyModeProject
         }}
       </div>
     </div>
     {{/if}}
 
-    {{!-- Maplayerstyles --}}
-    {{#if (not-eq filteredModel.maplayerstyles.length 0)}}
+    {{!-- Geolayerstyles --}}
+    {{#if (not-eq filteredModel.geolayerstyles.length 0)}}
     <div class="row">
       <div class="three wide column light-text">
-        {{t "forms.fd-application-model.maplayerstyle-caption"}}
+        {{t "forms.fd-application-model.geolayerstyle-caption"}}
       </div>
       <div class="thirteen wide column">
-        {{#each filteredModel.maplayerstyles as |maplayerstyle|}}
+        {{#each filteredModel.geolayerstyles as |geolayerstyle|}}
           {{fd-list-item
-            model=maplayerstyle
-            caption=maplayerstyle.data.name
+            model=geolayerstyle
+            caption=geolayerstyle.data.name
             sheetComponentName=sheetComponentName
           }}
         {{/each}}
       </div>
       <div class="right floated thirteen wide column">
         {{fd-button
-          caption=(t "forms.fd-application-model.maplayerstyle-caption")
-          click=(action 'createClass' '«maplayerstyle»')
+          caption=(t "forms.fd-application-model.geolayerstyle-caption")
+          click=(action 'createClass' '«geolayerstyle»')
+          readonly=readonlyModeProject
         }}
       </div>
     </div>
@@ -333,6 +346,7 @@
         {{fd-button
           caption=(t "forms.fd-application-model.userstereotype-caption")
           click=(action 'createClass' '«custom»')
+          readonly=readonlyModeProject
         }}
       </div>
     </div>
@@ -340,49 +354,15 @@
 
   </div>
 </form>
-{{#fd-sheet
-  title=computedTitle
-  saveController=(action 'save')
-  deleteController=(action 'delete')
-  sheetComponentName=sheetComponentName
-  readonly=(not selectedElement.model.data.isNew)
-  toolbarVisible=(not isAddMode)
-  isNewModel=selectedElement.model.data.isNew
-}}
-  {{#if isAddMode}}
-    {{fd-editing-panels/fd-create-entity
-      createClassAction=(action 'createClass')
-    }}
-  {{else}}
-    {{#if (known-for-type (concat "fd-editing-panels/fd-" componentNamePart "-editing-panel"))}}
-      {{component (concat "fd-editing-panels/fd-" componentNamePart "-editing-panel")
-        model=selectedElement.model.data
-        dataobject=selectedElement.dataobject
-        openViewSheetController=(action 'openViewSheet')
-      }}
-    {{else}}
-      {{fd-editing-panels/fd-custom-editing-panel
-        model=selectedElement.model.data
-      }}
-    {{/if}}
-  {{/if}}
-{{/fd-sheet}}
 
-{{#fd-sheet
-  title=selectedView.name
-  saveController=(action 'saveView')
-  deleteController=(action 'deleteView')
-  sheetComponentName=sheetViewName
-  readonly=false
-  isNewModel=selectedView.isNew
+{{fd-sheets/fd-class-sheet
+  model=model
+  isAddMode=isAddMode
+  createClass=(action 'createClass')
+  updateModel=(action 'updateModel')
 }}
 
-  {{fd-editing-panels/fd-create-view
-    model=selectedElement.model.data
-    view=selectedView
-  }}
-
-{{/fd-sheet}}
+{{fd-sheets/fd-view-sheet}}
 
 {{#if show}}
   {{fd-modal-message-box
@@ -392,5 +372,6 @@
     approve=(action "closeWithSaving")
     deny=(action "closeWithoutSaving")
     hide=(action set "show" false)
+    headerIcon='edit'
   }}
 {{/if}}

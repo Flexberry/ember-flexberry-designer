@@ -1,0 +1,43 @@
+<div class="fd-sheet-toolbar">
+  {{#if customButtonVisible}}
+    <button class="ui button" {{action 'customButtonAction'}}>
+      {{t customButtonTitle}}
+    </button>
+  {{/if}}
+  {{#if toolbarVisible}}
+    {{#if (and readonlyMode (not isNewModel))}}
+      {{#if (not readonlyModeProject)}}
+        <button class="ui button" {{action 'edit'}}>
+          {{t "components.fd-sheets-tool-bar.edit-caption"}}
+        </button>
+      {{/if}}
+    {{else}}
+      {{#if buttonVisible.save}}
+        <button class="ui button" {{action 'save'}}>
+          {{t "components.fd-sheets-tool-bar.save-caption"}}
+        </button>
+      {{/if}}
+      {{#if (and (not isNewModel) buttonVisible.delete)}}
+        <button class="ui icon button" {{action 'delete'}} title={{t "components.fd-sheets-tool-bar.delete-button-title"}}>
+          <i class="icon-fd-trash-can icon" ></i>
+        </button>
+      {{/if}}
+    {{/if}}
+    {{#if (and (not isNewModel) buttonVisible.print)}}
+      <button class="ui icon button" {{action 'print'}} title={{t "components.fd-sheets-tool-bar.print-button-title"}}>
+        <i class="print icon" ></i>
+      </button>
+    {{/if}}
+    {{#if (and (not isNewModel) buttonVisible.share)}}
+      <button class="ui icon button share" {{action 'share'}} data-content={{t "components.fd-sheets-tool-bar.share-button-data-content"}} title={{t "components.fd-sheets-tool-bar.share-button-title"}}>
+        <i class="{{if copied 'check' 'share alternate'}} icon"></i>
+      </button>
+    {{/if}}
+  {{/if}}
+  <button class="ui icon button" {{action 'expand'}} title={{t "components.fd-sheets-tool-bar.expand-button-title"}}>
+    <i class="icon-fd-resize icon" ></i>
+  </button>
+  <button class="ui icon button" {{action 'closeSheet'}} title={{t "components.fd-sheets-tool-bar.close-button-title"}}>
+    <i class="icon-fd-x-mark icon" ></i>
+  </button>
+</div>

@@ -1,8 +1,18 @@
 import Mixin from '@ember/object/mixin';
 import { isNone } from '@ember/utils';
 import { observer } from '@ember/object';
+import { inject as service } from '@ember/service';
 
 export default Mixin.create({
+
+  /**
+    Service for managing the state of the component.
+
+    @property fdDialogService
+    @type fdDialogService
+  */
+  fdDialogService: service('fd-dialog-service'),
+
   /**
     Item of sheet that opening was abort and must continue after confirm.
 
@@ -65,6 +75,19 @@ export default Mixin.create({
   init() {
     this._super(...arguments);
     this.get('fdSheetService').on('confirmCloseTrigger', this, this.showCloseDialog);
+    this.get('fdDialogService').on('showErrorMessageTriggered', this, this.showErrorMessage);
+  },
+
+  /**
+    Show error message.
+
+    @method showErrorMessage
+    @param {String} message Error message
+  */
+  showErrorMessage(message) {
+    this.set('isError', true);
+    this.set('messageText', message);
+    this.set('show', true);
   },
 
   /**

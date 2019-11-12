@@ -8,7 +8,34 @@ import $ from 'jquery';
 import config from '../config/environment';
 
 export default Controller.extend({
+  /**
+    Array queryParams form
+
+    @property queryParams
+    @type Number
+    @default 0
+  */
+  queryParams: ['inframe'],
+
+  /**
+    Sets whether to show decor elements on the page
+    inframe: 0 - the usual view of the page
+    inframe: 1 - page without footer, header, sidebar. Used for printing
+
+    @property inframe
+    @type Number
+    @default 0
+  */
+  inframe: 0,
+
+  /**
+    Service for managing the state of the component.
+
+    @property fdSheetService
+    @type FdSheetService
+  */
   fdSheetService: service(),
+
   /**
     Flag indicates sidebar visible
 
@@ -120,19 +147,13 @@ export default Controller.extend({
         icon: 'bug'
       },
       {
-        link: '',
-        caption: i18n.t('forms.application.sitemap.root.fd-requests.caption'),
-        title: i18n.t('forms.application.sitemap.root.fd-requests.title'),
-        icon: 'icon-fd-email'
-      },
-      {
-        link: '',
+        link: 'https://flexberry.github.io',
         caption: i18n.t('forms.application.sitemap.root.fd-docs.caption'),
         title: i18n.t('forms.application.sitemap.root.fd-docs.title'),
         icon: 'icon-fd-book'
       },
       {
-        link: '',
+        link: 'https://gitter.im/Flexberry',
         caption: i18n.t('forms.application.sitemap.root.fd-chat.caption'),
         title: i18n.t('forms.application.sitemap.root.fd-chat.title'),
         icon: 'icon-fd-speech-bubble'

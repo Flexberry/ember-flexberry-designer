@@ -151,6 +151,24 @@ FdActionsForUcdPrimitivesMixin, {
    */
   sourceElementType: undefined,
 
+  /**
+    Object with flags indicates whether edit panel is readonly.
+
+    @property readonlyMode
+    @type Boolean
+  */
+  readonlyMode: false,
+
+  /**
+    Object with flags indicates whether diagram is readonly.
+
+    @property readonly
+    @type Boolean
+  */
+  readonly: computed('readonlyMode', function() {
+    return this.get('readonlyMode') && !this.get('model.isNew');
+  }),
+
   diagramType: computed('model.constructor.modelName', function() {
     let type = this.get('model.constructor.modelName');
     if (isNone(type)) {

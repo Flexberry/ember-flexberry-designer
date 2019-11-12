@@ -21,6 +21,7 @@
           fd-button
           caption=(t "forms.fd-diagrams.create-button")
           click=(action 'openCreateDiagramsEditPanel')
+          readonly=readonlyModeProject
         }}
       </div>
     </div>
@@ -46,6 +47,7 @@
           fd-button
           caption=(t "forms.fd-diagrams.ad")
           click=(action 'createDiagram' 'ad')
+          readonly=readonlyModeProject
         }}
       </div>
     </div>
@@ -72,6 +74,7 @@
           fd-button
           caption=(t "forms.fd-diagrams.cad")
           click=(action 'createDiagram' 'cad')
+          readonly=readonlyModeProject
         }}
       </div>
     </div>
@@ -98,6 +101,7 @@
           fd-button
           caption=(t "forms.fd-diagrams.cod")
           click=(action 'createDiagram' 'cod')
+          readonly=readonlyModeProject
         }}
       </div>
     </div>
@@ -124,6 +128,7 @@
           fd-button
           caption=(t "forms.fd-diagrams.dpd")
           click=(action 'createDiagram' 'dpd')
+          readonly=readonlyModeProject
         }}
       </div>
     </div>
@@ -150,6 +155,7 @@
           fd-button
           caption=(t "forms.fd-diagrams.sd")
           click=(action 'createDiagram' 'sd')
+          readonly=readonlyModeProject
         }}
       </div>
     </div>
@@ -176,6 +182,7 @@
           fd-button
           caption=(t "forms.fd-diagrams.std")
           click=(action 'createDiagram' 'std')
+          readonly=readonlyModeProject
         }}
       </div>
     </div>
@@ -202,6 +209,7 @@
           fd-button
           caption=(t "forms.fd-diagrams.ucd")
           click=(action 'createDiagram' 'ucd')
+          readonly=readonlyModeProject
         }}
       </div>
     </div>
@@ -210,48 +218,16 @@
   </div>
 </form>
 
-
-{{#fd-sheet
-  title=computedTitle
-  saveController=(action 'save')
-  deleteController=(action 'delete')
-  sheetComponentName=sheetComponentName
-  toolbarVisible=(not isAddMode)
-  isNewModel=selectedElement.model.data.isNew
+{{fd-sheets/fd-diagram-sheet
+  model=model
+  isAddMode=isAddMode
+  createDiagram=(action 'createDiagram')
+  updateModel=(action 'updateModel')
 }}
-  {{#if isAddMode}}
-    {{fd-editing-panels/fd-create-diagrams
-      createDiagramAction=(action 'createDiagram')
-    }}
-  {{else}}
-    {{#if isDiagramVisible}}
-      {{fd-uml-diagram-editor
-        model=selectedElement.model.data
-        emptyReferenceCountItems=emptyReferenceCountItems
-        sheetComponentName=sheetComponentName
-        openEditFormAction=(action "openObjectEditForm")
-      }}
-    {{/if}}
-  {{/if}}
-{{/fd-sheet}}
 
-{{#fd-sheet
-  title=editableObject.name
-  saveController=(action "saveEditableObject")
-  sheetComponentName=objectEditFormSheet
-  readonly=true
-  isNewModel=true
-}}
-  {{#if (known-for-type (concat "fd-editing-panels/fd-" objectEditFormNamePart "-editing-panel"))}}
-    {{component (concat "fd-editing-panels/fd-" objectEditFormNamePart "-editing-panel")
-      model=editableObject
-    }}
-  {{else}}
-    {{fd-editing-panels/fd-custom-editing-panel
-      model=editableObject
-    }}
-  {{/if}}
-{{/fd-sheet}}
+{{fd-sheets/fd-edit-diagram-object-sheet}}
+
+{{fd-sheets/fd-view-sheet}}
 
 {{#if show}}
   {{fd-modal-message-box
@@ -261,5 +237,6 @@
     approve=(action "closeWithSaving")
     deny=(action "closeWithoutSaving")
     hide=(action set "show" false)
+    headerIcon='edit'
   }}
 {{/if}}

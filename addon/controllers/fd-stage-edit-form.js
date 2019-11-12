@@ -1,7 +1,5 @@
 import { computed, observer } from '@ember/object';
 import { inject as service } from '@ember/service';
-import { getOwner } from '@ember/application';
-import { A } from '@ember/array';
 
 import EditFormController from 'ember-flexberry/controllers/edit-form';
 import { SimplePredicate } from 'ember-flexberry-data/query/predicate';
@@ -52,32 +50,7 @@ export default EditFormController.extend({
   }),
 
   save() {
-    this._super(...arguments).then(() => {
-      let stagePk = this.get('model.id');
-      let moduleSetting = this.get('moduleSetting');
-      let moduleSettingTypes = Object.keys(moduleSetting);
-
-      let valueModuleSetting = A();
-      let moduleSettingData = A();
-
-      for (let i = 0; i < moduleSettingTypes.length; i++) {
-        let valueModuleSettingData = {
-          'ValueXML': moduleSetting[moduleSettingTypes[i]]
-        };
-
-        let moduleSettingTypeData = {
-          'Name': moduleSettingTypes[i]
-        };
-
-        valueModuleSetting.pushObject(valueModuleSettingData);
-        moduleSettingData.pushObject(moduleSettingTypeData);
-      }
-
-      let data = { 'project': stagePk.toString(), 'moduleSettingType': moduleSettingData, 'valueModuleSetting': valueModuleSetting };
-      let adapter = getOwner(this).lookup('adapter:application');
-
-      adapter.callAction('SaveCurrentModuleSetting', data, null, { withCredentials: true });
-    });
+    this._super(...arguments);
   },
 
   init() {
