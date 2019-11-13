@@ -131,6 +131,19 @@ define("dummy/components/ember-jstree", ["exports", "ember-cli-jstree/components
     }
   });
 });
+define('dummy/components/fd-architecture-subsystem/fd-gis-subsystem', ['exports', 'ember-flexberry-designer/components/fd-architecture-subsystem/fd-gis-subsystem'], function (exports, _fdGisSubsystem) {
+  'use strict';
+
+  Object.defineProperty(exports, "__esModule", {
+    value: true
+  });
+  Object.defineProperty(exports, 'default', {
+    enumerable: true,
+    get: function () {
+      return _fdGisSubsystem.default;
+    }
+  });
+});
 define('dummy/components/fd-attribute-table', ['exports', 'ember-flexberry-designer/components/fd-attribute-table'], function (exports, _fdAttributeTable) {
   'use strict';
 
@@ -3739,6 +3752,11 @@ define('dummy/ember-flexberry-designer/tests/addon.lint-test', [], function () {
 
   QUnit.module('ESLint | addon');
 
+  QUnit.test('addon/components/fd-architecture-subsystem/fd-gis-subsystem.js', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'addon/components/fd-architecture-subsystem/fd-gis-subsystem.js should pass ESLint\n\n');
+  });
+
   QUnit.test('addon/components/fd-attribute-table.js', function (assert) {
     assert.expect(1);
     assert.ok(true, 'addon/components/fd-attribute-table.js should pass ESLint\n\n');
@@ -4409,6 +4427,11 @@ define('dummy/ember-flexberry-designer/tests/addon.lint-test', [], function () {
     assert.ok(true, 'addon/controllers/new-platform-flexberry-web-designer-storage-type-l.js should pass ESLint\n\n');
   });
 
+  QUnit.test('addon/enums/fd-database-type.js', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'addon/enums/fd-database-type.js should pass ESLint\n\n');
+  });
+
   QUnit.test('addon/enums/fd-generation-state.js', function (assert) {
     assert.expect(1);
     assert.ok(true, 'addon/enums/fd-generation-state.js should pass ESLint\n\n');
@@ -4534,6 +4557,11 @@ define('dummy/ember-flexberry-designer/tests/addon.lint-test', [], function () {
     assert.ok(true, 'addon/locales/en/components/fd-geolayerstyle-editing-panel.js should pass ESLint\n\n');
   });
 
+  QUnit.test('addon/locales/en/components/fd-gis-subsystem.js', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'addon/locales/en/components/fd-gis-subsystem.js should pass ESLint\n\n');
+  });
+
   QUnit.test('addon/locales/en/components/fd-implementation-editing-panel.js', function (assert) {
     assert.expect(1);
     assert.ok(true, 'addon/locales/en/components/fd-implementation-editing-panel.js should pass ESLint\n\n');
@@ -4622,6 +4650,11 @@ define('dummy/ember-flexberry-designer/tests/addon.lint-test', [], function () {
   QUnit.test('addon/locales/en/forms/fd-appstruct-form.js', function (assert) {
     assert.expect(1);
     assert.ok(true, 'addon/locales/en/forms/fd-appstruct-form.js should pass ESLint\n\n');
+  });
+
+  QUnit.test('addon/locales/en/forms/fd-architecture.js', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'addon/locales/en/forms/fd-architecture.js should pass ESLint\n\n');
   });
 
   QUnit.test('addon/locales/en/forms/fd-association-edit-form.js', function (assert) {
@@ -5259,6 +5292,11 @@ define('dummy/ember-flexberry-designer/tests/addon.lint-test', [], function () {
     assert.ok(true, 'addon/locales/ru/components/fd-geolayerstyle-editing-panel.js should pass ESLint\n\n');
   });
 
+  QUnit.test('addon/locales/ru/components/fd-gis-subsystem.js', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'addon/locales/ru/components/fd-gis-subsystem.js should pass ESLint\n\n');
+  });
+
   QUnit.test('addon/locales/ru/components/fd-implementation-editing-panel.js', function (assert) {
     assert.expect(1);
     assert.ok(true, 'addon/locales/ru/components/fd-implementation-editing-panel.js should pass ESLint\n\n');
@@ -5347,6 +5385,11 @@ define('dummy/ember-flexberry-designer/tests/addon.lint-test', [], function () {
   QUnit.test('addon/locales/ru/forms/fd-appstruct-form.js', function (assert) {
     assert.expect(1);
     assert.ok(true, 'addon/locales/ru/forms/fd-appstruct-form.js should pass ESLint\n\n');
+  });
+
+  QUnit.test('addon/locales/ru/forms/fd-architecture.js', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'addon/locales/ru/forms/fd-architecture.js should pass ESLint\n\n');
   });
 
   QUnit.test('addon/locales/ru/forms/fd-association-edit-form.js', function (assert) {
@@ -9214,6 +9257,11 @@ define('dummy/ember-flexberry-designer/tests/app.lint-test', [], function () {
     assert.ok(true, 'app/browserify.js should pass ESLint\n\n');
   });
 
+  QUnit.test('app/components/fd-architecture-subsystem/fd-gis-subsystem.js', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'app/components/fd-architecture-subsystem/fd-gis-subsystem.js should pass ESLint\n\n');
+  });
+
   QUnit.test('app/components/fd-attribute-table.js', function (assert) {
     assert.expect(1);
     assert.ok(true, 'app/components/fd-attribute-table.js should pass ESLint\n\n');
@@ -9877,6 +9925,11 @@ define('dummy/ember-flexberry-designer/tests/app.lint-test', [], function () {
   QUnit.test('app/controllers/new-platform-flexberry-web-designer-storage-type-l.js', function (assert) {
     assert.expect(1);
     assert.ok(true, 'app/controllers/new-platform-flexberry-web-designer-storage-type-l.js should pass ESLint\n\n');
+  });
+
+  QUnit.test('app/enums/fd-database-type.js', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'app/enums/fd-database-type.js should pass ESLint\n\n');
   });
 
   QUnit.test('app/enums/fd-generation-state.js', function (assert) {
@@ -11167,6 +11220,19 @@ define('dummy/ember-flexberry-designer/tests/app.lint-test', [], function () {
   QUnit.test('app/utils/model-has-changes.js', function (assert) {
     assert.expect(1);
     assert.ok(true, 'app/utils/model-has-changes.js should pass ESLint\n\n');
+  });
+});
+define('dummy/enums/fd-database-type', ['exports', 'ember-flexberry-designer/enums/fd-database-type'], function (exports, _fdDatabaseType) {
+  'use strict';
+
+  Object.defineProperty(exports, "__esModule", {
+    value: true
+  });
+  Object.defineProperty(exports, 'default', {
+    enumerable: true,
+    get: function () {
+      return _fdDatabaseType.default;
+    }
   });
 });
 define('dummy/enums/fd-generation-state', ['exports', 'ember-flexberry-designer/enums/fd-generation-state'], function (exports, _fdGenerationState) {
@@ -17664,7 +17730,7 @@ define("dummy/templates/fd-architecture", ["exports"], function (exports) {
   Object.defineProperty(exports, "__esModule", {
     value: true
   });
-  exports.default = Ember.HTMLBars.template({ "id": "fcLlcKh3", "block": "{\"symbols\":[],\"statements\":[],\"hasEval\":false}", "meta": { "moduleName": "dummy/templates/fd-architecture.hbs" } });
+  exports.default = Ember.HTMLBars.template({ "id": "pk4rJDD3", "block": "{\"symbols\":[],\"statements\":[[0,\"\\n\"],[6,\"h2\"],[10,\"class\",\"form-header\"],[8],[0,\"\\n  \"],[1,[26,\"t\",[\"forms.fd-architecture.caption\"],null],false],[0,\"\\n\"],[9],[0,\"\\n\\n\"],[6,\"div\"],[10,\"class\",\"fd-form-toolbar\"],[8],[0,\"\\n  \"],[6,\"button\"],[10,\"class\",\"ui button\"],[3,\"action\",[[21,0,[]],\"save\"]],[8],[0,\"\\n    \"],[1,[26,\"t\",[\"forms.fd-architecture.save-caption\"],null],false],[0,\"\\n  \"],[9],[0,\"\\n\"],[9],[0,\"\\n\\n\"],[6,\"form\"],[10,\"class\",\"ui form flexberry-vertical-form\"],[8],[0,\"\\n  \"],[6,\"div\"],[10,\"class\",\"fd-form-list\"],[8],[0,\"\\n    \"],[6,\"div\"],[10,\"class\",\"fd-form-list-header\"],[8],[0,\"\\n      \"],[6,\"h2\"],[8],[0,\"\\n        \"],[1,[26,\"t\",[\"forms.fd-architecture.foundation-caption\"],null],false],[0,\"\\n      \"],[9],[0,\"\\n    \"],[9],[0,\"\\n    \"],[6,\"div\"],[10,\"class\",\"fd-form-list-body\"],[8],[0,\"\\n\\n    \"],[9],[0,\"\\n  \"],[9],[0,\"\\n\\n  \"],[6,\"div\"],[10,\"class\",\"fd-form-list\"],[8],[0,\"\\n    \"],[6,\"div\"],[10,\"class\",\"fd-form-list-header\"],[8],[0,\"\\n      \"],[6,\"h2\"],[8],[0,\"\\n        \"],[1,[26,\"t\",[\"forms.fd-architecture.git-caption\"],null],false],[0,\"\\n      \"],[9],[0,\"\\n    \"],[9],[0,\"\\n    \"],[6,\"div\"],[10,\"class\",\"fd-form-list-body\"],[8],[0,\"\\n      \"],[1,[26,\"fd-architecture-subsystem/fd-gis-subsystem\",null,[[\"model\"],[[22,[\"model\",\"GisSubsystemSettings\"]]]]],false],[0,\"\\n    \"],[9],[0,\"\\n  \"],[9],[0,\"\\n\\n  \"],[6,\"div\"],[10,\"class\",\"fd-form-list\"],[8],[0,\"\\n    \"],[6,\"div\"],[10,\"class\",\"fd-form-list-header\"],[8],[0,\"\\n      \"],[6,\"h2\"],[8],[0,\"\\n        \"],[1,[26,\"t\",[\"forms.fd-architecture.analytics-caption\"],null],false],[0,\"\\n      \"],[9],[0,\"\\n    \"],[9],[0,\"\\n    \"],[6,\"div\"],[10,\"class\",\"fd-form-list-body\"],[8],[0,\"\\n\\n    \"],[9],[0,\"\\n  \"],[9],[0,\"\\n\"],[9],[0,\"\\n\"]],\"hasEval\":false}", "meta": { "moduleName": "dummy/templates/fd-architecture.hbs" } });
 });
 define("dummy/templates/fd-association-edit-form", ["exports"], function (exports) {
   "use strict";

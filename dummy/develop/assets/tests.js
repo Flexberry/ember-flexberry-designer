@@ -4177,6 +4177,7 @@ define('dummy/tests/unit/routes/fd-architecture-test', ['ember-qunit'], function
   (0, _emberQunit.moduleFor)('route:fd-architecture', 'Unit | Route | fd architecture', {
     // Specify the other units that are required for this test.
     // needs: ['controller:foo']
+    needs: ['service:fd-current-project-context']
   });
 
   (0, _emberQunit.test)('it exists', function (assert) {
