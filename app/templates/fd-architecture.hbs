@@ -1,3 +1,54 @@
-{{!--<div class="ui vertical menu">
-  {{flexberry-sitemap sitemap=sitemap}}
-</div>--}}
+{{!--
+Просто классы без стилей
+fd-form-toolbar
+fd-form-list
+fd-form-list-header
+fd-form-list-body
+--}}
+
+<h2 class='form-header'>
+  {{t "forms.fd-architecture.caption"}}
+</h2>
+
+<div class="fd-form-toolbar">
+  <button class="ui button" {{action 'save'}}>
+    {{t "forms.fd-architecture.save-caption"}}
+  </button>
+</div>
+
+<form class="ui form flexberry-vertical-form">
+  <div class="fd-form-list">
+    <div class='fd-form-list-header'>
+      <h2>
+        {{t "forms.fd-architecture.foundation-caption"}}
+      </h2>
+    </div>
+    <div class='fd-form-list-body'>
+
+    </div>
+  </div>
+
+  <div class="fd-form-list">
+    <div class='fd-form-list-header'>
+      <h2>
+        {{t "forms.fd-architecture.git-caption"}}
+      </h2>
+    </div>
+    <div class='fd-form-list-body'>
+      {{fd-architecture-subsystem/fd-gis-subsystem
+        model=model.GisSubsystemSettings
+      }}
+    </div>
+  </div>
+
+  <div class="fd-form-list">
+    <div class='fd-form-list-header'>
+      <h2>
+        {{t "forms.fd-architecture.analytics-caption"}}
+      </h2>
+    </div>
+    <div class='fd-form-list-body'>
+
+    </div>
+  </div>
+</form>
