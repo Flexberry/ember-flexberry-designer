@@ -7,6 +7,7 @@ import FdShareLoadData from '../mixins/fd-share-load-data';
 import FdWrapperModel from '../mixins/fd-wrapper-model';
 import { inject as service } from '@ember/service';
 import Builder from 'ember-flexberry-data/query/builder';
+import { A } from '@ember/array';
 import GenerationStateEnum from '../enums/new-platform-flexberry-web-designer-generation-state';
 
 /**
@@ -68,19 +69,23 @@ export default Route.extend(FdWrapperModel, FdShareLoadData, {
 
     return store.query(modelName, builder.build()).then((result) => {
       let runningGenerations = result.filterBy('state', GenerationStateEnum.Running);
-      modelHash.run = this.wrapModel(runningGenerations);
+      let wrapRunningGenerations = this.wrapModel(runningGenerations);
+      modelHash.run = A(wrapRunningGenerations);
 
       let successGenerations = result.filterBy('state', GenerationStateEnum.Success);
-      modelHash.success = this.wrapModel(successGenerations);
+      let wrapSuccessGenerations = this.wrapModel(successGenerations);
+      modelHash.success = A(wrapSuccessGenerations);
 
       let errorGenerations = result.filterBy('state', GenerationStateEnum.Error);
-      modelHash.error = this.wrapModel(errorGenerations);
+      let wrapErrorGenerations = this.wrapModel(errorGenerations);
+      modelHash.error = A(wrapErrorGenerations);
 
       let otherGenerations = result.filter(function(item) {
         let state = item.get('state');
         return (state === GenerationStateEnum.Canceled || state === GenerationStateEnum.Warn || state === GenerationStateEnum.Unknown);
       });
-      modelHash.other = this.wrapModel(otherGenerations);
+      let wrapOtherGenerations = this.wrapModel(otherGenerations);
+      modelHash.other = A(wrapOtherGenerations);
 
       return modelHash;
     });
