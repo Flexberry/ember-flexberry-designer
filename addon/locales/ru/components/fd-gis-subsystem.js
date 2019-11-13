@@ -7,6 +7,6 @@ export default {
   password: 'Пароль',
   'password-placeholder': 'Введите пароль',
   'type-database': 'Тип базы данных',
-  'connection-string': 'Строка подключения базы данных',
-  'connection-string-placeholder': 'Введите строку подключения базы данных',
+  'connection-string': 'Строка подключения к базе данных',
+  'connection-string-placeholder': 'Введите строку подключения к базе данных',
 };

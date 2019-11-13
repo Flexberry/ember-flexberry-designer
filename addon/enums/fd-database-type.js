@@ -5,5 +5,5 @@ export default createEnum({
   MsSQL: 'MSSQL',
   Oracle: 'Oracle',
   PostgreSQL: 'PostgreSQL',
-  WClickHousearn: 'ClickHouse',
+  ClickHouse: 'ClickHouse',
 });
