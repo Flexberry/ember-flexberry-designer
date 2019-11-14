@@ -8,6 +8,14 @@ export default Mixin.create({
   /**
     Service for managing the state of the component.
 
+    @property fdSheetService
+    @type FdSheetService
+  */
+  fdSheetService: service(),
+
+  /**
+    Service for managing the state of the component.
+
     @property fdDialogService
     @type fdDialogService
   */
