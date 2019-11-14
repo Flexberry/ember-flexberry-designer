@@ -73,6 +73,16 @@ export default Controller.extend({
     return this.get('currentContext.context.stageModel.name');
   }),
 
+  /**
+    Current project шы ыудусеув
+
+    @property currentProjectIsSelected
+    @type Bool
+  */
+  currentProjectIsSelected: computed('currentContext.context.stageModel', function() {
+    return isNone(this.get('currentContext.context.stageModel')) ? false : true;
+  }),
+
   sitemap: computed('i18n.locale', 'currentContext.context.{configuration,stage}', function() {
     let i18n = this.get('i18n');
     let singleStageMode = this.get('currentContext.singleStageMode');

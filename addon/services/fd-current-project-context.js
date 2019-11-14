@@ -255,6 +255,22 @@ export default Service.extend(FdReadonlyProjectMixin, {
     return system;
   },
 
+  /**
+    Reset current stage.
+
+    @method resetCurrentStage
+  */
+  resetCurrentStage() {
+    this.set('context.stage', undefined);
+    this.set('context.stageModel', undefined);
+    this.set('context.system', undefined);
+    this.set('context.systemModel', undefined);
+    this.set('context.systemIsSet', false);
+    this.set('context.systemPromise', undefined);
+    this.set('context.class', undefined);
+    this.set('context.classModel', undefined);
+    this.get('router').transitionTo('fd-all-projects');
+  },
 
   init() {
     this._super(...arguments);

@@ -38,6 +38,7 @@ import FdVisualEditFormForm from './forms/fd-visual-edit-form-form';
 import FdListformConstructor from './forms/fd-listform-constructor';
 import FdGenerationProcessForm from './forms/fd-generation-process-form';
 import FdGeneration from './forms/fd-generation';
+import FdSetting from './forms/fd-setting';
 import FdGenerationListForm from './forms/fd-generation-list-form';
 import FdDataTypesMapForm from './forms/fd-data-types-map';
 import FdConfirmUnsavedFormModal from './forms/fd-confirm-unsaved-form-modal';
@@ -429,6 +430,7 @@ $.extend(true, translations, {
     'fd-application-model': FdApplicationModelForm,
     'fd-diagrams': FdDiagramForm,
     'fd-navigation': FdNavigationForm,
+    'fd-setting': FdSetting,
   },
 
   components: {
