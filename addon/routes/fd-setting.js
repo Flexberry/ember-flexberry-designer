@@ -13,9 +13,9 @@ export default Route.extend({
   currentProjectContext: service('fd-current-project-context'),
 
   /**
-    List exist moduleSettings.
+    List exist generationSettings.
 
-    @property moduleSettings
+    @property generationSettings
     @type Array
    */
   generationSettings: undefined,

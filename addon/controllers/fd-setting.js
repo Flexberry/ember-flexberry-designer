@@ -21,7 +21,7 @@ export default Controller.extend(FdSheetCloseConfirm, {
   currentProjectContext: service('fd-current-project-context'),
 
   /**
-    Service for managing the state of the component.
+    Service for managing the message dialog.
 
     @property fdDialogService
     @type fdDialogService
