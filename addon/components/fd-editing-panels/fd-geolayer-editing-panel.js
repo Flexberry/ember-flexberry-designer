@@ -55,14 +55,14 @@ export default Component.extend(FdReadonlyModeMixin, {
     @property coordinateSystem
     @type String
   */
-  coordinateSystem: computed('model.description', {
+  coordinateSystem: computed('model.name', {
     get() {
-      let settings = this.parseDascription();
+      let settings = this.parseDescription();
       return get(settings, 'coordinateSystem');
     },
 
     set(key, value) {
-      let settings = this.parseDascription();
+      let settings = this.parseDescription();
       set(settings, 'coordinateSystem', value);
       this.set('model.description', JSON.stringify(settings))
       return value;
@@ -75,14 +75,14 @@ export default Component.extend(FdReadonlyModeMixin, {
     @property coverageLT
     @type String
   */
-  coverageLT: computed('model.description', {
+  coverageLT: computed('model.name', {
     get() {
-      let settings = this.parseDascription();
+      let settings = this.parseDescription();
       return get(settings, 'coverageLT');
     },
 
     set(key, value) {
-      let settings = this.parseDascription();
+      let settings = this.parseDescription();
       set(settings, 'coverageLT', value);
       this.set('model.description', JSON.stringify(settings))
       return value;
@@ -95,14 +95,14 @@ export default Component.extend(FdReadonlyModeMixin, {
     @property coverageRD
     @type String
   */
-  coverageRD: computed('model.description', {
+  coverageRD: computed('model.name', {
     get() {
-      let settings = this.parseDascription();
+      let settings = this.parseDescription();
       return get(settings, 'coverageRD');
     },
 
     set(key, value) {
-      let settings = this.parseDascription();
+      let settings = this.parseDescription();
       set(settings, 'coverageRD', value);
       this.set('model.description', JSON.stringify(settings))
       return value;
@@ -115,15 +115,15 @@ export default Component.extend(FdReadonlyModeMixin, {
     @property layerClass
     @type String
   */
-  layerClass: computed('model.description', {
+  layerClass: computed('model.name', {
     get() {
-      let settings = this.parseDascription();
+      let settings = this.parseDescription();
       let layerClasses = this.get('layerClasses.objects').findBy('id', get(settings, 'layerClass'));
       return isNone(layerClasses) ? '' : layerClasses.get('name');
     },
 
     set(key, value) {
-      let settings = this.parseDascription();
+      let settings = this.parseDescription();
       let layerClasses = this.get('layerClasses.objects').findBy('name', value);
       set(settings, 'layerClass', layerClasses.get('id'));
       this.set('model.description', JSON.stringify(settings))
@@ -137,15 +137,15 @@ export default Component.extend(FdReadonlyModeMixin, {
     @property layerStyle
     @type String
   */
-  layerStyle: computed('model.description', {
+  layerStyle: computed('model.name', {
     get() {
-      let settings = this.parseDascription();
+      let settings = this.parseDescription();
       let layerStyles = this.get('layerStyles.objects').findBy('id', get(settings, 'layerStyle'));
       return isNone(layerStyles) ? '' : layerStyles.get('name');
     },
 
     set(key, value) {
-      let settings = this.parseDascription();
+      let settings = this.parseDescription();
       let layerStyles = this.get('layerStyles.objects').findBy('name', value);
       set(settings, 'layerStyle', layerStyles.get('id'));
       this.set('model.description', JSON.stringify(settings))
@@ -156,9 +156,9 @@ export default Component.extend(FdReadonlyModeMixin, {
   /**
     Get and parse 'description' value.
 
-    @method parseDascription
+    @method parseDescription
   */
-  parseDascription() {
+  parseDescription() {
     let description = this.get('model.description');
 
     try {
