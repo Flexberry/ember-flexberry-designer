@@ -1,3 +1,86 @@
 <div class="ui stackable grid fd-list">
+  <div class="row">
+    <div class="five wide column">
+      {{t "components.fd-geolayer-editing-panel.caption-caption"}}
+    </div>
+    <div class="eleven wide column light-text">
+      {{flexberry-textbox
+        value=model.caption
+        class='fluid input'
+        placeholder=(t "components.fd-geolayer-editing-panel.caption-placeholder")
+        readonly=readonly
+      }}
+    </div>
+  </div>
+
+
+  <div class="row">
+    <div class="five wide column">
+      {{t "components.fd-geolayer-editing-panel.coordinate-system-caption"}}
+    </div>
+    <div class="eleven wide column light-text">
+      {{flexberry-textbox
+        value=coordinateSystem
+        class='fluid input'
+        placeholder=(t "components.fd-geolayer-editing-panel.coordinate-system-placeholder")
+        readonly=readonly
+      }}
+    </div>
+  </div>
+  <div class="row">
+    <div class="five wide column">
+      {{t "components.fd-geolayer-editing-panel.coverage-lt-caption"}}
+    </div>
+    <div class="eleven wide column light-text">
+      {{flexberry-textbox
+        value=coverageLT
+        class='fluid input'
+        placeholder=(t "components.fd-geolayer-editing-panel.coverage-lt-placeholder")
+        readonly=readonly
+      }}
+    </div>
+  </div>
+  <div class="row">
+    <div class="five wide column">
+      {{t "components.fd-geolayer-editing-panel.coverage-rd-caption"}}
+    </div>
+    <div class="eleven wide column light-text">
+      {{flexberry-textbox
+        value=coverageRD
+        class='fluid input'
+        placeholder=(t "components.fd-geolayer-editing-panel.coverage-rd-placeholder")
+        readonly=readonly
+      }}
+    </div>
+  </div>
+
+
+  <div class="row">
+    <div class="five wide column">
+      <div>{{t "components.fd-geolayer-editing-panel.class-caption"}}</div>
+    </div>
+    <div class="eleven wide column light-text">
+      {{flexberry-dropdown
+        items=layerClasses.names
+        value=layerClass
+        class='compact input'
+        readonly=readonly
+      }}
+    </div>
+  </div>
+  <div class="row">
+    <div class="five wide column">
+      <div>{{t "components.fd-geolayer-editing-panel.style-caption"}}</div>
+    </div>
+    <div class="eleven wide column light-text">
+      {{flexberry-dropdown
+        items=layerStyles.names
+        value=layerStyle
+        class='compact input'
+        readonly=readonly
+      }}
+    </div>
+  </div>
+
 
 </div>
