@@ -5,6 +5,7 @@ import { computed, get } from '@ember/object';
 import { isNone, isBlank } from '@ember/utils';
 import { next } from '@ember/runloop';
 import $ from 'jquery';
+import fade from 'ember-animated/transitions/fade';
 import layout from '../templates/components/fd-uml-diagram-editor';
 import FdAcrionsForCadPrimitivesMixin from '../mixins/actions-for-primitives/fd-actions-for-cad-primitives';
 import FdAcrionsForDpdPrimitivesMixin from '../mixins/actions-for-primitives/fd-actions-for-dpd-primitives';
@@ -28,6 +29,8 @@ FdActionsForUcdPrimitivesMixin, {
   layout,
 
   store: service(),
+
+  transition: fade,
 
   /**
     Service for managing the state of the component.

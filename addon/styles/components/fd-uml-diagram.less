@@ -239,7 +239,7 @@
   padding: 5px 15px;
   padding-bottom: 0;
   position: absolute;
-  top: -21px;
+  top: -1.3125em;
   left: 0.86rem;
 }
 
@@ -275,15 +275,26 @@
 }
 
 .joint-paper-background {
-  background-color: @pageBackground;
+  background-color: transparent;
 }
 
 @texttColorHex: multiply(white, @textColor);
+@overlayColorHex: multiply(@pageBackground, @overlayColor);
 .joint-paper {
-  rect{
+  rect {
     &.corner-rect {
       fill: @pageBackground;
       stroke: @pageBackground;
+      transition: fill 0.5s ease-in-out, stroke 0.5s ease-in-out;
+    }
+  }
+
+  .content-mini.fade & {
+    rect {
+      &.corner-rect {
+        fill: @overlayColorHex;
+        stroke: @overlayColorHex;
+      }
     }
   }
 }
