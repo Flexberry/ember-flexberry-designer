@@ -1,3 +1,7 @@
+@textColor: @toolbarButtonColor;
+@hoverColor: @toolbarButtonColor;
+@downColor: @toolbarButtonColor;
+@focusColor: @toolbarButtonColor;
 @backgroundColor: @toolbarButtonBackground;
 @borderRadius: 2rem;
 

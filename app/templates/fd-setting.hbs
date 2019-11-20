@@ -1,7 +1,9 @@
-<form class="ui form flexberry-vertical-form">
-  <button class="ui button basic circular right floated" {{action "save"}}>
-    {{t "forms.fd-setting.save-button"}}
-  </button>
+<form class="ui form flexberry-vertical-form settings-form">
+  <div class="fd-sheet-toolbar">
+    <button class="ui button" {{action "save"}}>
+      {{t "forms.fd-setting.save-button"}}
+    </button>
+  </div>
   <h2 class="form-header">{{t "forms.fd-setting.project-settings-caption"}}</h2>
   <div class="ui stackable grid fd-list-edited">
     <div class="row">
@@ -65,8 +67,8 @@
     </div>
   </div>
 
+  <h2 class="form-header">{{t "forms.fd-setting.generation-settings-caption"}}</h2>
   <div class="ui stackable grid fd-list-edited">
-    <h2 class="form-header">{{t "forms.fd-setting.generation-settings-caption"}}</h2>
     <div class="row">
       {{#flexberry-toggler
           caption=(t 'forms.fd-setting.generation-settings.frontend-caption')
@@ -257,13 +259,11 @@
     </div>
   </div>
 
-  <div class="ui stackable grid fd-list-edited">
-    <h2 class="form-header">{{t "forms.fd-setting.project-actions-caption"}}</h2>
-    <div class="sixteen wide column">
-      <div class="four wide column">
-        {{t "forms.fd-setting.project-actions.delete-stage-caption"}}
-      </div>
-      <button class="ui button basic circular" {{action "delete"}}>
+  <h2 class="form-header">{{t "forms.fd-setting.project-actions-caption"}}</h2>
+  <div class="ui stackable grid">
+    <div class="row">
+      <span>{{t "forms.fd-setting.project-actions.delete-stage-caption"}}</span>
+      <button class="ui button basic" {{action "delete"}}>
         {{t "forms.fd-setting.project-actions.delete-stage-button"}}
       </button>
     </div>

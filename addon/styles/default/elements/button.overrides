@@ -4,9 +4,6 @@
 }
 
 .fd-sheet-toolbar {
-  .ui.button {
-    color: @toolbarButtonColor;
-  }
   .ui.buttons {
     .ui.button {
     margin-right: @toolbarBtnsmargin;
