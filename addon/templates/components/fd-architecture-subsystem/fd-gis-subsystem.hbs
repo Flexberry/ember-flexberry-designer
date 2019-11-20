@@ -1,66 +1,63 @@
-<div class="ui card">
-  <div class="content">
+<div class="ui cards">
+  <div class="ui card {{if model.enabled "expanded"}}">
+    <div class="content ">
 
-    <div class="two fields">
-      <div class="field">
-        <h3 class="header">{{t "components.fd-gis-subsystem.name"}}</h3>
-        <i class="massive map icon"></i>
-      </div>
-      {{#if model.enabled}}
-        <div class="field">
-          <div>{{t "components.fd-gis-subsystem.address"}}</div>
-          <div class="description">
-            {{flexberry-textbox
-              value=model.address
-              class='fluid input'
-              placeholder=(t 'components.fd-gis-subsystem.address-placeholder')
-            }}
-          </div>
-
-          <div>{{t "components.fd-gis-subsystem.login"}}</div>
-          <div class="description">
-            {{flexberry-textbox
-              value=model.login
-              class='fluid input'
-              placeholder=(t 'components.fd-gis-subsystem.login-placeholder')
-            }}
-          </div>
-
-          <div>{{t "components.fd-gis-subsystem.password"}}</div>
-          <div class="description">
-            {{flexberry-textbox
-              value=model.password
-              class='fluid input'
-              placeholder=(t 'components.fd-gis-subsystem.password-placeholder')
-            }}
-          </div>
-
-          <div>{{t "components.fd-gis-subsystem.type-database"}}</div>
-          <div class="description">
-            {{flexberry-dropdown
-              items=(flexberry-enum 'fd-database-type')
-              value=model.typeDatabase
-              class='compact'
-            }}
-          </div>
-
-          <div>{{t "components.fd-gis-subsystem.connection-string"}}</div>
-          <div class="description">
-            {{flexberry-textbox
-              value=model.connectionString
-              class='fluid input'
-              placeholder=(t 'components.fd-gis-subsystem.connection-string-placeholder')
-            }}
-          </div>
+      <div class="{{if model.enabled "ui two column grid"}}">
+        <div class="column text-align-center">
+          <h4 class="header">{{t "components.fd-gis-subsystem.name"}}</h4>
+          <i class="huge map icon"></i>
         </div>
-      {{/if}}
-    </div>
+        {{#if model.enabled}}
+          <div class="column">
+            <div class="two wide fields">
+              <div class="field">
+                {{flexberry-field
+                  value=model.address
+                  placeholder=(t 'components.fd-gis-subsystem.address-placeholder')
+                  label=(t "components.fd-gis-subsystem.address")
+                }}
+              </div>
+              <div class="field">
+                {{flexberry-field
+                  value=model.login
+                  placeholder=(t 'components.fd-gis-subsystem.login-placeholder')
+                  label=(t "components.fd-gis-subsystem.login")
+                }}
+              </div>
+            </div>
+            <div class="two wide fields">
+              <div class="field">
+                {{flexberry-field
+                  value=model.password
+                  placeholder=(t 'components.fd-gis-subsystem.password-placeholder')
+                  label=(t "components.fd-gis-subsystem.password")
+                }}
+              </div>
+              <div class="field">
+                <div>{{t "components.fd-gis-subsystem.type-database"}}</div>
+                {{flexberry-dropdown
+                  items=(flexberry-enum 'fd-database-type')
+                  value=model.typeDatabase
+                  class='compact'
+                }}
+              </div>
+            </div>
+            <div class="field">
+              {{flexberry-field
+                value=model.connectionString
+                placeholder=(t 'components.fd-gis-subsystem.connection-string-placeholder')
+                label=(t "components.fd-gis-subsystem.connection-string")
+              }}
+            </div>
+          </div>
+        {{/if}}
+      </div>
 
-    <div class="right floated">
-      {{flexberry-checkbox
-        value=model.enabled
-        class='fluid input'
-      }}
+      <div class="right floated">
+        {{flexberry-checkbox
+          value=model.enabled
+        }}
+      </div>
     </div>
   </div>
 </div>

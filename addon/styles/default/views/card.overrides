@@ -89,3 +89,36 @@
     }
   }
 }
+
+.fd-architecture {
+  .ui.cards > .card {
+    background: @sidebarBg;
+    width: 190px;
+    transition: all 0.3s;
+
+    i.icon {
+      color: fadein(@sidebarBg, 10%)
+    }
+    .field > label {
+      font-weight: normal;
+    }
+    .grid .column:first-child {
+      max-width: 190px;
+    }
+
+    &.expanded {
+      width: 100%;
+    }
+    // height: 220px;
+    input {
+      font-weight: bold;
+    }
+    > .content {
+      padding: 1em;
+    }
+  }
+}
+
+.ui.form .field > .selection.dropdown {
+  width: auto;
+}
