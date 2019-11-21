@@ -13,3 +13,6 @@
 @horizontalSpacing: @rowSpacing;
 @background:@pageBackground;
 @linkHoverBackground:@pageBackground;
+
+/* Image */
+@imageBackground: @white;

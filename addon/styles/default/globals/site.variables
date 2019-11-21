@@ -29,6 +29,10 @@
 @lightTextColor      : rgba(0, 0, 0, 0.35);
 @darkTextColor: @textColor;
 
+/* Input Text Color */
+@inputPlaceholderFocusColor: transparent;
+@inputPlaceholderColor: @lightTextColor;
+
 /* Цвет иконок сайдбара */
 @sidebarIconColor    : rgba(0, 0, 0, 0.50);
 
