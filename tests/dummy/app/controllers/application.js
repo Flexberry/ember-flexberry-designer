@@ -6,6 +6,7 @@ import { isNone } from '@ember/utils';
 import { later } from '@ember/runloop';
 import $ from 'jquery';
 import config from '../config/environment';
+import fade from 'ember-animated/transitions/fade';
 
 export default Controller.extend({
   /**
@@ -16,6 +17,8 @@ export default Controller.extend({
     @default 0
   */
   queryParams: ['inframe'],
+
+  transition: fade,
 
   /**
     Sets whether to show decor elements on the page
