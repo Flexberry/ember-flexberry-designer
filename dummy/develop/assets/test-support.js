@@ -10732,6 +10732,314 @@ define('@ember/test-helpers/wait-until', ['exports', '@ember/test-helpers/-utils
     });
   }
 });
+define("ember-animated/test-support/index", ["exports", "@ember/test-helpers", "ember-animated/-private/bounds", "ember-animated/-private/transform", "ember-animated/test-support/time-control", "ember-animated/color", "ember-animated/test-support/motion-tester"], function (_exports, _testHelpers, _bounds, _transform, _timeControl, _color, _motionTester) {
+  "use strict";
+
+  Object.defineProperty(_exports, "__esModule", {
+    value: true
+  });
+  _exports.animationsSettled = animationsSettled;
+  _exports.bounds = bounds;
+  _exports.shape = shape;
+  _exports.visuallyConstant = visuallyConstant;
+  _exports.approxEqualColors = approxEqualColors;
+  _exports.setupAnimationTest = setupAnimationTest;
+  Object.defineProperty(_exports, "TimeControl", {
+    enumerable: true,
+    get: function get() {
+      return _timeControl.default;
+    }
+  });
+  Object.defineProperty(_exports, "MotionTester", {
+    enumerable: true,
+    get: function get() {
+      return _motionTester.default;
+    }
+  });
+  _exports.time = void 0;
+
+  function animationsSettled() {
+    var idle;
+
+    var _getContext = (0, _testHelpers.getContext)(),
+        owner = _getContext.owner;
+
+    Ember.run(function () {
+      idle = owner.lookup('service:-ea-motion').get('waitUntilIdle').perform();
+    });
+    return Ember.RSVP.resolve(idle);
+  } // This is like getBoundingClientRect, but it is relative to the
+  // #ember-testing container, so your answers don't change just because
+  // the container itself is being pushed around by QUnit.
+
+
+  function bounds(element) {
+    return (0, _bounds.relativeBounds)(element.getBoundingClientRect(), document.querySelector('#ember-testing').getBoundingClientRect());
+  } // This gives you the linear part of the cumulative transformations
+  // applies to the element, which together form a 2x2 matrix that
+  // determines its shape.
+
+
+  function shape(element) {
+    var transform = (0, _transform.cumulativeTransform)(element);
+    return {
+      a: transform.a,
+      b: transform.b,
+      c: transform.c,
+      d: transform.d
+    };
+  }
+
+  function checkFields(fields, tolerance, value, expected, message) {
+    var filteredActual = Object.create(null);
+    var filteredExpected = Object.create(null);
+    fields.forEach(function (field) {
+      filteredActual[field] = value[field];
+      filteredExpected[field] = expected[field];
+    });
+    this.pushResult({
+      result: fields.every(function (field) {
+        return Math.abs(value[field] - expected[field]) < tolerance;
+      }),
+      actual: filteredActual,
+      expected: filteredExpected,
+      message: message
+    });
+  }
+
+  function visuallyConstant(target, fn, message) {
+    var before, after;
+    return regeneratorRuntime.async(function visuallyConstant$(_context) {
+      while (1) {
+        switch (_context.prev = _context.next) {
+          case 0:
+            before = Object.assign({}, bounds(target), shape(target));
+            _context.next = 3;
+            return regeneratorRuntime.awrap(fn());
+
+          case 3:
+            after = Object.assign({}, bounds(target), shape(target));
+            checkFields.call(this, ['a', 'b', 'c', 'd', 'top', 'left', 'width', 'height'], 0.25, before, after, message);
+
+          case 5:
+          case "end":
+            return _context.stop();
+        }
+      }
+    }, null, this);
+  }
+
+  function approxEqualColors(value, expected, message) {
+    var tolerance = 3;
+
+    var valueColor = _color.Color.fromUserProvidedColor(value);
+
+    var expectedColor = _color.Color.fromUserProvidedColor(expected);
+
+    var channels = ['r', 'g', 'b', 'a'];
+    this.pushResult({
+      result: channels.every(function (channel) {
+        return Math.abs(valueColor[channel] - expectedColor[channel]) < tolerance;
+      }),
+      actual: value,
+      expected: expected,
+      message: message
+    });
+  }
+
+  var time;
+  _exports.time = time;
+
+  function setupAnimationTest(hooks) {
+    hooks.beforeEach(function (assert) {
+      _exports.time = time = new _timeControl.default();
+      time.runAtSpeed(40); // equal checks use a quarter pixel tolerance because we don't care about rounding errors
+
+      assert.equalPosition = checkFields.bind(assert, ['left', 'top'], 0.25);
+      assert.equalSize = checkFields.bind(assert, ['height', 'width'], 0.25);
+      assert.equalBounds = checkFields.bind(assert, ['height', 'left', 'top', 'width'], 0.25); // closeness checks accept a custom pixel tolerance
+
+      assert.closePosition = checkFields.bind(assert, ['left', 'top']);
+      assert.closeSize = checkFields.bind(assert, ['height', 'width']);
+      assert.closeBounds = checkFields.bind(assert, ['height', 'left', 'top', 'width']);
+      assert.visuallyConstant = visuallyConstant;
+      assert.approxEqualColors = approxEqualColors;
+    });
+    hooks.afterEach(function () {
+      time.finished();
+      _exports.time = time = null;
+    });
+  }
+});
+define("ember-animated/test-support/motion-tester", ["exports", "ember-animated/-private/ember-scheduler", "ember-animated", "ember-animated/-private/sprite"], function (_exports, _emberScheduler, _emberAnimated, _sprite) {
+  "use strict";
+
+  Object.defineProperty(_exports, "__esModule", {
+    value: true
+  });
+  _exports.default = void 0;
+
+  var _default = Ember.Object.extend({
+    motion: null,
+    duration: 1,
+    beforeAnimation: function beforeAnimation() {},
+    afterAnimation: function afterAnimation() {},
+    run: function run() {
+      var motion;
+
+      for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
+        args[_key] = arguments[_key];
+      }
+
+      if (args[0] instanceof _emberAnimated.Motion) {
+        motion = args[0];
+      } else if (args[0] instanceof _sprite.default) {
+        var M = this.motion;
+
+        if (!M) {
+          throw new Error("passing a Sprite to MotionTester#run only works if you've already set a default motion");
+        }
+
+        motion = new M(args[0]);
+      } else {
+        throw new Error("first argument to MotionTester#run must be either a Motion or a Sprite");
+      }
+
+      if (motion.duration === null) {
+        motion.duration = this.duration;
+      }
+
+      if (args.length > 1 && args[1].duration != null) {
+        motion.duration = args[1].duration;
+      } // Each motion contains its own promise that is used by
+      // TransitionContext#animate so that a transition can wait for a
+      // single motion to finish (as opposed to waiting for the whole
+      // transition Task to finish). In this test harness, there is no
+      // distinction, and this extra promises will just generate console
+      // noise if it remains unconsumed.
+
+
+      motion._promise.then(function () {}, function () {});
+
+      return this.get('runner').perform(motion);
+    },
+    isAnimating: Ember.computed.alias('runner.isRunning'),
+    runner: (0, _emberScheduler.task)(
+    /*#__PURE__*/
+    regeneratorRuntime.mark(function _callee(motion) {
+      return regeneratorRuntime.wrap(function _callee$(_context) {
+        while (1) {
+          switch (_context.prev = _context.next) {
+            case 0:
+              this.beforeAnimation(motion);
+              return _context.delegateYield(motion._run(), "t0", 2);
+
+            case 2:
+              this.afterAnimation(motion);
+
+            case 3:
+            case "end":
+              return _context.stop();
+          }
+        }
+      }, _callee, this);
+    })).restartable()
+  });
+
+  _exports.default = _default;
+});
+define("ember-animated/test-support/time-control", ["exports", "ember-animated"], function (_exports, _emberAnimated) {
+  "use strict";
+
+  Object.defineProperty(_exports, "__esModule", {
+    value: true
+  });
+  _exports.default = void 0;
+
+  function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+  function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+  function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+  var origNow = _emberAnimated.clock.now;
+
+  var TimeControl =
+  /*#__PURE__*/
+  function () {
+    function TimeControl() {
+      var _this = this;
+
+      _classCallCheck(this, TimeControl);
+
+      if (_emberAnimated.clock.now !== origNow) {
+        throw new Error("Only one TimeControl may be active at a time");
+      }
+
+      this._timer = origNow();
+      this._runningSpeed = false;
+      this._runStartedAt = null;
+
+      _emberAnimated.clock.now = function () {
+        return _this.now();
+      };
+    }
+
+    _createClass(TimeControl, [{
+      key: "finished",
+      value: function finished() {
+        _emberAnimated.clock.now = origNow;
+      }
+    }, {
+      key: "now",
+      value: function now() {
+        if (this._runningSpeed) {
+          return (origNow() - this._runStartedAt) * this._runningSpeed + this._timer;
+        }
+
+        return this._timer;
+      }
+    }, {
+      key: "advance",
+      value: function advance(ms) {
+        if (this._runningSpeed) {
+          throw new Error("You can't advance a running TimeControl. Use either runAtSpeed or advance but not both at once.");
+        }
+
+        this._timer += ms; // This waits for three frames because:
+        //
+        //   1. You need at least two rAFs to guarantee that everybody
+        //   else who is running at rAF frequency had a chance to run
+        //   (because you don't know which ones ran before you in the same
+        //   frame).
+        //
+        //   2. Our Tween system doesn't mark Tweens as done until they
+        //   had a whole frame in their "done" state (see comments in
+        //   ./tween.js).
+
+        return (0, _emberAnimated.rAF)().then(_emberAnimated.rAF).then(_emberAnimated.rAF);
+      }
+    }, {
+      key: "runAtSpeed",
+      value: function runAtSpeed(factor) {
+        this._timer = this.now();
+        this._runningSpeed = factor;
+        this._runStartedAt = origNow();
+      }
+    }, {
+      key: "pause",
+      value: function pause() {
+        this._timer = this.now();
+        this._runningSpeed = false;
+        this._runstartedAt = null;
+      }
+    }]);
+
+    return TimeControl;
+  }();
+
+  _exports.default = TimeControl;
+});
 define('ember-cli-qunit', ['exports', 'ember-qunit'], function (exports, _emberQunit) {
   'use strict';
 

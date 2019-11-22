@@ -79,6 +79,35 @@ define('dummy/app', ['exports', 'dummy/resolver', 'ember-load-initializers', 'du
 define('dummy/browserify', ['npm:dexie', 'npm:node-uuid'], function (_npmDexie, _npmNodeUuid) {
   'use strict';
 });
+define('dummy/components/-dynamic-element-alt', ['exports'], function (exports) {
+  'use strict';
+
+  Object.defineProperty(exports, "__esModule", {
+    value: true
+  });
+  exports.default = Ember.Component;
+});
+define('dummy/components/-dynamic-element', ['exports'], function (exports) {
+  'use strict';
+
+  Object.defineProperty(exports, "__esModule", {
+    value: true
+  });
+  exports.default = Ember.Component;
+});
+define('dummy/components/-ea-list-element', ['exports', 'ember-animated/components/ea-list-element'], function (exports, _eaListElement) {
+  'use strict';
+
+  Object.defineProperty(exports, "__esModule", {
+    value: true
+  });
+  Object.defineProperty(exports, 'default', {
+    enumerable: true,
+    get: function () {
+      return _eaListElement.default;
+    }
+  });
+});
 define('dummy/components/advlimit-dialog-content', ['exports', 'ember-flexberry/components/advlimit-dialog-content'], function (exports, _advlimitDialogContent) {
   'use strict';
 
@@ -89,6 +118,84 @@ define('dummy/components/advlimit-dialog-content', ['exports', 'ember-flexberry/
     enumerable: true,
     get: function () {
       return _advlimitDialogContent.default;
+    }
+  });
+});
+define('dummy/components/animated-beacon', ['exports', 'ember-animated/components/animated-beacon'], function (exports, _animatedBeacon) {
+  'use strict';
+
+  Object.defineProperty(exports, "__esModule", {
+    value: true
+  });
+  Object.defineProperty(exports, 'default', {
+    enumerable: true,
+    get: function () {
+      return _animatedBeacon.default;
+    }
+  });
+});
+define('dummy/components/animated-container', ['exports', 'ember-animated/components/animated-container'], function (exports, _animatedContainer) {
+  'use strict';
+
+  Object.defineProperty(exports, "__esModule", {
+    value: true
+  });
+  Object.defineProperty(exports, 'default', {
+    enumerable: true,
+    get: function () {
+      return _animatedContainer.default;
+    }
+  });
+});
+define('dummy/components/animated-each', ['exports', 'ember-animated/components/animated-each'], function (exports, _animatedEach) {
+  'use strict';
+
+  Object.defineProperty(exports, "__esModule", {
+    value: true
+  });
+  Object.defineProperty(exports, 'default', {
+    enumerable: true,
+    get: function () {
+      return _animatedEach.default;
+    }
+  });
+});
+define('dummy/components/animated-if', ['exports', 'ember-animated/components/animated-if'], function (exports, _animatedIf) {
+  'use strict';
+
+  Object.defineProperty(exports, "__esModule", {
+    value: true
+  });
+  Object.defineProperty(exports, 'default', {
+    enumerable: true,
+    get: function () {
+      return _animatedIf.default;
+    }
+  });
+});
+define('dummy/components/animated-orphans', ['exports', 'ember-animated/components/animated-orphans'], function (exports, _animatedOrphans) {
+  'use strict';
+
+  Object.defineProperty(exports, "__esModule", {
+    value: true
+  });
+  Object.defineProperty(exports, 'default', {
+    enumerable: true,
+    get: function () {
+      return _animatedOrphans.default;
+    }
+  });
+});
+define('dummy/components/animated-value', ['exports', 'ember-animated/components/animated-value'], function (exports, _animatedValue) {
+  'use strict';
+
+  Object.defineProperty(exports, "__esModule", {
+    value: true
+  });
+  Object.defineProperty(exports, 'default', {
+    enumerable: true,
+    get: function () {
+      return _animatedValue.default;
     }
   });
 });
@@ -1597,7 +1704,7 @@ define('dummy/controllers/advlimit-dialog', ['exports', 'ember-flexberry/control
   });
   exports.default = _advlimitDialog.default;
 });
-define('dummy/controllers/application', ['exports', 'dummy/config/environment'], function (exports, _environment) {
+define('dummy/controllers/application', ['exports', 'dummy/config/environment', 'ember-animated/transitions/fade'], function (exports, _environment, _fade) {
   'use strict';
 
   Object.defineProperty(exports, "__esModule", {
@@ -1611,6 +1718,8 @@ define('dummy/controllers/application', ['exports', 'dummy/config/environment'],
       @default 0
     */
     queryParams: ['inframe'],
+
+    transition: _fade.default,
 
     /**
       Sets whether to show decor elements on the page
@@ -11392,6 +11501,32 @@ define('dummy/external/jointjs', ['exports', 'npm:jointjs'], function (exports, 
   });
   exports.default = _npmJointjs.default;
 });
+define('dummy/helpers/-element', ['exports', 'ember-element-helper/helpers/-element'], function (exports, _element) {
+  'use strict';
+
+  Object.defineProperty(exports, "__esModule", {
+    value: true
+  });
+  Object.defineProperty(exports, 'default', {
+    enumerable: true,
+    get: function () {
+      return _element.default;
+    }
+  });
+});
+define('dummy/helpers/-link-to-params', ['exports', 'ember-angle-bracket-invocation-polyfill/helpers/-link-to-params'], function (exports, _linkToParams) {
+  'use strict';
+
+  Object.defineProperty(exports, "__esModule", {
+    value: true
+  });
+  Object.defineProperty(exports, 'default', {
+    enumerable: true,
+    get: function () {
+      return _linkToParams.default;
+    }
+  });
+});
 define('dummy/helpers/and', ['exports', 'ember-truth-helpers/helpers/and'], function (exports, _and) {
   'use strict';
 
@@ -16764,6 +16899,19 @@ define('dummy/serializers/offline', ['exports', 'ember-flexberry-data/serializer
     }
   });
 });
+define('dummy/services/-ea-motion', ['exports', 'ember-animated/services/motion'], function (exports, _motion) {
+  'use strict';
+
+  Object.defineProperty(exports, "__esModule", {
+    value: true
+  });
+  Object.defineProperty(exports, 'default', {
+    enumerable: true,
+    get: function () {
+      return _motion.default;
+    }
+  });
+});
 define('dummy/services/adv-limit', ['exports', 'ember-flexberry/services/adv-limit'], function (exports, _advLimit) {
   'use strict';
 
@@ -17205,7 +17353,7 @@ define("dummy/templates/application", ["exports"], function (exports) {
   Object.defineProperty(exports, "__esModule", {
     value: true
   });
-  exports.default = Ember.HTMLBars.template({ "id": "SCg2MnoN", "block": "{\"symbols\":[],\"statements\":[[4,\"if\",[[22,[\"isInAcceptanceTestMode\"]]],null,{\"statements\":[[0,\"  \"],[1,[20,\"outlet\"],false],[0,\"\\n  \"],[1,[26,\"outlet\",[\"modal\"],null],false],[0,\"\\n\"]],\"parameters\":[]},{\"statements\":[[4,\"unless\",[[22,[\"inframe\"]]],null,{\"statements\":[[4,\"flexberry-sidebar\",null,[[\"class\",\"settings\"],[\"vertical main menu visible uncover\",[26,\"hash\",null,[[\"closable\",\"dimPage\",\"onShow\",\"onHidden\"],[false,false,[26,\"action\",[[21,0,[]],\"updateWidth\"],null],[26,\"action\",[[21,0,[]],\"updateWidth\"],null]]]]]],{\"statements\":[[4,\"if\",[[22,[\"currentProjectIsSelected\"]]],null,{\"statements\":[[0,\"        \"],[6,\"div\"],[10,\"class\",\"item current-project-name-header\"],[8],[0,\"\\n          \"],[6,\"div\"],[8],[0,\"\\n            \"],[6,\"i\"],[10,\"class\",\"icon icon-fd-diagram\"],[8],[9],[0,\"\\n            \"],[1,[26,\"t\",[\"forms.application.sitemap.root.fd-current-project-name-header.caption\"],null],false],[0,\"\\n          \"],[9],[0,\"\\n        \"],[9],[0,\"\\n        \"],[6,\"div\"],[10,\"class\",\"item current-project-name\"],[8],[0,\"\\n          \"],[6,\"div\"],[8],[0,\"\\n            \"],[6,\"i\"],[10,\"class\",\"icon icon-fd-diagram\"],[8],[9],[0,\"\\n            \"],[1,[20,\"currentProjectName\"],false],[0,\"\\n          \"],[9],[0,\"\\n        \"],[9],[0,\"\\n        \"],[1,[26,\"fd-flexberry-sitemap\",null,[[\"sitemap\",\"class\"],[[22,[\"sitemap\"]],\"flexberry-sitemap-top\"]]],false],[0,\"\\n\"]],\"parameters\":[]},null],[0,\"      \"],[6,\"div\"],[10,\"class\",\"flexberry-sitemap-top\"],[8],[9],[0,\"\\n\\n      \"],[6,\"button\"],[10,\"class\",\"ui toggle-sidebar-visible icon button\"],[3,\"action\",[[21,0,[]],\"toggleSidebar\"]],[8],[9],[0,\"\\n      \"],[1,[26,\"fd-flexberry-sitemap\",null,[[\"sitemap\",\"class\"],[[22,[\"sitemapBottom\"]],\"sitemap-bottom\"]]],false],[0,\"\\n\"]],\"parameters\":[]},null],[0,\"\\n    \"],[6,\"button\"],[10,\"class\",\"ui toggle-sidebar icon button\"],[3,\"action\",[[21,0,[]],\"toggleSidebar\"]],[8],[9],[0,\"\\n    \"],[1,[26,\"outlet\",[\"right-sidebar\"],null],false],[0,\"\\n\"]],\"parameters\":[]},null],[0,\"\\n  \"],[6,\"div\"],[10,\"id\",\"example\"],[10,\"class\",\"pusher\"],[8],[0,\"\\n    \"],[6,\"div\"],[11,\"class\",[27,[\"ui form \",[22,[\"appState\",\"state\"]]]]],[8],[0,\"\\n      \"],[6,\"div\"],[10,\"class\",\"full height\"],[8],[0,\"\\n        \"],[6,\"div\"],[10,\"class\",\"flexberry-content\"],[8],[0,\"\\n          \"],[6,\"div\"],[10,\"class\",\"ui main container fluid\"],[8],[0,\"\\n            \"],[1,[20,\"outlet\"],false],[0,\"\\n          \"],[9],[0,\"\\n        \"],[9],[0,\"\\n      \"],[9],[0,\"\\n    \"],[9],[0,\"\\n  \"],[9],[0,\"\\n  \"],[6,\"div\"],[10,\"class\",\"ui main container\"],[8],[0,\"\\n    \"],[1,[26,\"outlet\",[\"modal\"],null],false],[0,\"\\n  \"],[9],[0,\"\\n\\n\"],[4,\"unless\",[[22,[\"inframe\"]]],null,{\"statements\":[[0,\"    \"],[6,\"div\"],[10,\"class\",\"ui vertical footer segment\"],[8],[0,\"\\n      \"],[6,\"div\"],[10,\"class\",\"ui container flex-container\"],[8],[0,\"\\n        \"],[6,\"div\"],[10,\"class\",\"social-icons\"],[8],[0,\"\\n          \"],[6,\"a\"],[10,\"target\",\"_blank\"],[10,\"class\",\"brand item btn-social\"],[10,\"href\",\"http://vk.com/flexberry\"],[8],[0,\"\\n            \"],[14,\"svg-icons/social-icons/vk\",[]],[0,\"\\n            \"],[9],[0,\"\\n          \"],[6,\"a\"],[10,\"target\",\"_blank\"],[10,\"class\",\"brand item btn-social\"],[10,\"href\",\"https://www.facebook.com/groups/Flexberry/\"],[8],[0,\"\\n            \"],[14,\"svg-icons/social-icons/facebook\",[]],[0,\"\\n          \"],[9],[0,\"\\n          \"],[6,\"a\"],[10,\"target\",\"_blank\"],[10,\"class\",\"brand item btn-social\"],[10,\"href\",\"https://twitter.com/Flexberry\"],[8],[0,\"\\n            \"],[14,\"svg-icons/social-icons/twitter\",[]],[0,\"\\n          \"],[9],[0,\"\\n          \"],[6,\"a\"],[10,\"target\",\"_blank\"],[10,\"class\",\"brand item btn-social\"],[10,\"href\",\"https://github.com/Flexberry\"],[8],[0,\"\\n            \"],[14,\"svg-icons/social-icons/github\",[]],[0,\"\\n          \"],[9],[0,\"\\n          \"],[6,\"a\"],[10,\"target\",\"_blank\"],[10,\"class\",\"brand item btn-social\"],[10,\"href\",\"http://www.youtube.com/user/FlexberryPLATFORM\"],[8],[0,\"\\n            \"],[14,\"svg-icons/social-icons/youtube\",[]],[0,\"\\n          \"],[9],[0,\"\\n          \"],[6,\"a\"],[10,\"target\",\"_blank\"],[10,\"class\",\"brand item btn-social\"],[10,\"href\",\"https://gitter.im/Flexberry\"],[8],[0,\"\\n            \"],[14,\"svg-icons/social-icons/gitter\",[]],[0,\"\\n          \"],[9],[0,\"\\n        \"],[9],[0,\"\\n        \"],[6,\"div\"],[10,\"class\",\"ui text menu\"],[8],[0,\"\\n          \"],[1,[26,\"t\",[\"forms.application.footer.application-name\"],null],false],[0,\"\\n          \"],[6,\"div\"],[10,\"class\",\"copyright-text\"],[8],[0,\"\\n            \"],[1,[26,\"t\",[\"forms.application.footer.copyright\"],null],false],[0,\"\\n          \"],[9],[0,\"\\n        \"],[9],[0,\"\\n        \"],[6,\"div\"],[10,\"class\",\"right menu\"],[8],[0,\"\\n          \"],[1,[26,\"flexberry-dropdown\",null,[[\"class\",\"items\",\"value\",\"onChange\",\"settings\"],[\"compact theme\",[22,[\"themes\"]],\"light\",[26,\"action\",[[21,0,[]],\"changeTheme\"],null],[26,\"hash\",null,[[\"direction\"],[\"upward\"]]]]]],false],[0,\"\\n          \"],[1,[26,\"flexberry-dropdown\",null,[[\"class\",\"items\",\"value\",\"placeholder\",\"settings\"],[\"compact\",[22,[\"locales\"]],[22,[\"i18n\",\"locale\"]],[26,\"t\",[\"forms.application.header.menu.language-dropdown.placeholder\"],null],[26,\"hash\",null,[[\"direction\"],[\"upward\"]]]]]],false],[0,\"\\n        \"],[9],[0,\"\\n      \"],[9],[0,\"\\n    \"],[9],[0,\"\\n\"]],\"parameters\":[]},null]],\"parameters\":[]}]],\"hasEval\":true}", "meta": { "moduleName": "dummy/templates/application.hbs" } });
+  exports.default = Ember.HTMLBars.template({ "id": "HDw+7Sbe", "block": "{\"symbols\":[],\"statements\":[[4,\"if\",[[22,[\"isInAcceptanceTestMode\"]]],null,{\"statements\":[[0,\"  \"],[1,[20,\"outlet\"],false],[0,\"\\n  \"],[1,[26,\"outlet\",[\"modal\"],null],false],[0,\"\\n\"]],\"parameters\":[]},{\"statements\":[[4,\"unless\",[[22,[\"inframe\"]]],null,{\"statements\":[[4,\"flexberry-sidebar\",null,[[\"class\",\"settings\"],[\"vertical main menu visible uncover\",[26,\"hash\",null,[[\"closable\",\"dimPage\",\"onShow\",\"onHidden\"],[false,false,[26,\"action\",[[21,0,[]],\"updateWidth\"],null],[26,\"action\",[[21,0,[]],\"updateWidth\"],null]]]]]],{\"statements\":[[4,\"animated-if\",[[22,[\"currentProjectIsSelected\"]]],[[\"use\"],[[22,[\"transition\"]]]],{\"statements\":[[0,\"        \"],[6,\"div\"],[10,\"class\",\"item current-project-name-header\"],[8],[0,\"\\n          \"],[6,\"div\"],[8],[0,\"\\n            \"],[6,\"i\"],[10,\"class\",\"icon icon-fd-diagram\"],[8],[9],[0,\"\\n            \"],[1,[26,\"t\",[\"forms.application.sitemap.root.fd-current-project-name-header.caption\"],null],false],[0,\"\\n          \"],[9],[0,\"\\n        \"],[9],[0,\"\\n        \"],[6,\"div\"],[10,\"class\",\"item current-project-name\"],[8],[0,\"\\n          \"],[6,\"div\"],[8],[0,\"\\n            \"],[6,\"i\"],[10,\"class\",\"icon icon-fd-diagram\"],[8],[9],[0,\"\\n            \"],[1,[20,\"currentProjectName\"],false],[0,\"\\n          \"],[9],[0,\"\\n        \"],[9],[0,\"\\n        \"],[1,[26,\"fd-flexberry-sitemap\",null,[[\"sitemap\",\"class\"],[[22,[\"sitemap\"]],\"flexberry-sitemap-top\"]]],false],[0,\"\\n\"]],\"parameters\":[]},null],[0,\"      \"],[6,\"div\"],[10,\"class\",\"flexberry-sitemap-top\"],[8],[9],[0,\"\\n\\n      \"],[6,\"button\"],[10,\"class\",\"ui toggle-sidebar-visible icon button\"],[3,\"action\",[[21,0,[]],\"toggleSidebar\"]],[8],[9],[0,\"\\n      \"],[1,[26,\"fd-flexberry-sitemap\",null,[[\"sitemap\",\"class\"],[[22,[\"sitemapBottom\"]],\"sitemap-bottom\"]]],false],[0,\"\\n\"]],\"parameters\":[]},null],[0,\"\\n    \"],[6,\"button\"],[10,\"class\",\"ui toggle-sidebar icon button\"],[3,\"action\",[[21,0,[]],\"toggleSidebar\"]],[8],[9],[0,\"\\n    \"],[1,[26,\"outlet\",[\"right-sidebar\"],null],false],[0,\"\\n\"]],\"parameters\":[]},null],[0,\"\\n  \"],[6,\"div\"],[10,\"id\",\"example\"],[10,\"class\",\"pusher\"],[8],[0,\"\\n    \"],[6,\"div\"],[11,\"class\",[27,[\"ui form \",[22,[\"appState\",\"state\"]]]]],[8],[0,\"\\n      \"],[6,\"div\"],[10,\"class\",\"full height\"],[8],[0,\"\\n        \"],[6,\"div\"],[10,\"class\",\"flexberry-content\"],[8],[0,\"\\n          \"],[6,\"div\"],[10,\"class\",\"ui main container fluid\"],[8],[0,\"\\n            \"],[1,[20,\"outlet\"],false],[0,\"\\n          \"],[9],[0,\"\\n        \"],[9],[0,\"\\n      \"],[9],[0,\"\\n    \"],[9],[0,\"\\n  \"],[9],[0,\"\\n  \"],[6,\"div\"],[10,\"class\",\"ui main container\"],[8],[0,\"\\n    \"],[1,[26,\"outlet\",[\"modal\"],null],false],[0,\"\\n  \"],[9],[0,\"\\n\\n\"],[4,\"unless\",[[22,[\"inframe\"]]],null,{\"statements\":[[0,\"    \"],[6,\"div\"],[10,\"class\",\"ui vertical footer segment\"],[8],[0,\"\\n      \"],[6,\"div\"],[10,\"class\",\"ui container flex-container\"],[8],[0,\"\\n        \"],[6,\"div\"],[10,\"class\",\"social-icons\"],[8],[0,\"\\n          \"],[6,\"a\"],[10,\"target\",\"_blank\"],[10,\"class\",\"brand item btn-social\"],[10,\"href\",\"http://vk.com/flexberry\"],[8],[0,\"\\n            \"],[14,\"svg-icons/social-icons/vk\",[]],[0,\"\\n            \"],[9],[0,\"\\n          \"],[6,\"a\"],[10,\"target\",\"_blank\"],[10,\"class\",\"brand item btn-social\"],[10,\"href\",\"https://www.facebook.com/groups/Flexberry/\"],[8],[0,\"\\n            \"],[14,\"svg-icons/social-icons/facebook\",[]],[0,\"\\n          \"],[9],[0,\"\\n          \"],[6,\"a\"],[10,\"target\",\"_blank\"],[10,\"class\",\"brand item btn-social\"],[10,\"href\",\"https://twitter.com/Flexberry\"],[8],[0,\"\\n            \"],[14,\"svg-icons/social-icons/twitter\",[]],[0,\"\\n          \"],[9],[0,\"\\n          \"],[6,\"a\"],[10,\"target\",\"_blank\"],[10,\"class\",\"brand item btn-social\"],[10,\"href\",\"https://github.com/Flexberry\"],[8],[0,\"\\n            \"],[14,\"svg-icons/social-icons/github\",[]],[0,\"\\n          \"],[9],[0,\"\\n          \"],[6,\"a\"],[10,\"target\",\"_blank\"],[10,\"class\",\"brand item btn-social\"],[10,\"href\",\"http://www.youtube.com/user/FlexberryPLATFORM\"],[8],[0,\"\\n            \"],[14,\"svg-icons/social-icons/youtube\",[]],[0,\"\\n          \"],[9],[0,\"\\n          \"],[6,\"a\"],[10,\"target\",\"_blank\"],[10,\"class\",\"brand item btn-social\"],[10,\"href\",\"https://gitter.im/Flexberry\"],[8],[0,\"\\n            \"],[14,\"svg-icons/social-icons/gitter\",[]],[0,\"\\n          \"],[9],[0,\"\\n        \"],[9],[0,\"\\n        \"],[6,\"div\"],[10,\"class\",\"ui text menu\"],[8],[0,\"\\n          \"],[1,[26,\"t\",[\"forms.application.footer.application-name\"],null],false],[0,\"\\n          \"],[6,\"div\"],[10,\"class\",\"copyright-text\"],[8],[0,\"\\n            \"],[1,[26,\"t\",[\"forms.application.footer.copyright\"],null],false],[0,\"\\n          \"],[9],[0,\"\\n        \"],[9],[0,\"\\n        \"],[6,\"div\"],[10,\"class\",\"right menu\"],[8],[0,\"\\n          \"],[1,[26,\"flexberry-dropdown\",null,[[\"class\",\"items\",\"value\",\"onChange\",\"settings\"],[\"compact theme\",[22,[\"themes\"]],\"light\",[26,\"action\",[[21,0,[]],\"changeTheme\"],null],[26,\"hash\",null,[[\"direction\"],[\"upward\"]]]]]],false],[0,\"\\n          \"],[1,[26,\"flexberry-dropdown\",null,[[\"class\",\"items\",\"value\",\"placeholder\",\"settings\"],[\"compact\",[22,[\"locales\"]],[22,[\"i18n\",\"locale\"]],[26,\"t\",[\"forms.application.header.menu.language-dropdown.placeholder\"],null],[26,\"hash\",null,[[\"direction\"],[\"upward\"]]]]]],false],[0,\"\\n        \"],[9],[0,\"\\n      \"],[9],[0,\"\\n    \"],[9],[0,\"\\n\"]],\"parameters\":[]},null]],\"parameters\":[]}]],\"hasEval\":true}", "meta": { "moduleName": "dummy/templates/application.hbs" } });
 });
 define("dummy/templates/class-diagram-primitives-demo", ["exports"], function (exports) {
   "use strict";
