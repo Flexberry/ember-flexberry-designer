@@ -1,23 +1,12 @@
-{{!--
-Просто классы без стилей
-fd-form-toolbar
-fd-form-list
-fd-form-list-header
-fd-form-list-body
---}}
-
-
 <form class="ui form flexberry-vertical-form fd-architecture settings-form">
   <div class="fd-sheet-toolbar">
     <button class="ui button" {{action 'save'}}>
       {{t "forms.fd-architecture.save-caption"}}
     </button>
   </div>
-
   <h2 class='form-header'>
     {{t "forms.fd-architecture.caption"}}
   </h2>
-
   <div class="fd-form-list">
     <div class='fd-form-list-body'>
       {{fd-architecture-subsystem/fd-gis-subsystem
