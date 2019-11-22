@@ -1,6 +1,6 @@
 import Component from '@ember/component';
 import FdReadonlyModeMixin from '../../mixins/fd-editing-panels/fd-readonly-mode';
-import { isBlank, isNone } from '@ember/utils';
+import { isBlank } from '@ember/utils';
 import { computed, get, set } from '@ember/object';
 import { inject as service } from '@ember/service';
 import { A } from '@ember/array';
@@ -57,54 +57,94 @@ export default Component.extend(FdReadonlyModeMixin, {
   */
   coordinateSystem: computed('model.name', {
     get() {
-      let settings = this.parseDescription();
+      let settings = this.parseContainers();
       return get(settings, 'coordinateSystem');
     },
 
     set(key, value) {
-      let settings = this.parseDescription();
+      let settings = this.parseContainers();
       set(settings, 'coordinateSystem', value);
-      this.set('model.description', JSON.stringify(settings))
+      this.set('model.containersStr', JSON.stringify(settings))
       return value;
     }
   }),
 
   /**
-    The 'coverageLT' of the geolayer.
+    The 'minX' of the geolayer.
 
-    @property coverageLT
+    @property minX
     @type String
   */
-  coverageLT: computed('model.name', {
+  minX: computed('model.name', {
     get() {
-      let settings = this.parseDescription();
-      return get(settings, 'coverageLT');
+      let settings = this.parseContainers();
+      return get(settings, 'minX');
     },
 
     set(key, value) {
-      let settings = this.parseDescription();
-      set(settings, 'coverageLT', value);
-      this.set('model.description', JSON.stringify(settings))
+      let settings = this.parseContainers();
+      set(settings, 'minX', value);
+      this.set('model.containersStr', JSON.stringify(settings))
       return value;
     }
   }),
 
   /**
-    The 'coverageRD' of the geolayer.
+    The 'minY' of the geolayer.
 
-    @property coverageRD
+    @property minY
     @type String
   */
-  coverageRD: computed('model.name', {
+  minY: computed('model.name', {
     get() {
-      let settings = this.parseDescription();
-      return get(settings, 'coverageRD');
+      let settings = this.parseContainers();
+      return get(settings, 'minY');
     },
 
     set(key, value) {
-      let settings = this.parseDescription();
-      set(settings, 'coverageRD', value);
-      this.set('model.description', JSON.stringify(settings))
+      let settings = this.parseContainers();
+      set(settings, 'minY', value);
+      this.set('model.containersStr', JSON.stringify(settings))
+      return value;
+    }
+  }),
+
+  /**
+    The 'maxX' of the geolayer.
+
+    @property maxX
+    @type String
+  */
+  maxX: computed('model.name', {
+    get() {
+      let settings = this.parseContainers();
+      return get(settings, 'maxX');
+    },
+
+    set(key, value) {
+      let settings = this.parseContainers();
+      set(settings, 'maxX', value);
+      this.set('model.containersStr', JSON.stringify(settings))
+      return value;
+    }
+  }),
+
+  /**
+    The 'maxY' of the geolayer.
+
+    @property maxY
+    @type String
+  */
+  maxY: computed('model.name', {
+    get() {
+      let settings = this.parseContainers();
+      return get(settings, 'maxY');
+    },
+
+    set(key, value) {
+      let settings = this.parseContainers();
+      set(settings, 'maxY', value);
+      this.set('model.containersStr', JSON.stringify(settings))
       return value;
     }
   }),
@@ -117,16 +157,15 @@ export default Component.extend(FdReadonlyModeMixin, {
   */
   layerClass: computed('model.name', {
     get() {
-      let settings = this.parseDescription();
-      let layerClasses = this.get('layerClasses.objects').findBy('id', get(settings, 'layerClass'));
-      return isNone(layerClasses) ? '' : layerClasses.get('name');
+      let settings = this.parseContainers();
+      let layerClass = get(settings, 'layerClass');
+      return this.get('layerClasses').includes(layerClass) ? layerClass : '';
     },
 
     set(key, value) {
-      let settings = this.parseDescription();
-      let layerClasses = this.get('layerClasses.objects').findBy('name', value);
-      set(settings, 'layerClass', layerClasses.get('id'));
-      this.set('model.description', JSON.stringify(settings))
+      let settings = this.parseContainers();
+      set(settings, 'layerClass', value);
+      this.set('model.containersStr', JSON.stringify(settings))
       return value;
     }
   }),
@@ -139,30 +178,29 @@ export default Component.extend(FdReadonlyModeMixin, {
   */
   layerStyle: computed('model.name', {
     get() {
-      let settings = this.parseDescription();
-      let layerStyles = this.get('layerStyles.objects').findBy('id', get(settings, 'layerStyle'));
-      return isNone(layerStyles) ? '' : layerStyles.get('name');
+      let settings = this.parseContainers();
+      let layerStyle = get(settings, 'layerStyle');
+      return this.get('layerStyles').includes(layerStyle) ? layerStyle : '';
     },
 
     set(key, value) {
-      let settings = this.parseDescription();
-      let layerStyles = this.get('layerStyles.objects').findBy('name', value);
-      set(settings, 'layerStyle', layerStyles.get('id'));
-      this.set('model.description', JSON.stringify(settings))
+      let settings = this.parseContainers();
+      set(settings, 'layerStyle', value);
+      this.set('model.containersStr', JSON.stringify(settings))
       return value;
     }
   }),
 
   /**
-    Get and parse 'description' value.
+    Get and parse 'containersStr' value.
 
-    @method parseDescription
+    @method parseContainers
   */
-  parseDescription() {
-    let description = this.get('model.description');
+  parseContainers() {
+    let containersStr = this.get('model.containersStr');
 
     try {
-      let settings = JSON.parse(description);
+      let settings = JSON.parse(containersStr);
 
       return isBlank(settings) ? {} : settings;
     } catch(e) {
@@ -191,17 +229,11 @@ export default Component.extend(FdReadonlyModeMixin, {
     });
 
     let implementationsSort = A(implementations).sortBy('name');
-    this.set('layerClasses', {
-      names: implementationsSort.mapBy('name'),
-      objects: implementationsSort,
-    });
+    this.set('layerClasses', implementationsSort.mapBy('name'));
 
     // Geolayerstyles.
     let geolayerstyles = classesCurrentStage.filterBy('stereotype', '«geolayerstyle»');
     let geolayerstylesSort = A(geolayerstyles).sortBy('name');
-    this.set('layerStyles', {
-      names: geolayerstylesSort.mapBy('name'),
-      objects: geolayerstylesSort,
-    });
+    this.set('layerStyles', geolayerstylesSort.mapBy('name'));
   }
 });
