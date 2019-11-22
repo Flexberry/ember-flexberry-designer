@@ -3506,7 +3506,7 @@ body .ui.inverted::-webkit-scrollbar-thumb:hover {
   border: none;
   vertical-align: baseline;
   background: rgba(0, 0, 0, 0.25) none;
-  color: rgba(0, 0, 0, 0.6);
+  color: #FFFFFF;
   font-family: 'Roboto', 'Helvetica Neue', Arial, Helvetica, sans-serif;
   margin: 0em 0.25em 0em 0em;
   padding: 0.55em 1.5em 0.55em;
@@ -3534,7 +3534,7 @@ body .ui.inverted::-webkit-scrollbar-thumb:hover {
   background-color: rgba(0, 0, 0, 0.35);
   background-image: none;
   box-shadow: 0px 0px 0px 1px transparent inset, 0px 0em 0px 0px rgba(34, 36, 38, 0.15) inset;
-  color: rgba(0, 0, 0, 0.8);
+  color: #FFFFFF;
 }
 .ui.button:hover .icon {
   opacity: 0.85;
@@ -3544,7 +3544,7 @@ body .ui.inverted::-webkit-scrollbar-thumb:hover {
 ---------------*/
 .ui.button:focus {
   background-color: rgba(0, 0, 0, 0.35);
-  color: rgba(0, 0, 0, 0.8);
+  color: #FFFFFF;
   background-image: '' !important;
   box-shadow: '' !important;
 }
@@ -3558,7 +3558,7 @@ body .ui.inverted::-webkit-scrollbar-thumb:hover {
 .ui.active.button:active {
   background-color: rgba(0, 0, 0, 0.45);
   background-image: '';
-  color: rgba(0, 0, 0, 0.9);
+  color: #FFFFFF;
   box-shadow: 0px 0px 0px 1px transparent inset, none;
 }
 /*--------------
@@ -3786,20 +3786,20 @@ body .ui.inverted::-webkit-scrollbar-thumb:hover {
 .ui.inverted.button:hover {
   background: #FFFFFF;
   box-shadow: 0px 0px 0px 2px #FFFFFF inset !important;
-  color: rgba(0, 0, 0, 0.8);
+  color: #FFFFFF;
 }
 /* Active / Focus */
 .ui.inverted.button:focus,
 .ui.inverted.button.active {
   background: #FFFFFF;
   box-shadow: 0px 0px 0px 2px #FFFFFF inset !important;
-  color: rgba(0, 0, 0, 0.8);
+  color: #FFFFFF;
 }
 /* Active Focus */
 .ui.inverted.button.active:focus {
   background: #DCDDDE;
   box-shadow: 0px 0px 0px 2px #DCDDDE inset !important;
-  color: rgba(0, 0, 0, 0.8);
+  color: #FFFFFF;
 }
 /*-------------------
     Labeled Button
@@ -4787,7 +4787,7 @@ body .ui.inverted::-webkit-scrollbar-thumb:hover {
 .ui.inverted.grey.buttons .button:active,
 .ui.inverted.grey.button:active {
   box-shadow: none !important;
-  color: rgba(0, 0, 0, 0.6);
+  color: #FFFFFF;
 }
 .ui.inverted.grey.buttons .button:hover,
 .ui.inverted.grey.button:hover {
@@ -6002,7 +6002,7 @@ body .ui.inverted::-webkit-scrollbar-thumb:hover {
 .ui.inverted.teal.buttons .button:active,
 .ui.inverted.teal.button:active {
   box-shadow: none !important;
-  color: rgba(0, 0, 0, 0.6);
+  color: #FFFFFF;
 }
 .ui.inverted.teal.buttons .button:hover,
 .ui.inverted.teal.button:hover {
@@ -6137,7 +6137,7 @@ body .ui.inverted::-webkit-scrollbar-thumb:hover {
 .ui.inverted.olive.buttons .button:active,
 .ui.inverted.olive.button:active {
   box-shadow: none !important;
-  color: rgba(0, 0, 0, 0.6);
+  color: #FFFFFF;
 }
 .ui.inverted.olive.buttons .button:hover,
 .ui.inverted.olive.button:hover {
@@ -6272,7 +6272,7 @@ body .ui.inverted::-webkit-scrollbar-thumb:hover {
 .ui.inverted.yellow.buttons .button:active,
 .ui.inverted.yellow.button:active {
   box-shadow: none !important;
-  color: rgba(0, 0, 0, 0.6);
+  color: #FFFFFF;
 }
 .ui.inverted.yellow.buttons .button:hover,
 .ui.inverted.yellow.button:hover {
@@ -6685,9 +6685,6 @@ body .ui.inverted::-webkit-scrollbar-thumb:hover {
 *******************************/
 .ui.basic.button:not(.icon) {
   padding: 0.5em 1.2em;
-}
-.fd-sheet-toolbar .ui.button {
-  color: #FFFFFF;
 }
 .fd-sheet-toolbar .ui.buttons .ui.button {
   margin-right: 0.2rem;
@@ -61137,6 +61134,20 @@ body.pushable > .pusher {
 .full.height {
   width: calc(100vw -  300px);
 }
+.ui.accordion .title .dropdown.icon:before,
+.ui.accordion .accordion .title .dropdown.icon:before {
+  content: '';
+  position: absolute;
+  top: calc(50% - 0.4em);
+  border: 0.4em solid transparent;
+  left: 0;
+  border-left: 0.7em solid rgba(0, 0, 0, 0.2);
+  top: calc(50% - 0.5em);
+}
+.ui.accordion .active.title .dropdown.icon,
+.ui.accordion .accordion .active.title .dropdown.icon {
+  transform: rotate(90deg) translate(0.4em, 0.4em);
+}
 .ui.button.toggle-sidebar {
   background: rgba(0, 0, 0, 0.1);
   border-radius: 0.5rem;
@@ -66084,13 +66095,13 @@ body.pushable > .pusher {
   -ms-flex: 1;
   flex-grow: 1;
 }
-.fd-sheet .fd-sheet-toolbar {
+.fd-sheet .ui.grid.fd-list > .row:first-child {
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+}
+.fd-sheet-toolbar {
   text-align: right;
   height: 5rem;
   line-height: 5rem;
-}
-.fd-sheet .ui.grid.fd-list > .row:first-child {
-  border-top: 1px solid rgba(0, 0, 0, 0.1);
 }
 .joint-paper.joint-theme-default {
   background-color: transparent;
@@ -66438,8 +66449,15 @@ h1 {
   margin-top: 0;
   font-size: 1.5em;
 }
+.ui.form > .form-header:not(:first-of-type),
+.ui.form .fd-sheet-body .form-header {
+  margin-top: 3em;
+}
 .ui.main.container.fluid {
   padding: 5em 4em 3em;
+}
+.ui.main.container.fluid .settings-form {
+  margin-top: -5em;
 }
 .flexberry-vertical-form {
   transition: opacity 250ms;
