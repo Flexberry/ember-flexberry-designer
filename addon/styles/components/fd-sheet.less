@@ -32,16 +32,10 @@
     padding: 0 @fdSheetPadding;
   }
 
-  .fd-sheet-body{
+  .fd-sheet-body {
     overflow: auto;
     padding: 1em @fdSheetPadding;
     .flex-grow(1);
-  }
-
-  .fd-sheet-toolbar {
-    text-align: right;
-    height: 5rem;
-    line-height: 5rem;
   }
 
   &.diagrams-sheet {
@@ -53,4 +47,10 @@
   .ui.grid.fd-list > .row:first-child {
     border-top: @hr;
   }
+}
+
+.fd-sheet-toolbar {
+  text-align: right;
+  height: 5rem;
+  line-height: 5rem;
 }

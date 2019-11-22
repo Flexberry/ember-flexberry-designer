@@ -12,6 +12,30 @@
   width: calc(~'100vw -  @{width}');
 }
 
+@iconHeight:0.4em;
+.arrow() {
+  content: '';
+  position: absolute;
+  top: calc(~'50% - @{iconHeight}');
+  border: @iconHeight solid transparent;
+}
+@iconBorder: 0.7em solid fadein(@sidebarBg, 10%);
+.left-arrow() {
+  left: 0;
+  border-left: @iconBorder;
+}
+
+.ui.accordion .title .dropdown.icon:before,
+.ui.accordion .accordion .title .dropdown.icon:before {
+  .arrow();
+  .left-arrow();
+  top: calc(~'50% - 0.5em');
+}
+
+.ui.accordion .active.title .dropdown.icon, .ui.accordion .accordion .active.title .dropdown.icon {
+  transform: rotate(90deg) translate(@iconHeight, @iconHeight);
+}
+
 // toggle sidebar buttons
 .ui.button.toggle-sidebar {
   background: @sidebarBg;
@@ -21,7 +45,6 @@
   left: 60px;
   transition: opacity 500ms step-end;
   z-index: 10;
-  @iconBorder: 0.7em solid fadein(@sidebarBg, 10%);
 
   &,
   &-visible{
@@ -30,17 +53,12 @@
     position: absolute;
     top: 1rem;
     &::before {
-      @iconHeight:0.4em;
-      content: '';
-      position: absolute;
-      top: calc(~'50% - @{iconHeight}');
-      border: @iconHeight solid transparent;
+      .arrow()
     }
   }
 
   &::before {
-    left: 0;
-    border-left: @iconBorder;
+    .left-arrow();
   }
 
   &-visible {
