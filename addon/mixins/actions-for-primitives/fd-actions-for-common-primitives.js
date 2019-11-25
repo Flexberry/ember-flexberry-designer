@@ -1,7 +1,9 @@
 import Mixin from '@ember/object/mixin';
-import { A } from '@ember/array';
-import { Note } from '../../objects/uml-primitives/fd-uml-note';
-import { NoteConnector } from '../../objects/uml-primitives/fd-uml-note-connector';
+import { A, isArray } from '@ember/array';
+import FdUmlNote from '../../objects/uml-primitives/fd-uml-note';
+import FdUmlNoteConnector from '../../objects/uml-primitives/fd-uml-note-connector';
+import { getJsonForElement, getJsonForLink } from '../../utils/get-json-for-diagram';
+
 /**
   Actions for creating joint js elements on diagrams.
 
@@ -9,6 +11,25 @@ import { NoteConnector } from '../../objects/uml-primitives/fd-uml-note-connecto
   @extends <a href="http://emberjs.com/api/classes/Ember.Mixin.html">Ember.Mixin</a>
 */
 export default Mixin.create({
+  /**
+    Add new object to diagram's primitives.
+
+    @method _addToPrimitives
+    @param {Object} umlClass
+   */
+  _addToPrimitives(umlClass) {
+    if (!umlClass) {
+      return;
+    }
+
+    let primitives = this.get('model.primitives');
+    if (isArray(primitives)) {
+      primitives.pushObject(umlClass);
+    } else {
+      this.set('model.primitives', A([ umlClass ]));
+    }
+  },
+
   actions: {
     /**
       Handler for click on addNote button.
@@ -18,13 +39,17 @@ export default Mixin.create({
      */
     addNote(e) {
       this.createObjectData((function(x, y) {
-        let newNoteObject = new Note({
-          position: { x: x, y: y },
-          size: { width: 100, height: 40 },
-          name: ''
-        });
+        let jsonObject = getJsonForElement(
+          'STORMCASE.UML.Common.Note, UMLCommon',
+          { x, y },
+          { width: 80, height: 20 },
+          { Name: '' }
+        );
+        let noteObject = FdUmlNote.create({ primitive: jsonObject });
 
-        return newNoteObject;
+        this._addToPrimitives(noteObject);
+
+        return noteObject.JointJS();
       }).bind(this), e);
     },
 
@@ -36,17 +61,25 @@ export default Mixin.create({
      */
     addNoteConnector(e) {
       this.createLinkData((function(linkProperties) {
-        let newNoteConnectorObject = new NoteConnector({
-          source: {
-            id: linkProperties.source
-          },
-          target: {
-            id: linkProperties.target
-          },
-          vertices: linkProperties.points || A()
-        });
+        let jsonObject = getJsonForLink(
+          'STORMCASE.UML.Common.NoteConnector, UMLCommon',
+          linkProperties.source,
+          null,
+          linkProperties.target,
+          null,
+          A(),
+          { Name: '' },
+          { NamePos: 0.0 },
+          undefined,
+          {'segmNo': linkProperties.segmNo, 'percent': linkProperties.percent}
+        );
 
-        return newNoteConnectorObject;
+        let noteConnectorObject = FdUmlNoteConnector.create({ primitive: jsonObject });
+        noteConnectorObject.set('vertices', linkProperties.points || A());
+
+        this._addToPrimitives(noteConnectorObject);
+
+        return noteConnectorObject.JointJS();
       }).bind(this), e);
     }
   }

@@ -4,11 +4,13 @@ moduleFor('route:fd-configuration-list-form', 'Unit | Route | fd configuration l
   // Specify the other units that are required for this test.
   // needs: ['controller:foo']
   needs: [
+    'service:cols-config-menu',
     'service:fd-current-project-context',
     'service:objectlistviewEvents',
     'service:formLoadTimeTracker',
     'service:colsConfigMenu',
-    'service:appState'
+    'service:appState',
+    'service:adv-limit',
   ]
 });
 

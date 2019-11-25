@@ -1,27 +1,27 @@
 <div class="row">
-  <div class="two wide column light-text">
+  <div class="three wide column light-text">
     {{t "forms.fd-application-model.entity-caption"}}
   </div>
-  <div class="fourteen wide column">
+  <div class="thirteen wide column">
     {{
       fd-list-item
       model=entity.settings
-      caption=entity.settings.name
+      caption=entity.settings.data.name
       sheetComponentName=sheetComponentName
     }}
   </div>
 
   {{!-- EForm --}}
   {{#if (not-eq entity.editForms.length 0)}}
-    <div class="two wide column light-text">
+    <div class="three wide column light-text">
       {{t "forms.fd-application-model.editor-caption"}}
     </div>
-    <div class="fourteen wide column">
+    <div class="thirteen wide column">
       {{#each entity.editForms as |editForm|}}
         {{
           fd-list-item
           model=editForm
-          caption=editForm.name
+          caption=editForm.data.name
           sheetComponentName=sheetComponentName
         }}
       {{/each}}
@@ -30,15 +30,15 @@
 
   {{!-- LForm --}}
   {{#if (not-eq entity.listForms.length 0)}}
-    <div class="two wide column light-text">
+    <div class="three wide column light-text">
       {{t "forms.fd-application-model.list-caption"}}
     </div>
-    <div class="fourteen wide column">
+    <div class="thirteen wide column">
       {{#each entity.listForms as |listForm|}}
         {{
           fd-list-item
           model=listForm
-          caption=listForm.name
+          caption=listForm.data.name
           sheetComponentName=sheetComponentName
         }}
       {{/each}}
@@ -47,14 +47,14 @@
 
   {{!-- BS --}}
   {{#if (not-eq entity.bs null)}}
-    <div class="two wide column light-text">
+    <div class="three wide column light-text">
       {{t "forms.fd-application-model.bs-caption"}}
     </div>
-    <div class="fourteen wide column">
+    <div class="thirteen wide column">
       {{
         fd-list-item
         model=entity.bs
-        caption=entity.bs.name
+        caption=entity.bs.data.name
         sheetComponentName=sheetComponentName
       }}
     </div>
@@ -62,29 +62,33 @@
 
   {{!-- Parents --}}
   {{#if (not-eq entity.parents.length 0)}}
-    <div class="two wide column light-text">
+    <div class="three wide column light-text">
       {{t "forms.fd-application-model.parent-caption"}}
     </div>
-    <div class="fourteen wide column">
+    <div class="thirteen wide column">
       {{#each entity.parents as |parent|}}
         {{
           fd-list-item
           model=parent
-          caption=parent.name
+          caption=parent.data.name
           sheetComponentName=sheetComponentName
         }}
       {{/each}}
     </div>
   {{/if}}
 
-  <div class="right floated fourteen wide column">
+  <div class="right floated thirteen wide column">
     {{
       fd-button
       caption=(t "forms.fd-application-model.editor-caption")
+      click=(action createClassAction '«editform»' entity.settings.data)
+      readonly=readonly
     }}
     {{
       fd-button
       caption=(t "forms.fd-application-model.list-caption")
+      click=(action createClassAction '«listform»' entity.settings.data)
+      readonly=readonly
     }}
   </div>
 </div>

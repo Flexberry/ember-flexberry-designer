@@ -3,6 +3,7 @@
 */
 
 import { computed } from '@ember/object';
+import { isArray } from '@ember/array';
 import joint from 'npm:jointjs';
 
 import { BaseObject } from './fd-uml-baseobject';
@@ -21,7 +22,16 @@ export default FdUmlElement.extend({
     @property name
     @type String
   */
-  name: computed.alias('primitive.Name.Text'),
+  name: computed('primitive.Name.Text', {
+    get() {
+      return this.get('primitive.Name.Text');
+    },
+    set(key, value) {
+      let nameTxt = (isArray(value)) ? value.join('\n') : value;
+      this.set('primitive.Name.Text', nameTxt);
+      return value;
+    },
+  }),
 
   /**
     See {{#crossLink "FdUmlPrimitive/JointJS:method"}}here{{/crossLink}}.
@@ -29,7 +39,8 @@ export default FdUmlElement.extend({
     @method JointJS
   */
   JointJS() {
-    let properties = this.getProperties('id', 'name', 'size', 'position');
+    let properties = this.getProperties('id', 'size', 'position');
+    properties.objectModel = this;
     return new Instance(properties);
 
   },
@@ -45,6 +56,17 @@ export default FdUmlElement.extend({
   @constructor
 */
 export let Instance = BaseObject.define('flexberry.uml.Instance', {
+  // Minimum width.
+  minWidth: 80,
+
+  // Minimum height.
+  minHeight: 30,
+}, {
+  getRectangles() {
+    return [
+      { type: 'header', element: this }
+    ];
+  },
 });
 
 joint.shapes.flexberry.uml.InstanceView = joint.shapes.flexberry.uml.BaseObjectView.extend({

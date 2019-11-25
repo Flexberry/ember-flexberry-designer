@@ -1,19 +1,22 @@
 import Controller from '@ember/controller';
-import { computed, observer, set } from '@ember/object';
+import FdReadonlyProjectMixin from '../mixins/fd-readonly-project';
+import EmberObject, { computed, observer } from '@ember/object';
 import { isBlank, isNone } from '@ember/utils';
 import { A } from '@ember/array';
 import { inject as service } from '@ember/service';
-import { all } from 'rsvp';
+import $ from 'jquery';
+import FdSheetCloseConfirm from '../mixins/fd-sheet-close-confirm';
 
-export default Controller.extend({
+export default Controller.extend(FdSheetCloseConfirm, FdReadonlyProjectMixin, {
 
   /**
-    Service for managing the state of the application.
+   Service that get current project contexts.
 
-    @property appState
-    @type AppStateService
-  */
-  appState: service(),
+   @property currentProjectContext
+   @type {Class}
+   @default service()
+   */
+  currentProjectContext: service('fd-current-project-context'),
 
   /**
     Service for managing the state of the sheet component.
@@ -22,22 +25,6 @@ export default Controller.extend({
     @type FdSheetService
   */
   fdSheetService: service(),
-
-  /**
-    Value selected entity.
-
-    @property selectedElement
-    @type Object
-  */
-  selectedElement: undefined,
-
-  /**
-    Value selected view.
-
-    @property selectedView
-    @type Object
-  */
-  selectedView: undefined,
 
   /**
     Value search input.
@@ -58,13 +45,13 @@ export default Controller.extend({
   sheetComponentName: '',
 
   /**
-    Sheet view name.
+    Flag: indicates whether to show create editing panel.
 
-    @property sheetViewName
-    @type String
-    @default ''
+    @property isAddMode
+    @type Bool
+    @default false
   */
-  sheetViewName: '',
+  isAddMode: false,
 
   /**
     Ember.observer, watching property `searchValue` and send action from 'fd-sheet' component.
@@ -77,35 +64,38 @@ export default Controller.extend({
     if (fdSheetService.isVisible(sheetComponentName)) {
       fdSheetService.closeSheet(sheetComponentName);
     }
-
-    this.closeViewSheet();
   }),
 
   /**
-    Removes quotes from class stereotype.
+    Update model for sort.
 
-    @method componentNamePart
+    @method sortModel
   */
-  componentNamePart: computed('selectedElement', function() {
-    let selectedElement = this.get('selectedElement');
-    if (!isNone(selectedElement)) {
-      let stereotype = selectedElement.get('model.stereotype');
-      if (isNone(stereotype)) {
-        return 'implementation';
-      }
+  sortModel: computed('model', function() {
+    let model = this.get('model');
+    let newClasses = model.classes.sortBy('settings.data.name');
+    let newModel = {
+      classes: A(newClasses)
+    };
 
-      return stereotype.substring(1, stereotype.length - 1);
+    for (let prop in model) {
+      if (prop !== 'classes') {
+        let newdata = model[prop].sortBy('data.name');
+        newModel[prop] = A(newdata);
+      }
     }
+
+    return newModel;
   }),
 
   /**
-    Update model for search
+    Update model for search.
 
     @method filteredModel
   */
-  filteredModel: computed('model', 'searchValue', function() {
+  filteredModel: computed('sortModel', 'searchValue', function() {
     let searchStr = this.get('searchValue');
-    let model = this.get('model');
+    let model = this.get('sortModel');
 
     if (isBlank(searchStr)) {
       return model;
@@ -113,7 +103,7 @@ export default Controller.extend({
 
     searchStr = searchStr.trim().toLocaleLowerCase();
     let filterFunction = function(item) {
-      let name = item.get('name');
+      let name = item.data.get('name');
       if (!isNone(name) && name.toLocaleLowerCase().indexOf(searchStr) !== -1) {
         return item;
       }
@@ -149,139 +139,58 @@ export default Controller.extend({
     return newModel;
   }),
 
-  init() {
-    this._super(...arguments);
-
-    this.get('fdSheetService').on('openSheetTriggered', this, this.openSheet);
-    this.get('fdSheetService').on('closeSheetTriggered', this, this.closeSheet);
-  },
-
-  /**
-    Deactivate item from selectedElement.
-
-     @method deactivateListItem
-  */
-  deactivateListItem() {
-    let selectedElement = this.get('selectedElement');
-    if (!isNone(selectedElement)) {
-      let model = selectedElement.get('model');
-      model.rollbackAll();
-      selectedElement.set('fdListItemActive', false);
-    }
-  },
-
-  /**
-    Update bs value in model.
-
-     @method updateClassModel
-  */
-  updateClassModel(modelSelectedElement) {
-    let stereotype = modelSelectedElement.get('stereotype');
-    if (stereotype === '«implementation»' || stereotype === null) {
-      let model = this.get('model');
-      let classObj = model.classes.findBy('settings.id', modelSelectedElement.id);
-      set(classObj, 'bs', modelSelectedElement.get('businessServerClass'));
-    }
-  },
-
-  /**
-    Opening sheet.
-
-     @method openSheet
-     @param {String} sheetName Sheet's dbName
-     @param {Object} currentItem Current list item
-  */
-  openSheet(sheetName, currentItem) {
-    let sheetComponentName = this.get('sheetComponentName');
-    if (sheetComponentName === sheetName) {
-      this.deactivateListItem();
-      this.closeViewSheet();
-      this.set('selectedElement', currentItem);
-    }
-  },
-
-  /**
-    Closing sheet.
-
-     @method closeSheet
-     @param {String} sheetName Sheet's dbName
-  */
-  closeSheet(sheetName) {
-    let sheetComponentName = this.get('sheetComponentName');
-    if (sheetComponentName === sheetName) {
-      this.deactivateListItem();
-      this.closeViewSheet();
-      this.set('selectedElement', undefined);
-    }
-  },
-
-  /**
-    Closing view sheet.
-
-     @method closeViewSheet
-  */
-  closeViewSheet() {
-    let sheetViewName = this.get('sheetViewName');
-    let fdSheetService = this.get('fdSheetService');
-    if (fdSheetService.isVisible(sheetViewName)) {
-      fdSheetService.closeSheet(sheetViewName);
-      this.set('selectedView', undefined);
-    }
-  },
-
-  /**
-    Save dirty hasMany relationships in the `model`.
-    This method invokes by `save` method.
-
-    @method saveHasManyRelationships
-    @param {DS.Model} model Record with hasMany relationships.
-    @return {Promise} A promise that will be resolved to array of saved records.
-  */
-  saveHasManyRelationships(model) {
-    let promises = [];
-    model.eachRelationship((name, desc) => {
-      if (desc.kind === 'hasMany') {
-        model.get(name).filterBy('hasDirtyAttributes', true).forEach((record) => {
-          let promise = record.save();
-          promises.push(promise);
-        });
-      }
-    });
-
-    return all(promises);
-  },
-
   actions: {
-
     /**
-      Save 'selectedElement'.
+      Create new class.
 
-       @method actions.save
+       @method actions.createClass
+       @param {String} stereotype Stereotype.
+       @param {Object} dataobject Dataobject for list and edit form.
     */
-    save() {
-      let model = this.get('selectedElement.model');
-      this.get('appState').loading();
-      model.save()
-      .then(() => this.saveHasManyRelationships(model))
-      .then(() => {
-        this.updateClassModel(model);
-      })
-      .catch((error) => {
-        this.set('error', error);
-      })
-      .finally(() => {
-        this.get('appState').reset();
+    createClass(stereotype, dataobject) {
+      let store = this.get('store');
+      let currentStage = this.get('currentProjectContext').getCurrentStageModel();
+      let newClass = store.createRecord('fd-dev-class', {
+        stage: currentStage,
+        caption: '',
+        description: '',
+        name: '',
+        nameStr: '',
+        stereotype: stereotype
       });
+
+      if (!isBlank(dataobject) && !(dataobject instanceof $.Event)) {
+        let formView = store.createRecord('fd-dev-form-view', {
+          view: null,
+          orderNum: 1
+        });
+
+        newClass.set('formViews', [formView]);
+      }
+
+      let model = { data: newClass, active: true };
+
+      this.set('isAddMode', false);
+      this.get('fdSheetService').openSheet(this.get('sheetComponentName'), EmberObject.create({ model: model, dataobject: dataobject }));
     },
 
     /**
-      Opening sheet 'view-sheet'.
+      Open create class edit panel.
 
-       @method actions.openViewSheet
+       @method actions.openCreateClassEditPanel
     */
-    openViewSheet(view) {
-      this.set('selectedView', view);
-      this.get('fdSheetService').openSheet(this.get('sheetViewName'));
+    openCreateClassEditPanel() {
+      this.set('isAddMode', true);
+      this.get('fdSheetService').openSheet(this.get('sheetComponentName'));
+    },
+
+    /**
+      This method will notify all observers that the model changed value.
+
+       @method actions.updateModel
+    */
+    updateModel() {
+      this.notifyPropertyChange('model');
     }
   }
 });

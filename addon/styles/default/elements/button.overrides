@@ -1,12 +1,9 @@
 
-.ui.basic.button {
+.ui.basic.button:not(.icon) {
   padding: 0.5em 1.2em;
 }
 
 .fd-sheet-toolbar {
-  .ui.button {
-    color: @toolbarBtnClr;
-  }
   .ui.buttons {
     .ui.button {
     margin-right: @toolbarBtnsmargin;
@@ -24,19 +21,19 @@
   left: -1.2em;
 }
 
-.basic.button.table-btn {
+.basic.button.table-btn:not(.icon) {
   border-radius: @itemActiveBorderRadius;
   white-space: nowrap;
   min-height: 34px;
   box-shadow: none;
-  border: 1px dashed @sidebarBg;
+  border: 1px dashed @basicButtonBoxShadow;
   padding: 0.7em 1em;
   &:hover {
-    border: 1px dashed @sidebarBg + rgba(0, 0, 0, 0.10);
+    border: 1px dashed fadein(@basicButtonBoxShadow, 10%);
     box-shadow: none;
   }
   &:active {
-    border: 1px dashed @sidebarBg + rgba(0, 0, 0, 0.20);
+    border: 1px dashed fadein(@basicButtonBoxShadow, 20%);
     box-shadow: none;
   }
   &:focus {

@@ -1,0 +1,16 @@
+export default {
+  'caption-caption': 'Заголовок',
+  'caption-placeholder': 'Введите заголовок слоя',
+  'coordinate-system-caption': 'Система координат',
+  'coordinate-system-placeholder': 'Введите систему координат',
+  'min-x-caption': 'Min X',
+  'min-x-placeholder': 'Введите координату',
+  'min-y-caption': 'Min Y',
+  'min-y-placeholder': 'Введите координату',
+  'max-x-caption': 'Max X',
+  'max-x-placeholder': 'Введите координату',
+  'max-y-caption': 'Max Y',
+  'max-y-placeholder': 'Введите координату',
+  'class-caption': 'Класс слоя',
+  'style-caption': 'Стиль слоя',
+};

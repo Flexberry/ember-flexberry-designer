@@ -34,4 +34,11 @@ export let defineProjections = function (modelClass) {
   modelClass.defineProjection('SearchRepObjView', 'fd-project', {
     name: attr('')
   });
+  modelClass.defineProjection('LoadDataNode', 'fd-project', {
+    name: attr(''),
+    description: attr(''),
+    repository: belongsTo('fd-repository', '', {
+
+    })
+  });
 };

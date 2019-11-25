@@ -1,5 +1,6 @@
 import { computed } from '@ember/object';
 import { A } from '@ember/array';
+import { isBlank } from '@ember/utils';
 
 import CADModel from './fd-cad';
 import {
@@ -31,12 +32,8 @@ import FdUmlQComposition from '../objects/uml-primitives/fd-uml-qualified-compos
 import FdUmlRealization from '../objects/uml-primitives/fd-uml-realization';
 import FdUmlObjectAssociation from '../objects/uml-primitives/fd-uml-object-association';
 import FdUmlNAryAssociationConnector from '../objects/uml-primitives/fd-uml-naryassociation-connector';
-import FdUmlLinkConnector from '../objects/uml-primitives/fd-uml-link-connector';
-import FdUmlLinkInheritance from '../objects/uml-primitives/fd-uml-link-inheritance';
-import DS from 'ember-data';
 
 let Model = CADModel.extend(DevUMLCADMixin, {
-  primitivesJsonString: DS.attr('fd-primitives-json-string'),
 
   /**
     The array of primitives of this diagram.
@@ -47,16 +44,53 @@ let Model = CADModel.extend(DevUMLCADMixin, {
   primitives: computed('primitivesJsonString', function() {
     let result = A();
     let primitives = JSON.parse(this.get('primitivesJsonString')) || A();
-
+    let elements = {};
     for (let i = 0; i < primitives.length; i++) {
       let primitive = primitives[i];
+      elements[primitive.$id] = primitive;
+    }
+    let linkTypes = {
+      'STORMCASE.UML.cad.Inheritance, UMLCAD': {},
+      'STORMCASE.UML.cad.Aggregation, UMLCAD': {},
+      'STORMCASE.UML.cad.Composition, UMLCAD': {},
+      'STORMCASE.UML.cad.Association, UMLCAD': {},
+      'STORMCASE.UML.cad.Realization, UMLCAD': {},
+      'STORMCASE.UML.Common.NoteConnector, UMLCommon': {}
+    };
+    for (let i = 0; i < primitives.length; i++) {
+      let primitive = primitives[i];
+      if ('StartLE' in primitive) {
+        let targetId = primitive.StartLE.Primitive.$ref;
+        if (targetId) {
+          let targetType = elements[targetId].$type;
+          primitive.StartLE.refType = (targetType in linkTypes) ? 'Link' : 'Element';
+        } else {
+          primitive.StartLE.refType = 'Element';
+        }
+      }
+
+      if ('EndLE' in primitive) {
+        let targetId = primitive.EndLE.Primitive.$ref;
+        if (targetId) {
+          let targetType = elements[targetId].$type;
+          primitive.EndLE.refType = (targetType in linkTypes) ? 'Link' : 'Element';
+        } else {
+          primitive.EndLE.refType = 'Element';
+        }
+      }
       switch (primitive.$type) {
         case 'STORMCASE.UML.Common.Note, UMLCommon':
           result.pushObject(FdUmlNote.create({ primitive }));
           break;
 
+        case 'STORMCASE.UML.cad.Class, UMLCAD': {
+          let classObject = FdUmlClass.create({ primitive, isCreated: isBlank(primitive.Name.Text) });
+          classObject.set('primitive.$type', 'STORMCASE.STORMNET.Repository.CADClass, STORM.NET Case Tool plugin');
+          result.pushObject(classObject);
+          break;
+        }
         case 'STORMCASE.STORMNET.Repository.CADClass, STORM.NET Case Tool plugin':
-          result.pushObject(FdUmlClass.create({ primitive }));
+          result.pushObject(FdUmlClass.create({ primitive, isCreated: isBlank(primitive.Name.Text) }));
           break;
 
         case 'STORMCASE.UML.Common.NoteConnector, UMLCommon':
@@ -85,10 +119,6 @@ let Model = CADModel.extend(DevUMLCADMixin, {
 
         case 'STORMCASE.UML.cad.Inheritance, UMLCAD':
           result.pushObject(FdUmlGeneralization.create({ primitive }));
-          break;
-
-        case 'STORMCASE.UML.cad.LinkInheritance, UMLCAD':
-          result.pushObject(FdUmlLinkInheritance.create({ primitive }));
           break;
 
         case 'STORMCASE.UML.cad.PropertyObject, UMLCAD':
@@ -145,10 +175,6 @@ let Model = CADModel.extend(DevUMLCADMixin, {
 
         case 'STORMCASE.UML.cad.Realization, UMLCAD':
           result.pushObject(FdUmlRealization.create({ primitive }));
-          break;
-
-        case 'STORMCASE.UML.cad.LinkConnector, UMLCAD':
-          result.pushObject(FdUmlLinkConnector.create({ primitive }));
           break;
 
         default:

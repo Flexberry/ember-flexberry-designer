@@ -1,0 +1,28 @@
+{{#if visible}}
+  <div class="row {{if isActive 'active' ''}}" {{action 'selectedProperty' definition}}>
+    <div class="thirteen wide column">
+      {{flexberry-textbox
+        value=definition.name
+        readonly=true
+        class='fluid'
+        placeholder=(t "components.fd-view-definition-item.name-placeholder")
+      }}
+    </div>
+    <div class="three wide column right aligned buttons">
+      <button class="super-mini ui basic button icon circular {{if readonly 'disabled' ''}}" {{action 'changeVisible' bubbles=false}}>
+        <i class="{{if definition.visible 'eye' 'icon-fd-eye'}} icon"></i>
+      </button>
+      <button class="super-mini ui basic button icon circular {{if readonly 'disabled' ''}}" {{action delete definition bubbles=false}}>
+        <i class="icon-fd-x-mark icon"></i>
+      </button>
+    </div>
+    <div class="sixteen wide column">
+      {{flexberry-textbox
+        value=definition.caption
+        class='fluid fd-view-attr-name'
+        placeholder=(t "components.fd-view-definition-item.caption-placeholder")
+        readonly=readonly
+      }}
+    </div>
+  </div>
+{{/if}}

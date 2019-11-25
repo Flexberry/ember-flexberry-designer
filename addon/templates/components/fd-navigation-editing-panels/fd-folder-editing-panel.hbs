@@ -1,0 +1,30 @@
+<div class="ui stackable grid fd-list">
+
+  <div class="row">
+    <div class="five wide column">
+      {{t "components.fd-folder-editing-panel.caption"}}
+    </div>
+    <div class="eleven wide column light-text">
+      {{flexberry-textbox
+        value=node.original.text
+        class='fluid input'
+        placeholder=(t "components.fd-folder-editing-panel.caption-placeholder")
+        readonly=readonlyMode
+      }}
+    </div>
+  </div>
+  <div class="row">
+    <div class="right floated thirteen wide column">
+      {{fd-button
+        caption=(t "components.fd-folder-editing-panel.sub-form")
+        click=(action "addSubForm")
+        readonly=readonlyMode
+      }}
+      {{fd-button
+        caption=(t "components.fd-folder-editing-panel.sub-folder")
+        click=(action "addSubFolder")
+        readonly=readonlyMode
+      }}
+    </div>
+  </div>
+</div>

@@ -1,0 +1,58 @@
+<div class="ui cards">
+  <div class="ui card horizontal {{if model.enabled "expanded"}}">
+    <div class="image text-align-center">
+      <div>
+        <h4 class="header">{{t "components.fd-gis-subsystem.name"}}</h4>
+        <i class="huge map icon"></i>
+      </div>
+      <div class="right floated">
+        {{flexberry-checkbox
+          value=model.enabled
+        }}
+      </div>
+    </div>
+    <div class="content ">
+      <div class="two fields">
+        <div class="field">
+          {{flexberry-field
+            value=model.address
+            placeholder=(t 'components.fd-gis-subsystem.address-placeholder')
+            label=(t "components.fd-gis-subsystem.address")
+          }}
+        </div>
+        <div class="field">
+          {{flexberry-field
+            value=model.login
+            placeholder=(t 'components.fd-gis-subsystem.login-placeholder')
+            label=(t "components.fd-gis-subsystem.login")
+          }}
+        </div>
+      </div>
+      <div class="two fields">
+        <div class="field">
+          <label>{{t "components.fd-gis-subsystem.type-database"}}</label>
+          {{flexberry-dropdown
+            items=(flexberry-enum 'fd-database-type')
+            value=model.typeDatabase
+            class='compact'
+          }}
+        </div>
+        <div class="field">
+          {{flexberry-field
+            value=model.password
+            placeholder=(t 'components.fd-gis-subsystem.password-placeholder')
+            label=(t "components.fd-gis-subsystem.password")
+            type="password"
+          }}
+        </div>
+      </div>
+      <div class="field">
+        {{flexberry-field
+          value=model.connectionString
+          placeholder=(t 'components.fd-gis-subsystem.connection-string-placeholder')
+          label=(t "components.fd-gis-subsystem.connection-string")
+        }}
+      </div>
+    </div>
+  </div>
+</div>

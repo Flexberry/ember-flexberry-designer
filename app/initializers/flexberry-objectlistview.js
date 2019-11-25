@@ -1,0 +1,1 @@
+export { default, initialize } from 'ember-flexberry-designer/initializers/flexberry-objectlistview';

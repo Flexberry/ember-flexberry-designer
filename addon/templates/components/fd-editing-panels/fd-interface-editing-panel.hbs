@@ -9,6 +9,7 @@
         value=model.description
         class='fluid input'
         placeholder=(t "components.fd-interface-editing-panel.description-placeholder")
+        readonly=readonly
       }}
     </div>
   </div>
@@ -22,6 +23,7 @@
         value=model.packet
         class='fluid input'
         placeholder=(t "components.fd-interface-editing-panel.packet-placeholder")
+        readonly=readonly
       }}
     </div>
   </div>
@@ -35,6 +37,7 @@
         value=model.namespacePostfix
         class='fluid input'
         placeholder=(t "components.fd-interface-editing-panel.namespace-postfix-placeholder")
+        readonly=readonly
       }}
     </div>
   </div>
@@ -48,8 +51,8 @@
         items=bsItems.names
         value=bsValue
         class='compact input'
-        isSearch=true
         onChange=(action "changeBsValue")
+        readonly=readonly
       }}
     </div>
   </div>
@@ -64,6 +67,7 @@
         items=(flexberry-enum 'i-c-s-soft-s-t-o-r-m-n-e-t-business-data-service-object-events')
         value=model.businessServerEvents
         class='compact'
+        readonly=readonly
       }}
     </div>
   </div>
@@ -74,6 +78,7 @@
     buttonCaption=attributeButton
     model=model.attributes
     create=(action 'createAttribute')
+    readonly=readonly
   }}
 
   {{fd-attribute-table
@@ -81,6 +86,7 @@
     buttonCaption=methodsButton
     model=model.methods
     create=(action 'createMethod')
+    readonly=readonly
   }}
 
 </div>

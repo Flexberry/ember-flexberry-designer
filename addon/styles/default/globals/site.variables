@@ -3,6 +3,9 @@
 --------------------*/
 
 @fontName          : 'Roboto';
+@googleFontSizes   : '300,400,700,400italic,700italic';
+
+@veryStrongTransparentWhite: rgba(255, 255, 255, 0.65);
 
 /*-------------------
       Base Sizes
@@ -15,10 +18,20 @@
 @fontSize : 16px;
 
 /*-------------------
+        Links
+--------------------*/
+@linkColor: @lightTextColor;
+
+/*-------------------
         Page
 --------------------*/
 @textColor           : rgba(0, 0, 0, 0.75);
-@lightTextColor      : rgba(0, 0, 0, 0.25);
+@lightTextColor      : rgba(0, 0, 0, 0.35);
+@darkTextColor: @textColor;
+
+/* Input Text Color */
+@inputPlaceholderFocusColor: transparent;
+@inputPlaceholderColor: @lightTextColor;
 
 /* Цвет иконок сайдбара */
 @sidebarIconColor    : rgba(0, 0, 0, 0.50);
@@ -37,32 +50,34 @@
 /*--------------------------------------
     ember flexberry designer colors
 ---------------------------------------*/
+@fdPrimaryColor: rgb(0, 0, 0);
+
 /* Фон основной*/
 @fdSheetBg: @pageBackground;
 
 /* Текст кнопок тулбара */
-@toolbarBtnClr: @white;
+@toolbarButtonColor: @white;
 
 /* Фон сайдбара */
-@sidebarBg: @strongTransparentBlack;
+@sidebarBg: fade(@fdPrimaryColor, 10%);
 
 /* Фон затемнение */
-@overlayColor: @veryStrongTransparentBlack;
+@overlayColor: fade(@fdPrimaryColor, 15%);
 
 @footerBackground: #eee;
 
 /* Фон кнопок тулбара */
-@toolbarBtnBg: @lightTextColor;
+@toolbarButtonBackground: fade(@fdPrimaryColor, 25%);
 
 /* Цвет основных кнопок */
-@basicBtn: @lightTextColor;
+@basicButtonColor: @lightTextColor;
+@basicButtonBoxShadow: @strongTransparentBlack;
 
 @itemActiveBorderRadius: 0.5rem;
-@hoverToolbarBtnBg: rgba(0, 0, 0, 0.35);
-@activeToolbarBtnBg: rgba(0, 0, 0, 0.45);
+
 @itemActiveBorderRadius: 0.5rem;
 
-@leftIndent: 2.5em;
+@leftIndent: 2.5rem;
 
 /*--------------
    Form Input
@@ -70,3 +85,13 @@
 
 /* This adjusts the default form input across all elements */
 @inputBackground        : transparent;
+
+@blue: #007aff;
+/* Loading Dimmer */
+@loaderDimmerColorGlobal: rgba(255, 255, 255, 0.8);
+
+/*---------------
+    THEME
+----------------*/
+
+@import (optional) '@{Theme}';

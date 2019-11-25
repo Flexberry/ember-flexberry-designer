@@ -207,6 +207,7 @@ are-we-there-yet@~1.1.2:
 argparse@^1.0.7:
   version "1.0.10"
   resolved "https://registry.yarnpkg.com/argparse/-/argparse-1.0.10.tgz#bcd6791ea5ae09725e17e5ad988134cd40b3d911"
+  integrity sha512-o5Roy6tNG4SL/FOkCAN6RzjiakZS25RLYFrcMttJqbdd8BWrnA+fGz57iN5Pb06pvBGvl5gQ0B48dJlslXvoTg==
   dependencies:
     sprintf-js "~1.0.2"
 
@@ -998,13 +999,7 @@ babylon@^6.18.0:
   version "6.18.0"
   resolved "https://registry.yarnpkg.com/babylon/-/babylon-6.18.0.tgz#af2f3b88fa6f5c1e4c634d1a0f8eac4f55b395e3"
 
-backbone@1.3.3:
-  version "1.3.3"
-  resolved "https://registry.yarnpkg.com/backbone/-/backbone-1.3.3.tgz#4cc80ea7cb1631ac474889ce40f2f8bc683b2999"
-  dependencies:
-    underscore ">=1.8.3"
-
-backbone@^1.1.2:
+backbone@^1.1.2, backbone@~1.4.0:
   version "1.4.0"
   resolved "https://registry.yarnpkg.com/backbone/-/backbone-1.4.0.tgz#54db4de9df7c3811c3f032f34749a4cd27f3bd12"
   dependencies:
@@ -2273,11 +2268,12 @@ dag-map@^2.0.2:
   version "2.0.2"
   resolved "https://registry.yarnpkg.com/dag-map/-/dag-map-2.0.2.tgz#9714b472de82a1843de2fba9b6876938cab44c68"
 
-dagre@0.8.2:
-  version "0.8.2"
-  resolved "https://registry.yarnpkg.com/dagre/-/dagre-0.8.2.tgz#755b79f4d5499d63cf74c3368fb08add93eceafe"
+dagre@~0.8.4:
+  version "0.8.4"
+  resolved "https://registry.yarnpkg.com/dagre/-/dagre-0.8.4.tgz#26b9fb8f7bdc60c6110a0458c375261836786061"
+  integrity sha512-Dj0csFDrWYKdavwROb9FccHfTC4fJbyF/oJdL9LNZJ8WUvl968P6PAKEriGqfbdArVJEmmfA+UyumgWEwcHU6A==
   dependencies:
-    graphlib "^2.1.5"
+    graphlib "^2.1.7"
     lodash "^4.17.4"
 
 dash-ast@^1.0.0:
@@ -2985,23 +2981,26 @@ ember-factory-for-polyfill@^1.3.1:
   dependencies:
     ember-cli-version-checker "^2.1.0"
 
-ember-flexberry-data@3.0.0:
-  version "3.0.0"
-  resolved "https://registry.yarnpkg.com/ember-flexberry-data/-/ember-flexberry-data-3.0.0.tgz#8577f8e5adaaa7d8fde289e4bdffbd3d41fa2a03"
+ember-flexberry-data@3.2.0-beta.2:
+  version "3.2.0-beta.2"
+  resolved "https://registry.yarnpkg.com/ember-flexberry-data/-/ember-flexberry-data-3.2.0-beta.2.tgz#142d360cfbf1b6b1a103cb3ef921e1e305d21070"
+  integrity sha512-9aoQvcz39A9u54NwufMrHPlXwpW8iKpQUdM9GuWPtPYLt6yMXlhngDDBeWh97M2Lrw6eGWRmmIOyhDmCuKtNWw==
   dependencies:
     ember-cli-babel "^6.6.0"
     ember-cli-htmlbars "^2.0.1"
 
-ember-flexberry@3.0.0:
-  version "3.0.0"
-  resolved "https://registry.yarnpkg.com/ember-flexberry/-/ember-flexberry-3.0.0.tgz#694f9b9efad53f171ca0c0c20b48247ce4551d55"
+ember-flexberry@3.2.0-beta.1:
+  version "3.2.0-beta.1"
+  resolved "https://registry.yarnpkg.com/ember-flexberry/-/ember-flexberry-3.2.0-beta.1.tgz#561478e852196218cb151dfc566e2f39f2cd557e"
+  integrity sha512-E55OTa9/vTMqh8rSyl75kfMry0xs+6tmXI0Ft9Lh9VIFX9p6ldqSh+sAJpngJetIB4o/wvRsiDdTCVcH2yaSJg==
   dependencies:
     ember-cli-babel "^6.6.0"
     ember-cli-htmlbars "^2.0.1"
-    ember-flexberry-data "3.0.0"
+    ember-flexberry-data "3.2.0-beta.2"
     ember-i18n "5.2.1"
     ember-i18n-cp-validations "~3.1.0"
     ember-truth-helpers "2.0.0"
+    flatpickr "4.6.1"
     lodash "^4.4.0"
     strip-bom "^2.0.0"
 
@@ -3075,9 +3074,10 @@ ember-moment@7.7.0:
     ember-getowner-polyfill "^2.0.1"
     ember-macro-helpers "^0.17.0"
 
-ember-promise-helpers@^1.0.6:
+ember-promise-helpers@1.0.6:
   version "1.0.6"
   resolved "https://registry.yarnpkg.com/ember-promise-helpers/-/ember-promise-helpers-1.0.6.tgz#6ff9f451330f4608ec4696de473a7f54bc179236"
+  integrity sha1-b/n0UTMPRgjsRpbeRzp/VLwXkjY=
   dependencies:
     ember-cli-babel "^6.6.0"
 
@@ -3458,6 +3458,7 @@ esprima@^2.6.0:
 esprima@^4.0.0:
   version "4.0.1"
   resolved "https://registry.yarnpkg.com/esprima/-/esprima-4.0.1.tgz#13b04cdb3e6c5d19df91ab6987a8695619b0aa71"
+  integrity sha512-eGuFFw7Upda+g4p+QHvnW0RyTX/SVeJBDM/gCtMARO0cLuT2HcEKnTPvhjV6aGeqrCB/sbNop0Kszm0jsaWU4A==
 
 esprima@~3.0.0:
   version "3.0.0"
@@ -3815,6 +3816,11 @@ flat-cache@^1.2.1:
     rimraf "~2.6.2"
     write "^0.2.1"
 
+flatpickr@4.6.1:
+  version "4.6.1"
+  resolved "https://registry.yarnpkg.com/flatpickr/-/flatpickr-4.6.1.tgz#9eb498ab805dd27f5ae02e1ac6ac6c099ce45e94"
+  integrity sha512-3ULSxbXmcMIRzer/2jLNweoqHpwDvsjEawO2FUd9UFR8uPwLM+LruZcPDpuZStcEgbQKhuFOfXo4nYdGladSNw==
+
 follow-redirects@^1.0.0:
   version "1.7.0"
   resolved "https://registry.yarnpkg.com/follow-redirects/-/follow-redirects-1.7.0.tgz#489ebc198dc0e7f64167bd23b03c4c19b5784c76"
@@ -3824,6 +3830,7 @@ follow-redirects@^1.0.0:
 for-in@^1.0.2:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/for-in/-/for-in-1.0.2.tgz#81068d295a8142ec0ac726c6e2200c30fb6d5e80"
+  integrity sha1-gQaNKVqBQuwKxybG4iAMMPttXoA=
 
 forever-agent@~0.6.1:
   version "0.6.1"
@@ -4066,15 +4073,10 @@ graceful-fs@^4.1.11, graceful-fs@^4.1.2, graceful-fs@^4.1.3, graceful-fs@^4.1.4,
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/graceful-readlink/-/graceful-readlink-1.0.1.tgz#4cafad76bc62f02fa039b2f94e9a3dd3a391a725"
 
-graphlib@2.1.5:
-  version "2.1.5"
-  resolved "https://registry.yarnpkg.com/graphlib/-/graphlib-2.1.5.tgz#6afe1afcc5148555ec799e499056795bd6938c87"
-  dependencies:
-    lodash "^4.11.1"
-
-graphlib@^2.1.5:
+graphlib@^2.1.7, graphlib@~2.1.7:
   version "2.1.7"
   resolved "https://registry.yarnpkg.com/graphlib/-/graphlib-2.1.7.tgz#b6a69f9f44bd9de3963ce6804a2fc9e73d86aecc"
+  integrity sha512-TyI9jIy2J4j0qgPmOOrHTCtpPqJGN/aurBwc6ZT+bRii+di1I+Wv3obRhVrmBEXet+qkMaEX67dXrwsd3QQM6w==
   dependencies:
     lodash "^4.17.5"
 
@@ -4506,6 +4508,7 @@ is-extendable@^0.1.0, is-extendable@^0.1.1:
 is-extendable@^1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/is-extendable/-/is-extendable-1.0.1.tgz#a7470f9e426733d81bd81e1155264e3a3507cab4"
+  integrity sha512-arnXMxT1hhoKo9k1LZdmlNyJdDDfy2v0fXjFlmok4+i8ul/6WlbVge9bhM74OpNPQPMGUToDtz+KXa1PneJxOA==
   dependencies:
     is-plain-object "^2.0.4"
 
@@ -4558,6 +4561,7 @@ is-obj@^1.0.0:
 is-plain-object@^2.0.1, is-plain-object@^2.0.3, is-plain-object@^2.0.4:
   version "2.0.4"
   resolved "https://registry.yarnpkg.com/is-plain-object/-/is-plain-object-2.0.4.tgz#2c163b3fafb1b606d9d17928f05c2a1c38e07677"
+  integrity sha512-h5PpgXkWitc38BBMYawTYMWJHFZJVnBquFE57xFpjB8pJFiF6gZ+bU+WyI/yqXiFR5mdLsgYNaPe8uao6Uv9Og==
   dependencies:
     isobject "^3.0.1"
 
@@ -4630,6 +4634,7 @@ isobject@^2.0.0:
 isobject@^3.0.0, isobject@^3.0.1:
   version "3.0.1"
   resolved "https://registry.yarnpkg.com/isobject/-/isobject-3.0.1.tgz#4e431e92b11a9731636aa1f9c8d1ccbcfdab78df"
+  integrity sha1-TkMekrEalzFjaqH5yNHMvP2reN8=
 
 isstream@~0.1.2:
   version "0.1.2"
@@ -4643,23 +4648,29 @@ istextorbinary@2.1.0:
     editions "^1.1.1"
     textextensions "1 || 2"
 
-jointjs@^2.1.2:
-  version "2.2.1"
-  resolved "https://registry.yarnpkg.com/jointjs/-/jointjs-2.2.1.tgz#eb4119638c0f88f023061da5eeea169d1fbd547d"
+jointjs@^3.0.1:
+  version "3.0.4"
+  resolved "https://registry.yarnpkg.com/jointjs/-/jointjs-3.0.4.tgz#c29022c64dfd881a609ab9c81f244c1619f74428"
+  integrity sha512-TQebldao+E8SlJIrCOrQlLW7RGYCSwDaVrzU6GzQFNUA/d1Rzd+8HNHBE1u9rvcpPuoVx8DlfnP14zd4EBF6oQ==
   dependencies:
-    backbone "1.3.3"
-    dagre "0.8.2"
-    graphlib "2.1.5"
-    jquery "3.3.1"
-    lodash "4.17.11"
+    backbone "~1.4.0"
+    dagre "~0.8.4"
+    graphlib "~2.1.7"
+    jquery "~3.4.1"
+    lodash "~4.17.14"
 
 jquery-deferred@^0.3.0:
   version "0.3.1"
   resolved "https://registry.yarnpkg.com/jquery-deferred/-/jquery-deferred-0.3.1.tgz#596eca1caaff54f61b110962b23cafea74c35355"
 
-jquery@3.3.1, jquery@>=1.9.1, jquery@^3.3.1:
+jquery@>=1.9.1, jquery@^3.3.1:
   version "3.3.1"
   resolved "https://registry.yarnpkg.com/jquery/-/jquery-3.3.1.tgz#958ce29e81c9790f31be7792df5d4d95fc57fbca"
+
+jquery@~3.4.1:
+  version "3.4.1"
+  resolved "https://registry.yarnpkg.com/jquery/-/jquery-3.4.1.tgz#714f1f8d9dde4bdfa55764ba37ef214630d80ef2"
+  integrity sha512-36+AdBzCL+y6qjw5Tx7HgzeGCzC81MDDgaUP8ld2zhx58HdqXGoBd+tHdrBMiyjGQs0Hxs/MLZTu/eHNJJuWPw==
 
 js-reporters@1.2.1:
   version "1.2.1"
@@ -4678,8 +4689,9 @@ js-tokens@^3.0.2:
   resolved "https://registry.yarnpkg.com/js-tokens/-/js-tokens-3.0.2.tgz#9866df395102130e38f7f996bceb65443209c25b"
 
 js-yaml@^3.2.5, js-yaml@^3.2.7, js-yaml@^3.6.1, js-yaml@^3.9.1:
-  version "3.13.0"
-  resolved "https://registry.yarnpkg.com/js-yaml/-/js-yaml-3.13.0.tgz#38ee7178ac0eea2c97ff6d96fff4b18c7d8cf98e"
+  version "3.13.1"
+  resolved "https://registry.yarnpkg.com/js-yaml/-/js-yaml-3.13.1.tgz#aff151b30bfdfa8e49e05da22e7415e9dfa37847"
+  integrity sha512-YfbcO7jXDdyj0DGxYVSlSeQNHbD7XPWvrVWeVUujrQEoZzWJIRrCPoyk6kL6IAjAG2IolMK4T0hNUe0HOUs5Jw==
   dependencies:
     argparse "^1.0.7"
     esprima "^4.0.0"
@@ -5074,8 +5086,9 @@ lodash.defaults@~2.3.0:
     lodash.keys "~2.3.0"
 
 lodash.defaultsdeep@^4.6.0:
-  version "4.6.0"
-  resolved "https://registry.yarnpkg.com/lodash.defaultsdeep/-/lodash.defaultsdeep-4.6.0.tgz#bec1024f85b1bd96cbea405b23c14ad6443a6f81"
+  version "4.6.1"
+  resolved "https://registry.yarnpkg.com/lodash.defaultsdeep/-/lodash.defaultsdeep-4.6.1.tgz#512e9bd721d272d94e3d3a63653fa17516741ca6"
+  integrity sha512-3j8wdDzYuWO3lM3Reg03MuQR957t287Rpcxp1njpEa8oDrikb+FwGdW3n+FELh/A6qib6yPit0j/pv9G/yeAqA==
 
 lodash.escape@~2.3.0:
   version "2.3.0"
@@ -5263,13 +5276,18 @@ lodash.values@~2.3.0:
   dependencies:
     lodash.keys "~2.3.0"
 
-lodash@4.17.11, lodash@^4.11.1, lodash@^4.17.11, lodash@^4.17.4, lodash@^4.17.5, lodash@^4.3.0, lodash@^4.4.0, lodash@^4.5.1, lodash@^4.6.1:
-  version "4.17.11"
-  resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.11.tgz#b39ea6229ef607ecd89e2c8df12536891cac9b8d"
-
 lodash@^3.10.0, lodash@^3.10.1, lodash@^3.9.3:
   version "3.10.1"
   resolved "https://registry.yarnpkg.com/lodash/-/lodash-3.10.1.tgz#5bf45e8e49ba4189e17d482789dfd15bd140b7b6"
+
+lodash@^4.17.11, lodash@^4.17.4, lodash@^4.17.5, lodash@^4.3.0, lodash@^4.4.0, lodash@^4.5.1, lodash@^4.6.1:
+  version "4.17.11"
+  resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.11.tgz#b39ea6229ef607ecd89e2c8df12536891cac9b8d"
+
+lodash@~4.17.14:
+  version "4.17.15"
+  resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.15.tgz#b447f6670a0455bbfeedd11392eff330ea097548"
+  integrity sha512-8xOcRHvCjnocdS5cpwXQXVzmmh5e5+saE2QGoeQmbKmRS6J3VQppPOIt0MnmE+4xlZoumy0GPG0D0MVIQbNA1A==
 
 log-symbols@^2.2.0:
   version "2.2.0"
@@ -5533,8 +5551,9 @@ minizlib@^1.1.1:
     minipass "^2.2.1"
 
 mixin-deep@^1.2.0:
-  version "1.3.1"
-  resolved "https://registry.yarnpkg.com/mixin-deep/-/mixin-deep-1.3.1.tgz#a49e7268dce1a0d9698e45326c5626df3543d0fe"
+  version "1.3.2"
+  resolved "https://registry.yarnpkg.com/mixin-deep/-/mixin-deep-1.3.2.tgz#1120b43dc359a785dce65b55b82e257ccf479566"
+  integrity sha512-WRoDn//mXBiJ1H40rqa3vH0toePwSsGb45iInWlTySa+Uu4k3tYUSxa2v1KqAiLtvlrSzaExqS1gtk96A9zvEA==
   dependencies:
     for-in "^1.0.2"
     is-extendable "^1.0.1"
@@ -7007,6 +7026,7 @@ sprintf-js@^1.0.3:
 sprintf-js@~1.0.2:
   version "1.0.3"
   resolved "https://registry.yarnpkg.com/sprintf-js/-/sprintf-js-1.0.3.tgz#04e6926f662895354f3dd015203633b857297e2c"
+  integrity sha1-BOaSb2YolTVPPdAVIDYzuFcpfiw=
 
 sri-toolbox@^0.2.0:
   version "0.2.0"

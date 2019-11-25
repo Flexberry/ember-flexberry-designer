@@ -1,5 +1,24 @@
+@import '../cross-browser-mixins';
+
+.joint-paper.joint-theme-default {
+  background-color: transparent;
+}
+
 .ui.form {
-  .uml-class-inputs, .uml-link-inputs {
+  .uml-link-inputs {
+    textarea, input {
+      position: absolute;
+      pointer-events: none;
+      -webkit-user-select: none;
+      padding: 2px 7px;
+      box-sizing: border-box;
+      z-index: 2;
+    }
+  }
+}
+
+.ui.form {
+  .uml-class-inputs {
     position: absolute;
     pointer-events: none;
     -webkit-user-select: none;
@@ -26,7 +45,7 @@
 .ui.form .uml-class-inputs textarea {
   border: none;
   padding: 0px;
-  color: black;
+  color: @textColor;
   font-size: 12px;
   font-family: Arial;
   min-width: 50px;
@@ -43,6 +62,9 @@
     &.active-object-input {
       text-decoration: underline;
     }
+    &.object-in-state-input {
+      text-decoration: underline;
+    }
     &.instance-input {
       font-weight: normal;
       text-decoration: underline;
@@ -57,6 +79,23 @@
       text-decoration: underline;
       margin-top: 13px;
     }
+    &.start-state-input {
+      min-width: 10px;
+      text-align: right;
+    }
+    &.final-state-input {
+      min-width: 10px;
+      text-align: left;
+    }
+    &.signal-input {
+      min-width: 30px;
+    }
+    &.complex-transition-input {
+      min-width: 1px;
+    }
+    &.under-class-name-input {
+      margin: 0;
+    }
   }
   &.params-input {
     resize: none;
@@ -68,6 +107,7 @@
     resize: none;
     line-height: 1.1;
     overflow: hidden;
+    text-align: center;
   }
   &.package-header-input {
     font-weight: normal;
@@ -82,6 +122,12 @@
     resize: none;
     line-height: 1.1;
     margin: 4px 0 0 0;
+    overflow: hidden;
+  }
+  &.state-input {
+    text-align: center;
+    resize: none;
+    line-height: 1.1;
     overflow: hidden;
   }
   &.start-multiplicity-input, &.end-multiplicity-input,
@@ -117,42 +163,40 @@
   }
 }
 
-.joint-paper {
-  min-width: 500px;
-  min-height: 500px;
-  height: 100%;
-  margin-bottom: 150px; //fd-uml-diagram-toolbar height
+.linktools-disabled {
+  .link-tools, .marker-vertices, .marker-arrowhead {
+    display: none;
+  }
 }
 
 .fd-uml-diagram-toolbar {
   background: @fdSheetBg;
   border-top-left-radius: 1rem;
   border-top-right-radius: 1rem;
-  display: inline-table;
-  padding: 5px;
   bottom: 0;
+  display: inline-table;
   font-size: 0;
-  left: 0;
+  padding: 5px; 
   position: absolute;
-  width: auto;
+  margin-right: -50%;
   max-width: 90%;
   left: 50%;
-  transform: translateX(-50%);
+  width: auto;
   z-index: 2;
+  .transform(translate(-50%, 0));
+  .transition(transform 0.5s);
 
-  &:before {
-    background: @sidebarBg;
-    border-radius: inherit;
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    right: 0;
-    z-index: -1;
+  .row {
+    position: relative;
+    z-index: 1;
   }
 
-  .ui.button {
+  &.fd-toolbar-hidden {
+    .transform(translate(-50%, 100%));
+    bottom: 0 !important;
+  }
+
+  .ui.button:not(.toggle-diagram-toolbar) {
     background: @sidebarBg;
     border-radius: 0.9rem;
     border: 4px solid transparent;
@@ -162,6 +206,95 @@
     &:hover,
     &.active {
       border-color: @blue;
+    }
+  }
+}
+
+.fd-uml-diagram-toolbar,
+.ui.button.toggle-diagram-toolbar {
+  &::before,
+  &::after {
+    background: @sidebarBg;
+    border-radius: inherit;
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+  }
+
+  &::after {
+    background: @overlayColor;
+    .opacity(0);
+    .transition(opacity 1s);
+  }
+}
+
+.ui.button.toggle-diagram-toolbar {
+  background: @fdSheetBg;
+  border-radius: @itemActiveBorderRadius;
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+  padding: 5px 15px;
+  padding-bottom: 0;
+  position: absolute;
+  top: -1.3125em;
+  left: 0.86rem;
+}
+
+.content-mini.fade {
+  .fd-uml-diagram-toolbar,
+  .toggle-diagram-toolbar {
+    &::after {
+      .opacity(1);
+    }
+  }
+}
+
+.joint-element {
+  cursor: default;
+
+  .remove-button,
+  .collapse-button,
+  .open-edit-form-button {
+    cursor: pointer;
+  }
+
+  .right-size-button {
+    cursor: ew-resize;
+  }
+
+  .down-size-button {
+    cursor: ns-resize;
+  }
+
+  .right-down-size-button {
+    cursor: nwse-resize;
+  }
+}
+
+.joint-paper-background {
+  background-color: transparent;
+}
+
+@texttColorHex: multiply(white, @textColor);
+@overlayColorHex: multiply(@pageBackground, @overlayColor);
+.joint-paper {
+  rect {
+    &.corner-rect {
+      fill: @pageBackground;
+      stroke: @pageBackground;
+      transition: fill 0.5s ease-in-out, stroke 0.5s ease-in-out;
+    }
+  }
+
+  .content-mini.fade & {
+    rect {
+      &.corner-rect {
+        fill: @overlayColorHex;
+        stroke: @overlayColorHex;
+      }
     }
   }
 }

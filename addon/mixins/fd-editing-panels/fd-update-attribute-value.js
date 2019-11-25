@@ -1,4 +1,6 @@
 import Mixin from '@ember/object/mixin';
+import { inject as service } from '@ember/service';
+import RepositoryAccessModifier  from '../../enums/s-t-o-r-m-c-a-s-e-repository-access-modifier';
 
 /**
   Mixin with the support `Attribute table` for controls in the edit form constructor.
@@ -7,6 +9,14 @@ import Mixin from '@ember/object/mixin';
   @uses <a href="http://emberjs.com/api/classes/Ember.Mixin.html">Ember.Mixin</a>
 */
 export default Mixin.create({
+
+  /**
+    Store of current application.
+
+    @property store
+    @type DS.Store or subclass
+  */
+  store: service(),
 
   /**
     Table headers for attribute.
@@ -59,7 +69,9 @@ export default Mixin.create({
       let store = this.get('store');
       let model = this.get('model');
       store.createRecord('fd-dev-attribute', {
-        class: model
+        class: model,
+        stored: true,
+        accessModifier: RepositoryAccessModifier.Public
       });
     }
   }

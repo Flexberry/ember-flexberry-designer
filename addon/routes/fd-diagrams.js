@@ -1,8 +1,10 @@
 import Route from '@ember/routing/route';
+import FdShareLoadData from '../mixins/fd-share-load-data';
+import FdWrapperModel from '../mixins/fd-wrapper-model';
 import { inject as service } from '@ember/service';
 import { A } from '@ember/array';
 
-export default Route.extend({
+export default Route.extend(FdWrapperModel, FdShareLoadData, {
 
   /**
    Service that get current project contexts.
@@ -26,9 +28,9 @@ export default Route.extend({
 
     @property sheetComponentName
     @type String
-    @default 'application-model-sheet'
+    @default 'diagram-sheet'
   */
-  sheetComponentName: 'diagrams-sheet',
+  sheetComponentName: 'diagram-sheet',
 
   /**
     A hook you can implement to convert the URL into the model for this route.
@@ -53,37 +55,51 @@ export default Route.extend({
     // Get current ad diagrams.
     let allAdDiagrams = store.peekAll('fd-dev-uml-ad');
     let adDiagramsCurrentStage = allAdDiagrams.filterBy('subsystem.stage.id', stage.get('id'));
-    modelHash.ad = A(adDiagramsCurrentStage);
+    let adDiagramsCurrentStageSort = adDiagramsCurrentStage.sortBy('name');
+    let wrapAdDiagramsCurrentStage = this.wrapModel(adDiagramsCurrentStageSort);
+    modelHash.ad = A(wrapAdDiagramsCurrentStage);
 
     // Get current cad diagrams.
     let allCadDiagrams = store.peekAll('fd-dev-uml-cad');
     let cadDiagramsCurrentStage = allCadDiagrams.filterBy('subsystem.stage.id', stage.get('id'));
-    modelHash.cad = A(cadDiagramsCurrentStage);
+    let cadDiagramsCurrentStageSort = cadDiagramsCurrentStage.sortBy('name');
+    let wrapCadDiagramsCurrentStage = this.wrapModel(cadDiagramsCurrentStageSort);
+    modelHash.cad = A(wrapCadDiagramsCurrentStage);
 
     // Get current cod diagrams.
     let allCodDiagrams = store.peekAll('fd-dev-uml-cod');
     let codDiagramsCurrentStage = allCodDiagrams.filterBy('subsystem.stage.id', stage.get('id'));
-    modelHash.cod = A(codDiagramsCurrentStage);
+    let codDiagramsCurrentStageSort = codDiagramsCurrentStage.sortBy('name');
+    let wrapCodDiagramsCurrentStage = this.wrapModel(codDiagramsCurrentStageSort);
+    modelHash.cod = A(wrapCodDiagramsCurrentStage);
 
     // Get current dpd diagrams.
     let allDpdDiagrams = store.peekAll('fd-dev-uml-dpd');
     let dpdDiagramsCurrentStage = allDpdDiagrams.filterBy('subsystem.stage.id', stage.get('id'));
-    modelHash.dpd = A(dpdDiagramsCurrentStage);
+    let dpdDiagramsCurrentStageSort = dpdDiagramsCurrentStage.sortBy('name');
+    let wrapDpdDiagramsCurrentStage = this.wrapModel(dpdDiagramsCurrentStageSort);
+    modelHash.dpd = A(wrapDpdDiagramsCurrentStage);
 
     // Get current sd diagrams.
     let allSdDiagrams = store.peekAll('fd-dev-uml-sd');
     let sdDiagramsCurrentStage = allSdDiagrams.filterBy('subsystem.stage.id', stage.get('id'));
-    modelHash.sd = A(sdDiagramsCurrentStage);
+    let sdDiagramsCurrentStageSort = sdDiagramsCurrentStage.sortBy('name');
+    let wrapSdDiagramsCurrentStage = this.wrapModel(sdDiagramsCurrentStageSort);
+    modelHash.sd = A(wrapSdDiagramsCurrentStage);
 
     // Get current std diagrams.
     let allStdDiagrams = store.peekAll('fd-dev-uml-std');
     let stdDiagramsCurrentStage = allStdDiagrams.filterBy('subsystem.stage.id', stage.get('id'));
-    modelHash.std = A(stdDiagramsCurrentStage);
+    let stdDiagramsCurrentStageSort = stdDiagramsCurrentStage.sortBy('name');
+    let wrapStdDiagramsCurrentStage = this.wrapModel(stdDiagramsCurrentStageSort);
+    modelHash.std = A(wrapStdDiagramsCurrentStage);
 
     // Get current ucd diagrams.
     let allUcdDiagrams = store.peekAll('fd-dev-uml-ucd');
     let ucdDiagramsCurrentStage = allUcdDiagrams.filterBy('subsystem.stage.id', stage.get('id'));
-    modelHash.ucd = A(ucdDiagramsCurrentStage);
+    let ucdDiagramsCurrentStageSort = ucdDiagramsCurrentStage.sortBy('name');
+    let wrapUcdDiagramsCurrentStage = this.wrapModel(ucdDiagramsCurrentStageSort);
+    modelHash.ucd = A(wrapUcdDiagramsCurrentStage);
 
     return modelHash;
   },
@@ -98,6 +114,7 @@ export default Route.extend({
   setupController(controller) {
     this._super(...arguments);
 
+    controller.set('isAddMode', false);
     controller.set('sheetComponentName', this.get('sheetComponentName'));
   },
 
@@ -110,8 +127,8 @@ export default Route.extend({
 
       @method actions.willTransition
     */
-    willTransition() {
-      this.get('fdSheetService').closeSheet(this.get('sheetComponentName'));
+    willTransition(transition) {
+      this.get('fdSheetService').transitionFromSheet(transition, this.get('sheetComponentName'));
 
       this._super(...arguments);
     }

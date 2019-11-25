@@ -1,1 +1,107 @@
-{{outlet}}
+<h2 class='form-header'>
+  {{t "forms.fd-generation.generation-list"}}
+</h2>
+
+<form class="ui form flexberry-vertical-form">
+  <div class="ui stackable grid fd-list-edited">
+    <div class="row">
+      <div class="three wide column light-text">
+        {{t "forms.fd-diagrams.type-caption"}}
+      </div>
+      <div class="thirteen wide column">
+        {{
+          fd-search-input
+          value=searchValue
+        }}
+      </div>
+    </div>
+    <div class="row">
+      <button class="ui basic button table-btn {{if readonlyModeProject 'disabled' ''}}" {{action "generate"}}>
+        {{t "forms.fd-generation.generate-app"}}
+      </button>
+      <span class="light-text">{{t "forms.fd-generation.with-selected"}} {{link-to (t "forms.fd-generation.settings") "fd-setting"  class="fd-styled-link"}}</span>
+    </div>
+
+    {{!-- Running --}}
+    {{#if (not-eq filteredModel.run.length 0)}}
+    <div class="row">
+      <div class="three wide column light-text">
+        {{t "forms.fd-generation.run-caption"}}
+      </div>
+      <div class="thirteen wide column">
+        {{#each filteredModel.run as |run|}}
+          {{
+            fd-list-item
+            model=run
+            caption=(moment-format run.data.startTime "DD.MM.YYYY HH:mm:ss")
+            sheetComponentName=sheetComponentName
+          }}
+        {{/each}}
+      </div>
+    </div>
+    {{/if}}
+
+    {{!-- Success --}}
+    {{#if (not-eq filteredModel.success.length 0)}}
+    <div class="row">
+      <div class="three wide column light-text">
+        {{t "forms.fd-generation.success-caption"}}
+      </div>
+      <div class="thirteen wide column">
+        {{#each filteredModel.success as |success|}}
+          {{
+            fd-list-item
+            model=success
+            caption=(moment-format success.data.startTime "DD.MM.YYYY HH:mm:ss")
+            sheetComponentName=sheetComponentName
+          }}
+        {{/each}}
+      </div>
+    </div>
+    {{/if}}
+
+    {{!-- Error --}}
+    {{#if (not-eq filteredModel.error.length 0)}}
+    <div class="row">
+      <div class="three wide column light-text">
+        {{t "forms.fd-generation.error-caption"}}
+      </div>
+      <div class="thirteen wide column">
+        {{#each filteredModel.error as |error|}}
+          {{
+            fd-list-item
+            model=error
+            caption=(moment-format error.data.startTime "DD.MM.YYYY HH:mm:ss")
+            sheetComponentName=sheetComponentName
+          }}
+        {{/each}}
+      </div>
+    </div>
+    {{/if}}
+
+    {{!-- Other --}}
+    {{#if (not-eq filteredModel.other.length 0)}}
+    <div class="row">
+      <div class="three wide column light-text">
+        {{t "forms.fd-generation.other-caption"}}
+      </div>
+      <div class="thirteen wide column">
+        {{#each filteredModel.other as |other|}}
+          {{
+            fd-list-item
+            model=other
+            caption=(moment-format other.data.startTime "DD.MM.YYYY HH:mm:ss")
+            sheetComponentName=sheetComponentName
+          }}
+        {{/each}}
+      </div>
+    </div>
+    {{/if}}
+
+  </div>
+</form>
+
+{{fd-sheets/fd-generation-sheet
+  model=model
+  updateModel=(action 'updateModel')
+}}

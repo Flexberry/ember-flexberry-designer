@@ -4,6 +4,7 @@
 
 import { computed } from '@ember/object';
 import joint from 'npm:jointjs';
+import { isNone } from '@ember/utils';
 
 import FdUmlLink, { Link } from './fd-uml-link';
 import { QualifiedView } from './links-view/fd-qualified-view';
@@ -33,20 +34,13 @@ export default FdUmlLink.extend({
   startRoleTxt: computed.alias('primitive.LeftText.Text'),
 
   /**
-    Link description.
-
-    @property description
-    @type String
-  */
-  description: computed.alias('primitive.Name.Text'),
-
-  /**
     See {{#crossLink "FdUmlPrimitive/JointJS:method"}}here{{/crossLink}}.
 
     @method JointJS
   */
   JointJS() {
-    let properties = this.getProperties('id', 'source', 'target', 'vertices', 'labels', 'startPoint', 'endPoint');
+    let properties = this.getProperties('id', 'source', 'target', 'vertices', 'labels');
+    properties.objectModel = this;
     return new QualifiedComposition(properties);
   },
 });
@@ -70,20 +64,17 @@ export let QualifiedComposition = Link.define('flexberry.uml.QualifiedCompositio
 
   initialize: function() {
     // called from Backbone constructor
-    // call base initialize()
-    joint.dia.Link.prototype.initialize.apply(this, arguments);
-
-    this.label(2, { attrs: { text: { 'text-decoration': 'underline', } } });
+    Link.prototype.initialize.apply(this, arguments);
 
     // link markup is so complex that we need to fetch its definition
     var markup = (this.markup || this.get('markup'));
 
     // append <linearGradient> to markup, so that it covers whole path
     markup += '<linearGradient id="solids" x1="0%" y1="0%" x2="100%" y2="0%">' +
-      '<stop offset="0%" style="stop-color:rgb(255,255,255);stop-opacity:1" />' +
-      '<stop offset="50%" style="stop-color:rgb(255,255,255);stop-opacity:1" />' +
-      '<stop offset="50%" style="stop-color:rgb(0,0,0);stop-opacity:1" />' +
-      '<stop offset="100%" style="stop-color:rgb(0,0,0);stop-opacity:1" />' +
+      '<stop class="brush-color" offset="0%" style="stop-color:rgb(255,255,255);stop-opacity:1" />' +
+      '<stop class="brush-color" offset="50%" style="stop-color:rgb(255,255,255);stop-opacity:1" />' +
+      '<stop class="text-color" offset="50%" style="stop-color:rgb(0,0,0);stop-opacity:1" />' +
+      '<stop class="text-color" offset="100%" style="stop-color:rgb(0,0,0);stop-opacity:1" />' +
       '</linearGradient>';
     this.set('markup', markup);
   },
@@ -97,27 +88,24 @@ export let QualifiedComposition = Link.define('flexberry.uml.QualifiedCompositio
         return isVertical ? -10 : -5;
       case 'description':
         return 0.5;
-      default:
-        // eslint-disable-next-line no-console
-        console.log('ERROR - choose correct label name');
     }
   }
 });
 
 joint.shapes.flexberry.uml.QualifiedCompositionView = QualifiedView.extend({
-  template: [
-    '<div class="input-buffer"></div>',
-    '<div class="uml-link-inputs">',
-    '<input type="text" class="description-input underline-text" value="" />',
-    '</div>',
-    '<div class="uml-link-inputs">',
-    '<input type="text" class="start-role-input" value="" />',
-    '</div>',
-    '<div class="uml-link-inputs">',
-    '<input type="text" class="end-role-input" value="" />',
-    '</div>',
-    '<div class="uml-link-inputs">',
-    '<input type="text" class="qualified-input" value="" />',
-    '</div>'
-  ].join(''),
+  setColors() {
+    QualifiedView.prototype.setColors.apply(this, arguments);
+
+    const brushColor = this.getBrushColor();
+    const textColor = this.getTextColor();
+
+    if (!isNone(textColor)) {
+      this.model.attr('.marker-source/stroke', textColor);
+      this.model.attr('.text-color/style/stop-color', textColor);
+    }
+
+    if (!isNone(brushColor)) {
+      this.model.attr('.brush-color/style/stop-color', brushColor);
+    }
+  }
 });

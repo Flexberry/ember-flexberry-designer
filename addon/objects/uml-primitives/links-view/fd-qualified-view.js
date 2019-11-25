@@ -5,18 +5,12 @@ import { RoleView } from './fd-role-view';
 
 export let QualifiedView = RoleView.extend({
   template: [
-    '<div class="input-buffer"></div>',
     '<div class="uml-link-inputs">',
-    '<input type="text" class="description-input" value="" />',
-    '</div>',
-    '<div class="uml-link-inputs">',
+    '<input type="text" class="description-input underline-text" value="" />',
     '<input type="text" class="start-role-input" value="" />',
-    '</div>',
-    '<div class="uml-link-inputs">',
     '<input type="text" class="end-role-input" value="" />',
-    '</div>',
-    '<div class="uml-link-inputs">',
     '<input type="text" class="qualified-input" value="" />',
+    '<div class="input-buffer"></div>',
     '</div>'
   ].join(''),
 
@@ -32,7 +26,7 @@ export let QualifiedView = RoleView.extend({
 
     // Prevent paper from handling pointerdown.
     this.$box.find('.qualified-input').on('input', function() {
-      this.updateBox();
+      this.updateInputWidth('.qualified-input');
     }.bind(this));
 
     this.$box.find('.qualified-input').on('change', function(evt) {
@@ -47,13 +41,6 @@ export let QualifiedView = RoleView.extend({
   updateBox: function() {
     RoleView.prototype.updateBox.apply(this, arguments);
 
-    // Update inputs positions.
-    let qualifiedPosition = this.getLabelCoordinates(this.model.label(5).position);
-    let qualifiedDelta = this.model.label(5).inverseTextDirection ? this.$box.find('.qualified-input').width() : 0;
-    $(this.$box[4]).css({
-      left: qualifiedPosition.x - 7 - qualifiedDelta,
-      top: qualifiedPosition.y - 10,
-      transform: 'rotate(' + (this.model.get('angle') || 0) + 'deg)'
-    });
+    this.updateInputPosition(5, '.qualified-input');
   }
 });

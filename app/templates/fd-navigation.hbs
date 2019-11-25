@@ -1,1 +1,55 @@
-{{outlet}}
+<h2 class="form-header">{{t "forms.fd-navigation.caption"}}</h2>
+{{#if applicationClassIsAbsent}}
+  {{fd-button
+    caption=(t "forms.fd-navigation.create-prototype-button-text")
+    click=(action "createPrototype")
+    readonly=readonlyModeProject
+  }}
+{{else}}
+
+  {{#if readonlyMode}}
+    {{#if (not readonlyModeProject)}}
+      <div class="fd-projects-toolbar">
+        <button class="ui button basic circular" {{action "edit"}}>
+          {{t "forms.fd-navigation.edit-caption"}}
+        </button>
+      </div>
+    {{/if}}
+  {{else}}
+    <div class="fd-projects-toolbar">
+      {{fd-button
+        caption=(t "forms.fd-navigation.root-folder")
+        click=(action "addRootFolder")
+      }}
+    </div>
+  {{/if}}
+
+  {{fd-ember-jstree
+    actionReceiver=actionReceiver
+    data=model.tree
+    searchTermPlaceholder=(t "forms.fd-navigation.search")
+    treeObject=treeObject
+    typesOptions=typesOptions
+    dndOptions=dndOptions
+    plugins=plugins
+    selectNodeAction=(action 'selectNodeAction')
+    moveNodeAction=(action 'moveNodeAction')
+  }}
+
+  {{fd-sheets/fd-navigation-sheet
+    model=model.forms
+    readonlyMode=readonlyMode
+    treeObject=treeObject
+    actionReceiver=actionReceiver
+    save=(action 'save')
+    addSubFolder=(action 'addSubFolder')
+    addSubForm=(action 'addSubForm')
+  }}
+{{/if}}
+
+{{#if show}}
+  {{fd-modal-message-box
+    isError=isError
+    messageText=messageText
+  }}
+{{/if}}

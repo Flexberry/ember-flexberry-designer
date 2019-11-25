@@ -1,3 +1,5 @@
+@import '../cross-browser-mixins';
+
 @fdSheetPadding: 4em;
 @hr: 1px solid @sidebarBg;
 @fdSearchInputPadding: 0.7em @leftIndent;
@@ -9,41 +11,36 @@
   position: absolute;
   right: 0;
   top: 0;
-  transform: translate3d(100%, 0, 0);
-  transition: transform 1s ease;
   width: 100%;
+  .transform(translate3d(100%, 0, 0));
+  .transition(transform 1s ease);
 
   &.expand {
-    transform: translate3d(0, 0, 0) !important;
+    .transform(translate3d(0, 0, 0)) !important;
   }
 
   .content-mini {
     height: 100%;
-    padding: 0 0 1em;
-    transition: opacity 0.5s ease-in-out;
     width: 50%;
     position: relative;
+    .display-flex();
+    .flex-direction(column);
+    .transition(~'opacity 0.5s ease-in-out, background-color 1s');
   }
 
   .fd-sheet-header {
     padding: 0 @fdSheetPadding;
   }
 
-  .fd-sheet-body{
+  .fd-sheet-body {
     overflow: auto;
-    height: calc(~'100vh - 9.375rem - @{footerHeight}');//toolbar height
     padding: 1em @fdSheetPadding;
-  }
-
-  .fd-sheet-toolbar {
-    text-align: right;
-    height: 5rem;
-    line-height: 5rem;
+    .flex-grow(1);
   }
 
   &.diagrams-sheet {
     .form-header {
-      border-bottom: @hr;
+      // border-bottom: @hr;
     }
   }
 
@@ -52,7 +49,8 @@
   }
 }
 
-.fd-sheet .form-header,
-.ui.form .fd-sheet .form-header input[type="text"] {
-  margin-bottom: 1em;
+.fd-sheet-toolbar {
+  text-align: right;
+  height: 5rem;
+  line-height: 5rem;
 }

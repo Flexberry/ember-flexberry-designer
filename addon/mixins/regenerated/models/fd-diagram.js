@@ -99,6 +99,16 @@ export let defineProjections = function (modelClass) {
       })
     }, { hidden: true })
   });
+  modelClass.defineProjection('PrintDiagram', 'fd-diagram', {
+    primitivesStreamString: attr(''),
+    caseObjectsString: attr(''),
+    name: attr(''),    
+    subsystem: belongsTo('fd-subsystem', '', {
+      stage: belongsTo('fd-stage', '', {
+
+      })
+    }, { hidden: true })
+  });
   modelClass.defineProjection('DiagramWithSystem', 'fd-diagram', {
     primitivesStreamString: attr(''),
     caseObjectsString: attr(''),
@@ -146,11 +156,5 @@ export let defineProjections = function (modelClass) {
   });
   modelClass.defineProjection('SearchSystem', 'fd-diagram', {
     name: attr('')
-  });
-  modelClass.defineProjection('FdPreloadMetadata', 'fd-diagram', {
-    name: attr(''),
-    primitivesJsonString: attr(''),
-    primitivesStreamString: attr(''),
-    caseObjectsString: attr(''),
   });
 };

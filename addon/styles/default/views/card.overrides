@@ -1,20 +1,180 @@
 .ui.cards > .card > .content > .header:not(.ui),
 .ui.card > .content > .header:not(.ui) {
-    margin-bottom: 0.9em;
+  margin-bottom: 0.9em;
 }
 
 .ui.cards > .card > .content > .description,
 .ui.card > .content > .description {
-   margin-bottom: 0.9em; 
+  margin-bottom: 0.9em; 
 }
 
 .ui.cards > .card > .content > i.icon {
-    font-size: 1.3em;
-    color: @sidebarIconColor;
+  font-size: 1.3em;
+  color: @sidebarIconColor;
+}
+
+.ui.card.dashed {
+  border: 1px dashed @sidebarBg;
+  box-shadow: none;
+  margin: 1.2em auto 1em auto;
+
+  &:hover {
+    border: 1px dashed @sidebarBg + rgba(0, 0, 0, 0.10);
+    box-shadow: none;
+  }
+
+  .fd-round-button {
+    margin: 1em auto;
+  }
+
+  label.ui.basic.button.circular.icon {
+    box-shadow: none !important;
+
+    &:hover {
+      box-shadow: none !important;
+    }
+
+    &:active {
+      box-shadow: none !important;
+    }
+  }
 }
 
 @ind: (@rowSpacing / 2);
-.ui.cards.fd-projects {
-  margin-top: 3em;
+.ui.cards.fd-projects,
+.ui.cards.fd-list {
   margin-left: calc(~'-@{leftIndent} - @{ind}');
+}
+
+.ui.cards.fd-list {
+  > .card:first-child {
+    margin-top: 0;
+  }
+}
+
+.fd-create-cards .ui.card {
+  overflow: hidden;
+  transition: all .5s;
+  max-height: 3em;
+
+  .content {
+    padding-top: 0.6em;
+    padding-bottom: 0.6em;
+    line-height: 1.9em;
+    b {
+      color: @textColor;
+      font-weight: normal;
+    }
+  }
+
+  &.show {
+    max-height: 7em;
+  }
+}
+
+.ui.cards > .card > .button,
+.ui.card > .button {
+  &.fd-create-card-btn {
+    background-color: @fdSheetBg;
+    border-radius: @itemActiveBorderRadius !important;
+    position: absolute;
+    top: 1em;
+    right: 1em;
+    padding: 0 0.3em;
+    width: auto;
+    transition: background-color .3s;
+
+    &:hover {
+      background-color: @sidebarBg;
+    }
+  }
+}
+
+/* Architecture cards */
+@architectureCardHeight: 220px;
+@architectureCardWidth: 190px;
+.fd-architecture {
+  .ui.cards > .card {
+    transition: all 0.3s;
+    height: @architectureCardHeight;
+    .header {
+      color: fadein(@sidebarBg, 5%);
+      transition: color 0.3s;
+    }
+
+    &.expanded {
+      background: @sidebarBg;
+      width: 100%;
+      .image {
+        background: @sidebarBg;
+      }
+      .header {
+        color: @textColor;
+      }
+      .content {
+        transform: scaleX(1);
+      }
+    }
+
+    .image i.icon {
+      color: fadein(@sidebarBg, 5%);
+      margin-top: 15%;
+      margin-right: 0;
+    }
+    .field > label {
+      font-weight: normal;
+      white-space: nowrap;
+    }
+
+    input {
+      font-weight: bold;
+    }
+
+    > .content {
+      padding: 1em;
+      border: 0;
+      transform: scaleX(0);
+      transition: transform 0.3s;
+      transform-origin: left;
+    }
+    .ui.checkbox label {
+      padding-left: 1em;
+    }
+    .ui.selection.dropdown {
+      font-weight: bold;
+      padding: 0 1.975em 0 0;
+    
+      .menu {
+        width: auto;
+      }
+    
+      > .dropdown.icon {
+        padding: 0 0.91666667em;
+      }
+    }
+  }
+}
+
+.ui.card.horizontal {
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  width: @architectureCardWidth;
+
+  > .image {
+    border-radius: 0.25rem 0em 0em 0.25rem !important;
+    width: @architectureCardWidth;
+    padding: 1em;
+    padding-bottom: 2em;
+    transition: background 0.3s;
+  
+    > div:first-child {
+      height: 100%;
+    }
+  }
+}
+
+.ui.form .field > .selection.dropdown {
+  width: auto;
 }

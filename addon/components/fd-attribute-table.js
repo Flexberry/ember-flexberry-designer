@@ -1,5 +1,6 @@
 import Component from '@ember/component';
 import { A } from '@ember/array';
+import { isNone } from '@ember/utils';
 import layout from '../templates/components/fd-attribute-table';
 
 export default Component.extend({
@@ -39,10 +40,57 @@ export default Component.extend({
   */
   selectedValues: undefined,
 
+  /**
+    Flag: indicates whether to show toolbar.
+
+    @property toolbarVisible
+    @type Bool
+    @default true
+  */
+  toolbarVisible: true,
+
+  /**
+    Flag: indicates whether button is readonly.
+
+    @property readonlyButton
+    @type Bool
+    @default false
+  */
+  readonlyButton: false,
+
+  /**
+    Flag: indicates whether property is readonly.
+
+    @property readonly
+    @type Boolean
+    @default false
+   */
+  readonly: false,
+
+  /**
+    Flag: indicates whether textBox is readonly.
+
+    @property readonly
+    @type Boolean
+    @default false
+   */
+  tableTextBoxReadonly: false,
+
+  /**
+    Flag: indicates whether show edit button in row.
+
+    @property editButtonInRow
+    @type Boolean
+    @default false
+   */
+  editButtonInRow: false,
+
   init() {
     this._super(...arguments);
 
-    this.set('selectedValues', A());
+    if (isNone(this.get('selectedValues'))) {
+      this.set('selectedValues', A());
+    }
   },
 
   actions: {
@@ -53,7 +101,10 @@ export default Component.extend({
       @method actions.createValue
     */
     createValue() {
-      this.get('create')();
+      let createAction = this.get('create');
+      if (!isNone(createAction)) {
+        createAction();
+      }
     },
 
     /**
@@ -63,7 +114,10 @@ export default Component.extend({
     */
     deleteValue() {
       let selectedValues = this.get('selectedValues');
-      this.get('delete')(selectedValues);
+      let deleteAction = this.get('delete');
+      if (!isNone(deleteAction)) {
+        deleteAction(selectedValues);
+      }
 
       selectedValues.forEach((value) => value.deleteRecord());
       selectedValues.clear();
@@ -81,6 +135,19 @@ export default Component.extend({
         selectedValues.removeObject(value);
       } else {
         selectedValues.pushObject(value);
+      }
+    },
+
+    /**
+      Method edit value from table.
+
+      @method editButtonInRowAction
+      @param {Object} value value.
+    */
+    editButtonInRowAction(value) {
+      let editAction = this.get('edit');
+      if (!isNone(editAction)) {
+        editAction(value);
       }
     }
   }

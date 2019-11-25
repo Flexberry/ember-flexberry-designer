@@ -1,3 +1,17 @@
-<div class="ui vertical menu">
-  {{flexberry-sitemap sitemap=sitemap}}
-</div>
+<form class="ui form flexberry-vertical-form fd-architecture settings-form">
+  <div class="fd-sheet-toolbar">
+    <button class="ui button" {{action 'save'}}>
+      {{t "forms.fd-architecture.save-caption"}}
+    </button>
+  </div>
+  <h2 class='form-header'>
+    {{t "forms.fd-architecture.caption"}}
+  </h2>
+  <div class="fd-form-list">
+    <div class='fd-form-list-body'>
+      {{fd-architecture-subsystem/fd-gis-subsystem
+        model=model.GisSubsystemSettings
+      }}
+    </div>
+  </div>
+</form>

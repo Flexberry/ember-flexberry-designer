@@ -55,4 +55,11 @@ export let defineProjections = function (modelClass) {
   modelClass.defineProjection('TestStageName', 'fd-configuration', {
     name: attr('')
   });
+  modelClass.defineProjection('LoadDataNode', 'fd-configuration', {
+    name: attr(''),
+    description: attr(''),
+    project: belongsTo('fd-project', '', {
+
+    })
+  });
 };

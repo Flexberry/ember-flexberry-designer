@@ -3,6 +3,7 @@
 */
 
 import { computed } from '@ember/object';
+import { isArray } from '@ember/array';
 import { isEmpty } from '@ember/utils';
 import joint from 'npm:jointjs';
 
@@ -80,7 +81,7 @@ export let SequenceDiagramObject = SequenceActor.define('flexberry.uml.sequenced
   updateRectangles: function () {
     let attrs = this.get('attrs');
     let objName = this.getObjName();
-    let lines = Array.isArray(objName) ? objName : [objName];
+    let lines = isArray(objName) ? objName : [objName];
 
     let maxStringChars = 8;
     lines.forEach(function (line) {

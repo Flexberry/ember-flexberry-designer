@@ -12,6 +12,104 @@
   width: calc(~'100vw -  @{width}');
 }
 
+@iconHeight:0.4em;
+.arrow() {
+  content: '';
+  position: absolute;
+  top: calc(~'50% - @{iconHeight}');
+  border: @iconHeight solid transparent;
+}
+@iconBorder: 0.7em solid fadein(@sidebarBg, 10%);
+.left-arrow() {
+  left: 0;
+  border-left: @iconBorder;
+}
+
+.ui.accordion .title .dropdown.icon:before,
+.ui.accordion .accordion .title .dropdown.icon:before {
+  .arrow();
+  .left-arrow();
+  top: calc(~'50% - 0.5em');
+}
+
+.ui.accordion .active.title .dropdown.icon, .ui.accordion .accordion .active.title .dropdown.icon {
+  transform: rotate(90deg) translate(@iconHeight, @iconHeight);
+}
+
+// toggle sidebar buttons
+.ui.button.toggle-sidebar {
+  background: @sidebarBg;
+  border-radius: @itemActiveBorderRadius;
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+  left: 60px;
+  transition: opacity 500ms step-end;
+  z-index: 10;
+
+  &,
+  &-visible{
+    width: 1.2em;
+    height: 2.3em;
+    position: absolute;
+    top: 1rem;
+    &::before {
+      .arrow()
+    }
+  }
+
+  &::before {
+    .left-arrow();
+  }
+
+  &-visible {
+    background: @pageBackground;
+    border-radius: @itemActiveBorderRadius;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    left: auto;
+    margin: 0;
+    opacity: 0;
+    right: 0;
+
+    &::after {
+      border-top-right-radius: 0;
+      border-bottom-right-radius: 0;
+    }
+
+    &::before {
+      right: 0;
+      border-right: @iconBorder;
+    }
+  }
+
+  &::after {
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+    transition: opacity 0.1s;
+  }
+
+  &.expanded {
+    &.no-delay::after{
+      transition-delay: 0s;
+    }
+    &::after{
+      opacity: 1;
+      transition: opacity 0.7s;
+      transition-delay: .7s;
+    }
+  }
+}
+
+.fade .ui.sidebar.main.menu {
+  .toggle-sidebar-visible,
+  a.item.active,
+  a.item:hover {
+    &::after {
+      opacity: 1;
+    }
+  }
+}
+
 .toggle-sidebar-visible,
 .toggle-sidebar,
 .ui.sidebar.main.menu a.item.active,
@@ -30,45 +128,22 @@
   }
 }
 
-.toggle-sidebar.expanded::after{
-  opacity: 1;
-  transition: opacity 0.7s;
-  transition-delay: .7s;
-}
-
-.toggle-sidebar.expanded.no-delay::after{
-  transition-delay: 0s;
-}
-
-.toggle-sidebar::after {
-  border-top-left-radius: 0;
-  border-bottom-left-radius: 0;
-  transition: opacity 0.1s;
-}
-
-.toggle-sidebar-visible::after {
-  border-top-right-radius: 0;
-  border-bottom-right-radius: 0;
-}
-
-.fade .ui.sidebar.main.menu {
-  .toggle-sidebar-visible,
-  a.item.active,
-  a.item:hover {
-    &::after {
-      opacity: 1;
-    }
-  }
-}
-
 .ui.sidebar.main.menu {
   height: calc(~"100vh - @{headerHeight} - @{footerHeight}") !important;
+  overflow-x: hidden!important;
   padding: 3.5rem 0;
   top: @headerHeight;
-
   transform: translate3d(0, 0, 0);
+  .transition(width 300ms);
   visibility: visible;
   z-index: -1;
+
+  .display-flex();
+  .flex-direction(column);
+  justify-content: space-between;
+  align-content: stretch;
+  
+  min-height: 100%;
 
   .item .icon {
     color: @sidebarIconColor;
@@ -83,6 +158,18 @@
     padding: 0.6875rem 0.75rem;
     transition: @itemTransition;
     white-space: nowrap;
+
+    &:first-child {
+      margin-top: 0;
+    }
+  }
+
+  .sitemap-bottom {
+    .flex(0 1 auto);
+  }
+
+  & .flexberry-sitemap-top {
+    .flex(1 1 auto);
   }
 
   &.sidebar-mini {
@@ -90,6 +177,13 @@
 
     .item {
       font-size: 0;
+      padding-left: 0;
+      padding-right: 0;
+      text-align: center;
+
+      .icon {
+        margin-right: 0;
+      }
     }
   }
 
@@ -102,11 +196,20 @@
 
     ~ .ui.button.toggle-sidebar {
       opacity: 0;
+      pointer-events: none;
     }
     .ui.button.toggle-sidebar-visible {
       opacity: 1;
     }
   }
+
+  .current-project-name-header,
+  .current-project-name {
+    .icon {
+      visibility: hidden;
+    }
+  }
+
 
   .item.current-project-name-header {
     color: @lightTextColor;
@@ -133,6 +236,11 @@
 .ui.left.sidebar ~ .pusher {
   -webkit-transform: translate3d(@sidebarMiniWidth, 0, 0);
   transform: translate3d(@sidebarMiniWidth, 0, 0);
+}
+
+.item.current-project-name div {
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 #mobile {

@@ -3,6 +3,9 @@
 */
 import FdUmlBaseLink from './fd-uml-link';
 import { Dependency } from './fd-uml-dependency';
+import { DescriptionView } from './links-view/fd-description-view';
+
+import joint from 'npm:jointjs';
 
 /**
   An object that defines Connection link on the UML diagram.
@@ -18,7 +21,8 @@ export default FdUmlBaseLink.extend({
     @method JointJS
   */
   JointJS() {
-    let properties = this.getProperties('id', 'name', 'source', 'target', 'vertices', 'labels');
+    let properties = this.getProperties('id', 'source', 'target', 'vertices', 'labels');
+    properties.objectModel = this;
     return new Connection(properties);
   }
 });
@@ -35,3 +39,5 @@ export default FdUmlBaseLink.extend({
 export let Connection = Dependency.define('flexberry.uml.Connection', {
   attrs: { '.connection': { 'stroke-dasharray': 0 } }
 });
+
+joint.shapes.flexberry.uml.ConnectionView = DescriptionView;

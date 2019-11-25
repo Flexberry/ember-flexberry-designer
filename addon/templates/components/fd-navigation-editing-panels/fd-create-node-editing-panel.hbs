@@ -1,0 +1,63 @@
+<div class="ui stackable grid fd-list">
+  <div class="row">
+    <div class="five wide column">
+      {{t "components.fd-create-node-editing-panel.name-custom-page"}}
+    </div>
+    <div class="eleven wide column light-text">
+      {{flexberry-textbox
+        value=nameValue
+        class='fluid input'
+        placeholder=(t "components.fd-create-node-editing-panel.name-custom-page-placeholder")
+      }}
+    </div>
+  </div>
+
+   <div class="row">
+    <div class="five wide column">
+      <div>{{t "components.fd-create-node-editing-panel.url-custom-page"}}</div>
+    </div>
+    <div class="eleven wide column light-text">
+      {{flexberry-textbox
+        value=urlValue
+        class='fluid input'
+        placeholder=(t "components.fd-create-node-editing-panel.url-custom-page-placeholder")
+      }}
+    </div>
+  </div>
+
+  <div class="row">
+   <div class="five wide column">
+     <div>{{t "components.fd-create-node-editing-panel.description-caption"}}</div>
+   </div>
+   <div class="eleven wide column light-text">
+     {{flexberry-textbox
+       value=descriptionValue
+       class='fluid input'
+       placeholder=(t "components.fd-create-node-editing-panel.description-placeholder")
+     }}
+   </div>
+ </div>
+
+  <div class="sixteen wide column buttons-row">
+    <button class="ui basic button table-btn" {{action 'addUrl'}}>
+      {{t "components.fd-create-node-editing-panel.add-custom-page"}}
+    </button>
+  </div>
+</div>
+
+<h2 class="form-header">{{t "components.fd-create-node-editing-panel.choose-page"}}</h2>
+<div class="ui stackable grid fd-list">
+  {{fd-attribute-table
+    selectedValues=selectedValues
+    tableView=tableViewForForm
+    model=forms
+    toolbarVisible=false
+    tableTextBoxReadonly=true
+  }}
+
+  <div class="sixteen wide column buttons-row">
+    <button class="ui basic button table-btn {{if (eq selectedValues.length 0) 'disabled' ''}}" {{action 'addForm'}}>
+      {{t "components.fd-create-node-editing-panel.add-form"}}
+    </button>
+  </div>
+</div>

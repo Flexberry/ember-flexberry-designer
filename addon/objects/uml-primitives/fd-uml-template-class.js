@@ -3,6 +3,7 @@
 */
 
 import { computed } from '@ember/object';
+import { A, isArray } from '@ember/array';
 import $ from 'jquery';
 import joint from 'npm:jointjs';
 
@@ -23,7 +24,16 @@ export default FdUmlClass.extend({
     @property params
     @type String
   */
-  params: computed.alias('primitive.TemplateTxt.Text'),
+  params: computed('primitive.TemplateTxt.Text', {
+    get() {
+      return this.get('primitive.TemplateTxt.Text').split('\n');
+    },
+    set(key, value) {
+      let paramsTxt = (isArray(value)) ? value.join('\n') : value;
+      this.set('primitive.TemplateTxt.Text', paramsTxt);
+      return value;
+    },
+  }),
 
   /**
     See {{#crossLink "FdUmlPrimitive/JointJS:method"}}here{{/crossLink}}.
@@ -31,8 +41,8 @@ export default FdUmlClass.extend({
     @method JointJS
   */
   JointJS() {
-    let properties = this.getProperties('id', 'name', 'size', 'position', 'attributes', 'methods', 'params', 'stereotype');
-
+    let properties = this.getProperties('id', 'size', 'position');
+    properties.objectModel = this;
     return new TemplateClass(properties);
 
   },
@@ -49,8 +59,6 @@ export default FdUmlClass.extend({
 */
 export let TemplateClass = Class.define('flexberry.uml.TemplateClass', {
   attrs: {
-    rect: { 'width': 200 },
-
     '.flexberry-uml-header-rect': { 'stroke': 'black', 'stroke-width': 1, 'fill': '#ffffff', 'fill-opacity': 0, 'mask': 'url(#custom-mask)' },
     '.flexberry-uml-params-rect': {
       'stroke': 'black', 'stroke-width': 1,
@@ -59,23 +67,9 @@ export let TemplateClass = Class.define('flexberry.uml.TemplateClass', {
       'fill-opacity': 0
     },
 
-    '.flexberry-uml-params-text': {
-      'ref': '.flexberry-uml-params-rect',
-      'ref-y': 0.5,
-      'ref-x': 0.5,
-      'text-anchor': 'middle',
-      'y-alignment': 'middle',
-      'font-weight': 'bold',
-      'fill': 'black',
-      'font-size': 12,
-      'font-family': 'Arial'
-    },
-
     '.view-rect': { 'x': -1, 'y': -1, 'fill': 'white' },
     '.not-view-rect': { 'x': -1, 'y': -1, 'fill': 'black' }
   },
-
-  params: [],
 }, {
   markup: [
     '<g class="rotatable">',
@@ -93,68 +87,13 @@ export let TemplateClass = Class.define('flexberry.uml.TemplateClass', {
   ].join(''),
 
   getRectangles() {
-    let params = this.get('params');
-    let lines = Array.isArray(params) ? params : [params];
     return [
-      { type: 'params', text: lines, element: this },
-      { type: 'header', text: this.getClassName(), element: this },
-      { type: 'body', text: this.get('attributes'), element: this },
-      { type: 'footer', text: this.get('methods'), element: this }
+      { type: 'params', element: this },
+      { type: 'header', element: this },
+      { type: 'body', element: this },
+      { type: 'footer', element: this }
     ];
   },
-
-  updateRectangles() {
-    let rects = this.getRectangles();
-    let offsetY = 0;
-    let newHeight = 0;
-    let newWidth = 0;
-    let paramHeight = 0;
-    rects.forEach(function(rect) {
-      if (this.markup.includes('flexberry-uml-' + rect.type + '-rect') && rect.element.inputElements) {
-        let $buffer = rect.element.inputElements.find('.input-buffer');
-        let rectHeight = 0;
-        let inputs = rect.element.inputElements.find('.' + rect.type + '-input');
-        inputs.each(function() {
-          let $input = $(this);
-          $buffer.css('font-weight', $input.css('font-weight'));
-          $buffer.text($input.val());
-          $input.width($buffer.width() + 1);
-          if (rect.type === 'params') {
-            paramHeight = $input.height() + 4;
-            rect.element.attr('.flexberry-uml-params-rect/width', $input.width() + 20);
-            rect.element.attr('.not-view-rect/width', $input.width() + 20);
-            rect.element.attr('.not-view-rect/height', paramHeight);
-          } else if ($input.width() > newWidth) {
-            newWidth = $input.width();
-          }
-
-          rectHeight += $input.height();
-        });
-
-        rectHeight += rect.element.get('heightBottomPadding') || 0;
-        newHeight += rectHeight;
-        rect.element.attr('.flexberry-uml-' + rect.type + '-rect/height', rectHeight);
-        rect.element.attr('.flexberry-uml-' + rect.type + '-rect/transform', 'translate(0,' + offsetY + ')');
-
-        offsetY += rectHeight;
-      }
-    }, this);
-
-    newWidth += (this.get('widthPadding') || 0) * 2;
-    rects.forEach(function(rect) {
-      if (rect.type === 'params') {
-        rect.element.attr('.flexberry-uml-params-rect/transform', 'translate(' + (newWidth - 10) + ',15)');
-        rect.element.attr('.not-view-rect/transform', 'translate(' + (newWidth - 10) + ',' + (15 - paramHeight) + ')');
-      } else {
-        rect.element.attr('.flexberry-uml-' + rect.type + '-rect/width', newWidth);
-      }
-    });
-
-    this.attr('.view-rect/width', newWidth + 2);
-    this.attr('.view-rect/height', newHeight + 2);
-
-    this.resize(newWidth, newHeight);
-  }
 });
 
 joint.shapes.flexberry.uml.TemplateClassView = joint.shapes.flexberry.uml.ClassView.extend({
@@ -176,7 +115,7 @@ joint.shapes.flexberry.uml.TemplateClassView = joint.shapes.flexberry.uml.ClassV
       let textareaText = $textarea.val();
       let rows = textareaText.split(/[\n\r|\r|\n]/);
       $textarea.prop('rows', rows.length);
-      this.model.updateRectangles();
+      this.updateRectangles();
     }.bind(this));
 
     this.$box.find('.params-input').on('change', function (evt) {
@@ -184,12 +123,15 @@ joint.shapes.flexberry.uml.TemplateClassView = joint.shapes.flexberry.uml.ClassV
       let textareaText = $textarea.val();
       let rows = textareaText.split(/[\n\r|\r|\n]/);
       $textarea.prop('rows', rows.length);
-      this.model.set('params', textareaText);
+      let objectModel = this.model.get('objectModel');
+      objectModel.set('params', textareaText);
     }.bind(this));
 
+    let objectModel = this.model.get('objectModel');
     let paramsInput = this.$box.find('.params-input');
-    paramsInput.prop('rows', this.model.get('params').split(/[\n\r|\r|\n]/).length || 1);
-    paramsInput.val(this.model.get('params'));
+    paramsInput.prop('rows', objectModel.get('params').length || 1);
+    paramsInput.val(objectModel.get('params').join('\n'));
+    this.updateRectangles();
   },
 
   updateBox: function() {
@@ -220,8 +162,83 @@ joint.shapes.flexberry.uml.TemplateClassView = joint.shapes.flexberry.uml.ClassV
     mask.setAttribute('id', maskId);
     let attrs = this.model.get('attrs');
     attrs['.flexberry-uml-header-rect'].mask = 'url(#' + maskId + ')';
-    this.model.updateRectangles();
+    this.updateRectangles();
+    this.update();
 
     return this;
   },
+
+  getButtons() {
+    let buttons = joint.shapes.flexberry.uml.ClassView.prototype.getButtons.apply(this, arguments);
+    let openEditFormButton = buttons.findBy('name', 'open-edit-form-button');
+    buttons.removeObject(openEditFormButton);
+
+    return buttons;
+  },
+
+  updateRectangles() {
+    let rects = this.model.getRectangles();
+    let offsetY = 0;
+    let newHeight = 0;
+    let newWidth = 0;
+    let paramHeight = 0;
+    rects.forEach(function(rect) {
+      if (this.markup.includes('flexberry-uml-' + rect.type + '-rect') && rect.element.inputElements) {
+        let rectHeight = 0;
+        let inputs = rect.element.inputElements.find('.' + rect.type + '-input');
+        let inputsDiv = inputs[0].parentElement;
+        if (! inputsDiv.parentElement || ! inputsDiv.parentElement.className.includes('joint-paper')) {
+          let jointPaper = $('.joint-paper')[0];
+          jointPaper.appendChild(inputsDiv);
+        }
+        let $buffer = rect.element.inputElements.find('.input-buffer');
+        inputs.each(function() {
+          let $input = $(this);
+          $buffer.css('font-weight', $input.css('font-weight'));
+          $buffer.text($input.val());
+          $input.width($buffer.width() + 1);
+          if (rect.type === 'params') {
+            paramHeight = $input.height() + 4;
+            rect.element.attr('.flexberry-uml-params-rect/width', $input.width() + 20);
+            rect.element.attr('.not-view-rect/width', $input.width() + 20);
+            rect.element.attr('.not-view-rect/height', paramHeight);
+          } else if ($input.width() > newWidth) {
+            newWidth = $input.width();
+          }
+
+          rectHeight += $input.height();
+        });
+
+        rectHeight += rect.element.get('heightBottomPadding') || 0;
+        newHeight += rectHeight;
+        rect.element.attr('.flexberry-uml-' + rect.type + '-rect/height', rectHeight);
+        rect.element.attr('.flexberry-uml-' + rect.type + '-rect/transform', 'translate(0,' + offsetY + ')');
+
+        offsetY += rectHeight;
+      }
+    }, this.model);
+
+    newWidth += (this.model.get('widthPadding') || 0) * 2;
+    rects.forEach(function(rect) {
+      if (rect.type === 'params') {
+        rect.element.attr('.flexberry-uml-params-rect/transform', 'translate(' + (newWidth - 10) + ',15)');
+        rect.element.attr('.not-view-rect/transform', 'translate(' + (newWidth - 10) + ',' + (15 - paramHeight) + ')');
+      } else {
+        rect.element.attr('.flexberry-uml-' + rect.type + '-rect/width', newWidth);
+      }
+    });
+
+    this.model.attr('.view-rect/width', newWidth + 2);
+    this.model.attr('.view-rect/height', newHeight + 2);
+
+    this.model.resize(newWidth, newHeight);
+    if (this.model.get('highlighted')) {
+      this.unhighlight();
+      this.highlight();
+    }
+  },
+
+  getSizeChangers() {
+    return A();
+  }
 });

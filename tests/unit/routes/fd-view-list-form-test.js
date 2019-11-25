@@ -4,10 +4,12 @@ moduleFor('route:fd-view-list-form', 'Unit | Route | fd view list form', {
   // Specify the other units that are required for this test.
   // needs: ['controller:foo']
   needs: [
+    'service:cols-config-menu',
     'service:objectlistviewEvents',
     'service:formLoadTimeTracker',
     'service:colsConfigMenu',
-    'service:appState'
+    'service:appState',
+    'service:adv-limit',
   ]
 });
 

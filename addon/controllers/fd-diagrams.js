@@ -1,19 +1,21 @@
 import Controller from '@ember/controller';
+import FdSheetCloseConfirm from '../mixins/fd-sheet-close-confirm';
+import FdReadonlyProjectMixin from '../mixins/fd-readonly-project';
+import EmberObject, { computed, observer } from '@ember/object';
 import { inject as service } from '@ember/service';
-import { A } from '@ember/array';
-import { observer, computed } from '@ember/object';
 import { isBlank, isNone } from '@ember/utils';
-import { schedule } from '@ember/runloop';
-import { all } from 'rsvp';
+import { A } from '@ember/array';
 
-export default Controller.extend({
+export default Controller.extend(FdSheetCloseConfirm, FdReadonlyProjectMixin, {
+
   /**
-    Service for managing the state of the application.
+   Service that get current project contexts.
 
-    @property appState
-    @type AppStateService
-  */
-  appState: service(),
+   @property currentProjectContext
+   @type {Class}
+   @default service()
+   */
+  currentProjectContext: service('fd-current-project-context'),
 
   /**
     Service for managing the state of the sheet component.
@@ -22,15 +24,6 @@ export default Controller.extend({
     @type FdSheetService
   */
   fdSheetService: service(),
-
-  /**
-    Value selected entity.
-
-    @property selectedElement
-    @type Object
-    @default undefined
-  */
-  selectedElement: undefined,
 
   /**
     Value search input.
@@ -51,12 +44,13 @@ export default Controller.extend({
   sheetComponentName: '',
 
   /**
-    Stores classes that was created, but not yet saved, in the diagram.
+    Flag: indicates whether to show create editing panel.
 
-    @property createdClasses
-    @type Ember.Array
+    @property isAddMode
+    @type Bool
+    @default false
   */
-  createdClasses: A(),
+  isAddMode: false,
 
   /**
     Ember.observer, watching property `searchValue` and send action from 'fd-sheet' component.
@@ -72,13 +66,29 @@ export default Controller.extend({
   }),
 
   /**
-    Update model for search
+    Update model for sort.
+
+    @method sortModel
+  */
+  sortModel: computed('model', function() {
+    let model = this.get('model');
+    let newModel = {};
+    for (let prop in model) {
+      let newdata = model[prop].sortBy('data.name');
+      newModel[prop] = A(newdata);
+    }
+
+    return newModel;
+  }),
+
+  /**
+    Update model for search.
 
     @method filteredModel
   */
-  filteredModel: computed('model', 'searchValue', function() {
+  filteredModel: computed('sortModel', 'searchValue', function() {
     let searchStr = this.get('searchValue');
-    let model = this.get('model');
+    let model = this.get('sortModel');
 
     if (isBlank(searchStr)) {
       return model;
@@ -86,7 +96,7 @@ export default Controller.extend({
 
     searchStr = searchStr.trim().toLocaleLowerCase();
     let filterFunction = function(item) {
-      let name = item.get('name');
+      let name = item.data.get('name');
       if (!isNone(name) && name.toLocaleLowerCase().indexOf(searchStr) !== -1) {
         return item;
       }
@@ -102,97 +112,46 @@ export default Controller.extend({
     return newModel;
   }),
 
-  init() {
-    this._super(...arguments);
-
-    this.get('fdSheetService').on('openSheetTriggered', this, this.openSheet);
-    this.get('fdSheetService').on('closeSheetTriggered', this, this.closeSheet);
-  },
-
-  /**
-    Deactivate item from selectedElement.
-
-     @method deactivateListItem
-  */
-  deactivateListItem() {
-    let selectedElement = this.get('selectedElement');
-    if (!isNone(selectedElement)) {
-      let model = selectedElement.get('model');
-      model.rollbackAll();
-      this.set('isDiagramVisible', false);
-      selectedElement.set('fdListItemActive', false);
-    }
-  },
-
-  /**
-    Opening sheet.
-
-     @method openSheet
-     @param {String} sheetName Sheet's dbName
-     @param {Object} currentItem Current list item
-  */
-  openSheet(sheetName, currentItem) {
-    let sheetComponentName = this.get('sheetComponentName');
-    if (sheetComponentName === sheetName) {
-      this.deactivateListItem();
-      this.set('selectedElement', currentItem);
-      schedule('afterRender', this, function() {
-        this.set('isDiagramVisible', true);
-      });
-    }
-  },
-
-  /**
-    Closing sheet.
-
-     @method closeSheet
-     @param {String} sheetName Sheet's dbName
-  */
-  closeSheet(sheetName) {
-    let sheetComponentName = this.get('sheetComponentName');
-    if (sheetComponentName === sheetName) {
-      this.deactivateListItem();
-      this.set('selectedElement', undefined);
-    }
-  },
-
-  /**
-    Save changes in primitives.
-
-    @method savePrimitives
-  */
-  savePrimitives() {
-    let model = this.get('selectedElement.model');
-    let primitives = model.get('primitives');
-    model.set('primitivesJsonString', JSON.stringify(primitives));
-    let createdClasses = this.get('createdClasses');
-    let promises = createdClasses.map(c => c.save());
-    createdClasses.clear();
-
-    return all(promises);
-  },
-
   actions: {
     /**
-      Save 'selectedElement'.
+      Create new diagram.
 
-       @method actions.save
+       @method actions.createDiagram
+       @param {String} modelNamePart Part modelName.
     */
-    save() {
-      let model = this.get('selectedElement.model');
-      this.get('appState').loading();
-      this.savePrimitives().then(() => {
-        model.save()
-        .catch((error) => {
-          this.set('error', error);
-        })
-        .finally(() => {
-          this.get('appState').reset();
-        });
-      }).catch((error) => {
-        this.set('error', error);
-        this.get('appState').reset();
+    createDiagram(modelNamePart) {
+      let store = this.get('store');
+      let currentSystem = this.get('currentProjectContext').getAutogeneratedSystemModel();
+      let newDiagram = store.createRecord(`fd-dev-uml-${modelNamePart}`, {
+        name: '',
+        primitivesJsonString: '[]',
+        caseObjectsString: '',
+        subsystem: currentSystem
       });
+
+      let model = { data: newDiagram, active: true };
+
+      this.set('isAddMode', false);
+      this.get('fdSheetService').openSheet(this.get('sheetComponentName'), EmberObject.create({ model: model }));
+    },
+
+    /**
+      Open create diagrams edit panel.
+
+       @method actions.openCreateDiagramsEditPanel
+    */
+    openCreateDiagramsEditPanel() {
+      this.set('isAddMode', true);
+      this.get('fdSheetService').openSheet(this.get('sheetComponentName'));
+    },
+
+    /**
+      This method will notify all observers that the model changed value.
+
+       @method actions.updateModel
+    */
+    updateModel() {
+      this.notifyPropertyChange('model');
     }
   }
 });

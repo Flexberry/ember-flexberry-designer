@@ -1,11 +1,12 @@
 /**
   @module ember-flexberry-designer
 */
+import joint from 'npm:jointjs';
+import { isNone } from '@ember/utils';
 
 import FdUmlLink from './fd-uml-link';
 import { Link } from './fd-uml-link';
 import { MultiplicityView } from './links-view/fd-multiplicity-view';
-import joint from 'npm:jointjs';
 
 /**
   An object that describes an aggregation link on the UML diagram.
@@ -21,7 +22,8 @@ export default FdUmlLink.extend({
     @method JointJS
   */
   JointJS() {
-    let properties = this.getProperties('id', 'source', 'target', 'vertices', 'labels', 'startPoint', 'endPoint');
+    let properties = this.getProperties('id', 'source', 'target', 'vertices', 'labels');
+    properties.objectModel = this;
     return new Aggregation(properties);
   },
 });
@@ -52,11 +54,23 @@ export let Aggregation = Link.define('flexberry.uml.Aggregation', {
         return isVertical ? -10 : -5;
       case 'description':
         return 0.5;
-      default:
-        // eslint-disable-next-line no-console
-        console.log('ERROR - choose correct label name');
     }
   },
 });
 
-joint.shapes.flexberry.uml.AggregationView = MultiplicityView;
+joint.shapes.flexberry.uml.AggregationView = MultiplicityView.extend({
+  setColors() {
+    MultiplicityView.prototype.setColors.apply(this, arguments);
+
+    const textColor = this.getTextColor();
+    const brushColor = this.getBrushColor();
+
+    if (!isNone(textColor)) {
+      this.model.attr('.marker-source/stroke', textColor);
+    }
+
+    if (!isNone(brushColor)) {
+      this.model.attr('.marker-source/fill', brushColor);
+    }
+  }
+});

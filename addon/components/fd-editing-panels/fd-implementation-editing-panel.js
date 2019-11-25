@@ -5,13 +5,23 @@ import { A } from '@ember/array';
 import FdUpdateBsValueMixin from '../../mixins/fd-editing-panels/fd-update-bs-value';
 import FdUpdateAttributeValueMixin from '../../mixins/fd-editing-panels/fd-update-attribute-value';
 import FdUpdateMethodeValueMixin from '../../mixins/fd-editing-panels/fd-update-method-value';
+import FdReadonlyModeMixin from '../../mixins/fd-editing-panels/fd-readonly-mode';
 import layout from '../../templates/components/fd-editing-panels/fd-implementation-editing-panel';
 
 export default Component.extend(
   FdUpdateBsValueMixin,
   FdUpdateAttributeValueMixin,
-  FdUpdateMethodeValueMixin, {
+  FdUpdateMethodeValueMixin,
+  FdReadonlyModeMixin, {
   layout,
+
+  /**
+    Store of current application.
+
+    @property store
+    @type DS.Store or subclass
+  */
+  store: service('store'),
 
   /**
     Classes data.
@@ -21,14 +31,6 @@ export default Component.extend(
     @default undefined
   */
   model: undefined,
-
-  /**
-    Service for managing the state of the sheet component.
-
-    @property fdSheetService
-    @type FdSheetService
-  */
-  fdSheetService: service(),
 
   /**
     Table headers for view.
@@ -80,12 +82,31 @@ export default Component.extend(
     },
 
     /**
+      Method edit view.
+
+      @method actions.createView
+    */
+    editView(view) {
+      this.send('openViewSheet', view);
+    },
+
+    /**
       Method open view sheet.
 
       @method actions.openViewSheet
     */
     openViewSheet(selectView) {
       this.get('openViewSheetController')(selectView);
+    },
+
+    /**
+      Changes AccessType.
+
+      @method actions.changeAccessType
+      @param {Object} value An object with a new value in the `checked` property.
+    */
+    changeAccessType(value) {
+      this.set('model.accessType', value.checked ? 'this' : 'none');
     }
   }
 });
