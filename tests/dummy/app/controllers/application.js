@@ -319,7 +319,11 @@ export default Controller.extend({
       @method actions.toggleSidebarMobile
     */
     toggleSidebarMobile() {
-      this.transitionToRoute('mobile/sidebar');
+      let sidebar = $('.ui.sidebar.main.menu');
+
+      sidebar.sidebar('setting', 'transition', 'overlay')
+      .sidebar('attach events', '.ui.sidebar.main.menu a.item')
+      .sidebar('toggle');
     }
   }
 });

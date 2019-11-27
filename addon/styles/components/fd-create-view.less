@@ -64,9 +64,11 @@
   }
 }
 
-.ui.grid.fd-view-table-attr {
+.pusher:not(.mobile) .ui.grid.fd-view-table-attr {
   margin-left: calc(~'-@{leftIndent}');
+}
 
+.ui.grid.fd-view-table-attr {
   .row.active {
     .column {
       background: @sidebarBg;

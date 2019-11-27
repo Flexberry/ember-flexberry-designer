@@ -41,3 +41,14 @@
     box-shadow: none;
   }
 }
+
+#mobile {
+  .basic.button.table-btn:not(.icon) {
+    margin-bottom: 1em;
+  }
+  .fd-projects-toolbar {
+    .basic.button.table-btn:not(.icon) {
+      margin-top: 1em;
+    }
+  }
+}

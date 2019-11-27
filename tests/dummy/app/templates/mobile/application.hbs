@@ -3,12 +3,37 @@
   {{outlet "modal"}}
 {{else}}
 
-<button {{action 'toggleSidebarMobile'}} class="ui toggle-sidebar-mobile icon button">
-  <i class="caret right icon"></i>
-</button>
+  {{#flexberry-sidebar
+    class="vertical main menu mobile"
+    settings=(hash
+      closable=false
+      dimPage=false
+      onShow=(action "updateWidth")
+      onHidden=(action "updateWidth")
+      transition='overlay')
+
+  }}
+    {{#if currentProjectName}}
+      <div class="item current-project-name-header">
+        <div>
+          <i class="icon"></i>
+          {{t 'forms.application.sitemap.root.fd-current-project-name-header.caption'}}
+        </div>
+      </div>
+      <div class="item current-project-name">
+        <div>
+          <i class="icon"></i>
+          {{currentProjectName}}
+        </div>
+      </div>
+      {{fd-flexberry-sitemap sitemap=sitemap}}
+    {{/if}}
+    {{fd-flexberry-sitemap sitemap=sitemapBottom}}
+  {{/flexberry-sidebar}}
 <div id="mobile" class="pusher mobile">
+  <button {{action 'toggleSidebarMobile'}} class="ui toggle-sidebar icon button"></button>
   <div class="ui form {{appState.state}}">
-    <div class="full height" style="min-height: 94.8vh!important;" >
+    <div class="full height">
       <div class="flexberry-content">
         <div class="ui main container fluid">
           {{outlet}}
@@ -17,6 +42,7 @@
     </div>
   </div>
 </div>
+
 <div class="ui main container">
   {{outlet "modal"}}
 </div>
@@ -50,11 +76,18 @@
     </div>
     <div class="right menu">
       {{flexberry-dropdown
+        class="compact theme"
+        items=themes
+        value='light'
+        onChange=(action 'changeTheme')
+        settings=(hash direction="upward")
+      }}
+      {{flexberry-dropdown
         class="compact"
         items=locales
         value=i18n.locale
         placeholder=(t "forms.application.header.menu.language-dropdown.placeholder")
-        direction="upward"
+        settings=(hash direction="upward")
       }}
     </div>
   </div>

@@ -232,8 +232,8 @@
 }
 
 // Маленький сайдбар в 60px
-.ui.left.sidebar ~ .fixed,
-.ui.left.sidebar ~ .pusher {
+.ui.left.sidebar ~ .fixed:not(#mobile),
+.ui.left.sidebar ~ .pusher:not(#mobile) {
   -webkit-transform: translate3d(@sidebarMiniWidth, 0, 0);
   transform: translate3d(@sidebarMiniWidth, 0, 0);
 }
@@ -243,10 +243,26 @@
   text-overflow: ellipsis;
 }
 
+/* Mobile */
 #mobile {
-  .ui.sidebar.main.menu {
-    width: 100%;
-    z-index: 2;
-    padding: 3.5rem;
+  .ui.visible.left.sidebar ~ &.pusher {
+    -webkit-transform: translate3d(100%, 0, 0) !important;
+    transform: translate3d(100%, 0, 0) !important;
   }
+
+  .ui.button.toggle-sidebar {
+    left: 0;
+  }
+
+  .pushable.fade & .ui.button.toggle-sidebar,
+  .pushable.fade & .ui.button.toggle-sidebar-visible {
+    z-index: 0;
+  }
+}
+
+.mobile.ui.sidebar.main.menu {
+  display: block !important;
+  width: 100%;
+  z-index: 2;
+  padding: 3.5rem;
 }
