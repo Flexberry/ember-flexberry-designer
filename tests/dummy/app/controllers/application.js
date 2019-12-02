@@ -319,18 +319,11 @@ export default Controller.extend({
       @method actions.toggleSidebarMobile
     */
     toggleSidebarMobile() {
-      $('.ui.sidebar.main.menu').sidebar('toggle');
-      let sidebarVisible = $('.inverted.vertical.main.menu').hasClass('visible');
-      this.set('_sidebarVisible', !sidebarVisible);
-      if (sidebarVisible) {
-        $('.sidebar.icon.text-menu-show').removeClass('hidden');
-        $('.sidebar.icon.text-menu-hide').addClass('hidden');
-        $('.bgw-opacity').addClass('hidden');
-      } else {
-        $('.sidebar.icon.text-menu-show').addClass('hidden');
-        $('.sidebar.icon.text-menu-hide').removeClass('hidden');
-        $('.bgw-opacity').removeClass('hidden');
-      }
+      let sidebar = $('.ui.sidebar.main.menu');
+
+      sidebar.sidebar('setting', 'transition', 'overlay')
+      .sidebar('attach events', '.ui.sidebar.main.menu a.item')
+      .sidebar('toggle');
     }
   }
 });

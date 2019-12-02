@@ -54,3 +54,35 @@
   height: 5rem;
   line-height: 5rem;
 }
+
+/* Mobile */
+#mobile {
+  .fd-sheet {
+
+    &.visible {
+      -webkit-transform: translate3d(0, 0, 0) !important;
+      transform: translate3d(0px, 0px, 0px)!important;
+    }
+
+    .content-mini {
+      width: 100%;
+    }
+
+    @fdSheetPadding: 2em;
+    .fd-sheet-header {
+      padding: 0 @fdSheetPadding;
+    }
+  
+    .fd-sheet-body {
+      padding: 1em @fdSheetPadding;
+    }
+  }
+
+  .fd-expand.button {
+    display: none;
+  }
+
+  .fade & .full.height{
+    overflow: hidden;
+  }
+}

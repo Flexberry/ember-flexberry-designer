@@ -41,8 +41,8 @@
 }
 
 @ind: (@rowSpacing / 2);
-.ui.cards.fd-projects,
-.ui.cards.fd-list {
+.pusher:not(.mobile) .ui.cards.fd-projects,
+.pusher:not(.mobile) .ui.cards.fd-list {
   margin-left: calc(~'-@{leftIndent} - @{ind}');
 }
 
@@ -177,4 +177,14 @@
 
 .ui.form .field > .selection.dropdown {
   width: auto;
+}
+
+/* Mobile */
+#mobile {
+  .fd-architecture .ui.cards > .card.expanded {
+    width: @architectureCardWidth;
+  }
+  .fd-architecture .ui.cards > .card.expanded .content {
+    display: none;
+  }
 }

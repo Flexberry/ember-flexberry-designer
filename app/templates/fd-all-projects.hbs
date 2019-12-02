@@ -5,9 +5,11 @@
 
   <div class="ui one column grid fd-projects-toolbar">
     {{fd-search-input value=search}}
-    {{#link-to "fd-all-projects.new" (query-params nameFromSearch=search) class=(concat "ui basic button table-btn" (if readonlyModeProject " disabled" ""))}}
-      {{t "forms.fd-all-projects.create-project"}}
-    {{/link-to}}
+    <div> 
+      {{#link-to "fd-all-projects.new" (query-params nameFromSearch=search) class=(concat "ui basic button table-btn" (if readonlyModeProject " disabled" ""))}}
+        {{t "forms.fd-all-projects.create-project"}}
+      {{/link-to}}
+    </div>
   </div>
 {{/if}}
 
