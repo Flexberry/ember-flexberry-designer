@@ -7050,6 +7050,12 @@ body .ui.inverted::-webkit-scrollbar-thumb:hover {
   border: 1px dashed rgba(0, 0, 0, 0.312);
   box-shadow: none;
 }
+#mobile .basic.button.table-btn:not(.icon) {
+  margin-bottom: 1em;
+}
+#mobile .fd-projects-toolbar .basic.button.table-btn:not(.icon) {
+  margin-top: 1em;
+}
 /*!
  * # Semantic UI - Container
  * http://github.com/semantic-org/semantic-ui/
@@ -44654,8 +44660,8 @@ a.ui.card:hover,
 .ui.card.dashed label.ui.basic.button.circular.icon:active {
   box-shadow: none !important;
 }
-.ui.cards.fd-projects,
-.ui.cards.fd-list {
+.pusher:not(.mobile) .ui.cards.fd-projects,
+.pusher:not(.mobile) .ui.cards.fd-list {
   margin-left: calc(-2.5rem - 0.875em);
 }
 .ui.cards.fd-list > .card:first-child {
@@ -44766,6 +44772,13 @@ a.ui.card:hover,
 }
 .ui.form .field > .selection.dropdown {
   width: auto;
+}
+/* Mobile */
+#mobile .fd-architecture .ui.cards > .card.expanded {
+  width: 190px;
+}
+#mobile .fd-architecture .ui.cards > .card.expanded .content {
+  display: none;
 }
 /*!
  * # Semantic UI - Comment
@@ -64775,7 +64788,7 @@ body.pushable > .pusher {
 .pushable > .pusher {
   background: #3e3e3e;
 }
-.full.height {
+.pusher:not(.mobile) .full.height {
   width: calc(100vw -  300px);
 }
 .ui.accordion .title .dropdown.icon:before,
@@ -64972,14 +64985,32 @@ body.pushable > .pusher {
   -webkit-transform: translate3d(300px, 0, 0) !important;
   transform: translate3d(300px, 0, 0) !important;
 }
-.ui.left.sidebar ~ .fixed,
-.ui.left.sidebar ~ .pusher {
+.ui.left.sidebar ~ .fixed:not(#mobile),
+.ui.left.sidebar ~ .pusher:not(#mobile) {
   -webkit-transform: translate3d(60px, 0, 0);
   transform: translate3d(60px, 0, 0);
 }
 .item.current-project-name div {
   overflow: hidden;
   text-overflow: ellipsis;
+}
+/* Mobile */
+.ui.visible.left.sidebar ~ #mobile.pusher {
+  -webkit-transform: translate3d(100%, 0, 0) !important;
+  transform: translate3d(100%, 0, 0) !important;
+}
+#mobile .ui.button.toggle-sidebar {
+  left: 0;
+}
+.pushable.fade #mobile .ui.button.toggle-sidebar,
+.pushable.fade #mobile .ui.button.toggle-sidebar-visible {
+  z-index: 0;
+}
+.mobile.ui.sidebar.main.menu {
+  display: block !important;
+  width: 100%;
+  z-index: 2;
+  padding: 3.5rem;
 }
 /*!
  * # Semantic UI - Sticky
@@ -69543,6 +69574,10 @@ body.pushable > .pusher {
   right: -2em;
   top: 0;
 }
+/* Mobile */
+#mobile .ui.grid.fd-table > .row .column.fd-table-checkbox {
+  left: -1.6em;
+}
 .ui.grid.fd-list.view-definition {
   margin: 0;
 }
@@ -69590,7 +69625,7 @@ body.pushable > .pusher {
 .ui.equal.width.grid.fd-view-table-attr .column.buttons {
   padding-right: 0.7em;
 }
-.ui.grid.fd-view-table-attr {
+.pusher:not(.mobile) .ui.grid.fd-view-table-attr {
   margin-left: calc(-2.5rem);
 }
 .ui.grid.fd-view-table-attr .row.active .column {
@@ -69731,6 +69766,40 @@ body.pushable > .pusher {
 }
 .ui.grid.fd-list-edited > .row:first-child {
   border-top: 1px solid rgba(0, 0, 0, 0.14);
+}
+/* Mobile */
+@media only screen and (max-width: 767px) {
+  .ui.grid.fd-list > .row > .wide.column,
+  .ui.grid.fd-list-edited > .row > .wide.column {
+    padding-left: 0 !important;
+  }
+  .ui.grid.fd-list > .row > .wide.column:nth-child(2n),
+  .ui.grid.fd-list-edited > .row > .wide.column:nth-child(2n) {
+    padding-top: 0 !important;
+  }
+  .ui.grid .ui.stackable.grid,
+  .ui.segment:not(.vertical) .ui.stackable.page.grid {
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+  }
+  .ui.accordion .title:not(.ui) {
+    padding: 1em 0em;
+  }
+  .ui.grid > .row {
+    margin: 0;
+  }
+  .ui.grid.fd-list .flexberry-toggler .flexberry-toggler-content .row:last-child,
+  .ui.grid.fd-list-edited .flexberry-toggler .flexberry-toggler-content .row:last-child {
+    padding-bottom: 1em;
+  }
+}
+#mobile .ui.grid.fd-list .fd-list-item span,
+#mobile .ui.grid.fd-list-edited .fd-list-item span {
+  padding: 0.5em 0;
+}
+#mobile .ui.grid.fd-list .flexberry-toggler .title.active,
+#mobile .ui.grid.fd-list-edited .flexberry-toggler .title.active {
+  margin-bottom: 0;
 }
 .red {
   color: #DB2828;
@@ -70078,6 +70147,26 @@ body.pushable > .pusher {
   text-align: right;
   height: 5rem;
   line-height: 5rem;
+}
+/* Mobile */
+#mobile .fd-sheet.visible {
+  -webkit-transform: translate3d(0, 0, 0) !important;
+  transform: translate3d(0px, 0px, 0px) !important;
+}
+#mobile .fd-sheet .content-mini {
+  width: 100%;
+}
+#mobile .fd-sheet .fd-sheet-header {
+  padding: 0 2em;
+}
+#mobile .fd-sheet .fd-sheet-body {
+  padding: 1em 2em;
+}
+#mobile .fd-expand.button {
+  display: none;
+}
+.fade #mobile .full.height {
+  overflow: hidden;
 }
 .joint-paper.joint-theme-default {
   background-color: transparent;
@@ -70440,7 +70529,7 @@ h1 {
 }
 .social-icons {
   display: flex;
-  min-width: 300px;
+  min-width: 260px;
   justify-content: space-evenly;
   align-items: center;
 }
@@ -70477,13 +70566,18 @@ h1 {
     font-size: 14px;
   }
 }
+html.mobile {
+  font-size: 16px;
+}
 @media print {
   @page {
     size: landscape;
   }
 }
-.ui.grid.fd-projects-toolbar {
+.pusher:not(.mobile) .ui.grid.fd-projects-toolbar {
   margin-left: calc(-2.5rem - 1em);
+}
+.ui.grid.fd-projects-toolbar {
   margin-top: 0;
   margin-bottom: 3em;
 }
@@ -70735,8 +70829,11 @@ i.icon.table:before {
   margin-left: -10px !important;
   margin-top: -3px !important;
 }
-.ui.buttons:not(.basic):not(.inverted) > .button,
-.ui.buttons > .ui.button:not(.basic):not(.inverted) {
+.ui.secondary.menu.no-margin .ui.button {
+  color: rgba(0, 0, 0, 0.2);
+}
+.ui.secondary.menu.no-margin .ui.buttons:not(.basic):not(.inverted) > .button,
+.ui.secondary.menu.no-margin .ui.buttons > .ui.button:not(.basic):not(.inverted) {
   border: none;
   background: 0 0!important;
 }
@@ -70829,5 +70926,15 @@ i.icon.chevron.down:before {
   background-image: url(images/fd-item.png);
   background-repeat: no-repeat;
   background-position-y: 50%;
+}
+/* Mobile */
+#mobile .ui.main.container.fluid {
+  padding: 3em 1em 0;
+}
+#mobile .ui.main.container.fluid .settings-form {
+  margin-top: -3em;
+}
+#mobile .ui.vertical.footer.segment > .flex-container > .ui.text.menu {
+  padding: 0px;
 }
 /*# sourceMappingURL=/assets/dark.css.map */
