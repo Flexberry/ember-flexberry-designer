@@ -120,8 +120,8 @@ export default FdBaseSheet.extend({
       } else {
         this.set('_timer', undefined);
 
-        let selectedValue = this.get('selectedValue');
-        this.get('model.run').removeObject(selectedValue);
+        let generationValue = this.get('model.run').findBy('data.id', this.get('selectedValue.id'));
+        this.get('model.run').removeObject(generationValue);
 
         let model;
         switch (generation.get('state')) {
@@ -138,7 +138,7 @@ export default FdBaseSheet.extend({
             model = this.get('model.other');
         }
 
-        model.unshiftObject(selectedValue);
+        model.unshiftObject(generationValue);
         this.get('updateModel')();
       }
     });
