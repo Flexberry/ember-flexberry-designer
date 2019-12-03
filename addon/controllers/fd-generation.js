@@ -7,7 +7,7 @@ import FdReadonlyProjectMixin from '../mixins/fd-readonly-project';
 import { inject as service } from '@ember/service';
 import { A } from '@ember/array';
 import { isNone, isBlank } from '@ember/utils';
-import Promise, { resolve, reject } from 'rsvp';
+import { Promise, resolve, reject } from 'rsvp';
 import EmberObject, { computed, observer } from '@ember/object';
 import moment from 'moment';
 import Builder from 'ember-flexberry-data/query/builder';

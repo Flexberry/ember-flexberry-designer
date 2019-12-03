@@ -21,4 +21,7 @@ export default {
   'success-caption': 'Завершено успешно',
   'error-caption': 'Завершено с ошибкой',
   'other-caption': 'Другие',
+  'error-message': {
+    'empty-generation': 'Ну удалось получить лог генерации',
+  }
 };
