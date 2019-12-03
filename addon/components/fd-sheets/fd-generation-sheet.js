@@ -120,7 +120,7 @@ export default FdBaseSheet.extend({
       } else {
         this.set('_timer', undefined);
 
-        let generationValue = this.get('model.run').findBy('data.id', this.get('selectedValue.id'));
+        let generationValue = this.get('selectedValue.model');
         this.get('model.run').removeObject(generationValue);
 
         let model;
