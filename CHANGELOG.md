@@ -2,12 +2,13 @@
 All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
-## [0.11.0-beta01]
+## [0.11.0]
 ### Added
 * Add geolayer edit panel.
 * Add geolayerstyle edit panel.
 * Add gisSubSystem.
 * Add settings page.
+* Mobile styles
 
 ### Fixed
 * Style share button in dark theme.
