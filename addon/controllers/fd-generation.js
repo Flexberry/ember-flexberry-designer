@@ -7,6 +7,7 @@ import FdReadonlyProjectMixin from '../mixins/fd-readonly-project';
 import { inject as service } from '@ember/service';
 import { A } from '@ember/array';
 import { isNone, isBlank } from '@ember/utils';
+import { Promise, resolve, reject } from 'rsvp';
 import EmberObject, { computed, observer } from '@ember/object';
 import moment from 'moment';
 import Builder from 'ember-flexberry-data/query/builder';
@@ -98,6 +99,32 @@ export default Controller.extend(FdReadonlyProjectMixin, {
     return newModel;
   }),
 
+  /**
+    Load generation.
+
+    @method loadGeneration
+  */
+  loadGeneration(generationId, store, indexLoad) {
+    let modelName = 'fd-generation';
+    let projectionName = 'EditFormView';
+    let builder = new Builder(store)
+      .from(modelName)
+      .selectByProjection(projectionName)
+      .byId(generationId);
+
+    return new Promise((resolve) => { setTimeout(resolve, 2000); })
+    .then(() => store.queryRecord(modelName, builder.build()))
+    .then((generation) => {
+      if (indexLoad > 5) {
+        return reject({ message: this.get('i18n').t('forms.fd-generation.error-message.empty-generation').toString() });
+      } else if (isNone(generation)) {
+        return this.loadGeneration(generationId, store, indexLoad++);
+      }
+
+      return resolve(generation);
+    });
+  },
+
   actions: {
     /**
       Starts generation, opens its log when it starts successfully.
@@ -109,20 +136,13 @@ export default Controller.extend(FdReadonlyProjectMixin, {
       let adapter = store.adapterFor('application');
       let project = this.get('currentProjectContext').getCurrentStage();
 
-      adapter.callFunction('Generate', { project }).then((result) => {
-        let modelName = 'fd-generation';
-        let projectionName = 'EditFormView';
-        let builder = new Builder(store)
-          .from(modelName)
-          .selectByProjection(projectionName)
-          .byId(result.value);
-
-        store.queryRecord(modelName, builder.build()).then((generation) => {
-          let model = { data: generation, active: true };
-          this.get('model.run').unshiftObject(model);
-          this.get('fdSheetService').openSheet(this.get('sheetComponentName'), EmberObject.create({ model: model }));
-          this.send('updateModel');
-        });
+      adapter.callFunction('Generate', { project })
+      .then((result) => this.loadGeneration(result.value, store, 0))
+      .then((generation) => {
+        let model = { data: generation, active: true };
+        this.get('model.run').unshiftObject(model);
+        this.get('fdSheetService').openSheet(this.get('sheetComponentName'), EmberObject.create({ model: model }));
+        this.send('updateModel');
       });
     },
 

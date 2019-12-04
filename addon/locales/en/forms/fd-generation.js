@@ -21,4 +21,7 @@ export default {
   'success-caption': 'Success',
   'error-caption': 'Error',
   'other-caption': 'Other',
+  'error-message': {
+    'empty-generation': 'Error getting generation log',
+  }
 };
