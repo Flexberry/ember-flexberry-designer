@@ -1,9 +1,9 @@
 import Helper from '@ember/component/helper';
 
 export default Helper.extend({
-  compute([strindValue, lacalePath]) {
-    let locale = this.get('i18n').t(`${lacalePath}`).toString();
+  compute([stringValue, localePath]) {
+    let locale = this.get('i18n').t(`${localePath}`).toString();
 
-    return strindValue === locale;
+    return stringValue === locale;
   }
 });
