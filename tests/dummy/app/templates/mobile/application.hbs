@@ -13,7 +13,7 @@
       transition='overlay')
 
   }}
-    {{#if currentProjectName}}
+    {{#if currentProjectIsSelected}}
       <div class="item current-project-name-header">
         <div>
           <i class="icon"></i>
@@ -28,6 +28,7 @@
       </div>
       {{fd-flexberry-sitemap sitemap=sitemap}}
     {{/if}}
+    <button {{action 'toggleSidebarMobile'}} class="ui toggle-sidebar-visible icon button"></button>
     {{fd-flexberry-sitemap sitemap=sitemapBottom}}
   {{/flexberry-sidebar}}
 <div id="mobile" class="pusher mobile">

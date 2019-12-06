@@ -6,7 +6,12 @@
   <div class="ui stackable grid fd-list-edited">
     <div class="row">
       <div class="three wide column light-text">
-        {{t "forms.fd-diagrams.type-caption"}}
+        {{
+          flexberry-dropdown
+          items=groupArray
+          value=groupValue
+          needChecksOnValue=false
+        }}
       </div>
       <div class="thirteen wide column">
         {{
@@ -23,7 +28,13 @@
     </div>
 
     {{!-- Running --}}
-    {{#if (not-eq filteredModel.run.length 0)}}
+    {{#if (and (not-eq filteredModel.run.length 0)
+        (or
+          (compare-t-with-string groupValue 'forms.fd-generation.all-states')
+          (compare-t-with-string groupValue 'forms.fd-generation.run-caption')
+        )
+      )
+    }}
     <div class="row">
       <div class="three wide column light-text">
         {{t "forms.fd-generation.run-caption"}}
@@ -42,7 +53,13 @@
     {{/if}}
 
     {{!-- Success --}}
-    {{#if (not-eq filteredModel.success.length 0)}}
+    {{#if (and (not-eq filteredModel.success.length 0)
+        (or
+          (compare-t-with-string groupValue 'forms.fd-generation.all-states')
+          (compare-t-with-string groupValue 'forms.fd-generation.success-caption')
+        )
+      )
+    }}
     <div class="row">
       <div class="three wide column light-text">
         {{t "forms.fd-generation.success-caption"}}
@@ -61,7 +78,13 @@
     {{/if}}
 
     {{!-- Error --}}
-    {{#if (not-eq filteredModel.error.length 0)}}
+    {{#if (and (not-eq filteredModel.error.length 0)
+        (or
+          (compare-t-with-string groupValue 'forms.fd-generation.all-states')
+          (compare-t-with-string groupValue 'forms.fd-generation.error-caption')
+        )
+      )
+    }}
     <div class="row">
       <div class="three wide column light-text">
         {{t "forms.fd-generation.error-caption"}}
@@ -80,7 +103,13 @@
     {{/if}}
 
     {{!-- Other --}}
-    {{#if (not-eq filteredModel.other.length 0)}}
+    {{#if (and (not-eq filteredModel.other.length 0)
+        (or
+          (compare-t-with-string groupValue 'forms.fd-generation.all-states')
+          (compare-t-with-string groupValue 'forms.fd-generation.other-caption')
+        )
+      )
+    }}
     <div class="row">
       <div class="three wide column light-text">
         {{t "forms.fd-generation.other-caption"}}

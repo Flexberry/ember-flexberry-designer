@@ -53,11 +53,49 @@ export default Controller.extend(FdSheetCloseConfirm, FdReadonlyProjectMixin, {
   isAddMode: false,
 
   /**
+    Selected group.
+
+    @property groupValue
+    @type String
+  */
+  groupValue: undefined,
+
+  /**
+    Array groups.
+
+    @property groupArray
+    @type Array
+  */
+  groupArray: computed('i18n.locale', function() {
+    return A([
+      this.get('i18n').t('forms.fd-diagrams.all-diagrams').toString(),
+      this.get('i18n').t('forms.fd-diagrams.ad').toString(),
+      this.get('i18n').t('forms.fd-diagrams.cad').toString(),
+      this.get('i18n').t('forms.fd-diagrams.cod').toString(),
+      this.get('i18n').t('forms.fd-diagrams.dpd').toString(),
+      this.get('i18n').t('forms.fd-diagrams.sd').toString(),
+      this.get('i18n').t('forms.fd-diagrams.std').toString(),
+      this.get('i18n').t('forms.fd-diagrams.ucd').toString(),
+      this.get('i18n').t('forms.fd-diagrams.systems').toString()
+    ]);
+  }),
+
+  /**
+    Flag: indicates whether to group by system.
+
+    @property groupBySystems
+  */
+  groupBySystems: computed('groupValue', function() {
+    let groupValue = this.get('groupValue');
+    return !isNone(groupValue) && groupValue === this.get('i18n').t('forms.fd-diagrams.systems').toString();
+  }),
+
+  /**
     Ember.observer, watching property `searchValue` and send action from 'fd-sheet' component.
 
     @method searchValueObserver
   */
-  searchValueObserver: observer('searchValue', function() {
+  searchValueObserver: observer('searchValue', 'groupValue', function() {
     let sheetComponentName = this.get('sheetComponentName');
     let fdSheetService = this.get('fdSheetService');
     if (fdSheetService.isVisible(sheetComponentName)) {
@@ -70,8 +108,25 @@ export default Controller.extend(FdSheetCloseConfirm, FdReadonlyProjectMixin, {
 
     @method sortModel
   */
-  sortModel: computed('model', function() {
+  sortModel: computed('model', 'groupBySystems', function() {
     let model = this.get('model');
+
+    if (this.get('groupBySystems')) {
+      let modelBySystem = {};
+      for (let prop in model) {
+        model[prop].forEach((diagram) => {
+          let system = diagram.data.get('subsystem.name');
+          if (isNone(modelBySystem[system])) {
+            modelBySystem[system] = A([diagram]);
+          } else {
+            modelBySystem[system].pushObject(diagram);
+          }
+        });
+      }
+
+      model = modelBySystem;
+    }
+
     let newModel = {};
     for (let prop in model) {
       let newdata = model[prop].sortBy('data.name');
@@ -111,6 +166,12 @@ export default Controller.extend(FdSheetCloseConfirm, FdReadonlyProjectMixin, {
 
     return newModel;
   }),
+
+  init() {
+    this._super(...arguments);
+
+    this.set('groupValue', this.get('i18n').t('forms.fd-diagrams.all-diagrams').toString());
+  },
 
   actions: {
     /**

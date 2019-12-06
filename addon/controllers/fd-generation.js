@@ -56,11 +56,35 @@ export default Controller.extend(FdReadonlyProjectMixin, {
   sheetComponentName: '',
 
   /**
+    Selected group.
+
+    @property groupValue
+    @type String
+  */
+  groupValue: undefined,
+
+  /**
+    Array groups.
+
+    @property groupArray
+    @type Array
+  */
+  groupArray: computed('i18n.locale', function() {
+    return A([
+      this.get('i18n').t('forms.fd-generation.all-states').toString(),
+      this.get('i18n').t('forms.fd-generation.run-caption').toString(),
+      this.get('i18n').t('forms.fd-generation.success-caption').toString(),
+      this.get('i18n').t('forms.fd-generation.error-caption').toString(),
+      this.get('i18n').t('forms.fd-generation.other-caption').toString()
+    ]);
+  }),
+
+  /**
     Ember.observer, watching property `searchValue` and send action from 'fd-sheet' component.
 
     @method searchValueObserver
   */
-  searchValueObserver: observer('searchValue', function() {
+  searchValueObserver: observer('searchValue', 'groupValue', function() {
     let sheetComponentName = this.get('sheetComponentName');
     let fdSheetService = this.get('fdSheetService');
     if (fdSheetService.isVisible(sheetComponentName)) {
@@ -98,6 +122,12 @@ export default Controller.extend(FdReadonlyProjectMixin, {
 
     return newModel;
   }),
+
+  init() {
+    this._super(...arguments);
+
+    this.set('groupValue', this.get('i18n').t('forms.fd-generation.all-states').toString());
+  },
 
   /**
     Load generation.
