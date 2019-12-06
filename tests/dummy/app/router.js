@@ -95,7 +95,6 @@ Router.map(function () {
   { path: 'fd-view-edit-form/:id' });
   this.route('fd-view-edit-form.new',
   { path: 'fd-view-edit-form/new' });
-  this.route('fd-print-form');
 
   this.route('fd-visual-edit-form');
   this.route('fd-editform-constructor', { path: 'fd-editform-constructor/:id' }, function() {
@@ -123,6 +122,9 @@ Router.map(function () {
   // Logging.
   this.route('i-i-s-caseberry-logging-objects-application-log-l');
   this.route('i-i-s-caseberry-logging-objects-application-log-e', { path: 'i-i-s-caseberry-logging-objects-application-log-e/:id' });
+
+  // Print form.
+  this.route('fd-print-form');
 
   // new route
   this.route('fd-application-model');

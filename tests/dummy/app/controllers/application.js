@@ -77,7 +77,7 @@ export default Controller.extend({
   }),
 
   /**
-    Current project шы ыудусеув
+    Current project is selected
 
     @property currentProjectIsSelected
     @type Bool
@@ -246,15 +246,18 @@ export default Controller.extend({
   sidebarMiniWidth: '60px',
 
   actions: {
-    changeTheme() {
+    /**
+      Select themes.
+      @method actions.changeTheme
+    */
+    changeTheme(value) {
       let sheet = document.querySelector('#theme');
       if (!sheet) {
         return
       }
 
-      let theme = $('.flexberry-dropdown.theme div.text').text();
       let rootURL = this.get('router.location.location.origin') + config.rootURL;
-      sheet.setAttribute('href', `${rootURL}/assets/${theme}.css`);
+      sheet.setAttribute('href', `${rootURL}/assets/${value}.css`);
     },
 
     /**

@@ -54,11 +54,44 @@ export default Controller.extend(FdSheetCloseConfirm, FdReadonlyProjectMixin, {
   isAddMode: false,
 
   /**
+    Selected group.
+
+    @property groupValue
+    @type String
+  */
+  groupValue: undefined,
+
+  /**
+    Array groups.
+
+    @property groupArray
+    @type Array
+  */
+  groupArray: computed('i18n.locale', function() {
+    return A([
+      this.get('i18n').t('forms.fd-application-model.all-types').toString(),
+      this.get('i18n').t('forms.fd-application-model.entity-group').toString(),
+      this.get('i18n').t('forms.fd-application-model.enum-caption').toString(),
+      this.get('i18n').t('forms.fd-application-model.type-content-caption').toString(),
+      this.get('i18n').t('forms.fd-application-model.typedef-caption').toString(),
+      this.get('i18n').t('forms.fd-application-model.bs-caption').toString(),
+      this.get('i18n').t('forms.fd-application-model.interface-caption').toString(),
+      this.get('i18n').t('forms.fd-application-model.external-caption').toString(),
+      this.get('i18n').t('forms.fd-application-model.extinterface-caption').toString(),
+      this.get('i18n').t('forms.fd-application-model.application-caption').toString(),
+      this.get('i18n').t('forms.fd-application-model.userform-caption').toString(),
+      this.get('i18n').t('forms.fd-application-model.geolayer-caption').toString(),
+      this.get('i18n').t('forms.fd-application-model.geolayerstyle-caption').toString(),
+      this.get('i18n').t('forms.fd-application-model.userstereotype-caption').toString(),
+    ]);
+  }),
+
+  /**
     Ember.observer, watching property `searchValue` and send action from 'fd-sheet' component.
 
     @method searchValueObserver
   */
-  searchValueObserver: observer('searchValue', function() {
+  searchValueObserver: observer('searchValue', 'groupValue', function() {
     let sheetComponentName = this.get('sheetComponentName');
     let fdSheetService = this.get('fdSheetService');
     if (fdSheetService.isVisible(sheetComponentName)) {
@@ -138,6 +171,12 @@ export default Controller.extend(FdSheetCloseConfirm, FdReadonlyProjectMixin, {
 
     return newModel;
   }),
+
+  init() {
+    this._super(...arguments);
+
+    this.set('groupValue', this.get('i18n').t('forms.fd-application-model.all-types').toString());
+  },
 
   actions: {
     /**

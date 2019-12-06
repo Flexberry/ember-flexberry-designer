@@ -23,5 +23,6 @@ export default {
   'other-caption': 'Other',
   'error-message': {
     'empty-generation': 'Error getting generation log',
-  }
+  },
+  'all-states': 'All state'
 };
