@@ -12,4 +12,12 @@ export default Component.extend({
     @default undefined
   */
   model: undefined,
+
+  /**
+    Flag: indicates whether component is readonly.
+
+    @property readonly
+    @type Boolean
+   */
+  readonly: false
 });

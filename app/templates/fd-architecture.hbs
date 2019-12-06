@@ -1,6 +1,6 @@
 <form class="ui form flexberry-vertical-form fd-architecture settings-form">
   <div class="fd-sheet-toolbar">
-    <button class="ui button" {{action 'save'}}>
+    <button class="ui button {{if readonlyModeProject 'disabled' ''}}" {{action 'save'}}>
       {{t "forms.fd-architecture.save-caption"}}
     </button>
   </div>
@@ -11,6 +11,7 @@
     <div class='fd-form-list-body'>
       {{fd-architecture-subsystem/fd-gis-subsystem
         model=model.GisSubsystemSettings
+        readonly=readonlyModeProject
       }}
     </div>
   </div>

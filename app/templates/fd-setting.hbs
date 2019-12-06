@@ -1,6 +1,6 @@
 <form class="ui form flexberry-vertical-form settings-form">
   <div class="fd-sheet-toolbar">
-    <button class="ui button" {{action "save"}}>
+    <button class="ui button {{if readonlyModeProject 'disabled' ''}}" {{action "save"}}>
       {{t "forms.fd-setting.save-button"}}
     </button>
   </div>
@@ -15,7 +15,7 @@
           class="fluid input"
           value=model.stage.name
           placeholder=(t "forms.fd-setting.project-settings.name-placeholder")
-          readonly=readonly
+          readonly=readonlyModeProject
         }}
       </div>
     </div>
@@ -28,7 +28,7 @@
           class="fluid input"
           value=model.stage.product
           placeholder=(t "forms.fd-setting.project-settings.product-placeholder")
-          readonly=readonly
+          readonly=readonlyModeProject
           keyPress=keyPressPattern
         }}
       </div>
@@ -40,13 +40,15 @@
       <div class="twelve wide column light-text">
         <div class="field">
           <div class="flexberry-checkbox ui checkbox">
-            <input type="radio" name="access" class="flexberry-checkbox-input" onchange={{action set 'accessIsPublic' false}}>
+            <input type="radio" name="access" class="flexberry-checkbox-input"
+              onchange={{action set 'accessIsPublic' false}} disabled={{if readonlyModeProject 'disabled' ''}}>
             <label class="flexberry-checkbox-label">{{t "forms.fd-setting.project-settings.access-private"}}</label>
           </div>
         </div>
         <div class="field">
           <div class="flexberry-checkbox ui checkbox">
-            <input type="radio" name="access" class="flexberry-checkbox-input" checked onchange={{action set 'accessIsPublic' true}}>
+            <input type="radio" name="access" class="flexberry-checkbox-input" checked
+              onchange={{action set 'accessIsPublic' true}} disabled={{if readonlyModeProject 'disabled' ''}}>
             <label class="flexberry-checkbox-label">{{t "forms.fd-setting.project-settings.access-public"}}</label>
           </div>
         </div>
@@ -61,7 +63,7 @@
           class="fluid input"
           value=model.stage.description
           placeholder=(t "forms.fd-setting.project-settings.description-placeholder")
-          readonly=readonly
+          readonly=readonlyModeProject
         }}
       </div>
     </div>
@@ -84,7 +86,7 @@
               value=model.settings.FrontendGitRepoUrl
               class='fluid input'
               placeholder=(t "forms.fd-setting.generation-settings.repo-url-placeholder")
-              readonly=readonly
+              readonly=readonlyModeProject
             }}
           </div>
         </div>
@@ -97,7 +99,7 @@
               value=model.settings.FrontendLogin
               class='fluid input'
               placeholder=(t "forms.fd-setting.generation-settings.login-placeholder")
-              readonly=readonly
+              readonly=readonlyModeProject
             }}
           </div>
         </div>
@@ -110,7 +112,7 @@
               value=model.settings.FrontendPassword
               class='fluid input'
               placeholder=(t "forms.fd-setting.generation-settings.password-placeholder")
-              readonly=readonly
+              readonly=readonlyModeProject
             }}
           </div>
         </div>
@@ -123,7 +125,7 @@
               value=model.settings.FrontendBranch
               class='fluid input'
               placeholder=(t "forms.fd-setting.generation-settings.branch-placeholder")
-              readonly=readonly
+              readonly=readonlyModeProject
             }}
           </div>
         </div>
@@ -136,7 +138,7 @@
               value=model.settings.FrontendPublicKey
               class='fluid input'
               placeholder=(t "forms.fd-setting.generation-settings.pub-key-placeholder")
-              readonly=readonly
+              readonly=readonlyModeProject
             }}
           </div>
         </div>
@@ -149,7 +151,7 @@
               value=model.settings.FrontendPrivateKey
               class='fluid input'
               placeholder=(t "forms.fd-setting.generation-settings.pri-key-placeholder")
-              readonly=readonly
+              readonly=readonlyModeProject
             }}
           </div>
         </div>
@@ -172,7 +174,7 @@
               value=model.settings.BackendGitRepoUrl
               class='fluid input'
               placeholder=(t "forms.fd-setting.generation-settings.repo-url-placeholder")
-              readonly=readonly
+              readonly=readonlyModeProject
             }}
           </div>
         </div>
@@ -185,7 +187,7 @@
               value=model.settings.BackendLogin
               class='fluid input'
               placeholder=(t "forms.fd-setting.generation-settings.login-placeholder")
-              readonly=readonly
+              readonly=readonlyModeProject
             }}
           </div>
         </div>
@@ -198,7 +200,7 @@
               value=model.settings.BackendPassword
               class='fluid input'
               placeholder=(t "forms.fd-setting.generation-settings.password-placeholder")
-              readonly=readonly
+              readonly=readonlyModeProject
             }}
           </div>
         </div>
@@ -211,7 +213,7 @@
               value=model.settings.BackendBranch
               class='fluid input'
               placeholder=(t "forms.fd-setting.generation-settings.branch-placeholder")
-              readonly=readonly
+              readonly=readonlyModeProject
             }}
           </div>
         </div>
@@ -224,7 +226,7 @@
               value=model.settings.BackendPublicKey
               class='fluid input'
               placeholder=(t "forms.fd-setting.generation-settings.pub-key-placeholder")
-              readonly=readonly
+              readonly=readonlyModeProject
             }}
           </div>
         </div>
@@ -237,7 +239,7 @@
               value=model.settings.BackendPrivateKey
               class='fluid input'
               placeholder=(t "forms.fd-setting.generation-settings.pri-key-placeholder")
-              readonly=readonly
+              readonly=readonlyModeProject
             }}
           </div>
         </div>
@@ -253,7 +255,7 @@
         {{flexberry-checkbox
           value=model.settings.FrontendPublishGh
           class='fluid input'
-          readonly=readonly
+          readonly=readonlyModeProject
         }}
       </div>
     </div>
@@ -263,7 +265,7 @@
   <div class="ui stackable grid">
     <div class="row">
       <span>{{t "forms.fd-setting.project-actions.delete-stage-caption"}}</span>
-      <button class="ui button basic" {{action "delete"}}>
+      <button class="ui button basic {{if readonlyModeProject 'disabled' ''}}" {{action "delete"}}>
         {{t "forms.fd-setting.project-actions.delete-stage-button"}}
       </button>
     </div>

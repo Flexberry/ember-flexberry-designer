@@ -1,7 +1,8 @@
 import Controller from '@ember/controller';
+import FdReadonlyProjectMixin from '../mixins/fd-readonly-project';
 import { inject as service } from '@ember/service';
 
-export default Controller.extend({
+export default Controller.extend(FdReadonlyProjectMixin, {
 
   /**
    Service that get current project contexts.

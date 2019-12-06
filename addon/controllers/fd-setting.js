@@ -1,5 +1,6 @@
 import Controller from '@ember/controller';
 import FdSheetCloseConfirm from '../mixins/fd-sheet-close-confirm';
+import FdReadonlyProjectMixin from '../mixins/fd-readonly-project';
 import { inject as service } from '@ember/service';
 import { resolve, reject } from 'rsvp';
 import { isNone, isBlank } from '@ember/utils';
@@ -10,7 +11,7 @@ import Builder from 'ember-flexberry-data/query/builder';
 import FilterOperator from 'ember-flexberry-data/query/filter-operator';
 import Condition from 'ember-flexberry-data/query/condition';
 
-export default Controller.extend(FdSheetCloseConfirm, {
+export default Controller.extend(FdSheetCloseConfirm, FdReadonlyProjectMixin, {
   /**
    Service that get current project contexts.
 
