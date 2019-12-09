@@ -8,6 +8,7 @@
       <div class="right floated">
         {{flexberry-checkbox
           value=model.enabled
+          readonly=readonly
         }}
       </div>
     </div>
@@ -18,6 +19,7 @@
             value=model.address
             placeholder=(t 'components.fd-gis-subsystem.address-placeholder')
             label=(t "components.fd-gis-subsystem.address")
+            readonly=readonly
           }}
         </div>
         <div class="field">
@@ -25,6 +27,7 @@
             value=model.login
             placeholder=(t 'components.fd-gis-subsystem.login-placeholder')
             label=(t "components.fd-gis-subsystem.login")
+            readonly=readonly
           }}
         </div>
       </div>
@@ -35,6 +38,7 @@
             items=(flexberry-enum 'fd-database-type')
             value=model.typeDatabase
             class='compact'
+            readonly=readonly
           }}
         </div>
         <div class="field">
@@ -43,6 +47,7 @@
             placeholder=(t 'components.fd-gis-subsystem.password-placeholder')
             label=(t "components.fd-gis-subsystem.password")
             type="password"
+            readonly=readonly
           }}
         </div>
       </div>
@@ -51,6 +56,7 @@
           value=model.connectionString
           placeholder=(t 'components.fd-gis-subsystem.connection-string-placeholder')
           label=(t "components.fd-gis-subsystem.connection-string")
+          readonly=readonly
         }}
       </div>
     </div>
