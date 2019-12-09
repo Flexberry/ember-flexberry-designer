@@ -214,7 +214,7 @@ FdActionsForUcdPrimitivesMixin, {
       }
 
       let minWidth = this.$().width();
-      let minHeight = this.$().height() - this.$('.fd-uml-diagram-toolbar').height();
+      let minHeight = this.$().height();
       paper.fitToContent({ minWidth, minHeight, padding: 10 });
     },
 

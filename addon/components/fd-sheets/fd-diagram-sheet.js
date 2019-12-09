@@ -362,7 +362,7 @@ export default FdBaseSheet.extend({
 
     let message = '';
     mapPrimitives.forEach((primitive) => {
-      if (primitive.$type !== "STORMCASE.UML.cad.Inheritance, UMLCAD" || !isBlank(message)) {
+      if (primitive.$type !== "STORMCASE.UML.cad.Inheritance, UMLCAD" || isNone(primitive.RepositoryObject) || !isBlank(message)) {
         return;
       }
 
