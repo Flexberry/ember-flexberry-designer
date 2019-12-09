@@ -505,9 +505,9 @@ joint.shapes.flexberry.uml.ClassView = joint.shapes.flexberry.uml.PrimitiveEleme
     this.$box.find('.attributes-input').css('visibility', styleVisibilityValue);
     this.$box.find('.methods-input').css('visibility', styleVisibilityValue);
 
-    const initSize = this.model.size();
+    const size = collapsed ? this.model.attr('.flexberry-uml-header-rect') : this.model.size();
     this.updateBox();
-    this.updateRectangles(initSize.width, initSize.height);
+    this.updateRectangles(size.width, size.height);
   },
 
   normalizeStereotype(stereotype) {
