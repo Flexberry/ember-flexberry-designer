@@ -862,7 +862,11 @@ export let defineProjections = function (modelClass) {
     createUser: attr('Create user'),
     createDate: attr('Create date'),
     configuration: belongsTo('fd-configuration', '', {
+      project: belongsTo('fd-project', '', {
+        repository: belongsTo('fd-repository', '', {
 
+        }, { hidden: true })
+      }, { hidden: true })
     }, { hidden: true })
   });
   modelClass.defineProjection('Prototyping', 'fd-dev-stage', {

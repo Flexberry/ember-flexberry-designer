@@ -78,6 +78,18 @@ joint.connectionPoints.toPointConnection = function(endPathSegmentLine, endView)
   let targetId = get(this, 'targetView.model.id');
   let startPoint, endPoint;
 
+  let verticesLength = objectModel.get('vertices.length');
+  if (sourceId === targetId && verticesLength > 1) {
+    let points = objectModel.get('vertices');
+    let valueX = endPathSegmentLine.start.x;
+    let valueY = endPathSegmentLine.start.y;
+    if (points[verticesLength - 1].x === valueX && points[verticesLength - 1].y === valueY) {
+      sourceId= 'null';
+    } else if (points[0].x === valueX && points[0].y === valueY) {
+      targetId= 'null';
+    }
+  }
+
   if (sourceId === endView.model.id && !isNone(targetId)) {
     const sourcePosition = get(this, 'sourceView.model.attributes.position');
     if (!objectModel.get('startPointRef')) {
@@ -99,7 +111,7 @@ joint.connectionPoints.toPointConnection = function(endPathSegmentLine, endView)
   } else {
     if (isNone(targetId)) {
       endPoint = objectModel.get('startPoint');
-      startPoint = endPathSegmentLine.end;
+      startPoint = endPathSegmentLine.start;
       objectModel.set('endPointRef', undefined);
     } else if (isNone(sourceId)) {
       endPoint = objectModel.get('endPoint');
@@ -110,7 +122,7 @@ joint.connectionPoints.toPointConnection = function(endPathSegmentLine, endView)
 
   let bbox = endView.model.getBBox();
 
-  if (objectModel.get('vertices.length') === 0) {
+  if (verticesLength === 0) {
     endPathSegmentLine.start.x = startPoint.x;
     endPathSegmentLine.start.y = startPoint.y;
   }
