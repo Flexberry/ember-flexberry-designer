@@ -79,14 +79,25 @@ joint.connectionPoints.toPointConnection = function(endPathSegmentLine, endView)
   let startPoint, endPoint;
 
   let verticesLength = objectModel.get('vertices.length');
-  if (sourceId === targetId && verticesLength > 1) {
-    let points = objectModel.get('vertices');
-    let valueX = endPathSegmentLine.start.x;
-    let valueY = endPathSegmentLine.start.y;
-    if (points[verticesLength - 1].x === valueX && points[verticesLength - 1].y === valueY) {
-      sourceId= 'null';
-    } else if (points[0].x === valueX && points[0].y === valueY) {
-      targetId= 'null';
+  if (sourceId === targetId) {
+    if (verticesLength > 1) {
+      let points = objectModel.get('vertices');
+      let valueX = endPathSegmentLine.start.x;
+      let valueY = endPathSegmentLine.start.y;
+      if (points[verticesLength - 1].x === valueX && points[verticesLength - 1].y === valueY) {
+        sourceId= 'null';
+      } else if (points[0].x === valueX && points[0].y === valueY) {
+        targetId= 'null';
+      }
+    } else {
+      let cyclecLinkSwitch = objectModel.get('cyclecLinkSwitch');
+      if (cyclecLinkSwitch) {
+        sourceId= 'null';
+      } else {
+        targetId= 'null';
+      }
+
+      objectModel.set('cyclecLinkSwitch', !cyclecLinkSwitch);
     }
   }
 
