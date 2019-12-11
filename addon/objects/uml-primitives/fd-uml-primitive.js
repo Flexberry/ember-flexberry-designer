@@ -78,6 +78,8 @@ joint.connectionPoints.toPointConnection = function(endPathSegmentLine, endView)
   let targetId = get(this, 'targetView.model.id');
   let startPoint, endPoint;
 
+  let isNotNoneTargetId = !isNone(targetId);
+  let isNotNoneSourceId = !isNone(sourceId);
   let verticesLength = objectModel.get('vertices.length');
   if (sourceId === targetId) {
     if (verticesLength > 1) {
@@ -85,23 +87,23 @@ joint.connectionPoints.toPointConnection = function(endPathSegmentLine, endView)
       let valueX = endPathSegmentLine.start.x;
       let valueY = endPathSegmentLine.start.y;
       if (points[verticesLength - 1].x === valueX && points[verticesLength - 1].y === valueY) {
-        sourceId= 'null';
+        isNotNoneTargetId = false;
       } else if (points[0].x === valueX && points[0].y === valueY) {
-        targetId= 'null';
+        isNotNoneSourceId = false;
       }
     } else {
       let cyclecLinkSwitch = objectModel.get('cyclecLinkSwitch');
       if (cyclecLinkSwitch) {
-        sourceId= 'null';
+        isNotNoneTargetId = false;
       } else {
-        targetId= 'null';
+        isNotNoneSourceId = false;
       }
 
       objectModel.set('cyclecLinkSwitch', !cyclecLinkSwitch);
     }
   }
 
-  if (sourceId === endView.model.id && !isNone(targetId)) {
+  if (sourceId === endView.model.id && isNotNoneTargetId) {
     const sourcePosition = get(this, 'sourceView.model.attributes.position');
     if (!objectModel.get('startPointRef')) {
       objectModel.set('startPointRef', { x: sourcePosition.x - objectModel.get('startPoint.x'), y: sourcePosition.y - objectModel.get('startPoint.y') });
@@ -110,7 +112,7 @@ joint.connectionPoints.toPointConnection = function(endPathSegmentLine, endView)
     objectModel.set('startPoint', { x: sourcePosition.x - objectModel.get('startPointRef.x'), y: sourcePosition.y - objectModel.get('startPointRef.y') });
     endPoint = new joint.g.Point(objectModel.get('startPoint'));
     startPoint = new joint.g.Point(objectModel.get('endPoint'));
-  } else if (targetId === endView.model.id && !isNone(sourceId)) {
+  } else if (targetId === endView.model.id && isNotNoneSourceId) {
     const targetPosition = get(this, 'targetView.model.attributes.position');
     if (!objectModel.get('endPointRef')) {
       objectModel.set('endPointRef', { x: targetPosition.x - objectModel.get('endPoint.x'), y: targetPosition.y - objectModel.get('endPoint.y') });
