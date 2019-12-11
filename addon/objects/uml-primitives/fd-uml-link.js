@@ -154,7 +154,6 @@ export default FdUmlPrimitive.extend({
     }
   }),
 
-
   /**
   The start multiplicity of a link.
 
@@ -295,6 +294,14 @@ export default FdUmlPrimitive.extend({
       return value;
     },
   }),
+
+  /**
+    Use for add point connection cyclec link with 1 vertices.
+
+    @property vertices
+    @type Bool
+  */
+  cyclecLinkSwitch: false,
 
   /**
     See {{#crossLink "FdUmlPrimitive/JointJS:method"}}here{{/crossLink}}.
@@ -683,4 +690,3 @@ joint.linkAnchors.connectionSegmRatio = function(endView/*, endMagnet, anchorRef
   let ret = new Point({x: x, y: y});
   return ret;
 };
-
