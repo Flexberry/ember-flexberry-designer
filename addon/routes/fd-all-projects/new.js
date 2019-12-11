@@ -26,6 +26,7 @@ export default Route.extend({
     @method setupController
   */
   setupController(controller) {
+    controller.set('routeName', this.get('routeName'));
     let projectName = controller.get('nameFromSearch');
     if (projectName) {
       controller.set('projectName', projectName);

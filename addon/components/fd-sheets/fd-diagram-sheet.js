@@ -449,7 +449,7 @@ export default FdBaseSheet.extend({
         });
       }).then(() => {
         if (closeAfter) {
-          this.confirmClose(this.get('sheetComponentName'));
+          this.get('targetObject').confirmClose(this.get('sheetComponentName'));
         }
       })
       .catch((error) => {
