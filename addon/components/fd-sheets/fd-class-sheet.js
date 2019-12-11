@@ -296,7 +296,7 @@ export default FdBaseSheet.extend({
       .then(() => {
         this.updateClassModel(model);
         if (closeAfter) {
-          this.confirmClose(this.get('sheetComponentName'));
+          this.get('targetObject').confirmClose(this.get('sheetComponentName'));
         }
       })
       .catch((error) => {

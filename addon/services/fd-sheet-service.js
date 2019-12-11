@@ -261,5 +261,16 @@ export default Service.extend(Evented, {
   rollbackCurrentItem(sheetName) {
     const model = this.getSheetModel(sheetName);
     model.rollbackAttributes();
+  },
+
+  /**
+    Save currentItem.
+
+     @method saveCurrentItem
+     @param {String} sheetName Sheet's component name
+     @param {Boolean} closeAfter Close after save.
+  */
+  saveCurrentItem(sheetName, closeAfter) {
+    this.trigger('saveCurrentItemTrigger', sheetName, closeAfter);
   }
 });

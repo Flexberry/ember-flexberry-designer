@@ -22,6 +22,14 @@ export default Mixin.create({
   fdDialogService: service('fd-dialog-service'),
 
   /**
+    Router service of current application.
+
+    @property router
+    @type RouterService
+  */
+  router: service(),
+
+  /**
     Item of sheet that opening was abort and must continue after confirm.
 
     @private
@@ -62,10 +70,10 @@ export default Mixin.create({
   /**
     Sheet component name.
 
-    @property modalSheetName
+    @property closeSheetName
     @type String
   */
-  modalSheetName: undefined,
+  closeSheetName: undefined,
 
   /**
     Ember.observer, watching show flag and reset data in fd-heet-service.
@@ -75,7 +83,7 @@ export default Mixin.create({
   _showFlagObserver: observer('show', function() {
     if (!this.get('show')) {
       this.get('fdSheetService').set('abortedTransitionFromSheet', undefined);
-      this.set('modalSheetName', undefined);
+      this.set('closeSheetName', undefined);
       this.set('_openingItem', undefined);
     }
   }),
@@ -93,9 +101,11 @@ export default Mixin.create({
     @param {String} message Error message
   */
   showErrorMessage(message) {
-    this.set('isError', true);
-    this.set('messageText', message);
-    this.set('show', true);
+    if (this.get('router.currentRouteName') === this.get('routeName')) {
+      this.set('isError', true);
+      this.set('messageText', message);
+      this.set('show', true);
+    }
   },
 
   /**
@@ -106,11 +116,10 @@ export default Mixin.create({
     @param {Object} currentItem Current list item
   */
   showCloseDialog(sheetName, currentItem) {
-    let sheetComponentName = this.get('sheetComponentName');
-    if (sheetComponentName === sheetName) {
+    if (this.get('router.currentRouteName') === this.get('routeName')) {
       this.set('isError', false);
       this.set('messageText', this.get('i18n').t('components.fd-modal-message-box.confirmation-text').toString());
-      this.set('modalSheetName', sheetName);
+      this.set('closeSheetName', sheetName);
       this.set('_openingItem', currentItem);
 
       this.set('show', true);
@@ -143,7 +152,7 @@ export default Mixin.create({
       @method actions.closeWithoutSaving
     */
     closeWithoutSaving() {
-      const sheetName = this.get('modalSheetName')
+      const sheetName = this.get('closeSheetName')
       this.get('fdSheetService').rollbackCurrentItem(sheetName);
       this.confirmClose(sheetName);
     },
@@ -154,9 +163,8 @@ export default Mixin.create({
       @method actions.closeWithSaving
     */
     closeWithSaving() {
-
-      // TODO переместить в контроллер.
-      this.send('save', true);
+      const sheetName = this.get('closeSheetName')
+      this.get('fdSheetService').saveCurrentItem(sheetName, true);
     }
   }
 });
