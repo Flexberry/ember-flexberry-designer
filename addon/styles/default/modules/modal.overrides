@@ -4,3 +4,8 @@
   padding-right: 1.5em;
   padding-top: 1em;
 }
+
+.ui.modal > .content {
+  overflow: auto;
+  max-height: 80vh;
+}
