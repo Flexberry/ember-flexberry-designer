@@ -16,7 +16,7 @@
     {{flexberry-textbox
       value=computedTitle
       placeholder=(t "components.fd-sheets-tool-bar.placeholder-caption")
-      readonly=isAddMode
+      readonly=(or isAddMode readonlyMode)
       class='form-header fluid'
       maxlength=maxlength
     }}
