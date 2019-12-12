@@ -76,7 +76,7 @@ export default Mixin.create({
 
     let builder = new Builder(store)
     .from(modelName)
-    .select('id,name,configuration.id')
+    .selectByProjection('ListFormView')
     .where(predicate);
 
     this.get('appState').loading();
