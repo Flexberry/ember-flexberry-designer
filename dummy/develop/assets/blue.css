@@ -42573,7 +42573,7 @@ a.ui.card:hover,
   height: 220px;
 }
 .fd-architecture .ui.cards > .card .header {
-  color: rgba(0, 110, 255, 0.15);
+  color: rgba(0, 0, 0, 0.3);
   transition: color 0.3s;
 }
 .fd-architecture .ui.cards > .card.expanded {
@@ -42590,7 +42590,7 @@ a.ui.card:hover,
   transform: scaleX(1);
 }
 .fd-architecture .ui.cards > .card .image i.icon {
-  color: rgba(0, 110, 255, 0.15);
+  color: rgba(0, 0, 0, 0.3);
   margin-top: 15%;
   margin-right: 0;
 }
@@ -50971,7 +50971,7 @@ body.dimmable > .dimmer {
   white-space: normal;
   outline: 0;
   transform: rotateZ(0deg);
-  min-width: 14em;
+  min-width: 0;
   min-height: 1em;
   background: transparent;
   display: inline-block;
@@ -54036,6 +54036,10 @@ select.ui.dropdown {
   float: right;
   padding-right: 1.5em;
   padding-top: 1em;
+}
+.ui.modal > .content {
+  overflow: auto;
+  max-height: 80vh;
 }
 /*!
  * # Semantic UI - Nag
