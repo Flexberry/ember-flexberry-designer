@@ -426,14 +426,9 @@ export default FdBaseSheet.extend({
     save(closeAfter) {
       const selectedValue = this.get('selectedValue');
       let model = selectedValue.get('model.data');
-      this.get('appState').loading();
+      let isNew = model.get('isNew');
 
-      let isNew = false;
-      if (model.get('isNew')) {
-        isNew = true;
-      } else if ('name' in model.changedAttributes()) {
-        this.get('updateModel')();
-      }
+      this.get('appState').loading();
 
       this.validateData(model)
       .then(() => this.savePrimitives(model))
@@ -515,6 +510,7 @@ export default FdBaseSheet.extend({
       deleteModels.pushObject(selectedValue);
       store.batchUpdate(deleteModels)
       .then(() => {
+        this.get('updateModel')();
         this.set('selectedValue', undefined);
         this.get('fdSheetService').closeSheet(this.get('sheetComponentName'));
       })
