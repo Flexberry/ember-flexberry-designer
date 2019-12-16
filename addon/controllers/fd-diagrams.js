@@ -69,14 +69,14 @@ export default Controller.extend(FdSheetCloseConfirm, FdReadonlyProjectMixin, {
   groupArray: computed('i18n.locale', function() {
     return A([
       this.get('i18n').t('forms.fd-diagrams.all-diagrams').toString(),
+      this.get('i18n').t('forms.fd-diagrams.systems').toString(),
       this.get('i18n').t('forms.fd-diagrams.ad').toString(),
       this.get('i18n').t('forms.fd-diagrams.cad').toString(),
       this.get('i18n').t('forms.fd-diagrams.cod').toString(),
       this.get('i18n').t('forms.fd-diagrams.dpd').toString(),
       this.get('i18n').t('forms.fd-diagrams.sd').toString(),
       this.get('i18n').t('forms.fd-diagrams.std').toString(),
-      this.get('i18n').t('forms.fd-diagrams.ucd').toString(),
-      this.get('i18n').t('forms.fd-diagrams.systems').toString()
+      this.get('i18n').t('forms.fd-diagrams.ucd').toString()
     ]);
   }),
 

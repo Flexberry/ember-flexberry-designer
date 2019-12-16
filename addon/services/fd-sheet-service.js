@@ -1,5 +1,6 @@
 import Service from '@ember/service';
 import Evented from '@ember/object/evented';
+import hasChanges from '../utils/model-has-changes';
 import $ from 'jquery';
 import { later, schedule } from '@ember/runloop';
 import { isBlank, isNone } from '@ember/utils';
@@ -213,7 +214,7 @@ export default Service.extend(Evented, {
     let isDirty = false;
 
     if (!isNone(currentItemModel)) {
-      isDirty = currentItemModel.hasDirtyAttributes;
+      isDirty = hasChanges(currentItemModel);
     }
 
     return isDirty;
@@ -260,7 +261,7 @@ export default Service.extend(Evented, {
   */
   rollbackCurrentItem(sheetName) {
     const model = this.getSheetModel(sheetName);
-    model.rollbackAttributes();
+    model.rollbackAll();
   },
 
   /**
