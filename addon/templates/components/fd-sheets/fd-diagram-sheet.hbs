@@ -20,6 +20,47 @@
       class='form-header fluid'
       maxlength=maxlength
     }}
+    {{#if (not isAddMode)}}
+      <div class="ui stackable grid fd-list">
+        <div class="row">
+          {{#flexberry-toggler
+              caption=(t 'components.fd-diagram-editing-panel.toggler-caption')
+              expanded=false
+          }}
+          <div class="ui stackable grid fd-list">
+            <div class="row">
+              <div class="five wide column">
+                {{t "components.fd-diagram-editing-panel.system-caption"}}
+              </div>
+              <div class="eleven wide column light-text">
+                {{
+                  flexberry-dropdown
+                  items=systemsItems.names
+                  value=systemValue
+                  onChange=(action "changeSystem")
+                  readonly=readonlyMode
+                  needChecksOnValue=false
+                }}
+              </div>
+            </div>
+            <div class="row">
+              <div class="five wide column">
+                {{t "components.fd-diagram-editing-panel.description-caption"}}
+              </div>
+              <div class="eleven wide column light-text">
+                {{flexberry-textarea
+                  value=model.description
+                  class='fluid input'
+                  placeholder=(t "components.fd-diagram-editing-panel.description-placeholder")
+                  readonly=readonlyMode
+                }}
+              </div>
+            </div>
+          </div>
+          {{/flexberry-toggler}}
+        </div>
+      </div>
+    {{/if}}
   </div>
   <div class="fd-sheet-body">
     {{#if isAddMode}}

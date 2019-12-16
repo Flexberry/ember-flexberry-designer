@@ -7,7 +7,7 @@ import { translationMacro as t } from 'ember-i18n';
 import { all, resolve, reject } from 'rsvp';
 import { schedule } from '@ember/runloop';
 import { A } from '@ember/array';
-import { computed } from '@ember/object';
+import EmberObject, { computed, observer, set } from '@ember/object';
 
 import hasChanges from '../../utils/model-has-changes';
 import { updateObjectByStr } from '../../utils/fd-update-str-value';
@@ -73,6 +73,35 @@ export default FdBaseSheet.extend({
   isAddMode: false,
 
   /**
+    System name.
+
+    @property systemValue
+    @type string
+  */
+  systemValue: undefined,
+
+  /**
+    System arrays.
+
+    @property systemsItems
+    @type Object
+  */
+  systemsItems: undefined,
+
+  /**
+    Ember.observer, watching string `model.name` and update 'systemValue' property.
+
+    @method _bsObserver
+  */
+  systemObserver: observer('selectedValue.model.data.name', function() {
+    let model = this.get('selectedValue.model.data');
+    if (!isNone(model)) {
+      let subsystemName = model.get('subsystem.name');
+      this.set('systemValue', subsystemName);
+    }
+  }),
+
+  /**
     Sheet title value.
 
     @method computedTitle
@@ -99,6 +128,15 @@ export default FdBaseSheet.extend({
   */
   openSheet(sheetName, currentItem) {
     this.deactivateListItem();
+
+    // TODO
+    if (!isNone(currentItem) && !currentItem.get('isNew')) {
+      let currentItemData = currentItem.get('model.data');
+      let modelPart = currentItemData.get('constructor.modelName').slice(11);
+      let selectedElement = this.get(`model.${modelPart}`).findBy('data.id', currentItemData.get('id'));
+      currentItem = !isNone(selectedElement) ? EmberObject.create({ model: selectedElement }) : currentItem;
+    }
+
     this.set('selectedValue', currentItem);
     if (!isNone(currentItem)) {
       this.set('isAddMode', false);
@@ -416,6 +454,21 @@ export default FdBaseSheet.extend({
     return resolve();
   },
 
+  init() {
+    this._super(...arguments);
+
+    let stage = this.get('currentProjectContext').getCurrentStageModel();
+    let systems = stage.get('systems').toArray();
+    let systemsNames = systems.mapBy('name');
+
+    this.set('systemsItems', {
+      names: systemsNames,
+      objects: systems,
+    });
+
+    this.get('systemObserver').apply(this);
+  },
+
   actions: {
     /**
       Save 'selectedValue'.
@@ -427,6 +480,7 @@ export default FdBaseSheet.extend({
       const selectedValue = this.get('selectedValue');
       let model = selectedValue.get('model.data');
       let isNew = model.get('isNew');
+      let isNewSystem = !isNone(model.changedBelongsTo().subsystem);
 
       this.get('appState').loading();
 
@@ -436,6 +490,8 @@ export default FdBaseSheet.extend({
       .then(() => {
         if (isNew) {
           this.addNewDiagramInModel();
+        } else if (isNewSystem) {
+          this.get('updateModel')();
         }
 
         this.set('isDiagramVisible', false);
@@ -520,6 +576,19 @@ export default FdBaseSheet.extend({
       .finally(() => {
         this.get('appState').reset();
       });
+    },
+
+    /**
+      Update 'businessServerClass'.
+
+      @method actions.changeSystem
+      @param {Object} value An object with a new value in the `value` property.
+    */
+    changeSystem(value) {
+      let model = this.get('selectedValue.model.data');
+      let systemsItems = this.get('systemsItems');
+      let systemsObject = systemsItems.objects.findBy('name', value);
+      set(model, 'subsystem', systemsObject);
     }
   }
 });
