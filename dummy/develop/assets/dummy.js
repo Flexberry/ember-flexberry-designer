@@ -4644,6 +4644,11 @@ define('dummy/ember-flexberry-designer/tests/addon.lint-test', [], function () {
     assert.ok(true, 'addon/locales/en/components/fd-custom-editing-panel.js should pass ESLint\n\n');
   });
 
+  QUnit.test('addon/locales/en/components/fd-diagram-editing-panel.js', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'addon/locales/en/components/fd-diagram-editing-panel.js should pass ESLint\n\n');
+  });
+
   QUnit.test('addon/locales/en/components/fd-editform-editing-panel.js', function (assert) {
     assert.expect(1);
     assert.ok(true, 'addon/locales/en/components/fd-editform-editing-panel.js should pass ESLint\n\n');
@@ -5382,6 +5387,11 @@ define('dummy/ember-flexberry-designer/tests/addon.lint-test', [], function () {
   QUnit.test('addon/locales/ru/components/fd-custom-editing-panel.js', function (assert) {
     assert.expect(1);
     assert.ok(true, 'addon/locales/ru/components/fd-custom-editing-panel.js should pass ESLint\n\n');
+  });
+
+  QUnit.test('addon/locales/ru/components/fd-diagram-editing-panel.js', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'addon/locales/ru/components/fd-diagram-editing-panel.js should pass ESLint\n\n');
   });
 
   QUnit.test('addon/locales/ru/components/fd-editform-editing-panel.js', function (assert) {
