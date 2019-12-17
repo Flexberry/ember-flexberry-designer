@@ -7,7 +7,7 @@ import { translationMacro as t } from 'ember-i18n';
 import { all, resolve, reject } from 'rsvp';
 import { schedule } from '@ember/runloop';
 import { A } from '@ember/array';
-import EmberObject, { computed, observer, set } from '@ember/object';
+import { computed, observer, set, get } from '@ember/object';
 
 import hasChanges from '../../utils/model-has-changes';
 import { updateObjectByStr } from '../../utils/fd-update-str-value';
@@ -93,8 +93,8 @@ export default FdBaseSheet.extend({
 
     @method _bsObserver
   */
-  systemObserver: observer('selectedValue.model.data.name', function() {
-    let model = this.get('selectedValue.model.data');
+  systemObserver: observer('selectedValue.data.name', function() {
+    let model = this.get('selectedValue.data');
     if (!isNone(model)) {
       let subsystemName = model.get('subsystem.name');
       this.set('systemValue', subsystemName);
@@ -108,11 +108,11 @@ export default FdBaseSheet.extend({
   */
   computedTitle: computed('isAddMode', 'i18n.locale', 'selectedValue', {
     get() {
-      return this.get('isAddMode') ? t('components.fd-create-diagrams.caption') : this.get('selectedValue.model.data.name');
+      return this.get('isAddMode') ? t('components.fd-create-diagrams.caption') : this.get('selectedValue.data.name');
     },
     set(key, value) {
       if (!this.get('isAddMode')) {
-        this.set('selectedValue.model.data.name', value);
+        this.set('selectedValue.data.name', value);
       }
 
       return value;
@@ -128,15 +128,6 @@ export default FdBaseSheet.extend({
   */
   openSheet(sheetName, currentItem) {
     this.deactivateListItem();
-
-    // TODO
-    if (!isNone(currentItem) && !currentItem.get('isNew')) {
-      let currentItemData = currentItem.get('model.data');
-      let modelPart = currentItemData.get('constructor.modelName').slice(11);
-      let selectedElement = this.get(`model.${modelPart}`).findBy('data.id', currentItemData.get('id'));
-      currentItem = !isNone(selectedElement) ? EmberObject.create({ model: selectedElement }) : currentItem;
-    }
-
     this.set('selectedValue', currentItem);
     if (!isNone(currentItem)) {
       this.set('isAddMode', false);
@@ -168,7 +159,7 @@ export default FdBaseSheet.extend({
     let selectedValue = this.get('selectedValue');
     if (!isNone(selectedValue)) {
       let store = this.get('store');
-      let model = selectedValue.get('model.data');
+      let model = get(selectedValue, 'data');
       let primitives = A(model.get('primitives').filterBy('repositoryObject'));
 
       // Recompute `primitives` property.
@@ -202,7 +193,7 @@ export default FdBaseSheet.extend({
 
       model.rollbackAll();
       this.set('isDiagramVisible', false);
-      selectedValue.set('model.active', false);
+      set(selectedValue, 'active', false);
     }
   },
 
@@ -353,7 +344,7 @@ export default FdBaseSheet.extend({
      @method addNewDiagramInModel
   */
   addNewDiagramInModel() {
-    let model = this.get('selectedValue.model');
+    let model = this.get('selectedValue');
     let modelPart = model.data.get('constructor.modelName').slice(11);
     this.get(`model.${modelPart}`).pushObject(model);
 
@@ -366,7 +357,7 @@ export default FdBaseSheet.extend({
      @method checkForLooping
   */
   checkForLooping() {
-    let model = this.get('selectedValue.model.data');
+    let model = this.get('selectedValue.data');
     let primitivesModel = model.get('primitives');
     let mapPrimitives = primitivesModel.mapBy('primitive');
 
@@ -477,8 +468,7 @@ export default FdBaseSheet.extend({
        @param {Boolean} closeAfter Close after save.
     */
     save(closeAfter) {
-      const selectedValue = this.get('selectedValue');
-      let model = selectedValue.get('model.data');
+      let model = this.get('selectedValue.data');
       let isNew = model.get('isNew');
       let isNewSystem = !isNone(model.changedBelongsTo().subsystem);
 
@@ -518,7 +508,7 @@ export default FdBaseSheet.extend({
     */
     delete() {
       let store = this.get('store');
-      let selectedValue = this.get('selectedValue.model.data');
+      let selectedValue = this.get('selectedValue.data');
       let modelPart = selectedValue.get('constructor.modelName').slice(11);
       let modelHash = this.get(`model.${modelPart}`);
 
@@ -585,7 +575,11 @@ export default FdBaseSheet.extend({
       @param {Object} value An object with a new value in the `value` property.
     */
     changeSystem(value) {
-      let model = this.get('selectedValue.model.data');
+      if (isNone(value)) {
+        return;
+      }
+
+      let model = this.get('selectedValue.data');
       let systemsItems = this.get('systemsItems');
       let systemsObject = systemsItems.objects.findBy('name', value);
       set(model, 'subsystem', systemsObject);

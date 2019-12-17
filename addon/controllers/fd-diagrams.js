@@ -1,7 +1,7 @@
 import Controller from '@ember/controller';
 import FdSheetCloseConfirm from '../mixins/fd-sheet-close-confirm';
 import FdReadonlyProjectMixin from '../mixins/fd-readonly-project';
-import EmberObject, { computed, observer } from '@ember/object';
+import { computed } from '@ember/object';
 import { inject as service } from '@ember/service';
 import { isBlank, isNone } from '@ember/utils';
 import { A } from '@ember/array';
@@ -88,19 +88,6 @@ export default Controller.extend(FdSheetCloseConfirm, FdReadonlyProjectMixin, {
   groupBySystems: computed('groupValue', function() {
     let groupValue = this.get('groupValue');
     return !isNone(groupValue) && groupValue === this.get('i18n').t('forms.fd-diagrams.systems').toString();
-  }),
-
-  /**
-    Ember.observer, watching property `searchValue` and send action from 'fd-sheet' component.
-
-    @method searchValueObserver
-  */
-  searchValueObserver: observer('searchValue', 'groupValue', function() {
-    let sheetComponentName = this.get('sheetComponentName');
-    let fdSheetService = this.get('fdSheetService');
-    if (fdSheetService.isVisible(sheetComponentName)) {
-      fdSheetService.closeSheet(sheetComponentName);
-    }
   }),
 
   /**
@@ -193,7 +180,7 @@ export default Controller.extend(FdSheetCloseConfirm, FdReadonlyProjectMixin, {
       let model = { data: newDiagram, active: true };
 
       this.set('isAddMode', false);
-      this.get('fdSheetService').openSheet(this.get('sheetComponentName'), EmberObject.create({ model: model }));
+      this.get('fdSheetService').openSheet(this.get('sheetComponentName'), model);
     },
 
     /**

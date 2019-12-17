@@ -4,6 +4,7 @@ import hasChanges from '../utils/model-has-changes';
 import $ from 'jquery';
 import { later, schedule } from '@ember/runloop';
 import { isBlank, isNone } from '@ember/utils';
+import { get } from '@ember/object';
 
 export default Service.extend(Evented, {
   sheetSettings: undefined,
@@ -48,7 +49,9 @@ export default Service.extend(Evented, {
     } else {
       this.trigger('openSheetTriggered', sheetName, currentItem);
       this.set(`sheetSettings.visibility.${sheetName}`, true);
-      this.set(`sheetSettings.currentItem.${sheetName}`, currentItem);
+
+      let currentModel = !isNone(currentItem) && isBlank(get(currentItem, 'constructor.modelName')) ? currentItem.data : currentItem;
+      this.set(`sheetSettings.currentItem.${sheetName}`, currentModel);
 
       $('.pushable').addClass('fade');
       $('.fd-sheet.visible.expand .content-mini').addClass('fade');
@@ -231,7 +234,7 @@ export default Service.extend(Evented, {
       return null;
     }
 
-    const currentItemModel = this.get(`sheetSettings.currentItem.${sheetName}.model.data`);
+    const currentItemModel = this.get(`sheetSettings.currentItem.${sheetName}`);
 
     return currentItemModel;
   },

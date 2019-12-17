@@ -1,6 +1,13 @@
 # Ember Flexberry Designer Changelog
 All notable changes to this project will be documented in this file.
 
+## [0.12.0-beta02]
+### Added
+* Add change systems.
+
+### Fixed
+* Fix some styles.
+
 ## [0.12.0-beta01]
 ### Added
 * Filter in lists.

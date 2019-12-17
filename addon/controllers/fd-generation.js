@@ -8,7 +8,7 @@ import { inject as service } from '@ember/service';
 import { A } from '@ember/array';
 import { isNone, isBlank } from '@ember/utils';
 import { Promise, resolve, reject } from 'rsvp';
-import EmberObject, { computed, observer } from '@ember/object';
+import { computed } from '@ember/object';
 import moment from 'moment';
 import Builder from 'ember-flexberry-data/query/builder';
 
@@ -77,19 +77,6 @@ export default Controller.extend(FdReadonlyProjectMixin, {
       this.get('i18n').t('forms.fd-generation.error-caption').toString(),
       this.get('i18n').t('forms.fd-generation.other-caption').toString()
     ]);
-  }),
-
-  /**
-    Ember.observer, watching property `searchValue` and send action from 'fd-sheet' component.
-
-    @method searchValueObserver
-  */
-  searchValueObserver: observer('searchValue', 'groupValue', function() {
-    let sheetComponentName = this.get('sheetComponentName');
-    let fdSheetService = this.get('fdSheetService');
-    if (fdSheetService.isVisible(sheetComponentName)) {
-      fdSheetService.closeSheet(sheetComponentName);
-    }
   }),
 
   /**
@@ -171,7 +158,7 @@ export default Controller.extend(FdReadonlyProjectMixin, {
       .then((generation) => {
         let model = { data: generation, active: true };
         this.get('model.run').unshiftObject(model);
-        this.get('fdSheetService').openSheet(this.get('sheetComponentName'), EmberObject.create({ model: model }));
+        this.get('fdSheetService').openSheet(this.get('sheetComponentName'), model);
         this.send('updateModel');
       });
     },
