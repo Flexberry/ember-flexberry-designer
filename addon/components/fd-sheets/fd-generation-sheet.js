@@ -2,7 +2,7 @@ import FdBaseSheet from './fd-base-sheet';
 import Builder from 'ember-flexberry-data/query/builder';
 import GenerationStateEnum from '../../enums/new-platform-flexberry-web-designer-generation-state';
 import { run } from '@ember/runloop';
-import { computed } from '@ember/object';
+import { computed, get, set } from '@ember/object';
 import { isNone } from '@ember/utils';
 
 import layout from '../../templates/components/fd-sheets/fd-generation-sheet';
@@ -33,7 +33,7 @@ export default FdBaseSheet.extend({
     @property generationLog
     @type Ember.NativeArray
   */
-  generationSteps: computed.sort('selectedValue.model.data.stepLogs', '_stepsSorting'),
+  generationSteps: computed.sort('selectedValue.data.stepLogs', '_stepsSorting'),
 
   /**
     Description of sorting for {{#crossLink "FdGenerationListLogController/generationSteps:property"}}generation steps{{/crossLink}}.
@@ -62,7 +62,7 @@ export default FdBaseSheet.extend({
     this.deactivateListItem();
     this.set('selectedValue', currentItem);
 
-    if (currentItem.get('model.data.isRunning')) {
+    if (get(currentItem, 'model.data.isRunning')) {
       this.updateLog();
     }
   },
@@ -86,7 +86,7 @@ export default FdBaseSheet.extend({
   deactivateListItem() {
     let selectedValue = this.get('selectedValue');
     if (!isNone(selectedValue)) {
-      selectedValue.set('model.active', false);
+      set(selectedValue, 'active', false);
     }
   },
 
@@ -110,17 +110,17 @@ export default FdBaseSheet.extend({
     let builder = new Builder(store)
       .from(modelName)
       .selectByProjection(projectionName)
-      .byId(this.get('selectedValue.model.data.id'));
+      .byId(this.get('selectedValue.data.id'));
 
     store.queryRecord(modelName, builder.build()).then((generation) => {
-      this.set('selectedValue.model.data', generation);
+      this.set('selectedValue.data', generation);
 
       if (generation.get('isRunning')) {
         this.set('_timer', run.later(this, this.updateLog, 5000));
       } else {
         this.set('_timer', undefined);
 
-        let generationValue = this.get('selectedValue.model');
+        let generationValue = this.get('selectedValue');
         this.get('model.run').removeObject(generationValue);
 
         let model;
