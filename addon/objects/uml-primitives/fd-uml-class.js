@@ -485,6 +485,7 @@ joint.shapes.flexberry.uml.ClassView = joint.shapes.flexberry.uml.PrimitiveEleme
     let collapsedToggle = !objectModel.get('collapsed');
     objectModel.set('collapsed', collapsedToggle);
     this.model.set('minHeight', collapsedToggle ? 34 : 64);
+    this.setColors();
     this.applyDisplayFromCollapseValue();
   },
 
