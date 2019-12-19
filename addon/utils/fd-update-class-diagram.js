@@ -179,14 +179,6 @@ function updateDependencysOfClassName(store, currentProjectContext, devClass) {
   return promises;
 }
 
-/**
-  Update all dependencys of changed class name on diagramm .
-*/
-function updateLinksRepositoryObjects(store, currentProjectContext, devClass) {
-
-  return promises;
-}
-
 export {
   createClassPrimitive,
   deletePrimitives,
