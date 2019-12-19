@@ -300,6 +300,12 @@ export default Component.extend({
     this.get('readonlyObserver').apply(this);
   },
 
+  willDestroy() {
+    this._super(...arguments);
+
+    this.get('fdDiagramService').off('updateJointObjectViewTriggered', this, this._updateJointObjectView);
+  },
+
   /**
     Handler event 'blank:pointerclick'.
 

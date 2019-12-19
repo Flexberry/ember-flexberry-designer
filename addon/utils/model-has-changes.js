@@ -8,5 +8,5 @@ export default function modelHasChanges(model) {
     return false;
   }
 
-  return model.hasDirtyAttributes || model.hasChangedBelongsTo();
+  return model.hasDirtyAttributes || model.hasChangedBelongsTo() || Object.keys(model.changedHasMany()).length !== 0;
 }

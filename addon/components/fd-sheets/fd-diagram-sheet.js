@@ -7,7 +7,7 @@ import { translationMacro as t } from 'ember-i18n';
 import { all, resolve, reject } from 'rsvp';
 import { schedule } from '@ember/runloop';
 import { A } from '@ember/array';
-import { computed } from '@ember/object';
+import { computed, observer, set, get } from '@ember/object';
 
 import hasChanges from '../../utils/model-has-changes';
 import { updateObjectByStr } from '../../utils/fd-update-str-value';
@@ -73,17 +73,46 @@ export default FdBaseSheet.extend({
   isAddMode: false,
 
   /**
+    System name.
+
+    @property systemValue
+    @type string
+  */
+  systemValue: undefined,
+
+  /**
+    System arrays.
+
+    @property systemsItems
+    @type Object
+  */
+  systemsItems: undefined,
+
+  /**
+    Ember.observer, watching string `model.name` and update 'systemValue' property.
+
+    @method _bsObserver
+  */
+  systemObserver: observer('selectedValue.data.name', function() {
+    let model = this.get('selectedValue.data');
+    if (!isNone(model)) {
+      let subsystemName = model.get('subsystem.name');
+      this.set('systemValue', subsystemName);
+    }
+  }),
+
+  /**
     Sheet title value.
 
     @method computedTitle
   */
   computedTitle: computed('isAddMode', 'i18n.locale', 'selectedValue', {
     get() {
-      return this.get('isAddMode') ? t('components.fd-create-diagrams.caption') : this.get('selectedValue.model.data.name');
+      return this.get('isAddMode') ? t('components.fd-create-diagrams.caption') : this.get('selectedValue.data.name');
     },
     set(key, value) {
       if (!this.get('isAddMode')) {
-        this.set('selectedValue.model.data.name', value);
+        this.set('selectedValue.data.name', value);
       }
 
       return value;
@@ -130,7 +159,7 @@ export default FdBaseSheet.extend({
     let selectedValue = this.get('selectedValue');
     if (!isNone(selectedValue)) {
       let store = this.get('store');
-      let model = selectedValue.get('model.data');
+      let model = get(selectedValue, 'data');
       let primitives = A(model.get('primitives').filterBy('repositoryObject'));
 
       // Recompute `primitives` property.
@@ -164,7 +193,7 @@ export default FdBaseSheet.extend({
 
       model.rollbackAll();
       this.set('isDiagramVisible', false);
-      selectedValue.set('model.active', false);
+      set(selectedValue, 'active', false);
     }
   },
 
@@ -315,7 +344,7 @@ export default FdBaseSheet.extend({
      @method addNewDiagramInModel
   */
   addNewDiagramInModel() {
-    let model = this.get('selectedValue.model');
+    let model = this.get('selectedValue');
     let modelPart = model.data.get('constructor.modelName').slice(11);
     this.get(`model.${modelPart}`).pushObject(model);
 
@@ -328,7 +357,7 @@ export default FdBaseSheet.extend({
      @method checkForLooping
   */
   checkForLooping() {
-    let model = this.get('selectedValue.model.data');
+    let model = this.get('selectedValue.data');
     let primitivesModel = model.get('primitives');
     let mapPrimitives = primitivesModel.mapBy('primitive');
 
@@ -416,6 +445,21 @@ export default FdBaseSheet.extend({
     return resolve();
   },
 
+  init() {
+    this._super(...arguments);
+
+    let stage = this.get('currentProjectContext').getCurrentStageModel();
+    let systems = stage.get('systems').toArray();
+    let systemsNames = systems.mapBy('name');
+
+    this.set('systemsItems', {
+      names: systemsNames,
+      objects: systems,
+    });
+
+    this.get('systemObserver').apply(this);
+  },
+
   actions: {
     /**
       Save 'selectedValue'.
@@ -424,16 +468,11 @@ export default FdBaseSheet.extend({
        @param {Boolean} closeAfter Close after save.
     */
     save(closeAfter) {
-      const selectedValue = this.get('selectedValue');
-      let model = selectedValue.get('model.data');
-      this.get('appState').loading();
+      let model = this.get('selectedValue.data');
+      let isNew = model.get('isNew');
+      let isNewSystem = !isNone(model.changedBelongsTo().subsystem);
 
-      let isNew = false;
-      if (model.get('isNew')) {
-        isNew = true;
-      } else if ('name' in model.changedAttributes()) {
-        this.get('updateModel')();
-      }
+      this.get('appState').loading();
 
       this.validateData(model)
       .then(() => this.savePrimitives(model))
@@ -441,6 +480,8 @@ export default FdBaseSheet.extend({
       .then(() => {
         if (isNew) {
           this.addNewDiagramInModel();
+        } else if (isNewSystem) {
+          this.get('updateModel')();
         }
 
         this.set('isDiagramVisible', false);
@@ -449,7 +490,7 @@ export default FdBaseSheet.extend({
         });
       }).then(() => {
         if (closeAfter) {
-          this.confirmClose(this.get('sheetComponentName'));
+          this.get('targetObject').confirmClose(this.get('sheetComponentName'));
         }
       })
       .catch((error) => {
@@ -467,7 +508,7 @@ export default FdBaseSheet.extend({
     */
     delete() {
       let store = this.get('store');
-      let selectedValue = this.get('selectedValue.model.data');
+      let selectedValue = this.get('selectedValue.data');
       let modelPart = selectedValue.get('constructor.modelName').slice(11);
       let modelHash = this.get(`model.${modelPart}`);
 
@@ -515,6 +556,7 @@ export default FdBaseSheet.extend({
       deleteModels.pushObject(selectedValue);
       store.batchUpdate(deleteModels)
       .then(() => {
+        this.get('updateModel')();
         this.set('selectedValue', undefined);
         this.get('fdSheetService').closeSheet(this.get('sheetComponentName'));
       })
@@ -524,6 +566,23 @@ export default FdBaseSheet.extend({
       .finally(() => {
         this.get('appState').reset();
       });
+    },
+
+    /**
+      Update 'businessServerClass'.
+
+      @method actions.changeSystem
+      @param {Object} value An object with a new value in the `value` property.
+    */
+    changeSystem(value) {
+      if (isNone(value)) {
+        return;
+      }
+
+      let model = this.get('selectedValue.data');
+      let systemsItems = this.get('systemsItems');
+      let systemsObject = systemsItems.objects.findBy('name', value);
+      set(model, 'subsystem', systemsObject);
     }
   }
 });

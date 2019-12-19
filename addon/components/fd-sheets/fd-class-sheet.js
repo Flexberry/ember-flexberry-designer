@@ -1,5 +1,5 @@
 import FdBaseSheet from './fd-base-sheet';
-import { computed, set } from '@ember/object';
+import { computed, set, get } from '@ember/object';
 import { isBlank, isNone } from '@ember/utils';
 import { A } from '@ember/array';
 import { updateStrByObjects } from '../../utils/fd-update-str-value';
@@ -62,11 +62,11 @@ export default FdBaseSheet.extend({
   */
   computedTitle: computed('isAddMode', 'i18n.locale', 'selectedValue', {
     get() {
-      return this.get('isAddMode') ? t('components.fd-create-entity.caption') : this.get('selectedValue.model.data.name');
+      return this.get('isAddMode') ? t('components.fd-create-entity.caption') : this.get('selectedValue.data.name');
     },
     set(key, value) {
       if (!this.get('isAddMode')) {
-        this.set('selectedValue.model.data.name', value);
+        this.set('selectedValue.data.name', value);
       }
 
       return value;
@@ -81,7 +81,7 @@ export default FdBaseSheet.extend({
   componentNamePart: computed('selectedValue', function() {
     let selectedValue = this.get('selectedValue');
     if (!isNone(selectedValue)) {
-      let stereotype = selectedValue.get('model.data.stereotype');
+      let stereotype = get(selectedValue, 'data.stereotype');
       if (isBlank(stereotype)) {
         return 'implementation';
       }
@@ -126,9 +126,9 @@ export default FdBaseSheet.extend({
   deactivateListItem() {
     let selectedValue = this.get('selectedValue');
     if (!isNone(selectedValue)) {
-      let model = selectedValue.get('model.data');
+      let model = get(selectedValue, 'data');
       model.rollbackAll();
-      selectedValue.set('model.active', false);
+      set(selectedValue, 'active', false);
     }
   },
 
@@ -221,7 +221,7 @@ export default FdBaseSheet.extend({
      @method addNewClassInModel
   */
   addNewClassInModel() {
-    let model = this.get('selectedValue.model');
+    let model = this.get('selectedValue');
     let modelHash = this.getModelArrayByStereotype(model.data);
 
     if (model.data.get('stereotype') === '«implementation»') {
@@ -274,7 +274,7 @@ export default FdBaseSheet.extend({
     */
     save(closeAfter) {
       const selectedValue = this.get('selectedValue');
-      let model = selectedValue.get('model.data');
+      let model = get(selectedValue, 'data');
       this.get('appState').loading();
       updateStrByObjects(model);
 
@@ -298,7 +298,7 @@ export default FdBaseSheet.extend({
       .then(() => {
         this.updateClassModel(model);
         if (closeAfter) {
-          this.confirmClose(this.get('sheetComponentName'));
+          this.get('targetObject').confirmClose(this.get('sheetComponentName'));
         }
       })
       .catch((error) => {
@@ -316,7 +316,7 @@ export default FdBaseSheet.extend({
     */
     delete() {
       const store = this.get('store');
-      let selectedValue = this.get('selectedValue.model.data');
+      let selectedValue = this.get('selectedValue.data');
       let modelHash = this.getModelArrayByStereotype(selectedValue);
 
       let deleteObject;

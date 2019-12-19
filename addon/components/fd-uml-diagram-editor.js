@@ -269,6 +269,11 @@ FdActionsForUcdPrimitivesMixin, {
           }
           let newLink = jointjsCallback(linkProperties);
           newLink.set({ 'startClassRepObj': { id: get(model, 'objectModel.repositoryObject') } });
+          let objectModel = newLink.get('objectModel');
+          if (!isNone(objectModel)) {
+            objectModel.set('startPoint', {x: options.x, y: options.y });
+          }
+
           this.set('newLink', newLink);
           return newLink;
         }

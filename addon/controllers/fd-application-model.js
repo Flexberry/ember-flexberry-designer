@@ -1,6 +1,6 @@
 import Controller from '@ember/controller';
 import FdReadonlyProjectMixin from '../mixins/fd-readonly-project';
-import EmberObject, { computed, observer } from '@ember/object';
+import { computed } from '@ember/object';
 import { isBlank, isNone } from '@ember/utils';
 import { A } from '@ember/array';
 import { inject as service } from '@ember/service';
@@ -84,19 +84,6 @@ export default Controller.extend(FdSheetCloseConfirm, FdReadonlyProjectMixin, {
       this.get('i18n').t('forms.fd-application-model.geolayerstyle-caption').toString(),
       this.get('i18n').t('forms.fd-application-model.userstereotype-caption').toString(),
     ]);
-  }),
-
-  /**
-    Ember.observer, watching property `searchValue` and send action from 'fd-sheet' component.
-
-    @method searchValueObserver
-  */
-  searchValueObserver: observer('searchValue', 'groupValue', function() {
-    let sheetComponentName = this.get('sheetComponentName');
-    let fdSheetService = this.get('fdSheetService');
-    if (fdSheetService.isVisible(sheetComponentName)) {
-      fdSheetService.closeSheet(sheetComponentName);
-    }
   }),
 
   /**
@@ -207,10 +194,10 @@ export default Controller.extend(FdSheetCloseConfirm, FdReadonlyProjectMixin, {
         newClass.set('formViews', [formView]);
       }
 
-      let model = { data: newClass, active: true };
+      let model = { data: newClass, active: true, dataobject: dataobject };
 
       this.set('isAddMode', false);
-      this.get('fdSheetService').openSheet(this.get('sheetComponentName'), EmberObject.create({ model: model, dataobject: dataobject }));
+      this.get('fdSheetService').openSheet(this.get('sheetComponentName'), model);
     },
 
     /**

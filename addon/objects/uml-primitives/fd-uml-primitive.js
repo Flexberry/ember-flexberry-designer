@@ -78,7 +78,32 @@ joint.connectionPoints.toPointConnection = function(endPathSegmentLine, endView)
   let targetId = get(this, 'targetView.model.id');
   let startPoint, endPoint;
 
-  if (sourceId === endView.model.id && !isNone(targetId)) {
+  let isNoneTargetId = isNone(targetId);
+  let isNoneSourceId = isNone(sourceId);
+  let verticesLength = objectModel.get('vertices.length');
+  if (sourceId === targetId) {
+    if (verticesLength > 1) {
+      let points = objectModel.get('vertices');
+      let valueX = endPathSegmentLine.start.x;
+      let valueY = endPathSegmentLine.start.y;
+      if (points[verticesLength - 1].x === valueX && points[verticesLength - 1].y === valueY) {
+        isNoneTargetId = true;
+      } else if (points[0].x === valueX && points[0].y === valueY) {
+        isNoneSourceId = true;
+      }
+    } else {
+      let cyclecLinkSwitch = objectModel.get('cyclecLinkSwitch');
+      if (cyclecLinkSwitch) {
+        isNoneTargetId = true;
+      } else {
+        isNoneSourceId = true;
+      }
+
+      objectModel.set('cyclecLinkSwitch', !cyclecLinkSwitch);
+    }
+  }
+
+  if (sourceId === endView.model.id && !isNoneTargetId) {
     const sourcePosition = get(this, 'sourceView.model.attributes.position');
     if (!objectModel.get('startPointRef')) {
       objectModel.set('startPointRef', { x: sourcePosition.x - objectModel.get('startPoint.x'), y: sourcePosition.y - objectModel.get('startPoint.y') });
@@ -87,7 +112,7 @@ joint.connectionPoints.toPointConnection = function(endPathSegmentLine, endView)
     objectModel.set('startPoint', { x: sourcePosition.x - objectModel.get('startPointRef.x'), y: sourcePosition.y - objectModel.get('startPointRef.y') });
     endPoint = new joint.g.Point(objectModel.get('startPoint'));
     startPoint = new joint.g.Point(objectModel.get('endPoint'));
-  } else if (targetId === endView.model.id && !isNone(sourceId)) {
+  } else if (targetId === endView.model.id && !isNoneSourceId) {
     const targetPosition = get(this, 'targetView.model.attributes.position');
     if (!objectModel.get('endPointRef')) {
       objectModel.set('endPointRef', { x: targetPosition.x - objectModel.get('endPoint.x'), y: targetPosition.y - objectModel.get('endPoint.y') });
@@ -97,11 +122,11 @@ joint.connectionPoints.toPointConnection = function(endPathSegmentLine, endView)
     endPoint = new joint.g.Point(objectModel.get('endPoint'));
     startPoint = new joint.g.Point(objectModel.get('startPoint'));
   } else {
-    if (isNone(targetId)) {
+    if (isNoneTargetId) {
       endPoint = objectModel.get('startPoint');
-      startPoint = endPathSegmentLine.end;
+      startPoint = endPathSegmentLine.start;
       objectModel.set('endPointRef', undefined);
-    } else if (isNone(sourceId)) {
+    } else if (isNoneSourceId) {
       endPoint = objectModel.get('endPoint');
       startPoint = endPathSegmentLine.start;
       objectModel.set('startPointRef', undefined);
@@ -110,7 +135,7 @@ joint.connectionPoints.toPointConnection = function(endPathSegmentLine, endView)
 
   let bbox = endView.model.getBBox();
 
-  if (objectModel.get('vertices.length') === 0) {
+  if (verticesLength === 0) {
     endPathSegmentLine.start.x = startPoint.x;
     endPathSegmentLine.start.y = startPoint.y;
   }

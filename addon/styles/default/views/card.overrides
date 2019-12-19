@@ -98,7 +98,7 @@
     transition: all 0.3s;
     height: @architectureCardHeight;
     .header {
-      color: fadein(@sidebarBg, 5%);
+      color: fade(@textColor, 30%);
       transition: color 0.3s;
     }
 
@@ -117,7 +117,7 @@
     }
 
     .image i.icon {
-      color: fadein(@sidebarBg, 5%);
+      color: fade(@textColor, 30%);
       margin-top: 15%;
       margin-right: 0;
     }

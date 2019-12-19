@@ -84,6 +84,7 @@ export default Component.extend(FdSaveHasManyRelationshipsMixin, {
 
     this.get('fdSheetService').on('openSheetTriggered', this, this.openSheetBase);
     this.get('fdSheetService').on('closeSheetTriggered', this, this.closeSheetBase);
+    this.get('fdSheetService').on('saveCurrentItemTrigger', this, this.saveCurrentItemSheetBase);
   },
 
   willDestroy() {
@@ -91,6 +92,7 @@ export default Component.extend(FdSaveHasManyRelationshipsMixin, {
 
     this.get('fdSheetService').off('openSheetTriggered', this, this.openSheetBase);
     this.get('fdSheetService').off('closeSheetTriggered', this, this.closeSheetBase);
+    this.get('fdSheetService').off('saveCurrentItemTrigger', this, this.saveCurrentItemSheetBase);
   },
 
   /**
@@ -153,6 +155,20 @@ export default Component.extend(FdSaveHasManyRelationshipsMixin, {
   */
   closeSheet(sheetName) {
     assert(`Please specify 'closeSheet' method for '${sheetName}' sheet compoenent`);
+  },
+
+    /**
+      Save currentItem.
+
+       @method saveCurrentItemSheetBase
+       @param {String} sheetName Sheet's component name
+       @param {Boolean} closeAfter Close after save.
+    */
+  saveCurrentItemSheetBase(sheetName, closeAfter) {
+    let sheetComponentName = this.get('sheetComponentName');
+    if (sheetComponentName === sheetName) {
+      this.send('save', closeAfter);
+    }
   },
 
   actions: {

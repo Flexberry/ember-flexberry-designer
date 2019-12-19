@@ -1,5 +1,6 @@
 @selectionBorder: none;
 @selectionMinHeight: 1em;
+@selectionMinWidth:0;
 
 /* Visible Hover */
 @selectionActiveHoverBorderColor: @sidebarBg;

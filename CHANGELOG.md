@@ -1,6 +1,25 @@
 # Ember Flexberry Designer Changelog
 All notable changes to this project will be documented in this file.
 
+## [0.12.0-beta02]
+### Added
+* Add change systems.
+
+### Fixed
+* Fix some styles.
+
+## [0.12.0-beta01]
+### Added
+* Filter in lists.
+
+### Fixed
+* Fix errors in modal dialog.
+* Fix view link.
+* Fix view cycle link.
+* Fix paper size.
+* Fix add NoteConnector.
+* Fix collapse class
+
 ## [Unreleased]
 ## [0.11.0]
 ### Added

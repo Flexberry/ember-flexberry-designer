@@ -115,6 +115,8 @@ export default Route.extend(FdWrapperModel, FdShareLoadData, {
     this._super(...arguments);
 
     controller.set('isAddMode', false);
+    controller.set('searchValue', '');
+    controller.set('routeName', this.get('routeName'));
     controller.set('sheetComponentName', this.get('sheetComponentName'));
   },
 
