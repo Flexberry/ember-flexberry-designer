@@ -16,7 +16,7 @@
     {{flexberry-textbox
       value=computedTitle
       placeholder=(t "components.fd-sheets-tool-bar.placeholder-caption")
-      readonly=(not selectedValue.model.data.isNew)
+      readonly=(and (not selectedValue.model.data.isNew) readonlyMode)
       class='form-header fluid'
       maxlength=maxlength
     }}

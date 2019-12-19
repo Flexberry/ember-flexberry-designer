@@ -1,6 +1,10 @@
 import FdBaseSheet from './fd-base-sheet';
 import { updateObjectByStr, updateStrByObjects } from '../../utils/fd-update-str-value';
+import { applyNewClassName } from '../../utils/fd-update-class-diagram';
+import { A } from '@ember/array';
 import { inject as service } from '@ember/service';
+import { isBlank, isNone } from '@ember/utils';
+import { resolve, reject } from 'rsvp';
 
 import layout from '../../templates/components/fd-sheets/fd-edit-diagram-object-sheet';
 
@@ -121,6 +125,38 @@ export default FdBaseSheet.extend({
     this.set('readonlyMode', true);
   },
 
+  /**
+    Check data for correctness.
+
+    @method validateData
+    @param {Object} model Class model.
+  */
+  validateData(model) {
+    let modelName = model.get('name');
+    let modelId = model.get('id');
+
+    if (isBlank(modelName)) {
+      return reject({ message: this.get('i18n').t('forms.fd-application-model.error-message.empty-class').toString() });
+    }
+
+    if ((model.get('stereotype') === '«editform»' || model.get('stereotype') === '«listform»') && isNone(model.get('formViews.firstObject.view'))) {
+      return reject({ message: this.get('i18n').t('forms.fd-application-model.error-message.view-form').toString() });
+    }
+
+    // Get current classes.
+    let allClasses = this.get('store').peekAll('fd-dev-class');
+    let classesCurrentStage = allClasses.filterBy('stage.id', this.get('currentProjectContext').getCurrentStage());
+    let currentClass = A(classesCurrentStage).find((a) => {
+      return a.get('name') === modelName && a.get('id') !== modelId;
+    });
+
+    if (!isNone(currentClass)) {
+      return reject({ message: this.get('i18n').t('forms.fd-application-model.error-message.exist-class').toString() });
+    }
+
+    return resolve();
+  },
+
   actions: {
 
     /**
@@ -132,16 +168,21 @@ export default FdBaseSheet.extend({
       let selectedValue = this.get('selectedValue');
       let objectModel = this.get('selectedValueModel');
       this.get('appState').loading();
-
       updateStrByObjects(selectedValue);
-      objectModel.set('attributes', selectedValue.get('attributesStr').split('\n'));
-      objectModel.set('methods', selectedValue.get('methodsStr').split('\n'));
-      if (selectedValue.get('isNew')) {
-        selectedValue.set('nameStr', selectedValue.get('name'));
-      }
 
-      this.get('fdDiagramService').updateJointObjectOnDiagram(objectModel.get('id'));
-      selectedValue.save()
+      this.validateData(selectedValue)
+      .then(() => {
+        let nameChanges = applyNewClassName(this.get('store'), this.get('currentProjectContext'), selectedValue);
+        return nameChanges;
+      })
+      .then(() => {
+        objectModel.set('name', selectedValue.get('nameStr'));
+        objectModel.set('attributes', selectedValue.get('attributesStr').split('\n'));
+        objectModel.set('methods', selectedValue.get('methodsStr').split('\n'));
+
+        this.get('fdDiagramService').updateJointObjectOnDiagram(objectModel.get('id'));
+        selectedValue.save()
+      })
       .then(() => this.saveHasManyRelationships(selectedValue))
       .catch((error) => {
         this.get('fdDialogService').showErrorMessage(error.message);

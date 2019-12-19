@@ -1,5 +1,6 @@
 import { A } from '@ember/array';
 import { isNone } from '@ember/utils';
+import { resolve } from 'rsvp';
 import { getJsonForClass } from './get-json-for-diagram';
 
 /**
@@ -96,7 +97,98 @@ function createClassPrimitive(store, currentProjectContext, devClass) {
   return diagram;
 }
 
+/**
+  Check if class name is changed and apply this changes.
+*/
+function applyNewClassName(store , context, classObject) {
+  let changedNameAttribute = classObject.changedAttributes();
+  let isNew = classObject.get('isNew');
+
+  if (changedNameAttribute.name && !isNew) {
+    const diagramChanges = updateDependencysOfClassName(store, context, classObject);
+    return store.batchUpdate(diagramChanges);
+  } else {
+    return resolve();
+  }
+}
+
+/**
+  Update all dependencys of changed class name on diagramm .
+*/
+function updateDependencysOfClassName(store, currentProjectContext, devClass) {
+  const allDiagrams = store.peekAll('fd-dev-uml-cad');
+  let diagramsCurrentStage = allDiagrams.filterBy('subsystem.stage.id', currentProjectContext.getCurrentStage());
+  let promises = A();
+
+  const nameOrigin = devClass.changedAttributes().name[0];
+  const nameNew = devClass.changedAttributes().name[1];
+  
+  let diagrams = A(diagramsCurrentStage).filter(function(diagram) {
+    let caseObjectsString = diagram.get('caseObjectsString');
+    return !isNone(caseObjectsString) && caseObjectsString.indexOf(`Class:(${nameOrigin})`) !== -1;
+  });
+
+  diagrams.forEach((diagram) => {
+    let caseObjectsStringOrigin = diagram.get('caseObjectsString');
+    let caseObjectsStringNew = caseObjectsStringOrigin.replace(`Class:(${nameOrigin})`, `Class:(${nameNew})`)
+    diagram.set('caseObjectsString', caseObjectsStringNew);
+
+    let diagramPrimitives = JSON.parse(diagram.get('primitivesJsonString')) || A();
+
+    diagramPrimitives.forEach((primitive) => {
+
+      //Update CaseName in primitive
+      if (primitive.RepositoryObject === `{${devClass.get('id')}}`) {
+        primitive.CaseName = nameNew;
+      }
+
+      //Update definitions array in primitive repository object. For views.
+      const repositoryObjectRecordId = primitive.RepositoryObject.slice(1, -1);
+      let repositoryObject = store.peekRecord('fd-dev-class', repositoryObjectRecordId);
+
+      if (!isNone(repositoryObject)) {
+        let views = repositoryObject.get('views');
+
+        views.forEach((view) => {
+          let definitionArray = view.get('definitionArray');
+          let definitionArrayUpdated = false;
+          definitionArray.forEach(function(definition) {
+            let name = definition.get('name');
+            if (name.indexOf(`${nameOrigin}.`) !== -1) {
+              let newName = definition.get('name').replace(`${nameOrigin}.`, `${nameNew}.`);
+              definition.set('name', newName);
+              definitionArrayUpdated = true;
+            }
+
+          });
+
+          if (definitionArrayUpdated) {
+
+            //For trigger computed propherty in fd-dev-view model.
+            view.get('definitionArray');   
+
+            promises.pushObject(view);
+          }
+        });
+      }
+    });
+
+    promises.pushObject(diagram);
+  });   
+
+  return promises;
+}
+
+/**
+  Update all dependencys of changed class name on diagramm .
+*/
+function updateLinksRepositoryObjects(store, currentProjectContext, devClass) {
+
+  return promises;
+}
+
 export {
   createClassPrimitive,
   deletePrimitives,
+  applyNewClassName
 };

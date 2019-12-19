@@ -4,7 +4,7 @@ import { isBlank, isNone } from '@ember/utils';
 import { A } from '@ember/array';
 import { updateStrByObjects } from '../../utils/fd-update-str-value';
 import { resolve, reject } from 'rsvp';
-import { createClassPrimitive, deletePrimitives } from '../../utils/fd-update-class-diagram';
+import { createClassPrimitive, deletePrimitives, applyNewClassName } from '../../utils/fd-update-class-diagram';
 import { translationMacro as t } from 'ember-i18n';
 
 import layout from '../../templates/components/fd-sheets/fd-class-sheet';
@@ -241,6 +241,7 @@ export default FdBaseSheet.extend({
   */
   validateData(model) {
     let modelName = model.get('name');
+    let modelId = model.get('id');
 
     if (isBlank(modelName)) {
       return reject({ message: this.get('i18n').t('forms.fd-application-model.error-message.empty-class').toString() });
@@ -250,18 +251,15 @@ export default FdBaseSheet.extend({
       return reject({ message: this.get('i18n').t('forms.fd-application-model.error-message.view-form').toString() });
     }
 
-    if (model.get('isNew')) {
-      model.set('nameStr', model.get('name'));
-      // Get current classes.
-      let allClasses = this.get('store').peekAll('fd-dev-class');
-      let classesCurrentStage = allClasses.filterBy('stage.id', this.get('currentProjectContext').getCurrentStage());
-      let currentClass = A(classesCurrentStage).find((a) => {
-        return a.get('name') === modelName && !isNone(a.get('id'));
-      });
+    // Get current classes.
+    let allClasses = this.get('store').peekAll('fd-dev-class');
+    let classesCurrentStage = allClasses.filterBy('stage.id', this.get('currentProjectContext').getCurrentStage());
+    let currentClass = A(classesCurrentStage).find((a) => {
+      return a.get('name') === modelName && a.get('id') !== modelId;
+    });
 
-      if (!isNone(currentClass)) {
-        return reject({ message: this.get('i18n').t('forms.fd-application-model.error-message.exist-class').toString() });
-      }
+    if (!isNone(currentClass)) {
+      return reject({ message: this.get('i18n').t('forms.fd-application-model.error-message.exist-class').toString() });
     }
 
     return resolve();
@@ -282,6 +280,10 @@ export default FdBaseSheet.extend({
 
       let isNew = model.get('isNew');
       this.validateData(model)
+      .then(() => {
+        let nameChanges = applyNewClassName(this.get('store'), this.get('currentProjectContext'), model);
+        return nameChanges;
+      })
       .then(() => model.save())
       .then(() => this.saveHasManyRelationships(model))
       .then(() => {

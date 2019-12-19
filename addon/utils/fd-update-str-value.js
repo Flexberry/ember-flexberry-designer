@@ -143,6 +143,14 @@ let updateObjectByStr = function(classObject, store) {
 };
 
 /**
+  Update NameStr.
+*/
+let updateNameStr = function(classObject) {
+  const name = classObject.name;
+  classObject.set('nameStr', name);
+};
+
+/**
   Update AttributesStr.
 */
 let updateAttributesStr = function(classObject) {
@@ -226,6 +234,7 @@ let updateMethodsStr = function(classObject) {
   Update str properties by repositoryObjects.
 */
 let updateStrByObjects = function(classObject) {
+  updateNameStr(classObject);
   updateAttributesStr(classObject);
   updateMethodsStr(classObject);
 };
