@@ -1,6 +1,10 @@
 # Ember Flexberry Designer Changelog
 All notable changes to this project will be documented in this file.
 
+## [0.12.0-beta03]
+### Added
+* Add rename class.
+
 ## [0.12.0-beta02]
 ### Added
 * Add change systems.
