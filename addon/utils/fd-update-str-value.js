@@ -146,7 +146,7 @@ let updateObjectByStr = function(classObject, store) {
   Update NameStr.
 */
 let updateNameStr = function(classObject) {
-  const name = classObject.name;
+  const name = classObject.get('name');
   classObject.set('nameStr', name);
 };
 

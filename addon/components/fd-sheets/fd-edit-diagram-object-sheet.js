@@ -171,10 +171,9 @@ export default FdBaseSheet.extend({
       updateStrByObjects(selectedValue);
 
       this.validateData(selectedValue)
-      .then(() => {
-        let nameChanges = applyNewClassName(this.get('store'), this.get('currentProjectContext'), selectedValue);
-        return nameChanges;
-      })
+      .then(() =>
+        applyNewClassName(this.get('store'), this.get('currentProjectContext'), selectedValue)
+      )
       .then(() => {
         objectModel.set('name', selectedValue.get('nameStr'));
         objectModel.set('attributes', selectedValue.get('attributesStr').split('\n'));

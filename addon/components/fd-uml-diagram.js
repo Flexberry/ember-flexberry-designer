@@ -676,7 +676,7 @@ export default Component.extend({
       const repositoryObjectId = repositoryObject.slice(1, -1);
       const currentRepObj = store.peekRecord(modelName, repositoryObjectId);
 
-      const name = currentRepObj.get('nameStr');
+      const name = currentRepObj.get('nameStr') || '';
       objectModel.set('name', name);
       this._updateInputValue('.class-name-input', name, view);
 
