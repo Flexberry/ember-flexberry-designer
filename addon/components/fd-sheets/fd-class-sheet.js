@@ -280,9 +280,7 @@ export default FdBaseSheet.extend({
 
       let isNew = model.get('isNew');
       this.validateData(model)
-      .then(() =>
-        applyNewClassName(this.get('store'), this.get('currentProjectContext'), model)
-      )
+      .then(() => applyNewClassName(this.get('store'), this.get('currentProjectContext'), model))
       .then(() => model.save())
       .then(() => this.saveHasManyRelationships(model))
       .then(() => {
