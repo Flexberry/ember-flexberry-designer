@@ -227,7 +227,7 @@ export default Component.extend(FdReadonlyProjectMixin, {
       @method actions.print
     */
     print() {
-      let model = this.get('targetObject.selectedValue.model.data');
+      let model = this.get('targetObject.selectedValue.data');
       window.open(`#/fd-print-form?gotostage=${model.get('subsystem.stage.id')}&gototype=${model.get('constructor.modelName')}&gotoobj=${model.get('id')}&inframe=1` );
     },
   }
