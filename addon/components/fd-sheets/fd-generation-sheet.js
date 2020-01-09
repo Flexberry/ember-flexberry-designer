@@ -62,7 +62,7 @@ export default FdBaseSheet.extend({
     this.deactivateListItem();
     this.set('selectedValue', currentItem);
 
-    if (get(currentItem, 'model.data.isRunning')) {
+    if (get(currentItem, 'data.isRunning')) {
       this.updateLog();
     }
   },

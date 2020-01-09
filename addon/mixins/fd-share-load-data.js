@@ -4,7 +4,7 @@ import Builder from 'ember-flexberry-data/query/builder';
 import FilterOperator from 'ember-flexberry-data/query/filter-operator';
 import { SimplePredicate } from 'ember-flexberry-data/query/predicate';
 
-import EmberObject, { get } from '@ember/object';
+import { get } from '@ember/object';
 import { getOwner } from '@ember/application';
 import { isNone, isBlank } from '@ember/utils';
 import { inject as service } from '@ember/service';
@@ -120,11 +120,11 @@ export default Mixin.create({
     }
 
     let object = this.get('store').peekRecord(`${gototype}`, gotoobj);
-    let sheetItem = EmberObject.create({ model: { data: object } });
+    let sheetItem = { data: object };
 
     schedule('afterRender', controller, function() {
       if (gototype === 'fd-dev-view') {
-        this.get('fdSheetService').openSheet(this.get('sheetComponentName'), EmberObject.create({ model: { data: object.get('class'), active: true } }));
+        this.get('fdSheetService').openSheet(this.get('sheetComponentName'), { data: object.get('class') } );
         sheetComponentName = 'view-sheet';
         sheetItem = object;
       }

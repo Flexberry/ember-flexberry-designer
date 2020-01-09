@@ -26,7 +26,7 @@ let Model = SDModel.extend(DevUMLSDMixin, {
     */
   primitives: computed('primitivesJsonString', function () {
     let result = A();
-    let primitives = JSON.parse(this.get('primitivesJsonString')) || A();
+    let primitives = this.getPrimitives();
 
     for (let i = 0; i < primitives.length; i++) {
       let primitive = primitives[i];

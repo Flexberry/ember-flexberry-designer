@@ -183,24 +183,7 @@ let Model = CADModel.extend(DevUMLCADMixin, {
     }
 
     return result;
-  }),
-
-  /**
-    Get and parse 'primitivesJsonString' value.
-
-    @method getPrimitives
-  */
-  getPrimitives() {
-    let primitivesJsonString = this.get('primitivesJsonString');
-
-    try {
-      let primitivesJsonStringParse = JSON.parse(primitivesJsonString);
-
-      return isBlank(primitivesJsonStringParse) ? A() : primitivesJsonStringParse;
-    } catch(e) {
-      return A();
-    }
-  }
+  })
 });
 
 defineBaseModel(Model);

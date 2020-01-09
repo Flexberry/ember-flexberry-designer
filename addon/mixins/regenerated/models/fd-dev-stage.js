@@ -854,7 +854,7 @@ export let defineProjections = function (modelClass) {
   });
   modelClass.defineProjection('ListDataObjectTypes', 'fd-dev-stage', {
   });
-  modelClass.defineProjection('ListFormView', 'fd-dev-stage', {
+  modelClass.defineProjection('ListFormViewEnterprise', 'fd-dev-stage', {
     name: attr('Name'),
     description: attr('Description'),
     changeUser: attr('Change user'),
@@ -867,6 +867,17 @@ export let defineProjections = function (modelClass) {
 
         }, { hidden: true })
       }, { hidden: true })
+    }, { hidden: true })
+  });
+  modelClass.defineProjection('ListFormView', 'fd-dev-stage', {
+    name: attr('Name'),
+    description: attr('Description'),
+    changeUser: attr('Change user'),
+    changeDate: attr('Change date'),
+    createUser: attr('Create user'),
+    createDate: attr('Create date'),
+    configuration: belongsTo('fd-configuration', '', {
+
     }, { hidden: true })
   });
   modelClass.defineProjection('Prototyping', 'fd-dev-stage', {
