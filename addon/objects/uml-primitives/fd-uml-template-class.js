@@ -239,11 +239,12 @@ joint.shapes.flexberry.uml.TemplateClassView = joint.shapes.flexberry.uml.ClassV
       }
     });
 
+    newWidth = Math.max(newWidth, resizedWidth || oldSize.width, minWidth);
     this.model.attr('.view-rect/width', newWidth + 2);
     this.model.attr('.view-rect/height', newHeight + 2);
 
     //this.model.resize(newWidth, newHeight);
-    this.model.resize(Math.max(newWidth, resizedWidth || oldSize.width, minWidth), Math.max(newHeight, resizedHeight || oldSize.height, minHeight));
+    this.model.resize(newWidth, Math.max(newHeight, resizedHeight || oldSize.height, minHeight));
 
     if (this.model.get('highlighted')) {
       this.unhighlight();
