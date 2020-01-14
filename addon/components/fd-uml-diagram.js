@@ -580,6 +580,13 @@ export default Component.extend({
       }
     } else {
       let bbox = view.model.getBBox();
+      let rects = view.model.getRectangles();
+      if (rects.length > 0) {
+        let paramsWidth = rects[0].element.attr('.flexberry-uml-params-rect/width');
+        if (paramsWidth !== undefined) {
+          bbox.width += paramsWidth - 10;
+        }
+      }
       let ghost = new joint.shapes.basic.Rect();
 
       ghost.attr({ rect: { 'fill': 'transparent', 'stroke': '#5755a1', 'stroke-dasharray': '4,4', 'stroke-width': 2 }});

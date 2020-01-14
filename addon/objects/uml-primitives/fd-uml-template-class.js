@@ -185,6 +185,7 @@ joint.shapes.flexberry.uml.TemplateClassView = joint.shapes.flexberry.uml.ClassV
     const minWidth = this.model.attributes.minWidth;
     const minHeight = this.model.attributes.minHeight;
     const oldSize = this.model.size();
+    resizedWidth -= rects[0].element.attr('.flexberry-uml-params-rect/width') - 10;
     rects.forEach(function(rect, index, array) {
       if (this.markup.includes('flexberry-uml-' + rect.type + '-rect') && rect.element.inputElements) {
         let rectHeight = 0;
@@ -228,6 +229,7 @@ joint.shapes.flexberry.uml.TemplateClassView = joint.shapes.flexberry.uml.ClassV
     }, this.model);
 
     newWidth += (this.model.get('widthPadding') || 0) * 2;
+    this.model.set('inputWidth', newWidth);
     rects.forEach(function(rect) {
       let templateWidth = Math.max(newWidth, resizedWidth || oldSize.width, minWidth);
       if (rect.type === 'params') {
