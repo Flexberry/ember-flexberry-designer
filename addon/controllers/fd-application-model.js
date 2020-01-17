@@ -1,13 +1,14 @@
 import Controller from '@ember/controller';
 import FdReadonlyProjectMixin from '../mixins/fd-readonly-project';
+import FdSheetCloseConfirm from '../mixins/fd-sheet-close-confirm';
+import FdGroupDropdown from '../mixins/fd-group-dropdown';
 import { computed } from '@ember/object';
 import { isBlank, isNone } from '@ember/utils';
 import { A } from '@ember/array';
 import { inject as service } from '@ember/service';
 import $ from 'jquery';
-import FdSheetCloseConfirm from '../mixins/fd-sheet-close-confirm';
 
-export default Controller.extend(FdSheetCloseConfirm, FdReadonlyProjectMixin, {
+export default Controller.extend(FdSheetCloseConfirm, FdReadonlyProjectMixin, FdGroupDropdown, {
 
   /**
    Service that get current project contexts.
@@ -54,14 +55,6 @@ export default Controller.extend(FdSheetCloseConfirm, FdReadonlyProjectMixin, {
   isAddMode: false,
 
   /**
-    Selected group.
-
-    @property groupValue
-    @type String
-  */
-  groupValue: undefined,
-
-  /**
     Array groups.
 
     @property groupArray
@@ -69,20 +62,20 @@ export default Controller.extend(FdSheetCloseConfirm, FdReadonlyProjectMixin, {
   */
   groupArray: computed('i18n.locale', function() {
     return A([
-      this.get('i18n').t('forms.fd-application-model.all-types').toString(),
-      this.get('i18n').t('forms.fd-application-model.entity-group').toString(),
-      this.get('i18n').t('forms.fd-application-model.enum-caption').toString(),
-      this.get('i18n').t('forms.fd-application-model.type-content-caption').toString(),
-      this.get('i18n').t('forms.fd-application-model.typedef-caption').toString(),
-      this.get('i18n').t('forms.fd-application-model.bs-caption').toString(),
-      this.get('i18n').t('forms.fd-application-model.interface-caption').toString(),
-      this.get('i18n').t('forms.fd-application-model.external-caption').toString(),
-      this.get('i18n').t('forms.fd-application-model.extinterface-caption').toString(),
-      this.get('i18n').t('forms.fd-application-model.application-caption').toString(),
-      this.get('i18n').t('forms.fd-application-model.userform-caption').toString(),
-      this.get('i18n').t('forms.fd-application-model.geolayer-caption').toString(),
-      this.get('i18n').t('forms.fd-application-model.geolayerstyle-caption').toString(),
-      this.get('i18n').t('forms.fd-application-model.userstereotype-caption').toString(),
+      'forms.fd-application-model.all-types',
+      'forms.fd-application-model.entity-group',
+      'forms.fd-application-model.enum-caption',
+      'forms.fd-application-model.type-content-caption',
+      'forms.fd-application-model.typedef-caption',
+      'forms.fd-application-model.bs-caption',
+      'forms.fd-application-model.interface-caption',
+      'forms.fd-application-model.external-caption',
+      'forms.fd-application-model.extinterface-caption',
+      'forms.fd-application-model.application-caption',
+      'forms.fd-application-model.userform-caption',
+      'forms.fd-application-model.geolayer-caption',
+      'forms.fd-application-model.geolayerstyle-caption',
+      'forms.fd-application-model.userstereotype-caption'
     ]);
   }),
 
@@ -162,7 +155,7 @@ export default Controller.extend(FdSheetCloseConfirm, FdReadonlyProjectMixin, {
   init() {
     this._super(...arguments);
 
-    this.set('groupValue', this.get('i18n').t('forms.fd-application-model.all-types').toString());
+    this.set('groupValueLocale', 'forms.fd-application-model.all-types');
   },
 
   actions: {

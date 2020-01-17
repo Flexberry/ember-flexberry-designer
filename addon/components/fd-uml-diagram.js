@@ -213,6 +213,8 @@ export default Component.extend({
     let paper = this.set('paper', new joint.dia.Paper({
       el: this.get('element'),
       model: graph,
+      gridSize: 10,
+      drawGrid: true,
       connectionStrategy: joint.connectionStrategies.toPointConnection,
       defaultConnectionPoint: joint.connectionPoints.toPointConnection,
       restrictTranslate: ({ paper }) => {

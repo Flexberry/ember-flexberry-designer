@@ -4,6 +4,7 @@
 
 import Controller from '@ember/controller';
 import FdReadonlyProjectMixin from '../mixins/fd-readonly-project';
+import FdGroupDropdown from '../mixins/fd-group-dropdown';
 import { inject as service } from '@ember/service';
 import { A } from '@ember/array';
 import { isNone, isBlank } from '@ember/utils';
@@ -18,7 +19,7 @@ import Builder from 'ember-flexberry-data/query/builder';
   @class FdGenerationListLogController
   @extends Ember.Controller
 */
-export default Controller.extend(FdReadonlyProjectMixin, {
+export default Controller.extend(FdReadonlyProjectMixin, FdGroupDropdown, {
 
   /**
    Service that get current project contexts.
@@ -56,14 +57,6 @@ export default Controller.extend(FdReadonlyProjectMixin, {
   sheetComponentName: '',
 
   /**
-    Selected group.
-
-    @property groupValue
-    @type String
-  */
-  groupValue: undefined,
-
-  /**
     Array groups.
 
     @property groupArray
@@ -71,11 +64,11 @@ export default Controller.extend(FdReadonlyProjectMixin, {
   */
   groupArray: computed('i18n.locale', function() {
     return A([
-      this.get('i18n').t('forms.fd-generation.all-states').toString(),
-      this.get('i18n').t('forms.fd-generation.run-caption').toString(),
-      this.get('i18n').t('forms.fd-generation.success-caption').toString(),
-      this.get('i18n').t('forms.fd-generation.error-caption').toString(),
-      this.get('i18n').t('forms.fd-generation.other-caption').toString()
+      'forms.fd-generation.all-states',
+      'forms.fd-generation.run-caption',
+      'forms.fd-generation.success-caption',
+      'forms.fd-generation.error-caption',
+      'forms.fd-generation.other-caption'
     ]);
   }),
 
@@ -113,7 +106,7 @@ export default Controller.extend(FdReadonlyProjectMixin, {
   init() {
     this._super(...arguments);
 
-    this.set('groupValue', this.get('i18n').t('forms.fd-generation.all-states').toString());
+    this.set('groupValueLocale', 'forms.fd-generation.all-states');
   },
 
   /**

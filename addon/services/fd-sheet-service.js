@@ -217,7 +217,7 @@ export default Service.extend(Evented, {
     let isDirty = false;
 
     if (!isNone(currentItemModel)) {
-      isDirty = hasChanges(currentItemModel);
+      isDirty = hasChanges(currentItemModel) && !currentItemModel.get('isDeleted');
     }
 
     return isDirty;

@@ -139,6 +139,7 @@ import FdDiagramEditingPanel from './components/fd-diagram-editing-panel';
 import FdCreateView from './components/fd-create-view';
 import FdCreateEntity from './components/fd-create-entity';
 import FdCreateDiagrams from './components/fd-create-diagrams';
+import FdSearchInput from './components/fd-search-input';
 import FdSheetToolBar from './components/fd-sheets-tool-bar';
 import FdCreateNodeEditingPanel from './components/fd-create-node-editing-panel';
 import FdFolderEditingPanel from './components/fd-folder-editing-panel';
@@ -456,6 +457,7 @@ $.extend(true, translations, {
     'fd-geolayerstyle-editing-panel': FdGeolayerstyleEditingPanel,
     'fd-diagram-editing-panel': FdDiagramEditingPanel,
     'fd-create-view': FdCreateView,
+    'fd-search-input': FdSearchInput,
     'fd-sheets-tool-bar': FdSheetToolBar,
     'fd-create-node-editing-panel': FdCreateNodeEditingPanel,
     'fd-folder-editing-panel': FdFolderEditingPanel,

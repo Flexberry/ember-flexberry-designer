@@ -124,7 +124,7 @@ export default Component.extend(FdReadonlyModeMixin, {
     @property tree
     @type Object
   */
-  tree: computed('model.name', function() {
+  tree: computed('model.name', 'model.attributes.@each.{hasDirtyAttributes,isNew}', function() {
     let model = this.get('model');
     if (isNone(model)) {
       return null;
@@ -150,7 +150,6 @@ export default Component.extend(FdReadonlyModeMixin, {
     let treeMasters = getAssociationTreeNode(treeAttributes, dataForBuildTree.associations, 'node_');
     let treeDetails = getAggregationTreeNode(treeMasters, dataForBuildTree.aggregations);
     this.setDetailView(dataForBuildTree.aggregations);
-    this.get('appState').reset();
 
     return treeDetails;
   }),

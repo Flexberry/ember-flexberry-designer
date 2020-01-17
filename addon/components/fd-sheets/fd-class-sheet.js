@@ -247,10 +247,6 @@ export default FdBaseSheet.extend({
       return reject({ message: this.get('i18n').t('forms.fd-application-model.error-message.empty-class').toString() });
     }
 
-    if ((model.get('stereotype') === '«editform»' || model.get('stereotype') === '«listform»') && isNone(model.get('formViews.firstObject.view'))) {
-      return reject({ message: this.get('i18n').t('forms.fd-application-model.error-message.view-form').toString() });
-    }
-
     // Get current classes.
     let allClasses = this.get('store').peekAll('fd-dev-class');
     let classesCurrentStage = allClasses.filterBy('stage.id', this.get('currentProjectContext').getCurrentStage());
@@ -260,6 +256,10 @@ export default FdBaseSheet.extend({
 
     if (!isNone(currentClass)) {
       return reject({ message: this.get('i18n').t('forms.fd-application-model.error-message.exist-class').toString() });
+    }
+
+    if ((model.get('stereotype') === '«editform»' || model.get('stereotype') === '«listform»') && isNone(model.get('formViews.firstObject.view'))) {
+      return reject({ message: this.get('i18n').t('forms.fd-application-model.error-message.view-form').toString() });
     }
 
     return resolve();
