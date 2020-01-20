@@ -1,12 +1,13 @@
 import Controller from '@ember/controller';
 import FdSheetCloseConfirm from '../mixins/fd-sheet-close-confirm';
 import FdReadonlyProjectMixin from '../mixins/fd-readonly-project';
+import FdGroupDropdown from '../mixins/fd-group-dropdown';
 import { computed } from '@ember/object';
 import { inject as service } from '@ember/service';
 import { isBlank, isNone } from '@ember/utils';
 import { A } from '@ember/array';
 
-export default Controller.extend(FdSheetCloseConfirm, FdReadonlyProjectMixin, {
+export default Controller.extend(FdSheetCloseConfirm, FdReadonlyProjectMixin, FdGroupDropdown, {
 
   /**
    Service that get current project contexts.
@@ -53,14 +54,6 @@ export default Controller.extend(FdSheetCloseConfirm, FdReadonlyProjectMixin, {
   isAddMode: false,
 
   /**
-    Selected group.
-
-    @property groupValue
-    @type String
-  */
-  groupValue: undefined,
-
-  /**
     Array groups.
 
     @property groupArray
@@ -68,15 +61,15 @@ export default Controller.extend(FdSheetCloseConfirm, FdReadonlyProjectMixin, {
   */
   groupArray: computed('i18n.locale', function() {
     return A([
-      this.get('i18n').t('forms.fd-diagrams.all-diagrams').toString(),
-      this.get('i18n').t('forms.fd-diagrams.systems').toString(),
-      this.get('i18n').t('forms.fd-diagrams.ad').toString(),
-      this.get('i18n').t('forms.fd-diagrams.cad').toString(),
-      this.get('i18n').t('forms.fd-diagrams.cod').toString(),
-      this.get('i18n').t('forms.fd-diagrams.dpd').toString(),
-      this.get('i18n').t('forms.fd-diagrams.sd').toString(),
-      this.get('i18n').t('forms.fd-diagrams.std').toString(),
-      this.get('i18n').t('forms.fd-diagrams.ucd').toString()
+      'forms.fd-diagrams.all-diagrams',
+      'forms.fd-diagrams.systems',
+      'forms.fd-diagrams.ad',
+      'forms.fd-diagrams.cad',
+      'forms.fd-diagrams.cod',
+      'forms.fd-diagrams.dpd',
+      'forms.fd-diagrams.sd',
+      'forms.fd-diagrams.std',
+      'forms.fd-diagrams.ucd'
     ]);
   }),
 
@@ -157,7 +150,7 @@ export default Controller.extend(FdSheetCloseConfirm, FdReadonlyProjectMixin, {
   init() {
     this._super(...arguments);
 
-    this.set('groupValue', this.get('i18n').t('forms.fd-diagrams.all-diagrams').toString());
+    this.set('groupValueLocale', 'forms.fd-diagrams.all-diagrams');
   },
 
   actions: {
