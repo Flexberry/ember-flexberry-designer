@@ -87,7 +87,14 @@ export let TemplateClass = Class.define('flexberry.uml.TemplateClass', {
   ].join(''),
 
   getRectangles() {
-    return [
+    let objectModel = this.get('objectModel');
+
+    return objectModel.get('collapsed') ?
+    [
+      { type: 'params', element: this },
+      { type: 'header', element: this },
+    ] :
+    [
       { type: 'params', element: this },
       { type: 'header', element: this },
       { type: 'body', element: this },
@@ -237,24 +244,19 @@ joint.shapes.flexberry.uml.TemplateClassView = joint.shapes.flexberry.uml.ClassV
         rect.element.attr('.not-view-rect/transform', 'translate(' + (templateWidth - 10) + ',' + (15 - paramHeight) + ')');
       } else {
         rect.element.attr('.flexberry-uml-' + rect.type + '-rect/width', templateWidth);
-//         rect.element.attr('.flexberry-uml-' + rect.type + '-rect/width', newWidth);
       }
     });
 
     newWidth = Math.max(newWidth, resizedWidth || oldSize.width, minWidth);
+    newHeight = Math.max(newHeight, resizedHeight || oldSize.height, minHeight)
     this.model.attr('.view-rect/width', newWidth + 2);
     this.model.attr('.view-rect/height', newHeight + 2);
 
-    //this.model.resize(newWidth, newHeight);
-    this.model.resize(newWidth, Math.max(newHeight, resizedHeight || oldSize.height, minHeight));
+    this.model.resize(newWidth, newHeight);
 
     if (this.model.get('highlighted')) {
       this.unhighlight();
       this.highlight();
     }
-  },
-
-//   getSizeChangers() {
-//     return A();
-//   }
+  }
 });
