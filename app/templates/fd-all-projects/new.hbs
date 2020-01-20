@@ -92,3 +92,11 @@
     </div>
   </div>
 </div>
+
+{{#if show}}
+  {{fd-modal-message-box
+    isError=isError
+    messageText=messageText
+    hide=(action set "show" false)
+  }}
+{{/if}}

@@ -31,4 +31,6 @@ export default {
   'description-placeholder': 'Can fill later',
   cancel: 'Cancel',
   'create-project': 'Create project',
+  'empty-name': 'Name cannot be empty',
+  'exist-stage': 'Project with the same name already exists',
 };
