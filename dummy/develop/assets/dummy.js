@@ -316,6 +316,19 @@ define('dummy/components/fd-drop-card', ['exports', 'ember-flexberry-designer/co
     }
   });
 });
+define('dummy/components/fd-editform-constructor', ['exports', 'ember-flexberry-designer/components/fd-editform-constructor'], function (exports, _fdEditformConstructor) {
+  'use strict';
+
+  Object.defineProperty(exports, "__esModule", {
+    value: true
+  });
+  Object.defineProperty(exports, 'default', {
+    enumerable: true,
+    get: function () {
+      return _fdEditformConstructor.default;
+    }
+  });
+});
 define('dummy/components/fd-editform-control', ['exports', 'ember-flexberry-designer/components/fd-editform-control'], function (exports, _fdEditformControl) {
   'use strict';
 
@@ -3894,6 +3907,11 @@ define('dummy/ember-flexberry-designer/tests/addon.lint-test', [], function () {
     assert.ok(true, 'addon/components/fd-drop-card.js should pass ESLint\n\n');
   });
 
+  QUnit.test('addon/components/fd-editform-constructor.js', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'addon/components/fd-editform-constructor.js should pass ESLint\n\n');
+  });
+
   QUnit.test('addon/components/fd-editform-control.js', function (assert) {
     assert.expect(1);
     assert.ok(true, 'addon/components/fd-editform-control.js should pass ESLint\n\n');
@@ -6142,6 +6160,11 @@ define('dummy/ember-flexberry-designer/tests/addon.lint-test', [], function () {
   QUnit.test('addon/mixins/fd-draggable-control.js', function (assert) {
     assert.expect(1);
     assert.ok(true, 'addon/mixins/fd-draggable-control.js should pass ESLint\n\n');
+  });
+
+  QUnit.test('addon/mixins/fd-editing-panels/fd-constructor-value.js', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'addon/mixins/fd-editing-panels/fd-constructor-value.js should pass ESLint\n\n');
   });
 
   QUnit.test('addon/mixins/fd-editing-panels/fd-readonly-mode.js', function (assert) {
@@ -9437,6 +9460,11 @@ define('dummy/ember-flexberry-designer/tests/app.lint-test', [], function () {
   QUnit.test('app/components/fd-drop-card.js', function (assert) {
     assert.expect(1);
     assert.ok(true, 'app/components/fd-drop-card.js should pass ESLint\n\n');
+  });
+
+  QUnit.test('app/components/fd-editform-constructor.js', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'app/components/fd-editform-constructor.js should pass ESLint\n\n');
   });
 
   QUnit.test('app/components/fd-editform-control.js', function (assert) {
