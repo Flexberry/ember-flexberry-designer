@@ -40,7 +40,7 @@ let updateAttributes = function(classObject, store) {
           class: classObject,
           name: attrName
         });
-      } else {
+      } else if (!attribute.get('isNew')) {
         attribute.rollbackAttributes();
       }
 
