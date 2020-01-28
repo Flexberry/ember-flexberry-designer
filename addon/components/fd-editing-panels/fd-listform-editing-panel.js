@@ -1,13 +1,14 @@
 import Component from '@ember/component';
 import FdUpdateFormviewValueMixin from '../../mixins/fd-editing-panels/fd-update-formview-value';
 import FdReadonlyModeMixin from '../../mixins/fd-editing-panels/fd-readonly-mode';
+import FdConstructorValue from '../../mixins/fd-editing-panels/fd-constructor-value';
 import layout from '../../templates/components/fd-editing-panels/fd-listform-editing-panel';
 import { on } from '@ember/object/evented';
 import { observer } from '@ember/object';
 import { isNone, isBlank } from '@ember/utils';
 import { A } from '@ember/array';
 import { inject as service } from '@ember/service';
-export default Component.extend(FdUpdateFormviewValueMixin, FdReadonlyModeMixin, {
+export default Component.extend(FdUpdateFormviewValueMixin, FdConstructorValue, FdReadonlyModeMixin, {
   layout,
 
   /**
@@ -95,4 +96,27 @@ export default Component.extend(FdUpdateFormviewValueMixin, FdReadonlyModeMixin,
     let newContainerNameValue = formsNames.includes(newContainerName) ? newContainerName : '';
     this.set('model.formViews.firstObject.dataObjectTypes.newContainerName', newContainerNameValue);
   })),
+
+  /**
+    Get model for constructor.
+
+     @method getConstructorModel
+     @param {Object} store Store.
+     @param {Object} stage Current stage.
+  */
+  getConstructorModel(store) {
+    let modelHash = {
+      listform: undefined,
+      view: undefined,
+      dataobject: undefined,
+    };
+
+    modelHash.listform = this.get('model');
+    modelHash.view = modelHash.listform.get('formViews.firstObject.view');
+
+    let allClassesInStore = store.peekAll('fd-dev-class');
+    modelHash.dataobject = allClassesInStore.findBy('id', modelHash.view.get('class.id'));
+
+    return modelHash;
+  }
 });
