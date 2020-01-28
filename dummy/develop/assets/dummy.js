@@ -628,6 +628,19 @@ define('dummy/components/fd-list-item', ['exports', 'ember-flexberry-designer/co
     }
   });
 });
+define('dummy/components/fd-listform-constructor', ['exports', 'ember-flexberry-designer/components/fd-listform-constructor'], function (exports, _fdListformConstructor) {
+  'use strict';
+
+  Object.defineProperty(exports, "__esModule", {
+    value: true
+  });
+  Object.defineProperty(exports, 'default', {
+    enumerable: true,
+    get: function () {
+      return _fdListformConstructor.default;
+    }
+  });
+});
 define('dummy/components/fd-lookup', ['exports', 'ember-flexberry-designer/components/fd-lookup'], function (exports, _fdLookup) {
   'use strict';
 
@@ -4025,6 +4038,11 @@ define('dummy/ember-flexberry-designer/tests/addon.lint-test', [], function () {
   QUnit.test('addon/components/fd-list-item.js', function (assert) {
     assert.expect(1);
     assert.ok(true, 'addon/components/fd-list-item.js should pass ESLint\n\n');
+  });
+
+  QUnit.test('addon/components/fd-listform-constructor.js', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'addon/components/fd-listform-constructor.js should pass ESLint\n\n');
   });
 
   QUnit.test('addon/components/fd-lookup.js', function (assert) {
@@ -9580,6 +9598,11 @@ define('dummy/ember-flexberry-designer/tests/app.lint-test', [], function () {
   QUnit.test('app/components/fd-list-item.js', function (assert) {
     assert.expect(1);
     assert.ok(true, 'app/components/fd-list-item.js should pass ESLint\n\n');
+  });
+
+  QUnit.test('app/components/fd-listform-constructor.js', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'app/components/fd-listform-constructor.js should pass ESLint\n\n');
   });
 
   QUnit.test('app/components/fd-lookup.js', function (assert) {
