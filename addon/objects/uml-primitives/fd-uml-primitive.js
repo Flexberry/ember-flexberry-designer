@@ -163,9 +163,7 @@ joint.highlighters.strokeAndButtons = {
   _buttons: {},
 
   highlight: function(cellView, magnetEl, opt) {
-    //joint.highlighters.stroke.highlight(...arguments);
     let stroke = joint.highlighters.stroke;
-    let V = joint.Vectorizer;
 
     let id = stroke.getHighlighterId(magnetEl, opt);
 
@@ -175,6 +173,56 @@ joint.highlighters.strokeAndButtons = {
     }
 
     let options = joint.util.defaults(opt || {}, stroke.defaultOptions);
+
+    let highlightVel;
+    if (cellView.model.isLink()) {
+      highlightVel = this.linkHighlightVel(cellView, magnetEl, options);
+    } else {
+      highlightVel = this.elementHighlightVel(cellView, magnetEl, options);
+    }
+
+    // joint.mvc.View will handle the theme class name and joint class name prefix.
+    let highlightView = stroke._views[id] = new joint.mvc.View({
+      svgElement: true,
+      className: 'highlight-stroke',
+      el: highlightVel.node
+    });
+
+    // Remove the highlight view when the cell is removed from the graph.
+    let removeHandler = function() {
+      this.removeButtons(id);
+      stroke.removeHighlighter.bind(stroke, id);
+    }.bind(this);
+
+    let cell = cellView.model;
+    highlightView.listenTo(cell, 'remove', removeHandler);
+    highlightView.listenTo(cell.graph, 'reset', removeHandler);
+    cellView.vel.append(highlightVel);
+
+    if (cellView.getButtons instanceof Function) {
+      this.addButtons(cellView, id);
+    }
+
+    if (cellView.getSizeChangers instanceof Function) {
+      this.addSizeChangers(cellView, id);
+    }
+
+    cellView.update();
+
+    cellView.model.set('highlighted', true);
+  },
+
+  unhighlight: function(cellView, magnetEl, opt) {
+    joint.highlighters.stroke.unhighlight(...arguments);
+    let stroke = joint.highlighters.stroke;
+    let id = stroke.getHighlighterId(magnetEl, opt);
+    this.removeButtons(id);
+
+    cellView.model.set('highlighted', false);
+  },
+
+  elementHighlightVel(cellView, magnetEl, options) {
+    let V = joint.Vectorizer;
     let magnetVel = V(magnetEl);
     let magnetBBox;
     let pathData;
@@ -228,44 +276,19 @@ joint.highlighters.strokeAndButtons = {
 
     highlightVel.transform(highlightMatrix);
 
-    // joint.mvc.View will handle the theme class name and joint class name prefix.
-    let highlightView = stroke._views[id] = new joint.mvc.View({
-      svgElement: true,
-      className: 'highlight-stroke',
-      el: highlightVel.node
-    });
-
-    // Remove the highlight view when the cell is removed from the graph.
-    let removeHandler = function() {
-      this.removeButtons(id);
-      stroke.removeHighlighter.bind(stroke, id);
-    }.bind(this);
-
-    let cell = cellView.model;
-    highlightView.listenTo(cell, 'remove', removeHandler);
-    highlightView.listenTo(cell.graph, 'reset', removeHandler);
-
-    cellView.vel.append(highlightVel);
-    if (cellView.getButtons instanceof Function) {
-      this.addButtons(cellView, id);
-    }
-
-    if (cellView.getSizeChangers instanceof Function) {
-      this.addSizeChangers(cellView, id);
-    }
-
-    cellView.update();
-
-    cellView.model.set('highlighted', true);
+    return highlightVel;
   },
 
-  unhighlight: function(cellView, magnetEl, opt) {
-    joint.highlighters.stroke.unhighlight(...arguments);
-    let stroke = joint.highlighters.stroke;
-    let id = stroke.getHighlighterId(magnetEl, opt);
-    this.removeButtons(id);
+  linkHighlightVel(cellView, magnetEl, options) {
+    let V = joint.Vectorizer;
+    let highlightVel = V('path').attr({
+      'd': cellView.metrics.data,
+      'pointer-events': 'none',
+      'vector-effect': 'non-scaling-stroke',
+      'fill': 'none'
+    }).attr(options.attrs);
 
-    cellView.model.set('highlighted', false);
+    return highlightVel;
   },
 
   addSizeChangers(cellView, id) {
