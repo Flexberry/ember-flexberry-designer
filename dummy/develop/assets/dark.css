@@ -70497,6 +70497,29 @@ body.pushable > .pusher {
   fill: #353535;
   stroke: #353535;
 }
+.joint-link .marker-vertices,
+.joint-link .marker-arrowheads,
+.joint-link .link-tools {
+  opacity: 1;
+}
+.joint-link.joint-theme-default .connection-wrap {
+  cursor: default;
+}
+.joint-link.joint-theme-default .connection-wrap:hover {
+  opacity: 0;
+  stroke-opacity: 0;
+}
+.joint-link.joint-theme-default .tool-remove {
+  display: none;
+}
+.joint-link.joint-theme-default .marker-vertex,
+.joint-link.joint-theme-default .marker-arrowhead {
+  fill: #007aff;
+}
+.joint-link.joint-theme-default .marker-vertex:hover,
+.joint-link.joint-theme-default .marker-arrowhead:hover {
+  fill: #007aff;
+}
 .pushable,
 .full.height {
   transition: background-color 1s;

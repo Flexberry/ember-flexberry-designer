@@ -737,9 +737,12 @@ define('dummy/tests/integration/components/fd-uml-diagram-test', ['ember-qunit']
     // Set any properties with this.set('myProperty', 'value');
     // Handle any actions with this.on('myAction', function(val) { ... });
 
+
+    this.set('mockLinkFunction', function () {});
+
     this.render(Ember.HTMLBars.template({
-      "id": "RBoxM6Fg",
-      "block": "{\"symbols\":[],\"statements\":[[1,[20,\"fd-uml-diagram\"],false]],\"hasEval\":false}",
+      "id": "Ha4h99lO",
+      "block": "{\"symbols\":[],\"statements\":[[1,[26,\"fd-uml-diagram\",null,[[\"enableEditLinks\",\"enableWrapBaseLinks\",\"disableEditLinks\"],[[22,[\"mockLinkFunction\"]],[22,[\"mockLinkFunction\"]],[22,[\"mockLinkFunction\"]]]]],false]],\"hasEval\":false}",
       "meta": {}
     }));
 
