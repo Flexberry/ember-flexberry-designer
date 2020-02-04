@@ -151,6 +151,7 @@ joint.shapes.flexberry.uml.ComplexTransitionHView = joint.shapes.flexberry.uml.P
 
     classNameInput.prop('rows', objectModel.get('name').split(/[\n\r|\r|\n]/).length || 1);
     classNameInput.val(objectModel.get('name'));
+    this.updateRectangles();
   },
 
   render: function () {
@@ -223,4 +224,3 @@ joint.shapes.flexberry.uml.ComplexTransitionVView = joint.shapes.flexberry.uml.C
     $input.css({top: (this.$box.height() * 1.2), left: -(($buffer.width()) / 2),  position:'absolute'});
    },
 });
-

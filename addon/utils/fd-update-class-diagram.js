@@ -122,7 +122,7 @@ function updateDependencysOfClassName(store, currentProjectContext, devClass) {
 
   const nameOrigin = devClass.changedAttributes().name[0];
   const nameNew = devClass.changedAttributes().name[1];
-  
+
   let diagrams = A(diagramsCurrentStage).filter(function(diagram) {
     let caseObjectsString = diagram.get('caseObjectsString');
     return !isNone(caseObjectsString) && caseObjectsString.indexOf(`Class:(${nameOrigin})`) !== -1;
@@ -165,7 +165,7 @@ function updateDependencysOfClassName(store, currentProjectContext, devClass) {
           if (definitionArrayUpdated) {
 
             //For trigger computed propherty in fd-dev-view model.
-            view.get('definitionArray');   
+            view.get('definitionArray');
 
             promises.pushObject(view);
           }
@@ -174,7 +174,7 @@ function updateDependencysOfClassName(store, currentProjectContext, devClass) {
     });
 
     promises.pushObject(diagram);
-  });   
+  });
 
   return promises;
 }

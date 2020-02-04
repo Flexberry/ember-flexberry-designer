@@ -11,7 +11,7 @@
       saveSheet=(action 'save')
     }}
     {{flexberry-textbox
-      value=selectedValue.name
+      value=computedTitle
       placeholder=(t "components.fd-sheets-tool-bar.placeholder-caption")
       readonly=readonlyMode
       class='form-header fluid'
@@ -19,8 +19,8 @@
     }}
   </div>
   <div class="fd-sheet-body">
-    {{#if (known-for-type (concat "fd-editing-panels/fd-" objectEditFormNamePart "-editing-panel"))}}
-      {{component (concat "fd-editing-panels/fd-" objectEditFormNamePart "-editing-panel")
+    {{#if (known-for-type (concat "fd-editing-panels/fd-" objectEditFormNamePart "-editing-panel" (if isLink '-link' '')))}}
+      {{component (concat "fd-editing-panels/fd-" objectEditFormNamePart "-editing-panel" (if isLink '-link' ''))
         model=selectedValue
         readonlyMode=readonlyMode
         openViewSheetController=(action 'openNestedSheet')

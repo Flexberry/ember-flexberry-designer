@@ -59,5 +59,20 @@ export let MultiplicityView = RoleView.extend({
 
     this.updateInputPosition(3, '.start-multiplicity-input');
     this.updateInputPosition(4, '.end-multiplicity-input');
+  },
+
+  updateInputValue() {
+    RoleView.prototype.updateInputValue.apply(this, arguments);
+
+    let objectModel = this.model.get('objectModel');
+    let startMultiplicityInput = this.$box.find('.start-multiplicity-input');
+    let endMultiplicityInput = this.$box.find('.end-multiplicity-input');
+
+    startMultiplicityInput.prop('rows', objectModel.get('startMultiplicity').split(/[\n\r|\r|\n]/).length || 1);
+    startMultiplicityInput.val(objectModel.get('startMultiplicity'));
+    endMultiplicityInput.prop('rows', objectModel.get('endMultiplicity').split(/[\n\r|\r|\n]/).length || 1);
+    endMultiplicityInput.val(objectModel.get('endMultiplicity'));
+    this.updateInputWidth('.start-multiplicity-input');
+    this.updateInputWidth('.end-multiplicity-input');
   }
 });

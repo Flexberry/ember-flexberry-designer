@@ -679,11 +679,11 @@ export default Component.extend({
     }
 
     const modelName = this._getModelName(objectModel.get('primitive.$type'));
-    if (modelName === 'fd-dev-class') {
-      const store = this.get('store');
-      const repositoryObjectId = repositoryObject.slice(1, -1);
-      const currentRepObj = store.peekRecord(modelName, repositoryObjectId);
+    const store = this.get('store');
+    const repositoryObjectId = repositoryObject.slice(1, -1);
+    const currentRepObj = store.peekRecord(modelName, repositoryObjectId);
 
+    if (modelName === 'fd-dev-class') {
       const name = currentRepObj.get('nameStr') || '';
       objectModel.set('name', name);
       this._updateInputValue('.class-name-input', name, view);
@@ -704,6 +704,22 @@ export default Component.extend({
       const initSize = view.model.size();
       view.updateRectangles(initSize.width, initSize.height);
       view.update();
+    } else if (modelName === 'fd-dev-association' || modelName === 'fd-dev-aggregation') {
+      const startRoleStr = currentRepObj.get('startRoleStr') || '';
+      objectModel.set('startRoleTxt', startRoleStr);
+      this._updateInputValue('.start-role-input', startRoleStr, view);
+
+      const endRoleStr = currentRepObj.get('endRoleStr') || '';
+      objectModel.set('endRoleTxt', endRoleStr);
+      this._updateInputValue('.end-role-input', endRoleStr, view);
+
+      const startMultiplicity = currentRepObj.get('startMultiplicity') || '';
+      objectModel.set('startMultiplicity', startMultiplicity);
+      this._updateInputValue('.start-multiplicity-input', startMultiplicity, view);
+
+      const endMultiplicity = currentRepObj.get('endMultiplicity') || '';
+      objectModel.set('endMultiplicity', endMultiplicity);
+      this._updateInputValue('.end-multiplicity-input', endMultiplicity, view);
     }
   },
 
@@ -1074,7 +1090,6 @@ export default Component.extend({
 
     let view = paper.findViewByModel(model);
     view.updateInputValue();
-    view.updateRectangles();
   },
 
   /**
