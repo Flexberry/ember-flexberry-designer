@@ -368,6 +368,19 @@ define('dummy/components/fd-editing-panels/fd-application-editing-panel', ['expo
     }
   });
 });
+define('dummy/components/fd-editing-panels/fd-association-editing-panel-link', ['exports', 'ember-flexberry-designer/components/fd-editing-panels/fd-association-editing-panel-link'], function (exports, _fdAssociationEditingPanelLink) {
+  'use strict';
+
+  Object.defineProperty(exports, "__esModule", {
+    value: true
+  });
+  Object.defineProperty(exports, 'default', {
+    enumerable: true,
+    get: function () {
+      return _fdAssociationEditingPanelLink.default;
+    }
+  });
+});
 define('dummy/components/fd-editing-panels/fd-businessserver-editing-panel', ['exports', 'ember-flexberry-designer/components/fd-editing-panels/fd-businessserver-editing-panel'], function (exports, _fdBusinessserverEditingPanel) {
   'use strict';
 
@@ -378,6 +391,19 @@ define('dummy/components/fd-editing-panels/fd-businessserver-editing-panel', ['e
     enumerable: true,
     get: function () {
       return _fdBusinessserverEditingPanel.default;
+    }
+  });
+});
+define('dummy/components/fd-editing-panels/fd-composition-editing-panel-link', ['exports', 'ember-flexberry-designer/components/fd-editing-panels/fd-composition-editing-panel-link'], function (exports, _fdCompositionEditingPanelLink) {
+  'use strict';
+
+  Object.defineProperty(exports, "__esModule", {
+    value: true
+  });
+  Object.defineProperty(exports, 'default', {
+    enumerable: true,
+    get: function () {
+      return _fdCompositionEditingPanelLink.default;
     }
   });
 });
@@ -3940,9 +3966,19 @@ define('dummy/ember-flexberry-designer/tests/addon.lint-test', [], function () {
     assert.ok(true, 'addon/components/fd-editing-panels/fd-application-editing-panel.js should pass ESLint\n\n');
   });
 
+  QUnit.test('addon/components/fd-editing-panels/fd-association-editing-panel-link.js', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'addon/components/fd-editing-panels/fd-association-editing-panel-link.js should pass ESLint\n\n');
+  });
+
   QUnit.test('addon/components/fd-editing-panels/fd-businessserver-editing-panel.js', function (assert) {
     assert.expect(1);
     assert.ok(true, 'addon/components/fd-editing-panels/fd-businessserver-editing-panel.js should pass ESLint\n\n');
+  });
+
+  QUnit.test('addon/components/fd-editing-panels/fd-composition-editing-panel-link.js', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'addon/components/fd-editing-panels/fd-composition-editing-panel-link.js should pass ESLint\n\n');
   });
 
   QUnit.test('addon/components/fd-editing-panels/fd-create-diagrams.js', function (assert) {
@@ -4645,6 +4681,11 @@ define('dummy/ember-flexberry-designer/tests/addon.lint-test', [], function () {
     assert.ok(true, 'addon/locales/en/components/fd-application-editing-panel.js should pass ESLint\n\n');
   });
 
+  QUnit.test('addon/locales/en/components/fd-association-editing-panel-link.js', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'addon/locales/en/components/fd-association-editing-panel-link.js should pass ESLint\n\n');
+  });
+
   QUnit.test('addon/locales/en/components/fd-attribute-table.js', function (assert) {
     assert.expect(1);
     assert.ok(true, 'addon/locales/en/components/fd-attribute-table.js should pass ESLint\n\n');
@@ -4653,6 +4694,11 @@ define('dummy/ember-flexberry-designer/tests/addon.lint-test', [], function () {
   QUnit.test('addon/locales/en/components/fd-businessserver-editing-panel.js', function (assert) {
     assert.expect(1);
     assert.ok(true, 'addon/locales/en/components/fd-businessserver-editing-panel.js should pass ESLint\n\n');
+  });
+
+  QUnit.test('addon/locales/en/components/fd-composition-editing-panel-link.js', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'addon/locales/en/components/fd-composition-editing-panel-link.js should pass ESLint\n\n');
   });
 
   QUnit.test('addon/locales/en/components/fd-create-diagrams.js', function (assert) {
@@ -5395,6 +5441,11 @@ define('dummy/ember-flexberry-designer/tests/addon.lint-test', [], function () {
     assert.ok(true, 'addon/locales/ru/components/fd-application-editing-panel.js should pass ESLint\n\n');
   });
 
+  QUnit.test('addon/locales/ru/components/fd-association-editing-panel-link.js', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'addon/locales/ru/components/fd-association-editing-panel-link.js should pass ESLint\n\n');
+  });
+
   QUnit.test('addon/locales/ru/components/fd-attribute-table.js', function (assert) {
     assert.expect(1);
     assert.ok(true, 'addon/locales/ru/components/fd-attribute-table.js should pass ESLint\n\n');
@@ -5403,6 +5454,11 @@ define('dummy/ember-flexberry-designer/tests/addon.lint-test', [], function () {
   QUnit.test('addon/locales/ru/components/fd-businessserver-editing-panel.js', function (assert) {
     assert.expect(1);
     assert.ok(true, 'addon/locales/ru/components/fd-businessserver-editing-panel.js should pass ESLint\n\n');
+  });
+
+  QUnit.test('addon/locales/ru/components/fd-composition-editing-panel-link.js', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'addon/locales/ru/components/fd-composition-editing-panel-link.js should pass ESLint\n\n');
   });
 
   QUnit.test('addon/locales/ru/components/fd-create-diagrams.js', function (assert) {
@@ -9500,9 +9556,19 @@ define('dummy/ember-flexberry-designer/tests/app.lint-test', [], function () {
     assert.ok(true, 'app/components/fd-editing-panels/fd-application-editing-panel.js should pass ESLint\n\n');
   });
 
+  QUnit.test('app/components/fd-editing-panels/fd-association-editing-panel-link.js', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'app/components/fd-editing-panels/fd-association-editing-panel-link.js should pass ESLint\n\n');
+  });
+
   QUnit.test('app/components/fd-editing-panels/fd-businessserver-editing-panel.js', function (assert) {
     assert.expect(1);
     assert.ok(true, 'app/components/fd-editing-panels/fd-businessserver-editing-panel.js should pass ESLint\n\n');
+  });
+
+  QUnit.test('app/components/fd-editing-panels/fd-composition-editing-panel-link.js', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'app/components/fd-editing-panels/fd-composition-editing-panel-link.js should pass ESLint\n\n');
   });
 
   QUnit.test('app/components/fd-editing-panels/fd-create-diagrams.js', function (assert) {
