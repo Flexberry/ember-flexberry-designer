@@ -144,6 +144,8 @@ import FdSheetToolBar from './components/fd-sheets-tool-bar';
 import FdCreateNodeEditingPanel from './components/fd-create-node-editing-panel';
 import FdFolderEditingPanel from './components/fd-folder-editing-panel';
 import FdPropertyEditingPanel from './components/fd-property-editing-panel';
+import FdAssociationEditingPanelLink from './components/fd-association-editing-panel-link';
+import FdCompositionEditingPanelLink from './components/fd-composition-editing-panel-link';
 import FdViewDefinitionItem from './components/fd-view-definition-item';
 import FdfModalMessageBox from './components/fd-modal-message-box';
 import FdApplicationModelForm from './forms/fd-application-model';
@@ -456,6 +458,8 @@ $.extend(true, translations, {
     'fd-geolayer-editing-panel': FdGeolayerEditingPanel,
     'fd-geolayerstyle-editing-panel': FdGeolayerstyleEditingPanel,
     'fd-diagram-editing-panel': FdDiagramEditingPanel,
+    'fd-association-editing-panel-link': FdAssociationEditingPanelLink,
+    'fd-composition-editing-panel-link': FdCompositionEditingPanelLink,
     'fd-create-view': FdCreateView,
     'fd-search-input': FdSearchInput,
     'fd-sheets-tool-bar': FdSheetToolBar,

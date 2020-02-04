@@ -7,5 +7,6 @@ export default {
   'delete-button-title': 'Delete',
   'share-button-title': 'Copy link',
   'print-button-title': 'Print',
-  'share-button-data-content': 'Copied!'
+  'share-button-data-content': 'Copied!',
+  'link-caption': 'Link properties'
 };
