@@ -4666,6 +4666,11 @@ define('dummy/ember-flexberry-designer/tests/addon.lint-test', [], function () {
     assert.ok(true, 'addon/helpers/compare-t-with-string.js should pass ESLint\n\n');
   });
 
+  QUnit.test('addon/helpers/custom-get-for-object.js', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'addon/helpers/custom-get-for-object.js should pass ESLint\n\n');
+  });
+
   QUnit.test('addon/helpers/known-for-type.js', function (assert) {
     assert.expect(1);
     assert.ok(true, 'addon/helpers/known-for-type.js should pass ESLint\n\n');
@@ -10251,6 +10256,11 @@ define('dummy/ember-flexberry-designer/tests/app.lint-test', [], function () {
     assert.ok(true, 'app/helpers/compare-t-with-string.js should pass ESLint\n\n');
   });
 
+  QUnit.test('app/helpers/custom-get-for-object.js', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'app/helpers/custom-get-for-object.js should pass ESLint\n\n');
+  });
+
   QUnit.test('app/helpers/known-for-type.js', function (assert) {
     assert.expect(1);
     assert.ok(true, 'app/helpers/known-for-type.js should pass ESLint\n\n');
@@ -11772,6 +11782,25 @@ define('dummy/helpers/compare-t-with-string', ['exports', 'ember-flexberry-desig
     enumerable: true,
     get: function () {
       return _compareTWithString.knownForType;
+    }
+  });
+});
+define('dummy/helpers/custom-get-for-object', ['exports', 'ember-flexberry-designer/helpers/custom-get-for-object'], function (exports, _customGetForObject) {
+  'use strict';
+
+  Object.defineProperty(exports, "__esModule", {
+    value: true
+  });
+  Object.defineProperty(exports, 'default', {
+    enumerable: true,
+    get: function () {
+      return _customGetForObject.default;
+    }
+  });
+  Object.defineProperty(exports, 'knownForType', {
+    enumerable: true,
+    get: function () {
+      return _customGetForObject.knownForType;
     }
   });
 });
@@ -18184,7 +18213,7 @@ define("dummy/templates/fd-diagrams", ["exports"], function (exports) {
   Object.defineProperty(exports, "__esModule", {
     value: true
   });
-  exports.default = Ember.HTMLBars.template({ "id": "+zAOWhjC", "block": "{\"symbols\":[\"key\",\"diagrams\",\"diagram\"],\"statements\":[[6,\"h2\"],[10,\"class\",\"form-header\"],[8],[0,\"\\n  \"],[1,[26,\"t\",[\"forms.fd-diagrams.caption\"],null],false],[0,\"\\n\"],[9],[0,\"\\n\\n\"],[6,\"form\"],[10,\"class\",\"ui form flexberry-vertical-form\"],[8],[0,\"\\n  \"],[6,\"div\"],[10,\"class\",\"ui stackable grid fd-list\"],[8],[0,\"\\n    \"],[6,\"div\"],[10,\"class\",\"row\"],[8],[0,\"\\n      \"],[6,\"div\"],[10,\"class\",\"three wide column light-text\"],[8],[0,\"\\n        \"],[1,[26,\"flexberry-dropdown\",null,[[\"items\",\"value\",\"needChecksOnValue\"],[[22,[\"groupArrayString\"]],[22,[\"groupValue\"]],false]]],false],[0,\"\\n      \"],[9],[0,\"\\n      \"],[6,\"div\"],[10,\"class\",\"thirteen wide column\"],[8],[0,\"\\n        \"],[1,[26,\"fd-search-input\",null,[[\"value\"],[[22,[\"searchValue\"]]]]],false],[0,\"\\n      \"],[9],[0,\"\\n    \"],[9],[0,\"\\n    \"],[6,\"div\"],[10,\"class\",\"row\"],[8],[0,\"\\n      \"],[6,\"div\"],[10,\"class\",\"right floated thirteen wide column\"],[8],[0,\"\\n        \"],[1,[26,\"fd-button\",null,[[\"caption\",\"click\",\"readonly\"],[[26,\"t\",[\"forms.fd-diagrams.create-button\"],null],[26,\"action\",[[21,0,[]],\"openCreateDiagramsEditPanel\"],null],[22,[\"readonlyModeProject\"]]]]],false],[0,\"\\n      \"],[9],[0,\"\\n    \"],[9],[0,\"\\n\\n\"],[4,\"each\",[[26,\"-each-in\",[[22,[\"filteredModel\"]]],null]],null,{\"statements\":[[4,\"let\",[[26,\"get\",[[22,[\"filteredModel\"]],[21,1,[]]],null]],null,{\"statements\":[[4,\"if\",[[26,\"and\",[[26,\"not-eq\",[[21,2,[\"length\"]],0],null],[26,\"or\",[[22,[\"groupBySystems\"]],[26,\"compare-t-with-string\",[[22,[\"groupValue\"]],\"forms.fd-diagrams.all-diagrams\"],null],[26,\"compare-t-with-string\",[[22,[\"groupValue\"]],[26,\"concat\",[\"forms.fd-diagrams.\",[21,1,[]]],null]],null]],null]],null]],null,{\"statements\":[[0,\"        \"],[6,\"div\"],[10,\"class\",\"row\"],[8],[0,\"\\n          \"],[6,\"div\"],[10,\"class\",\"three wide column light-text\"],[8],[0,\"\\n            \"],[1,[26,\"if\",[[22,[\"groupBySystems\"]],[21,1,[]],[26,\"t\",[[26,\"concat\",[\"forms.fd-diagrams.\",[21,1,[]]],null]],null]],null],false],[0,\"\\n          \"],[9],[0,\"\\n          \"],[6,\"div\"],[10,\"class\",\"thirteen wide column\"],[8],[0,\"\\n\"],[4,\"each\",[[21,2,[]]],null,{\"statements\":[[0,\"              \"],[1,[26,\"fd-list-item\",null,[[\"model\",\"caption\",\"sheetComponentName\"],[[21,3,[]],[21,3,[\"data\",\"name\"]],[22,[\"sheetComponentName\"]]]]],false],[0,\"\\n\"]],\"parameters\":[3]},null],[0,\"          \"],[9],[0,\"\\n\"],[4,\"if\",[[26,\"not\",[[22,[\"groupBySystems\"]]],null]],null,{\"statements\":[[0,\"            \"],[6,\"div\"],[10,\"class\",\"right floated thirteen wide column\"],[8],[0,\"\\n              \"],[1,[26,\"fd-button\",null,[[\"caption\",\"click\",\"readonly\"],[[26,\"t\",[[26,\"concat\",[\"forms.fd-diagrams.\",[21,1,[]]],null]],null],[26,\"action\",[[21,0,[]],\"createDiagram\",[21,1,[]]],null],[22,[\"readonlyModeProject\"]]]]],false],[0,\"\\n            \"],[9],[0,\"\\n\"]],\"parameters\":[]},null],[0,\"        \"],[9],[0,\"\\n\"]],\"parameters\":[]},null]],\"parameters\":[2]},null]],\"parameters\":[1]},null],[0,\"\\n  \"],[9],[0,\"\\n\"],[9],[0,\"\\n\\n\"],[1,[26,\"fd-sheets/fd-diagram-sheet\",null,[[\"model\",\"isAddMode\",\"createDiagram\",\"updateModel\"],[[22,[\"model\"]],[22,[\"isAddMode\"]],[26,\"action\",[[21,0,[]],\"createDiagram\"],null],[26,\"action\",[[21,0,[]],\"updateModel\"],null]]]],false],[0,\"\\n\\n\"],[1,[20,\"fd-sheets/fd-edit-diagram-object-sheet\"],false],[0,\"\\n\\n\"],[1,[20,\"fd-sheets/fd-view-sheet\"],false],[0,\"\\n\\n\"],[4,\"if\",[[22,[\"show\"]]],null,{\"statements\":[[0,\"  \"],[1,[26,\"fd-modal-message-box\",null,[[\"isError\",\"messageText\",\"approve\",\"deny\",\"hide\",\"headerIcon\"],[[22,[\"isError\"]],[22,[\"messageText\"]],[26,\"action\",[[21,0,[]],\"closeWithSaving\"],null],[26,\"action\",[[21,0,[]],\"closeWithoutSaving\"],null],[26,\"action\",[[21,0,[]],[22,[\"set\"]],\"show\",false],null],\"edit\"]]],false],[0,\"\\n\"]],\"parameters\":[]},null]],\"hasEval\":false}", "meta": { "moduleName": "dummy/templates/fd-diagrams.hbs" } });
+  exports.default = Ember.HTMLBars.template({ "id": "OTvviXST", "block": "{\"symbols\":[\"key\",\"diagrams\",\"diagram\"],\"statements\":[[6,\"h2\"],[10,\"class\",\"form-header\"],[8],[0,\"\\n  \"],[1,[26,\"t\",[\"forms.fd-diagrams.caption\"],null],false],[0,\"\\n\"],[9],[0,\"\\n\\n\"],[6,\"form\"],[10,\"class\",\"ui form flexberry-vertical-form\"],[8],[0,\"\\n  \"],[6,\"div\"],[10,\"class\",\"ui stackable grid fd-list\"],[8],[0,\"\\n    \"],[6,\"div\"],[10,\"class\",\"row\"],[8],[0,\"\\n      \"],[6,\"div\"],[10,\"class\",\"three wide column light-text\"],[8],[0,\"\\n        \"],[1,[26,\"flexberry-dropdown\",null,[[\"items\",\"value\",\"needChecksOnValue\"],[[22,[\"groupArrayString\"]],[22,[\"groupValue\"]],false]]],false],[0,\"\\n      \"],[9],[0,\"\\n      \"],[6,\"div\"],[10,\"class\",\"thirteen wide column\"],[8],[0,\"\\n        \"],[1,[26,\"fd-search-input\",null,[[\"value\"],[[22,[\"searchValue\"]]]]],false],[0,\"\\n      \"],[9],[0,\"\\n    \"],[9],[0,\"\\n    \"],[6,\"div\"],[10,\"class\",\"row\"],[8],[0,\"\\n      \"],[6,\"div\"],[10,\"class\",\"right floated thirteen wide column\"],[8],[0,\"\\n        \"],[1,[26,\"fd-button\",null,[[\"caption\",\"click\",\"readonly\"],[[26,\"t\",[\"forms.fd-diagrams.create-button\"],null],[26,\"action\",[[21,0,[]],\"openCreateDiagramsEditPanel\"],null],[22,[\"readonlyModeProject\"]]]]],false],[0,\"\\n      \"],[9],[0,\"\\n    \"],[9],[0,\"\\n\\n\"],[4,\"each\",[[26,\"-each-in\",[[22,[\"filteredModel\"]]],null]],null,{\"statements\":[[4,\"let\",[[26,\"custom-get-for-object\",[[22,[\"filteredModel\"]],[21,1,[]]],null]],null,{\"statements\":[[4,\"if\",[[26,\"and\",[[26,\"not-eq\",[[21,2,[\"length\"]],0],null],[26,\"or\",[[22,[\"groupBySystems\"]],[26,\"compare-t-with-string\",[[22,[\"groupValue\"]],\"forms.fd-diagrams.all-diagrams\"],null],[26,\"compare-t-with-string\",[[22,[\"groupValue\"]],[26,\"concat\",[\"forms.fd-diagrams.\",[21,1,[]]],null]],null]],null]],null]],null,{\"statements\":[[0,\"        \"],[6,\"div\"],[10,\"class\",\"row\"],[8],[0,\"\\n          \"],[6,\"div\"],[10,\"class\",\"three wide column light-text\"],[8],[0,\"\\n            \"],[1,[26,\"if\",[[22,[\"groupBySystems\"]],[21,1,[]],[26,\"t\",[[26,\"concat\",[\"forms.fd-diagrams.\",[21,1,[]]],null]],null]],null],false],[0,\"\\n          \"],[9],[0,\"\\n          \"],[6,\"div\"],[10,\"class\",\"thirteen wide column\"],[8],[0,\"\\n\"],[4,\"each\",[[21,2,[]]],null,{\"statements\":[[0,\"              \"],[1,[26,\"fd-list-item\",null,[[\"model\",\"caption\",\"sheetComponentName\"],[[21,3,[]],[21,3,[\"data\",\"name\"]],[22,[\"sheetComponentName\"]]]]],false],[0,\"\\n\"]],\"parameters\":[3]},null],[0,\"          \"],[9],[0,\"\\n\"],[4,\"if\",[[26,\"not\",[[22,[\"groupBySystems\"]]],null]],null,{\"statements\":[[0,\"            \"],[6,\"div\"],[10,\"class\",\"right floated thirteen wide column\"],[8],[0,\"\\n              \"],[1,[26,\"fd-button\",null,[[\"caption\",\"click\",\"readonly\"],[[26,\"t\",[[26,\"concat\",[\"forms.fd-diagrams.\",[21,1,[]]],null]],null],[26,\"action\",[[21,0,[]],\"createDiagram\",[21,1,[]]],null],[22,[\"readonlyModeProject\"]]]]],false],[0,\"\\n            \"],[9],[0,\"\\n\"]],\"parameters\":[]},null],[0,\"        \"],[9],[0,\"\\n\"]],\"parameters\":[]},null]],\"parameters\":[2]},null]],\"parameters\":[1]},null],[0,\"\\n  \"],[9],[0,\"\\n\"],[9],[0,\"\\n\\n\"],[1,[26,\"fd-sheets/fd-diagram-sheet\",null,[[\"model\",\"isAddMode\",\"createDiagram\",\"updateModel\"],[[22,[\"model\"]],[22,[\"isAddMode\"]],[26,\"action\",[[21,0,[]],\"createDiagram\"],null],[26,\"action\",[[21,0,[]],\"updateModel\"],null]]]],false],[0,\"\\n\\n\"],[1,[20,\"fd-sheets/fd-edit-diagram-object-sheet\"],false],[0,\"\\n\\n\"],[1,[20,\"fd-sheets/fd-view-sheet\"],false],[0,\"\\n\\n\"],[4,\"if\",[[22,[\"show\"]]],null,{\"statements\":[[0,\"  \"],[1,[26,\"fd-modal-message-box\",null,[[\"isError\",\"messageText\",\"approve\",\"deny\",\"hide\",\"headerIcon\"],[[22,[\"isError\"]],[22,[\"messageText\"]],[26,\"action\",[[21,0,[]],\"closeWithSaving\"],null],[26,\"action\",[[21,0,[]],\"closeWithoutSaving\"],null],[26,\"action\",[[21,0,[]],[22,[\"set\"]],\"show\",false],null],\"edit\"]]],false],[0,\"\\n\"]],\"parameters\":[]},null]],\"hasEval\":false}", "meta": { "moduleName": "dummy/templates/fd-diagrams.hbs" } });
 });
 define("dummy/templates/fd-edit-form-edit-form", ["exports"], function (exports) {
   "use strict";
