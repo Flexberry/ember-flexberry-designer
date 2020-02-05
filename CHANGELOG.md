@@ -3,6 +3,19 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+## [0.13.0-beta01]
+### Added
+* Add template class resize.
+* Add check errors on all projects page.
+* Add highlight for links.
+* Add links edit forms.
+
+### Fixed
+* Fix rollback diagrams.
+* Fix colors in collapsed class.
+* Fix locales in groups.
+* Fix group by system.
+
 ## [0.12.0]
 ### Added
 * Add rename class.
