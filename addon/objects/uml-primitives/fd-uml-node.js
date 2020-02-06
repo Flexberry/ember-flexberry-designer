@@ -61,8 +61,8 @@ export default FdUmlElement.extend({
 export let UmlNode = BaseObject.define('flexberry.uml.UmlNode', {
   attrs: {
     '.back-path': { 'd': 'M 0 0 L 5 -5 70 -5 70 12 65 17 M 65 0 L 70 -5', 'fill': 'white', 'stroke': 'black', 'stroke-width': 1 }
-  }, 
-    
+  },
+
   // Minimum height.
   minHeight: 30,
 
@@ -76,7 +76,7 @@ export let UmlNode = BaseObject.define('flexberry.uml.UmlNode', {
     '<text class="flexberry-uml-header-text"/>',
     '</g>'
   ].join(''),
-  
+
   getRectangles() {
     return [
       { type: 'header', element: this }
@@ -149,16 +149,17 @@ joint.shapes.flexberry.uml.UmlNodeView = joint.shapes.flexberry.uml.BaseObjectVi
     });
 
     this.model.resize(setWidth, setHight);
-    if (this.model.get('highlighted')) {
-      this.unhighlight();
-      this.highlight();
-    } 
 
     rects.forEach(function(rect) {
       let points = _this.recalculatePathPoints(setWidth, setHight);
       //set path
       rect.element.attr('.back-path/d', 'M '+ points[0] + ' L ' + points[1] + ' ' + points[2] + ' ' + points[3] + ' ' + points[4] + 'M '+ points[5] + ' L ' + points[6]  );
     }, this.model);
+
+    if (this.model.get('highlighted')) {
+      this.unhighlight();
+      this.highlight();
+    }
   },
 
   recalculatePathPoints(setWidth, setHight) {
@@ -173,17 +174,17 @@ joint.shapes.flexberry.uml.UmlNodeView = joint.shapes.flexberry.uml.BaseObjectVi
       points[6] = (setWidth + 5).toString() + ' -5';
       return points;
   },
-  
+
   setColors() {
     joint.shapes.flexberry.uml.BaseObjectView.prototype.setColors.apply(this, arguments);
-  
+
     const brushColor = this.getBrushColor();
     const textColor = this.getTextColor();
 
     if (!isNone(textColor)) {
       this.model.attr('.back-path/stroke', textColor);
     }
-  
+
     if (!isNone(brushColor)) {
       this.model.attr('.back-path/fill', brushColor);
     }
