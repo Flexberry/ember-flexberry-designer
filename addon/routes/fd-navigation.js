@@ -66,6 +66,8 @@ export default Route.extend({
 
     controller.set('sheetComponentName', this.get('sheetComponentName'));
     controller.set('modelFunction', this.get('model').bind(this));
+    controller.set('routeName', this.get('routeName'));
+    controller.set('readonlyMode', true);
   },
 
   actions: {

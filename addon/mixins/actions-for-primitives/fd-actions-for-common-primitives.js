@@ -68,7 +68,7 @@ export default Mixin.create({
           linkProperties.target,
           null,
           A(),
-          { Name: '' },
+          null,
           { NamePos: 0.0 },
           undefined,
           {'segmNo': linkProperties.segmNo, 'percent': linkProperties.percent}

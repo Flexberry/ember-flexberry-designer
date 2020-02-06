@@ -36,6 +36,9 @@ export let defineProjections = function (modelClass) {
   });
   modelClass.defineProjection('LoadDataNode', 'fd-project', {
     name: attr(''),
-    description: attr('')
+    description: attr(''),
+    repository: belongsTo('fd-repository', '', {
+
+    })
   });
 };

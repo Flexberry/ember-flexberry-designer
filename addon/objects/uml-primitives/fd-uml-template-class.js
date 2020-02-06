@@ -3,7 +3,7 @@
 */
 
 import { computed } from '@ember/object';
-import { A, isArray } from '@ember/array';
+import { isArray } from '@ember/array';
 import $ from 'jquery';
 import joint from 'npm:jointjs';
 
@@ -87,7 +87,14 @@ export let TemplateClass = Class.define('flexberry.uml.TemplateClass', {
   ].join(''),
 
   getRectangles() {
-    return [
+    let objectModel = this.get('objectModel');
+
+    return objectModel.get('collapsed') ?
+    [
+      { type: 'params', element: this },
+      { type: 'header', element: this },
+    ] :
+    [
       { type: 'params', element: this },
       { type: 'header', element: this },
       { type: 'body', element: this },
@@ -176,13 +183,17 @@ joint.shapes.flexberry.uml.TemplateClassView = joint.shapes.flexberry.uml.ClassV
     return buttons;
   },
 
-  updateRectangles() {
+  updateRectangles(resizedWidth, resizedHeight) {
     let rects = this.model.getRectangles();
     let offsetY = 0;
     let newHeight = 0;
     let newWidth = 0;
     let paramHeight = 0;
-    rects.forEach(function(rect) {
+    const minWidth = this.model.attributes.minWidth;
+    const minHeight = this.model.attributes.minHeight;
+    const oldSize = this.model.size();
+    resizedWidth -= rects[0].element.attr('.flexberry-uml-params-rect/width') - 10;
+    rects.forEach(function(rect, index, array) {
       if (this.markup.includes('flexberry-uml-' + rect.type + '-rect') && rect.element.inputElements) {
         let rectHeight = 0;
         let inputs = rect.element.inputElements.find('.' + rect.type + '-input');
@@ -211,7 +222,13 @@ joint.shapes.flexberry.uml.TemplateClassView = joint.shapes.flexberry.uml.ClassV
 
         rectHeight += rect.element.get('heightBottomPadding') || 0;
         newHeight += rectHeight;
-        rect.element.attr('.flexberry-uml-' + rect.type + '-rect/height', rectHeight);
+        if (array.length === index + 1) {
+          this.set('inputHeight', newHeight);
+          rect.element.attr('.flexberry-uml-' + rect.type + '-rect/height', Math.max((resizedHeight || oldSize.height) - offsetY, minHeight - offsetY, rectHeight));
+        } else {
+          rect.element.attr('.flexberry-uml-' + rect.type + '-rect/height', rectHeight);
+        }
+
         rect.element.attr('.flexberry-uml-' + rect.type + '-rect/transform', 'translate(0,' + offsetY + ')');
 
         offsetY += rectHeight;
@@ -219,26 +236,27 @@ joint.shapes.flexberry.uml.TemplateClassView = joint.shapes.flexberry.uml.ClassV
     }, this.model);
 
     newWidth += (this.model.get('widthPadding') || 0) * 2;
+    this.model.set('inputWidth', newWidth);
     rects.forEach(function(rect) {
+      let templateWidth = Math.max(newWidth, resizedWidth || oldSize.width, minWidth);
       if (rect.type === 'params') {
-        rect.element.attr('.flexberry-uml-params-rect/transform', 'translate(' + (newWidth - 10) + ',15)');
-        rect.element.attr('.not-view-rect/transform', 'translate(' + (newWidth - 10) + ',' + (15 - paramHeight) + ')');
+        rect.element.attr('.flexberry-uml-params-rect/transform', 'translate(' + (templateWidth - 10) + ',15)');
+        rect.element.attr('.not-view-rect/transform', 'translate(' + (templateWidth - 10) + ',' + (15 - paramHeight) + ')');
       } else {
-        rect.element.attr('.flexberry-uml-' + rect.type + '-rect/width', newWidth);
+        rect.element.attr('.flexberry-uml-' + rect.type + '-rect/width', templateWidth);
       }
     });
 
+    newWidth = Math.max(newWidth, resizedWidth || oldSize.width, minWidth);
+    newHeight = Math.max(newHeight, resizedHeight || oldSize.height, minHeight)
     this.model.attr('.view-rect/width', newWidth + 2);
     this.model.attr('.view-rect/height', newHeight + 2);
 
     this.model.resize(newWidth, newHeight);
+
     if (this.model.get('highlighted')) {
       this.unhighlight();
       this.highlight();
     }
-  },
-
-  getSizeChangers() {
-    return A();
   }
 });

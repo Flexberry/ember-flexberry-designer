@@ -1,0 +1,181 @@
+<div class="ui stackable grid fd-list">
+
+  <div class="row">
+    <div class="five wide column">
+      {{t "components.fd-composition-editing-panel-link.description-caption"}}
+    </div>
+    <div class="eleven wide column light-text">
+      {{flexberry-textarea
+        value=model.description
+        class='fluid input'
+        placeholder=(t "components.fd-composition-editing-panel-link.description-placeholder")
+        readonly=readonly
+      }}
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="five wide column">
+      {{t "components.fd-composition-editing-panel-link.start-role-caption"}}
+    </div>
+    <div class="eleven wide column light-text">
+      {{flexberry-textbox
+        value=model.startRole
+        class='fluid input'
+        placeholder=(t "components.fd-composition-editing-panel-link.start-role-placeholder")
+        readonly=readonly
+      }}
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="five wide column">
+      {{t "components.fd-composition-editing-panel-link.start-role-publish-name-caption"}}
+    </div>
+    <div class="eleven wide column light-text">
+      {{flexberry-textbox
+        value=model.startRolePublishName
+        class='fluid input'
+        placeholder=(t "components.fd-composition-editing-panel-link.start-role-publish-name-placeholder")
+        readonly=readonly
+      }}
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="five wide column">
+      {{t "components.fd-composition-editing-panel-link.end-role-caption"}}
+    </div>
+    <div class="eleven wide column light-text">
+      {{flexberry-textbox
+        value=model.endRole
+        class='fluid input'
+        placeholder=(t "components.fd-composition-editing-panel-link.end-role-placeholder")
+        readonly=readonly
+      }}
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="five wide column">
+      {{t "components.fd-composition-editing-panel-link.end-role-publish-name-caption"}}
+    </div>
+    <div class="eleven wide column light-text">
+      {{flexberry-textbox
+        value=model.endRolePublishName
+        class='fluid input'
+        placeholder=(t "components.fd-composition-editing-panel-link.end-role-publish-name-placeholder")
+        readonly=readonly
+      }}
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="five wide column">
+      {{t "components.fd-composition-editing-panel-link.start-multiplicity-caption"}}
+    </div>
+    <div class="eleven wide column light-text">
+      {{flexberry-textbox
+        value=model.startMultiplicity
+        class='fluid input'
+        placeholder=(t "components.fd-composition-editing-panel-link.start-multiplicity-placeholder")
+        readonly=readonly
+      }}
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="five wide column">
+      {{t "components.fd-composition-editing-panel-link.end-role-stored-caption"}}
+    </div>
+    <div class="eleven wide column light-text">
+      {{flexberry-checkbox
+        value=model.endRoleStored
+        class='fluid input'
+        readonly=readonly
+      }}
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="five wide column">
+      {{t "components.fd-composition-editing-panel-link.aggregation-auto-generate-type-usage-caption"}}
+    </div>
+    <div class="eleven wide column light-text">
+      {{flexberry-checkbox
+        value=model.autoGenerateTypeUsage
+        class='fluid input'
+        readonly=readonly
+      }}
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="five wide column">
+      {{t "components.fd-composition-editing-panel-link.aggregation-type-usage-caption"}}
+    </div>
+    <div class="eleven wide column light-text">
+      {{flexberry-textbox
+        value=model.typeUsage
+        class='fluid input'
+        placeholder=(t "components.fd-composition-editing-panel-link.aggregation-type-usage-placeholder")
+        readonly=readonly
+      }}
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="five wide column">
+      {{t "components.fd-composition-editing-panel-link.storage-caption"}}
+    </div>
+    <div class="eleven wide column light-text">
+      {{flexberry-textbox
+        value=model.storage
+        class='fluid input'
+        placeholder=(t "components.fd-composition-editing-panel-link.storage-placeholder")
+        readonly=readonly
+      }}
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="five wide column">
+      {{t "components.fd-composition-editing-panel-link.auto-store-master-disabled-caption"}}
+    </div>
+    <div class="eleven wide column light-text">
+      {{flexberry-checkbox
+        value=model.autoStoreMasterDisabled
+        class='fluid input'
+        readonly=readonly
+      }}
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="five wide column">
+      {{t "components.fd-composition-editing-panel-link.detail-auto-generate-type-usage-caption"}}
+    </div>
+    <div class="eleven wide column light-text">
+      {{flexberry-checkbox
+        value=model.autoGenerateDetailTypeUsage
+        class='fluid input'
+        readonly=readonly
+      }}
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="five wide column">
+      {{t "components.fd-composition-editing-panel-link.detail-type-usage-caption"}}
+    </div>
+    <div class="eleven wide column light-text">
+      {{flexberry-textbox
+        value=model.detailTypeUsage
+        class='fluid input'
+        placeholder=(t "components.fd-composition-editing-panel-link.detail-type-usage-placeholder")
+        readonly=readonly
+      }}
+    </div>
+  </div>
+
+</div>

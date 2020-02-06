@@ -63,6 +63,21 @@ export let RoleView = DescriptionView.extend({
     this.updateInputPosition(2, '.end-role-input');
   },
 
+  updateInputValue() {
+    DescriptionView.prototype.updateInputValue.apply(this, arguments);
+
+    let objectModel = this.model.get('objectModel');
+    let startRoleInput = this.$box.find('.start-role-input');
+    let endRoleInput = this.$box.find('.end-role-input');
+
+    startRoleInput.prop('rows', objectModel.get('startRoleTxt').split(/[\n\r|\r|\n]/).length || 1);
+    startRoleInput.val(objectModel.get('startRoleTxt'));
+    endRoleInput.prop('rows', objectModel.get('endRoleTxt').split(/[\n\r|\r|\n]/).length || 1);
+    endRoleInput.val(objectModel.get('endRoleTxt'));
+    this.updateInputWidth('.start-role-input');
+    this.updateInputWidth('.end-role-input');
+  },
+
   normalizeRoleText(text) {
     let condition = text[0] === '+' || text[0] === '-' || text[0] === '#';
 

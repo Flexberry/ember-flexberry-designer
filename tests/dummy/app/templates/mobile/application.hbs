@@ -2,85 +2,94 @@
   {{outlet}}
   {{outlet "modal"}}
 {{else}}
-{{#flexberry-sidebar
-  class="mobile inverted vertical main menu"
-  settings=(hash
-    onShow=(action "updateWidth")
-    onHidden=(action "updateWidth")
-  )
-}}
-  <a class="item"
-    href={{addonVersionHref}}
-    target="_blank"
-    title={{t "forms.application.sitemap.application-version.title"}}>
-    {{t "forms.application.sitemap.application-version.caption" version=addonVersion}}
-  </a>
-  {{flexberry-sitemap sitemap=sitemap}}
-{{/flexberry-sidebar}}
-<div class="bgw-fix mobile">
-  <div class="background-logo mobile">
-    <div class="ui attached menu mobile">
-      <div class="ui container flex-container">
-        <a {{action 'toggleSidebarMobile'}}
-          class="launch icon item mobile"
-          title={{t "forms.application.header.menu.sitemap-button.title"}}>
-          <i class="sidebar icon text-menu-show"></i>
-          <i class="sidebar icon hidden text-menu-hide hidden-text"></i>
-        </a>
-        <div class="right item">
-          <label style="margin-right: 5px;">
-            {{t "forms.application.header.menu.user-settings-service-checkbox.caption"}}
-          </label>
-          {{flexberry-checkbox
-            class="toggle"
-            value=userSettingsService.isUserSettingsServiceEnabled
-          }}
-        </div>
-        <div class="right item lang">
-          <label style="margin-right: 5px;">
-            {{t "forms.application.header.menu.language-dropdown.caption"}}
-          </label>
-          {{flexberry-dropdown
-            class="compact"
-            items=locales
-            value=i18n.locale
-            placeholder=(t "forms.application.header.menu.language-dropdown.placeholder")
-          }}
+
+  {{#flexberry-sidebar
+    class="vertical main menu mobile"
+    settings=(hash
+      closable=false
+      dimPage=false
+      onShow=(action "updateWidth")
+      onHidden=(action "updateWidth")
+      transition='overlay')
+
+  }}
+    {{#if currentProjectIsSelected}}
+      <div class="item current-project-name-header">
+        <div>
+          <i class="icon"></i>
+          {{t 'forms.application.sitemap.root.fd-current-project-name-header.caption'}}
         </div>
       </div>
-    </div>
-  </div>
-</div>
-<div id="example-mobile" class="pusher mobile">
+      <div class="item current-project-name">
+        <div>
+          <i class="icon"></i>
+          {{currentProjectName}}
+        </div>
+      </div>
+      {{fd-flexberry-sitemap sitemap=sitemap}}
+    {{/if}}
+    <button {{action 'toggleSidebarMobile'}} class="ui toggle-sidebar-visible icon button"></button>
+    {{fd-flexberry-sitemap sitemap=sitemapBottom}}
+  {{/flexberry-sidebar}}
+<div id="mobile" class="pusher mobile">
+  <button {{action 'toggleSidebarMobile'}} class="ui toggle-sidebar icon button"></button>
   <div class="ui form {{appState.state}}">
-    <div class="full height" style="min-height: 94.8vh!important;" >
-      <div class="flexberry-content ui attached segment">
-        <div class="ui main container">
-          <div class="stackable grid container">
-            {{outlet}}
-          </div>
+    <div class="full height">
+      <div class="flexberry-content">
+        <div class="ui main container fluid">
+          {{outlet}}
         </div>
       </div>
     </div>
   </div>
 </div>
+
 <div class="ui main container">
   {{outlet "modal"}}
 </div>
 <div class="ui vertical footer segment">
-  <div class="ui container flex-container mobile-footer">
-    <div class="ui text menu">
-      <a class="brand item" href="#">
-        {{t "forms.application.footer.application-name"}}
-      </a>
-      <div class="right menu">
-        <a class="item"
-          href={{addonVersionHref}}
-          target="_blank"
-          title={{t "forms.application.footer.application-version.title"}}>
-            {{t "forms.application.footer.application-version.caption" version=addonVersion}}
+  <div class="ui container flex-container">
+    <div class="social-icons">
+      <a target="_blank" class="brand item btn-social" href="http://vk.com/flexberry">
+        {{partial "svg-icons/social-icons/vk"}}
         </a>
+      <a target="_blank" class="brand item btn-social" href="https://www.facebook.com/groups/Flexberry/">
+        {{partial "svg-icons/social-icons/facebook"}}
+      </a>
+      <a target="_blank" class="brand item btn-social" href="https://twitter.com/Flexberry">
+        {{partial "svg-icons/social-icons/twitter"}}
+      </a>
+      <a target="_blank" class="brand item btn-social" href="https://github.com/Flexberry">
+        {{partial "svg-icons/social-icons/github"}}
+      </a>
+      <a target="_blank" class="brand item btn-social" href="http://www.youtube.com/user/FlexberryPLATFORM">
+        {{partial "svg-icons/social-icons/youtube"}}
+      </a>
+      <a target="_blank" class="brand item btn-social" href="https://gitter.im/Flexberry">
+        {{partial "svg-icons/social-icons/gitter"}}
+      </a>
+    </div>
+    <div class="ui text menu">
+      {{t "forms.application.footer.application-name"}}
+      <div class="copyright-text">
+        {{t "forms.application.footer.copyright"}}
       </div>
+    </div>
+    <div class="right menu">
+      {{flexberry-dropdown
+        class="compact theme"
+        items=themes
+        value='light'
+        onChange=(action 'changeTheme')
+        settings=(hash direction="upward")
+      }}
+      {{flexberry-dropdown
+        class="compact"
+        items=locales
+        value=i18n.locale
+        placeholder=(t "forms.application.header.menu.language-dropdown.placeholder")
+        settings=(hash direction="upward")
+      }}
     </div>
   </div>
 </div>

@@ -62,6 +62,11 @@ export default function fdPreloadStageMetadata(store, stagePk) {
 
     // resolve, reject
     all(promises).then(() => {
+      let readonlyModeService = getOwner(store).lookup('service:fd-readonly-mode-service');
+      if (readonlyModeService.getReadonlyModeProject()) {
+        return resolve();
+      }
+
       let userService = getOwner(store).lookup('service:user');
       let userName = userService.getCurrentUserName();
       let lockModelName = 'new-platform-flexberry-services-lock';

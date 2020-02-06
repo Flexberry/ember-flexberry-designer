@@ -13,4 +13,6 @@ export default {
   'formview-caption': 'View for form',
   'editform-caption': 'Edit form',
   'newform-caption': 'Creation form',
+  'switch-button-constructor': 'Constructor for setting the appearance of a list form',
+  'switch-button-setting': 'List form settings'
 };

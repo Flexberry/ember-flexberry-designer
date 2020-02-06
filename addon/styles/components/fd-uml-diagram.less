@@ -45,7 +45,7 @@
 .ui.form .uml-class-inputs textarea {
   border: none;
   padding: 0px;
-  color: black;
+  color: @textColor;
   font-size: 12px;
   font-family: Arial;
   min-width: 50px;
@@ -173,27 +173,27 @@
   background: @fdSheetBg;
   border-top-left-radius: 1rem;
   border-top-right-radius: 1rem;
-  display: inline-table;
-  padding: 5px;
   bottom: 0;
+  display: inline-table;
   font-size: 0;
-  left: 0;
+  padding: 5px;
   position: absolute;
-  width: auto;
+  margin-right: -50%;
   max-width: 90%;
   left: 50%;
+  width: auto;
   z-index: 2;
   .transform(translate(-50%, 0));
   .transition(transform 0.5s);
 
-  &::before,
-  &::after {
-    z-index: -1;
+  .row {
+    position: relative;
+    z-index: 1;
   }
 
-  &.hidden {
+  &.fd-toolbar-hidden {
     .transform(translate(-50%, 100%));
-    bottom: 0!important;
+    bottom: 0 !important;
   }
 
   .ui.button:not(.toggle-diagram-toolbar) {
@@ -239,7 +239,7 @@
   padding: 5px 15px;
   padding-bottom: 0;
   position: absolute;
-  top: -21px;
+  top: -1.3125em;
   left: 0.86rem;
 }
 
@@ -271,5 +271,56 @@
 
   .right-down-size-button {
     cursor: nwse-resize;
+  }
+}
+
+.joint-paper-background {
+  background-color: transparent;
+}
+
+@texttColorHex: multiply(white, @textColor);
+@overlayColorHex: multiply(@pageBackground, @overlayColor);
+.joint-paper {
+  rect {
+    &.corner-rect {
+      fill: @pageBackground;
+      stroke: @pageBackground;
+      transition: fill 0.5s ease-in-out, stroke 0.5s ease-in-out;
+    }
+  }
+
+  .content-mini.fade & {
+    rect {
+      &.corner-rect {
+        fill: @overlayColorHex;
+        stroke: @overlayColorHex;
+      }
+    }
+  }
+}
+
+.joint-link .marker-vertices,
+.joint-link .marker-arrowheads,
+.joint-link .link-tools {
+  opacity: 1;
+}
+
+.joint-link.joint-theme-default {
+  .connection-wrap {
+    cursor: default;
+    &:hover {
+      opacity: 0;
+      stroke-opacity: 0;
+    }
+  }
+  .tool-remove {
+    display: none;
+  }
+  .marker-vertex,
+  .marker-arrowhead {
+    fill: @blue;
+    &:hover {
+      fill: @blue;
+    }
   }
 }

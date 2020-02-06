@@ -51,6 +51,31 @@ export default Component.extend({
   */
   fdSheetService: service(),
 
+  /**
+    Check current item.
+
+    @method openSheetFunction
+    @param {String} sheetName Sheet component name.
+    @param {Object} currentItem Current list item.
+  */
+  openSheetFunction(sheetName, currentItem) {
+    if (currentItem === this.get('model')) {
+      this.set('model.active', true);
+    }
+  },
+
+  init() {
+    this._super(...arguments);
+
+    this.get('fdSheetService').on('openSheetTriggered', this, this.openSheetFunction);
+  },
+
+  willDestroyElement() {
+    this._super(...arguments);
+
+    this.get('fdSheetService').off('openSheetTriggered', this, this.openSheetFunction);
+  },
+
   actions: {
     /**
       Opening sheet.
@@ -59,8 +84,7 @@ export default Component.extend({
       @param {Object} currentItem Current list item.
     */
     openSheet(currentItem) {
-      this.get('fdSheetService').openSheet(this.get('sheetComponentName'), currentItem);
-      this.set('model.active', true);
+      this.get('fdSheetService').openSheet(this.get('sheetComponentName'), currentItem.get('model'));
     }
   }
 });

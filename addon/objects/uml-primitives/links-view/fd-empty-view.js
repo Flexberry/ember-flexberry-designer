@@ -1,6 +1,6 @@
 import { isNone } from '@ember/utils';
 import { computed, get } from '@ember/object';
-import { isArray } from '@ember/array';
+import { A, isArray } from '@ember/array';
 import { schedule } from '@ember/runloop';
 import joint from 'npm:jointjs';
 import $ from 'jquery';
@@ -16,6 +16,7 @@ export let EmptyView = joint.dia.LinkView.extend({
 
     this.$box = $(this.template);
     this.model.inputElements = this.$box;
+    this.$el.addClass('linktools-disabled')
 
     this.setColors();
 
@@ -26,6 +27,7 @@ export let EmptyView = joint.dia.LinkView.extend({
           this.$box.css('visibility', 'visible');
           schedule('afterRender', this, function() {
             this.updateBox();
+            this.highlight();
           });
 
           objectModel.set('source', newSource);
@@ -33,6 +35,7 @@ export let EmptyView = joint.dia.LinkView.extend({
           this.paper.trigger('checkexistelements', objectModel, this, true);
         } else {
           this.$box.css('visibility', 'hidden');
+          this.unhighlight();
         }
       }
     }, this);
@@ -44,12 +47,14 @@ export let EmptyView = joint.dia.LinkView.extend({
           this.$box.css('visibility', 'visible');
           schedule('afterRender', this, function() {
             this.updateBox();
+            this.highlight();
           });
           objectModel.set('target', newTarget);
           objectModel.set('endPoint', this.targetPoint);
           this.paper.trigger('checkexistelements', objectModel, this, false);
         } else {
           this.$box.css('visibility', 'hidden');
+          this.unhighlight();
         }
       }
     }, this);
@@ -58,13 +63,19 @@ export let EmptyView = joint.dia.LinkView.extend({
       if (!this.verticesChanging) {
         this.verticesChanging = true;
         this.$box.css('visibility', 'hidden');
-        this.paper.once('link:pointerup', function() {
+        this.unhighlight();
+        if (!this.$el.hasClass('edit-disabled')) {
+          this.paper.once('link:pointerup', function() {
+            this.verticesChanging = false;
+            this.$box.css('visibility', 'visible');
+            schedule('afterRender', this, function() {
+              this.updateBox();
+              this.highlight();
+            });
+          }, this)
+        } else {
           this.verticesChanging = false;
-          this.$box.css('visibility', 'visible');
-          schedule('afterRender', this, function() {
-            this.updateBox();
-          });
-        }, this)
+        }
       }
     }, this);
   },
@@ -135,7 +146,44 @@ export let EmptyView = joint.dia.LinkView.extend({
     }
   },
 
+  pointerdblclick: function(evt, x, y) {
+    let readonly = this.paper.options.interactive;
+    if (!isNone(readonly) && typeof readonly === 'object') {
+      this.addVertex(x, y);
+      this.unhighlight();
+      this.highlight();
+      this.verticesChanging = false
+    }
+  },
+
+  getButtons() {
+    let readonly = this.paper.options.interactive;
+    if (!readonly && typeof readonly !== 'object') {
+      return A([]);
+    }
+
+    return A([{
+      name: 'remove-button',
+      text: '&#xf00d',
+      handler: this.removeLink.bind(this),
+      attrs: {
+        'element': { atConnectionRatio: .2 },
+        'circle': { r: 6, fill: '#007aff', stroke: '#007aff', 'stroke-width': 1, 'cursor': 'pointer' },
+        'text': { fill: '#ffffff','font-size': 10, 'text-anchor': 'middle', x: 0, y: 3, 'font-family': 'Icons', visibility: 'visible', 'cursor': 'pointer' },
+      }
+    }]);
+  },
+
+  removeLink(e) {
+    e.stopPropagation();
+    this.model.remove();
+  },
+
+  /**
+    Update coordinates for FF.
+  */
   pointerdown(evt, x, y) {
+    $(this.paper.el).find('input,textarea').addClass('click-disabled');
     let coordinates = forPointerMethodOverrideResizeAndDnd(evt, x, y);
     joint.dia.LinkView.prototype.pointerdown.apply(this, [evt, coordinates.x, coordinates.y]);
   },
@@ -145,4 +193,9 @@ export let EmptyView = joint.dia.LinkView.extend({
     joint.dia.LinkView.prototype.pointermove.apply(this, [evt, coordinates.x, coordinates.y]);
   },
 
+  pointerup(evt, x, y) {
+    $(this.paper.el).find('input,textarea').removeClass('click-disabled');
+    let coordinates = forPointerMethodOverrideResizeAndDnd(evt, x, y);
+    joint.dia.LinkView.prototype.pointerup.apply(this, [evt, coordinates.x, coordinates.y]);
+  }
 });

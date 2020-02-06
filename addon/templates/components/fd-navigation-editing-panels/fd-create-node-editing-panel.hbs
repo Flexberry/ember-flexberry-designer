@@ -45,17 +45,14 @@
   </div>
 </div>
 
+<h2 class="form-header">{{t "components.fd-create-node-editing-panel.choose-page"}}</h2>
 <div class="ui stackable grid fd-list">
-  <h2 class="form-header fluid">
-    <div>{{t "components.fd-create-node-editing-panel.choose-page"}}</div>
-  </h2>
-
   {{fd-attribute-table
     selectedValues=selectedValues
     tableView=tableViewForForm
     model=forms
     toolbarVisible=false
-    readonly=true
+    tableTextBoxReadonly=true
   }}
 
   <div class="sixteen wide column buttons-row">

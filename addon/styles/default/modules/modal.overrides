@@ -1,0 +1,11 @@
+.ui.modal > .icon-fd-x-mark-thin {
+  cursor: pointer;
+  float: right;
+  padding-right: 1.5em;
+  padding-top: 1em;
+}
+
+.ui.modal > .content {
+  overflow: auto;
+  max-height: 80vh;
+}

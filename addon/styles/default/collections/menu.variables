@@ -18,3 +18,7 @@
 @activeHoverItemBackground: @fdSheetBg;
 @hoverItemBackground: @fdSheetBg;
 @pressedItemBackground: @fdSheetBg;
+
+@activeItemTextColor: @textColor;
+@hoverItemTextColor: @textColor;
+@activeHoverItemColor: @textColor;

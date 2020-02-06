@@ -68,7 +68,16 @@ let getClassTreeNode = function (tree, classData, rootId, addInText) {
     }
 
     attributes.forEach((attribute) => {
+      if (attribute.get('isNew')) {
+        return;
+      }
+
       let text = attribute.get('name');
+      let changedName = attribute.changedAttributes().name;
+      if (!isNone(changedName)) {
+        text = changedName[0];
+      }
+
       if (!isNone(addInText)) {
         text += ' (' + attribute.get(`${addInText}`) + ')';
       }

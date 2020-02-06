@@ -13,4 +13,6 @@ export default {
   'formview-caption': 'Составное представление',
   'editform-caption': 'Форма редактирования',
   'newform-caption': 'Форма создания',
+  'switch-button-constructor': 'Конструктор настройки внешнего вида списковой формы',
+  'switch-button-setting': 'Настройки списковой формы'
 };

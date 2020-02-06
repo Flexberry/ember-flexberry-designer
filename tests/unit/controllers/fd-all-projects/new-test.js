@@ -5,7 +5,9 @@ moduleFor('controller:fd-all-projects/new', 'Unit | Controller | fd all projects
   // needs: ['controller:foo']
   needs: [
     'service:appState',
-    'service:fd-current-project-context'
+    'service:fd-current-project-context',
+    'service:fdSheetService',
+    'service:fd-dialog-service'
   ]
 });
 

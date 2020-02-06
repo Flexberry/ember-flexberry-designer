@@ -1,0 +1,30 @@
+<div class="content-mini">
+  <div class="ui {{if loadingState "active"}} inverted dimmer">
+    <div class="ui text loader"></div>
+  </div>
+  <div class="fd-sheet-header">
+    {{fd-sheets/fd-sheets-tool-bar
+      sheetComponentName=sheetComponentName
+      readonlyMode=readonlyMode
+      isNewModel=selectedValue.isNew
+      sheetButtons=(array 'delete' 'save' 'share')
+      shareSheetValue=selectedValue
+      saveSheet=(action 'save')
+      deleteSheet=(action 'delete')
+    }}
+    {{flexberry-textbox
+      value=selectedValue.name
+      placeholder=(t "components.fd-sheets-tool-bar.placeholder-caption")
+      readonly=(and readonlyMode (not selectedValue.isNew))
+      class='form-header fluid'
+      maxlength=maxlength
+    }}
+  </div>
+  <div class="fd-sheet-body">
+    {{fd-editing-panels/fd-create-view
+      model=model
+      view=selectedValue
+      readonlyMode=(and readonlyMode (not selectedValue.isNew))
+    }}
+  </div>
+</div>

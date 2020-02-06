@@ -1,9 +1,23 @@
 /**
+  userAgent.
+*/
+let ua = navigator.userAgent;
+
+/**
+  Check current browser.
+*/
+let isFireFox = function() {
+  return (ua.search(/Firefox/) !== -1);
+};
+
+/**
   Update coordinates in pointer method and dnd.
 */
 let forPointerMethodOverrideResizeAndDnd = function(e, x, y) {
-  x = e.originalEvent.layerX === e.clientX ? x : e.originalEvent.layerX;
-  y = e.originalEvent.layerY === e.clientY ? y : e.originalEvent.layerY;
+  if (isFireFox()) {
+    x = e.originalEvent.layerX;
+    y = e.originalEvent.layerY;
+  }
 
   return {
     x: x,
@@ -15,8 +29,10 @@ let forPointerMethodOverrideResizeAndDnd = function(e, x, y) {
   Update coordinates in event 'PointerClick' for links and elements.
 */
 let forLinkAndElementPointerClickEvent = function(e, x, y) {
-  x = e.originalEvent.originalEvent.layerX === e.clientX ? x : e.originalEvent.originalEvent.layerX;
-  y = e.originalEvent.originalEvent.layerY === e.clientY ? y : e.originalEvent.originalEvent.layerY;
+  if (isFireFox()) {
+    x = e.originalEvent.originalEvent.layerX;
+    y = e.originalEvent.originalEvent.layerY;
+  }
 
   return {
     x: x,

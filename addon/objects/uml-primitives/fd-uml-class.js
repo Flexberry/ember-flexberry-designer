@@ -4,7 +4,7 @@
 
 import { computed } from '@ember/object';
 import $ from 'jquery';
-import { isBlank } from '@ember/utils';
+import { isBlank, isNone } from '@ember/utils';
 import { isArray } from '@ember/array';
 
 import joint from 'npm:jointjs';
@@ -229,6 +229,8 @@ joint.shapes.flexberry.uml.ClassView = joint.shapes.flexberry.uml.PrimitiveEleme
     joint.shapes.flexberry.uml.PrimitiveElementView.prototype.initialize.apply(this, arguments);
 
     let _this = this;
+    let objectModel = this.model.get('objectModel');
+    this.model.set('minHeight', objectModel.get('collapsed') ? 34 : 64);
 
     // Prevent paper from handling pointerdown.
     this.$box.find('input, textarea').on('mousedown click', function(evt) {
@@ -443,6 +445,7 @@ joint.shapes.flexberry.uml.ClassView = joint.shapes.flexberry.uml.PrimitiveEleme
     attributesInput.val(objectModel.get('attributes').join('\n'));
     methodsInput.prop('rows', objectModel.get('methods').length || 1);
     methodsInput.val(objectModel.get('methods').join('\n'));
+    this.updateRectangles();
   },
 
   getButtons() {
@@ -450,7 +453,7 @@ joint.shapes.flexberry.uml.ClassView = joint.shapes.flexberry.uml.PrimitiveEleme
     let objectModel = this.model.get('objectModel');
     let collapsed = objectModel.get('collapsed');
 
-    buttons.pushObjects([{
+    buttons.pushObject({
       name: 'collapse-button',
       text: collapsed ? '&#xf065' : '&#xf066',
       handler: this.collapseElementView.bind(this),
@@ -459,16 +462,20 @@ joint.shapes.flexberry.uml.ClassView = joint.shapes.flexberry.uml.PrimitiveEleme
         'circle': { r: 6, fill: '#007aff', stroke: '#007aff', 'stroke-width': 1 },
         'text': { fill: '#ffffff', 'font-size': 10, 'text-anchor': 'middle', x: 0, y: 3, 'font-family': 'Icons' },
       }
-    }, {
-      name: 'open-edit-form-button',
-      text: '&#xf013',
-      handler: this.openEditForm.bind(this),
-      attrs: {
-        'element': { 'ref-dx': -14, 'ref-y': 0, 'ref': '.joint-highlight-stroke' },
-        'circle': { r: 6, fill: '#007aff', stroke: '#007aff', 'stroke-width': 1 },
-        'text': { fill: '#ffffff', x: 0, y: 3, 'font-size': 10, 'text-anchor': 'middle', 'font-family': 'Icons' },
-      }
-    }]);
+    });
+
+    if (!isNone(objectModel.get('repositoryObject'))) {
+      buttons.pushObject({
+        name: 'open-edit-form-button',
+        text: '&#xf013',
+        handler: this.openEditForm.bind(this),
+        attrs: {
+          'element': { 'ref-dx': -14, 'ref-y': 0, 'ref': '.joint-highlight-stroke' },
+          'circle': { r: 6, fill: '#007aff', stroke: '#007aff', 'stroke-width': 1 },
+          'text': { fill: '#ffffff', x: 0, y: 3, 'font-size': 10, 'text-anchor': 'middle', 'font-family': 'Icons' },
+        }
+      });
+    }
 
     return buttons;
   },
@@ -478,6 +485,8 @@ joint.shapes.flexberry.uml.ClassView = joint.shapes.flexberry.uml.PrimitiveEleme
     let objectModel = this.model.get('objectModel');
     let collapsedToggle = !objectModel.get('collapsed');
     objectModel.set('collapsed', collapsedToggle);
+    this.model.set('minHeight', collapsedToggle ? 34 : 64);
+    this.setColors();
     this.applyDisplayFromCollapseValue();
   },
 
@@ -498,9 +507,9 @@ joint.shapes.flexberry.uml.ClassView = joint.shapes.flexberry.uml.PrimitiveEleme
     this.$box.find('.attributes-input').css('visibility', styleVisibilityValue);
     this.$box.find('.methods-input').css('visibility', styleVisibilityValue);
 
-    const initSize = this.model.size();
+    const size = collapsed ? this.model.attr('.flexberry-uml-header-rect') : this.model.size();
     this.updateBox();
-    this.updateRectangles(initSize.width, initSize.height);
+    this.updateRectangles(size.width, size.height);
   },
 
   normalizeStereotype(stereotype) {

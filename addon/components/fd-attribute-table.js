@@ -68,6 +68,15 @@ export default Component.extend({
   readonly: false,
 
   /**
+    Flag: indicates whether textBox is readonly.
+
+    @property readonly
+    @type Boolean
+    @default false
+   */
+  tableTextBoxReadonly: false,
+
+  /**
     Flag: indicates whether show edit button in row.
 
     @property editButtonInRow

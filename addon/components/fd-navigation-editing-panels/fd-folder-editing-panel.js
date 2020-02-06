@@ -13,6 +13,15 @@ export default Component.extend({
   */
   node: undefined,
 
+  /**
+    Flag: indicates whether property is readonly.
+
+    @property readonlyMode
+    @type Boolean
+    @default true
+   */
+  readonlyMode: true,
+
   actions: {
 
     /**
