@@ -19,6 +19,7 @@ export let EmptyView = joint.dia.LinkView.extend({
     this.$el.addClass('linktools-disabled')
 
     this.setColors();
+    this.setButtonStyles();
 
     this.model.on('change:source', function(element, newSource) {
       let objectModel = this.model.get('objectModel');
@@ -146,6 +147,18 @@ export let EmptyView = joint.dia.LinkView.extend({
     }
   },
 
+  setButtonStyles() {
+    const _this = this;
+    const buttons = this.getButtons();
+    buttons.forEach(button => {
+      let style = {};
+      style[`.${get(button, 'name')}`] = get(button, 'attrs.element');
+      style[`.${get(button, 'name')}>circle`] = get(button, 'attrs.circle');
+      style[`.${get(button, 'name')}>text`] = get(button, 'attrs.text');
+      _this.model.attr(style);
+    });
+  },
+
   pointerdblclick: function(evt, x, y) {
     let readonly = this.paper.options.interactive;
     if (!isNone(readonly) && typeof readonly === 'object') {
@@ -157,9 +170,11 @@ export let EmptyView = joint.dia.LinkView.extend({
   },
 
   getButtons() {
-    let readonly = this.paper.options.interactive;
-    if (!readonly && typeof readonly !== 'object') {
-      return A([]);
+    if (this.paper) {
+      let readonly = this.paper.options.interactive;
+      if (!readonly && typeof readonly !== 'object') {
+        return A();
+      }
     }
 
     return A([{

@@ -310,9 +310,6 @@ joint.highlighters.strokeAndButtons = {
 
       this._buttons[id].addObject(g);
       cellView.vel.append(g);
-      cellView.model.attr(`.${name}`, get(button, 'attrs.element'));
-      cellView.model.attr(`.${name}>circle`, get(button, 'attrs.circle'));
-      cellView.model.attr(`.${name}>text`, get(button, 'attrs.text'));
     }, this);
   },
 
@@ -336,9 +333,6 @@ joint.highlighters.strokeAndButtons = {
 
       this._buttons[id].addObject(g);
       cellView.vel.append(g);
-      cellView.model.attr(`.${name}`, get(button, 'attrs.element'));
-      cellView.model.attr(`.${name}>circle`, get(button, 'attrs.circle'));
-      cellView.model.attr(`.${name}>text`, get(button, 'attrs.text'));
     }, this);
   },
 
@@ -363,9 +357,11 @@ joint.util.setByPath(joint.shapes, 'flexberry.uml.PrimitiveElementView', primiti
 
 joint.shapes.flexberry.uml.PrimitiveElementView = joint.dia.ElementView.extend({
   getButtons() {
-    let readonly = this.paper.options.interactive;
-    if (!readonly && typeof readonly !== 'object') {
-      return A([]);
+    if (this.paper) {
+      let readonly = this.paper.options.interactive;
+      if (!readonly && typeof readonly !== 'object') {
+        return A();
+      }
     }
 
     return A([{
@@ -381,9 +377,11 @@ joint.shapes.flexberry.uml.PrimitiveElementView = joint.dia.ElementView.extend({
   },
 
   getSizeChangers() {
-    let readonly = this.paper.options.interactive;
-    if (!readonly && typeof readonly !== 'object') {
-      return A([]);
+    if (this.paper) {
+      let readonly = this.paper.options.interactive;
+      if (!readonly && typeof readonly !== 'object') {
+        return A();
+      }
     }
 
     return A([{
@@ -427,6 +425,21 @@ joint.shapes.flexberry.uml.PrimitiveElementView = joint.dia.ElementView.extend({
     }
 
     this.setColors();
+    this.setButtonStyles();
+  },
+
+  setButtonStyles() {
+    const _this = this;
+    const buttons = this.getButtons();
+    const sizeChangers = this.getSizeChangers();
+    buttons.addObjects(sizeChangers);
+    buttons.forEach(button => {
+      let style = {};
+      style[`.${get(button, 'name')}`] = get(button, 'attrs.element');
+      style[`.${get(button, 'name')}>circle`] = get(button, 'attrs.circle');
+      style[`.${get(button, 'name')}>text`] = get(button, 'attrs.text');
+      _this.model.attr(style);
+    });
   },
 
   getTextColor() {
