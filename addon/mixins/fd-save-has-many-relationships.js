@@ -42,7 +42,7 @@ export default Mixin.create({
     @param {DS.Model} record Record from hasMany relationships.
   */
   _checkRecordOnChanges(record) {
-    if (record.constructor.modelName !== 'fd-dev-attribute' && record.constructor.modelName !== 'fd-dev-method') {
+    if (record.constructor.modelName !== 'fd-dev-attribute' && record.constructor.modelName !== 'fd-dev-method' && record.constructor.modelName !== 'fd-class-storage-type') {
       return record.save();
     }
 
