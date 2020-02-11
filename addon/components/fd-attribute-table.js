@@ -24,6 +24,14 @@ export default Component.extend({
   buttonCaption: undefined,
 
   /**
+    Items for dropdowns.
+
+    @property dropdownItemsObject
+    @type Object
+  */
+  dropdownItemsObject: undefined,
+
+  /**
     Data.
 
     @property model
@@ -135,6 +143,20 @@ export default Component.extend({
         selectedValues.removeObject(value);
       } else {
         selectedValues.pushObject(value);
+      }
+    },
+
+    /**
+      Method for dropdown change.
+
+      @method dropdownChangeValue
+      @param {Object} model data.
+      @param {Object} value selected value.
+    */
+    dropdownChangeValue(model, value) {
+      let dropdownChange = this.get('dropdownChange');
+      if (!isNone(dropdownChange)) {
+        dropdownChange(model, value);
       }
     },
 

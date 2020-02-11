@@ -35,6 +35,15 @@ export default {
     'create-btn': 'Create metod',
     'delete-btn': 'Delete selected',
   },
+  'storage': {
+    'name': 'Connection name',
+    'name-placeholder': 'Enter connection name',
+    'string': 'Connection string',
+    'string-placeholder': 'Enter connection string',
+    'type': 'Storage type',
+    'create-btn': 'Create storage type',
+    'delete-btn': 'Delete selected',
+  },
   'store-instances': {
     'data': 'Type',
     'data-placeholder': 'Enter type',
