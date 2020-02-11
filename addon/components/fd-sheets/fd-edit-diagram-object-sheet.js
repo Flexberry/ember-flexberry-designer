@@ -153,41 +153,32 @@ export default FdBaseSheet.extend({
      @param {Object} currentItem Current list item.
   */
   openSheet(sheetName, currentItem) {
-    let store = this.get('store');
-    let objectId = currentItem.get('repositoryObject').slice(1, -1);
+    this.rollbackSelectedValue();
 
-    let selectedValue, stereotype;
-    let modelName = 'fd-dev-association';
-    let isLink = false;
+    let stereotype;
+    let isLink = currentItem.isLink;
+    let selectedValue = currentItem.data;
+    let selectedValueModel = currentItem.selectedValueModel;
+    if (isLink) {
+      stereotype = selectedValueModel.get('primitive.$type').slice(18, -8).toLocaleLowerCase();
 
-    switch (currentItem.get('primitive.$type')) {
-      case 'STORMCASE.UML.cad.Composition, UMLCAD':
-        modelName = 'fd-dev-aggregation';
-      // eslint-disable-next-line no-fallthrough
-      case 'STORMCASE.UML.cad.Association, UMLCAD':
-        isLink = true;
-        stereotype = currentItem.get('primitive.$type').slice(18, -8).toLocaleLowerCase();
-        selectedValue = store.peekRecord(`${modelName}`, objectId);
+      updateLinkByStr(selectedValue);
+      this.set('_endRoleStr', selectedValue.get('endRoleStr'));
+      this.set('_startRoleStr', selectedValue.get('startRoleStr'));
+      this.set('_endMultiplicity', selectedValue.get('endMultiplicity'));
+      this.set('_startMultiplicity', selectedValue.get('startMultiplicity'));
+    } else {
+      stereotype = selectedValueModel.getWithDefault('stereotype', '').trim().slice(1, -1) || 'implementation';
 
-        updateLinkByStr(selectedValue);
-        this.set('_endRoleStr', selectedValue.get('endRoleStr'));
-        this.set('_startRoleStr', selectedValue.get('startRoleStr'));
-        this.set('_endMultiplicity', selectedValue.get('endMultiplicity'));
-        this.set('_startMultiplicity', selectedValue.get('startMultiplicity'));
-        break;
-      default:
-        stereotype = currentItem.getWithDefault('stereotype', '').trim().slice(1, -1) || 'implementation';
-        selectedValue = store.peekRecord('fd-dev-class', objectId);
-
-        updateObjectByStr(selectedValue, store);
-        this.set('_attributesStr', selectedValue.get('attributesStr'));
-        this.set('_methodsStr', selectedValue.get('methodsStr'));
+      updateObjectByStr(selectedValue, this.get('store'));
+      this.set('_attributesStr', selectedValue.get('attributesStr'));
+      this.set('_methodsStr', selectedValue.get('methodsStr'));
     }
 
     this.set('isLink', isLink);
     this.set('selectedValue', selectedValue);
     this.set('objectEditFormNamePart', stereotype);
-    this.set('selectedValueModel', currentItem);
+    this.set('selectedValueModel', selectedValueModel);
   },
 
   /**
@@ -196,23 +187,13 @@ export default FdBaseSheet.extend({
      @method closeSheet
   */
   closeSheet() {
-    let selectedValue = this.get('selectedValue');
-    if (!selectedValue.get('isNew')) {
-      selectedValue.rollbackAll();
-    }
-
+    this.rollbackSelectedValue();
     if (this.get('isLink')) {
-      selectedValue.set('endRoleStr', this.get('_endRoleStr'));
-      selectedValue.set('startRoleStr', this.get('_startRoleStr'));
-      selectedValue.set('endMultiplicity', this.get('_endMultiplicity'));
-      selectedValue.set('startMultiplicity', this.get('_startMultiplicity'));
       this.set('_endRoleStr', undefined);
       this.set('_startRoleStr', undefined);
       this.set('_endMultiplicity', undefined);
       this.set('_startMultiplicity', undefined);
     } else {
-      selectedValue.set('attributesStr', this.get('_attributesStr'));
-      selectedValue.set('methodsStr', this.get('_methodsStr'));
       this.set('_attributesStr', undefined);
       this.set('_methodsStr', undefined);
     }
@@ -223,6 +204,46 @@ export default FdBaseSheet.extend({
 
     this.set('isLink', false);
     this.set('readonlyMode', true);
+  },
+
+  /**
+    Rollback 'selectedValue'.
+
+     @method rollbackSelectedValue
+  */
+  rollbackSelectedValue() {
+    let selectedValue = this.get('selectedValue');
+    if (!isNone(selectedValue)) {
+      let isLink = this.get('isLink');
+      if (!selectedValue.get('isNew')) {
+        //selectedValue.rollbackAll();
+        if (isLink) {
+          selectedValue.set('endRoleStr', this.get('_endRoleStr'));
+          selectedValue.set('startRoleStr', this.get('_startRoleStr'));
+          selectedValue.set('endMultiplicity', this.get('_endMultiplicity'));
+          selectedValue.set('startMultiplicity', this.get('_startMultiplicity'));
+        } else {
+          selectedValue.set('attributesStr', this.get('_attributesStr'));
+          selectedValue.set('methodsStr', this.get('_methodsStr'));
+        }
+      } else {
+        let objectModel = this.get('selectedValueModel');
+        if (isLink) {
+          updateStrByLink(selectedValue);
+          objectModel.set('endRoleTxt', selectedValue.get('endRoleStr'));
+          objectModel.set('startRoleTxt', selectedValue.get('startRoleStr'));
+          objectModel.set('endMultiplicity', selectedValue.get('endMultiplicity'));
+          objectModel.set('startMultiplicity', selectedValue.get('startMultiplicity'));
+        } else {
+          updateStrByObjects(selectedValue);
+          objectModel.set('name', selectedValue.get('nameStr'));
+          objectModel.set('attributes', selectedValue.get('attributesStr').split('\n'));
+          objectModel.set('methods', selectedValue.get('methodsStr').split('\n'));
+        }
+
+        this.get('fdDiagramService').updateJointObjectOnDiagram(objectModel.get('id'));
+      }
+    }
   },
 
   /**
