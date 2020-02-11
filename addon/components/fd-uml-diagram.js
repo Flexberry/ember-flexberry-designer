@@ -458,7 +458,29 @@ export default Component.extend({
     @param {joint.dia.Element} cellView.model
   */
   _elementOpenEditForm({ model }) {
-    this.get('openEditFormAction')(model.get('objectModel'));
+    let object = {
+      data: undefined,
+      selectedValueModel: model.get('objectModel'),
+      isLink: false
+    };
+
+    let store = this.get('store');
+    let modelName = 'fd-dev-association';
+    let objectId = object.selectedValueModel.get('repositoryObject').slice(1, -1);
+
+    switch (object.selectedValueModel.get('primitive.$type')) {
+      case 'STORMCASE.UML.cad.Composition, UMLCAD':
+        modelName = 'fd-dev-aggregation';
+      // eslint-disable-next-line no-fallthrough
+      case 'STORMCASE.UML.cad.Association, UMLCAD':
+        object.isLink = true;
+        object.data = store.peekRecord(`${modelName}`, objectId);
+        break;
+      default:
+        object.data = store.peekRecord('fd-dev-class', objectId);
+    }
+
+    this.get('openEditFormAction')(object);
   },
 
   /**

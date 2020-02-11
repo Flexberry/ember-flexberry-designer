@@ -81,6 +81,7 @@ export default Service.extend(Evented, {
       this.trigger('closeSheetTriggered', sheetName);
       this.set(`sheetSettings.visibility.${sheetName}`, false);
       this.set(`sheetSettings.expanded.${sheetName}`, false);
+      this.set(`sheetSettings.currentItem.${sheetName}`, undefined);
       let currentSheet = $(`.fd-sheet.${sheetName}`);
 
       if ($('.fd-sheet.visible').length < 2) {
@@ -218,6 +219,11 @@ export default Service.extend(Evented, {
 
     if (!isNone(currentItemModel)) {
       isDirty = hasChanges(currentItemModel) && !currentItemModel.get('isDeleted');
+
+      // TODO: в будущем можно сделать для каждого листа свой rollbackAll и в нем проверять на isNew.
+      if (currentItemModel.get('isNew') && sheetName === 'edit-diagram-object-sheet') {
+        isDirty = false;
+      }
     }
 
     return isDirty;

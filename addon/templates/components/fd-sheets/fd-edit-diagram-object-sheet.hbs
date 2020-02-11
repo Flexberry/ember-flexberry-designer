@@ -6,6 +6,7 @@
     {{fd-sheets/fd-sheets-tool-bar
       sheetComponentName=sheetComponentName
       readonlyMode=readonlyMode
+      isNewModel=selectedValue.isNew
       sheetButtons=(array 'save' 'share')
       shareSheetValue=selectedValue
       saveSheet=(action 'save')
@@ -13,7 +14,7 @@
     {{flexberry-textbox
       value=computedTitle
       placeholder=(t "components.fd-sheets-tool-bar.placeholder-caption")
-      readonly=readonlyMode
+      readonly=(and (not selectedValue.isNew) readonlyMode)
       class='form-header fluid'
       maxlength=maxlength
     }}
