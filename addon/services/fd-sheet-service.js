@@ -1,8 +1,10 @@
 import Service from '@ember/service';
 import Evented from '@ember/object/evented';
+import hasChanges from '../utils/model-has-changes';
 import $ from 'jquery';
 import { later, schedule } from '@ember/runloop';
 import { isBlank, isNone } from '@ember/utils';
+import { get } from '@ember/object';
 
 export default Service.extend(Evented, {
   sheetSettings: undefined,
@@ -47,7 +49,9 @@ export default Service.extend(Evented, {
     } else {
       this.trigger('openSheetTriggered', sheetName, currentItem);
       this.set(`sheetSettings.visibility.${sheetName}`, true);
-      this.set(`sheetSettings.currentItem.${sheetName}`, currentItem);
+
+      let currentModel = !isNone(currentItem) && isBlank(get(currentItem, 'constructor.modelName')) ? currentItem.data : currentItem;
+      this.set(`sheetSettings.currentItem.${sheetName}`, currentModel);
 
       $('.pushable').addClass('fade');
       $('.fd-sheet.visible.expand .content-mini').addClass('fade');
@@ -213,7 +217,7 @@ export default Service.extend(Evented, {
     let isDirty = false;
 
     if (!isNone(currentItemModel)) {
-      isDirty = currentItemModel.hasDirtyAttributes;
+      isDirty = hasChanges(currentItemModel) && !currentItemModel.get('isDeleted');
     }
 
     return isDirty;
@@ -230,7 +234,7 @@ export default Service.extend(Evented, {
       return null;
     }
 
-    const currentItemModel = this.get(`sheetSettings.currentItem.${sheetName}.model.data`);
+    const currentItemModel = this.get(`sheetSettings.currentItem.${sheetName}`);
 
     return currentItemModel;
   },
@@ -260,6 +264,17 @@ export default Service.extend(Evented, {
   */
   rollbackCurrentItem(sheetName) {
     const model = this.getSheetModel(sheetName);
-    model.rollbackAttributes();
+    model.rollbackAll();
+  },
+
+  /**
+    Save currentItem.
+
+     @method saveCurrentItem
+     @param {String} sheetName Sheet's component name
+     @param {Boolean} closeAfter Close after save.
+  */
+  saveCurrentItem(sheetName, closeAfter) {
+    this.trigger('saveCurrentItemTrigger', sheetName, closeAfter);
   }
 });

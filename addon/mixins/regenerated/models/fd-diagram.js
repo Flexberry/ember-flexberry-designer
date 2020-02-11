@@ -99,6 +99,16 @@ export let defineProjections = function (modelClass) {
       })
     }, { hidden: true })
   });
+  modelClass.defineProjection('PrintDiagram', 'fd-diagram', {
+    primitivesStreamString: attr(''),
+    caseObjectsString: attr(''),
+    name: attr(''),    
+    subsystem: belongsTo('fd-subsystem', '', {
+      stage: belongsTo('fd-stage', '', {
+
+      })
+    }, { hidden: true })
+  });
   modelClass.defineProjection('DiagramWithSystem', 'fd-diagram', {
     primitivesStreamString: attr(''),
     caseObjectsString: attr(''),

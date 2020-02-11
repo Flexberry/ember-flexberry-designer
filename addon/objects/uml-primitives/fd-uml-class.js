@@ -229,6 +229,8 @@ joint.shapes.flexberry.uml.ClassView = joint.shapes.flexberry.uml.PrimitiveEleme
     joint.shapes.flexberry.uml.PrimitiveElementView.prototype.initialize.apply(this, arguments);
 
     let _this = this;
+    let objectModel = this.model.get('objectModel');
+    this.model.set('minHeight', objectModel.get('collapsed') ? 34 : 64);
 
     // Prevent paper from handling pointerdown.
     this.$box.find('input, textarea').on('mousedown click', function(evt) {
@@ -443,6 +445,7 @@ joint.shapes.flexberry.uml.ClassView = joint.shapes.flexberry.uml.PrimitiveEleme
     attributesInput.val(objectModel.get('attributes').join('\n'));
     methodsInput.prop('rows', objectModel.get('methods').length || 1);
     methodsInput.val(objectModel.get('methods').join('\n'));
+    this.updateRectangles();
   },
 
   getButtons() {
@@ -482,6 +485,8 @@ joint.shapes.flexberry.uml.ClassView = joint.shapes.flexberry.uml.PrimitiveEleme
     let objectModel = this.model.get('objectModel');
     let collapsedToggle = !objectModel.get('collapsed');
     objectModel.set('collapsed', collapsedToggle);
+    this.model.set('minHeight', collapsedToggle ? 34 : 64);
+    this.setColors();
     this.applyDisplayFromCollapseValue();
   },
 
@@ -502,9 +507,9 @@ joint.shapes.flexberry.uml.ClassView = joint.shapes.flexberry.uml.PrimitiveEleme
     this.$box.find('.attributes-input').css('visibility', styleVisibilityValue);
     this.$box.find('.methods-input').css('visibility', styleVisibilityValue);
 
-    const initSize = this.model.size();
+    const size = collapsed ? this.model.attr('.flexberry-uml-header-rect') : this.model.size();
     this.updateBox();
-    this.updateRectangles(initSize.width, initSize.height);
+    this.updateRectangles(size.width, size.height);
   },
 
   normalizeStereotype(stereotype) {

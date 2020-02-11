@@ -7,12 +7,14 @@ import Builder from 'ember-flexberry-data/query/builder';
 import FdUpdateBsValueMixin from '../../mixins/fd-editing-panels/fd-update-bs-value';
 import FdUpdateAttributeValueMixin from '../../mixins/fd-editing-panels/fd-update-attribute-value';
 import FdUpdateMethodeValueMixin from '../../mixins/fd-editing-panels/fd-update-method-value';
+import FdReadonlyModeMixin from '../../mixins/fd-editing-panels/fd-readonly-mode';
 import layout from '../../templates/components/fd-editing-panels/fd-implementation-editing-panel';
 
 export default Component.extend(
   FdUpdateBsValueMixin,
   FdUpdateAttributeValueMixin,
-  FdUpdateMethodeValueMixin, {
+  FdUpdateMethodeValueMixin,
+  FdReadonlyModeMixin, {
   layout,
 
   /**
@@ -192,6 +194,16 @@ export default Component.extend(
         let storageObject = storagesItems.objects.findBy('shortName', value);
         set(model, 'storageType', storageObject);
       }
+    },
+
+    /**
+      Changes AccessType.
+
+      @method actions.changeAccessType
+      @param {Object} value An object with a new value in the `checked` property.
+    */
+    changeAccessType(value) {
+      this.set('model.accessType', value.checked ? 'this' : 'none');
     }
   }
 });

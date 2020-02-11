@@ -1,0 +1,106 @@
+<div class="ui stackable grid fd-list">
+  <div class="row">
+    <div class="five wide column">
+      {{t "components.fd-geolayer-editing-panel.caption-caption"}}
+    </div>
+    <div class="eleven wide column light-text">
+      {{flexberry-textbox
+        value=model.caption
+        class='fluid input'
+        placeholder=(t "components.fd-geolayer-editing-panel.caption-placeholder")
+        readonly=readonly
+      }}
+    </div>
+  </div>
+  <div class="row">
+    <div class="five wide column">
+      {{t "components.fd-geolayer-editing-panel.coordinate-system-caption"}}
+    </div>
+    <div class="eleven wide column light-text">
+      {{flexberry-textbox
+        value=coordinateSystem
+        class='fluid input'
+        placeholder=(t "components.fd-geolayer-editing-panel.coordinate-system-placeholder")
+        readonly=readonly
+      }}
+    </div>
+  </div>
+  <div class="row">
+    <div class="five wide column">
+      {{t "components.fd-geolayer-editing-panel.min-x-caption"}}
+    </div>
+    <div class="eleven wide column light-text">
+      {{flexberry-textbox
+        value=minX
+        class='fluid input'
+        placeholder=(t "components.fd-geolayer-editing-panel.min-x-placeholder")
+        readonly=readonly
+      }}
+    </div>
+  </div>
+  <div class="row">
+    <div class="five wide column">
+      {{t "components.fd-geolayer-editing-panel.min-y-caption"}}
+    </div>
+    <div class="eleven wide column light-text">
+      {{flexberry-textbox
+        value=minY
+        class='fluid input'
+        placeholder=(t "components.fd-geolayer-editing-panel.min-y-placeholder")
+        readonly=readonly
+      }}
+    </div>
+  </div>
+  <div class="row">
+    <div class="five wide column">
+      {{t "components.fd-geolayer-editing-panel.max-x-caption"}}
+    </div>
+    <div class="eleven wide column light-text">
+      {{flexberry-textbox
+        value=maxX
+        class='fluid input'
+        placeholder=(t "components.fd-geolayer-editing-panel.max-x-placeholder")
+        readonly=readonly
+      }}
+    </div>
+  </div>
+  <div class="row">
+    <div class="five wide column">
+      {{t "components.fd-geolayer-editing-panel.max-y-caption"}}
+    </div>
+    <div class="eleven wide column light-text">
+      {{flexberry-textbox
+        value=maxY
+        class='fluid input'
+        placeholder=(t "components.fd-geolayer-editing-panel.max-y-placeholder")
+        readonly=readonly
+      }}
+    </div>
+  </div>
+  <div class="row">
+    <div class="five wide column">
+      <div>{{t "components.fd-geolayer-editing-panel.class-caption"}}</div>
+    </div>
+    <div class="eleven wide column light-text">
+      {{flexberry-dropdown
+        items=layerClasses
+        value=layerClass
+        class='compact input'
+        readonly=readonly
+      }}
+    </div>
+  </div>
+  <div class="row">
+    <div class="five wide column">
+      <div>{{t "components.fd-geolayer-editing-panel.style-caption"}}</div>
+    </div>
+    <div class="eleven wide column light-text">
+      {{flexberry-dropdown
+        items=layerStyles
+        value=layerStyle
+        class='compact input'
+        readonly=readonly
+      }}
+    </div>
+  </div>
+</div>

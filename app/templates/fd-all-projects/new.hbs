@@ -70,24 +70,33 @@
       </div>
     </div>
   </div>
-  <div class="ui stackable grid">
+  <div class="ui stackable grid actions">
     <div class="center aligned two column row">
       <div class="column">
-        {{fd-round-button
+        {{fd-button
           iconClass="icon-fd-x-mark-thin"
+          class="fluid"
           caption=(t "forms.fd-all-projects.cancel")
-          onButtonClicked=(action 'cancelButton')
+          click=(action 'cancelButton')
         }}
       </div>
       <div class="column">
-        {{fd-round-button
-          iconClass="icon-fd-cloud-upload-thin"
-          colorClass="blue"
+        {{fd-button
+          iconClass="icon-fd-cloud-upload-outline"
+          class="blue fluid"
           readonly=(not projectName)
           caption=(t "forms.fd-all-projects.create-project")
-          onButtonClicked=(action 'createStage')
+          click=(action 'createStage')
         }}
       </div>
     </div>
   </div>
 </div>
+
+{{#if show}}
+  {{fd-modal-message-box
+    isError=isError
+    messageText=messageText
+    hide=(action set "show" false)
+  }}
+{{/if}}

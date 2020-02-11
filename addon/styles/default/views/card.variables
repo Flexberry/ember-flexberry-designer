@@ -11,5 +11,8 @@
 @solidSelectedBorderColor: @solidBorderColor;
 @shadowHoverBoxShadow: 0px 0px 0px 1px @solidSelectedBorderColor;
 @horizontalSpacing: @rowSpacing;
-@background:@pageBackground;
-@linkHoverBackground:@pageBackground;
+@background: @pageBackground;
+@linkHoverBackground: @pageBackground;
+
+/* Image */
+@imageBackground: @pageBackground;

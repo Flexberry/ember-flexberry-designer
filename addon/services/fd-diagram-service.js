@@ -8,7 +8,7 @@ export default Service.extend(Evented, {
     Trigger update view object.
 
      @method updateJointObjectOnDiagram
-     @param {String} id id jointjs object
+     @param {String} id Id jointjs object.
   */
   updateJointObjectOnDiagram(id) {
     if (isNone(id)) {

@@ -3,6 +3,7 @@
 */
 
 import Controller from '@ember/controller';
+import FdReadonlyProjectMixin from '../mixins/fd-readonly-project';
 import { computed } from '@ember/object';
 import { inject as controller } from '@ember/controller';
 
@@ -12,7 +13,7 @@ import { inject as controller } from '@ember/controller';
   @class FdAllProjectsController
   @extends Controller
 */
-export default Controller.extend({
+export default Controller.extend(FdReadonlyProjectMixin, {
   /**
     Link to nested controller `index`.
     More info on the [EmberJS API](https://emberjs.com/api/).

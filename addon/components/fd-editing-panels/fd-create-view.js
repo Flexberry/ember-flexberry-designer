@@ -7,12 +7,13 @@ import FdAttributesTree from '../../objects/fd-attributes-tree';
 import FdViewAttributesProperty from '../../objects/fd-view-attributes-property';
 import FdViewAttributesMaster from '../../objects/fd-view-attributes-master';
 import FdViewAttributesDetail from '../../objects/fd-view-attributes-detail';
+import FdReadonlyModeMixin from '../../mixins/fd-editing-panels/fd-readonly-mode';
 import { getDataForBuildTree, getClassTreeNode, getAssociationTreeNode, getAggregationTreeNode, getDetailView } from '../../utils/fd-attributes-for-tree';
 import layout from '../../templates/components/fd-editing-panels/fd-create-view';
 import $ from 'jquery';
 import { next } from '@ember/runloop';
 
-export default Component.extend({
+export default Component.extend(FdReadonlyModeMixin, {
   layout,
 
   /**
@@ -123,7 +124,7 @@ export default Component.extend({
     @property tree
     @type Object
   */
-  tree: computed('model.name', function() {
+  tree: computed('model.name', 'model.attributes.@each.{hasDirtyAttributes,isNew}', function() {
     let model = this.get('model');
     if (isNone(model)) {
       return null;
@@ -149,7 +150,6 @@ export default Component.extend({
     let treeMasters = getAssociationTreeNode(treeAttributes, dataForBuildTree.associations, 'node_');
     let treeDetails = getAggregationTreeNode(treeMasters, dataForBuildTree.aggregations);
     this.setDetailView(dataForBuildTree.aggregations);
-    this.get('appState').reset();
 
     return treeDetails;
   }),

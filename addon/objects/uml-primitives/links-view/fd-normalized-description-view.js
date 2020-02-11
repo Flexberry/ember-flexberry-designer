@@ -40,7 +40,7 @@ export let NormalizedDescriptionView = DescriptionView.extend({
     this.model.on('remove', this.removeBox, this);
   },
 
-  normalizeDescription(description) {    
+  normalizeDescription(description) {
     let beforeChar = String.fromCharCode(91);
     let afterChar = String.fromCharCode(93);
     let normalizedDescription = description.replace(new RegExp(`${'\\'+beforeChar}|${'\\'+afterChar}`, 'g'), '');
@@ -57,7 +57,7 @@ export let NormalizedDescriptionView = DescriptionView.extend({
     return normalizedDescription;
   },
 
-  showNormalizedDescriptionOnInput(element) {    
+  showNormalizedDescriptionOnInput(element) {
     let descriptionText = element.val();
     let description = this.normalizeDescription(descriptionText);
     element.val(description);

@@ -123,16 +123,14 @@ Router.map(function () {
   this.route('i-i-s-caseberry-logging-objects-application-log-l');
   this.route('i-i-s-caseberry-logging-objects-application-log-e', { path: 'i-i-s-caseberry-logging-objects-application-log-e/:id' });
 
+  // Print form.
+  this.route('fd-print-form');
+
   // new route
   this.route('fd-application-model');
   this.route('fd-diagrams');
   this.route('fd-navigation');
-  this.route('fd-generation', { path: 'generation' }, function() {
-    this.route('first');
-    this.route('list', { path: '' }, function() {
-      this.route('log', { path: ':generation_id' });
-    });
-  });
+  this.route('fd-generation', { path: 'generation' });
 
   this.route('fd-setting');
   this.route('fd-architecture');

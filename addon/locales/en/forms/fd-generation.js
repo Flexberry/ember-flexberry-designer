@@ -17,4 +17,12 @@ export default {
   login: 'Login',
   password: 'Password',
   'save-and-generate': 'Save settings and generate application',
+  'run-caption': 'Running',
+  'success-caption': 'Success',
+  'error-caption': 'Error',
+  'other-caption': 'Other',
+  'error-message': {
+    'empty-generation': 'Error getting generation log',
+  },
+  'all-states': 'All state'
 };

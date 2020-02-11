@@ -35,38 +35,19 @@ h1 {
   font-size: 1.5em;
 }
 
+.ui.form > .form-header:not(:first-of-type),
+.ui.form .fd-sheet-body .form-header {
+  margin-top: 3em;
+}
+
+@mainCintainerPaddingTop: 5em;
+
 .ui.main.container.fluid {
-  padding: 5em 4em 3em;
-}
+  padding: @mainCintainerPaddingTop 4em 3em;
 
-.ui.toggle-sidebar.button {
-  position: absolute;
-  background: @sidebarBg;
-  left: 60px;
-  border-radius: @itemActiveBorderRadius;
-  border-top-left-radius: 0;
-  border-bottom-left-radius: 0;
-  padding: 15px 5px;
-  padding-left: 0;
-  z-index: 2;
-  top: 1rem;
-  z-index: 10;
-  transition: opacity 500ms step-end;
-}
-
-.ui.button.toggle-sidebar-visible {
-  border-radius: @itemActiveBorderRadius;
-  position: absolute;
-  background: @pageBackground;
-  padding: 10px 5px;
-  top: 1rem;
-  right: 0;
-  left: auto;
-  margin: 0;
-  border-top-right-radius: 0;
-  border-bottom-right-radius: 0;
-  padding-right: 0;
-  opacity: 0;
+  .settings-form {
+    margin-top: -@mainCintainerPaddingTop;
+  }
 }
 
 .flexberry-vertical-form {
@@ -75,7 +56,7 @@ h1 {
 
 .social-icons {
   display: flex;
-  min-width: 300px;
+  min-width: 260px;
   justify-content: space-evenly;
   align-items: center;
   .btn-social {
@@ -121,8 +102,21 @@ h1 {
   }
 }
 
-.ui.grid.fd-projects-toolbar {
+html.mobile {
+  font-size: 16px;
+}
+
+@media print{
+  @page {
+    size: landscape
+  }
+}
+
+.pusher:not(.mobile) .ui.grid.fd-projects-toolbar {
   margin-left: calc(~'-@{leftIndent} - 1em');
+}
+
+.ui.grid.fd-projects-toolbar {
   margin-top: 0;
   margin-bottom: 3em;
 }
@@ -131,6 +125,11 @@ h1 {
   margin: auto;
   max-width: 60%;
   min-width: 700px;
+
+  .actions {
+    width: 60%;
+    margin: auto;
+  }
 
   h1 {
     text-align: center;
@@ -161,6 +160,10 @@ h1 {
   .ui.button {
     margin: auto;
   }
+}
+
+.text-align-center {
+  text-align: center;
 }
 
 @border-color: rgba(101, 15, 139, 0.3);
@@ -424,11 +427,17 @@ i.icon.table:before {
   margin-left: -10px!important;
   margin-top: -3px!important;
 }
-.ui.buttons:not(.basic):not(.inverted) > .button,
-.ui.buttons > .ui.button:not(.basic):not(.inverted) {
-  border: none;
-  background: 0 0!important;
+.ui.secondary.menu.no-margin{
+  .ui.button {
+    color: rgba(0, 0, 0, 0.2);
+  }
+  .ui.buttons:not(.basic):not(.inverted) > .button,
+  .ui.buttons > .ui.button:not(.basic):not(.inverted) {
+    border: none;
+    background: 0 0!important;
+  }
 }
+
 .nav-bar .ui.buttons:not(.basic):not(.inverted) > .button,
 .nav-bar .ui.buttons > .ui.button:not(.basic):not(.inverted) {
   padding: .74em .8571em!important;
@@ -526,4 +535,21 @@ i.icon.chevron.down:before {
   background-image: url(images/fd-item.png);
   background-repeat: no-repeat;
   background-position-y: 50%;
+}
+
+/* Mobile */
+#mobile {
+  @mainCintainerPaddingTop: 3em;
+
+  .ui.main.container.fluid {
+    padding: @mainCintainerPaddingTop 1em 0;
+
+    .settings-form {
+      margin-top: -@mainCintainerPaddingTop;
+    }
+  }
+
+  .ui.vertical.footer.segment > .flex-container > .ui.text.menu {
+    padding: 0px;
+  }
 }

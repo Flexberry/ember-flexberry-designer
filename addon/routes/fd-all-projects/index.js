@@ -70,6 +70,7 @@ export default Route.extend({
   */
   setupController(controller) {
     controller.set('active', true);
+    controller.set('routeName', this.get('routeName'));
 
     return this._super(...arguments);
   },

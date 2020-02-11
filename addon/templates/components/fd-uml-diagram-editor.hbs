@@ -11,16 +11,22 @@
   fitToContent=(action "fitToContent")
   openEditFormAction=openEditFormAction
   currentTargetElementIsPointer=currentTargetElementIsPointer
+  readonly=readonly
+  enableWrapBaseLinks=enableWrapBaseLinks
+  enableEditLinks=enableEditLinks
+  disableEditLinks=disableEditLinks
 }}
 
-{{#if (known-for-type (concat "fd-uml-diagram-toolbars/fd-" diagramType "-toolbar"))}}
-  <div class="fd-uml-diagram-toolbar {{if _collapseEditPanelToolbar "hidden"}}">
-    <button class="ui toggle-diagram-toolbar icon button" onclick={{action 'collapseEditPanelToolbar'}}>
-      <i class="caret {{if _collapseEditPanelToolbar "up" "down"}} icon"></i>
-    </button>
-    <div class="row">
-      {{component (concat "fd-uml-diagram-toolbars/fd-" diagramType "-toolbar")
-      toolbarButtonClicked=(action "toolbarButtonClicked")}}
+{{#animated-if (not readonly) use=transition}}
+  {{#if (known-for-type (concat "fd-uml-diagram-toolbars/fd-" diagramType "-toolbar"))}}
+    <div class="fd-uml-diagram-toolbar {{if _collapseEditPanelToolbar "fd-toolbar-hidden"}}">
+      <button class="ui toggle-diagram-toolbar icon button" onclick={{action 'collapseEditPanelToolbar'}}>
+        <i class="caret {{if _collapseEditPanelToolbar "up" "down"}} icon"></i>
+      </button>
+      <div class="row">
+        {{component (concat "fd-uml-diagram-toolbars/fd-" diagramType "-toolbar")
+        toolbarButtonClicked=(action "toolbarButtonClicked")}}
+      </div>
     </div>
-  </div>
-{{/if}}
+  {{/if}}
+{{/animated-if}}

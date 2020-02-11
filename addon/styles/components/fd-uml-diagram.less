@@ -176,7 +176,7 @@
   bottom: 0;
   display: inline-table;
   font-size: 0;
-  padding: 5px; 
+  padding: 5px;
   position: absolute;
   margin-right: -50%;
   max-width: 90%;
@@ -191,7 +191,7 @@
     z-index: 1;
   }
 
-  &.hidden {
+  &.fd-toolbar-hidden {
     .transform(translate(-50%, 100%));
     bottom: 0 !important;
   }
@@ -239,7 +239,7 @@
   padding: 5px 15px;
   padding-bottom: 0;
   position: absolute;
-  top: -21px;
+  top: -1.3125em;
   left: 0.86rem;
 }
 
@@ -275,15 +275,52 @@
 }
 
 .joint-paper-background {
-  background-color: @pageBackground;
+  background-color: transparent;
 }
 
 @texttColorHex: multiply(white, @textColor);
+@overlayColorHex: multiply(@pageBackground, @overlayColor);
 .joint-paper {
-  rect{
+  rect {
     &.corner-rect {
       fill: @pageBackground;
       stroke: @pageBackground;
+      transition: fill 0.5s ease-in-out, stroke 0.5s ease-in-out;
+    }
+  }
+
+  .content-mini.fade & {
+    rect {
+      &.corner-rect {
+        fill: @overlayColorHex;
+        stroke: @overlayColorHex;
+      }
+    }
+  }
+}
+
+.joint-link .marker-vertices,
+.joint-link .marker-arrowheads,
+.joint-link .link-tools {
+  opacity: 1;
+}
+
+.joint-link.joint-theme-default {
+  .connection-wrap {
+    cursor: default;
+    &:hover {
+      opacity: 0;
+      stroke-opacity: 0;
+    }
+  }
+  .tool-remove {
+    display: none;
+  }
+  .marker-vertex,
+  .marker-arrowhead {
+    fill: @blue;
+    &:hover {
+      fill: @blue;
     }
   }
 }

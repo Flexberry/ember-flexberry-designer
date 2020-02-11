@@ -127,11 +127,11 @@ joint.shapes.flexberry.uml.ActiveStateView = joint.shapes.flexberry.uml.BaseObje
       this.$box.find('.state-input').val(state.slice(1, -1));
       this.updateRectangles();
     }.bind(this));
-  
+
     this.$box.find('.state-input').on('blur', function(evt) {
       this.showNormalizedStateOnInput($(evt.target));
-    }.bind(this));    
-    
+    }.bind(this));
+
     this.updateInputValue();
     this.showNormalizedStateOnInput(this.$box.find('.state-input'));
 
@@ -151,6 +151,7 @@ joint.shapes.flexberry.uml.ActiveStateView = joint.shapes.flexberry.uml.BaseObje
     classNameInput.val(objectModel.get('name'));
     stateInput.prop('rows', objectModel.get('state').split(/[\n\r|\r|\n]/).length || 1);
     stateInput.val(objectModel.get('state'));
+    this.updateRectangles();
   },
 
   normalizeState(state) {

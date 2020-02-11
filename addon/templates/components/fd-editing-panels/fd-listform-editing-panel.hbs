@@ -1,120 +1,144 @@
 <div class="ui stackable grid fd-list">
 
-  <div class="row">
-    <div class="five wide column">
-      {{t "components.fd-listform-editing-panel.caption-caption"}}
+  {{#if (not isConstructor)}}
+    <div class="row">
+      <div class="five wide column">
+        {{t "components.fd-listform-editing-panel.caption-caption"}}
+      </div>
+      <div class="eleven wide column light-text">
+        {{flexberry-textbox
+          value=model.caption
+          class='fluid input'
+          placeholder=(t "components.fd-listform-editing-panel.caption-placeholder")
+          readonly=readonly
+        }}
+      </div>
     </div>
-    <div class="eleven wide column light-text">
-      {{flexberry-textbox
-        value=model.caption
-        class='fluid input'
-        placeholder=(t "components.fd-listform-editing-panel.caption-placeholder")
-      }}
-    </div>
-  </div>
 
-  <div class="row">
-    {{#flexberry-toggler
-        caption=(t 'components.fd-listform-editing-panel.toggler-caption')
-        expanded=false
+    <div class="row">
+      {{#flexberry-toggler
+          caption=(t 'components.fd-listform-editing-panel.toggler-caption')
+          expanded=false
+      }}
+      <div class="ui stackable grid fd-list">
+        <div class="row">
+          <div class="five wide column">
+            {{t "components.fd-listform-editing-panel.description-caption"}}
+          </div>
+          <div class="eleven wide column light-text">
+            {{flexberry-textarea
+              value=model.description
+              class='fluid input'
+              placeholder=(t "components.fd-listform-editing-panel.description-placeholder")
+              readonly=readonly
+            }}
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="five wide column">
+            {{t "components.fd-listform-editing-panel.publish-name-caption"}}
+          </div>
+          <div class="eleven wide column light-text">
+            {{flexberry-textbox
+              value=model.publishName
+              class='fluid input'
+              placeholder=(t "components.fd-listform-editing-panel.publish-name-placeholder")
+              readonly=readonly
+            }}
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="five wide column">
+            {{t "components.fd-listform-editing-panel.packet-caption"}}
+          </div>
+          <div class="eleven wide column light-text">
+            {{flexberry-textbox
+              value=model.packet
+              class='fluid input'
+              placeholder=(t "components.fd-listform-editing-panel.packet-placeholder")
+              readonly=readonly
+            }}
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="five wide column">
+            {{t "components.fd-listform-editing-panel.namespace-postfix-placeholder"}}
+          </div>
+          <div class="eleven wide column light-text">
+            {{flexberry-textbox
+              value=model.namespacePostfix
+              class='fluid input'
+              placeholder=(t "components.fd-listform-editing-panel.namespace-postfix-placeholder")
+              readonly=readonly
+            }}
+          </div>
+        </div>
+      </div>
+      {{/flexberry-toggler}}
+    </div>
+
+    <div class="row">
+      <div class="five wide column">
+        <div>{{t "components.fd-listform-editing-panel.formview-caption"}}</div>
+      </div>
+      <div class="eleven wide column light-text">
+        {{flexberry-dropdown
+          items=viewItems.names
+          value=viewValue
+          class='compact input'
+          onChange=(action "changeViewValue")
+          readonly=readonly
+        }}
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="five wide column">
+        <div>{{t "components.fd-listform-editing-panel.editform-caption"}}</div>
+      </div>
+      <div class="eleven wide column light-text">
+        {{flexberry-dropdown
+          items=editFormsItems
+          value=model.formViews.firstObject.dataObjectTypes.editContainerName
+          class='compact input'
+          needChecksOnValue=false
+          readonly=readonly
+        }}
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="five wide column">
+        <div>{{t "components.fd-listform-editing-panel.newform-caption"}}</div>
+      </div>
+      <div class="eleven wide column light-text">
+        {{flexberry-dropdown
+          items=editFormsItems
+          value=model.formViews.firstObject.dataObjectTypes.newContainerName
+          class='compact input'
+          needChecksOnValue=false
+          readonly=readonly
+        }}
+      </div>
+    </div>
+  {{else}}
+    {{fd-listform-constructor
+      model=constructorModel
     }}
-    <div class="ui grid fd-list">
-      <div class="row">
-        <div class="five wide column">
-          {{t "components.fd-listform-editing-panel.description-caption"}}
-        </div>
-        <div class="eleven wide column light-text">
-          {{flexberry-textarea
-            value=model.description
-            class='fluid input'
-            placeholder=(t "components.fd-listform-editing-panel.description-placeholder")
-          }}
-        </div>
-      </div>
-
-      <div class="row">
-        <div class="five wide column">
-          {{t "components.fd-listform-editing-panel.publish-name-caption"}}
-        </div>
-        <div class="eleven wide column light-text">
-          {{flexberry-textbox
-            value=model.publishName
-            class='fluid input'
-            placeholder=(t "components.fd-listform-editing-panel.publish-name-placeholder")
-          }}
-        </div>
-      </div>
-
-      <div class="row">
-        <div class="five wide column">
-          {{t "components.fd-listform-editing-panel.packet-caption"}}
-        </div>
-        <div class="eleven wide column light-text">
-          {{flexberry-textbox
-            value=model.packet
-            class='fluid input'
-            placeholder=(t "components.fd-listform-editing-panel.packet-placeholder")
-          }}
-        </div>
-      </div>
-
-      <div class="row">
-        <div class="five wide column">
-          {{t "components.fd-listform-editing-panel.namespace-postfix-placeholder"}}
-        </div>
-        <div class="eleven wide column light-text">
-          {{flexberry-textbox
-            value=model.namespacePostfix
-            class='fluid input'
-            placeholder=(t "components.fd-listform-editing-panel.namespace-postfix-placeholder")
-          }}
-        </div>
-      </div>
-    </div>
-    {{/flexberry-toggler}}
-  </div>
+  {{/if}}
 
   <div class="row">
-    <div class="five wide column">
-      <div>{{t "components.fd-listform-editing-panel.formview-caption"}}</div>
-    </div>
-    <div class="eleven wide column light-text">
-      {{flexberry-dropdown
-        items=viewItems.names
-        value=viewValue
-        class='compact input'
-        onChange=(action "changeViewValue")
-      }}
+    <div class="right floated thirteen wide column">
+      <button class="ui button basic circular" {{action "switchBetweenSettings"}}>
+        {{#if isConstructor}}
+          {{t "components.fd-listform-editing-panel.switch-button-setting"}}
+        {{else}}
+          {{t "components.fd-listform-editing-panel.switch-button-constructor"}}
+        {{/if}}
+      </button>
     </div>
   </div>
-
-  <div class="row">
-    <div class="five wide column">
-      <div>{{t "components.fd-listform-editing-panel.editform-caption"}}</div>
-    </div>
-    <div class="eleven wide column light-text">
-      {{flexberry-dropdown
-        items=editFormsItems
-        value=model.formViews.firstObject.dataObjectTypes.editContainerName
-        class='compact input'
-        needChecksOnValue=false
-      }}
-    </div>
-  </div>
-
-  <div class="row">
-    <div class="five wide column">
-      <div>{{t "components.fd-listform-editing-panel.newform-caption"}}</div>
-    </div>
-    <div class="eleven wide column light-text">
-      {{flexberry-dropdown
-        items=editFormsItems
-        value=model.formViews.firstObject.dataObjectTypes.newContainerName
-        class='compact input'
-        needChecksOnValue=false
-      }}
-    </div>
-  </div>
-
-
 </div>

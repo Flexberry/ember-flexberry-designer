@@ -1,0 +1,56 @@
+<div class="content-mini">
+  <div class="ui {{if loadingState "active"}} inverted dimmer">
+    <div class="ui text loader"></div>
+  </div>
+  <div class="fd-sheet-header">
+    {{fd-sheets/fd-sheets-tool-bar
+      sheetComponentName=sheetComponentName
+      sheetButtons=(array 'share')
+      shareSheetValue=selectedValue.data
+    }}
+    {{flexberry-textbox
+      value=(t "forms.fd-generation.generation-log")
+      placeholder=(t "components.fd-sheets-tool-bar.placeholder-caption")
+      readonly=true
+      class='form-header fluid'
+      maxlength=maxlength
+    }}
+  </div>
+  <div class="fd-sheet-body">
+    <div class="ui stackable grid fd-list-edited">
+      <div class="row">
+        <div class="five wide column">{{t "forms.fd-generation.start-time"}}</div>
+        <div class="eleven wide column">{{moment-format selectedValue.data.startTime "DD.MM.YYYY HH:mm:ss.SSS"}}</div>
+      </div>
+      <div class="row">
+        <div class="five wide column">{{t "forms.fd-generation.end-time"}}</div>
+        <div class="eleven wide column">{{moment-format selectedValue.data.endTime "DD.MM.YYYY HH:mm:ss.SSS"}}</div>
+      </div>
+      <div class="row">
+        <div class="five wide column">{{t "forms.fd-generation.state"}}</div>
+        <div class="eleven wide column">{{selectedValue.data.state}}</div>
+      </div>
+      <div class="row">
+        <div class="five wide column">{{t "forms.fd-generation.generation-reason"}}</div>
+        <div class="eleven wide column">{{selectedValue.data.generationReason}}</div>
+      </div>
+      <div class="row">
+        <div class="five wide column">{{t "forms.fd-generation.user-name"}}</div>
+        <div class="eleven wide column">{{selectedValue.data.userName}}</div>
+      </div>
+      <div class="row">
+        <div class="five wide column">{{t "forms.fd-generation.is-running"}}</div>
+        <div class="eleven wide column">{{selectedValue.data.isRunning}}</div>
+      </div>
+      <div class="row">
+        <div class="five wide column">{{t "forms.fd-generation.percent-complete"}}</div>
+        <div class="eleven wide column">{{selectedValue.data.percentComplete}}</div>
+      </div>
+    </div>
+    <pre>
+      {{#each generationSteps as |step|}}
+        [{{moment-format step.time "DD.MM.YYYY HH:mm:ss.SSS"}}]: {{step.text}}
+      {{/each}}
+    </pre>
+  </div>
+</div>

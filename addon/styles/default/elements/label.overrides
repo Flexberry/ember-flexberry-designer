@@ -1,0 +1,31 @@
+.ui.basic.red.label {
+  background-color: @basicBackground !important;
+}
+.ui.basic.red.labels a.label:hover,
+a.ui.basic.red.label:hover {
+  background-color: @basicBackground !important;
+}
+
+.ui.basic.blue.label {
+  background-color: @basicBackground !important;
+}
+.ui.basic.blue.labels a.label:hover,
+a.ui.basic.blue.label:hover {
+  background-color: @basicBackground !important;
+}
+
+.ui.basic.green.label {
+  background-color: @basicBackground !important;
+}
+.ui.basic.green.labels a.label:hover,
+a.ui.basic.green.label:hover {
+  background-color: @basicBackground !important;
+}
+
+.ui.basic.grey.label {
+  background-color: @basicBackground !important;
+}
+.ui.basic.grey.labels a.label:hover,
+a.ui.basic.grey.label:hover {
+  background-color: @basicBackground !important;
+}

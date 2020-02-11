@@ -37,6 +37,7 @@ import FdVisualEditFormForm from './forms/fd-visual-edit-form';
 import FdListformConstructor from './forms/fd-listform-constructor';
 import FdGenerationProcessForm from './forms/fd-generation-process-form';
 import FdGeneration from './forms/fd-generation';
+import FdSetting from './forms/fd-setting';
 import FdGenerationListForm from './forms/fd-generation-list-form';
 import FdDataTypesMapForm from './forms/fd-data-types-map';
 import FdConfirmUnsavedFormModal from './forms/fd-confirm-unsaved-form-modal';
@@ -132,16 +133,24 @@ import FdBsEditingPanel from './components/fd-businessserver-editing-panel';
 import FdEnumEditingPanel from './components/fd-enumeration-editing-panel';
 import FdEditFormEditingPanel from './components/fd-editform-editing-panel';
 import FdListFormEditingPanel from './components/fd-listform-editing-panel';
+import FdGeolayerEditingPanel from './components/fd-geolayer-editing-panel';
+import FdGeolayerstyleEditingPanel from './components/fd-geolayerstyle-editing-panel';
+import FdDiagramEditingPanel from './components/fd-diagram-editing-panel';
 import FdCreateView from './components/fd-create-view';
 import FdCreateEntity from './components/fd-create-entity';
 import FdCreateDiagrams from './components/fd-create-diagrams';
-import FdSheet from './components/fd-sheet';
+import FdSearchInput from './components/fd-search-input';
+import FdSheetToolBar from './components/fd-sheets-tool-bar';
 import FdCreateNodeEditingPanel from './components/fd-create-node-editing-panel';
 import FdFolderEditingPanel from './components/fd-folder-editing-panel';
 import FdPropertyEditingPanel from './components/fd-property-editing-panel';
+import FdAssociationEditingPanelLink from './components/fd-association-editing-panel-link';
+import FdCompositionEditingPanelLink from './components/fd-composition-editing-panel-link';
 import FdViewDefinitionItem from './components/fd-view-definition-item';
 import FdfModalMessageBox from './components/fd-modal-message-box';
 import FdApplicationModelForm from './forms/fd-application-model';
+import FdArchitectureForm from './forms/fd-architecture';
+import FdGisSubsystem from './components/fd-gis-subsystem';
 
 const translations = {};
 $.extend(true, translations, EmberFlexberryTranslations);
@@ -426,6 +435,8 @@ $.extend(true, translations, {
     'fd-application-model': FdApplicationModelForm,
     'fd-diagrams': FdDiagramForm,
     'fd-navigation': FdNavigationForm,
+    'fd-setting': FdSetting,
+    'fd-architecture': FdArchitectureForm,
   },
 
   components: {
@@ -444,8 +455,14 @@ $.extend(true, translations, {
     'fd-enumeration-editing-panel': FdEnumEditingPanel,
     'fd-editform-editing-panel': FdEditFormEditingPanel,
     'fd-listform-editing-panel': FdListFormEditingPanel,
+    'fd-geolayer-editing-panel': FdGeolayerEditingPanel,
+    'fd-geolayerstyle-editing-panel': FdGeolayerstyleEditingPanel,
+    'fd-diagram-editing-panel': FdDiagramEditingPanel,
+    'fd-association-editing-panel-link': FdAssociationEditingPanelLink,
+    'fd-composition-editing-panel-link': FdCompositionEditingPanelLink,
     'fd-create-view': FdCreateView,
-    'fd-sheet': FdSheet,
+    'fd-search-input': FdSearchInput,
+    'fd-sheets-tool-bar': FdSheetToolBar,
     'fd-create-node-editing-panel': FdCreateNodeEditingPanel,
     'fd-folder-editing-panel': FdFolderEditingPanel,
     'fd-property-editing-panel': FdPropertyEditingPanel,
@@ -453,6 +470,7 @@ $.extend(true, translations, {
     'fd-create-diagrams': FdCreateDiagrams,
     'fd-view-definition-item': FdViewDefinitionItem,
     'fd-modal-message-box': FdfModalMessageBox,
+    'fd-gis-subsystem': FdGisSubsystem,
   }
 
 });

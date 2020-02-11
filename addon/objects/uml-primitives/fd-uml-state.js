@@ -55,7 +55,19 @@ export default FdUmlElement.extend({
 export let State = BaseObject.define('flexberry.uml.State', {
   attrs: {
     '.flexberry-uml-header-rect': { rx:10, ry:10 },
-  }
+  },
+
+  // Minimum width.
+  minWidth: 80,
+
+  // Minimum height.
+  minHeight: 30,
+}, {
+  getRectangles() {
+    return [
+      { type: 'header', element: this }
+    ];
+  },
 });
 
 joint.shapes.flexberry.uml.StateView = joint.shapes.flexberry.uml.BaseObjectView.extend({

@@ -1,0 +1,82 @@
+<div class="content-mini">
+  <div class="ui {{if loadingState "active"}} inverted dimmer">
+    <div class="ui text loader"></div>
+  </div>
+  <div class="fd-sheet-header">
+    {{fd-sheets/fd-sheets-tool-bar
+      sheetComponentName=sheetComponentName
+      readonlyMode=readonlyMode
+      isNewModel=selectedValue.data.isNew
+      sheetButtons=(array 'delete' 'save' 'print' 'share')
+      toolbarVisible=(not isAddMode)
+      shareSheetValue=selectedValue.data
+      saveSheet=(action 'save')
+      deleteSheet=(action 'delete')
+    }}
+    {{flexberry-textbox
+      value=computedTitle
+      placeholder=(t "components.fd-sheets-tool-bar.placeholder-caption")
+      readonly=(and (not selectedValue.data.isNew) (or isAddMode readonlyMode))
+      class='form-header fluid'
+      maxlength=maxlength
+    }}
+    {{#if (not isAddMode)}}
+      <div class="ui stackable grid fd-list">
+        <div class="row">
+          {{#flexberry-toggler
+              caption=(t 'components.fd-diagram-editing-panel.toggler-caption')
+              expanded=false
+          }}
+          <div class="ui stackable grid fd-list">
+            <div class="row">
+              <div class="five wide column">
+                {{t "components.fd-diagram-editing-panel.system-caption"}}
+              </div>
+              <div class="eleven wide column light-text">
+                {{
+                  flexberry-dropdown
+                  items=systemsItems.names
+                  value=systemValue
+                  onChange=(action "changeSystem")
+                  readonly=(and readonlyMode (not selectedValue.data.isNew))
+                  needChecksOnValue=false
+                }}
+              </div>
+            </div>
+            <div class="row">
+              <div class="five wide column">
+                {{t "components.fd-diagram-editing-panel.description-caption"}}
+              </div>
+              <div class="eleven wide column light-text">
+                {{flexberry-textarea
+                  value=selectedValue.data.description
+                  class='fluid input'
+                  placeholder=(t "components.fd-diagram-editing-panel.description-placeholder")
+                  readonly=(and readonlyMode (not selectedValue.data.isNew))
+                }}
+              </div>
+            </div>
+          </div>
+          {{/flexberry-toggler}}
+        </div>
+      </div>
+    {{/if}}
+  </div>
+  <div class="fd-sheet-body">
+    {{#if isAddMode}}
+      {{fd-editing-panels/fd-create-diagrams
+        createDiagramAction=createDiagram
+      }}
+    {{else}}
+      {{#if isDiagramVisible}}
+        {{fd-uml-diagram-editor
+          model=selectedValue.data
+          emptyReferenceCountItems=emptyReferenceCountItems
+          sheetComponentName=sheetComponentName
+          readonlyMode=readonlyMode
+          openEditFormAction=(action "openNestedSheet")
+        }}
+      {{/if}}
+    {{/if}}
+  </div>
+</div>

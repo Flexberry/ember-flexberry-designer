@@ -43,7 +43,7 @@ let Model = CADModel.extend(DevUMLCADMixin, {
   */
   primitives: computed('primitivesJsonString', function() {
     let result = A();
-    let primitives = JSON.parse(this.get('primitivesJsonString')) || A();
+    let primitives = this.getPrimitives();
     let elements = {};
     for (let i = 0; i < primitives.length; i++) {
       let primitive = primitives[i];
@@ -184,7 +184,6 @@ let Model = CADModel.extend(DevUMLCADMixin, {
 
     return result;
   })
-
 });
 
 defineBaseModel(Model);

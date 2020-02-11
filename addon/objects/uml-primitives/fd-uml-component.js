@@ -4,6 +4,7 @@
 
 import { computed } from '@ember/object';
 import { isArray } from '@ember/array';
+import { isNone } from '@ember/utils';
 
 import { BaseObject } from './fd-uml-baseobject';
 import FdUmlElement from './fd-uml-element';
@@ -60,7 +61,13 @@ export let Component = BaseObject.define('flexberry.uml.Component', {
   attrs: {
     '.firstRect': {'refY': '50%', 'refY2': '-8', 'fill': 'white', 'stroke': 'black', 'stroke-width': 1 },
     '.secondRect': { 'refY': '50%', 'refY2': '2', 'fill': 'white', 'stroke': 'black', 'stroke-width': 1 }
-  }
+  },
+
+  // Minimum height.
+  minHeight: 30,
+
+  // Minimum width
+  minWidth: 80,
 }, {
   markup: [
     '<g class="rotatable">',
@@ -71,7 +78,13 @@ export let Component = BaseObject.define('flexberry.uml.Component', {
     '</g>',
     '<text class="flexberry-uml-header-text"/>',
     '</g>'
-  ].join('')
+  ].join(''),
+
+  getRectangles() {
+    return [
+      { type: 'header', element: this }
+    ];
+  },
 });
 
 joint.shapes.flexberry.uml.ComponentView = joint.shapes.flexberry.uml.BaseObjectView.extend({
@@ -81,4 +94,21 @@ joint.shapes.flexberry.uml.ComponentView = joint.shapes.flexberry.uml.BaseObject
     '<div class="input-buffer"></div>',
     '</div>'
   ].join(''),
+
+  setColors() {
+    joint.shapes.flexberry.uml.BaseObjectView.prototype.setColors.apply(this, arguments);
+  
+    const brushColor = this.getBrushColor();
+    const textColor = this.getTextColor();
+
+    if (!isNone(textColor)) {
+      this.model.attr('.firstRect/stroke', textColor);
+      this.model.attr('.secondRect/stroke', textColor);
+    }
+  
+    if (!isNone(brushColor)) {
+      this.model.attr('.firstRect/fill', brushColor);
+      this.model.attr('.secondRect/fill', brushColor);
+    }
+  }
 });

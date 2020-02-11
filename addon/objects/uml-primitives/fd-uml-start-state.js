@@ -3,8 +3,11 @@
 */
 
 import { computed } from '@ember/object';
+import { isNone } from '@ember/utils';
+import { isArray, A } from '@ember/array';
 import joint from 'npm:jointjs';
-import { isArray } from '@ember/array';
+import $ from 'jquery';
+
 import FdUmlElement from './fd-uml-element';
 import { BaseObject } from './fd-uml-baseobject';
 
@@ -57,7 +60,7 @@ export default FdUmlElement.extend({
 export let StartState = BaseObject.define('flexberry.uml.StartState', {
   size: { width: 20, height: 20 },
   attrs: {
-    '.flexberry-uml-header-circle': { 'fill': 'black', 'r': 18, 'ref-y': 10, 'ref-x': 10 },
+    '.flexberry-uml-header-circle': { 'fill': 'black', 'r': 15, 'ref-y': 10, 'ref-x': 10 },
   },
 }, {
   markup: [
@@ -66,6 +69,16 @@ export let StartState = BaseObject.define('flexberry.uml.StartState', {
     '<circle class="flexberry-uml-header-circle"/>',
     '</g>'
   ].join(''),
+
+  // Minimum height.
+  minHeight: 20,
+
+  // Minimum width
+  minWidth: 20,
+  
+  getRectangles() {
+    return [];
+  },
 });
 
 joint.shapes.flexberry.uml.StartStateView = joint.shapes.flexberry.uml.BaseObjectView.extend({
@@ -75,6 +88,10 @@ joint.shapes.flexberry.uml.StartStateView = joint.shapes.flexberry.uml.BaseObjec
     '<div class="input-buffer"></div>',
     '</div>'
   ].join(''),
+
+  getSizeChangers() {
+    return A();
+  },
 
   //In updateRectangles update only text sizes, because start/final state not have rectanles
   updateRectangles() {
@@ -87,5 +104,22 @@ joint.shapes.flexberry.uml.StartStateView = joint.shapes.flexberry.uml.BaseObjec
     //shift state text
     $input.css({top: (this.$box.height() / 3), right: (this.$box.width() + 20), position:'absolute'});
    },
+
+   setColors() {
+    const textColor = this.getTextColor();
+
+    if (!isNone(textColor)) {
+      this.model.attr('.flexberry-uml-header-circle/fill', textColor);
+    }
+
+    const inputElements = this.model.inputElements;
+    if (isArray(inputElements) && (!isNone(textColor))) {
+      inputElements.each(function(index, input) {
+        if (!isNone(textColor)) {
+          $(input).find('input, textarea').css('color', textColor);
+        }
+      });
+    }
+  },
 });
 
