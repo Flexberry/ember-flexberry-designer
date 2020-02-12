@@ -2,11 +2,13 @@
   @module ember-flexberry-designer
 */
 
-import { BaseObject } from './fd-uml-baseobject';
-import FdUmlObject from './fd-uml-baseobject';
 import { computed } from '@ember/object';
 import { isArray } from '@ember/array';
 import { isBlank } from '@ember/utils';
+
+import { BaseObject } from './fd-uml-baseobject';
+import FdUmlObject from './fd-uml-baseobject';
+
 import $ from 'jquery';
 import joint from 'npm:jointjs';
 
@@ -73,7 +75,19 @@ export default FdUmlObject.extend({
   @namespace flexberry.uml
   @constructor
 */
-export let ActiveState = BaseObject.define('flexberry.uml.ActiveState', {});
+export let ActiveState = BaseObject.define('flexberry.uml.ActiveState', {
+  // Minimum height.
+  minHeight: 40,
+
+  // Minimum width.
+  minWidth: 40,
+}, {
+  getRectangles() {
+    return [
+      { type: 'header', element: this },
+    ];
+  },
+});
 
 joint.shapes.flexberry.uml.ActiveStateView = joint.shapes.flexberry.uml.BaseObjectView.extend({
    template: [
@@ -85,10 +99,8 @@ joint.shapes.flexberry.uml.ActiveStateView = joint.shapes.flexberry.uml.BaseObje
   ].join(''),
 
   initialize: function () {
-    joint.dia.ElementView.prototype.initialize.apply(this, arguments);
+    joint.shapes.flexberry.uml.PrimitiveElementView.prototype.initialize.apply(this, arguments);
 
-    this.$box = $(this.template);
-    this.model.inputElements = this.$box;
     let _this = this;
 
     // Prevent paper from handling pointerdown.
@@ -140,6 +152,9 @@ joint.shapes.flexberry.uml.ActiveStateView = joint.shapes.flexberry.uml.BaseObje
 
     // Remove the box when the model gets removed from the graph.
     this.model.on('remove', this.removeBox, this);
+
+    const initSize = this.model.size();
+    this.updateRectangles(initSize.width, initSize.height);
   },
 
   updateInputValue() {

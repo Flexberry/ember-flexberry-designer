@@ -99,7 +99,7 @@ joint.shapes.flexberry.uml.ComplexTransitionHView = joint.shapes.flexberry.uml.P
   ].join(''),
 
   initialize: function () {
-    joint.dia.ElementView.prototype.initialize.apply(this, arguments);
+    joint.shapes.flexberry.uml.PrimitiveElementView.prototype.initialize.apply(this, arguments);
 
     this.$box = $(this.template);
     this.model.inputElements = this.$box;
@@ -148,7 +148,7 @@ joint.shapes.flexberry.uml.ComplexTransitionHView = joint.shapes.flexberry.uml.P
   },
 
   render: function () {
-    joint.dia.ElementView.prototype.render.apply(this, arguments);
+    joint.shapes.flexberry.uml.PrimitiveElementView.prototype.render.apply(this, arguments);
     this.paper.$el.prepend(this.$box);
     this.paper.on('blank:pointerdown link:pointerdown element:pointerdown', function () {
       this.$box.find('input:focus, textarea:focus').blur();
@@ -228,7 +228,7 @@ joint.shapes.flexberry.uml.ComplexTransitionHView = joint.shapes.flexberry.uml.P
     }]);
   },
 
-  setColors() { 
+  setColors() {
     const textColor = this.getTextColor();
 
     if (!isNone(textColor)) {
