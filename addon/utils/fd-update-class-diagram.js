@@ -145,38 +145,9 @@ function updateDependencysOfClassName(store, currentProjectContext, devClass) {
 
     let diagramPrimitives = JSON.parse(diagram.get('primitivesJsonString')) || A();
 
-    diagramPrimitives.forEach((primitive) => {
-
-      //Update definitions array in primitive repository object. For views.
-      const repositoryObjectRecordId = primitive.RepositoryObject.slice(1, -1);
-      let repositoryObject = store.peekRecord('fd-dev-class', repositoryObjectRecordId);
-
-      if (!isNone(repositoryObject)) {
-        let views = repositoryObject.get('views');
-
-        views.forEach((view) => {
-          let definitionArray = view.get('definitionArray');
-          let definitionArrayUpdated = false;
-          definitionArray.forEach(function(definition) {
-            let name = definition.get('name');
-            if (name.indexOf(`${nameOrigin}.`) !== -1) {
-              let newName = definition.get('name').replace(`${nameOrigin}.`, `${nameNew}.`);
-              definition.set('name', newName);
-              definitionArrayUpdated = true;
-            }
-
-          });
-
-          if (definitionArrayUpdated) {
-
-            //For trigger computed propherty in fd-dev-view model.
-            view.get('definitionArray');   
-
-            promises.pushObject(view);
-          }
-        });
-      }
-    });
+    // Update views.
+    let updatedViews = getUpdatedViews(store, diagramPrimitives, nameOrigin, nameNew);
+    promises.pushObjects(updatedViews);
 
     promises.pushObject(diagram);
   });   
@@ -208,11 +179,12 @@ function getUpdatedViews(store, primitives, className, newClassName) {
           if (defName.indexOf(`${name}.`) !== -1) {
             if (!newName) {
               definitionArray.removeObject(definition);
-              definitionArrayUpdated = true;
             } else {
               let newDefName = definition.get('name').replace(`${name}.`, `${newName}.`);
               definition.set('name', newDefName);
             }
+            
+            definitionArrayUpdated = true;
           }
         });
 
