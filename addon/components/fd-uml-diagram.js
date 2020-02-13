@@ -613,6 +613,10 @@ export default Component.extend({
           let propHeight = newSize.height + ((newSize.width - oldSize.width) / oldSize.width) * newSize.height;
           let propWidth = newSize.width + ((newSize.height - oldSize.height) / oldSize.height) * newSize.width;
           data.ghost.resize(propWidth, propHeight);
+        } else {
+          const position = data.ghost.position();
+          let coordinates = forPointerMethodOverrideResizeAndDnd(evt, x, y);
+          data.ghost.resize(data.widthResize ? Math.max(coordinates.x - position.x, view.model.attributes.inputWidth || 0, view.model.attributes.minWidth || 0) : oldSize.width, data.heightResize ? Math.max(coordinates.y - position.y, view.model.attributes.inputHeight || 0, view.model.attributes.minHeight || 0) : oldSize.height);
         }
       } else {
         data.ghost.position(x + shift.x, y + shift.y);
