@@ -5,6 +5,8 @@ import FdUmlBaseLink from './fd-uml-link';
 import { Dependency } from './fd-uml-dependency';
 import { DescriptionView } from './links-view/fd-description-view';
 
+import { isNone } from '@ember/utils';
+
 import joint from 'npm:jointjs';
 
 /**
@@ -40,4 +42,15 @@ export let Connection = Dependency.define('flexberry.uml.Connection', {
   attrs: { '.connection': { 'stroke-dasharray': 0 } }
 });
 
-joint.shapes.flexberry.uml.ConnectionView = DescriptionView;
+joint.shapes.flexberry.uml.ConnectionView = DescriptionView.extend({
+  setColors() {
+    DescriptionView.prototype.setColors.apply(this, arguments);
+
+    const textColor = this.getTextColor();
+
+    if (!isNone(textColor)) {
+      this.model.attr('.marker-target/stroke', textColor);
+    }
+  }
+});
+

@@ -4,7 +4,7 @@
 
 import Component from '@ember/component';
 import { computed, observer } from '@ember/object';
-import { isNone } from '@ember/utils';
+import { isNone, isBlank } from '@ember/utils';
 import { inject as service } from '@ember/service';
 import { A } from '@ember/array';
 
@@ -127,6 +127,34 @@ export default Component.extend({
   highlightedElement: undefined,
 
   /**
+    Object with flags indicates whether diagram is readonly.
+
+    @property readonly
+    @type Boolean
+  */
+  readonly: false,
+
+  readonlyObserver: observer('readonly', function() {
+    let paper = this.get('paper');
+    if (isNone(paper)) {
+      return;
+    }
+
+    if (this.get('readonly')) {
+      $(paper.el).find('input,textarea').addClass('click-disabled');
+      paper.setInteractivity(false);
+      paper.off('element:pointermove', this._ghostElementMove, this);
+      paper.off('element:pointerup', this._ghostElementRemove, this);
+    } else {
+      $(paper.el).find('input,textarea').removeClass('click-disabled');
+      paper.setInteractivity({ elementMove: false, vertexAdd: false });
+      paper.on('element:pointermove', this._ghostElementMove, this);
+      paper.on('element:pointerup', this._ghostElementRemove, this);
+      this._highlighted(null);
+    }
+  }),
+
+  /**
     Add handlers on pointer events.
 
     @method pointerEvents
@@ -145,7 +173,6 @@ export default Component.extend({
 
       graph.getLinks().map(link => {
         link.findView(paper).$el.removeClass('edit-disabled');
-        link.findView(paper).$el.removeClass('linktools-disabled');
       }, this);
 
       $(paper.el).find('input,textarea').removeClass('click-disabled');
@@ -155,16 +182,17 @@ export default Component.extend({
 
       switch (this.paper.fDDEditMode) {
         case 'addNoteConnector':
-          this._enableWrapLinks();
+          this.enableEditLinks();
           break;
         case 'addInheritance':
-          this._enableWrapBaseLinks();
+          this.enableWrapBaseLinks();
           break;
         default:
-          this._disableEditLinks();
+          this.disableEditLinks();
       }
 
       $(paper.el).find('input,textarea').addClass('click-disabled');
+      this._highlighted(null);
     }
   }),
 
@@ -181,7 +209,10 @@ export default Component.extend({
     let paper = this.set('paper', new joint.dia.Paper({
       el: this.get('element'),
       model: graph,
-      connectionStrategy: joint.connectionStrategies.pinAbsolute,
+      gridSize: 10,
+      drawGrid: { name: 'fixedDot', args: { color: '#cecece' }},
+      connectionStrategy: joint.connectionStrategies.toPointConnection,
+      defaultConnectionPoint: joint.connectionPoints.toPointConnection,
       restrictTranslate: ({ paper }) => {
         let area = paper.getArea();
         return { x: 0, y: 0, width: area.width * 2, height: area.height * 2 };
@@ -203,7 +234,8 @@ export default Component.extend({
         }
       },
       interactive: {
-        elementMove: false
+        elementMove: false,
+        vertexAdd: false,
       },
       cellNamespace: namespace,
       cellViewNamespace: namespace
@@ -264,6 +296,13 @@ export default Component.extend({
     fitPaperToContent();
 
     this.get('fdDiagramService').on('updateJointObjectViewTriggered', this, this._updateJointObjectView);
+    this.get('readonlyObserver').apply(this);
+  },
+
+  willDestroy() {
+    this._super(...arguments);
+
+    this.get('fdDiagramService').off('updateJointObjectViewTriggered', this, this._updateJointObjectView);
   },
 
   /**
@@ -275,11 +314,7 @@ export default Component.extend({
   _blankPointerClick(e) {
     let coordinates = forBlankEventPointerClickAndContextMenu(e);
     let options = { e: e, x: coordinates.x, y: coordinates.y };
-    let highlightedElement = this.get('highlightedElement');
-    if (highlightedElement) {
-      highlightedElement.unhighlight();
-      this.set('highlightedElement', null);
-    }
+    this._highlighted(null);
 
     let newElement = this.get('blankPointerClick')(options);
     this._addNewElement(newElement);
@@ -327,7 +362,8 @@ export default Component.extend({
           for (let i = 0; i < links.length; i+=1) {
             let  link = links[i];
             let view = link.findView(paper);
-              view.$el.addClass('edit-disabled');
+            view.$el.addClass('edit-disabled');
+            $(paper.el).find('input,textarea').addClass('click-disabled');
           }
           $(document).on({
             'mousemove.link': this._onDrag.bind(this)
@@ -339,8 +375,9 @@ export default Component.extend({
           break;
         }
         default:
-          if (isNone(this.get('draggedLink'))) {
-            return;
+          if (this.get('currentTargetElementIsPointer')) {
+            var linkView = element.model.findView(this.paper);
+            linkView.highlight();
           }
       }
     } else {
@@ -364,9 +401,46 @@ export default Component.extend({
     x = coordinates.x;
     y = coordinates.y;
     let options = { element: element, e: e, x: x, y: y };
-    let type = this.get('type');
-    if (type === 'Object' ) {
-      this._drawPrimitiveInClickedElement(options);
+    if (isNone(this.get('draggedLink'))) {
+      let editMode = this.paper.fDDEditMode;
+      if (editMode === 'addNoteConnector' && !this._haveNote()) {
+        return;
+      }
+
+      let startDragLink = this.get('startDragLink');
+      let newElement = startDragLink(options);
+      if (isNone(newElement)) {
+        element.highlight();
+      } else {
+        this.set('draggedLink', newElement);
+        let graph = this.get('graph');
+        let paper = this.get('paper');
+
+        let linkView = newElement
+          .set({ 'target': { x: x, y: y } })
+          .addTo(graph).findView(paper);
+
+        this.set('isLinkAdding', true);
+        let links = graph.getLinks();
+        for (let i = 0; i < links.length; i+=1) {
+          let  link = links[i];
+          let view = link.findView(paper);
+          if (link.cid == newElement.cid) {
+            view.$el.addClass('edit-disabled');
+          }
+        }
+
+        $(paper.el).find('input,textarea').addClass('click-disabled');
+
+        $(document).on({
+          'mousemove.example': this._onDrag.bind(this)
+        }, {
+          paper: paper,
+          element: newElement
+        });
+
+        this.set('draggedLinkView', linkView);
+      }
     } else {
       this._drawLinkForClickedElement(options);
     }
@@ -382,13 +456,35 @@ export default Component.extend({
     @param {joint.dia.Element} cellView.model
   */
   _elementOpenEditForm({ model }) {
-    this.get('openEditFormAction')(model.get('objectModel'));
+    let object = {
+      data: undefined,
+      selectedValueModel: model.get('objectModel'),
+      isLink: false
+    };
+
+    let store = this.get('store');
+    let modelName = 'fd-dev-association';
+    let objectId = object.selectedValueModel.get('repositoryObject').slice(1, -1);
+
+    switch (object.selectedValueModel.get('primitive.$type')) {
+      case 'STORMCASE.UML.cad.Composition, UMLCAD':
+        modelName = 'fd-dev-aggregation';
+      // eslint-disable-next-line no-fallthrough
+      case 'STORMCASE.UML.cad.Association, UMLCAD':
+        object.isLink = true;
+        object.data = store.peekRecord(`${modelName}`, objectId);
+        break;
+      default:
+        object.data = store.peekRecord('fd-dev-class', objectId);
+    }
+
+    this.get('openEditFormAction')(object);
   },
 
   /**
-    Handler event 'blank:contextmenu'.
+    Handler event '_onDrag'.
 
-    @method actions._blankContextMenu
+    @method actions._onDrag
     @param {jQuery.Event} e event.
   */
   _onDrag(evt) {
@@ -453,7 +549,16 @@ export default Component.extend({
   _highlighted(cellView) {
     let highlightedElement = this.get('highlightedElement');
     if (highlightedElement && highlightedElement !== cellView) {
+      if (highlightedElement.model.isLink()) {
+        highlightedElement.$el.addClass('linktools-disabled');
+      }
+
       highlightedElement.unhighlight();
+    }
+
+    if (!isNone(cellView) && cellView.model.isLink() && !this.get('readonly')) {
+      cellView.$el.removeClass('linktools-disabled');
+      cellView.updateArrowheadMarkers();
     }
 
     this.set('highlightedElement', cellView);
@@ -474,9 +579,6 @@ export default Component.extend({
     graph.getLinks().map(link => {
       let view = link.findView(paper);
       view.$el.removeClass('edit-disabled');
-      if ('vertexAdd' in view.options.interactive) {
-        delete view.options.interactive.vertexAdd;
-      }
     }, this);
 
     $(paper.el).find('input,textarea').removeClass('click-disabled');
@@ -487,6 +589,7 @@ export default Component.extend({
     this.set('draggedLink', undefined);
     this.set('draggedLinkView', undefined);
     this.set('isLinkAdding', false);
+    this._highlighted(null);
   },
 
   /**
@@ -526,6 +629,13 @@ export default Component.extend({
       data.ghost.position(newPositionX, newPositionY);*/
     } else {
       let bbox = view.model.getBBox();
+      let rects = view.model.getRectangles();
+      if (rects.length > 0) {
+        let paramsWidth = rects[0].element.attr('.flexberry-uml-params-rect/width');
+        if (paramsWidth !== undefined) {
+          bbox.width += paramsWidth - 10;
+        }
+      }
       let ghost = new joint.shapes.basic.Rect();
 
       ghost.attr({ rect: { 'fill': 'transparent', 'stroke': '#5755a1', 'stroke-dasharray': '4,4', 'stroke-width': 2 }});
@@ -685,10 +795,15 @@ export default Component.extend({
     }
 
     const modelName = this._getModelName(objectModel.get('primitive.$type'));
+    const store = this.get('store');
+    const repositoryObjectId = repositoryObject.slice(1, -1);
+    const currentRepObj = store.peekRecord(modelName, repositoryObjectId);
+
     if (modelName === 'fd-dev-class') {
-      const store = this.get('store');
-      const repositoryObjectId = repositoryObject.slice(1, -1);
-      const currentRepObj = store.peekRecord(modelName, repositoryObjectId);
+      const name = currentRepObj.get('nameStr') || '';
+      objectModel.set('name', name);
+      this._updateInputValue('.class-name-input', name, view);
+
       const stereotype = currentRepObj.get('stereotype') || '';
       const normalizeStereotype = view.normalizeStereotype(stereotype);
       objectModel.set('stereotype', normalizeStereotype);
@@ -705,6 +820,22 @@ export default Component.extend({
       const initSize = view.model.size();
       view.updateRectangles(initSize.width, initSize.height);
       view.update();
+    } else if (modelName === 'fd-dev-association' || modelName === 'fd-dev-aggregation') {
+      const startRoleStr = currentRepObj.get('startRoleStr') || '';
+      objectModel.set('startRoleTxt', startRoleStr);
+      this._updateInputValue('.start-role-input', startRoleStr, view);
+
+      const endRoleStr = currentRepObj.get('endRoleStr') || '';
+      objectModel.set('endRoleTxt', endRoleStr);
+      this._updateInputValue('.end-role-input', endRoleStr, view);
+
+      const startMultiplicity = currentRepObj.get('startMultiplicity') || '';
+      objectModel.set('startMultiplicity', startMultiplicity);
+      this._updateInputValue('.start-multiplicity-input', startMultiplicity, view);
+
+      const endMultiplicity = currentRepObj.get('endMultiplicity') || '';
+      objectModel.set('endMultiplicity', endMultiplicity);
+      this._updateInputValue('.end-multiplicity-input', endMultiplicity, view);
     }
   },
 
@@ -741,8 +872,13 @@ export default Component.extend({
    */
   _checkOnExistElements(objectModel, view, isSourse) {
     let repositoryObject = objectModel.get('repositoryObject');
+    let isEmpty = false;
     if (isNone(repositoryObject)) {
-      return;
+      if (objectModel.get('primitive.$type') === 'STORMCASE.STORMNET.Repository.CADClass, STORM.NET Case Tool plugin') {
+        isEmpty = true;
+      } else {
+        return;
+      }
     }
 
     let store = this.get('store');
@@ -751,7 +887,7 @@ export default Component.extend({
     let modelName = this._getModelName(objectModel.get('primitive.$type'));
     let allModels = store.peekAll(`${modelName}`);
 
-    let repositoryObjectId = repositoryObject.slice(1, -1);
+    let repositoryObjectId = !isEmpty ? repositoryObject.slice(1, -1) : null;
     let modelsCurrentStage = allModels.filterBy('stage.id', stage.get('id'));
     let currentRepObj = modelsCurrentStage.findBy('id', repositoryObjectId);
 
@@ -771,7 +907,7 @@ export default Component.extend({
           let name = item.get('name');
           if (
             !isNone(name) && !isNone(objectModelName) &&
-            name.toLocaleLowerCase() === objectModelName.toLocaleLowerCase() &&
+            name.trim().toLocaleLowerCase() === objectModelName.trim().toLocaleLowerCase() &&
             item.get('id') !== repositoryObjectId
             ) {
               return item;
@@ -793,14 +929,14 @@ export default Component.extend({
         }
 
         newRepObj = modelsCurrentStage.find(function(item) {
-          let name = item.get('name');
+          let name = isNone(item.get('name')) ? '' : item.get('name');
           let startRole = item.get('startRoleStr');
           let endRole = item.get('endRoleStr');
           if (
             item.get('startClass.id') === sClass && item.get('endClass.id') === eClass && item.get('id') !== repositoryObjectId &&
-            !isNone(sRole) && !isNone(startRole) && startRole.toLocaleLowerCase() === sRole.toLocaleLowerCase() &&
-            !isNone(eRole) && !isNone(endRole) && endRole.toLocaleLowerCase() === eRole.toLocaleLowerCase() &&
-            !isNone(objectModelName) && !isNone(name) && name.toLocaleLowerCase() === objectModelName.toLocaleLowerCase()
+            !isNone(sRole) && !isNone(startRole) && startRole.trim().toLocaleLowerCase() === sRole.trim().toLocaleLowerCase() &&
+            !isNone(eRole) && !isNone(endRole) && endRole.trim().toLocaleLowerCase() === eRole.trim().toLocaleLowerCase() &&
+            !isNone(objectModelName) && !isNone(name) && name.trim().toLocaleLowerCase() === objectModelName.trim().toLocaleLowerCase()
           ) {
             return item;
           }
@@ -818,10 +954,10 @@ export default Component.extend({
         }
 
         newRepObj = modelsCurrentStage.find(function(item) {
-          let name = item.get('name');
+          let name = isNone(item.get('name')) ? '' : item.get('name');
           if (
             item.get('parent.id') === parentId && item.get('child.id') === childId && item.get('id') !== repositoryObjectId &&
-            !isNone(objectModelName) && !isNone(name) && name.toLocaleLowerCase() === objectModelName.toLocaleLowerCase()
+            !isNone(objectModelName) && !isNone(name) && name.trim().toLocaleLowerCase() === objectModelName.trim().toLocaleLowerCase()
           ) {
             return item;
           }
@@ -831,7 +967,10 @@ export default Component.extend({
     }
 
     if (!isNone(newRepObj)) {
-      this._decrementPropertyReferenceCount(currentRepObj);
+      if (!isEmpty) {
+        this._decrementPropertyReferenceCount(currentRepObj);
+      }
+
       this._incrementPropertyReferenceCount(newRepObj);
 
       objectModel.set('repositoryObject', `{${newRepObj.get('id')}}`);
@@ -862,8 +1001,10 @@ export default Component.extend({
         view.updateRectangles();
       }
 
-    } else if (currentRepObj.get('referenceCount') > 1) {
-      this._decrementPropertyReferenceCount(currentRepObj);
+    } else if (isEmpty || currentRepObj.get('referenceCount') > 1) {
+      if (!isEmpty) {
+        this._decrementPropertyReferenceCount(currentRepObj);
+      }
 
       let newElement = store.createRecord(`${modelName}`, {
         id: uuid.v4(),
@@ -945,6 +1086,13 @@ export default Component.extend({
       if (!isNone(newConnectedClass)) {
         currentRepObj.set(`${repProp}`, newConnectedClass);
       }
+    }
+
+    if (isEmpty) {
+      let emptyLinks = this.graph.getConnectedLinks(view.model);
+      emptyLinks.forEach((link) => {
+        this._updateEmptylink(link);
+      });
     }
   },
 
@@ -1058,59 +1206,113 @@ export default Component.extend({
 
     let view = paper.findViewByModel(model);
     view.updateInputValue();
-    view.updateRectangles();
   },
 
-  _enableEditLinks: function() {
-    let paper = this.paper;
-    let links = paper.model.getLinks();
-    for (let i = 0; i < links.length; i+=1) {
-      let  link = links[i];
-      let view = link.findView(paper);
-      view.$el.removeClass('edit-disabled');
-      view.$el.removeClass('linktools-disabled');
-      if ('vertexAdd' in view.options.interactive) {
-        delete view.options.interactive.vertexAdd;
-      }
+  /**
+    Create rep object for empty link.
+
+    @method _updateEmptylink
+    @param {Object} link current link.
+   */
+  _updateEmptylink(link) {
+    let objectModel = link.get('objectModel');
+    let type = objectModel.get('primitive.$type');
+    if (type !== 'STORMCASE.UML.cad.Association, UMLCAD' && type !== 'STORMCASE.UML.cad.Inheritance, UMLCAD' && type !== 'STORMCASE.UML.cad.Composition, UMLCAD') {
+      return;
     }
-  },
 
-  _enableWrapBaseLinks: function() {
-    let paper = this.paper;
-    let links = paper.model.getLinks();
-    for (let i = 0; i < links.length; i+=1) {
-      let  link = links[i];
-      let view = link.findView(paper);
-      if (link.get('type') == 'flexberry.uml.Generalization' && !link.connectedToLine()) {
-        view.$el.removeClass('edit-disabled');
-        view.$el.addClass('linktools-disabled');
-        view.options.interactive.vertexAdd = false;
+    let endPrimitiveId = objectModel.get('target.id');
+    let startPrimitiveId = objectModel.get('source.id');
+
+    let endPrimitive = this.graph.getCell(endPrimitiveId);
+    let startPrimitive = this.graph.getCell(startPrimitiveId);
+
+    let endPrimitiveRepObjId = endPrimitive.get('objectModel').repositoryObject;
+    let startPrimitiveRepObjId = startPrimitive.get('objectModel').repositoryObject;
+
+    if (isBlank(endPrimitiveRepObjId) || isBlank(startPrimitiveRepObjId)) {
+      return;
+    }
+
+    let store = this.get('store');
+    let stage = this.get('currentProjectContext').getCurrentStageModel();
+
+    let allClasses = store.peekAll('fd-dev-class');
+    let classesCurrentStage = allClasses.filterBy('stage.id', stage.get('id'));
+    let endPrimitiveRepObj = classesCurrentStage.findBy('id', endPrimitiveRepObjId.slice(1, -1));
+    let startPrimitiveRepObj = classesCurrentStage.findBy('id', startPrimitiveRepObjId.slice(1, -1));
+
+    let modelName = this._getModelName(type);
+    let allModels = store.peekAll(`${modelName}`);
+    let modelsCurrentStage = allModels.filterBy('stage.id', stage.get('id'));
+
+    let newElement;
+    if (modelName === 'fd-dev-inheritance') {
+      let objectModelName = objectModel.get('description');
+
+      newElement = modelsCurrentStage.find(function(item) {
+        let name = isNone(item.get('name')) ? '' : item.get('name');
+        if (
+          item.get('parent.id') === startPrimitiveRepObj.get('id') && item.get('child.id') === endPrimitiveRepObj.get('id') &&
+          !isNone(objectModelName) && !isNone(name) && name.trim().toLocaleLowerCase() === objectModelName.trim().toLocaleLowerCase()
+        ) {
+          return item;
+        }
+      });
+    } else {
+      let sRole = objectModel.getWithDefault('startRoleTxt', '').trim();
+      sRole = !isBlank(sRole) && sRole[0] !== '+' ? '+' + sRole : sRole;
+      let eRole = objectModel.getWithDefault('endRoleTxt', '').trim();
+      eRole = !isBlank(eRole) && eRole[0] !== '+' ? '+' + eRole : eRole;
+      let objectModelName = objectModel.get('description');
+
+      newElement = modelsCurrentStage.find(function(item) {
+        let name = isNone(item.get('name')) ? '' : item.get('name');
+        let startRole = item.get('startRoleStr');
+        let endRole = item.get('endRoleStr');
+        if (
+          item.get('startClass.id') === startPrimitiveRepObj.get('id') && item.get('endClass.id') === endPrimitiveRepObj.get('id') &&
+          !isNone(sRole) && !isNone(startRole) && startRole.trim().toLocaleLowerCase() === sRole.trim().toLocaleLowerCase() &&
+          !isNone(eRole) && !isNone(endRole) && endRole.trim().toLocaleLowerCase() === eRole.trim().toLocaleLowerCase() &&
+          !isNone(objectModelName) && !isNone(name) && name.trim().toLocaleLowerCase() === objectModelName.trim().toLocaleLowerCase()
+        ) {
+          return item;
+        }
+      });
+    }
+
+    if (isNone(newElement)) {
+      newElement = store.createRecord(`${modelName}`, {
+        id: uuid.v4(),
+        stage: stage
+      });
+
+      if (modelName === 'fd-dev-inheritance') {
+        newElement.set('child', endPrimitiveRepObj);
+        newElement.set('parent', startPrimitiveRepObj);
       } else {
-        view.$el.addClass('edit-disabled');
+        newElement.set('endClass', endPrimitiveRepObj);
+        newElement.set('startClass', startPrimitiveRepObj);
+        newElement.set('endMultiplicity', objectModel.get('endMultiplicity'));
+        newElement.set('startMultiplicity', objectModel.get('startMultiplicity'));
+        newElement.set('startRoleStr', objectModel.get('startRoleTxt'));
+        newElement.set('endRoleStr', objectModel.get('endRoleTxt'));
       }
-    }
-  },
 
-  _enableWrapLinks: function() {
-    let paper = this.paper;
-    let links = paper.model.getLinks();
-    for (let i = 0; i < links.length; i+=1) {
-      let  link = links[i];
-      let view = link.findView(paper);
-      view.$el.removeClass('edit-disabled');
-      view.$el.addClass('linktools-disabled');
-      view.options.interactive.vertexAdd = false;
-    }
-  },
+      newElement.set('name', objectModel.get('description'));
+    } else if (modelName !== 'fd-dev-inheritance') {
+      let view = this.paper.findViewByModel(link);
+      let startMultiplicity = newElement.get('startMultiplicity')
+      view.model.setLabelText('startMultiplicity', startMultiplicity);
+      this._updateInputValue('.start-multiplicity-input', startMultiplicity, view);
 
-  _disableEditLinks: function() {
-    let paper = this.paper;
-    let links = paper.model.getLinks();
-    for (let i = 0; i < links.length; i+=1) {
-      let  link = links[i];
-      let view = link.findView(paper);
-      view.$el.addClass('edit-disabled');
+      let endMultiplicity = newElement.get('endMultiplicity')
+      view.model.setLabelText('endMultiplicity', endMultiplicity);
+      this._updateInputValue('.end-multiplicity-input', endMultiplicity, view);
     }
+
+    objectModel.set('repositoryObject', `{${newElement.get('id')}}`);
+    this._incrementPropertyReferenceCount(newElement);
   },
 
   _haveNote: function() {

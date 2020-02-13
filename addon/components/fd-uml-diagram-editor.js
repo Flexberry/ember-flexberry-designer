@@ -5,6 +5,7 @@ import { computed, get } from '@ember/object';
 import { isNone, isBlank, isEmpty } from '@ember/utils';
 import { next } from '@ember/runloop';
 import $ from 'jquery';
+import fade from 'ember-animated/transitions/fade';
 import layout from '../templates/components/fd-uml-diagram-editor';
 import FdAcrionsForCadPrimitivesMixin from '../mixins/actions-for-primitives/fd-actions-for-cad-primitives';
 import FdAcrionsForDpdPrimitivesMixin from '../mixins/actions-for-primitives/fd-actions-for-dpd-primitives';
@@ -28,6 +29,8 @@ FdActionsForUcdPrimitivesMixin, {
   layout,
 
   store: service(),
+
+  transition: fade,
 
   /**
     Service for managing the state of the component.
@@ -159,6 +162,24 @@ FdActionsForUcdPrimitivesMixin, {
    */
   sourceElementType: undefined,
 
+  /**
+    Object with flags indicates whether edit panel is readonly.
+
+    @property readonlyMode
+    @type Boolean
+  */
+  readonlyMode: false,
+
+  /**
+    Object with flags indicates whether diagram is readonly.
+
+    @property readonly
+    @type Boolean
+  */
+  readonly: computed('readonlyMode', function() {
+    return this.get('readonlyMode') && !this.get('model.isNew');
+  }),
+
   diagramType: computed('model.constructor.modelName', function() {
     let type = this.get('model.constructor.modelName');
     if (isNone(type)) {
@@ -201,7 +222,7 @@ FdActionsForUcdPrimitivesMixin, {
       }
 
       let minWidth = this.$().width();
-      let minHeight = this.$().height() - this.$('.fd-uml-diagram-toolbar').height();
+      let minHeight = this.$().height();
       paper.fitToContent({ minWidth, minHeight, padding: 10 });
     },
 
@@ -267,6 +288,11 @@ FdActionsForUcdPrimitivesMixin, {
           }
           let newLink = jointjsCallback(linkProperties);
           newLink.set({ 'startClassRepObj': { id: get(model, 'objectModel.repositoryObject') } });
+          let objectModel = newLink.get('objectModel');
+          if (!isNone(objectModel)) {
+            objectModel.set('startPoint', {x: options.x, y: options.y });
+          }
+
           this.set('newLink', newLink);
           return newLink;
         }
@@ -290,7 +316,7 @@ FdActionsForUcdPrimitivesMixin, {
         let newLink = this.get('newLink');
 
         if ((isNone(interactionElements) || (isArray(interactionElements) && interactionElements.includes(type)) ||
-         (isArray(interactionElements.start) && interactionElements.start.includes(type)))
+         (isArray(interactionElements.end) && interactionElements.end.includes(type)))
         ) {
           if (newLink.get('type') == 'flexberry.uml.NoteConnector' && this.sourceElementType !== 'flexberry.uml.Note' &&  type !== 'flexberry.uml.Note') {
             return false;
@@ -317,6 +343,7 @@ FdActionsForUcdPrimitivesMixin, {
           if (storeCallback) {
             let linkRecord = storeCallback({ startClassRepObj: newLink.get('startClassRepObj'), endClassRepObj: newLink.get('endClassRepObj') });
             newLink.set({ 'repositoryObject': linkRecord });
+            this.paper.trigger('checkexistelements', newLink.get('objectModel'), this.paper.findViewByModel(newLink));
           }
 
           this.clearData();
@@ -358,9 +385,11 @@ FdActionsForUcdPrimitivesMixin, {
     */
     blankContextMenu() {
       let type = this.get('type');
-      if (!isNone(type)) {
+      if (type === 'Link') {
         let newLink = this.get('newLink');
-        if (newLink.vertices().length === 0) {
+        if (isNone(newLink)) {
+          this.clearData();
+        } else if (newLink.vertices().length === 0) {
           let primitives = this.get('model.primitives');
           let linkPrimitive = primitives.findBy('id', newLink.get('id'));
           primitives.removeObject(linkPrimitive);
@@ -369,6 +398,8 @@ FdActionsForUcdPrimitivesMixin, {
         } else {
           newLink.removeVertex(-1);
         }
+      } else if (type === 'Object') {
+        this.clearData();
       }
 
       return false;
@@ -396,16 +427,14 @@ FdActionsForUcdPrimitivesMixin, {
         this.paper.fDDEditMode = buttonName;
         switch (buttonName) {
           case 'pointerClick':
-            this._enableEditLinks();
-            break;
           case 'addNoteConnector':
-            this._enableWrapLinks();
+            this.enableEditLinks();
             break;
           case 'addInheritance':
-            this._enableWrapBaseLinks();
+            this.enableWrapBaseLinks();
             break;
           default:
-            this._disableEditLinks();
+            this.disableEditLinks();
         }
         this.send(buttonName, e);
       }
@@ -466,7 +495,8 @@ FdActionsForUcdPrimitivesMixin, {
   clearData() {
     this._clearProperties();
     this._resetCurrentTargetElement();
-    this._enableEditLinks();
+    this.enableEditLinks();
+    this.paper.fDDEditMode = 'pointerClick';
   },
 
   /**
@@ -484,21 +514,17 @@ FdActionsForUcdPrimitivesMixin, {
     this.set('newLink', undefined);
   },
 
-  _enableEditLinks: function() {
+  enableEditLinks: function() {
     let paper = this.paper;
     let links = paper.model.getLinks();
     for (let i = 0; i < links.length; i+=1) {
       let  link = links[i];
       let view = link.findView(paper);
       view.$el.removeClass('edit-disabled');
-      view.$el.removeClass('linktools-disabled');
-      if ('vertexAdd' in view.options.interactive) {
-        delete view.options.interactive.vertexAdd;
-      }
     }
   },
 
-  _enableWrapBaseLinks: function() {
+  enableWrapBaseLinks: function() {
     let paper = this.paper;
     let links = paper.model.getLinks();
     for (let i = 0; i < links.length; i+=1) {
@@ -506,27 +532,13 @@ FdActionsForUcdPrimitivesMixin, {
       let view = link.findView(paper);
       if (link.get('type') == 'flexberry.uml.Generalization' && !link.connectedToLine()) {
         view.$el.removeClass('edit-disabled');
-        view.$el.addClass('linktools-disabled');
-        view.options.interactive.vertexAdd = false;
       } else {
         view.$el.addClass('edit-disabled');
       }
     }
   },
 
-  _enableWrapLinks: function() {
-    let paper = this.paper;
-    let links = paper.model.getLinks();
-    for (let i = 0; i < links.length; i+=1) {
-      let  link = links[i];
-      let view = link.findView(paper);
-      view.$el.removeClass('edit-disabled');
-      view.$el.addClass('linktools-disabled');
-      view.options.interactive.vertexAdd = false;
-    }
-  },
-
-  _disableEditLinks: function() {
+  disableEditLinks: function() {
     let paper = this.paper;
     let links = paper.model.getLinks();
     for (let i = 0; i < links.length; i+=1) {

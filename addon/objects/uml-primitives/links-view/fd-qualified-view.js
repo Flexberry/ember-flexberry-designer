@@ -42,5 +42,16 @@ export let QualifiedView = RoleView.extend({
     RoleView.prototype.updateBox.apply(this, arguments);
 
     this.updateInputPosition(5, '.qualified-input');
+  },
+
+  updateInputValue() {
+    RoleView.prototype.updateInputValue.apply(this, arguments);
+
+    let objectModel = this.model.get('objectModel');
+    let qualifiedInput = this.$box.find('.qualified-input');
+
+    qualifiedInput.prop('rows', objectModel.get('qualified').split(/[\n\r|\r|\n]/).length || 1);
+    qualifiedInput.val(objectModel.get('qualified'));
+    this.updateInputWidth('.qualified-input');
   }
 });

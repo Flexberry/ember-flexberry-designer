@@ -4,6 +4,7 @@
 import joint from 'npm:jointjs';
 
 import FdUmlBaseLink from './fd-uml-link';
+import { isNone } from '@ember/utils';
 import { Dependency } from './fd-uml-dependency';
 import { NormalizedDescriptionView } from './links-view/fd-normalized-description-view';
 
@@ -46,4 +47,14 @@ export let ObjectFlow = Dependency.define('flexberry.uml.ObjectFlow', {
   },
 });
 
-joint.shapes.flexberry.uml.ObjectFlowView = NormalizedDescriptionView.extend();
+joint.shapes.flexberry.uml.ObjectFlowView = NormalizedDescriptionView.extend({
+  setColors() {
+    NormalizedDescriptionView.prototype.setColors.apply(this, arguments);
+
+    const textColor = this.getTextColor();
+
+    if (!isNone(textColor)) {
+      this.model.attr('.marker-target/stroke', textColor);
+    }
+  }
+});

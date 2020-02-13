@@ -1,0 +1,16 @@
+<div class="ui stackable grid fd-list">
+  <div class="row">
+    <div class="five wide column">
+      {{t "components.fd-geolayerstyle-editing-panel.sld-caption"}}
+    </div>
+    <div class="eleven wide column light-text">
+      {{flexberry-textarea
+        value=model.containersStr
+        class='fluid input'
+        placeholder=(t "components.fd-geolayerstyle-editing-panel.sld-placeholder")
+        readonly=readonly
+        rows='25'
+      }}
+    </div>
+  </div>
+</div>

@@ -7,7 +7,7 @@ import RepositoryAccessModifier  from '../enums/s-t-o-r-m-c-a-s-e-repository-acc
 let updateAttributes = function(classObject, store) {
   const attributesStr = classObject.get('attributesStr');
   if (isNone(attributesStr) || isBlank(attributesStr.trim())) {
-    return '';
+    return;
   }
 
   const attributes = classObject.get('attributes');
@@ -40,7 +40,7 @@ let updateAttributes = function(classObject, store) {
           class: classObject,
           name: attrName
         });
-      } else {
+      } else if (!attribute.get('isNew')) {
         attribute.rollbackAttributes();
       }
 
@@ -57,8 +57,6 @@ let updateAttributes = function(classObject, store) {
       }
     }
   });
-
-  return '';
 };
 
 /**
@@ -67,7 +65,7 @@ let updateAttributes = function(classObject, store) {
 let updateMethods = function(classObject, store) {
   const methodsStr = classObject.get('methodsStr');
   if (isNone(methodsStr) || isBlank(methodsStr.trim())) {
-    return '';
+    return;
   }
 
   const methods = classObject.get('methods');
@@ -134,17 +132,22 @@ let updateMethods = function(classObject, store) {
       }
     }
   });
-
-  return '';
 };
 
 /**
   Update repositoryObjects by str properties.
 */
 let updateObjectByStr = function(classObject, store) {
-  let attrMessage = updateAttributes(classObject, store);
-  let methMessage = updateMethods(classObject, store);
-  return attrMessage + methMessage;
+  updateAttributes(classObject, store);
+  updateMethods(classObject, store);
+};
+
+/**
+  Update NameStr.
+*/
+let updateNameStr = function(classObject) {
+  const name = classObject.get('name');
+  classObject.set('nameStr', name);
 };
 
 /**
@@ -228,21 +231,91 @@ let updateMethodsStr = function(classObject) {
 };
 
 /**
-  Update str properties by repositoryObjects.
+  Update str properties class by repositoryObjects.
 */
 let updateStrByObjects = function(classObject) {
+  updateNameStr(classObject);
   updateAttributesStr(classObject);
   updateMethodsStr(classObject);
-
-  return true;
 };
 
+/**
+  Update startRole.
+*/
+let updateStartRole = function(linkObject) {
+  let startRoleStr = linkObject.getWithDefault('startRoleStr', '').trim();
+  if (startRoleStr[0] === '+' || startRoleStr[0] === '-' || startRoleStr[0] === '#') {
+    startRoleStr = startRoleStr.slice(1);
+  }
+
+  linkObject.set('startRole', startRoleStr);
+};
+
+/**
+  Update endRole.
+*/
+let updateEndRole = function(linkObject) {
+  let endRoleStr = linkObject.getWithDefault('endRoleStr', '').trim();
+  if (endRoleStr[0] === '+' || endRoleStr[0] === '-' || endRoleStr[0] === '#') {
+    endRoleStr = endRoleStr.slice(1);
+  }
+
+  linkObject.set('endRole', endRoleStr);
+};
+
+/**
+  Update repositoryObjects link by str properties.
+*/
+let updateLinkByStr = function(linkObject) {
+  updateStartRole(linkObject);
+  updateEndRole(linkObject);
+};
+
+/**
+  Update startRoleStr.
+*/
+let updateStartRoleStr = function(linkObject) {
+  let startRole = linkObject.get('startRole');
+  if (startRole[0] === '+' || startRole[0] === '-' || startRole[0] === '#') {
+    startRole = startRole.slice(1);
+  }
+
+  let newStartRole = '';
+  if (!isBlank(startRole)) {
+    newStartRole =  `${linkObject.getWithDefault('startRoleAccessModifier', '+')}${startRole.trim()}`;
+  }
+
+  linkObject.set('startRoleStr', newStartRole);
+};
+
+/**
+  Update endRoleStr.
+*/
+let updateEndRoleStr = function(linkObject) {
+  let endRole = linkObject.get('endRole');
+  if (endRole[0] === '+' || endRole[0] === '-' || endRole[0] === '#') {
+    endRole = endRole.slice(1);
+  }
+
+  let newEndRole = '';
+  if (!isBlank(endRole)) {
+    newEndRole =  `${linkObject.getWithDefault('endRoleAccessModifier', '+')}${endRole.trim()}`;
+  }
+
+  linkObject.set('endRoleStr', newEndRole);
+};
+
+/**
+  Update str properties link by repositoryObjects.
+*/
+let updateStrByLink = function(linkObject) {
+  updateStartRoleStr(linkObject);
+  updateEndRoleStr(linkObject);
+};
 
 export {
-  updateAttributes,
-  updateMethods,
   updateObjectByStr,
-  updateAttributesStr,
-  updateMethodsStr,
-  updateStrByObjects
+  updateStrByObjects,
+  updateLinkByStr,
+  updateStrByLink
 };

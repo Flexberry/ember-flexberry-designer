@@ -12,16 +12,27 @@
       <div class="column fd-table-checkbox">
         {{flexberry-checkbox
           onChange=(action 'selectValue' value)
+          readonly=readonly
         }}
       </div>
       {{#each tableView as |tableView|}}
         <div class="column light-text">
-          {{flexberry-textbox
-            value=(mut (get value tableView.columnProperty))
-            class='fluid input'
-            placeholder=(t tableView.attrPlaceholder)
-            readonly=readonly
-          }}
+          {{#if tableView.isDropDown}}
+            {{flexberry-dropdown
+              items=dropdownItemsObject
+              value=(if (get value tableView.columnProperty) (get value tableView.columnProperty) '')
+              onChange=(action 'dropdownChangeValue' value)
+              class="fluid input"
+              readonly=(or readonly tableTextBoxReadonly)
+            }}
+          {{else}}
+            {{flexberry-textbox
+              value=(mut (get value tableView.columnProperty))
+              class='fluid input'
+              placeholder=(t tableView.attrPlaceholder)
+              readonly=(or readonly tableTextBoxReadonly)
+            }}
+          {{/if}}
         </div>
       {{/each}}
       {{#if editButtonInRow}}
@@ -38,10 +49,10 @@
 {{#if toolbarVisible}}
   <div class="row">
     <div class="sixteen wide column buttons-row">
-      <button class="ui basic button table-btn {{if readonlyButton 'disabled' ''}}" {{action 'createValue'}}>
+      <button class="ui basic button table-btn {{if (or readonly readonlyButton) 'disabled' ''}}" {{action 'createValue'}}>
         {{t buttonCaption.createBtn}}
       </button>
-      <button class="ui basic button table-btn {{if readonlyButton 'disabled' ''}}" {{action 'deleteValue'}}>
+      <button class="ui basic button table-btn {{if (or readonly readonlyButton) 'disabled' ''}}" {{action 'deleteValue'}}>
         <i class="icon icon-fd-checkbox-checked"></i>
         {{t buttonCaption.deleteBtn}}
       </button>

@@ -3,11 +3,13 @@
 */
 
 import { computed } from '@ember/object';
-import { StartState } from './fd-uml-start-state';
+import { isNone } from '@ember/utils';
+import { isArray, A } from '@ember/array';
 import joint from 'npm:jointjs';
-import { isArray } from '@ember/array';
+import $ from 'jquery';
 
 import FdUmlElement from './fd-uml-element';
+import { StartState } from './fd-uml-start-state';
 
 /**
   An object that describes a final state on an activity diagram
@@ -58,9 +60,19 @@ export default FdUmlElement.extend({
 export let FinalState = StartState.define('flexberry.uml.FinalState', {
   size: { width: 25, height: 25 },
   attrs: {
-    '.flexberry-uml-header-circle': { 'fill': 'black', 'r': 18,'ref-y': 10, 'ref-x': 10 },
-    '.flexberry-uml-header-circle-outer': { 'fill': 'white', 'stroke': 'black', 'stroke-width': 2, 'r': 28, 'ref-y': 10, 'ref-x': 10 },
-  }
+    '.flexberry-uml-header-circle': { 'fill': 'black', 'r': 15,'ref-y': 10, 'ref-x': 10 },
+    '.flexberry-uml-header-circle-outer': { 'fill': 'white', 'stroke': 'black', 'stroke-width': 1, 'r': 30, 'ref-y': 10, 'ref-x': 10 },
+  },
+
+  // Minimum height.
+  minHeight: 20,
+
+  // Minimum width
+  minWidth: 20,
+
+  getRectangles() {
+    return [];
+  },
 }, {
   markup: [
     '<g class="scalable">',
@@ -78,6 +90,10 @@ joint.shapes.flexberry.uml.FinalStateView = joint.shapes.flexberry.uml.StartStat
     '</div>'
   ].join(''),
 
+  getSizeChangers() {
+    return A();
+  },
+
   updateRectangles() {
     let $buffer = this.$box.find('.input-buffer');
     let $input = this.$box.find('.class-name-input');
@@ -87,5 +103,28 @@ joint.shapes.flexberry.uml.FinalStateView = joint.shapes.flexberry.uml.StartStat
 
     //shift state text
     $input.css({top: (this.$box.height() / 3), left: (this.$box.width() + 20), position:'absolute'});
-   },
+  },
+
+  setColors() {
+    const brushColor = this.getBrushColor();
+    const textColor = this.getTextColor();
+
+    if (!isNone(textColor)) {
+      this.model.attr('.flexberry-uml-header-circle/fill', textColor);
+      this.model.attr('.flexberry-uml-header-circle-outer/stroke', textColor);
+    }
+
+    if (!isNone(brushColor)) {
+      this.model.attr('.flexberry-uml-header-circle-outer/fill', brushColor);
+    }
+
+    const inputElements = this.model.inputElements;
+    if (isArray(inputElements) && (!isNone(textColor))) {
+      inputElements.each(function(index, input) {
+        if (!isNone(textColor)) {
+          $(input).find('input, textarea').css('color', textColor);
+        }
+      });
+    }
+  },
 });

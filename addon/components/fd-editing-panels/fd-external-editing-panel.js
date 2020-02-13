@@ -5,12 +5,13 @@ import { isNone, isBlank } from '@ember/utils';
 import { observer } from '@ember/object';
 import { A } from '@ember/array';
 import FdUpdateStoreInstancesValueMixin from '../../mixins/fd-editing-panels/fd-update-store-instances-value';
+import FdReadonlyModeMixin from '../../mixins/fd-editing-panels/fd-readonly-mode';
 import layout from '../../templates/components/fd-editing-panels/fd-external-editing-panel';
 import { SimplePredicate } from 'ember-flexberry-data/query/predicate';
 import Builder from 'ember-flexberry-data/query/builder';
 import FilterOperator from 'ember-flexberry-data/query/filter-operator';
 
-export default Component.extend(FdUpdateStoreInstancesValueMixin, {
+export default Component.extend(FdUpdateStoreInstancesValueMixin, FdReadonlyModeMixin, {
   layout,
 
   /**

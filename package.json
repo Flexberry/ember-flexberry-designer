@@ -1,6 +1,6 @@
 {
   "name": "ember-flexberry-designer",
-  "version": "0.9.0-beta.1",
+  "version": "0.13.0-beta01",
   "description": "CASE addon for ember-flexberry applications",
   "keywords": [
     "ember-addon",
@@ -38,6 +38,7 @@
     "broccoli-asset-rev": "^2.4.5",
     "dexie": "^2.0.2",
     "ember-ajax": "^3.0.0",
+    "ember-animated": "^0.9.0",
     "ember-block-slots": "1.1.11",
     "ember-browserify": "1.1.9",
     "ember-cli": "~3.1.3",

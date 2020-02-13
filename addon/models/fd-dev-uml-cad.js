@@ -1,5 +1,6 @@
 import { computed } from '@ember/object';
 import { A } from '@ember/array';
+import { isBlank } from '@ember/utils';
 
 import CADModel from './fd-cad';
 import {
@@ -42,7 +43,7 @@ let Model = CADModel.extend(DevUMLCADMixin, {
   */
   primitives: computed('primitivesJsonString', function() {
     let result = A();
-    let primitives = JSON.parse(this.get('primitivesJsonString')) || A();
+    let primitives = this.getPrimitives();
     let elements = {};
     for (let i = 0; i < primitives.length; i++) {
       let primitive = primitives[i];
@@ -83,13 +84,13 @@ let Model = CADModel.extend(DevUMLCADMixin, {
           break;
 
         case 'STORMCASE.UML.cad.Class, UMLCAD': {
-          let classObject = FdUmlClass.create({ primitive });
+          let classObject = FdUmlClass.create({ primitive, isCreated: isBlank(primitive.Name.Text) });
           classObject.set('primitive.$type', 'STORMCASE.STORMNET.Repository.CADClass, STORM.NET Case Tool plugin');
           result.pushObject(classObject);
           break;
         }
         case 'STORMCASE.STORMNET.Repository.CADClass, STORM.NET Case Tool plugin':
-          result.pushObject(FdUmlClass.create({ primitive }));
+          result.pushObject(FdUmlClass.create({ primitive, isCreated: isBlank(primitive.Name.Text) }));
           break;
 
         case 'STORMCASE.UML.Common.NoteConnector, UMLCommon':
@@ -183,7 +184,6 @@ let Model = CADModel.extend(DevUMLCADMixin, {
 
     return result;
   })
-
 });
 
 defineBaseModel(Model);

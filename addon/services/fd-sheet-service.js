@@ -1,15 +1,27 @@
 import Service from '@ember/service';
 import Evented from '@ember/object/evented';
+import hasChanges from '../utils/model-has-changes';
 import $ from 'jquery';
 import { later, schedule } from '@ember/runloop';
+import { isBlank, isNone } from '@ember/utils';
+import { get } from '@ember/object';
 
 export default Service.extend(Evented, {
   sheetSettings: undefined,
 
+  /**
+    Current transition from sheet.
+
+    @property currentTransitionFromSheet
+    @type Object
+    @default undefined
+  */
+  abortedTransitionFromSheet: undefined,
+
   init() {
     this._super(...arguments);
 
-    this.set('sheetSettings', { visibility: { }, expanded: { } });
+    this.set('sheetSettings', { visibility: { }, expanded: { }, currentItem: { } });
   },
 
   /**
@@ -30,18 +42,28 @@ export default Service.extend(Evented, {
      @param {Object} currentItem Current list item
   */
   openSheet(sheetName, currentItem) {
-    this.trigger('openSheetTriggered', sheetName, currentItem);
-    this.set(`sheetSettings.visibility.${sheetName}`, true);
-    $('.pushable').addClass('fade');
-    $('.fd-sheet.visible.expand .content-mini').addClass('fade');
+    const unsavedData = this.findUnsavedSheetData(sheetName);
 
-    let sidebarWidth = $('.ui.sidebar.main.menu').width();
+    if (unsavedData) {
+      this.trigger('confirmCloseTrigger', sheetName, currentItem);
+    } else {
+      this.trigger('openSheetTriggered', sheetName, currentItem);
+      this.set(`sheetSettings.visibility.${sheetName}`, true);
 
-    let sheetTranslate = `translate3d(calc(50% - ${sidebarWidth}px), 0, 0)`;
-    $(`.fd-sheet.${sheetName}`).css({ 'transform': sheetTranslate });
+      let currentModel = !isNone(currentItem) && isBlank(get(currentItem, 'constructor.modelName')) ? currentItem.data : currentItem;
+      this.set(`sheetSettings.currentItem.${sheetName}`, currentModel);
 
-    // Сбрасываем стиль с кнопки сайдбара.
-    $('.toggle-sidebar').removeClass('expanded');
+      $('.pushable').addClass('fade');
+      $('.fd-sheet.visible.expand .content-mini').addClass('fade');
+
+      let sidebarWidth = $('.ui.sidebar.main.menu').width();
+
+      let sheetTranslate = `translate3d(calc(50% - ${sidebarWidth}px), 0, 0)`;
+      $(`.fd-sheet.${sheetName}`).css({ 'transform': sheetTranslate });
+
+      // Сбрасываем стиль с кнопки сайдбара.
+      $('.toggle-sidebar').removeClass('expanded');
+    }
   },
 
   /**
@@ -51,32 +73,64 @@ export default Service.extend(Evented, {
      @param {String} sheetName Sheet's component name
   */
   closeSheet(sheetName) {
-    this.trigger('closeSheetTriggered', sheetName);
-    this.set(`sheetSettings.visibility.${sheetName}`, false);
-    this.set(`sheetSettings.expanded.${sheetName}`, false);
-    let currentSheet = $(`.fd-sheet.${sheetName}`);
+    const unsavedData = this.findUnsavedSheetData(sheetName);
 
-    if ($('.fd-sheet.visible').length < 2) {
-      $('.pushable').removeClass('fade');
-
-      // Сбрасываем стиль с кнопки сайдбара.
-      $('.toggle-sidebar').removeClass('expanded');
+    if (unsavedData) {
+      this.trigger('confirmCloseTrigger', sheetName, undefined);
     } else {
-      if ($('.fd-sheet.visible').hasClass('expand')) {
+      this.trigger('closeSheetTriggered', sheetName);
+      this.set(`sheetSettings.visibility.${sheetName}`, false);
+      this.set(`sheetSettings.expanded.${sheetName}`, false);
+      this.set(`sheetSettings.currentItem.${sheetName}`, undefined);
+      let currentSheet = $(`.fd-sheet.${sheetName}`);
 
-        // Затемняем кнопку сайдбара.
-        $('.toggle-sidebar').addClass('expanded');
-        $('.toggle-sidebar').addClass('no-delay');
+      if ($('.fd-sheet.visible').length < 2) {
+        $('.pushable').removeClass('fade');
+
+        // Сбрасываем стиль с кнопки сайдбара.
+        $('.toggle-sidebar').removeClass('expanded');
+      } else {
+        if ($('.fd-sheet.visible').hasClass('expand')) {
+
+          // Затемняем кнопку сайдбара.
+          $('.toggle-sidebar').addClass('expanded');
+          $('.toggle-sidebar').addClass('no-delay');
+        }
       }
+
+      $('.fd-sheet.visible.expand .content-mini').removeClass('fade');
+      currentSheet.css({ 'transform': '' });
+
+      later(function() {
+        $('.content-mini', currentSheet).css({ width: '' });
+        $('.toggle-sidebar').removeClass('no-delay');
+      }, 1000);
     }
 
-    $('.fd-sheet.visible.expand .content-mini').removeClass('fade');
-    currentSheet.css({ 'transform': '' });
+    const abortedTransitionFromSheet = this.get('abortedTransitionFromSheet');
 
-    later(function() {
-      $('.content-mini', currentSheet).css({ width: '' });
-      $('.toggle-sidebar').removeClass('no-delay');
-    }, 1000);
+    if (!isNone(abortedTransitionFromSheet)) {
+        abortedTransitionFromSheet.retry();
+    }
+  },
+
+  /**
+    Transition from opened sheet.
+
+     @method transitionFromSheet
+     @param {Object} transition Transition
+     @param {String} sheetName Sheet's component name
+  */
+  transitionFromSheet(transition, sheetName) {
+    const isUnsavedData = this.findUnsavedSheetData(sheetName);
+
+    if (isUnsavedData) {
+      transition.abort();
+      this.set('abortedTransitionFromSheet', transition);
+      this.trigger('confirmCloseTrigger', sheetName, undefined);
+    } else {
+      this.closeSheet(sheetName);
+    }
   },
 
   /**
@@ -154,6 +208,44 @@ export default Service.extend(Evented, {
   },
 
   /**
+    Check if sheet has unsaved data.
+
+     @method findUnsavedSheetData
+     @param {String} sheetName Sheet's component name
+  */
+  findUnsavedSheetData(sheetName) {
+    const currentItemModel = this.getSheetModel(sheetName);
+    let isDirty = false;
+
+    if (!isNone(currentItemModel)) {
+      isDirty = hasChanges(currentItemModel) && !currentItemModel.get('isDeleted');
+
+      // TODO: в будущем можно сделать для каждого листа свой rollbackAll и в нем проверять на isNew.
+      if (currentItemModel.get('isNew') && sheetName === 'edit-diagram-object-sheet') {
+        isDirty = false;
+      }
+    }
+
+    return isDirty;
+  },
+
+  /**
+    Get sheet model.
+
+    @method getSheetModel
+    @param {String} sheetName Sheet's component name
+  */
+  getSheetModel(sheetName) {
+    if (isBlank(sheetName)) {
+      return null;
+    }
+
+    const currentItemModel = this.get(`sheetSettings.currentItem.${sheetName}`);
+
+    return currentItemModel;
+  },
+
+  /**
     Expands specified sheet.
 
      @method expand
@@ -168,5 +260,27 @@ export default Service.extend(Evented, {
       _this.toolbarDiagramPosition();
       _this.trigger('diagramResizeTriggered', sheetName, containsName);
     }, speed);
+  },
+
+  /**
+    Rollback currentItem.
+
+     @method rollbackCurrentItem
+     @param {String} sheetName Sheet's component name
+  */
+  rollbackCurrentItem(sheetName) {
+    const model = this.getSheetModel(sheetName);
+    model.rollbackAll();
+  },
+
+  /**
+    Save currentItem.
+
+     @method saveCurrentItem
+     @param {String} sheetName Sheet's component name
+     @param {Boolean} closeAfter Close after save.
+  */
+  saveCurrentItem(sheetName, closeAfter) {
+    this.trigger('saveCurrentItemTrigger', sheetName, closeAfter);
   }
 });

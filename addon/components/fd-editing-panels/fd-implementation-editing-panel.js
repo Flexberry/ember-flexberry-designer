@@ -1,16 +1,20 @@
 import Component from '@ember/component';
 import { inject as service } from '@ember/service';
-import { computed } from '@ember/object';
 import { A } from '@ember/array';
+import { set, computed } from '@ember/object';
+import { isBlank } from '@ember/utils';
+import Builder from 'ember-flexberry-data/query/builder';
 import FdUpdateBsValueMixin from '../../mixins/fd-editing-panels/fd-update-bs-value';
 import FdUpdateAttributeValueMixin from '../../mixins/fd-editing-panels/fd-update-attribute-value';
 import FdUpdateMethodeValueMixin from '../../mixins/fd-editing-panels/fd-update-method-value';
+import FdReadonlyModeMixin from '../../mixins/fd-editing-panels/fd-readonly-mode';
 import layout from '../../templates/components/fd-editing-panels/fd-implementation-editing-panel';
 
 export default Component.extend(
   FdUpdateBsValueMixin,
   FdUpdateAttributeValueMixin,
-  FdUpdateMethodeValueMixin, {
+  FdUpdateMethodeValueMixin,
+  FdReadonlyModeMixin, {
   layout,
 
   /**
@@ -29,6 +33,53 @@ export default Component.extend(
     @default undefined
   */
   model: undefined,
+
+  /**
+    Storages arrays.
+
+    @property storagesItems
+    @type Object
+  */
+  storagesItems: undefined,
+
+  /**
+    Table headers.
+
+    @property tableClassStorageTypes
+    @type Array
+  */
+  tableClassStorageTypes: computed(() => (
+    A([{
+      columnCaption: 'components.fd-attribute-table.storage.name',
+      columnProperty: 'connectionName',
+      attrPlaceholder: 'components.fd-attribute-table.storage.name-placeholder',
+      columnClass: 'three'
+    },
+    {
+      columnCaption: 'components.fd-attribute-table.storage.string',
+      columnProperty: 'connectionString',
+      attrPlaceholder: 'components.fd-attribute-table.storage.string-placeholder',
+      columnClass: 'four'
+    },
+    {
+      columnCaption: 'components.fd-attribute-table.storage.type',
+      columnProperty: 'storageType.shortName',
+      columnClass: 'four',
+      isDropDown: true,
+    }])
+  )),
+
+  /**
+    Button locale path for ClassStorageTypesButton.
+
+    @property classStorageTypesButton
+    @type Object
+  */
+  classStorageTypesButton: computed(() => ({
+    createBtn: 'components.fd-attribute-table.storage.create-btn',
+    deleteBtn: 'components.fd-attribute-table.storage.delete-btn',
+  })),
+
 
   /**
     Table headers for view.
@@ -62,7 +113,40 @@ export default Component.extend(
     deleteBtn: 'components.fd-attribute-table.view.delete-btn',
   })),
 
+  init() {
+    this._super(...arguments);
+
+    let _this = this;
+    let store = this.get('store');
+    let builder = new Builder(store)
+      .from('fd-storage-type')
+      .selectByProjection('ListFormView');
+
+    store.query('fd-storage-type', builder.build()).then((storages) => {
+      let storagesNames = storages.mapBy('shortName');
+      storagesNames.unshift('');
+
+      _this.set('storagesItems', {
+        names: storagesNames,
+        objects: storages,
+      });
+    });
+  },
+
   actions: {
+
+    /**
+      Method create ClassStorageTypesButton from table.
+
+      @method actions.createStorage
+    */
+    createStorage() {
+      let store = this.get('store');
+      let model = this.get('model');
+      store.createRecord('fd-class-storage-type', {
+        class: model
+      });
+    },
 
     /**
       Method create view from table.
@@ -95,6 +179,31 @@ export default Component.extend(
     */
     openViewSheet(selectView) {
       this.get('openViewSheetController')(selectView);
+    },
+
+    /**
+      Update storageType.
+
+      @method actions.dropdownChangeStorage
+    */
+    dropdownChangeStorage(model, value) {
+      if (isBlank(value)) {
+        set(model, 'storageType', null);
+      } else {
+        let storagesItems = this.get('storagesItems');
+        let storageObject = storagesItems.objects.findBy('shortName', value);
+        set(model, 'storageType', storageObject);
+      }
+    },
+
+    /**
+      Changes AccessType.
+
+      @method actions.changeAccessType
+      @param {Object} value An object with a new value in the `checked` property.
+    */
+    changeAccessType(value) {
+      this.set('model.accessType', value.checked ? 'this' : 'none');
     }
   }
 });

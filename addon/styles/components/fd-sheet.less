@@ -21,9 +21,10 @@
 
   .content-mini {
     height: 100%;
-    padding: 0 0 1em;
     width: 50%;
     position: relative;
+    .display-flex();
+    .flex-direction(column);
     .transition(~'opacity 0.5s ease-in-out, background-color 1s');
   }
 
@@ -31,16 +32,10 @@
     padding: 0 @fdSheetPadding;
   }
 
-  .fd-sheet-body{
+  .fd-sheet-body {
     overflow: auto;
-    height: calc(~'100vh - 9.375rem - @{footerHeight}');//toolbar height
     padding: 1em @fdSheetPadding;
-  }
-
-  .fd-sheet-toolbar {
-    text-align: right;
-    height: 5rem;
-    line-height: 5rem;
+    .flex-grow(1);
   }
 
   &.diagrams-sheet {
@@ -51,5 +46,43 @@
 
   .ui.grid.fd-list > .row:first-child {
     border-top: @hr;
+  }
+}
+
+.fd-sheet-toolbar {
+  text-align: right;
+  height: 5rem;
+  line-height: 5rem;
+}
+
+/* Mobile */
+#mobile {
+  .fd-sheet {
+
+    &.visible {
+      -webkit-transform: translate3d(0, 0, 0) !important;
+      transform: translate3d(0px, 0px, 0px)!important;
+    }
+
+    .content-mini {
+      width: 100%;
+    }
+
+    @fdSheetPadding: 2em;
+    .fd-sheet-header {
+      padding: 0 @fdSheetPadding;
+    }
+  
+    .fd-sheet-body {
+      padding: 1em @fdSheetPadding;
+    }
+  }
+
+  .fd-expand.button {
+    display: none;
+  }
+
+  .fade & .full.height{
+    overflow: hidden;
   }
 }

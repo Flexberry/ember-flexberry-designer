@@ -10,6 +10,7 @@
         class=(concat 'fluid input' (if model.isNew '' ' disabled'))
         placeholder=(t "components.fd-custom-editing-panel.stereotype-placeholder")
         focusOut=stereotypeUpdate
+        readonly=readonly
       }}
     </div>
   </div>
@@ -23,6 +24,7 @@
         value=model.description
         class='fluid input'
         placeholder=(t "components.fd-custom-editing-panel.description-placeholder")
+        readonly=readonly
       }}
     </div>
   </div>

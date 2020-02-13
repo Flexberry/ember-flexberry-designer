@@ -23,6 +23,13 @@ export default Route.extend(ModalApplicationRouteMixin, {
   */
   currentProjectContext: service('fd-current-project-context'),
 
+  /**
+    Router service of current application.
+    @property router
+    @type RouterService
+  */
+  router: service(),
+
   activate: function() {
     let context = this.get('currentProjectContext');
 
@@ -55,7 +62,7 @@ export default Route.extend(ModalApplicationRouteMixin, {
             });
         }
       });
-    } else {
+    } else if (this.get('router.location.location.href').split('?').length < 2) {
       this.transitionTo('index');
     }
   }

@@ -6,7 +6,12 @@
   <div class="ui stackable grid fd-list">
     <div class="row">
       <div class="three wide column light-text">
-        {{t "forms.fd-diagrams.type-caption"}}
+        {{
+          flexberry-dropdown
+          items=groupArrayString
+          value=groupValue
+          needChecksOnValue=false
+        }}
       </div>
       <div class="thirteen wide column">
         {{
@@ -21,247 +26,71 @@
           fd-button
           caption=(t "forms.fd-diagrams.create-button")
           click=(action 'openCreateDiagramsEditPanel')
+          readonly=readonlyModeProject
         }}
       </div>
     </div>
 
-    {{!-- ad --}}
-    {{#if (not-eq filteredModel.ad.length 0)}}
-    <div class="row">
-      <div class="three wide column light-text">
-        {{t "forms.fd-diagrams.ad"}}
-      </div>
-      <div class="thirteen wide column">
-        {{#each filteredModel.ad as |ad|}}
-          {{
-            fd-list-item
-            model=ad
-            caption=ad.data.name
-            sheetComponentName=sheetComponentName
-          }}
-        {{/each}}
-      </div>
-      <div class="right floated thirteen wide column">
-        {{
-          fd-button
-          caption=(t "forms.fd-diagrams.ad")
-          click=(action 'createDiagram' 'ad')
+    {{#each-in filteredModel as |key|}}
+      {{#let (custom-get-for-object filteredModel key) as |diagrams|}}
+        {{#if (and (not-eq diagrams.length 0)
+            (or
+              groupBySystems
+              (compare-t-with-string groupValue 'forms.fd-diagrams.all-diagrams')
+              (compare-t-with-string groupValue (concat 'forms.fd-diagrams.' key ))
+            )
+          )
         }}
-      </div>
-    </div>
-    {{/if}}
-
-    {{!-- cad --}}
-    {{#if (not-eq filteredModel.cad.length 0)}}
-    <div class="row">
-      <div class="three wide column light-text">
-        {{t "forms.fd-diagrams.cad"}}
-      </div>
-      <div class="thirteen wide column">
-        {{#each filteredModel.cad as |cad|}}
-          {{
-            fd-list-item
-            model=cad
-            caption=cad.data.name
-            sheetComponentName=sheetComponentName
-          }}
-        {{/each}}
-      </div>
-      <div class="right floated thirteen wide column">
-        {{
-          fd-button
-          caption=(t "forms.fd-diagrams.cad")
-          click=(action 'createDiagram' 'cad')
-        }}
-      </div>
-    </div>
-    {{/if}}
-
-    {{!-- cod --}}
-    {{#if (not-eq filteredModel.cod.length 0)}}
-    <div class="row">
-      <div class="three wide column light-text">
-        {{t "forms.fd-diagrams.cod"}}
-      </div>
-      <div class="thirteen wide column">
-        {{#each filteredModel.cod as |cod|}}
-          {{
-            fd-list-item
-            model=cod
-            caption=cod.data.name
-            sheetComponentName=sheetComponentName
-          }}
-        {{/each}}
-      </div>
-      <div class="right floated thirteen wide column">
-        {{
-          fd-button
-          caption=(t "forms.fd-diagrams.cod")
-          click=(action 'createDiagram' 'cod')
-        }}
-      </div>
-    </div>
-    {{/if}}
-
-    {{!-- dpd --}}
-    {{#if (not-eq filteredModel.dpd.length 0)}}
-    <div class="row">
-      <div class="three wide column light-text">
-        {{t "forms.fd-diagrams.dpd"}}
-      </div>
-      <div class="thirteen wide column">
-        {{#each filteredModel.dpd as |dpd|}}
-          {{
-            fd-list-item
-            model=dpd
-            caption=dpd.data.name
-            sheetComponentName=sheetComponentName
-          }}
-        {{/each}}
-      </div>
-      <div class="right floated thirteen wide column">
-        {{
-          fd-button
-          caption=(t "forms.fd-diagrams.dpd")
-          click=(action 'createDiagram' 'dpd')
-        }}
-      </div>
-    </div>
-    {{/if}}
-
-    {{!-- sd --}}
-    {{#if (not-eq filteredModel.sd.length 0)}}
-    <div class="row">
-      <div class="three wide column light-text">
-        {{t "forms.fd-diagrams.sd"}}
-      </div>
-      <div class="thirteen wide column">
-        {{#each filteredModel.sd as |sd|}}
-          {{
-            fd-list-item
-            model=sd
-            caption=sd.data.name
-            sheetComponentName=sheetComponentName
-          }}
-        {{/each}}
-      </div>
-      <div class="right floated thirteen wide column">
-        {{
-          fd-button
-          caption=(t "forms.fd-diagrams.sd")
-          click=(action 'createDiagram' 'sd')
-        }}
-      </div>
-    </div>
-    {{/if}}
-
-    {{!-- std --}}
-    {{#if (not-eq filteredModel.std.length 0)}}
-    <div class="row">
-      <div class="three wide column light-text">
-        {{t "forms.fd-diagrams.std"}}
-      </div>
-      <div class="thirteen wide column">
-        {{#each filteredModel.std as |std|}}
-          {{
-            fd-list-item
-            model=std
-            caption=std.data.name
-            sheetComponentName=sheetComponentName
-          }}
-        {{/each}}
-      </div>
-      <div class="right floated thirteen wide column">
-        {{
-          fd-button
-          caption=(t "forms.fd-diagrams.std")
-          click=(action 'createDiagram' 'std')
-        }}
-      </div>
-    </div>
-    {{/if}}
-
-    {{!-- ucd --}}
-    {{#if (not-eq filteredModel.ucd.length 0)}}
-    <div class="row">
-      <div class="three wide column light-text">
-        {{t "forms.fd-diagrams.ucd"}}
-      </div>
-      <div class="thirteen wide column">
-        {{#each filteredModel.ucd as |ucd|}}
-          {{
-            fd-list-item
-            model=ucd
-            caption=ucd.data.name
-            sheetComponentName=sheetComponentName
-          }}
-        {{/each}}
-      </div>
-      <div class="right floated thirteen wide column">
-        {{
-          fd-button
-          caption=(t "forms.fd-diagrams.ucd")
-          click=(action 'createDiagram' 'ucd')
-        }}
-      </div>
-    </div>
-    {{/if}}
+        <div class="row">
+          <div class="three wide column light-text">
+            {{if groupBySystems key (t (concat "forms.fd-diagrams." key))}}
+          </div>
+          <div class="thirteen wide column">
+            {{#each diagrams as |diagram|}}
+              {{
+                fd-list-item
+                model=diagram
+                caption=diagram.data.name
+                sheetComponentName=sheetComponentName
+              }}
+            {{/each}}
+          </div>
+          {{#if (not groupBySystems)}}
+            <div class="right floated thirteen wide column">
+              {{
+                fd-button
+                caption=(t (concat "forms.fd-diagrams." key))
+                click=(action 'createDiagram' key)
+                readonly=readonlyModeProject
+              }}
+            </div>
+          {{/if}}
+        </div>
+        {{/if}}
+      {{/let}}
+    {{/each-in}}
 
   </div>
 </form>
 
-
-{{#fd-sheet
-  title=computedTitle
-  saveController=(action 'save')
-  deleteController=(action 'delete')
-  sheetComponentName=sheetComponentName
-  toolbarVisible=(not isAddMode)
-  isNewModel=selectedElement.model.data.isNew
+{{fd-sheets/fd-diagram-sheet
+  model=model
+  isAddMode=isAddMode
+  createDiagram=(action 'createDiagram')
+  updateModel=(action 'updateModel')
 }}
-  {{#if isAddMode}}
-    {{fd-editing-panels/fd-create-diagrams
-      createDiagramAction=(action 'createDiagram')
-    }}
-  {{else}}
-    {{#if isDiagramVisible}}
-      {{fd-uml-diagram-editor
-        model=selectedElement.model.data
-        emptyReferenceCountItems=emptyReferenceCountItems
-        sheetComponentName=sheetComponentName
-        openEditFormAction=(action "openObjectEditForm")
-      }}
-    {{/if}}
-  {{/if}}
-{{/fd-sheet}}
 
-{{#fd-sheet
-  title=editableObject.name
-  saveController=(action "saveEditableObject")
-  sheetComponentName=objectEditFormSheet
-  readonly=true
-  isNewModel=true
-}}
-  {{#if (known-for-type (concat "fd-editing-panels/fd-" objectEditFormNamePart "-editing-panel"))}}
-    {{component (concat "fd-editing-panels/fd-" objectEditFormNamePart "-editing-panel")
-      model=editableObject
-    }}
-  {{else}}
-    {{fd-editing-panels/fd-custom-editing-panel
-      model=editableObject
-    }}
-  {{/if}}
-{{/fd-sheet}}
+{{fd-sheets/fd-edit-diagram-object-sheet}}
 
-{{#if _showErrorDialog}}
-  {{#modal-dialog
-    title=_classErrors
-    useOkButton=false
-    useCloseButton=false
-    settings=(hash
-      onHidden=(action set "_showErrorDialog" false)
-      context=".pusher:first"
-    )
+{{fd-sheets/fd-view-sheet}}
+
+{{#if show}}
+  {{fd-modal-message-box
+    isError=isError
+    messageText=messageText
+    approve=(action "closeWithSaving")
+    deny=(action "closeWithoutSaving")
+    hide=(action set "show" false)
+    headerIcon='edit'
   }}
-  {{/modal-dialog}}
 {{/if}}

@@ -5,6 +5,7 @@ import joint from 'npm:jointjs';
 
 import FdUmlBaseLink from './fd-uml-link';
 import { computed } from '@ember/object';
+import { isNone } from '@ember/utils';
 import { Connection } from './fd-uml-connection';
 import { Dependency } from './fd-uml-dependency';
 import { NormalizedDescriptionView } from './links-view/fd-normalized-description-view';
@@ -59,4 +60,14 @@ export let Transition = Connection.define('flexberry.uml.Transition', {
   }
 });
 
-joint.shapes.flexberry.uml.TransitionView = NormalizedDescriptionView.extend();
+joint.shapes.flexberry.uml.TransitionView = NormalizedDescriptionView.extend({
+  setColors() {
+    NormalizedDescriptionView.prototype.setColors.apply(this, arguments);
+
+    const textColor = this.getTextColor();
+
+    if (!isNone(textColor)) {
+      this.model.attr('.marker-target/stroke', textColor);
+    }
+  }
+});

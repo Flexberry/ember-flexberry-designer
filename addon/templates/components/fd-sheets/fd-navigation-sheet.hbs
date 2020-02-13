@@ -1,0 +1,49 @@
+<div class="content-mini">
+  <div class="ui {{if loadingState "active"}} inverted dimmer">
+    <div class="ui text loader"></div>
+  </div>
+  <div class="fd-sheet-header">
+    {{fd-sheets/fd-sheets-tool-bar
+      sheetComponentName=sheetComponentName
+      readonlyMode=readonlyMode
+      sheetButtons=(array 'delete' 'save')
+      toolbarVisible=(not isAddMode)
+      saveSheet=save
+      deleteSheet=(action 'delete')
+
+      customButtonVisible=isAddMode
+      customButtonTitle=customButtonTitle
+      customButtonSheet=(action set 'isAddMode' false)
+    }}
+    {{flexberry-textbox
+      value=(if isAddMode (t "components.fd-create-node-editing-panel.create-page") (concat (t "forms.fd-navigation.caption-sheet") selectedValue.text))
+      placeholder=(t "components.fd-sheets-tool-bar.placeholder-caption")
+      readonly=true
+      class='form-header fluid'
+      maxlength=maxlength
+    }}
+  </div>
+  <div class="fd-sheet-body">
+    {{#if isAddMode}}
+      {{fd-navigation-editing-panels/fd-create-node-editing-panel
+        node=selectedValue
+        forms=model
+        addSubFormAction=addSubForm
+      }}
+    {{else}}
+      {{#if (eq selectedValue.original.type 'folder')}}
+        {{fd-navigation-editing-panels/fd-folder-editing-panel
+          node=selectedValue
+          openPanelCreateSubFormAction=(action set 'isAddMode' true)
+          addSubFolderAction=addSubFolder
+          readonlyMode=readonlyMode
+        }}
+      {{else}}
+        {{fd-navigation-editing-panels/fd-property-editing-panel
+          node=selectedValue
+          readonlyMode=readonlyMode
+        }}
+      {{/if}}
+    {{/if}}
+  </div>
+</div>

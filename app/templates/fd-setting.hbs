@@ -1,1 +1,302 @@
-{{outlet}}
+<form class="ui form flexberry-vertical-form settings-form">
+  <div class="fd-sheet-toolbar">
+    <button class="ui button {{if readonlyModeProject 'disabled' ''}}" {{action "save"}}>
+      {{t "forms.fd-setting.save-button"}}
+    </button>
+  </div>
+  <h2 class="form-header">{{t "forms.fd-setting.project-settings-caption"}}</h2>
+  <div class="ui stackable grid fd-list-edited">
+    <div class="row">
+      <div class="four wide column">
+        {{t "forms.fd-setting.project-settings.name"}}
+      </div>
+      <div class="twelve wide column light-text">
+        {{flexberry-textbox
+          class="fluid input"
+          value=model.stage.name
+          placeholder=(t "forms.fd-setting.project-settings.name-placeholder")
+          readonly=readonlyModeProject
+        }}
+      </div>
+    </div>
+    <div class="row">
+      <div class="four wide column">
+        {{t "forms.fd-setting.project-settings.product"}}
+      </div>
+      <div class="twelve wide column light-text">
+        {{flexberry-textbox
+          class="fluid input"
+          value=model.stage.product
+          placeholder=(t "forms.fd-setting.project-settings.product-placeholder")
+          readonly=readonlyModeProject
+          keyPress=keyPressPattern
+        }}
+      </div>
+    </div>
+    <div class="row">
+      <div class="four wide column">
+        <div>{{t "forms.fd-setting.project-settings.access"}}</div>
+      </div>
+      <div class="twelve wide column light-text">
+        <div class="field">
+          <div class="flexberry-checkbox ui checkbox">
+            <input type="radio" name="access" class="flexberry-checkbox-input"
+              onchange={{action set 'accessIsPublic' false}} disabled={{if readonlyModeProject 'disabled' ''}}>
+            <label class="flexberry-checkbox-label">{{t "forms.fd-setting.project-settings.access-private"}}</label>
+          </div>
+        </div>
+        <div class="field">
+          <div class="flexberry-checkbox ui checkbox">
+            <input type="radio" name="access" class="flexberry-checkbox-input" checked
+              onchange={{action set 'accessIsPublic' true}} disabled={{if readonlyModeProject 'disabled' ''}}>
+            <label class="flexberry-checkbox-label">{{t "forms.fd-setting.project-settings.access-public"}}</label>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="four wide column">
+        <div>{{t "forms.fd-setting.project-settings.description"}}</div>
+      </div>
+      <div class="twelve wide column light-text">
+        {{flexberry-textbox
+          class="fluid input"
+          value=model.stage.description
+          placeholder=(t "forms.fd-setting.project-settings.description-placeholder")
+          readonly=readonlyModeProject
+        }}
+      </div>
+    </div>
+  </div>
+
+  <h2 class="form-header">{{t "forms.fd-setting.generation-settings-caption"}}</h2>
+  <div class="ui stackable grid fd-list-edited">
+    <div class="row">
+      {{#flexberry-toggler
+          caption=(t 'forms.fd-setting.generation-settings.frontend-caption')
+          expanded=false
+      }}
+      <div class="ui stackable grid fd-list">
+        <div class="row">
+          <div class="five wide column">
+            <div>{{t "forms.fd-setting.generation-settings.frontend-repo-url"}}</div>
+          </div>
+          <div class="eleven wide column light-text">
+            {{flexberry-textbox
+              value=model.settings.FrontendGitRepoUrl
+              class='fluid input'
+              placeholder=(t "forms.fd-setting.generation-settings.repo-url-placeholder")
+              readonly=readonlyModeProject
+            }}
+          </div>
+        </div>
+        <div class="row">
+          <div class="five wide column">
+            <div>{{t "forms.fd-setting.generation-settings.frontend-login"}}</div>
+          </div>
+          <div class="eleven wide column light-text">
+            {{flexberry-textbox
+              value=model.settings.FrontendLogin
+              class='fluid input'
+              placeholder=(t "forms.fd-setting.generation-settings.login-placeholder")
+              readonly=readonlyModeProject
+            }}
+          </div>
+        </div>
+        <div class="row">
+          <div class="five wide column">
+            <div>{{t "forms.fd-setting.generation-settings.frontend-password"}}</div>
+          </div>
+          <div class="eleven wide column light-text">
+            {{flexberry-textbox
+              value=model.settings.FrontendPassword
+              class='fluid input'
+              placeholder=(t "forms.fd-setting.generation-settings.password-placeholder")
+              readonly=readonlyModeProject
+            }}
+          </div>
+        </div>
+        <div class="row">
+          <div class="five wide column">
+            <div>{{t "forms.fd-setting.generation-settings.frontend-branch"}}</div>
+          </div>
+          <div class="eleven wide column light-text">
+            {{flexberry-textbox
+              value=model.settings.FrontendBranch
+              class='fluid input'
+              placeholder=(t "forms.fd-setting.generation-settings.branch-placeholder")
+              readonly=readonlyModeProject
+            }}
+          </div>
+        </div>
+        <div class="row">
+          <div class="five wide column">
+            <div>{{t "forms.fd-setting.generation-settings.frontend-pub-key"}}</div>
+          </div>
+          <div class="eleven wide column light-text">
+            {{flexberry-textbox
+              value=model.settings.FrontendPublicKey
+              class='fluid input'
+              placeholder=(t "forms.fd-setting.generation-settings.pub-key-placeholder")
+              readonly=readonlyModeProject
+            }}
+          </div>
+        </div>
+        <div class="row">
+          <div class="five wide column">
+            <div>{{t "forms.fd-setting.generation-settings.frontend-pri-key"}}</div>
+          </div>
+          <div class="eleven wide column light-text">
+            {{flexberry-textbox
+              value=model.settings.FrontendPrivateKey
+              class='fluid input'
+              placeholder=(t "forms.fd-setting.generation-settings.pri-key-placeholder")
+              readonly=readonlyModeProject
+            }}
+          </div>
+        </div>
+      </div>
+      {{/flexberry-toggler}}
+    </div>
+
+    <div class="row">
+      {{#flexberry-toggler
+          caption=(t 'forms.fd-setting.generation-settings.backend-caption')
+          expanded=false
+      }}
+      <div class="ui stackable grid fd-list">
+        <div class="row">
+          <div class="five wide column">
+            <div>{{t "forms.fd-setting.generation-settings.backend-repo-url"}}</div>
+          </div>
+          <div class="eleven wide column light-text">
+            {{flexberry-textbox
+              value=model.settings.BackendGitRepoUrl
+              class='fluid input'
+              placeholder=(t "forms.fd-setting.generation-settings.repo-url-placeholder")
+              readonly=readonlyModeProject
+            }}
+          </div>
+        </div>
+        <div class="row">
+          <div class="five wide column">
+            <div>{{t "forms.fd-setting.generation-settings.backend-login"}}</div>
+          </div>
+          <div class="eleven wide column light-text">
+            {{flexberry-textbox
+              value=model.settings.BackendLogin
+              class='fluid input'
+              placeholder=(t "forms.fd-setting.generation-settings.login-placeholder")
+              readonly=readonlyModeProject
+            }}
+          </div>
+        </div>
+        <div class="row">
+          <div class="five wide column">
+            <div>{{t "forms.fd-setting.generation-settings.backend-password"}}</div>
+          </div>
+          <div class="eleven wide column light-text">
+            {{flexberry-textbox
+              value=model.settings.BackendPassword
+              class='fluid input'
+              placeholder=(t "forms.fd-setting.generation-settings.password-placeholder")
+              readonly=readonlyModeProject
+            }}
+          </div>
+        </div>
+        <div class="row">
+          <div class="five wide column">
+            <div>{{t "forms.fd-setting.generation-settings.backend-branch"}}</div>
+          </div>
+          <div class="eleven wide column light-text">
+            {{flexberry-textbox
+              value=model.settings.BackendBranch
+              class='fluid input'
+              placeholder=(t "forms.fd-setting.generation-settings.branch-placeholder")
+              readonly=readonlyModeProject
+            }}
+          </div>
+        </div>
+        <div class="row">
+          <div class="five wide column">
+            <div>{{t "forms.fd-setting.generation-settings.backend-pub-key"}}</div>
+          </div>
+          <div class="eleven wide column light-text">
+            {{flexberry-textbox
+              value=model.settings.BackendPublicKey
+              class='fluid input'
+              placeholder=(t "forms.fd-setting.generation-settings.pub-key-placeholder")
+              readonly=readonlyModeProject
+            }}
+          </div>
+        </div>
+        <div class="row">
+          <div class="five wide column">
+            <div>{{t "forms.fd-setting.generation-settings.backend-pri-key"}}</div>
+          </div>
+          <div class="eleven wide column light-text">
+            {{flexberry-textbox
+              value=model.settings.BackendPrivateKey
+              class='fluid input'
+              placeholder=(t "forms.fd-setting.generation-settings.pri-key-placeholder")
+              readonly=readonlyModeProject
+            }}
+          </div>
+        </div>
+      </div>
+      {{/flexberry-toggler}}
+    </div>
+
+    <div class="row">
+      <div class="four wide column">
+        {{t "forms.fd-setting.generation-settings.frontend-publish"}}
+      </div>
+      <div class="twelve wide column light-text">
+        {{flexberry-checkbox
+          value=model.settings.FrontendPublishGh
+          class='fluid input'
+          readonly=readonlyModeProject
+        }}
+      </div>
+    </div>
+  </div>
+
+  {{#if model.usersAccess}}
+    <h2 class="form-header">{{t "forms.fd-setting.access-settings-caption"}}</h2>
+    <div class="ui stackable grid fd-list-edited">
+      <div class="row">
+        <div class="sixteen wide column light-text">
+          {{fd-attribute-table
+            tableView=tableUsersAccess
+            buttonCaption=usersAccessButton
+            dropdownItemsObject=(flexberry-enum 'new-platform-flexberry-web-designer-access-mode')
+            model=model.usersAccess
+            create=(action 'createUserAccess')
+            delete=(action 'deleteUserAccess')
+            dropdownChange=(action 'dropdownChangeAccess')
+            readonly=readonlyModeProject
+          }}
+        </div>
+      </div>
+    </div>
+  {{/if}}
+
+  <h2 class="form-header">{{t "forms.fd-setting.project-actions-caption"}}</h2>
+  <div class="ui stackable grid">
+    <div class="row">
+      <span>{{t "forms.fd-setting.project-actions.delete-stage-caption"}}</span>
+      <button class="ui button basic {{if readonlyModeProject 'disabled' ''}}" {{action "delete"}}>
+        {{t "forms.fd-setting.project-actions.delete-stage-button"}}
+      </button>
+    </div>
+  </div>
+
+</form>
+
+{{#if show}}
+  {{fd-modal-message-box
+    isError=isError
+    messageText=messageText
+    hide=(action set "show" false)
+  }}
+{{/if}}

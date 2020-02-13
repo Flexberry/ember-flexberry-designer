@@ -6,4 +6,5 @@ export default {
   cancel: 'Отменить',
   'create-prototype-button-text': 'Создать представления, формы и приложение',
   'create-prototype-error': 'Не удалось создать прототип приложения',
+  'edit-caption': 'Правка'
 };

@@ -64,6 +64,9 @@ export let DescriptionView = EmptyView.extend({
       this.$box.find('input:focus, textarea:focus').blur();
     }, this);
     this.updateBox();
+    const objectModel = this.model.get('objectModel');
+    this.paper.trigger('getrepobjvalues', objectModel, this);
+
     return this;
   },
 
@@ -90,6 +93,15 @@ export let DescriptionView = EmptyView.extend({
       top: position.y - 7,
       transform: 'rotate(' + (this.model.get('angle') || 0) + 'deg)'
     });
+  },
+
+  updateInputValue() {
+    let objectModel = this.model.get('objectModel');
+    let descriptionInput = this.$box.find('.description-input');
+
+    descriptionInput.prop('rows', objectModel.get('description').split(/[\n\r|\r|\n]/).length || 1);
+    descriptionInput.val(objectModel.get('description'));
+    this.updateInputWidth('.description-input');
   },
 
   removeBox: function() {

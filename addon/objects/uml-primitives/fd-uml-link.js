@@ -154,7 +154,6 @@ export default FdUmlPrimitive.extend({
     }
   }),
 
-
   /**
   The start multiplicity of a link.
 
@@ -218,6 +217,7 @@ export default FdUmlPrimitive.extend({
       this.set('primitive.StartLE.Point.Y', value.y);
       this.set('primitive.StartPoint.X', value.x);
       this.set('primitive.StartPoint.Y', value.y);
+      this.set('primitive.Points.0', this.get('primitive.StartPoint'));
       return value;
     },
   }),
@@ -237,6 +237,8 @@ export default FdUmlPrimitive.extend({
       this.set('primitive.EndLE.Point.Y', value.y);
       this.set('primitive.EndPoint.X', value.x);
       this.set('primitive.EndPoint.Y', value.y);
+      let pointsLength = this.get('primitive.Points.length');
+      this.set(`primitive.Points.${pointsLength - 1}`, this.get('primitive.EndPoint'));
       return value;
     },
   }),
@@ -292,6 +294,14 @@ export default FdUmlPrimitive.extend({
       return value;
     },
   }),
+
+  /**
+    Use for add point connection cyclec link with 1 vertices.
+
+    @property vertices
+    @type Bool
+  */
+  cyclecLinkSwitch: false,
 
   /**
     See {{#crossLink "FdUmlPrimitive/JointJS:method"}}here{{/crossLink}}.
@@ -485,7 +495,7 @@ export let Link = joint.dia.Link.define('flexberry.uml.Link', {
           this.label(2, { position: { distance: this.getLabelDistance('endRole'), offset: -12 }, inverseTextDirection: false });
         } else {
           this.label(3, { position: { distance: this.getLabelDistance('startMultiplicity'), offset: 12 }, inverseTextDirection: true });
-          this.label(2, { position: { distance: this.getLabelDistance('startRole'), offset: -12 }, inverseTextDirection: true });
+          this.label(1, { position: { distance: this.getLabelDistance('startRole'), offset: -12 }, inverseTextDirection: true });
           this.label(5, { position: { distance: this.getLabelDistance('qualified'), offset: 12 }, inverseTextDirection: true });
         }
       }
@@ -680,4 +690,3 @@ joint.linkAnchors.connectionSegmRatio = function(endView/*, endMagnet, anchorRef
   let ret = new Point({x: x, y: y});
   return ret;
 };
-

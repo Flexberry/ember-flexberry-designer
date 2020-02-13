@@ -17,4 +17,12 @@ export default {
   login: 'Логин',
   password: 'Пароль',
   'save-and-generate': 'Сохранить настройки и генерировать приложение',
+  'run-caption': 'Выполняющиеся',
+  'success-caption': 'Завершены успешно',
+  'error-caption': 'Завершены с ошибкой',
+  'other-caption': 'Другие',
+  'error-message': {
+    'empty-generation': 'Не удалось получить лог генерации',
+  },
+  'all-states': 'Все статусы'
 };

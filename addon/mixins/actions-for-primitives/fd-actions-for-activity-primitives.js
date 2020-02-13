@@ -43,7 +43,7 @@ export default Mixin.create({
         let jsonObject = getJsonForElement(
           'STORMCASE.UML.ad.Decision, UMLAD',
           { x, y },
-          { width: 70, height: 40 },
+          { width: 40, height: 20 },
         );
 
         let newDecisionObject = FdUmlDecision.create({ primitive: jsonObject });
@@ -63,7 +63,7 @@ export default Mixin.create({
         let jsonObject = getJsonForElement(
           'STORMCASE.UML.ad.State, UMLAD',
           { x, y },
-          { width: 110, height: 90 },
+          { width: 40, height: 40 },
           { Name: '', Text: '' },
         );
         let activeStateObject = FdUmlActiveState.create({ primitive: jsonObject });
@@ -163,7 +163,7 @@ export default Mixin.create({
         let jsonObject = getJsonForElement(
           'STORMCASE.UML.ad.ObjectInState, UMLAD',
           { x, y },
-          { width: 110, height: 90 },
+          { width: 40, height: 40 },
           { Name: '', Text: '' },
         );
         let objectInStateObject = FdUmlObjectInState.create({ primitive: jsonObject });
@@ -183,7 +183,7 @@ export default Mixin.create({
         let jsonObject = getJsonForElement(
           'STORMCASE.UML.ad.SignalReceiptLeft, UMLAD',
           { x, y },
-          { width: 100, height: 30 },
+          { width: 40, height: 20 },
           { Name: '' },
         );
         let signalReceiptObject = FdUmlSignalReceipt.create({ primitive: jsonObject });
@@ -203,7 +203,7 @@ export default Mixin.create({
         let jsonObject = getJsonForElement(
           'STORMCASE.UML.ad.SignalReceiptRight, UMLAD',
           { x, y },
-          { width: 100, height: 30 },
+          { width: 40, height: 20 },
           { Name: '' },
         );
         let signalReceiptObject = FdUmlSignalReceipt.create({ primitive: jsonObject });
@@ -223,7 +223,7 @@ export default Mixin.create({
         let jsonObject = getJsonForElement(
           'STORMCASE.UML.ad.SignalSendLeft, UMLAD',
           { x, y },
-          { width: 100, height: 30 },
+          { width: 40, height: 20 },
           { Name: '' },
         );
         let signalSendObject = FdUmlSignalSend.create({ primitive: jsonObject });
@@ -243,7 +243,7 @@ export default Mixin.create({
         let jsonObject = getJsonForElement(
           'STORMCASE.UML.ad.SignalSendRight, UMLAD',
           { x, y },
-          { width: 100, height: 30 },
+          { width: 40, height: 20 },
           { Name: '' },
         );
         let signalSendObject = FdUmlSignalSend.create({ primitive: jsonObject });

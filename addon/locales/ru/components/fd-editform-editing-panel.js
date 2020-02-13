@@ -11,4 +11,6 @@ export default {
   'namespace-postfix-caption': 'Постфикс пространства имен',
   'namespace-postfix-placeholder': 'Наименование постфикса',
   'formview-caption': 'Составное представление',
+  'switch-button-constructor': 'Конструктор настройки внешнего вида формы редактирования',
+  'switch-button-setting': 'Настройки формы редактирования'
 };

@@ -5,9 +5,40 @@ import { A } from '@ember/array';
 import { isNone } from '@ember/utils';
 import { later } from '@ember/runloop';
 import $ from 'jquery';
+import config from '../config/environment';
+import fade from 'ember-animated/transitions/fade';
 
 export default Controller.extend({
+  /**
+    Array queryParams form
+
+    @property queryParams
+    @type Number
+    @default 0
+  */
+  queryParams: ['inframe'],
+
+  transition: fade,
+
+  /**
+    Sets whether to show decor elements on the page
+    inframe: 0 - the usual view of the page
+    inframe: 1 - page without footer, header, sidebar. Used for printing
+
+    @property inframe
+    @type Number
+    @default 0
+  */
+  inframe: 0,
+
+  /**
+    Service for managing the state of the component.
+
+    @property fdSheetService
+    @type FdSheetService
+  */
   fdSheetService: service(),
+
   /**
     Flag indicates sidebar visible
 
@@ -33,6 +64,8 @@ export default Controller.extend({
   */
   appState: service(),
 
+  router: service(),
+
   /**
     Current project name from stageModel
 
@@ -41,6 +74,16 @@ export default Controller.extend({
   */
   currentProjectName: computed('currentContext.context.stageModel.name', function() {
     return this.get('currentContext.context.stageModel.name');
+  }),
+
+  /**
+    Current project is selected
+
+    @property currentProjectIsSelected
+    @type Bool
+  */
+  currentProjectIsSelected: computed('currentContext.context.stageModel', function() {
+    return isNone(this.get('currentContext.context.stageModel')) ? false : true;
   }),
 
   sitemap: computed('i18n.locale', 'currentContext.context.{configuration,stage}', function() {
@@ -111,19 +154,19 @@ export default Controller.extend({
         icon: 'icon-fd-view'
       },
       {
-        link: '',
-        caption: i18n.t('forms.application.sitemap.root.fd-requests.caption'),
-        title: i18n.t('forms.application.sitemap.root.fd-requests.title'),
-        icon: 'icon-fd-email'
+        link: 'i-i-s-caseberry-logging-objects-application-log-l',
+        caption: i18n.t('forms.application.sitemap.root.i-i-s-caseberry-logging-objects-application-log-l.caption'),
+        title: i18n.t('forms.application.sitemap.root.i-i-s-caseberry-logging-objects-application-log-l.title'),
+        icon: 'bug'
       },
       {
-        link: '',
+        link: 'https://flexberry.github.io',
         caption: i18n.t('forms.application.sitemap.root.fd-docs.caption'),
         title: i18n.t('forms.application.sitemap.root.fd-docs.title'),
         icon: 'icon-fd-book'
       },
       {
-        link: '',
+        link: 'https://gitter.im/Flexberry',
         caption: i18n.t('forms.application.sitemap.root.fd-chat.caption'),
         title: i18n.t('forms.application.sitemap.root.fd-chat.title'),
         icon: 'icon-fd-speech-bubble'
@@ -143,6 +186,15 @@ export default Controller.extend({
   locales: undefined,
 
   /**
+    Themes supported by application.
+
+    @property themes
+    @type String[]
+    @default ['light', 'dark', 'blue']
+  */
+   themes: undefined,
+
+  /**
     Handles changes in userSettingsService.isUserSettingsServiceEnabled.
 
     @method _userSettingsServiceChanged
@@ -157,6 +209,8 @@ export default Controller.extend({
   */
   init() {
     this._super(...arguments);
+
+    this.set('themes', ['light', 'dark', 'blue']);
 
     this.set('locales', ['ru', 'en']);
 
@@ -192,6 +246,19 @@ export default Controller.extend({
   sidebarMiniWidth: '60px',
 
   actions: {
+    /**
+      Select themes.
+      @method actions.changeTheme
+    */
+    changeTheme(value) {
+      let sheet = document.querySelector('#theme');
+      if (!sheet) {
+        return
+      }
+
+      let rootURL = this.get('router.location.location.origin') + config.rootURL;
+      sheet.setAttribute('href', `${rootURL}/assets/${value}.css`);
+    },
 
     /**
       Call `updateWidthTrigger` for `objectlistviewEventsService`.
@@ -229,16 +296,21 @@ export default Controller.extend({
           $(item).css({ 'transform': sheetTranslate });
         }
       });
+      if (!sidebarVisible) {
+        sidebar.toggleClass('sidebar-mini');
+      }
 
       // Animated increases the width of the page content.
       $('.full.height .flexberry-vertical-form').css({ opacity: 0.2 });
       later(function() {
         $('.full.height .flexberry-vertical-form').css({ opacity: '' });
         $('.full.height').css({ width: contentWidth });
+        if (sidebarVisible) {
+          sidebar.toggleClass('sidebar-mini');
+        }
       }, 250);
 
       later(this, function() {
-        sidebar.toggleClass('sidebar-mini');
 
         // For reinit overflowed tabs.
         $(window).trigger('resize');
@@ -250,18 +322,11 @@ export default Controller.extend({
       @method actions.toggleSidebarMobile
     */
     toggleSidebarMobile() {
-      $('.ui.sidebar.main.menu').sidebar('toggle');
-      let sidebarVisible = $('.inverted.vertical.main.menu').hasClass('visible');
-      this.set('_sidebarVisible', !sidebarVisible);
-      if (sidebarVisible) {
-        $('.sidebar.icon.text-menu-show').removeClass('hidden');
-        $('.sidebar.icon.text-menu-hide').addClass('hidden');
-        $('.bgw-opacity').addClass('hidden');
-      } else {
-        $('.sidebar.icon.text-menu-show').addClass('hidden');
-        $('.sidebar.icon.text-menu-hide').removeClass('hidden');
-        $('.bgw-opacity').removeClass('hidden');
-      }
+      let sidebar = $('.ui.sidebar.main.menu');
+
+      sidebar.sidebar('setting', 'transition', 'overlay')
+      .sidebar('attach events', '.ui.sidebar.main.menu a.item')
+      .sidebar('toggle');
     }
   }
 });
