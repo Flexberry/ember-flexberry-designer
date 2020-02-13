@@ -261,6 +261,26 @@
     </div>
   </div>
 
+  {{#if model.usersAccess}}
+    <h2 class="form-header">{{t "forms.fd-setting.access-settings-caption"}}</h2>
+    <div class="ui stackable grid fd-list-edited">
+      <div class="row">
+        <div class="sixteen wide column light-text">
+          {{fd-attribute-table
+            tableView=tableUsersAccess
+            buttonCaption=usersAccessButton
+            dropdownItemsObject=(flexberry-enum 'new-platform-flexberry-web-designer-access-mode')
+            model=model.usersAccess
+            create=(action 'createUserAccess')
+            delete=(action 'deleteUserAccess')
+            dropdownChange=(action 'dropdownChangeAccess')
+            readonly=readonlyModeProject
+          }}
+        </div>
+      </div>
+    </div>
+  {{/if}}
+
   <h2 class="form-header">{{t "forms.fd-setting.project-actions-caption"}}</h2>
   <div class="ui stackable grid">
     <div class="row">
