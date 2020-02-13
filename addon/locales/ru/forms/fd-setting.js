@@ -40,9 +40,20 @@ export default {
     'pri-key-placeholder': 'Введите закрытый SSH ключ',
     'frontend-publish': 'Публикация приложения в gh-pages',
   },
+  'access-settings-caption': 'Учасники',
+  'access-settings': {
+    'name-user-caption': 'Имя пользователя',
+    'name-user-placeholder': 'Имя пользователя загрузится после сохранения',
+    'login-user-caption': 'Логин пользователя',
+    'login-user-placeholder': 'Введите логин пользователя',
+    'user-access-caption': 'Права доступа пользователя',
+    'create-btn': 'Добовить нового участника',
+    'delete-btn': 'Удалить участника'
+  },
   'save-button': 'Сохранить',
   'error-message': {
     'empty-name': 'Имя стадии не может быть пустое',
     'exist-stage': 'Стадия с таким именем уже существует',
+    'empty-username': 'В системе отсутствуют Пользователи с логинами: '
   }
 };

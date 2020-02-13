@@ -1,5 +1,7 @@
 import Route from '@ember/routing/route';
+import { A } from '@ember/array';
 import { inject as service } from '@ember/service';
+import { isBlank } from '@ember/utils';
 
 export default Route.extend({
 
@@ -21,19 +23,28 @@ export default Route.extend({
   generationSettings: undefined,
 
   model() {
+    let modelHash = {
+      stage: undefined,
+      settings: undefined,
+      usersAccess: undefined,
+    };
+
     const store = this.get('store');
-    const stage = this.get('currentProjectContext').getCurrentStageModel();
+    modelHash.stage = this.get('currentProjectContext').getCurrentStageModel();
 
     const adapter = store.adapterFor('application');
-    const data = { 'project': stage.get('id'), 'moduleSettingTypes': this.get('generationSettings') };
+    const data = { 'project': modelHash.stage.get('id'), 'moduleSettingTypes': this.get('generationSettings') };
 
     return adapter.callAction('GetCurrentModuleSettings', data, null, { withCredentials: true }).then((generationSettings) => {
-      let currentGenerationSettings = JSON.parse(generationSettings.value);
+      modelHash.settings = JSON.parse(generationSettings.value);
 
-      return {
-        stage: stage,
-        settings: currentGenerationSettings
-      };
+      return adapter.callFunction('GetUsersAccessForStage', { project: modelHash.stage.get('id').toString() }, null, { withCredentials: true }).then((usersAccess) => {
+        if (!isBlank(usersAccess.value)) {
+          modelHash.usersAccess = A(JSON.parse(usersAccess.value));
+        }
+
+        return modelHash;
+      });
     });
   },
 
