@@ -495,7 +495,7 @@ export let Link = joint.dia.Link.define('flexberry.uml.Link', {
           this.label(2, { position: { distance: this.getLabelDistance('endRole'), offset: -12 }, inverseTextDirection: false });
         } else {
           this.label(3, { position: { distance: this.getLabelDistance('startMultiplicity'), offset: 12 }, inverseTextDirection: true });
-          this.label(2, { position: { distance: this.getLabelDistance('startRole'), offset: -12 }, inverseTextDirection: true });
+          this.label(1, { position: { distance: this.getLabelDistance('startRole'), offset: -12 }, inverseTextDirection: true });
           this.label(5, { position: { distance: this.getLabelDistance('qualified'), offset: 12 }, inverseTextDirection: true });
         }
       }
