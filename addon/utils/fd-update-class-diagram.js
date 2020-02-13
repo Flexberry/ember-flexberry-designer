@@ -208,8 +208,55 @@ function updateDependencysOfClassName(store, currentProjectContext, devClass) {
   return promises;
 }
 
+/**
+  Update all view, which are addicted of changed class name or class delete .
+*/
+function getUpdatedViews(store, primitives, className, newClassName) {
+  let promises = A();
+  let name = className;
+  let newName = newClassName;
+  primitives.forEach((primitive) => {
+    //Update definitions array in primitive repository object. For views.
+    const repositoryObjectRecord = (!isNone(primitive.primitive)) ? primitive.primitive.RepositoryObject : primitive.RepositoryObject;
+    const repositoryObjectRecordId = repositoryObjectRecord.slice(1, -1);
+    let repositoryObject = store.peekRecord('fd-dev-class', repositoryObjectRecordId);
+
+    if (!isNone(repositoryObject)) {
+      let views = repositoryObject.get('views');
+
+      views.forEach((view) => {
+        let definitionArray = view.get('definitionArray');
+        let definitionArrayUpdated = false;
+        definitionArray.forEach(function(definition) {
+          let defName = definition.get('name');
+          if (defName.indexOf(`${name}.`) !== -1) {
+            if (!newName) {
+              definitionArray.removeObject(definition);
+              definitionArrayUpdated = true;
+            } else {
+              let newDefName = definition.get('name').replace(`${name}.`, `${newName}.`);
+              definition.set('name', newDefName);
+            }
+          }
+        });
+
+        if (definitionArrayUpdated) {
+
+          //For trigger computed propherty in fd-dev-view model.
+          view.get('definitionArray');
+
+          promises.pushObject(view);
+        }
+      });
+    }
+  });
+
+  return promises;
+}
+
 export {
   createClassPrimitive,
   deletePrimitives,
+  getUpdatedViews,
   applyNewClassName
 };

@@ -10,6 +10,7 @@ import { A } from '@ember/array';
 import { computed, observer, set, get } from '@ember/object';
 
 import hasChanges from '../../utils/model-has-changes';
+import { getUpdatedViews } from '../../utils/fd-update-class-diagram';
 import { updateObjectByStr } from '../../utils/fd-update-str-value';
 
 import layout from '../../templates/components/fd-sheets/fd-diagram-sheet';
@@ -322,6 +323,13 @@ export default FdBaseSheet.extend({
 
             if (removeClasses.length > 0) {
               promises.pushObjects(removeClasses.map(mapFunction));
+
+              let updatedViews = A();
+              removeClasses.forEach(removeClasse => {  
+                updatedViews.pushObjects(getUpdatedViews(store, primitives, removeClasse.get('name'), null));       
+              });
+              //promises.pushObjects(store.batchUpdate(updatedViews));
+              promises.pushObjects(updatedViews.map(a => a.save()));
             }
 
             emptyReferenceCountItems.clear();
