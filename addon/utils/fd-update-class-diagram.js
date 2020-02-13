@@ -21,6 +21,10 @@ function deletePrimitives(store, currentProjectContext, classArray) {
     diagrams.forEach((diagram) => {
       let primitives = JSON.parse(diagram.get('primitivesJsonString')) || A();
 
+      // Update views.
+      let updatedViews = getUpdatedViews(store, primitives, name, null);
+      promises.pushObjects(updatedViews);
+
       // Find elements.
       let primitivesElementsOnDelete = A(primitives).filter(function(primitive) {
         return primitive.RepositoryObject === `{${devClass.get('id')}}`;
@@ -28,34 +32,6 @@ function deletePrimitives(store, currentProjectContext, classArray) {
 
       // Find links and views.
       let primitivesLinksOnDelete = A(primitives).filter(function(primitive) {
-
-        // Find and delete views in linked objects.
-        const repositoryObjectRecordId = primitive.RepositoryObject.slice(1, -1);
-        let repositoryObject = store.peekRecord('fd-dev-class', repositoryObjectRecordId);
-
-        if (!isNone(repositoryObject)) {
-          let views = repositoryObject.get('views');
-
-          views.forEach((view) => {
-            let definitionArray = view.get('definitionArray');
-            let definitionArrayUpdated = false;
-            definitionArray.forEach(function(definition) {
-              let defName = definition.get('name');
-              if (defName.indexOf(`${name}.`) !== -1) {
-                definitionArray.removeObject(definition);
-                definitionArrayUpdated = true;
-              }
-            });
-
-            if (definitionArrayUpdated) {
-
-              //For trigger computed propherty in fd-dev-view model.
-              view.get('definitionArray');   
-              promises.pushObject(view);
-            }
-          });
-        }
-
         // Find and delete links
         let linkOnDelete = primitivesElementsOnDelete.find((primitiveElement) => {
           let classId = primitiveElement.$id;
