@@ -445,6 +445,7 @@ joint.shapes.flexberry.uml.ClassView = joint.shapes.flexberry.uml.PrimitiveEleme
     attributesInput.val(objectModel.get('attributes').join('\n'));
     methodsInput.prop('rows', objectModel.get('methods').length || 1);
     methodsInput.val(objectModel.get('methods').join('\n'));
+    this.updateRectangles();
   },
 
   getButtons() {

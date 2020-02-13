@@ -7,5 +7,6 @@ export default {
   'delete-button-title': 'Удалить',
   'share-button-title': 'Копировать ссылку',
   'print-button-title': 'Печать',
-  'share-button-data-content': 'Скопировано!'
+  'share-button-data-content': 'Скопировано!',
+  'link-caption': 'Свойства связи'
 };

@@ -94,6 +94,12 @@ export let StateEx = BaseObject.define('flexberry.uml.StateEx', {
       'fill-opacity': 0
     },
   },
+
+  // Minimum width.
+  minWidth: 80,
+
+  // Minimum height.
+  minHeight: 60,
 }, {
   markup: [
     '<g class="rotatable">',
@@ -101,6 +107,13 @@ export let StateEx = BaseObject.define('flexberry.uml.StateEx', {
     '<rect class="flexberry-uml-body-rect"/>',
     '</g>'
   ].join(''),
+
+  getRectangles() {
+    return [
+      { type: 'header', element: this },
+      { type: 'body',  element: this },
+    ];
+  },
 });
 
 joint.shapes.flexberry.uml.StateExView = joint.shapes.flexberry.uml.BaseObjectView.extend({
@@ -126,7 +139,7 @@ export let CompositeState = StateEx.define('flexberry.uml.CompositeState', {
   attrs: { '.flexberry-uml-body-text': { 'font-weight':'bold', 'ref-y': 0, 'y-alignment': 'start' } }
 });
 
-joint.shapes.flexberry.uml.StateExView = joint.shapes.flexberry.uml.StateExView.extend({
+joint.shapes.flexberry.uml.CompositeStateView = joint.shapes.flexberry.uml.StateExView.extend({
   template: [
     '<div class="uml-class-inputs">',
     '<textarea class="class-name-input header-input" value="" rows="1" wrap="off"></textarea>',

@@ -345,7 +345,9 @@ FdActionsForUcdPrimitivesMixin, {
       let type = this.get('type');
       if (type === 'Link') {
         let newLink = this.get('newLink');
-        if (newLink.vertices().length === 0) {
+        if (isNone(newLink)) {
+          this.clearData();
+        } else if (newLink.vertices().length === 0) {
           let primitives = this.get('model.primitives');
           let linkPrimitive = primitives.findBy('id', newLink.get('id'));
           primitives.removeObject(linkPrimitive);
@@ -383,16 +385,14 @@ FdActionsForUcdPrimitivesMixin, {
         this.paper.fDDEditMode = buttonName;
         switch (buttonName) {
           case 'pointerClick':
-            this._enableEditLinks();
-            break;
           case 'addNoteConnector':
-            this._enableWrapLinks();
+            this.enableEditLinks();
             break;
           case 'addInheritance':
-            this._enableWrapBaseLinks();
+            this.enableWrapBaseLinks();
             break;
           default:
-            this._disableEditLinks();
+            this.disableEditLinks();
         }
         this.send(buttonName, e);
       }
@@ -452,7 +452,8 @@ FdActionsForUcdPrimitivesMixin, {
   clearData() {
     this._clearProperties();
     this._resetCurrentTargetElement();
-    this._enableEditLinks();
+    this.enableEditLinks();
+    this.paper.fDDEditMode = 'pointerClick';
   },
 
   /**
@@ -469,21 +470,17 @@ FdActionsForUcdPrimitivesMixin, {
     this.set('newLink', undefined);
   },
 
-  _enableEditLinks: function() {
+  enableEditLinks: function() {
     let paper = this.paper;
     let links = paper.model.getLinks();
     for (let i = 0; i < links.length; i+=1) {
       let  link = links[i];
       let view = link.findView(paper);
       view.$el.removeClass('edit-disabled');
-      view.$el.removeClass('linktools-disabled');
-      if ('vertexAdd' in view.options.interactive) {
-        delete view.options.interactive.vertexAdd;
-      }
     }
   },
 
-  _enableWrapBaseLinks: function() {
+  enableWrapBaseLinks: function() {
     let paper = this.paper;
     let links = paper.model.getLinks();
     for (let i = 0; i < links.length; i+=1) {
@@ -491,27 +488,13 @@ FdActionsForUcdPrimitivesMixin, {
       let view = link.findView(paper);
       if (link.get('type') == 'flexberry.uml.Generalization' && !link.connectedToLine()) {
         view.$el.removeClass('edit-disabled');
-        view.$el.addClass('linktools-disabled');
-        view.options.interactive.vertexAdd = false;
       } else {
         view.$el.addClass('edit-disabled');
       }
     }
   },
 
-  _enableWrapLinks: function() {
-    let paper = this.paper;
-    let links = paper.model.getLinks();
-    for (let i = 0; i < links.length; i+=1) {
-      let  link = links[i];
-      let view = link.findView(paper);
-      view.$el.removeClass('edit-disabled');
-      view.$el.addClass('linktools-disabled');
-      view.options.interactive.vertexAdd = false;
-    }
-  },
-
-  _disableEditLinks: function() {
+  disableEditLinks: function() {
     let paper = this.paper;
     let links = paper.model.getLinks();
     for (let i = 0; i < links.length; i+=1) {

@@ -176,7 +176,7 @@
   bottom: 0;
   display: inline-table;
   font-size: 0;
-  padding: 5px; 
+  padding: 5px;
   position: absolute;
   margin-right: -50%;
   max-width: 90%;
@@ -295,6 +295,32 @@
         fill: @overlayColorHex;
         stroke: @overlayColorHex;
       }
+    }
+  }
+}
+
+.joint-link .marker-vertices,
+.joint-link .marker-arrowheads,
+.joint-link .link-tools {
+  opacity: 1;
+}
+
+.joint-link.joint-theme-default {
+  .connection-wrap {
+    cursor: default;
+    &:hover {
+      opacity: 0;
+      stroke-opacity: 0;
+    }
+  }
+  .tool-remove {
+    display: none;
+  }
+  .marker-vertex,
+  .marker-arrowhead {
+    fill: @blue;
+    &:hover {
+      fill: @blue;
     }
   }
 }

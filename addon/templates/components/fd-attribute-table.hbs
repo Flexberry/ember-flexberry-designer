@@ -17,12 +17,22 @@
       </div>
       {{#each tableView as |tableView|}}
         <div class="column light-text">
-          {{flexberry-textbox
-            value=(mut (get value tableView.columnProperty))
-            class='fluid input'
-            placeholder=(t tableView.attrPlaceholder)
-            readonly=(or readonly tableTextBoxReadonly)
-          }}
+          {{#if tableView.isDropDown}}
+            {{flexberry-dropdown
+              items=dropdownItemsObject
+              value=(if (get value tableView.columnProperty) (get value tableView.columnProperty) '')
+              onChange=(action 'dropdownChangeValue' value)
+              class="fluid input"
+              readonly=(or readonly tableTextBoxReadonly)
+            }}
+          {{else}}
+            {{flexberry-textbox
+              value=(mut (get value tableView.columnProperty))
+              class='fluid input'
+              placeholder=(t tableView.attrPlaceholder)
+              readonly=(or readonly tableTextBoxReadonly)
+            }}
+          {{/if}}
         </div>
       {{/each}}
       {{#if editButtonInRow}}

@@ -127,7 +127,7 @@ function updateDependencysOfClassName(store, currentProjectContext, devClass) {
 
   const nameOrigin = devClass.changedAttributes().name[0];
   const nameNew = devClass.changedAttributes().name[1];
-  
+
   let diagrams = A(diagramsCurrentStage).filter(function(diagram) {
     let caseObjectsString = diagram.get('caseObjectsString');
     return !isNone(caseObjectsString) && caseObjectsString.indexOf(`Class:(${nameOrigin})`) !== -1;

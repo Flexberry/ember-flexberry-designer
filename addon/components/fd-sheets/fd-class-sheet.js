@@ -126,8 +126,6 @@ export default FdBaseSheet.extend({
   deactivateListItem() {
     let selectedValue = this.get('selectedValue');
     if (!isNone(selectedValue)) {
-      let model = get(selectedValue, 'data');
-      model.rollbackAll();
       set(selectedValue, 'active', false);
     }
   },

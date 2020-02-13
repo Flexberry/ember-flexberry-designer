@@ -147,14 +147,10 @@ export default Component.extend({
       paper.off('element:pointerup', this._ghostElementRemove, this);
     } else {
       $(paper.el).find('input,textarea').removeClass('click-disabled');
-      paper.setInteractivity({ elementMove: false });
+      paper.setInteractivity({ elementMove: false, vertexAdd: false });
       paper.on('element:pointermove', this._ghostElementMove, this);
       paper.on('element:pointerup', this._ghostElementRemove, this);
-      let highlightedElement = this.get('highlightedElement');
-      if (highlightedElement) {
-        highlightedElement.unhighlight();
-        this.set('highlightedElement', null);
-      }
+      this._highlighted(null);
     }
   }),
 
@@ -177,7 +173,6 @@ export default Component.extend({
 
       graph.getLinks().map(link => {
         link.findView(paper).$el.removeClass('edit-disabled');
-        link.findView(paper).$el.removeClass('linktools-disabled');
       }, this);
 
       $(paper.el).find('input,textarea').removeClass('click-disabled');
@@ -187,16 +182,17 @@ export default Component.extend({
 
       switch (this.paper.fDDEditMode) {
         case 'addNoteConnector':
-          this._enableWrapLinks();
+          this.enableEditLinks();
           break;
         case 'addInheritance':
-          this._enableWrapBaseLinks();
+          this.enableWrapBaseLinks();
           break;
         default:
-          this._disableEditLinks();
+          this.disableEditLinks();
       }
 
       $(paper.el).find('input,textarea').addClass('click-disabled');
+      this._highlighted(null);
     }
   }),
 
@@ -214,7 +210,7 @@ export default Component.extend({
       el: this.get('element'),
       model: graph,
       gridSize: 10,
-      drawGrid: true,
+      drawGrid: { name: 'fixedDot', args: { color: '#cecece' }},
       connectionStrategy: joint.connectionStrategies.toPointConnection,
       defaultConnectionPoint: joint.connectionPoints.toPointConnection,
       restrictTranslate: ({ paper }) => {
@@ -238,7 +234,8 @@ export default Component.extend({
         }
       },
       interactive: {
-        elementMove: false
+        elementMove: false,
+        vertexAdd: false,
       },
       cellNamespace: namespace,
       cellViewNamespace: namespace
@@ -317,11 +314,7 @@ export default Component.extend({
   _blankPointerClick(e) {
     let coordinates = forBlankEventPointerClickAndContextMenu(e);
     let options = { e: e, x: coordinates.x, y: coordinates.y };
-    let highlightedElement = this.get('highlightedElement');
-    if (highlightedElement) {
-      highlightedElement.unhighlight();
-      this.set('highlightedElement', null);
-    }
+    this._highlighted(null);
 
     let newElement = this.get('blankPointerClick')(options);
     this._addNewElement(newElement);
@@ -369,7 +362,8 @@ export default Component.extend({
           for (let i = 0; i < links.length; i+=1) {
             let  link = links[i];
             let view = link.findView(paper);
-              view.$el.addClass('edit-disabled');
+            view.$el.addClass('edit-disabled');
+            $(paper.el).find('input,textarea').addClass('click-disabled');
           }
           $(document).on({
             'mousemove.link': this._onDrag.bind(this)
@@ -381,8 +375,9 @@ export default Component.extend({
           break;
         }
         default:
-          if (isNone(this.get('draggedLink'))) {
-            return;
+          if (this.get('currentTargetElementIsPointer')) {
+            var linkView = element.model.findView(this.paper);
+            linkView.highlight();
           }
       }
     } else {
@@ -432,9 +427,6 @@ export default Component.extend({
           let view = link.findView(paper);
           if (link.cid == newElement.cid) {
             view.$el.addClass('edit-disabled');
-          } else {
-            view.$el.addClass('linktools-disabled');
-            view.options.interactive.vertexAdd = false;
           }
         }
 
@@ -466,7 +458,29 @@ export default Component.extend({
     @param {joint.dia.Element} cellView.model
   */
   _elementOpenEditForm({ model }) {
-    this.get('openEditFormAction')(model.get('objectModel'));
+    let object = {
+      data: undefined,
+      selectedValueModel: model.get('objectModel'),
+      isLink: false
+    };
+
+    let store = this.get('store');
+    let modelName = 'fd-dev-association';
+    let objectId = object.selectedValueModel.get('repositoryObject').slice(1, -1);
+
+    switch (object.selectedValueModel.get('primitive.$type')) {
+      case 'STORMCASE.UML.cad.Composition, UMLCAD':
+        modelName = 'fd-dev-aggregation';
+      // eslint-disable-next-line no-fallthrough
+      case 'STORMCASE.UML.cad.Association, UMLCAD':
+        object.isLink = true;
+        object.data = store.peekRecord(`${modelName}`, objectId);
+        break;
+      default:
+        object.data = store.peekRecord('fd-dev-class', objectId);
+    }
+
+    this.get('openEditFormAction')(object);
   },
 
   /**
@@ -523,7 +537,16 @@ export default Component.extend({
   _highlighted(cellView) {
     let highlightedElement = this.get('highlightedElement');
     if (highlightedElement && highlightedElement !== cellView) {
+      if (highlightedElement.model.isLink()) {
+        highlightedElement.$el.addClass('linktools-disabled');
+      }
+
       highlightedElement.unhighlight();
+    }
+
+    if (!isNone(cellView) && cellView.model.isLink() && !this.get('readonly')) {
+      cellView.$el.removeClass('linktools-disabled');
+      cellView.updateArrowheadMarkers();
     }
 
     this.set('highlightedElement', cellView);
@@ -544,9 +567,6 @@ export default Component.extend({
     graph.getLinks().map(link => {
       let view = link.findView(paper);
       view.$el.removeClass('edit-disabled');
-      if ('vertexAdd' in view.options.interactive) {
-        delete view.options.interactive.vertexAdd;
-      }
     }, this);
 
     $(paper.el).find('input,textarea').removeClass('click-disabled');
@@ -557,6 +577,7 @@ export default Component.extend({
     this.set('draggedLink', undefined);
     this.set('draggedLinkView', undefined);
     this.set('isLinkAdding', false);
+    this._highlighted(null);
   },
 
   /**
@@ -680,11 +701,11 @@ export default Component.extend({
     }
 
     const modelName = this._getModelName(objectModel.get('primitive.$type'));
-    if (modelName === 'fd-dev-class') {
-      const store = this.get('store');
-      const repositoryObjectId = repositoryObject.slice(1, -1);
-      const currentRepObj = store.peekRecord(modelName, repositoryObjectId);
+    const store = this.get('store');
+    const repositoryObjectId = repositoryObject.slice(1, -1);
+    const currentRepObj = store.peekRecord(modelName, repositoryObjectId);
 
+    if (modelName === 'fd-dev-class') {
       const name = currentRepObj.get('nameStr') || '';
       objectModel.set('name', name);
       this._updateInputValue('.class-name-input', name, view);
@@ -705,6 +726,22 @@ export default Component.extend({
       const initSize = view.model.size();
       view.updateRectangles(initSize.width, initSize.height);
       view.update();
+    } else if (modelName === 'fd-dev-association' || modelName === 'fd-dev-aggregation') {
+      const startRoleStr = currentRepObj.get('startRoleStr') || '';
+      objectModel.set('startRoleTxt', startRoleStr);
+      this._updateInputValue('.start-role-input', startRoleStr, view);
+
+      const endRoleStr = currentRepObj.get('endRoleStr') || '';
+      objectModel.set('endRoleTxt', endRoleStr);
+      this._updateInputValue('.end-role-input', endRoleStr, view);
+
+      const startMultiplicity = currentRepObj.get('startMultiplicity') || '';
+      objectModel.set('startMultiplicity', startMultiplicity);
+      this._updateInputValue('.start-multiplicity-input', startMultiplicity, view);
+
+      const endMultiplicity = currentRepObj.get('endMultiplicity') || '';
+      objectModel.set('endMultiplicity', endMultiplicity);
+      this._updateInputValue('.end-multiplicity-input', endMultiplicity, view);
     }
   },
 
@@ -1075,7 +1112,6 @@ export default Component.extend({
 
     let view = paper.findViewByModel(model);
     view.updateInputValue();
-    view.updateRectangles();
   },
 
   /**
@@ -1183,58 +1219,6 @@ export default Component.extend({
 
     objectModel.set('repositoryObject', `{${newElement.get('id')}}`);
     this._incrementPropertyReferenceCount(newElement);
-  },
-
-  _enableEditLinks: function() {
-    let paper = this.paper;
-    let links = paper.model.getLinks();
-    for (let i = 0; i < links.length; i+=1) {
-      let  link = links[i];
-      let view = link.findView(paper);
-      view.$el.removeClass('edit-disabled');
-      view.$el.removeClass('linktools-disabled');
-      if ('vertexAdd' in view.options.interactive) {
-        delete view.options.interactive.vertexAdd;
-      }
-    }
-  },
-
-  _enableWrapBaseLinks: function() {
-    let paper = this.paper;
-    let links = paper.model.getLinks();
-    for (let i = 0; i < links.length; i+=1) {
-      let  link = links[i];
-      let view = link.findView(paper);
-      if (link.get('type') == 'flexberry.uml.Generalization' && !link.connectedToLine()) {
-        view.$el.removeClass('edit-disabled');
-        view.$el.addClass('linktools-disabled');
-        view.options.interactive.vertexAdd = false;
-      } else {
-        view.$el.addClass('edit-disabled');
-      }
-    }
-  },
-
-  _enableWrapLinks: function() {
-    let paper = this.paper;
-    let links = paper.model.getLinks();
-    for (let i = 0; i < links.length; i+=1) {
-      let  link = links[i];
-      let view = link.findView(paper);
-      view.$el.removeClass('edit-disabled');
-      view.$el.addClass('linktools-disabled');
-      view.options.interactive.vertexAdd = false;
-    }
-  },
-
-  _disableEditLinks: function() {
-    let paper = this.paper;
-    let links = paper.model.getLinks();
-    for (let i = 0; i < links.length; i+=1) {
-      let  link = links[i];
-      let view = link.findView(paper);
-      view.$el.addClass('edit-disabled');
-    }
   },
 
   _haveNote: function() {

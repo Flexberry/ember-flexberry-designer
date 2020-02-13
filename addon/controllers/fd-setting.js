@@ -1,10 +1,12 @@
 import Controller from '@ember/controller';
 import FdSheetCloseConfirm from '../mixins/fd-sheet-close-confirm';
 import FdReadonlyProjectMixin from '../mixins/fd-readonly-project';
+import { A } from '@ember/array';
 import { inject as service } from '@ember/service';
 import { resolve, reject } from 'rsvp';
 import { isNone, isBlank } from '@ember/utils';
 import { transliteration } from '../utils/fd-transliteration';
+import { set, computed } from '@ember/object';
 
 import { SimplePredicate, ComplexPredicate } from 'ember-flexberry-data/query/predicate';
 import Builder from 'ember-flexberry-data/query/builder';
@@ -43,6 +45,44 @@ export default Controller.extend(FdSheetCloseConfirm, FdReadonlyProjectMixin, {
     @type Bool
   */
   accessIsPublic: true,
+
+  /**
+    Table headers.
+
+    @property tableUsersAccess
+    @type Array
+  */
+  tableUsersAccess: computed(() => (
+    A([{
+      columnCaption: 'forms.fd-setting.access-settings.name-user-caption',
+      columnProperty: 'name',
+      attrPlaceholder: 'forms.fd-setting.access-settings.name-user-placeholder',
+      columnClass: 'three'
+    },
+    {
+      columnCaption: 'forms.fd-setting.access-settings.login-user-caption',
+      columnProperty: 'login',
+      attrPlaceholder: 'forms.fd-setting.access-settings.login-user-placeholder',
+      columnClass: 'four'
+    },
+    {
+      columnCaption: 'forms.fd-setting.access-settings.user-access-caption',
+      columnProperty: 'access',
+      columnClass: 'four',
+      isDropDown: true,
+    }])
+  )),
+
+  /**
+    Button locale path for usersAccessButton.
+
+    @property usersAccessButton
+    @type Object
+  */
+  usersAccessButton: computed(() => ({
+    createBtn: 'forms.fd-setting.access-settings.create-btn',
+    deleteBtn: 'forms.fd-setting.access-settings.delete-btn',
+  })),
 
   /**
     Check lexical structure.
@@ -99,16 +139,37 @@ export default Controller.extend(FdSheetCloseConfirm, FdReadonlyProjectMixin, {
        @method actions.save
     */
     save() {
+      let adapter = this.get('store').adapterFor('application');
       let stage = this.get('model.stage');
 
       this.get('appState').loading();
       this.validateData(stage)
       .then(() => stage.save())
       .then(() => {
-        let adapter = this.get('store').adapterFor('application');
         let data = { 'project': stage.get('id'), 'moduleSettings': JSON.stringify(this.get('model.settings')) };
 
         return adapter.callAction('SaveCurrentModuleSettings', data, null, { withCredentials: true });
+      })
+      .then(() => {
+        let usersAccess = this.get('model.usersAccess');
+        if (!isNone(usersAccess)) {
+          let data = { 'project': stage.get('id'), 'newUsersInStage': JSON.stringify(usersAccess) };
+
+          return adapter.callAction('SaveUsersAccessForStage', data, null, { withCredentials: true });
+        }
+
+        return resolve();
+      })
+      .then((usersAccessForStage) => {
+        if (!isNone(usersAccessForStage)) {
+          let newUsersAccess = JSON.parse(usersAccessForStage.value);
+          this.set('model.usersAccess', A(newUsersAccess.data));
+          if (newUsersAccess.errors.length !== 0) {
+            return reject({ message: this.get('i18n').t('forms.fd-setting.error-message.empty-username').toString() + newUsersAccess.errors.join(', ') });
+          }
+        }
+
+        return resolve();
       })
       .catch((error) => {
         this.get('fdDialogService').showErrorMessage(error.message);
@@ -137,6 +198,40 @@ export default Controller.extend(FdSheetCloseConfirm, FdReadonlyProjectMixin, {
       .finally(() => {
         this.get('appState').reset();
       });
-    }
+    },
+
+    /**
+      Create 'UserAccess'.
+
+      @method actions.createUserAccess
+    */
+    createUserAccess() {
+      let usersAccess = this.get('model.usersAccess');
+      usersAccess.pushObject({
+        name: undefined,
+        login: undefined,
+        access: undefined
+      });
+    },
+
+    /**
+      Method remove 'store instances in type' from table.
+
+      @method actions.deleteUserAccess
+    */
+    deleteUserAccess(selectedValues) {
+      let usersAccess = this.get('model.usersAccess');
+      usersAccess.removeObjects(selectedValues);
+      selectedValues.clear();
+    },
+
+    /**
+      Update 'Access'.
+
+      @method actions.dropdownChangeAccess
+    */
+    dropdownChangeAccess(model, value) {
+      set(model, 'access', value);
+    },
   }
 });

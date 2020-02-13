@@ -32,7 +32,7 @@
     </div>
 
     {{#each-in filteredModel as |key|}}
-      {{#let (get filteredModel key) as |diagrams|}}
+      {{#let (custom-get-for-object filteredModel key) as |diagrams|}}
         {{#if (and (not-eq diagrams.length 0)
             (or
               groupBySystems

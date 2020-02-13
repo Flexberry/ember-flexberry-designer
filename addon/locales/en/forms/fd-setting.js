@@ -40,9 +40,20 @@ export default {
     'pri-key-placeholder': 'Enter the private SSH key',
     'frontend-publish': 'Publish an application to gh-pages',
   },
+  'access-settings-caption': 'Members',
+  'access-settings': {
+    'name-user-caption': 'Username',
+    'name-user-placeholder': 'Username will load after saving',
+    'login-user-caption': 'user login',
+    'login-user-placeholder': 'Enter user login',
+    'user-access-caption': 'User permissions',
+    'create-btn': 'Add new member',
+    'delete-btn': 'Delete member'
+  },
   'save-button': 'Save',
   'error-message': {
     'empty-name': 'Stage name cannot be empty',
     'exist-stage': 'Stage with the same name already exists',
+    'empty-username': 'There are no users in the system with logins: '
   }
 };

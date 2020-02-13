@@ -53,7 +53,6 @@ export default FdBaseSheet.extend({
   closeSheet() {
     let selectedValue = this.get('selectedValue');
     if (!isNone(selectedValue)) {
-      selectedValue.rollbackAll();
       this.set('readonlyMode', true);
       this.set('selectedValue', undefined);
     }

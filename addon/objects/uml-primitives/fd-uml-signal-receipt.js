@@ -4,6 +4,7 @@
 
 import { computed } from '@ember/object';
 import { A, isArray } from '@ember/array';
+import { isNone } from '@ember/utils';
 
 import { BaseObject } from './fd-uml-baseobject';
 import FdUmlElement from './fd-uml-element';
@@ -77,13 +78,25 @@ export let SignalReceiptRight = BaseObject.define('flexberry.uml.SignalReceiptRi
       'stroke-width': 1,
       'd': 'M 0 0 L 100 0 80 20 100 40 0 40 Z',
     }
-  }
+  },
+
+  // Minimum width.
+  minWidth: 40,
+
+  // Minimum height.
+  minHeight: 20,
 }, {
   markup: [
     '<g class="rotatable">',
     '<path class="flexberry-uml-header-rect-path"/>',
     '</g>'
-  ].join('')
+  ].join(''),
+
+  getRectangles() {
+    return [
+      { type: 'header', element: this },
+    ];
+  },
 });
 
 joint.shapes.flexberry.uml.SignalReceiptRightView = joint.shapes.flexberry.uml.BaseObjectView.extend({
@@ -94,13 +107,15 @@ joint.shapes.flexberry.uml.SignalReceiptRightView = joint.shapes.flexberry.uml.B
    '</div>'
   ].join(''),
 
-  updateRectangles() {
+  updateRectangles: function (resizedWidth, resizedHeight)  {
     let rects = this.model.getRectangles();
-
     let offsetY = 0;
     let newHeight = 0;
     let newWidth = 0;
-    rects.forEach(function (rect) {
+    const minWidth = this.model.attributes.minWidth;
+    const minHeight = this.model.attributes.minHeight;
+    const oldSize = this.model.size();
+    rects.forEach(function(rect, index, array) {
       if (this.markup.includes('flexberry-uml-' + rect.type + '-rect') && rect.element.inputElements) {
         let rectHeight = 0;
         let inputs = rect.element.inputElements.find('.signal-input');
@@ -124,7 +139,12 @@ joint.shapes.flexberry.uml.SignalReceiptRightView = joint.shapes.flexberry.uml.B
 
         rectHeight += rect.element.get('heightBottomPadding') || 0;
         newHeight += rectHeight;
-        rect.element.attr('.flexberry-uml-' + rect.type + '-rect/height', rectHeight);
+        if (array.length === index + 1) {
+          this.set('inputHeight', newHeight);
+          rect.element.attr('.flexberry-uml-' + rect.type + '-rect/height', Math.max((resizedHeight || oldSize.height) - offsetY, minHeight - offsetY, rectHeight));
+        } else {
+          rect.element.attr('.flexberry-uml-' + rect.type + '-rect/height', rectHeight);
+        }
 
         rect.element.attr('.flexberry-uml-' + rect.type + '-rect/transform', 'translate(0,' + offsetY + ')');
 
@@ -134,22 +154,19 @@ joint.shapes.flexberry.uml.SignalReceiptRightView = joint.shapes.flexberry.uml.B
 
     newWidth += (this.model.get('widthPadding') || 0) * 2;
 
-    rects.forEach(function (rect) {
-      rect.element.attr('.flexberry-uml-' + rect.type + '-rect/width', newWidth);
-    });
+
 
     rects.forEach((rect) => {
-      let points = this.recalculatePathPoints(newWidth, newHeight);
+      let points = this.recalculatePathPoints(Math.max(newWidth, resizedWidth || oldSize.width, minWidth), Math.max(newHeight, resizedHeight || oldSize.height, minHeight));
       //set path
       rect.element.attr('.flexberry-uml-header-rect-path/d', 'M '+ points[0] + ' L ' + points[1] + ' ' + points[2] + ' ' + points[3] + ' ' + points[4] + ' Z');
     });
 
-    this.model.resize(newWidth, newHeight);
-
+    this.model.resize(Math.max(newWidth, resizedWidth || oldSize.width, minWidth), Math.max(newHeight, resizedHeight || oldSize.height, minHeight));
     if (this.model.get('highlighted')) {
       this.unhighlight();
       this.highlight();
-    } 
+    }
   },
 
   recalculatePathPoints(newWidth, newHeight) {
@@ -164,6 +181,21 @@ joint.shapes.flexberry.uml.SignalReceiptRightView = joint.shapes.flexberry.uml.B
     points[4] = '0 ' + newHeight.toString();
 
     return points;
+  },
+
+  setColors() {
+    joint.shapes.flexberry.uml.BaseObjectView.prototype.setColors.apply(this, arguments);
+
+    const brushColor = this.getBrushColor();
+    const textColor = this.getTextColor();
+
+    if (!isNone(textColor)) {
+      this.model.attr('.flexberry-uml-header-rect-path/stroke', textColor);
+    }
+
+    if (!isNone(brushColor)) {
+      this.model.attr('.flexberry-uml-header-rect-path/fill', brushColor);
+    }
   }
 });
 

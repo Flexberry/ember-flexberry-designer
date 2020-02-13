@@ -2,7 +2,8 @@
   @module ember-flexberry-designer
 */
 import { computed } from '@ember/object';
-import { isArray } from '@ember/array';
+import { isArray, A } from '@ember/array';
+import { isNone } from '@ember/utils';
 
 import FdUmlElement from './fd-uml-element';
 import { BaseObject } from './fd-uml-baseobject';
@@ -62,7 +63,7 @@ export default FdUmlElement.extend({
 export let History = BaseObject.define('flexberry.uml.History', {
   size: { width: 20, height: 20 },
   attrs: {
-    '.flexberry-uml-header-circle-outer': { 'fill': 'white', 'stroke': 'black', 'stroke-width': 1, 'r': 28, 'ref-y': 10, 'ref-x': 10 },
+    '.flexberry-uml-header-circle-outer': { 'fill': 'white', 'stroke': 'black', 'stroke-width': 1, 'r': 30, 'ref-y': 10, 'ref-x': 10 },
     '.flexberry-uml-header-text': {
       'ref': '.flexberry-uml-header-circle-outer',
       'ref-y': 0.5,
@@ -75,7 +76,17 @@ export let History = BaseObject.define('flexberry.uml.History', {
       'font-size': '12'
     }
   },
-  }, {
+  
+  // Minimum height.
+  minHeight: 20,
+
+  // Minimum width
+  minWidth: 20,
+
+  getRectangles() {
+    return [];
+  },
+}, {
   markup: [
     '<g class="rotatable">',
     '<g class="scalable">',
@@ -84,15 +95,27 @@ export let History = BaseObject.define('flexberry.uml.History', {
     '<text class="flexberry-uml-header-text"/>',
     '</g>'
   ].join(''),
-  });
+});
 
 joint.shapes.flexberry.uml.HistoryView = joint.shapes.flexberry.uml.BaseObjectView.extend({
   template: [
   ].join(''),
 
+  getSizeChangers() {
+    return A();
+  },
+
   // No resize.
-  updateRectangles() {
-   },
+  updateRectangles() {},
+
+   setColors() {
+    const textColor = this.getTextColor();
+
+    if (!isNone(textColor)) {
+      this.model.attr('.flexberry-uml-header-circle-outer/stroke', textColor);
+      this.model.attr('.flexberry-uml-header-text/stroke', textColor);
+    }
+  },
 });
 
 /**
@@ -111,11 +134,4 @@ export let DeepHistory = History.define('flexberry.uml.DeepHistory', {
   }}
 });
 
-joint.shapes.flexberry.uml.DeepHistoryView = joint.shapes.flexberry.uml.BaseObjectView.extend({
-  template: [
-  ].join(''),
-
-  // No resize.
-  updateRectangles() {
-   },
-});
+joint.shapes.flexberry.uml.DeepHistoryView = joint.shapes.flexberry.uml.HistoryView;
