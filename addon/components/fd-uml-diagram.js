@@ -595,9 +595,25 @@ export default Component.extend({
       const shift = data.shift;
       if (data.widthResize || data.heightResize) {
         const oldSize = data.ghost.size();
-        const position = data.ghost.position();
-        let coordinates = forPointerMethodOverrideResizeAndDnd(evt, x, y);
-        data.ghost.resize(data.widthResize ? Math.max(coordinates.x - position.x, view.model.attributes.inputWidth || 0, view.model.attributes.minWidth || 0) : oldSize.width, data.heightResize ? Math.max(coordinates.y - position.y, view.model.attributes.inputHeight || 0, view.model.attributes.minHeight || 0) : oldSize.height);
+        let newSize = {
+          width: oldSize.width,
+          height: oldSize.height
+        };
+        if (data.prop) {
+          if (data.widthResize && data.heightResize) {
+            newSize.width =  x - view.model.getBBox().x;
+          } else {
+            if (data.widthResize) {
+              newSize.width =  x - view.model.getBBox().x
+            }
+            if (data.heightResize) {
+              newSize.height =  y - view.model.getBBox().y
+            }
+          }
+          let propHeight = newSize.height + ((newSize.width - oldSize.width) / oldSize.width) * newSize.height;
+          let propWidth = newSize.width + ((newSize.height - oldSize.height) / oldSize.height) * newSize.width;
+          data.ghost.resize(propWidth, propHeight);
+        }
       } else {
         data.ghost.position(x + shift.x, y + shift.y);
       }
@@ -621,6 +637,7 @@ export default Component.extend({
       const button = $(evt.target.parentElement);
       evt.data.widthResize = button.hasClass('right-down-size-button') || button.hasClass('right-size-button');
       evt.data.heightResize = button.hasClass('right-down-size-button') || button.hasClass('down-size-button');
+      evt.data.prop = button.hasClass('prop');
       evt.data.shift = { x: bbox.x - x, y: bbox.y - y};
     }
   },
