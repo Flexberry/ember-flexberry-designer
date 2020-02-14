@@ -325,10 +325,10 @@ export default FdBaseSheet.extend({
               promises.pushObjects(removeClasses.map(mapFunction));
 
               let updatedViews = A();
-              removeClasses.forEach(removeClasse => {  
-                updatedViews.pushObjects(getUpdatedViews(store, primitives, removeClasse.get('name'), null));       
+              removeClasses.forEach(removeClasse => {
+                updatedViews.pushObjects(getUpdatedViews(store, primitives, removeClasse.get('name'), null));
               });
-              //promises.pushObjects(store.batchUpdate(updatedViews));
+
               promises.pushObjects(updatedViews.map(a => a.save()));
             }
 
