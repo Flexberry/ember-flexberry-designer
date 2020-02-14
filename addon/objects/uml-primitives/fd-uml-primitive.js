@@ -428,8 +428,14 @@ joint.shapes.flexberry.uml.PrimitiveElementView = joint.dia.ElementView.extend({
   changeColorElement(e) {
     e.stopPropagation();
 
-    let popup = $(e.currentTarget);
-    popup.popup({ title : 'Popup Title', content : 'Hello I am a popup', inline: true }).popup('show');
+    let target = $(e.currentTarget);
+    let popup = $('.custom.popup');
+    target.popup({ 
+      popup : popup, 
+      on: 'manual'});
+    popup.removeClass('hidden');
+    popup.addClass('visible');
+    popup.css({top: target.position().top, left:target.position().left - popup.width()/2});
   },
 
   initialize: function() {
