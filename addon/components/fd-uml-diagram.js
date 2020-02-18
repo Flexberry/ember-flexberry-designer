@@ -251,6 +251,7 @@ export default Component.extend({
     paper.on('checkexistelements', this._checkOnExistElements, this);
     paper.on('cell:highlight', this._highlighted, this);
     paper.on('element:openeditform', this._elementOpenEditForm, this);
+    paper.on('element:openpopup', this._elementOpenPopup, this);
 
     let elements = this.get('elements');
     let links = this.get('links');
@@ -455,7 +456,6 @@ export default Component.extend({
     @private
     @method _elementOpenEditForm
     @param {joint.dia.CellView} cellView
-    @param {joint.dia.Element} cellView.model
   */
   _elementOpenEditForm({ model }) {
     let object = {
@@ -481,6 +481,20 @@ export default Component.extend({
     }
 
     this.get('openEditFormAction')(object);
+  },
+
+  /**
+    Handler custom event `element:openpopup`.
+    Invokes the action specified in the `openPopupForDiagramElements` property, passing it the UML-element model.
+
+    @private
+    @method _elementOpenPopup
+    @param {joint.dia.CellView} cellView
+    @param {jQuery} target
+  */
+  _elementOpenPopup({ model }, target) {
+    let objectModel = model.get('objectModel');
+    this.openPopupForDiagramElements(target, objectModel);
   },
 
   /**

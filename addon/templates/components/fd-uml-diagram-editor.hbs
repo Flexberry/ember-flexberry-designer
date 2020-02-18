@@ -15,6 +15,7 @@
   enableWrapBaseLinks=enableWrapBaseLinks
   enableEditLinks=enableEditLinks
   disableEditLinks=disableEditLinks
+  openPopupForDiagramElements=(action "openPopupForDiagramElements")
 }}
 
 {{#animated-if (not readonly) use=transition}}
@@ -30,3 +31,9 @@
     </div>
   {{/if}}
 {{/animated-if}}
+
+{{#fd-popup namespace=popupNamespace}}
+  <div class="ui bottom center">
+    <button class="ui button primary"></button>
+  </div>
+{{/fd-popup}}

@@ -15,6 +15,7 @@ import FdActionsForActivityPrimitivesMixin from '../mixins/actions-for-primitive
 import FdAcrionsForSdPrimitivesMixin from '../mixins/actions-for-primitives/fd-actions-for-sd-primitives';
 import FdAcrionsForCommonPrimitivesMixin from '../mixins/actions-for-primitives/fd-actions-for-common-primitives';
 import FdActionsForUcdPrimitivesMixin from '../mixins/actions-for-primitives/fd-actions-for-ucd-primitives';
+import FdPopupActions from '../mixins/fd-popup-actions';
 
 export default Component.extend(
 FdAcrionsForCadPrimitivesMixin,
@@ -24,7 +25,8 @@ FdAcrionsForCodPrimitivesMixin,
 FdActionsForActivityPrimitivesMixin,
 FdAcrionsForSdPrimitivesMixin,
 FdAcrionsForCommonPrimitivesMixin,
-FdActionsForUcdPrimitivesMixin, {
+FdActionsForUcdPrimitivesMixin,
+FdPopupActions, {
 
   layout,
 
@@ -141,6 +143,8 @@ FdActionsForUcdPrimitivesMixin, {
 
   attributeBindings: ['spellcheck'],
 
+  popupNamespace: 'diagrams-popup',
+
   /**
     Disable spellcheck for diagram elements.
 
@@ -216,6 +220,17 @@ FdActionsForUcdPrimitivesMixin, {
       let minWidth = this.$().width();
       let minHeight = this.$().height();
       paper.fitToContent({ minWidth, minHeight, padding: 10 });
+    },
+
+    /**
+      Open popup on page.
+
+      @method actions.openPopupForDiagramElements
+      @param {Object} target popup target.
+      @param {Object} model popup value.
+    */
+    openPopupForDiagramElements(target, model) {
+      this.openPopup(target, model);
     },
 
     /**
