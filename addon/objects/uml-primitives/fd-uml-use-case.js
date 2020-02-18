@@ -95,6 +95,23 @@ joint.shapes.flexberry.uml.UseCaseView = joint.shapes.flexberry.uml.BaseObjectVi
     '</div>'
   ].join(''),
 
+  initialize: function () {
+    joint.shapes.flexberry.uml.BaseObjectView.prototype.initialize.apply(this, arguments);
+    this.updateRectangles();
+  },
+
+  updateRectangles: function () {
+    joint.shapes.flexberry.uml.BaseObjectView.prototype.updateRectangles.apply(this, arguments);
+    let paramsBox = this.$box.find('.header-input');
+    let bbox = this.model.getBBox();
+    
+    paramsBox.css({
+      top: (bbox.height - paramsBox[0].offsetHeight)/2,
+      left: (bbox.width - paramsBox[0].offsetWidth)/2,
+      position: 'absolute'
+    });
+  },
+
   getUsecaseName: function() {
     return this.model.attributes.objectModel.get('name');
   },
