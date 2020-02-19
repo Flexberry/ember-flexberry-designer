@@ -470,7 +470,7 @@ joint.shapes.flexberry.uml.ClassView = joint.shapes.flexberry.uml.PrimitiveEleme
         text: '&#xf013',
         handler: this.openEditForm.bind(this),
         attrs: {
-          'element': { 'ref-dx': -14, 'ref-y': 0, 'ref': '.joint-highlight-stroke' },
+          'element': { 'ref-dx': -28, 'ref-y': 0, 'ref': '.joint-highlight-stroke' },
           'circle': { r: 6, fill: '#007aff', stroke: '#007aff', 'stroke-width': 1 },
           'text': { fill: '#ffffff', x: 0, y: 3, 'font-size': 10, 'text-anchor': 'middle', 'font-family': 'Icons' },
         }

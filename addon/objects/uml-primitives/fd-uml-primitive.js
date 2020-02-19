@@ -373,6 +373,15 @@ joint.shapes.flexberry.uml.PrimitiveElementView = joint.dia.ElementView.extend({
         'circle': { r: 6, fill: '#007aff', stroke: '#007aff', 'stroke-width': 1 },
         'text': { fill: '#ffffff','font-size': 10, 'text-anchor': 'middle', x: 0, y: 3, 'font-family': 'Icons' },
       }
+    }, {
+      name: 'color-button',
+      text: '&#xe3b7',
+      handler: this.changeColorElement.bind(this),
+      attrs: {
+        'element': {'ref-dx': -14,'ref-y': 0, 'ref': '.joint-highlight-stroke' },
+        'circle': { r: 6, fill: '#007aff', stroke: '#007aff', 'stroke-width': 1 },
+        'text': { fill: '#ffffff','font-size': 10, 'text-anchor': 'middle', x: 0, y: 3, 'font-family': 'Icons' },
+      }
     }]);
   },
 
@@ -414,6 +423,11 @@ joint.shapes.flexberry.uml.PrimitiveElementView = joint.dia.ElementView.extend({
   removeElement(e) {
     e.stopPropagation();
     this.model.remove();
+  },
+
+  changeColorElement(e) {
+    e.stopPropagation();
+    this.paper.trigger('element:openpopup', this, $(e.currentTarget));
   },
 
   initialize: function() {

@@ -186,12 +186,26 @@ export let EmptyView = joint.dia.LinkView.extend({
         'circle': { r: 6, fill: '#007aff', stroke: '#007aff', 'stroke-width': 1, 'cursor': 'pointer' },
         'text': { fill: '#ffffff','font-size': 10, 'text-anchor': 'middle', x: 0, y: 3, 'font-family': 'Icons', visibility: 'visible', 'cursor': 'pointer' },
       }
+    },  {
+      name: 'color-button',
+      text: '&#xe3b7',
+      handler: this.changeColorElement.bind(this),
+      attrs: {
+        'element': { atConnectionRatio: .3 },
+        'circle': { r: 6, fill: '#007aff', stroke: '#007aff', 'stroke-width': 1 },
+        'text': { fill: '#ffffff','font-size': 10, 'text-anchor': 'middle', x: 0, y: 3, 'font-family': 'Icons' },
+      }
     }]);
   },
 
   removeLink(e) {
     e.stopPropagation();
     this.model.remove();
+  },
+
+  changeColorElement(e) {
+    e.stopPropagation();
+    this.paper.trigger('element:openpopup', this, $(e.currentTarget));
   },
 
   /**

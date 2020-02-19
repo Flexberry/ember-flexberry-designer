@@ -80,7 +80,7 @@ joint.shapes.flexberry.uml.CompositionView = MultiplicityView.extend({
         text: '&#xf013',
         handler: this.openEditForm.bind(this),
         attrs: {
-          'element': { atConnectionRatio: .3 },
+          'element': { atConnectionRatio: .4 },
           'circle': { r: 6, fill: '#007aff', stroke: '#007aff', 'stroke-width': 1 },
           'text': { fill: '#ffffff', x: 0, y: 3, 'font-size': 10, 'text-anchor': 'middle', 'font-family': 'Icons', visibility: 'visible', 'cursor': 'pointer' },
         }
