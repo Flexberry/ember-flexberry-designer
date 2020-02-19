@@ -758,6 +758,19 @@ define('dummy/components/fd-objectlistview', ['exports', 'ember-flexberry-design
     }
   });
 });
+define('dummy/components/fd-popup', ['exports', 'ember-flexberry-designer/components/fd-popup'], function (exports, _fdPopup) {
+  'use strict';
+
+  Object.defineProperty(exports, "__esModule", {
+    value: true
+  });
+  Object.defineProperty(exports, 'default', {
+    enumerable: true,
+    get: function () {
+      return _fdPopup.default;
+    }
+  });
+});
 define('dummy/components/fd-round-button', ['exports', 'ember-flexberry-designer/components/fd-round-button'], function (exports, _fdRoundButton) {
   'use strict';
 
@@ -4116,6 +4129,11 @@ define('dummy/ember-flexberry-designer/tests/addon.lint-test', [], function () {
     assert.ok(true, 'addon/components/fd-objectlistview.js should pass ESLint\n\n');
   });
 
+  QUnit.test('addon/components/fd-popup.js', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'addon/components/fd-popup.js should pass ESLint\n\n');
+  });
+
   QUnit.test('addon/components/fd-round-button.js', function (assert) {
     assert.expect(1);
     assert.ok(true, 'addon/components/fd-round-button.js should pass ESLint\n\n');
@@ -6294,6 +6312,11 @@ define('dummy/ember-flexberry-designer/tests/addon.lint-test', [], function () {
   QUnit.test('addon/mixins/fd-limit-by-stage.js', function (assert) {
     assert.expect(1);
     assert.ok(true, 'addon/mixins/fd-limit-by-stage.js should pass ESLint\n\n');
+  });
+
+  QUnit.test('addon/mixins/fd-popup-actions.js', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'addon/mixins/fd-popup-actions.js should pass ESLint\n\n');
   });
 
   QUnit.test('addon/mixins/fd-readonly-project.js', function (assert) {
@@ -9709,6 +9732,11 @@ define('dummy/ember-flexberry-designer/tests/app.lint-test', [], function () {
   QUnit.test('app/components/fd-objectlistview.js', function (assert) {
     assert.expect(1);
     assert.ok(true, 'app/components/fd-objectlistview.js should pass ESLint\n\n');
+  });
+
+  QUnit.test('app/components/fd-popup.js', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'app/components/fd-popup.js should pass ESLint\n\n');
   });
 
   QUnit.test('app/components/fd-round-button.js', function (assert) {
