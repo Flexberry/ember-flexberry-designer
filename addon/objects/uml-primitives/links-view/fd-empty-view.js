@@ -179,21 +179,21 @@ export let EmptyView = joint.dia.LinkView.extend({
 
     return A([{
       name: 'remove-button',
-      text: '&#xf00d',
+      text: '&#xe915',
       handler: this.removeLink.bind(this),
       attrs: {
         'element': { atConnectionRatio: .2 },
         'circle': { r: 6, fill: '#007aff', stroke: '#007aff', 'stroke-width': 1, 'cursor': 'pointer' },
-        'text': { fill: '#ffffff','font-size': 10, 'text-anchor': 'middle', x: 0, y: 3, 'font-family': 'Icons', visibility: 'visible', 'cursor': 'pointer' },
+        'text': { fill: '#ffffff','font-size': 7, 'text-anchor': 'middle', x: 0, y: 3, 'font-family': 'fd-icons', visibility: 'visible', 'cursor': 'pointer' },
       }
     },  {
       name: 'color-button',
-      text: '&#xe3b7',
+      text: '&#xf1fc',
       handler: this.changeColorElement.bind(this),
       attrs: {
         'element': { atConnectionRatio: .3 },
         'circle': { r: 6, fill: '#007aff', stroke: '#007aff', 'stroke-width': 1 },
-        'text': { fill: '#ffffff','font-size': 10, 'text-anchor': 'middle', x: 0, y: 3, 'font-family': 'Icons' },
+        'text': { fill: '#ffffff','font-size': 7, 'text-anchor': 'middle', x: 0, y: 2, 'font-family': 'Icons', visibility: 'visible', 'cursor': 'pointer' },
       }
     }]);
   },
