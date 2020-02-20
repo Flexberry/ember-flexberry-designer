@@ -3,6 +3,21 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+## [0.13.0-beta02]
+### Added
+* Add resize and colors to statechart diagram.
+* Add resize and colors to deployment diagram.
+* Add resize and color to activity diagram.
+* Add table for user access settings.
+* Add storage table.
+* Add rename stage objects function.
+
+### Fixed
+* Highlight optimization.
+* Fix rollback new class on diagrams.
+* Fix link role label.
+* Feature update view when deleting class.
+
 ## [0.13.0-beta01]
 ### Added
 * Add template class resize.
