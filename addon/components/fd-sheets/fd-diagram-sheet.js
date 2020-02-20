@@ -12,6 +12,7 @@ import { computed, observer, set, get } from '@ember/object';
 import hasChanges from '../../utils/model-has-changes';
 import { getUpdatedViews } from '../../utils/fd-update-class-diagram';
 import { updateObjectByStr } from '../../utils/fd-update-str-value';
+import FdPrimitivesArraySortingMixin from '../../mixins/fd-primitives-array-sorting';
 
 import layout from '../../templates/components/fd-sheets/fd-diagram-sheet';
 
@@ -19,7 +20,8 @@ const getActualValue = (value, currentValue) => {
   return isBlank(value) && isBlank(currentValue) ? currentValue : value;
 };
 
-export default FdBaseSheet.extend({
+export default FdBaseSheet.extend(
+  FdPrimitivesArraySortingMixin, {
   layout,
 
   /**
@@ -208,6 +210,10 @@ export default FdBaseSheet.extend({
   savePrimitives(model) {
     let promises = A();
     let primitives = model.get('primitives');
+
+    // Sort elements. Partition primitive to first.
+    primitives = this.sortingByTypePartition(primitives);
+
     primitives.forEach((primitive) => {
       if (!isNone(primitive.get('isCreated'))) {
         primitive.set('isCreated', false);

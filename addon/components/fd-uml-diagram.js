@@ -12,6 +12,7 @@ import $ from 'jquery';
 import joint from 'npm:jointjs';
 import uuid from 'npm:node-uuid';
 
+import FdPrimitivesArraySortingMixin from '../mixins/fd-primitives-array-sorting';
 import FdUmlElement from '../objects/uml-primitives/fd-uml-element';
 import FdUmlLink from '../objects/uml-primitives/fd-uml-link';
 import {
@@ -26,7 +27,8 @@ import {
   @class FdUmlDiagramComponent
   @extends <a href="http://emberjs.com/api/classes/Ember.Component.html">Ember.Component</a>
 */
-export default Component.extend({
+export default Component.extend(
+  FdPrimitivesArraySortingMixin, {
   /**
     Store of current application.
 
@@ -256,11 +258,7 @@ export default Component.extend({
     let elements = this.get('elements');
 
     // Sort elements. Partition primitive to first.
-    let partitions = elements.filterBy('primitive.$type', "STORMCASE.UML.ad.Partition, UMLAD");
-    partitions.forEach((partition) => {
-      elements.removeObject(partition);
-      elements.insertAt(0, partition);
-    });
+    elements = this.sortingByTypePartition(elements);
 
     let links = this.get('links');
     graph.addCells(elements.map(e => {
