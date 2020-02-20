@@ -554,9 +554,8 @@ export default Component.extend({
   */
   _addChildPrimitiveForClickedElement(options) {
     let newChildObject =this.get('createChildObject')(options);
-    let parentElement = options.element.model;
 
-    if (!isNone(newChildObject) && !isNone(parentElement)) {
+    if (!isNone(newChildObject)) {
         this._addNewElement(newChildObject);
     }
   },
@@ -626,28 +625,27 @@ export default Component.extend({
     let data = evt.data;
     if (data.ghost) {
       const shift = data.shift;
+      let shiftedPositionX = x + shift.x;
+      let shiftedPositionY = y + shift.y;
       if (data.widthResize || data.heightResize) {
         const oldSize = data.ghost.size();
         const position = data.ghost.position();
         let coordinates = forPointerMethodOverrideResizeAndDnd(evt, x, y);
         data.ghost.resize(data.widthResize ? Math.max(coordinates.x - position.x, view.model.attributes.inputWidth || 0, view.model.attributes.minWidth || 0) : oldSize.width, data.heightResize ? Math.max(coordinates.y - position.y, view.model.attributes.inputHeight || 0, view.model.attributes.minHeight || 0) : oldSize.height);
       } else {
-        data.ghost.position(x + shift.x, y + shift.y);
+
+        //get border for embed element move restriction. [minX, maxX, minY, maxY]
+        let ghostMoveBorder = view.model.get('ghostMoveBorder');
+
+        if (!isNone(ghostMoveBorder)) {
+          shiftedPositionX = shiftedPositionX < ghostMoveBorder[0] ? ghostMoveBorder[0] : shiftedPositionX;
+          shiftedPositionX = shiftedPositionX > ghostMoveBorder[1] ? ghostMoveBorder[1] : shiftedPositionX;
+          shiftedPositionY = shiftedPositionY < ghostMoveBorder[2] ? ghostMoveBorder[2] : shiftedPositionY;
+          shiftedPositionY = shiftedPositionY > ghostMoveBorder[3] ? ghostMoveBorder[3] : shiftedPositionY;
+        }
+
+        data.ghost.position(shiftedPositionX, shiftedPositionY);
       }
-
-      //get border for embed element move restriction. [minX, maxX, minY, maxY]
-      let ghostMoveBorder = view.model.get('ghostMoveBorder');
-      let newPositionX = x + shift.x;
-      let newPositionY = y + shift.y;
-
-      if (!isNone(ghostMoveBorder)) {
-        newPositionX = newPositionX < ghostMoveBorder[0] ? ghostMoveBorder[0] : newPositionX;
-        newPositionX = newPositionX > ghostMoveBorder[1] ? ghostMoveBorder[1] : newPositionX;
-        newPositionY = newPositionY < ghostMoveBorder[2] ? ghostMoveBorder[2] : newPositionY;
-        newPositionY = newPositionY > ghostMoveBorder[3] ? ghostMoveBorder[3] : newPositionY;
-        data.ghost.position(newPositionX, newPositionY);
-      }
-
     } else {
       let bbox = view.model.getBBox();
       let rects = view.model.getRectangles();

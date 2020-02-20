@@ -13,6 +13,7 @@ import FdUmlElement from './fd-uml-element';
 
 /**
   An object that describes a Swimline Separator an activity diagram
+
   @class FdUmlSwimlineSeparator
   @extends FdUmlElement
 */
@@ -20,6 +21,7 @@ export default FdUmlElement.extend({
 
   /**
     Text to show.
+
     @property name
     @type String
   */
@@ -36,6 +38,7 @@ export default FdUmlElement.extend({
 
   /**
     Type of primitive.
+
     @property type
     @type String
   */
@@ -60,6 +63,7 @@ export default FdUmlElement.extend({
 
   /**
     See {{#crossLink "FdUmlPrimitive/JointJS:method"}}here{{/crossLink}}.
+
     @method JointJS
   */
   JointJS() {
@@ -77,6 +81,7 @@ export default FdUmlElement.extend({
 
 /**
   Defines the JointJS object, which represents a horisontal 'SwimlineSeparator' object in the UML diagram.
+
   @for FdUmlStartState
   @class SwimlineSeparatorH
   @extends joint.dia.Element
@@ -84,6 +89,7 @@ export default FdUmlElement.extend({
   @constructor
 */
 export let SwimlineSeparatorH = BaseObject.define('flexberry.uml.SwimlineSeparatorH', {
+
   // [minX, maxX, minY, maxY]
   ghostMoveBorder: A(),
 
@@ -152,6 +158,7 @@ export let SwimlineSeparatorH = BaseObject.define('flexberry.uml.SwimlineSeparat
 
 /**
   Defines the JointJS object, which represents a vertical 'SwimlineSeparator' object in the UML diagram.
+
   @for FdUmlStartState
   @class SwimlineSeparatorV
   @extends SwimlineSeparatorH

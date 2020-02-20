@@ -34,6 +34,7 @@ FdActionsForUcdPrimitivesMixin, {
 
   /**
     Service for managing the state of the component.
+
     @property fdSheetService
     @type FdSheetService
   */
@@ -41,6 +42,7 @@ FdActionsForUcdPrimitivesMixin, {
 
   /**
     Flag indicates when edit panel toolbar is collapsed.
+
     @property _collapseEditPanelToolbar
     @type Boolean
     @default false
@@ -50,6 +52,7 @@ FdActionsForUcdPrimitivesMixin, {
 
   /**
     Array elements to interact.
+
     @property interactionElements
     @type Array
   */
@@ -65,6 +68,7 @@ FdActionsForUcdPrimitivesMixin, {
 
   /**
    Array items with empty reference count.
+
    @property emptyReferenceCountItems
    @type {Array}
    */
@@ -72,6 +76,7 @@ FdActionsForUcdPrimitivesMixin, {
 
   /**
     Function for create element.
+
     @property jointjsCallback
     @type Function
   */
@@ -79,6 +84,7 @@ FdActionsForUcdPrimitivesMixin, {
 
   /**
     Function for create element in store.
+
     @property storeCallback
     @type Function
   */
@@ -86,6 +92,7 @@ FdActionsForUcdPrimitivesMixin, {
 
   /**
     Type create object.
+
     @property type
     @type String
   */
@@ -93,6 +100,7 @@ FdActionsForUcdPrimitivesMixin, {
 
   /**
     New created link.
+
     @property newLink
     @type Object
   */
@@ -100,6 +108,7 @@ FdActionsForUcdPrimitivesMixin, {
 
   /**
     True when link adding in process.
+
     @property isLinkAdding
     @type Boolean
   */
@@ -107,6 +116,7 @@ FdActionsForUcdPrimitivesMixin, {
 
   /**
     Сurrent pressed button.
+
     @property currentTargetElement
     @type jQuery
   */
@@ -155,6 +165,7 @@ FdActionsForUcdPrimitivesMixin, {
 
   /**
     Disable spellcheck for diagram elements.
+
     @property spellcheck
     @type Boolean
   */
@@ -167,6 +178,7 @@ FdActionsForUcdPrimitivesMixin, {
 
   /**
     Object with flags indicates whether edit panel is readonly.
+
     @property readonlyMode
     @type Boolean
   */
@@ -174,6 +186,7 @@ FdActionsForUcdPrimitivesMixin, {
 
   /**
     Object with flags indicates whether diagram is readonly.
+
     @property readonly
     @type Boolean
   */
@@ -213,6 +226,7 @@ FdActionsForUcdPrimitivesMixin, {
   actions: {
     /**
       Normalize paper's size
+
       @method actions.fitToContent
     */
     fitToContent() {
@@ -228,6 +242,7 @@ FdActionsForUcdPrimitivesMixin, {
 
     /**
       Handler event blankPointerClick
+
       @method blankPointerClick
       @param {Object} options options event 'blank:pointerclick'.
     */
@@ -264,6 +279,7 @@ FdActionsForUcdPrimitivesMixin, {
 
     /**
       Handler event startDragLink
+
       @method startDragLink
       @param {Object} options options event 'element:pointerclick'.
     */
@@ -299,6 +315,7 @@ FdActionsForUcdPrimitivesMixin, {
 
     /**
       Handler event endDragLink
+
       @method endDragLink
       @param {Object} options options event 'element:pointerclick'.
     */
@@ -353,6 +370,7 @@ FdActionsForUcdPrimitivesMixin, {
 
     /**
       Handler event blankContextMenu
+
       @method blankContextMenu
       @param {Object} options options event 'blank:contextmenu'.
     */
@@ -380,6 +398,7 @@ FdActionsForUcdPrimitivesMixin, {
 
     /**
       Handler for click on pointerClick button.
+
       @method actions.pointerClick
      */
     pointerClick() {
@@ -390,6 +409,7 @@ FdActionsForUcdPrimitivesMixin, {
 
     /**
       Handler for click on toolbar buttons.
+
       @method actions.toolbarButtonClicked
       @param {String} buttonName clicked button name.
      */
@@ -413,6 +433,7 @@ FdActionsForUcdPrimitivesMixin, {
 
     /**
       Handler for click on toolbar collapse edit panel button.
+
       @method actions.collapseEditPanelToolbar
      */
     collapseEditPanelToolbar() {
@@ -445,6 +466,7 @@ FdActionsForUcdPrimitivesMixin, {
 
   /**
     Fills properties for create object.
+
     @method createObjectData
     @param {function} jointjsCallback function of creating a new object.
     @param {jQuery.Event} e event.
@@ -462,6 +484,7 @@ FdActionsForUcdPrimitivesMixin, {
 
   /**
     Fills properties for create link.
+
     @method createLinkData
     @param {function} jointjsCallback function of creating a new link.
     @param {jQuery.Event} e event.
@@ -481,6 +504,7 @@ FdActionsForUcdPrimitivesMixin, {
 
   /**
     Resets data for create elements.
+
     @method clearData
   */
   clearData() {
@@ -492,6 +516,7 @@ FdActionsForUcdPrimitivesMixin, {
 
   /**
     Clear all properties for create elements.
+
     @method _clearProperties
     @private
   */
@@ -540,6 +565,7 @@ FdActionsForUcdPrimitivesMixin, {
 
   /**
     Change 'CurrentTargetElement'.
+
     @method _changeCurrentTargetElement
     @param {jQuery.Event} e event.
     @private
@@ -554,6 +580,7 @@ FdActionsForUcdPrimitivesMixin, {
 
   /**
     Reset 'CurrentTargetElement'.
+
     @method _resetCurrentTargetElement
     @private
   */
@@ -567,6 +594,7 @@ FdActionsForUcdPrimitivesMixin, {
 
   /**
     Resize diagram.
+
     @method _fitToContent
     @private
   */
@@ -579,6 +607,7 @@ FdActionsForUcdPrimitivesMixin, {
 
   /**
     Find 'repositoryObject' by id.
+
     @method getRepObj
     @param {DS.Store} store current store.
     @param {Object} stage current stage.
