@@ -34,7 +34,6 @@ FdActionsForUcdPrimitivesMixin, {
 
   /**
     Service for managing the state of the component.
-
     @property fdSheetService
     @type FdSheetService
   */
@@ -42,7 +41,6 @@ FdActionsForUcdPrimitivesMixin, {
 
   /**
     Flag indicates when edit panel toolbar is collapsed.
-
     @property _collapseEditPanelToolbar
     @type Boolean
     @default false
@@ -52,7 +50,6 @@ FdActionsForUcdPrimitivesMixin, {
 
   /**
     Array elements to interact.
-
     @property interactionElements
     @type Array
   */
@@ -68,7 +65,6 @@ FdActionsForUcdPrimitivesMixin, {
 
   /**
    Array items with empty reference count.
-
    @property emptyReferenceCountItems
    @type {Array}
    */
@@ -76,7 +72,6 @@ FdActionsForUcdPrimitivesMixin, {
 
   /**
     Function for create element.
-
     @property jointjsCallback
     @type Function
   */
@@ -84,7 +79,6 @@ FdActionsForUcdPrimitivesMixin, {
 
   /**
     Function for create element in store.
-
     @property storeCallback
     @type Function
   */
@@ -92,7 +86,6 @@ FdActionsForUcdPrimitivesMixin, {
 
   /**
     Type create object.
-
     @property type
     @type String
   */
@@ -100,7 +93,6 @@ FdActionsForUcdPrimitivesMixin, {
 
   /**
     New created link.
-
     @property newLink
     @type Object
   */
@@ -108,7 +100,6 @@ FdActionsForUcdPrimitivesMixin, {
 
   /**
     True when link adding in process.
-
     @property isLinkAdding
     @type Boolean
   */
@@ -116,7 +107,6 @@ FdActionsForUcdPrimitivesMixin, {
 
   /**
     Сurrent pressed button.
-
     @property currentTargetElement
     @type jQuery
   */
@@ -138,6 +128,20 @@ FdActionsForUcdPrimitivesMixin, {
   }),
 
   /**
+    Flag indicates when on primitive panel choosen child type object.
+
+    @property isCreatedObjectChild
+    @type Bool
+  */
+  isCreatedObjectChild: computed('type', 'parentElements', function() {
+    let isObject = (this.get('type') === 'Object');
+    let parentElements = this.get('parentElements');
+    let isHasParents = !isEmpty(parentElements) && !isNone(parentElements) && isArray(parentElements);
+
+    return isObject && isHasParents;
+  }),
+
+  /**
     Сurrent diagram's paper.
 
     @property paper
@@ -151,7 +155,6 @@ FdActionsForUcdPrimitivesMixin, {
 
   /**
     Disable spellcheck for diagram elements.
-
     @property spellcheck
     @type Boolean
   */
@@ -164,7 +167,6 @@ FdActionsForUcdPrimitivesMixin, {
 
   /**
     Object with flags indicates whether edit panel is readonly.
-
     @property readonlyMode
     @type Boolean
   */
@@ -172,7 +174,6 @@ FdActionsForUcdPrimitivesMixin, {
 
   /**
     Object with flags indicates whether diagram is readonly.
-
     @property readonly
     @type Boolean
   */
@@ -212,7 +213,6 @@ FdActionsForUcdPrimitivesMixin, {
   actions: {
     /**
       Normalize paper's size
-
       @method actions.fitToContent
     */
     fitToContent() {
@@ -228,7 +228,6 @@ FdActionsForUcdPrimitivesMixin, {
 
     /**
       Handler event blankPointerClick
-
       @method blankPointerClick
       @param {Object} options options event 'blank:pointerclick'.
     */
@@ -240,8 +239,8 @@ FdActionsForUcdPrimitivesMixin, {
 
         switch (type) {
           case 'Object': {
-            let parentElements = this.get('parentElements');
-            if (type === 'Object' && (isEmpty(parentElements) || isNone(parentElements))) {
+            // Check if now select not child object. If is not, then create object primitive on blank.
+            if (!this.get('isCreatedObjectChild')) {
               let jointjsCallback = this.get('jointjsCallback');
               let newObject = jointjsCallback(x, y);
               this.clearData();
@@ -265,7 +264,6 @@ FdActionsForUcdPrimitivesMixin, {
 
     /**
       Handler event startDragLink
-
       @method startDragLink
       @param {Object} options options event 'element:pointerclick'.
     */
@@ -301,7 +299,6 @@ FdActionsForUcdPrimitivesMixin, {
 
     /**
       Handler event endDragLink
-
       @method endDragLink
       @param {Object} options options event 'element:pointerclick'.
     */
@@ -355,31 +352,7 @@ FdActionsForUcdPrimitivesMixin, {
     },
 
     /**
-      Handler event createChildObject.
-
-      @method createChildObject
-      @param {Object} options selected joint js element.
-    */
-    createChildObject(options) {
-      let element = options.element;
-      let model = element.model.attributes;
-      let type = model.type;
-      let parentElements = this.get('parentElements');
-
-      if (isArray(parentElements) && parentElements.includes(type)) {
-        let x = options.x;
-        let y = options.y;
-        let jointjsCallback = this.get('jointjsCallback');
-        let newObject = jointjsCallback(x, y);
-        newObject.set('ParentObjectID', model.id);
-        this.clearData();
-        return newObject;
-      }
-    },
-
-    /**
       Handler event blankContextMenu
-
       @method blankContextMenu
       @param {Object} options options event 'blank:contextmenu'.
     */
@@ -407,7 +380,6 @@ FdActionsForUcdPrimitivesMixin, {
 
     /**
       Handler for click on pointerClick button.
-
       @method actions.pointerClick
      */
     pointerClick() {
@@ -418,7 +390,6 @@ FdActionsForUcdPrimitivesMixin, {
 
     /**
       Handler for click on toolbar buttons.
-
       @method actions.toolbarButtonClicked
       @param {String} buttonName clicked button name.
      */
@@ -442,20 +413,42 @@ FdActionsForUcdPrimitivesMixin, {
 
     /**
       Handler for click on toolbar collapse edit panel button.
-
       @method actions.collapseEditPanelToolbar
      */
     collapseEditPanelToolbar() {
       this.toggleProperty('_collapseEditPanelToolbar');
+    },
+
+    /**
+    Handler event createChildObject.
+
+    @method createChildObject
+    @param {Object} options selected joint js element.
+    */
+    createChildObject(options) {
+      let element = options.element;
+      let model = element.model.attributes;
+      let type = model.type;
+      let parentElements = this.get('parentElements');
+
+      if (parentElements.includes(type)) {
+        let x = options.x;
+        let y = options.y;
+        let parentElement = options.element.model.id;
+        let jointjsCallback = this.get('jointjsCallback');
+        let newObject = jointjsCallback(x, y, parentElement);
+        this.clearData();
+        return newObject;
+      }
     }
   },
 
   /**
     Fills properties for create object.
-
     @method createObjectData
     @param {function} jointjsCallback function of creating a new object.
     @param {jQuery.Event} e event.
+    @param {Array} parentElements array of possible parent objects if created object is child object.
   */
   createObjectData(jointjsCallback, e, parentElements) {
     if (!this.get('isLinkAdding')) {
@@ -469,7 +462,6 @@ FdActionsForUcdPrimitivesMixin, {
 
   /**
     Fills properties for create link.
-
     @method createLinkData
     @param {function} jointjsCallback function of creating a new link.
     @param {jQuery.Event} e event.
@@ -489,7 +481,6 @@ FdActionsForUcdPrimitivesMixin, {
 
   /**
     Resets data for create elements.
-
     @method clearData
   */
   clearData() {
@@ -501,7 +492,6 @@ FdActionsForUcdPrimitivesMixin, {
 
   /**
     Clear all properties for create elements.
-
     @method _clearProperties
     @private
   */
@@ -550,7 +540,6 @@ FdActionsForUcdPrimitivesMixin, {
 
   /**
     Change 'CurrentTargetElement'.
-
     @method _changeCurrentTargetElement
     @param {jQuery.Event} e event.
     @private
@@ -565,7 +554,6 @@ FdActionsForUcdPrimitivesMixin, {
 
   /**
     Reset 'CurrentTargetElement'.
-
     @method _resetCurrentTargetElement
     @private
   */
@@ -579,7 +567,6 @@ FdActionsForUcdPrimitivesMixin, {
 
   /**
     Resize diagram.
-
     @method _fitToContent
     @private
   */
@@ -592,7 +579,6 @@ FdActionsForUcdPrimitivesMixin, {
 
   /**
     Find 'repositoryObject' by id.
-
     @method getRepObj
     @param {DS.Store} store current store.
     @param {Object} stage current stage.

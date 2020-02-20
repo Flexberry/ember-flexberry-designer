@@ -338,12 +338,13 @@ export default Mixin.create({
       @param {jQuery.Event} e event.
     */
     addSwimlineSeparatorH(e) {
-      this.createObjectData((function(x, y) {
+      this.createObjectData((function(x, y, parentPrimitive) {
         let jsonObject = getJsonForElement(
-          'STORMCASE.UML.ad.SwimlineSeparatorH, UMLAD',
+          'STORMCASE.UML.ad.ConcurrentStateH, UMLAD',
           { x, y },
-          { width: 10, height: 2 },
-          { Name: '', ParentObjectID: '' },
+          { width: 10, height: 1 },
+          { Name: '' },
+          { ConnectedPrimitive : { $ref: parentPrimitive } }
         );
         let swimlineSeparatorObject = FdUmlSwimlineSeparator.create({ primitive: jsonObject });
         this._addToPrimitives(swimlineSeparatorObject);
@@ -357,12 +358,13 @@ export default Mixin.create({
       @param {jQuery.Event} e event.
     */
     addSwimlineSeparatorV(e) {
-      this.createObjectData((function(x, y) {
+      this.createObjectData((function(x, y, parentPrimitive) {
         let jsonObject = getJsonForElement(
-          'STORMCASE.UML.ad.SwimlineSeparatorV, UMLAD',
+          'STORMCASE.UML.ad.ConcurrentStateV, UMLAD',
           { x, y },
-          { width: 2, height: 10 },
-          { Name: '', ParentObjectID: '' },
+          { width: 1, height: 10 },
+          { Name: '' },
+          { ConnectedPrimitive : { $ref: parentPrimitive } }
         );
         let swimlineSeparatorObject = FdUmlSwimlineSeparator.create({ primitive: jsonObject });
         this._addToPrimitives(swimlineSeparatorObject);

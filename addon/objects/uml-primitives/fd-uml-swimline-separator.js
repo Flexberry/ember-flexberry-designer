@@ -5,6 +5,7 @@
 import { computed } from '@ember/object';
 import joint from 'npm:jointjs';
 import { A, isArray } from '@ember/array';
+import { isNone } from '@ember/utils';
 import $ from 'jquery';
 import { BaseObject } from './fd-uml-baseobject';
 
@@ -41,31 +42,48 @@ export default FdUmlElement.extend({
   type: computed.alias('primitive.$type'),
 
   /**
+    Parent primitive ID.
+
+    @property source
+    @type Object
+  */
+  parentPrimitive: computed('primitive.ConnectedPrimitive.$ref', {
+    get() {
+      let ret = { id: this.get('primitive.ConnectedPrimitive.$ref') };
+      return ret;
+    },
+    set(key, value) {
+      this.set('primitive.ConnectedPrimitive.$ref', value.id);
+      return value;
+    },
+  }),
+
+  /**
     See {{#crossLink "FdUmlPrimitive/JointJS:method"}}here{{/crossLink}}.
     @method JointJS
   */
   JointJS() {
-    let properties = this.getProperties('id', 'size', 'position');
+    let properties = this.getProperties('id', 'size', 'position', 'parentPrimitive');
     properties.objectModel = this;
     let type = this.get('type');
-    if (type === 'STORMCASE.UML.ad.SwimlineSeparatorV, UMLAD') {
-      return new ComplexTransitionV(properties);
+    if (type === 'STORMCASE.UML.ad.ConcurrentStateV, UMLAD') {
+      return new SwimlineSeparatorV(properties);
     } else {
-      return new ComplexTransitionH(properties);
+      return new SwimlineSeparatorH(properties);
     }
 
   },
 });
 
 /**
-  Defines the JointJS object, which represents a horisontal 'ComplexTransition' object in the UML diagram.
+  Defines the JointJS object, which represents a horisontal 'SwimlineSeparator' object in the UML diagram.
   @for FdUmlStartState
-  @class ComplexTransitionH
+  @class SwimlineSeparatorH
   @extends joint.dia.Element
   @namespace flexberry.uml
   @constructor
 */
-export let ComplexTransitionH = BaseObject.define('flexberry.uml.ComplexTransitionH', {
+export let SwimlineSeparatorH = BaseObject.define('flexberry.uml.SwimlineSeparatorH', {
   // [minX, maxX, minY, maxY]
   ghostMoveBorder: A(),
 
@@ -73,7 +91,7 @@ export let ComplexTransitionH = BaseObject.define('flexberry.uml.ComplexTransiti
     '.flexberry-uml-header-poliline': {
       'refPoints': '0,0 10,0',
       'stroke': 'black',
-      'stroke-width': 2,
+      'stroke-width': 3,
       'stroke-dasharray': '7 2'
      },
   },
@@ -85,50 +103,67 @@ export let ComplexTransitionH = BaseObject.define('flexberry.uml.ComplexTransiti
   ].join(''),
 
   setParent: function (parentObject) {
-    let currentSwimlinePositionY = this.get('position').y
-    let positionShiftY = currentSwimlinePositionY - parentObject.get('position').y;
+    this.set('parentObject', parentObject);
+    let objectModel = this.get('objectModel');
+    objectModel.set('parentPrimitive', { id: parentObject.id });
 
-    this.set('position', { x: parentObject.get('position').x , y: currentSwimlinePositionY});
+    this.set('position', { x: parentObject.get('position').x , y: this.get('position').y});
     this.set('size', { width: parentObject.get('size').width, height: this.get('size').height });
 
+    let positionShiftY = this.get('position').y - parentObject.get('position').y;
+    this.set('positionShiftY', positionShiftY);
+    
     this.set('ghostMoveBorder', this.calculateGhostMoveBorder(parentObject.get('position'), parentObject.get('size').height)); 
     
     this.on('change:position', function(element, newPosition) {
-      currentSwimlinePositionY = newPosition.y;
-      positionShiftY = currentSwimlinePositionY - parentObject.get('position').y;
+      positionShiftY = newPosition.y - parentObject.get('position').y;
+      this.set('positionShiftY', positionShiftY);
     });
 
-    parentObject.on('change:position', function(element, newPosition) {
-      this.set('position', { x: newPosition.x, y: newPosition.y + positionShiftY });
-      this.set('ghostMoveBorder', this.calculateGhostMoveBorder(newPosition, element.get('size').height));
-    }, this);
+    parentObject.on('change:position', this.onParentPositionChange, this);
+    parentObject.on('change:size', this.onParentSizeChange, this);
+  },
 
-    parentObject.on('change:size', function(element, newSize) {
-      this.set('size', { width: newSize.width, height: this.get('size').height });
-      this.set('ghostMoveBorder', this.calculateGhostMoveBorder(element.get('position'), newSize.height));
-    }, this);
+  onParentPositionChange(element, newPosition) {
+    this.set('position', { x: newPosition.x, y: newPosition.y + this.get('positionShiftY') });
+    this.set('ghostMoveBorder', this.calculateGhostMoveBorder(newPosition, element.get('size').height));
+  },
+
+  onParentSizeChange(element, newSize) {
+    let parentObject = this.get('parentObject');
+    this.set('size', { width: newSize.width, height: this.get('size').height });
+    if ( (parentObject.get('position').y + parentObject.get('size').height)  < this.get('position').y) {
+      this.set('position', { x: this.get('position').x, y: parentObject.get('position').y + parentObject.get('size').height / 2});
+    }
+
+    this.set('ghostMoveBorder', this.calculateGhostMoveBorder(element.get('position'), newSize.height));
   },
 
   calculateGhostMoveBorder: function (parentPosition, parentHeight) {
     let ghostMoveBorder = [parentPosition.x, parentPosition.x, parentPosition.y, parentPosition.y+ parentHeight];
     return ghostMoveBorder;
+  },
+
+  unsubscribeParentChanges: function () {
+    this.get('parentPrimitive').off('change:position', this.onParentPositionChange, this);
+    this.get('parentPrimitive').off('change:size', this.onParentPositionChange, this);
   }
 });
 
 /**
-  Defines the JointJS object, which represents a vertical 'ComplexTransition' object in the UML diagram.
+  Defines the JointJS object, which represents a vertical 'SwimlineSeparator' object in the UML diagram.
   @for FdUmlStartState
-  @class ComplexTransitionV
-  @extends ComplexTransitionH
+  @class SwimlineSeparatorV
+  @extends SwimlineSeparatorH
   @namespace flexberry.uml
   @constructor
 */
-export let ComplexTransitionV = ComplexTransitionH.define('flexberry.uml.ComplexTransitionV', {
+export let SwimlineSeparatorV = SwimlineSeparatorH.define('flexberry.uml.SwimlineSeparatorV', {
   attrs: {
     '.flexberry-uml-header-poliline': {
       'refPoints': '0,0 0,10',
       'stroke': 'black',
-      'stroke-width': 2,
+      'stroke-width': 3,
       'stroke-dasharray': '7 2'
      },
   },
@@ -140,28 +175,40 @@ export let ComplexTransitionV = ComplexTransitionH.define('flexberry.uml.Complex
   ].join(''),
 
   setParent: function (parentObject) {
-    let currentSwimlinePositionX = this.get('position').x
-    let positionShiftX = currentSwimlinePositionX - parentObject.get('position').x;
+    this.set('parentObject', parentObject);
+    let objectModel = this.get('objectModel');
+    objectModel.set('parentPrimitive', { id: parentObject.id });
 
-    this.set('position', { x: currentSwimlinePositionX , y: parentObject.get('position').y});
+    this.set('position', { x: this.get('position').x , y: parentObject.get('position').y});
     this.set('size', { width: this.get('size').width, height: parentObject.get('size').height });
 
-    this.set('ghostMoveBorder', this.calculateGhostMoveBorder(parentObject.get('position'), parentObject.get('size').width)); 
-    
+    let positionShiftX = this.get('position').x - parentObject.get('position').x;
+    this.set('positionShiftX', positionShiftX);
+
+    this.set('ghostMoveBorder', this.calculateGhostMoveBorder(parentObject.get('position'), parentObject.get('size').width));
+
     this.on('change:position', function(element, newPosition) {
-      currentSwimlinePositionX = newPosition.x;
-      positionShiftX = currentSwimlinePositionX - parentObject.get('position').x;
+      positionShiftX = newPosition.x - parentObject.get('position').x;
+      this.set('positionShiftX', positionShiftX);
     });
 
-    parentObject.on('change:position', function(element, newPosition) {
-      this.set('position', { x: newPosition.x + positionShiftX, y: newPosition.y});
-      this.set('ghostMoveBorder', this.calculateGhostMoveBorder(newPosition, element.get('size').width));
-    }, this);
+    parentObject.on('change:position', this.onParentPositionChange, this);
+    parentObject.on('change:size', this.onParentSizeChange, this);
+  },
 
-    parentObject.on('change:size', function(element, newSize) {
-      this.set('size', { width: this.get('size').width, height: newSize.height });
-      this.set('ghostMoveBorder', this.calculateGhostMoveBorder(element.get('position'), newSize.width));
-    }, this);
+  onParentPositionChange(element, newPosition) {
+    this.set('position', { x: newPosition.x + this.get('positionShiftX'), y: newPosition.y});
+    this.set('ghostMoveBorder', this.calculateGhostMoveBorder(newPosition, element.get('size').width));
+  },
+
+  onParentSizeChange(element, newSize) {
+    let parentObject = this.get('parentObject');
+    this.set('size', { width: this.get('size').width, height: newSize.height });
+    if ( (parentObject.get('position').x + parentObject.get('size').width)  < this.get('position').x) {
+      this.set('position', { x: parentObject.get('position').x + parentObject.get('size').width / 2, y: this.get('position').y });
+    }
+
+    this.set('ghostMoveBorder', this.calculateGhostMoveBorder(element.get('position'), newSize.width));
   },
 
   calculateGhostMoveBorder: function (parentPosition, parentWidth) {
@@ -170,7 +217,7 @@ export let ComplexTransitionV = ComplexTransitionH.define('flexberry.uml.Complex
   }
 });
 
-joint.shapes.flexberry.uml.ComplexTransitionHView = joint.shapes.flexberry.uml.PrimitiveElementView.extend({
+joint.shapes.flexberry.uml.SwimlineSeparatorHView = joint.shapes.flexberry.uml.BaseObjectView.extend({
   template: [
     '<div class="uml-class-inputs">',
     '<textarea class="class-name-input final-state-input" value="" rows="1" wrap="off"></textarea>',
@@ -179,10 +226,19 @@ joint.shapes.flexberry.uml.ComplexTransitionHView = joint.shapes.flexberry.uml.P
   ].join(''),
 
   initialize: function () {
-    joint.dia.ElementView.prototype.initialize.apply(this, arguments);
+    let objectModel = this.model.get('objectModel');
+    let parentPrimitiveId = objectModel.parentPrimitive.id;
+    let parentPrimitive = this.options.model.graph.getCell(parentPrimitiveId);
 
-    this.$box = $(this.template);
-    this.model.inputElements = this.$box;
+    if (!isNone(parentPrimitive)) {
+      this.model.setParent(parentPrimitive);
+      parentPrimitive.on('change:size', function() {
+        this.updateRectangles()
+      }, this);
+    }
+
+    joint.shapes.flexberry.uml.BaseObjectView.prototype.initialize.apply(this, arguments);
+
     let _this = this;
 
     // Prevent paper from handling pointerdown.
@@ -215,6 +271,8 @@ joint.shapes.flexberry.uml.ComplexTransitionHView = joint.shapes.flexberry.uml.P
 
     // Remove the box when the model gets removed from the graph.
     this.model.on('remove', this.removeBox, this);
+
+    this.options.model.graph.on('remove', this.checkParentExist, this);
   },
 
   updateInputValue() {
@@ -231,6 +289,7 @@ joint.shapes.flexberry.uml.ComplexTransitionHView = joint.shapes.flexberry.uml.P
     this.paper.on('blank:pointerdown link:pointerdown element:pointerdown', function () {
       this.$box.find('input:focus, textarea:focus').blur();
     }, this);
+
     this.updateBox();
     this.updateRectangles();
     return this;
@@ -252,32 +311,38 @@ joint.shapes.flexberry.uml.ComplexTransitionHView = joint.shapes.flexberry.uml.P
     let $buffer = this.$box.find('.input-buffer');
     let $input = this.$box.find('.class-name-input');
     $buffer.css('font-weight', $input.css('font-weight'));
-    $buffer.text($input.val());
+    $buffer.text($input.val());    
     $input.width($buffer.width() + 1);
 
     //shift state text
-    $input.css({top: -8, left: (this.$box.width() + 20), position:'absolute'});
-   },
+    let textLength = $input.val().length;
+    $input.css({top: -15, left: (this.$box.width() / 2) - textLength*2.5, position:'absolute'});
+  },
+
+  //In updateRectangles update only text sizes, because start/final state not have rectanles
+  checkParentExist(element) {
+    let objectModel = this.model.get('objectModel');
+    let parentPrimitiveId = objectModel.get('parentPrimitive.id');
+    let deletedElementId = element.get('id');
+
+    if (parentPrimitiveId === deletedElementId) {
+      this.model.remove();
+    }
+  },
 
   removeBox: function () {
+    this.options.model.graph.off('remove', this.checkParentExist, this);
+    this.model.unsubscribeParentChanges();
+
     this.$box.remove();
   },
 
-  getButtons() {
-    return A([{
-      name: 'remove-button',
-      text: '&#xf00d',
-      handler: this.removeElement.bind(this),
-      attrs: {
-        'element': {'ref-dx': 10,'ref-y': -15, 'ref': '.joint-highlight-stroke' },
-        'circle': { r: 6, fill: '#007aff', stroke: '#007aff', 'stroke-width': 1 },
-        'text': { fill: '#ffffff','font-size': 10, 'text-anchor': 'middle', x: 0, y: 3, 'font-family': 'Icons' },
-      }
-    }]);
+  getSizeChangers() {
+    return A();
   }
 });
 
-joint.shapes.flexberry.uml.ComplexTransitionVView = joint.shapes.flexberry.uml.ComplexTransitionHView .extend({
+joint.shapes.flexberry.uml.SwimlineSeparatorVView = joint.shapes.flexberry.uml.SwimlineSeparatorHView.extend({
   template: [
     '<div class="uml-class-inputs">',
     '<textarea class="class-name-input complex-transition-input" value="" rows="1" wrap="off"></textarea>',
@@ -292,6 +357,7 @@ joint.shapes.flexberry.uml.ComplexTransitionVView = joint.shapes.flexberry.uml.C
     $buffer.text($input.val());
     $input.width($buffer.width() + 1);
 
-    $input.css({top: (this.$box.height() * 1.2), left: -(($buffer.width()) / 2),  position:'absolute'});
+    //shift state text
+    $input.css({top: (this.$box.height() / 2), left: 5,  position:'absolute'});
    },
 });

@@ -401,48 +401,10 @@ export default Component.extend({
     x = coordinates.x;
     y = coordinates.y;
     let options = { element: element, e: e, x: x, y: y };
-    if (isNone(this.get('draggedLink'))) {
-      let editMode = this.paper.fDDEditMode;
-      if (editMode === 'addNoteConnector' && !this._haveNote()) {
-        return;
-      }
-
-      let startDragLink = this.get('startDragLink');
-      let newElement = startDragLink(options);
-      if (isNone(newElement)) {
-        element.highlight();
-      } else {
-        this.set('draggedLink', newElement);
-        let graph = this.get('graph');
-        let paper = this.get('paper');
-
-        let linkView = newElement
-          .set({ 'target': { x: x, y: y } })
-          .addTo(graph).findView(paper);
-
-        this.set('isLinkAdding', true);
-        let links = graph.getLinks();
-        for (let i = 0; i < links.length; i+=1) {
-          let  link = links[i];
-          let view = link.findView(paper);
-          if (link.cid == newElement.cid) {
-            view.$el.addClass('edit-disabled');
-          }
-        }
-
-        $(paper.el).find('input,textarea').addClass('click-disabled');
-
-        $(document).on({
-          'mousemove.example': this._onDrag.bind(this)
-        }, {
-          paper: paper,
-          element: newElement
-        });
-
-        this.set('draggedLinkView', linkView);
-      }
+    if (this.get('isCreatedObjectChild')) {
+      this._addChildPrimitiveForClickedElement(options);
     } else {
-      this._drawLinkForClickedElement(options);
+      this._addLinkForClickedElement(options);
     }
   },
 
@@ -527,16 +489,75 @@ export default Component.extend({
   },
 
   /**
-    Add new embeded Element on graph.
+    Add link for clicked element.
 
-    @method actions._addNewEmbededElement
-    @param {Object} newElement joint js embeded element.
-    @param {Object} parentElement joint js parent element.
+    @method _addLinkForClickedElement
+    @param {Object} options selected joint js element.
   */
-  _addNewEmbededElement(newElement, parentElement) {
-    if (!isNone(parentElement)) {
-      this._addNewElement(newElement);
-      newElement.setParent(parentElement);
+  _addLinkForClickedElement(options) {
+    let element = options.element;
+    let x = options.x;
+    let y = options.y;
+
+    if (isNone(this.get('draggedLink'))) {
+      let editMode = this.paper.fDDEditMode;
+      if (editMode === 'addNoteConnector' && !this._haveNote()) {
+        return;
+      }
+
+      let startDragLink = this.get('startDragLink');
+      let newElement = startDragLink(options);
+      if (isNone(newElement)) {
+        element.highlight();
+      } else {
+        this.set('draggedLink', newElement);
+        let graph = this.get('graph');
+        let paper = this.get('paper');
+
+        let linkView = newElement
+          .set({ 'target': { x: x, y: y } })
+          .addTo(graph).findView(paper);
+
+        this.set('isLinkAdding', true);
+        let links = graph.getLinks();
+        for (let i = 0; i < links.length; i+=1) {
+          let  link = links[i];
+          let view = link.findView(paper);
+          if (link.cid == newElement.cid) {
+            view.$el.addClass('edit-disabled');
+          }
+        }
+
+        $(paper.el).find('input,textarea').addClass('click-disabled');
+
+        $(document).on({
+          'mousemove.example': this._onDrag.bind(this)
+        }, {
+          paper: paper,
+          element: newElement
+        });
+
+        this.set('draggedLinkView', linkView);
+      }
+    } else {
+      if (this.get('endDragLink')(options)) {
+        this._clearLinksData();
+      }
+    }
+  },
+
+  /**
+    Add child primitive in clicked primitive.
+
+    @method _addChildPrimitiveForClickedElement
+    @param {Object} options selected joint js element.
+  */
+  _addChildPrimitiveForClickedElement(options) {
+    let newChildObject =this.get('createChildObject')(options);
+    let parentElement = options.element.model;
+
+    if (!isNone(newChildObject) && !isNone(parentElement)) {
+        this._addNewElement(newChildObject);
     }
   },
 
@@ -613,7 +634,7 @@ export default Component.extend({
       } else {
         data.ghost.position(x + shift.x, y + shift.y);
       }
-/*
+
       //get border for embed element move restriction. [minX, maxX, minY, maxY]
       let ghostMoveBorder = view.model.get('ghostMoveBorder');
       let newPositionX = x + shift.x;
@@ -624,9 +645,9 @@ export default Component.extend({
         newPositionX = newPositionX > ghostMoveBorder[1] ? ghostMoveBorder[1] : newPositionX;
         newPositionY = newPositionY < ghostMoveBorder[2] ? ghostMoveBorder[2] : newPositionY;
         newPositionY = newPositionY > ghostMoveBorder[3] ? ghostMoveBorder[3] : newPositionY;
+        data.ghost.position(newPositionX, newPositionY);
       }
-      
-      data.ghost.position(newPositionX, newPositionY);*/
+
     } else {
       let bbox = view.model.getBBox();
       let rects = view.model.getRectangles();
@@ -670,16 +691,18 @@ export default Component.extend({
         let shift = evt.data.shift;
         let valueX = x + shift.x < 0 ? 0 : x + shift.x;
         let valueY = y + shift.y < 0 ? 0 : y + shift.y;
-        view.model.position(valueX, valueY);
+
         //get border for embed element move restriction. [minX, maxX, minY, maxY]
-        /*let ghostMoveBorder = view.model.get('ghostMoveBorder');
+        let ghostMoveBorder = view.model.get('ghostMoveBorder');
 
         if (!isNone(ghostMoveBorder)) {
           valueX = valueX < ghostMoveBorder[0] ? ghostMoveBorder[0] : valueX;
           valueX = valueX > ghostMoveBorder[1] ? ghostMoveBorder[1] : valueX;
           valueY = valueY < ghostMoveBorder[2] ? ghostMoveBorder[2] : valueY;
           valueY = valueY > ghostMoveBorder[3] ? ghostMoveBorder[3] : valueY;
-        }*/
+        }
+
+        view.model.position(valueX, valueY);
       }
 
       data.ghost.remove();
@@ -693,65 +716,6 @@ export default Component.extend({
       });
 
       view.highlight();
-    }
-  },
-
-  /**
-    Draw link for clicked element.
-
-    @method _drawLinkForClickedElement
-    @param {Object} options selected joint js element.
-  */
-  _drawLinkForClickedElement(options) {
-    let clickedElement = options;
-    if (isNone(this.get('draggedLink'))) {
-      let newElement = this.get('startDragLink')(clickedElement);
-      if (isNone(newElement)) {
-        clickedElement.element.highlight();
-      } else {
-        this.set('draggedLink', newElement);
-        let graph = this.get('graph');
-        let paper = this.get('paper');
-
-        let linkView = newElement
-          .set({ 'target': { x: clickedElement.x, y: clickedElement.y } })
-          .addTo(graph).findView(paper);
-
-        this.set('isLinkAdding', true);
-
-        graph.getLinks().map(link => {
-          link.findView(paper).$el.addClass('edit-disabled');
-        }, this);
-
-        $(paper.el).find('input,textarea').addClass('click-disabled');
-
-        $(document).on({
-          'mousemove.example': this._onDrag.bind(this)
-        }, {
-          paper: paper,
-          element: newElement
-        });
-
-        this.set('draggedLinkView', linkView);
-      }
-    } else {
-      if (this.get('endDragLink')(clickedElement)) {
-        this._clearLinksData();
-      }
-    }
-  },
-
-   /**
-    Draw child primitive in clicked primitive.
-
-    @method _drawLinkForClickedElement
-    @param {Object} options selected joint js element.
-  */
-  _drawPrimitiveInClickedElement(options) {
-    let newObject =this.get('createChildObject')(options);
-
-    if (!isNone(newObject)) {
-      this._addNewEmbededElement(newObject, options.element.model);
     }
   },
 

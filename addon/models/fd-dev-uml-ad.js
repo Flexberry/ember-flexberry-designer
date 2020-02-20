@@ -100,11 +100,11 @@ let Model = ADModel.extend(DevUMLADMixin, {
           result.pushObject(FdUmlNote.create({ primitive }));
           break;
 
-        case 'STORMCASE.UML.Common.SwimlineSeparatorH, UMLCommon':
+        case 'STORMCASE.UML.ad.ConcurrentStateH, UMLAD':
           result.pushObject(FdUmlSwimlineSeparator.create({ primitive }));
           break;
 
-        case 'STORMCASE.UML.Common.SwimlineSeparatorV, UMLCommon':
+        case 'STORMCASE.UML.ad.ConcurrentStateV, UMLAD':
           result.pushObject(FdUmlSwimlineSeparator.create({ primitive }));
           break;
 

@@ -83,7 +83,7 @@ export let Partition = BaseObject.define('flexberry.uml.Partition', {
       this.toBack({ deep: true });
     });
   },
-  
+
   getRectangles() {
     return [
       { type: 'header', element: this }
