@@ -15,6 +15,8 @@ export default {
   'project-actions': {
     'delete-stage-caption': 'I want forever',
     'delete-stage-button': 'Delete project',
+    'rename-stage-caption': 'I want to change all string fields of stage objects (except caption and description) to',
+    'rename-stage-button': 'Transliteration',
   },
   'generation-settings-caption': 'Generation settings',
   'generation-settings': {
