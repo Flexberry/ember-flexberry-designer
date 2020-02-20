@@ -214,7 +214,7 @@ export default Controller.extend(FdSheetCloseConfirm, FdReadonlyProjectMixin, {
 
       let data = { 'stageId': stage.get('id'), 'isTranslation': true };
 
-      adapter.callAction('RemaneObjectsInStage', data, null, { withCredentials: true }).then(() => {
+      adapter.callAction('RenameObjectsInStage', data, null, { withCredentials: true }).then(() => {
 
         this.get('appState').loading();
         context.resetCurrentStage();
@@ -228,7 +228,7 @@ export default Controller.extend(FdSheetCloseConfirm, FdReadonlyProjectMixin, {
 
         return store.query(modelName, builder.build());
       }).then((result) => {
-        if (result && result.get('length') !== undefined && result.get('length') === 1) {
+        if (result && result.get('length') === 1) {
           let stage = result.objectAt(0);
           context.setCurrentConfiguration(stage.get('configuration'));
           context.setCurrentStage(stage);
