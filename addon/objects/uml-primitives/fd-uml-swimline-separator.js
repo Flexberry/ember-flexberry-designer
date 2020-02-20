@@ -145,8 +145,8 @@ export let SwimlineSeparatorH = BaseObject.define('flexberry.uml.SwimlineSeparat
   },
 
   unsubscribeParentChanges: function () {
-    this.get('parentPrimitive').off('change:position', this.onParentPositionChange, this);
-    this.get('parentPrimitive').off('change:size', this.onParentPositionChange, this);
+    this.get('parentObject').off('change:position', this.onParentPositionChange, this);
+    this.get('parentObject').off('change:size', this.onParentSizeChange, this);
   }
 });
 
