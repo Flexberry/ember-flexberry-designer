@@ -284,6 +284,12 @@
   <h2 class="form-header">{{t "forms.fd-setting.project-actions-caption"}}</h2>
   <div class="ui stackable grid">
     <div class="row">
+      <span>{{t "forms.fd-setting.project-actions.rename-stage-caption"}}</span>
+      <button class="ui button basic {{if readonlyModeProject 'disabled' ''}}" {{action "renameStage"}}>
+        {{t "forms.fd-setting.project-actions.rename-stage-button"}}
+      </button>
+    </div>
+    <div class="row">
       <span>{{t "forms.fd-setting.project-actions.delete-stage-caption"}}</span>
       <button class="ui button basic {{if readonlyModeProject 'disabled' ''}}" {{action "delete"}}>
         {{t "forms.fd-setting.project-actions.delete-stage-button"}}

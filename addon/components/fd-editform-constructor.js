@@ -726,7 +726,7 @@ export default Component.extend({
     let types = [];
 
     let clazz = view.get('class');
-    let definition = view.get('definition');
+    let definition = view.get('definitionArray');
     let inheritances = this.get('model.inheritances');
     let associations = this.get('model.associations');
     let aggregations = this.get('model.aggregations');
