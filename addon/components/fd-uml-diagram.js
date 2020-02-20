@@ -254,6 +254,14 @@ export default Component.extend({
     paper.on('element:openpopup', this._elementOpenPopup, this);
 
     let elements = this.get('elements');
+
+    // Sort elements. Partition primitive to first.
+    let partitions = elements.filterBy('primitive.$type', "STORMCASE.UML.ad.Partition, UMLAD");
+    partitions.forEach((partition) => {
+      elements.removeObject(partition);
+      elements.insertAt(0, partition);
+    });
+
     let links = this.get('links');
     graph.addCells(elements.map(e => {
       let element = e.JointJS();
