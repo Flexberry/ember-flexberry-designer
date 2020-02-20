@@ -326,6 +326,14 @@ joint.shapes.flexberry.uml.SwimlineSeparatorHView = joint.shapes.flexberry.uml.B
     $input.css({top: -15, left: (this.$box.width() / 2) - textLength*2.5, position:'absolute'});
   },
 
+  setColors() {
+    const textColor = this.getTextColor();
+
+    if (!isNone(textColor)) {
+      this.model.attr('.flexberry-uml-header-poliline/stroke', textColor);
+    }
+  },
+
   //In updateRectangles update only text sizes, because start/final state not have rectanles
   checkParentExist(element) {
     let objectModel = this.model.get('objectModel');
