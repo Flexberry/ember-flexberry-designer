@@ -227,7 +227,7 @@ export let SwimlineSeparatorV = SwimlineSeparatorH.define('flexberry.uml.Swimlin
 joint.shapes.flexberry.uml.SwimlineSeparatorHView = joint.shapes.flexberry.uml.BaseObjectView.extend({
   template: [
     '<div class="uml-class-inputs">',
-    '<textarea class="class-name-input final-state-input" value="" rows="1" wrap="off"></textarea>',
+    '<textarea class="class-name-input header-input" value="" rows="1" wrap="off"></textarea>',
     '<div class="input-buffer"></div>',
     '</div>'
   ].join(''),
@@ -319,11 +319,10 @@ joint.shapes.flexberry.uml.SwimlineSeparatorHView = joint.shapes.flexberry.uml.B
     let $input = this.$box.find('.class-name-input');
     $buffer.css('font-weight', $input.css('font-weight'));
     $buffer.text($input.val());    
-    $input.width($buffer.width() + 1);
+    $input.width($buffer.width() + 3);
 
     //shift state text
-    let textLength = $input.val().length;
-    $input.css({top: -15, left: (this.$box.width() / 2) - textLength*2.5, position:'absolute'});
+    $input.css({top: -15, left: (this.$box.width() / 30), position:'absolute'});
   },
 
   setColors() {
@@ -360,19 +359,16 @@ joint.shapes.flexberry.uml.SwimlineSeparatorHView = joint.shapes.flexberry.uml.B
 joint.shapes.flexberry.uml.SwimlineSeparatorVView = joint.shapes.flexberry.uml.SwimlineSeparatorHView.extend({
   template: [
     '<div class="uml-class-inputs">',
-    '<textarea class="class-name-input complex-transition-input" value="" rows="1" wrap="off"></textarea>',
+    '<textarea class="class-name-input header-input" value="" rows="1" wrap="off"></textarea>',
     '<div class="input-buffer"></div>',
     '</div>'
    ].join(''),
 
    updateRectangles() {
-    let $buffer = this.$box.find('.input-buffer');
+    joint.shapes.flexberry.uml.SwimlineSeparatorHView.prototype.updateRectangles.apply(this, arguments);
     let $input = this.$box.find('.class-name-input');
-    $buffer.css('font-weight', $input.css('font-weight'));
-    $buffer.text($input.val());
-    $input.width($buffer.width() + 1);
 
     //shift state text
-    $input.css({top: (this.$box.height() / 2), left: 5,  position:'absolute'});
+    $input.css({top: (this.$box.height() / 30), left: 3,  position:'absolute'});
    },
 });
