@@ -70473,7 +70473,8 @@ body.pushable > .pusher {
 }
 .joint-element .remove-button,
 .joint-element .collapse-button,
-.joint-element .open-edit-form-button {
+.joint-element .open-edit-form-button,
+.joint-element .color-button {
   cursor: pointer;
 }
 .joint-element .right-size-button {
