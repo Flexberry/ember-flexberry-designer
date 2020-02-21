@@ -133,9 +133,9 @@ All notable changes to this project will be documented in this file.
 * Added logic for create new class button.
 * Added logic for create new diagram button.
 * Added logic for delete class button.
-* Change text ability on activity diagram primitives.	
-* Add primitives resizing on cad diagram.	
-* Add text and background colors for primitives on cad diagram.	
+* Change text ability on activity diagram primitives.
+* Add primitives resizing on cad diagram.
+* Add text and background colors for primitives on cad diagram.
 * Add create prototype button.
 
 ### Fixed
