@@ -7,7 +7,8 @@ moduleFor('controller:fd-all-projects/new', 'Unit | Controller | fd all projects
     'service:appState',
     'service:fd-current-project-context',
     'service:fdSheetService',
-    'service:fd-dialog-service'
+    'service:fd-dialog-service',
+    'service:fdLockService'
   ]
 });
 
