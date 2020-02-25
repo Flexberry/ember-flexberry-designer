@@ -41,3 +41,13 @@
     <i class="icon-fd-x-mark icon" ></i>
   </button>
 </div>
+
+{{#if isLocked}}
+  {{flexberry-dialog
+    closable=true
+    visible=true
+    caption=(concat (t "components.fd-sheets-tool-bar.object-locked") lockUserName)
+    flexberryClassNames=lockModalClassNames
+    hide=(action 'lockModalHidden')
+  }}
+{{/if}}

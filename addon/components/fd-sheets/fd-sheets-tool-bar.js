@@ -1,7 +1,7 @@
 import Component from '@ember/component';
 import FdReadonlyProjectMixin from '../../mixins/fd-readonly-project';
 import { inject as service } from '@ember/service';
-import { computed } from '@ember/object';
+import { computed, observer } from '@ember/object';
 import { isNone } from '@ember/utils';
 import layout from '../../templates/components/fd-sheets/fd-sheets-tool-bar';
 import { later } from '@ember/runloop';
@@ -34,6 +34,15 @@ export default Component.extend(FdReadonlyProjectMixin, {
     @type FdSheetService
   */
   fdSheetService: service(),
+
+  /**
+   Service that for managing locks.
+
+   @property fdLockService
+   @type {Class}
+   @default service()
+   */
+  fdLockService: service(),
 
   /**
     Router service of current application.
@@ -115,6 +124,65 @@ export default Component.extend(FdReadonlyProjectMixin, {
   */
   isNewModel: false,
 
+  /**
+    Flag: indicates whether or not show lock modal window.
+
+    @property isLocked
+    @type Bool
+  */
+  isLocked: false,
+
+  /**
+    Lock user name.
+
+    @property lockUserName
+    @type String
+  */
+  lockUserName: undefined,
+
+  lockModalClassNames: computed(() => {
+    return {
+      wrapper: 'fd-lock-dialog',
+      header: 'fd-lock-dialog-header',
+      content: 'hidden',
+      toolbar: 'fd-lock-dialog-toolbar',
+      approveButton: 'fd-lock-dialog-approve-button',
+      cancelButton: 'hidden',
+      closeButton: 'hidden'
+    }
+  }).readOnly(),
+
+  /**
+    Update locks.
+
+    @method readonlyModeObserver
+  */
+  readonlyModeObserver: observer('readonlyMode', function() {
+    const readonlyMode = this.get('readonlyMode');
+    if (!readonlyMode) {
+      const _this = this;
+      const lockService = this.get('fdLockService');
+      const refreshLockTime = lockService.getRefreshLockTime();
+      const sheetComponentName = _this.get('sheetComponentName');
+      const editedObject = _this.get('editedObject');
+      lockService.createLock(editedObject, sheetComponentName);
+      setTimeout(function tick() {
+        if (!_this.get('readonlyMode'))  {
+          lockService.createLock(editedObject, sheetComponentName);
+          setTimeout(tick, refreshLockTime);
+        }
+      }, refreshLockTime);
+    }
+  }),
+
+  willDestroyElement() {
+    this._super(...arguments);
+    this.set('readonlyMode', true);
+    const sheetComponentName = this.get('sheetComponentName');
+    const editedObject = this.get('editedObject');
+    this.get('fdLockService').deleteLock(editedObject, sheetComponentName);
+  },
+
   actions: {
     /**
       Closing sheet.
@@ -144,6 +212,8 @@ export default Component.extend(FdReadonlyProjectMixin, {
     save() {
       this.get('saveSheet')();
       this.set('readonlyMode', true);
+      let sheetComponentName = this.get('sheetComponentName');
+      this.get('fdLockService').deleteLock(this.get('editedObject'), sheetComponentName);
     },
 
     /**
@@ -161,7 +231,17 @@ export default Component.extend(FdReadonlyProjectMixin, {
       @method actions.edit
     */
     edit() {
-      this.set('readonlyMode', false);
+      let _this = this;
+
+      let sheetComponentName = this.get('sheetComponentName');
+      this.get('fdLockService').checkLock(this.get('editedObject'), sheetComponentName).then(result => {
+        if (result && !result.Acquired) {
+          _this.set('readonlyMode', false);
+        } else {
+          _this.set('isLocked', true);
+          _this.set('lockUserName', result ? result.UseName : '');
+        }
+      });
     },
 
     /**
@@ -230,5 +310,14 @@ export default Component.extend(FdReadonlyProjectMixin, {
       let model = this.get('targetObject.selectedValue.data');
       window.open(`#/fd-print-form?gotostage=${model.get('subsystem.stage.id')}&gototype=${model.get('constructor.modelName')}&gotoobj=${model.get('id')}&inframe=1` );
     },
+
+    /**
+      Lock modal hide action.
+
+      @method actions.lockModalHidden
+    */
+    lockModalHidden() {
+      this.set('isLocked', false);
+    }
   }
 });
