@@ -49,7 +49,13 @@
 
 {{#if show}}
   {{fd-modal-message-box
-    isError=isError
+    headerCaption=headerCaption
     messageText=messageText
+    visibleButtons=visibleButtons
+    approveButtonCaption=approveButtonCaption
+    denyButtonCaption=denyButtonCaption
+    approve=(action "approveAction")
+    deny=(action "denyAction")
+    hide=(action set "show" false)
   }}
 {{/if}}

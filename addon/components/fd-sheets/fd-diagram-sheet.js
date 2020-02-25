@@ -513,9 +513,15 @@ export default FdBaseSheet.extend({
     /**
       Delete selected diagram.
 
-       @method actions.delete
+      @method actions.delete
+      @param {Boolean} confirmation
     */
-    delete() {
+    delete(confirmation) {
+      if (isNone(confirmation)) {
+        this.get('fdDialogService').showVerificationMessage(this.get('i18n').t('components.fd-modal-message-box.delete-text').toString(), this.get('actions.delete'), this);
+        return;
+      }
+
       let store = this.get('store');
       let selectedValue = this.get('selectedValue.data');
       let modelPart = selectedValue.get('constructor.modelName').slice(11);
