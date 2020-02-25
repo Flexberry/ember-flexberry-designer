@@ -6319,6 +6319,11 @@ define('dummy/ember-flexberry-designer/tests/addon.lint-test', [], function () {
     assert.ok(true, 'addon/mixins/fd-popup-actions.js should pass ESLint\n\n');
   });
 
+  QUnit.test('addon/mixins/fd-primitives-array-sorting.js', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'addon/mixins/fd-primitives-array-sorting.js should pass ESLint\n\n');
+  });
+
   QUnit.test('addon/mixins/fd-readonly-project.js', function (assert) {
     assert.expect(1);
     assert.ok(true, 'addon/mixins/fd-readonly-project.js should pass ESLint\n\n');
@@ -8177,6 +8182,11 @@ define('dummy/ember-flexberry-designer/tests/addon.lint-test', [], function () {
   QUnit.test('addon/objects/uml-primitives/fd-uml-std-class.js', function (assert) {
     assert.expect(1);
     assert.ok(true, 'addon/objects/uml-primitives/fd-uml-std-class.js should pass ESLint\n\n');
+  });
+
+  QUnit.test('addon/objects/uml-primitives/fd-uml-swimline-separator.js', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'addon/objects/uml-primitives/fd-uml-swimline-separator.js should pass ESLint\n\n');
   });
 
   QUnit.test('addon/objects/uml-primitives/fd-uml-template-class.js', function (assert) {
