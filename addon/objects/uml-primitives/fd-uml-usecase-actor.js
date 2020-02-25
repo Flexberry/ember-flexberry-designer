@@ -110,6 +110,13 @@ joint.shapes.flexberry.uml.UsecaseActorView = joint.shapes.flexberry.uml.BaseObj
   ].join(''),
 
   getSizeChangers() {
+    if (this.paper) {
+      let readonly = this.paper.options.interactive;
+      if (!readonly && typeof readonly !== 'object') {
+        return A();
+      }
+    }
+    
     return A([{
       name: 'right-size-button prop',
       text: '&#xf0da',

@@ -612,6 +612,12 @@ export default Component.extend({
           }
           let propHeight = newSize.height + ((newSize.width - oldSize.width) / oldSize.width) * newSize.height;
           let propWidth = newSize.width + ((newSize.height - oldSize.height) / oldSize.height) * newSize.width;
+          if (propHeight < view.model.attributes.minHeight) {
+            propHeight = view.model.attributes.minHeight
+          }
+          if (propWidth < view.model.attributes.minWidth) {
+            propWidth = view.model.attributes.minWidth
+          }
           data.ghost.resize(propWidth, propHeight);
         } else {
           const position = data.ghost.position();
