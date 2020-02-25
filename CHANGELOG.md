@@ -2,6 +2,8 @@
 All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
+### Added
+*Added swimline primitive.
 
 ## [0.13.0-beta02]
 ### Added
