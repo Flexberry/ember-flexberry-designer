@@ -48,6 +48,14 @@ export default Controller.extend(FdSheetCloseConfirm, FdReadonlyProjectMixin, {
   accessIsPublic: true,
 
   /**
+    Service that triggers user events.
+
+    @property userService
+    @type Service
+  */
+  userService: service('user'),
+
+  /**
     Table headers.
 
     @property tableUsersAccess
@@ -278,6 +286,21 @@ export default Controller.extend(FdSheetCloseConfirm, FdReadonlyProjectMixin, {
     */
     dropdownChangeAccess(model, value) {
       set(model, 'access', value);
+    },
+
+    /**
+      User disconnect from Github.
+
+      @method actions.disconnectGithub
+    */
+    disconnectGithub() {
+      let store = this.get('store');
+      let adapter = store.adapterFor('application');
+
+      adapter.callAction('ClearUserAuthData', { username: this.get('userService._username') })
+      .then((result) => {
+        return resolve()
+      });
     },
   }
 });

@@ -259,6 +259,11 @@
         }}
       </div>
     </div>
+    <div class="row">
+      <button class='ui flexberry-button basic button icon' type='button' {{action "disconnectGithub" on="click"}}>
+        {{t "forms.fd-setting.generation-settings.git-disconnect-button-caption"}}
+      </button>
+    </div>
   </div>
 
   {{#if model.usersAccess}}
