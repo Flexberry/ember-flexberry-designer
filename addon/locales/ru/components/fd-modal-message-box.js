@@ -4,6 +4,7 @@ export default {
   'confirmation-text': 'Имеются несохраненные данные. Сохранить данные при закрытии ?',
   'confirmation-approve': 'Сохранить и закрыть',
   'confirmation-deny': 'Закрыть без сохранения',
-  'confirmation-close': 'Закрыть',
-  'confirmation-cancel': 'Отменить',
+  'custom-approve': 'Подтвердить действие',
+  'custom-deny': 'Отменить действие',
+  'delete-text': 'Данные будут удалены безвозвратно. Вы уверены ?'
 };

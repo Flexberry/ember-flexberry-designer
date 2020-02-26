@@ -12,6 +12,7 @@ import FdUmlObjectInState  from 'ember-flexberry-designer/objects/uml-primitives
 import FdUmlActiveState from 'ember-flexberry-designer/objects/uml-primitives/fd-uml-active-state';
 import FdUmlPartition from 'ember-flexberry-designer/objects/uml-primitives/fd-uml-partition';
 import FdObjectFlow  from 'ember-flexberry-designer/objects/uml-primitives/fd-uml-object-flow';
+import FdUmlSwimlineSeparator  from 'ember-flexberry-designer/objects/uml-primitives/fd-uml-swimline-separator';
 import { getJsonForElement, getJsonForLink } from '../../utils/get-json-for-diagram';
 
 /**
@@ -329,7 +330,47 @@ export default Mixin.create({
         this._addToPrimitives(partitonObject);
         return partitonObject.JointJS();
       }).bind(this), e);
-    }
+    },
+
+    /**
+      Handler for click on addSwimlineSeparatorH button.
+      @ethod actions.addSwimlineSeparatorH
+      @param {jQuery.Event} e event.
+    */
+    addSwimlineSeparatorH(e) {
+      this.createObjectData((function(x, y, parentPrimitive) {
+        let jsonObject = getJsonForElement(
+          'STORMCASE.UML.ad.ConcurrentStateH, UMLAD',
+          { x, y },
+          { width: 10, height: 1 },
+          { Name: '' },
+          { ConnectedPrimitive : { $ref: parentPrimitive } }
+        );
+        let swimlineSeparatorObject = FdUmlSwimlineSeparator.create({ primitive: jsonObject });
+        this._addToPrimitives(swimlineSeparatorObject);
+        return swimlineSeparatorObject.JointJS();
+      }).bind(this), e, A(['flexberry.uml.Partition']));
+    },
+
+    /**
+      Handler for click on addSwimlineSeparatorV button.
+      @ethod actions.addSwimlineSeparatorV
+      @param {jQuery.Event} e event.
+    */
+    addSwimlineSeparatorV(e) {
+      this.createObjectData((function(x, y, parentPrimitive) {
+        let jsonObject = getJsonForElement(
+          'STORMCASE.UML.ad.ConcurrentStateV, UMLAD',
+          { x, y },
+          { width: 1, height: 10 },
+          { Name: '' },
+          { ConnectedPrimitive : { $ref: parentPrimitive } }
+        );
+        let swimlineSeparatorObject = FdUmlSwimlineSeparator.create({ primitive: jsonObject });
+        this._addToPrimitives(swimlineSeparatorObject);
+        return swimlineSeparatorObject.JointJS();
+      }).bind(this), e, A(['flexberry.uml.Partition']));
+    },
   }
 });
 

@@ -4,6 +4,7 @@ import hasChanges from '../utils/model-has-changes';
 import $ from 'jquery';
 import { later, schedule } from '@ember/runloop';
 import { isBlank, isNone } from '@ember/utils';
+import { inject as service } from '@ember/service';
 import { get } from '@ember/object';
 
 export default Service.extend(Evented, {
@@ -17,6 +18,15 @@ export default Service.extend(Evented, {
     @default undefined
   */
   abortedTransitionFromSheet: undefined,
+
+  /**
+   Service for managing locks.
+
+   @property fdLockService
+   @type {Class}
+   @default service()
+   */
+  fdLockService: service(),
 
   init() {
     this._super(...arguments);
@@ -42,6 +52,11 @@ export default Service.extend(Evented, {
      @param {Object} currentItem Current list item
   */
   openSheet(sheetName, currentItem) {
+    const previousItem = this.getSheetModel(sheetName);
+    if (previousItem) {
+      this.get('fdLockService').deleteLock(previousItem, sheetName);
+    }
+
     const unsavedData = this.findUnsavedSheetData(sheetName);
 
     if (unsavedData) {
@@ -73,6 +88,11 @@ export default Service.extend(Evented, {
      @param {String} sheetName Sheet's component name
   */
   closeSheet(sheetName) {
+    const previousItem = this.getSheetModel(sheetName);
+    if (previousItem) {
+      this.get('fdLockService').deleteLock(previousItem, sheetName);
+    }
+
     const unsavedData = this.findUnsavedSheetData(sheetName);
 
     if (unsavedData) {

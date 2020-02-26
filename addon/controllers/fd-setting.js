@@ -192,9 +192,15 @@ export default Controller.extend(FdSheetCloseConfirm, FdReadonlyProjectMixin, {
     /**
       Delete selected stage.
 
-       @method actions.delete
+      @method actions.delete
+      @param {Boolean} confirmation
     */
-    delete() {
+    delete(confirmation) {
+      if (isNone(confirmation)) {
+        this.get('fdDialogService').showVerificationMessage(this.get('i18n').t('components.fd-modal-message-box.delete-text').toString(), this.get('actions.delete'), this);
+        return;
+      }
+
       let stage = this.get('model.stage');
       this.get('appState').loading();
       stage.destroyRecord()
@@ -213,8 +219,14 @@ export default Controller.extend(FdSheetCloseConfirm, FdReadonlyProjectMixin, {
       Rename objects selected stage.
 
        @method actions.renameStage
+       @param {Boolean} confirmation
     */
-    renameStage() {
+    renameStage(confirmation) {
+      if (isNone(confirmation)) {
+        this.get('fdDialogService').showVerificationMessage(this.get('i18n').t('forms.fd-setting.project-actions.rename-stage-text').toString(), this.get('actions.renameStage'), this);
+        return;
+      }
+
       let store = this.get('store');
       let adapter = store.adapterFor('application');
       let context = this.get('currentProjectContext');

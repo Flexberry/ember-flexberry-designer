@@ -83,7 +83,7 @@ export let Partition = BaseObject.define('flexberry.uml.Partition', {
       this.toBack({ deep: true });
     });
   },
-  
+
   getRectangles() {
     return [
       { type: 'header', element: this }
@@ -98,14 +98,13 @@ joint.shapes.flexberry.uml.PartitionView = joint.shapes.flexberry.uml.BaseObject
     '<div class="input-buffer"></div>',
     '</div>'
   ].join(''),
-});
 
-joint.shapes.flexberry.uml.PartitionView = joint.shapes.flexberry.uml.BaseObjectView.extend({
-  template: [
-    '<div class="uml-class-inputs">',
-    '<textarea class="class-name-input header-input" value="" rows="1" wrap="off"></textarea>',
-    '<div class="input-buffer"></div>',
-    '</div>'
-  ].join('')
-});
+  //In updateRectangles update only text sizes, because start/final state not have rectanles
+  updateRectangles() {
+    joint.shapes.flexberry.uml.BaseObjectView.prototype.updateRectangles.apply(this, arguments);
+    let $input = this.$box.find('.class-name-input');
 
+    //shift state text
+    $input.css({ top: (this.$box.height() / 30), left: (this.$box.width() / 30), position:'absolute'});
+  },
+});
