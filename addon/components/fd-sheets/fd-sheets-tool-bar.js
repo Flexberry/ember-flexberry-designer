@@ -36,13 +36,22 @@ export default Component.extend(FdReadonlyProjectMixin, {
   fdSheetService: service(),
 
   /**
-   Service that for managing locks.
+   Service for managing locks.
 
    @property fdLockService
    @type {Class}
    @default service()
    */
   fdLockService: service(),
+
+  /**
+   Service for managing dialog windows.
+
+   @property fdDialogService
+   @type {Class}
+   @default service()
+   */
+  fdDialogService: service(),
 
   /**
     Router service of current application.
@@ -123,34 +132,6 @@ export default Component.extend(FdReadonlyProjectMixin, {
     @type Bool
   */
   isNewModel: false,
-
-  /**
-    Flag: indicates whether or not show lock modal window.
-
-    @property isLocked
-    @type Bool
-  */
-  isLocked: false,
-
-  /**
-    Lock user name.
-
-    @property lockUserName
-    @type String
-  */
-  lockUserName: undefined,
-
-  lockModalClassNames: computed(() => {
-    return {
-      wrapper: 'fd-lock-dialog',
-      header: 'fd-lock-dialog-header',
-      content: 'hidden',
-      toolbar: 'fd-lock-dialog-toolbar',
-      approveButton: 'fd-lock-dialog-approve-button',
-      cancelButton: 'hidden',
-      closeButton: 'hidden'
-    }
-  }).readOnly(),
 
   /**
     Update locks.
@@ -238,8 +219,7 @@ export default Component.extend(FdReadonlyProjectMixin, {
         if (result && !result.Acquired) {
           _this.set('readonlyMode', false);
         } else {
-          _this.set('isLocked', true);
-          _this.set('lockUserName', result ? result.UseName : '');
+          _this.get('fdDialogService').showErrorMessage(this.get('i18n').t('components.fd-sheets-tool-bar.object-locked').toString() + (result ? result.UseName : ''));
         }
       });
     },
@@ -310,14 +290,5 @@ export default Component.extend(FdReadonlyProjectMixin, {
       let model = this.get('targetObject.selectedValue.data');
       window.open(`#/fd-print-form?gotostage=${model.get('subsystem.stage.id')}&gototype=${model.get('constructor.modelName')}&gotoobj=${model.get('id')}&inframe=1` );
     },
-
-    /**
-      Lock modal hide action.
-
-      @method actions.lockModalHidden
-    */
-    lockModalHidden() {
-      this.set('isLocked', false);
-    }
   }
 });
