@@ -4,6 +4,7 @@ export default {
   'confirmation-text': 'Unsaved data exist. Save data before closing ?',
   'confirmation-approve': 'Save and close',
   'confirmation-deny': 'Close without saving',
-  'confirmation-close': 'Close',
-  'confirmation-cancel': 'Cancel',
+  'custom-approve': 'Confirm action',
+  'custom-deny': 'Undo action',
+  'delete-text': 'Data will be deleted permanently. Are you sure ?'
 };

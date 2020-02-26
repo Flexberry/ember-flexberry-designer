@@ -16,7 +16,8 @@ export default {
     'delete-stage-caption': 'Я хочу навсегда',
     'delete-stage-button': 'Удалить проект',
     'rename-stage-caption': 'Я хочу изменить все строковые поля объектов стадии (кроме caption и description) на',
-    'rename-stage-button': 'Транслитерацию' ,
+    'rename-stage-button': 'Транслитерацию',
+    'rename-stage-text': 'Выполнение транслитерации изменит все поля поля в стадию что може привести к ее поломке, рекомендуем сделать бэкап стадии. Селать транслитерацию стадии ?'
   },
   'generation-settings-caption': 'Настройки генерации',
   'generation-settings': {

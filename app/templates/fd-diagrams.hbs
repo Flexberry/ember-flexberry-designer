@@ -86,11 +86,13 @@
 
 {{#if show}}
   {{fd-modal-message-box
-    isError=isError
+    headerCaption=headerCaption
     messageText=messageText
-    approve=(action "closeWithSaving")
-    deny=(action "closeWithoutSaving")
+    visibleButtons=visibleButtons
+    approveButtonCaption=approveButtonCaption
+    denyButtonCaption=denyButtonCaption
+    approve=(action "approveAction")
+    deny=(action "denyAction")
     hide=(action set "show" false)
-    headerIcon='edit'
   }}
 {{/if}}
