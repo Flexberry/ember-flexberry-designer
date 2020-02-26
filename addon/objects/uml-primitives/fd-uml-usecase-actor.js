@@ -148,7 +148,6 @@ joint.shapes.flexberry.uml.UsecaseActorView = joint.shapes.flexberry.uml.BaseObj
     const minWidth = this.model.attributes.minWidth;
     const minHeight = this.model.attributes.minHeight;
     const oldSize = this.model.size();
-    this.getSizeChangers();
 
     let newHeight = Math.max( resizedHeight || oldSize.height, minHeight)
     let newWidth = Math.max( resizedWidth || oldSize.width, minWidth)

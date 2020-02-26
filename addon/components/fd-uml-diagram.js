@@ -610,14 +610,14 @@ export default Component.extend({
               newSize.height =  y - view.model.getBBox().y
             }
           }
+          if (newSize.height < view.model.attributes.minHeight) {
+            newSize.height = view.model.attributes.minHeight
+          }
+          if (newSize.width < view.model.attributes.minWidth) {
+            newSize.width = view.model.attributes.minWidth
+          }
           let propHeight = newSize.height + ((newSize.width - oldSize.width) / oldSize.width) * newSize.height;
           let propWidth = newSize.width + ((newSize.height - oldSize.height) / oldSize.height) * newSize.width;
-          if (propHeight < view.model.attributes.minHeight) {
-            propHeight = view.model.attributes.minHeight
-          }
-          if (propWidth < view.model.attributes.minWidth) {
-            propWidth = view.model.attributes.minWidth
-          }
           data.ghost.resize(propWidth, propHeight);
         } else {
           const position = data.ghost.position();
