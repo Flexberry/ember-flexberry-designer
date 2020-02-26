@@ -8,5 +8,6 @@ export default {
   'share-button-title': 'Copy link',
   'print-button-title': 'Print',
   'share-button-data-content': 'Copied!',
-  'link-caption': 'Link properties'
+  'link-caption': 'Link properties',
+  'object-locked': 'Locked by '
 };

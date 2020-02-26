@@ -1,7 +1,7 @@
 import Component from '@ember/component';
 import FdReadonlyProjectMixin from '../../mixins/fd-readonly-project';
 import { inject as service } from '@ember/service';
-import { computed } from '@ember/object';
+import { computed, observer } from '@ember/object';
 import { isNone } from '@ember/utils';
 import layout from '../../templates/components/fd-sheets/fd-sheets-tool-bar';
 import { later } from '@ember/runloop';
@@ -34,6 +34,24 @@ export default Component.extend(FdReadonlyProjectMixin, {
     @type FdSheetService
   */
   fdSheetService: service(),
+
+  /**
+   Service for managing locks.
+
+   @property fdLockService
+   @type {Class}
+   @default service()
+   */
+  fdLockService: service(),
+
+  /**
+   Service for managing dialog windows.
+
+   @property fdDialogService
+   @type {Class}
+   @default service()
+   */
+  fdDialogService: service(),
 
   /**
     Router service of current application.
@@ -115,6 +133,37 @@ export default Component.extend(FdReadonlyProjectMixin, {
   */
   isNewModel: false,
 
+  /**
+    Update locks.
+
+    @method readonlyModeObserver
+  */
+  readonlyModeObserver: observer('readonlyMode', function() {
+    const readonlyMode = this.get('readonlyMode');
+    if (!readonlyMode) {
+      const _this = this;
+      const lockService = this.get('fdLockService');
+      const refreshLockTime = lockService.getRefreshLockTime();
+      const sheetComponentName = _this.get('sheetComponentName');
+      const editedObject = _this.get('editedObject');
+      lockService.createLock(editedObject, sheetComponentName);
+      setTimeout(function tick() {
+        if (!_this.get('readonlyMode'))  {
+          lockService.createLock(editedObject, sheetComponentName);
+          setTimeout(tick, refreshLockTime);
+        }
+      }, refreshLockTime);
+    }
+  }),
+
+  willDestroyElement() {
+    this._super(...arguments);
+    this.set('readonlyMode', true);
+    const sheetComponentName = this.get('sheetComponentName');
+    const editedObject = this.get('editedObject');
+    this.get('fdLockService').deleteLock(editedObject, sheetComponentName);
+  },
+
   actions: {
     /**
       Closing sheet.
@@ -144,6 +193,8 @@ export default Component.extend(FdReadonlyProjectMixin, {
     save() {
       this.get('saveSheet')();
       this.set('readonlyMode', true);
+      let sheetComponentName = this.get('sheetComponentName');
+      this.get('fdLockService').deleteLock(this.get('editedObject'), sheetComponentName);
     },
 
     /**
@@ -161,7 +212,16 @@ export default Component.extend(FdReadonlyProjectMixin, {
       @method actions.edit
     */
     edit() {
-      this.set('readonlyMode', false);
+      let _this = this;
+
+      let sheetComponentName = this.get('sheetComponentName');
+      this.get('fdLockService').checkLock(this.get('editedObject'), sheetComponentName).then(result => {
+        if (result && !result.Acquired) {
+          _this.set('readonlyMode', false);
+        } else {
+          _this.get('fdDialogService').showErrorMessage(this.get('i18n').t('components.fd-sheets-tool-bar.object-locked').toString() + (result ? result.UseName : ''));
+        }
+      });
     },
 
     /**
