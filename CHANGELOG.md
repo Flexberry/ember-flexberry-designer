@@ -2,10 +2,8 @@
 All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
-### Added
-*Added swimline primitive.
 
-## [0.13.0-beta02]
+## [0.13.0]
 ### Added
 * Add resize and colors to statechart diagram.
 * Add resize and colors to deployment diagram.
@@ -13,25 +11,23 @@ All notable changes to this project will be documented in this file.
 * Add table for user access settings.
 * Add storage table.
 * Add rename stage objects function.
+* Add template class resize.
+* Add check errors on all projects page.
+* Add highlight for links.
+* Add links edit forms.
+* Added swimline primitive.
+* Add locks for diagrams and repository objects.
 
 ### Fixed
 * Highlight optimization.
 * Fix rollback new class on diagrams.
 * Fix link role label.
 * Feature update view when deleting class.
-
-## [0.13.0-beta01]
-### Added
-* Add template class resize.
-* Add check errors on all projects page.
-* Add highlight for links.
-* Add links edit forms.
-
-### Fixed
 * Fix rollback diagrams.
 * Fix colors in collapsed class.
 * Fix locales in groups.
 * Fix group by system.
+* Fix actors size with proportions.
 
 ## [0.12.0]
 ### Added
