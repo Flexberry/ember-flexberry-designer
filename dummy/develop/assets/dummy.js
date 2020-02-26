@@ -9369,6 +9369,11 @@ define('dummy/ember-flexberry-designer/tests/addon.lint-test', [], function () {
     assert.ok(true, 'addon/services/fd-generation.js should pass ESLint\n\n');
   });
 
+  QUnit.test('addon/services/fd-lock-service.js', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'addon/services/fd-lock-service.js should pass ESLint\n\n');
+  });
+
   QUnit.test('addon/services/fd-readonly-mode-service.js', function (assert) {
     assert.expect(1);
     assert.ok(true, 'addon/services/fd-readonly-mode-service.js should pass ESLint\n\n');
@@ -11412,6 +11417,11 @@ define('dummy/ember-flexberry-designer/tests/app.lint-test', [], function () {
   QUnit.test('app/services/fd-generation.js', function (assert) {
     assert.expect(1);
     assert.ok(true, 'app/services/fd-generation.js should pass ESLint\n\n');
+  });
+
+  QUnit.test('app/services/fd-lock-service.js', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'app/services/fd-lock-service.js should pass ESLint\n\n');
   });
 
   QUnit.test('app/services/fd-readonly-mode-service.js', function (assert) {
@@ -17293,6 +17303,19 @@ define('dummy/services/fd-generation', ['exports', 'ember-flexberry-designer/ser
     }
   });
 });
+define('dummy/services/fd-lock-service', ['exports', 'ember-flexberry-designer/services/fd-lock-service'], function (exports, _fdLockService) {
+  'use strict';
+
+  Object.defineProperty(exports, "__esModule", {
+    value: true
+  });
+  Object.defineProperty(exports, 'default', {
+    enumerable: true,
+    get: function () {
+      return _fdLockService.default;
+    }
+  });
+});
 define('dummy/services/fd-readonly-mode-service', ['exports', 'ember-flexberry-designer/services/fd-readonly-mode-service'], function (exports, _fdReadonlyModeService) {
   'use strict';
 
@@ -19452,6 +19475,6 @@ catch(err) {
 });
 
 if (!runningTests) {
-  require("dummy/app")["default"].create({"name":"flexberry-designer","backendUrl":"https://designer-dummy.flexberry.net","backendUrls":{"root":"https://designer-dummy.flexberry.net","api":"https://designer-dummy.flexberry.net/odata"},"log":{"enabled":true,"storeErrorMessages":true,"storeWarnMessages":false,"storeLogMessages":true,"storeInfoMessages":false,"storeDebugMessages":false,"storeDeprecationMessages":false,"storePromiseErrors":true,"showPromiseErrors":true},"perf":{"enabled":false},"lock":{"enabled":true,"openReadOnly":true,"unlockObject":true},"useUserSettingsService":true,"offline":{"dbName":"ember-app","offlineEnabled":true,"modeSwitchOnErrorsEnabled":false,"syncDownWhenOnlineEnabled":false},"components":{"flexberryFile":{"uploadUrl":"https://designer-dummy.flexberry.net/api/File","maxUploadFileSize":null,"uploadOnModelPreSave":true,"showUploadButton":true,"showModalDialogOnUploadError":true,"showModalDialogOnDownloadError":true}}});
+  require("dummy/app")["default"].create({"name":"flexberry-designer","backendUrl":"https://designer-dummy.flexberry.net","backendUrls":{"root":"https://designer-dummy.flexberry.net","api":"https://designer-dummy.flexberry.net/odata"},"log":{"enabled":true,"storeErrorMessages":true,"storeWarnMessages":false,"storeLogMessages":true,"storeInfoMessages":false,"storeDebugMessages":false,"storeDeprecationMessages":false,"storePromiseErrors":true,"showPromiseErrors":true},"perf":{"enabled":false},"lock":{"enabled":true,"openReadOnly":true,"unlockObject":true,"lockRefresh":300000},"useUserSettingsService":true,"offline":{"dbName":"ember-app","offlineEnabled":true,"modeSwitchOnErrorsEnabled":false,"syncDownWhenOnlineEnabled":false},"components":{"flexberryFile":{"uploadUrl":"https://designer-dummy.flexberry.net/api/File","maxUploadFileSize":null,"uploadOnModelPreSave":true,"showUploadButton":true,"showModalDialogOnUploadError":true,"showModalDialogOnDownloadError":true}}});
 }
 //# sourceMappingURL=dummy.map

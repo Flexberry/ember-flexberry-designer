@@ -2338,7 +2338,7 @@ define('dummy/tests/unit/controllers/fd-all-projects/new-test', ['ember-qunit'],
   (0, _emberQunit.moduleFor)('controller:fd-all-projects/new', 'Unit | Controller | fd all projects/new', {
     // Specify the other units that are required for this test.
     // needs: ['controller:foo']
-    needs: ['service:appState', 'service:fd-current-project-context', 'service:fdSheetService', 'service:fd-dialog-service']
+    needs: ['service:appState', 'service:fd-current-project-context', 'service:fdSheetService', 'service:fd-dialog-service', 'service:fdLockService']
   });
 
   // Replace this with your real tests.
@@ -6021,6 +6021,7 @@ define('dummy/tests/unit/services/fd-sheet-service-test', ['ember-qunit'], funct
   (0, _emberQunit.moduleFor)('service:fd-sheet-service', 'Unit | Service | fd sheet service', {
     // Specify the other units that are required for this test.
     // needs: ['service:foo']
+    needs: ['service:fdLockService']
   });
 
   // Replace this with your real tests.
