@@ -60,7 +60,7 @@ export let UsecaseActor = BaseObject.define('flexberry.uml.UsecaseActor', {
   minWidth: 25,
 
   // Minimum height.
-  minHeight: 50,
+  minHeight: 60,
 
   attrs: {
     text: {
