@@ -309,10 +309,7 @@ export default Controller.extend(FdSheetCloseConfirm, FdReadonlyProjectMixin, {
       let store = this.get('store');
       let adapter = store.adapterFor('application');
 
-      adapter.callAction('ClearUserAuthData', { username: this.get('userService._username') })
-      .then(() => {
-        return resolve()
-      });
+      adapter.callAction('ClearUserAuthData', { username: this.get('userService._username') });
     },
   }
 });
