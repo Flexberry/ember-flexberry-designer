@@ -95,8 +95,17 @@ joint.util.setByPath(joint.shapes, 'flexberry.uml.Note', Note, '.');
 joint.shapes.flexberry.uml.NoteView = joint.shapes.flexberry.uml.BaseObjectView.extend({
   template: [
     '<div class="uml-class-inputs">',
-    '<textarea class="class-name-input header-input" value="" rows="1" wrap="off"></textarea>',
+    '<textarea class="class-name-input header-input" value="" rows="1" wrap="off" style="text-align: left;"></textarea>',
     '<div class="input-buffer"></div>',
     '</div>'
   ].join(''),
+
+  initialize: function () {
+    joint.shapes.flexberry.uml.BaseObjectView.prototype.initialize.apply(this, arguments);
+    let paramsBox = this.$box.find('.header-input');
+    paramsBox.css({
+      left: 2,
+      position: 'absolute'
+    });
+  },
 });
