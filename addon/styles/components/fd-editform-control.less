@@ -1,11 +1,320 @@
+@inputBackgroundColor: @sidebarBg;
+@inputBorderColor: transparent;
+@inputHoverBorderColor: #B3BBC3;
+@buttonColor: #848E99;
+@bottonDisabledColor: #C7CCD1;
+
+@fontSize: 0.875rem;
+@borderRadius: 0.25rem;
+
+@inputHorizontalPadding: 0.78571429em;
+@inputVerticalPadding: 0.64285714em;
+@inputPadding: @inputVerticalPadding @inputHorizontalPadding;
+
+.ui.form .fd-editform-control {
+   &.field > label {
+    margin: 0em 0em 0.28571429em 0em;
+    color: @textColor;
+    font-size: @fontSize;
+    font-weight: normal;
+  }
+
+  .ui.input input {
+    font-size: @fontSize;
+  }
+  input:not([type]),
+  input[type="date"],
+  input[type="datetime-local"],
+  input[type="email"],
+  input[type="number"],
+  input[type="password"],
+  input[type="search"],
+  input[type="tel"],
+  input[type="time"],
+  input[type="text"],
+  input[type="file"],
+  input[type="url"] {
+    line-height: 1.42857143em;
+    padding: @inputPadding;
+    font-size: @fontSize;
+    background: @inputBackgroundColor;
+    border: 1px solid @inputBorderColor;
+    color: @textColor;
+    border-radius: @borderRadius;
+  }
+  input:hover {
+    border-color: @inputHoverBorderColor;
+  }
+  input[readonly="readonly"] {
+    pointer-events: none;
+  }
+}
+
+
+.ui.form .fd-editform-row:not(.fields) > .field:last-child {
+  margin-bottom: 1em;
+}
+
+/* Lookup */
+.fd-editform-control {
+  .flexberry-lookup > .ui.input > input {
+    background: @inputBackgroundColor;
+    border: 1px solid @inputBorderColor;
+    border-radius: @borderRadius;
+    padding-right: 5.21428571em;
+    pointer-events: all;
+    width: 100% !important;
+  }
+  .flexberry-lookup > .ui.action.input:not([class*="left action"]) > input {
+    border-top-right-radius: @borderRadius !important;
+    border-bottom-right-radius: @borderRadius !important;
+    border-right-color: @inputBorderColor !important;
+  }
+  .flexberry-lookup > .ui.input > input:hover {
+    border: 1px solid @inputHoverBorderColor;
+  }
+  .flexberry-lookup > .ui.action.input:not([class*="left action"]) > input:hover {
+    border-right-color: @inputHoverBorderColor !important;
+  }
+
+  // Lookup buttons
+  .flexberry-lookup > .ui.input > .ui.button {
+    background: transparent;
+    position: relative;
+    padding: 0em;
+    width: 1.42857143em;
+  }
+  .flexberry-lookup > .ui.input > .ui-clear {
+    right: 5.85714286em;
+  }
+  .flexberry-lookup > .ui.input > .ui-change {
+    right: 2.21428571em;
+  }
+  .flexberry-lookup > .ui.input > .ui.button > .icon {
+    font-family: 'guideline-icons';
+    font-size: 1.5em;
+    margin: 0em;
+    height: auto;
+  }
+  .flexberry-lookup > .ui.input > .ui-clear > .icon::before {
+    content: "\e90e";
+  }
+  .flexberry-lookup > .ui.input > .ui-change > .icon::before {
+    content: "\e91d";
+  }
+}
+
+/* flexberry-simpledatetime */
+.fd-editform-control {
+  .flexberry-simpledatetime > .ui.action.input:not([class*="left action"]) > input {
+    border-radius: @borderRadius !important;
+    padding: @inputVerticalPadding 3em @inputVerticalPadding @inputHorizontalPadding;
+  }
+  .flexberry-simpledatetime > .ui.action.input:not([class*="left action"]) > input:hover {
+    border-right-color: @inputHoverBorderColor !important;
+  }
+
+  // Simpledatetime buttons
+  .flexberry-simpledatetime > .ui.fluid.action.input.flatpickr > .ui.button {
+    background: transparent;
+    padding: 0;
+    width: 1.42857143em;
+  }
+  .flexberry-simpledatetime > .ui.fluid.action.input.flatpickr > .ui.button.ui-clear {
+    margin-left: -2.21428571em;
+  }
+
+  .flexberry-simpledatetime > .ui.input > .ui.button > .icon {
+    font-family: 'guideline-icons';
+    font-size: 1.5em;
+    height: auto;
+    margin: 0;
+  }
+  .flexberry-simpledatetime .ui-clear > .icon::before {
+    content: "\e90e";
+  }
+}
+
+/* Dropdown */
+.fd-editform-control {
+  .ui.dropdown {
+    font-size: @fontSize;
+  }
+  .ui.form &.field > .selection.dropdown {
+    width: 100%;
+  }
+  .ui.selection.dropdown {
+    min-width: 14em;
+    min-height: 2.65178571em;
+    background: @inputBackgroundColor;
+    padding: @inputVerticalPadding 2.28571429em @inputVerticalPadding @inputHorizontalPadding;
+    color: @textColor;
+    box-shadow: none;
+    border: 1px solid @inputBorderColor;
+    border-radius: @borderRadius;
+  }
+  .ui.grid.fd-list & .ui.selection.dropdown {
+    padding: @inputVerticalPadding 2.28571429em @inputVerticalPadding @inputHorizontalPadding;
+  }
+  .ui.dropdown > .dropdown.icon {
+    color: @buttonColor;
+    font-family: 'guideline-icons';
+  }
+  .ui.selection.dropdown > .search.icon, .ui.selection.dropdown > .delete.icon, .ui.selection.dropdown > .dropdown.icon {
+    line-height: 1;
+    top: @inputVerticalPadding;
+    right: @inputHorizontalPadding;
+    margin: -@inputVerticalPadding;
+  }
+  .ui.dropdown > .dropdown.icon::before {
+    content: "\e904";
+  }
+  .ui.grid.fd-list & .ui.selection.dropdown > .dropdown.icon {
+    padding: 0.42857143em;
+  }
+  .ui.dropdown > .dropdown.icon {
+    font-size: 1.5em;
+  }
+}
+
+/* Filecontrol */
+.fd-editform-control {
+  .flexberry-file .ui.action.input:not([class*="left action"]) > .button {
+    padding: 0.5714em 0.35714em;
+    background: @inputBackgroundColor;
+    border: 1px solid @inputBorderColor;
+    line-height: 1.42857143em;
+  }
+
+  .flexberry-file .ui.action.input:not([class*="left action"]) > .button:not(:first-child),
+  .flexberry-file .ui.action.input:not([class*="left action"]) > .button:last-child {
+    border-radius: @borderRadius;
+  }
+  
+  .flexberry-file .ui.action.input:not([class*="left action"]) > .button.flexberry-file-remove-button {
+    border-radius: 0 @borderRadius @borderRadius 0;
+  }
+  .flexberry-file .ui.action.input:not([class*="left action"]) > .button.flexberry-file-add-button {
+    border-radius: 0;
+  }
+  .flexberry-file .ui.action.input:not([class*="left action"]) > .button .icon {
+    font-family: 'guideline-icons';
+    font-size: 1.714em;
+  }
+  .flexberry-file .ui.action.input:not([class*="left action"]) > .button.flexberry-file-upload-button,
+  .flexberry-file .ui.action.input:not([class*="left action"]) > .button.flexberry-file-download-button {
+    margin-left: 0.5714em;
+  }
+  .flexberry-file .ui.action.input:not([class*="left action"]) > .button.flexberry-file-add-button .icon:before {
+    content: "\e919";
+  }
+  .flexberry-file .ui.action.input:not([class*="left action"]) > .button.flexberry-file-remove-button .icon:before {
+    font-family: 'guideline-icons';
+    content: "\e90e";
+  }
+  .flexberry-file .ui.action.input:not([class*="left action"]) > .button.flexberry-file-upload-button .icon:before {
+    content: "\e92e";
+  }
+  .flexberry-file .ui.action.input:not([class*="left action"]) > .button.flexberry-file-download-button .icon:before {
+    content: "\e912";
+  }
+  .flexberry-file .ui.action.input:not([class*="left action"]) > .button.disabled {
+    color: @bottonDisabledColor;
+  }
+}
+
+/* Tooggler */
+.fd-editform-control {
+  .ui.grid.fd-list & .flexberry-toggler .title,
+  .ui.grid.fd-list-edited & .flexberry-toggler .title {
+    left: 0;
+  }
+  .ui.grid.fd-list & .flexberry-toggler .title.active,
+  .ui.grid.fd-list-edited & .flexberry-toggler .title.active {
+    margin-bottom: 0;
+  }
+  .flexberry-toggler.ui.accordion .title .dropdown.icon,
+  .flexberry-toggler.ui.accordion .accordion .title .dropdown.icon {
+    font-family: 'guideline-icons';
+  }
+  .flexberry-toggler.ui.accordion .title .dropdown.icon::before,
+  .flexberry-toggler.ui.accordion .accordion .title .dropdown.icon::before {
+    content: "\e907";
+  }
+  .ui.accordion .title:not(.ui) {
+    padding: 0.5em 0em;
+    font-size: 1em;
+    color: @textColor;
+  }
+  .ui.accordion .title .dropdown.icon:before,
+  .ui.accordion .accordion .title .dropdown.icon:before {
+    border: none;
+  }
+}
+
+/* Tabs */
+.fd-editform-control {
+  .ui.tabular.menu .active.item {
+    font-weight: normal;
+  }
+}
+
+/* Groupedit */
+.fd-editform-control {
+  .groupedit-toolbar .ui.button {
+    background: transparent;
+    color: @textColor;
+  }
+}
+// Buttons
+.fd-editform-control {
+  .ui.button {
+    font-size: @fontSize;
+    color: @buttonColor;
+  }
+  .ui.button:not(.icon) {
+    line-height: 1.42857143em;
+    padding: 0.64285714em 0.78571429em;
+  }
+
+  .ui.buttons .disabled.button,
+  .ui.disabled.button,
+  .ui.button:disabled,
+  .ui.disabled.button:hover,
+  .ui.disabled.active.button {
+    opacity: 1 !important;
+  }
+  .fd-sheet .content-mini & .ui.button {
+    margin: 0;
+  }
+}
+
 .fd-editform-control {
   position: relative;
+  border-radius: @borderRadius;
+  &-toolbar {
+    position: absolute;
+    top: -1em;
+    right: 0;
+    display: none;
+    .ui.button {
+      background-color: @blue;
+      color: #fff;
+      font-size: 0.5em;
+      i.icon {
+        width: 1em;
+      }
+    }
+  }
 
   &.selected,
   .tab.selected,
   .item.selected {
-    outline: 0.2em dashed rgb(79,115,176);
+    outline: 0.2em solid @blue;
     background-color: rgba(79,115,176, 0.25);
+    > .fd-editform-control-toolbar {
+      display: block;
+    }
   }
 
   &.dimmed.dimmable {

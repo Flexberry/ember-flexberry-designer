@@ -22,3 +22,7 @@
 @activeItemTextColor: @textColor;
 @hoverItemTextColor: @textColor;
 @activeHoverItemColor: @textColor;
+
+@tabularActiveBackground: @pageBackground;
+@tabularActiveColor: @textColor;
+@tabularBorderColor: @sidebarBg;

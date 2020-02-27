@@ -4,3 +4,6 @@
 
 /* Loading Dimmer */
 @loaderDimmerColor: @primaryColor;
+
+@background: @pageBackground;
+@solidBorderColor: @sidebarBg;
