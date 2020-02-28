@@ -303,7 +303,7 @@ export default Controller.extend(FdSheetCloseConfirm, FdReadonlyProjectMixin, {
       const stage = this.get('currentProjectContext').getCurrentStage();
       const data = { project: stage };
 
-      adapter.callFunction('StageBackup', data);
+      adapter.callFunction('StageBackup', data, null, { withCredentials: true });
     },
   }
 });
