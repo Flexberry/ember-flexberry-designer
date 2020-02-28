@@ -291,5 +291,19 @@ export default Controller.extend(FdSheetCloseConfirm, FdReadonlyProjectMixin, {
     dropdownChangeAccess(model, value) {
       set(model, 'access', value);
     },
+
+    /**
+      Run project backup.
+
+      @method actions.backup
+    */
+    backup() {
+      let store = this.get('store');
+      let adapter = store.adapterFor('application');
+      const stage = this.get('currentProjectContext').getCurrentStage();
+      const data = { project: stage };
+
+      adapter.callFunction('StageBackup', data, null, { withCredentials: true });
+    },
   }
 });

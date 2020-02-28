@@ -290,6 +290,12 @@
       </button>
     </div>
     <div class="row">
+      <span>{{t "forms.fd-setting.project-actions.action-stage-caption"}}</span>
+      <button class="ui button basic {{if readonlyModeProject 'disabled' ''}}" {{action "backup"}}>
+        {{t "forms.fd-setting.project-actions.backup-stage-button"}}
+      </button>
+    </div>
+    <div class="row">
       <span>{{t "forms.fd-setting.project-actions.delete-stage-caption"}}</span>
       <button class="ui button basic {{if readonlyModeProject 'disabled' ''}}" {{action "delete"}}>
         {{t "forms.fd-setting.project-actions.delete-stage-button"}}
