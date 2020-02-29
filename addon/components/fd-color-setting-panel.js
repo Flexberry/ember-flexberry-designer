@@ -80,5 +80,24 @@ export default Component.extend(
       e = $.Event('click');
       this.closePopup(e);
     },
+
+    /**
+      Handler for click on toolbar collapse edit panel button.
+
+      @method actions.changeTextColor
+     */
+    changeTextColor() {
+      // console.log('changeTextColor');
+      
+    },
+
+    /**
+      Handler for click on toolbar collapse edit panel button.
+
+      @method actions.changeBackgroundColor
+     */
+    changeBackgroundColor() {
+      // console.log('changeBackgroundColor');      
+    }
   }
 });
