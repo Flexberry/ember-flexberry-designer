@@ -77,7 +77,7 @@ export default Mixin.create({
     e.stopPropagation();
 
     let popupNamespace = this.get('popupNamespace');
-    if ($(e.target).closest(`.custom.popup.${popupNamespace}`).length === 0) {
+    if (($(e.target).closest(`.custom.popup.${popupNamespace}`).length === 0) || ($(e.target).hasClass(`.ui.button.primary`))) {
       let popup = this._getPopup();
       popup.removeClass('visible');
       popup.addClass('hidden');

@@ -152,6 +152,7 @@ import FdfModalMessageBox from './components/fd-modal-message-box';
 import FdApplicationModelForm from './forms/fd-application-model';
 import FdArchitectureForm from './forms/fd-architecture';
 import FdGisSubsystem from './components/fd-gis-subsystem';
+import fdColorSettingPanel from './components/fd-color-setting-panel';
 
 const translations = {};
 $.extend(true, translations, EmberFlexberryTranslations);
@@ -472,6 +473,7 @@ $.extend(true, translations, {
     'fd-view-definition-item': FdViewDefinitionItem,
     'fd-modal-message-box': FdfModalMessageBox,
     'fd-gis-subsystem': FdGisSubsystem,
+    'fd-color-setting-panel': fdColorSettingPanel,
   }
 
 });

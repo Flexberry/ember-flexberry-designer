@@ -492,9 +492,8 @@ export default Component.extend({
     @param {joint.dia.CellView} cellView
     @param {jQuery} target
   */
-  _elementOpenPopup({ model }, target) {
-    let objectModel = model.get('objectModel');
-    this.openPopupForDiagramElements(target, objectModel);
+  _elementOpenPopup(view, target) {    
+    this.openPopupForDiagramElements(target, view);
   },
 
   /**
