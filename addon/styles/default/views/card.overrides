@@ -5,7 +5,7 @@
 
 .ui.cards > .card > .content > .description,
 .ui.card > .content > .description {
-  margin-bottom: 0.9em; 
+  margin-bottom: 0.9em;
 }
 
 .ui.cards > .card > .content > i.icon {
@@ -102,17 +102,13 @@
       transition: color 0.3s;
     }
 
-    &.expanded {
+    &.active {
       background: @sidebarBg;
-      width: 100%;
       .image {
         background: @sidebarBg;
       }
       .header {
         color: @textColor;
-      }
-      .content {
-        transform: scaleX(1);
       }
     }
 
@@ -143,11 +139,11 @@
     .ui.selection.dropdown {
       font-weight: bold;
       padding: 0 1.975em 0 0;
-    
+
       .menu {
         width: auto;
       }
-    
+
       > .dropdown.icon {
         padding: 0 0.91666667em;
       }
@@ -168,7 +164,7 @@
     padding: 1em;
     padding-bottom: 2em;
     transition: background 0.3s;
-  
+
     > div:first-child {
       height: 100%;
     }

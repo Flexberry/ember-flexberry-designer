@@ -1,0 +1,15 @@
+<div class="ui cards">
+  <div class="ui card horizontal {{if model.enabled "active"}}">
+    <div class="image text-align-center">
+      <div>
+        <h4 class="header">{{header}}</h4>
+        <i class="{{icon}}"></i>
+      </div>
+      <div class="right floated">
+        <button class="mini ui basic button icon circular" {{action 'editSubSystem'}}>
+          <i class="icon-fd-gear"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

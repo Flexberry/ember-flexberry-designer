@@ -1,0 +1,23 @@
+<div class="content-mini">
+  <div class="ui {{if loadingState "active"}} inverted dimmer">
+    <div class="ui text loader"></div>
+  </div>
+  <div class="fd-sheet-header">
+    {{fd-sheets/fd-sheets-tool-bar
+      sheetComponentName=sheetComponentName
+      readonlyMode=readonlyMode
+      shareSheetValue=selectedValue.data
+      saveSheet=(action 'save')
+    }}
+    {{flexberry-textbox
+      value=computedTitle
+      placeholder=(t "components.fd-sheets-tool-bar.placeholder-caption")
+      readonly=(and (not selectedValue.data.isNew) readonlyMode)
+      class='form-header fluid'
+      maxlength=maxlength
+    }}
+  </div>
+  <div class="fd-sheet-body">
+
+  </div>
+</div>
