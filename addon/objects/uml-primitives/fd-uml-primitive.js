@@ -449,9 +449,7 @@ joint.shapes.flexberry.uml.PrimitiveElementView = joint.dia.ElementView.extend({
     buttons.addObjects(sizeChangers);
     buttons.forEach(button => {
       let style = {};
-      if (button.name.contains(' ')) {
-        button.name = button.name.replace(' ', '.');
-      }
+      button.name = button.name.replace(' ', '.');
       style[`.${get(button, 'name')}`] = get(button, 'attrs.element');
       style[`.${get(button, 'name')}>circle`] = get(button, 'attrs.circle');
       style[`.${get(button, 'name')}>text`] = get(button, 'attrs.text');
