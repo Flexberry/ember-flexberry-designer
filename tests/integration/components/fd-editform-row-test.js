@@ -45,7 +45,7 @@ test('it renders and works', function(assert) {
       FdEditformControl.create({ caption: 'Attribute #2' }),
     ]),
   }));
-  assert.ok(/\s*Attribute #1\s*Attribute #2\s*/.test(this.$().text()), 'With many controls.');
+  assert.ok(/\s*NULL\s*Attribute #1\s*NULL\s*Attribute #2\s*/.test(this.$().text()), 'With many controls.');
   assert.ok(this.$('.fd-editform-row').hasClass('fields'));
   assert.ok(this.$('.fd-editform-row').hasClass('equal'));
   assert.ok(this.$('.fd-editform-row').hasClass('width'));

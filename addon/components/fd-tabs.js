@@ -1,7 +1,7 @@
 /* eslint-disable ember/closure-actions */
 import Component from '@ember/component';
 import { computed, getWithDefault, observer } from '@ember/object';
-import { schedule } from '@ember/runloop';
+import { schedule, next } from '@ember/runloop';
 import { A } from '@ember/array';
 import $ from 'jquery';
 
@@ -179,7 +179,7 @@ export default Component.extend(FdWorkPanelToggler, {
       this.set('_showedTabs', _showedTabs);
       this.set('_hideTabs', A());
 
-      schedule('afterRender', this,	function() {
+      next(this,	function() {
         this._calculateWidths();
 
         this.set('overflowButtonShow', this.get('hideTabsCount') > 0);
