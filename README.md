@@ -39,3 +39,22 @@ This README outlines the details of collaborating on this Ember addon.
 * `ember build`
 
 For more information on using ember-cli, visit [https://ember-cli.com/](https://ember-cli.com/).
+
+## Project development process
+
+Flexberry designer is actively developing. If you want to participate in this, create an issue with a suggestion / wish. In the near future it will be considered, and we will answer whether it will be implemented and when or not and why. A detailed algorithm for handling the issue looks like this:
+1. A new issue has arrived - they installed a label question on it
+2. Next, a decision is made whether it will be implemented or not.
+
+If you decide to implement:
+
+3. Remove the label question.
+4. Transfer the issue to the board (if it already exists)
+5. Install minestone
+6. In the commentary on issue we write the approximate deadline and specify questions if necessary.
+
+If you decide not to implement:
+
+3. Remove the label question
+4. Close the issue.
+5. In the commentary on the issue we write the reason for the refusal to finalize.
