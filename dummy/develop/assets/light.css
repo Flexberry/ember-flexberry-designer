@@ -28692,7 +28692,7 @@ ol.ui.horizontal.list li:before,
   width: calc(100% +  2px );
   max-width: calc(100% +  2px );
   box-shadow: none;
-  border: 1px solid #D4D4D5;
+  border: 1px solid rgba(0, 0, 0, 0.1);
 }
 .ui.attached:not(.message) + .ui.attached.segment:not(.top) {
   border-top: none;
@@ -36063,7 +36063,7 @@ Floated Menu / Item
   box-shadow: none !important;
   border: none;
   background: none #f1f7ff;
-  border-bottom: 1px solid #D4D4D5;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 }
 .ui.tabular.fluid.menu {
   width: calc(100% +  2px ) !important;
@@ -36087,10 +36087,10 @@ Floated Menu / Item
 }
 /* Active */
 .ui.tabular.menu .active.item {
-  background: none #FFFFFF;
-  color: rgba(0, 0, 0, 0.95);
+  background: #FFFFFF;
+  color: rgba(0, 0, 0, 0.75);
   border-top-width: 1px;
-  border-color: #D4D4D5;
+  border-color: rgba(0, 0, 0, 0.1);
   font-weight: bold;
   margin-bottom: -1px;
   box-shadow: none;
@@ -36116,7 +36116,7 @@ Floated Menu / Item
   border-radius: 0em;
   box-shadow: none !important;
   border-bottom: none;
-  border-top: 1px solid #D4D4D5;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
 }
 .ui.bottom.tabular.menu .item {
   background: none;
@@ -36126,9 +36126,9 @@ Floated Menu / Item
   border-top: none;
 }
 .ui.bottom.tabular.menu .active.item {
-  background: none #FFFFFF;
-  color: rgba(0, 0, 0, 0.95);
-  border-color: #D4D4D5;
+  background: #FFFFFF;
+  color: rgba(0, 0, 0, 0.75);
+  border-color: rgba(0, 0, 0, 0.1);
   margin: -1px 0px 0px 0px;
   border-radius: 0px 0px 0.25rem 0.25rem !important;
 }
@@ -36138,7 +36138,7 @@ Floated Menu / Item
   border-radius: 0em;
   box-shadow: none !important;
   border-bottom: none;
-  border-right: 1px solid #D4D4D5;
+  border-right: 1px solid rgba(0, 0, 0, 0.1);
 }
 .ui.vertical.tabular.menu .item {
   background: none;
@@ -36148,9 +36148,9 @@ Floated Menu / Item
   border-right: none;
 }
 .ui.vertical.tabular.menu .active.item {
-  background: none #FFFFFF;
-  color: rgba(0, 0, 0, 0.95);
-  border-color: #D4D4D5;
+  background: #FFFFFF;
+  color: rgba(0, 0, 0, 0.75);
+  border-color: rgba(0, 0, 0, 0.1);
   margin: 0px -1px 0px 0px;
   border-radius: 0.25rem 0px 0px 0.25rem !important;
 }
@@ -36161,7 +36161,7 @@ Floated Menu / Item
   box-shadow: none !important;
   border-bottom: none;
   border-right: none;
-  border-left: 1px solid #D4D4D5;
+  border-left: 1px solid rgba(0, 0, 0, 0.1);
 }
 .ui.vertical.right.tabular.menu .item {
   background: none;
@@ -36171,9 +36171,9 @@ Floated Menu / Item
   border-left: none;
 }
 .ui.vertical.right.tabular.menu .active.item {
-  background: none #FFFFFF;
-  color: rgba(0, 0, 0, 0.95);
-  border-color: #D4D4D5;
+  background: #FFFFFF;
+  color: rgba(0, 0, 0, 0.75);
+  border-color: rgba(0, 0, 0, 0.1);
   margin: 0px 0px 0px -1px;
   border-radius: 0px 0.25rem 0.25rem 0px !important;
 }
@@ -65856,12 +65856,12 @@ body.pushable > .pusher {
   border-bottom: 1px solid rgba(0, 0, 0, 0.1);
   margin: 0 1rem;
 }
-.ui.grid.fd-list > .row .column > div:not(:first-child),
-.ui.grid.fd-list-edited > .row .column > div:not(:first-child) {
+.ui.grid.fd-list > .row .column > div:not(:first-child):not(.fd-editform-row),
+.ui.grid.fd-list-edited > .row .column > div:not(:first-child):not(.fd-editform-row) {
   margin: 1rem 0;
 }
-.ui.grid.fd-list > .row .column div:last-child,
-.ui.grid.fd-list-edited > .row .column div:last-child {
+.ui.grid.fd-list > .row .column div:not(.fd-editform-control):last-child,
+.ui.grid.fd-list-edited > .row .column div:not(.fd-editform-control):last-child {
   margin-bottom: 0;
 }
 .ui.grid.fd-list .fd-list-item span,
@@ -66666,6 +66666,301 @@ body.pushable > .pusher {
 .joint-link.joint-theme-default .marker-vertex:hover,
 .joint-link.joint-theme-default .marker-arrowhead:hover {
   fill: #007aff;
+}
+.ui.form .fd-editform-control.field > label {
+  margin: 0em 0em 0.28571429em 0em;
+  color: rgba(0, 0, 0, 0.75);
+  font-size: 0.875rem;
+  font-weight: normal;
+}
+.ui.form .fd-editform-control .ui.input input {
+  font-size: 0.875rem;
+}
+.ui.form .fd-editform-control input:not([type]),
+.ui.form .fd-editform-control input[type="date"],
+.ui.form .fd-editform-control input[type="datetime-local"],
+.ui.form .fd-editform-control input[type="email"],
+.ui.form .fd-editform-control input[type="number"],
+.ui.form .fd-editform-control input[type="password"],
+.ui.form .fd-editform-control input[type="search"],
+.ui.form .fd-editform-control input[type="tel"],
+.ui.form .fd-editform-control input[type="time"],
+.ui.form .fd-editform-control input[type="text"],
+.ui.form .fd-editform-control input[type="file"],
+.ui.form .fd-editform-control input[type="url"] {
+  line-height: 1.42857143em;
+  padding: 0.64285714em 0.78571429em;
+  font-size: 0.875rem;
+  background: rgba(0, 0, 0, 0.1);
+  border: 1px solid transparent;
+  color: rgba(0, 0, 0, 0.75);
+  border-radius: 0.25rem;
+}
+.ui.form .fd-editform-control input:hover {
+  border-color: #B3BBC3;
+}
+.ui.form .fd-editform-control input[readonly="readonly"] {
+  pointer-events: none;
+}
+.ui.form .fd-editform-row:not(.fields) > .field:last-child {
+  margin-bottom: 1em;
+}
+/* Lookup */
+.fd-editform-control .flexberry-lookup > .ui.input > input {
+  background: rgba(0, 0, 0, 0.1);
+  border: 1px solid transparent;
+  border-radius: 0.25rem;
+  padding-right: 5.21428571em;
+  pointer-events: all;
+  width: 100% !important;
+}
+.fd-editform-control .flexberry-lookup > .ui.action.input:not([class*="left action"]) > input {
+  border-top-right-radius: 0.25rem !important;
+  border-bottom-right-radius: 0.25rem !important;
+  border-right-color: transparent !important;
+}
+.fd-editform-control .flexberry-lookup > .ui.input > input:hover {
+  border: 1px solid #B3BBC3;
+}
+.fd-editform-control .flexberry-lookup > .ui.action.input:not([class*="left action"]) > input:hover {
+  border-right-color: #B3BBC3 !important;
+}
+.fd-editform-control .flexberry-lookup > .ui.input > .ui.button {
+  background: transparent;
+  position: relative;
+  padding: 0em;
+  width: 1.42857143em;
+}
+.fd-editform-control .flexberry-lookup > .ui.input > .ui-clear {
+  right: 5.85714286em;
+}
+.fd-editform-control .flexberry-lookup > .ui.input > .ui-change {
+  right: 2.21428571em;
+}
+.fd-editform-control .flexberry-lookup > .ui.input > .ui.button > .icon {
+  font-family: 'guideline-icons';
+  font-size: 1.5em;
+  margin: 0em;
+  height: auto;
+}
+.fd-editform-control .flexberry-lookup > .ui.input > .ui-clear > .icon::before {
+  content: "\e90e";
+}
+.fd-editform-control .flexberry-lookup > .ui.input > .ui-change > .icon::before {
+  content: "\e91d";
+}
+/* flexberry-simpledatetime */
+.fd-editform-control .flexberry-simpledatetime > .ui.action.input:not([class*="left action"]) > input {
+  border-radius: 0.25rem !important;
+  padding: 0.64285714em 3em 0.64285714em 0.78571429em;
+}
+.fd-editform-control .flexberry-simpledatetime > .ui.action.input:not([class*="left action"]) > input:hover {
+  border-right-color: #B3BBC3 !important;
+}
+.fd-editform-control .flexberry-simpledatetime > .ui.fluid.action.input.flatpickr > .ui.button {
+  background: transparent;
+  padding: 0;
+  width: 1.42857143em;
+}
+.fd-editform-control .flexberry-simpledatetime > .ui.fluid.action.input.flatpickr > .ui.button.ui-clear {
+  margin-left: -2.21428571em;
+}
+.fd-editform-control .flexberry-simpledatetime > .ui.input > .ui.button > .icon {
+  font-family: 'guideline-icons';
+  font-size: 1.5em;
+  height: auto;
+  margin: 0;
+}
+.fd-editform-control .flexberry-simpledatetime .ui-clear > .icon::before {
+  content: "\e90e";
+}
+/* Dropdown */
+.fd-editform-control .ui.dropdown {
+  font-size: 0.875rem;
+}
+.ui.form .fd-editform-control.field > .selection.dropdown {
+  width: 100%;
+}
+.fd-editform-control .ui.selection.dropdown {
+  min-width: 14em;
+  min-height: 2.65178571em;
+  background: rgba(0, 0, 0, 0.1);
+  padding: 0.64285714em 2.28571429em 0.64285714em 0.78571429em;
+  color: rgba(0, 0, 0, 0.75);
+  box-shadow: none;
+  border: 1px solid transparent;
+  border-radius: 0.25rem;
+}
+.ui.grid.fd-list .fd-editform-control .ui.selection.dropdown {
+  padding: 0.64285714em 2.28571429em 0.64285714em 0.78571429em;
+}
+.fd-editform-control .ui.dropdown > .dropdown.icon {
+  color: #848E99;
+  font-family: 'guideline-icons';
+}
+.fd-editform-control .ui.selection.dropdown > .search.icon,
+.fd-editform-control .ui.selection.dropdown > .delete.icon,
+.fd-editform-control .ui.selection.dropdown > .dropdown.icon {
+  line-height: 1;
+  top: 0.64285714em;
+  right: 0.78571429em;
+  margin: -0.64285714em;
+}
+.fd-editform-control .ui.dropdown > .dropdown.icon::before {
+  content: "\e904";
+}
+.ui.grid.fd-list .fd-editform-control .ui.selection.dropdown > .dropdown.icon {
+  padding: 0.42857143em;
+}
+.fd-editform-control .ui.dropdown > .dropdown.icon {
+  font-size: 1.5em;
+}
+/* Filecontrol */
+.fd-editform-control .flexberry-file .ui.action.input:not([class*="left action"]) > .button {
+  padding: 0.5714em 0.35714em;
+  background: rgba(0, 0, 0, 0.1);
+  border: 1px solid transparent;
+  line-height: 1.42857143em;
+}
+.fd-editform-control .flexberry-file .ui.action.input:not([class*="left action"]) > .button:not(:first-child),
+.fd-editform-control .flexberry-file .ui.action.input:not([class*="left action"]) > .button:last-child {
+  border-radius: 0.25rem;
+}
+.fd-editform-control .flexberry-file .ui.action.input:not([class*="left action"]) > .button.flexberry-file-remove-button {
+  border-radius: 0 0.25rem 0.25rem 0;
+}
+.fd-editform-control .flexberry-file .ui.action.input:not([class*="left action"]) > .button.flexberry-file-add-button {
+  border-radius: 0;
+}
+.fd-editform-control .flexberry-file .ui.action.input:not([class*="left action"]) > .button .icon {
+  font-family: 'guideline-icons';
+  font-size: 1.714em;
+}
+.fd-editform-control .flexberry-file .ui.action.input:not([class*="left action"]) > .button.flexberry-file-upload-button,
+.fd-editform-control .flexberry-file .ui.action.input:not([class*="left action"]) > .button.flexberry-file-download-button {
+  margin-left: 0.5714em;
+}
+.fd-editform-control .flexberry-file .ui.action.input:not([class*="left action"]) > .button.flexberry-file-add-button .icon:before {
+  content: "\e919";
+}
+.fd-editform-control .flexberry-file .ui.action.input:not([class*="left action"]) > .button.flexberry-file-remove-button .icon:before {
+  font-family: 'guideline-icons';
+  content: "\e90e";
+}
+.fd-editform-control .flexberry-file .ui.action.input:not([class*="left action"]) > .button.flexberry-file-upload-button .icon:before {
+  content: "\e92e";
+}
+.fd-editform-control .flexberry-file .ui.action.input:not([class*="left action"]) > .button.flexberry-file-download-button .icon:before {
+  content: "\e912";
+}
+.fd-editform-control .flexberry-file .ui.action.input:not([class*="left action"]) > .button.disabled {
+  color: #C7CCD1;
+}
+/* Tooggler */
+.ui.grid.fd-list .fd-editform-control .flexberry-toggler .title,
+.ui.grid.fd-list-edited .fd-editform-control .flexberry-toggler .title {
+  left: 0;
+}
+.ui.grid.fd-list .fd-editform-control .flexberry-toggler .title.active,
+.ui.grid.fd-list-edited .fd-editform-control .flexberry-toggler .title.active {
+  margin-bottom: 0;
+}
+.fd-editform-control .flexberry-toggler.ui.accordion .title .dropdown.icon,
+.fd-editform-control .flexberry-toggler.ui.accordion .accordion .title .dropdown.icon {
+  font-family: 'guideline-icons';
+}
+.fd-editform-control .flexberry-toggler.ui.accordion .title .dropdown.icon::before,
+.fd-editform-control .flexberry-toggler.ui.accordion .accordion .title .dropdown.icon::before {
+  content: "\e907";
+}
+.fd-editform-control .ui.accordion .title:not(.ui) {
+  padding: 0.5em 0em;
+  font-size: 1em;
+  color: rgba(0, 0, 0, 0.75);
+}
+.fd-editform-control .ui.accordion .title .dropdown.icon:before,
+.fd-editform-control .ui.accordion .accordion .title .dropdown.icon:before {
+  border: none;
+}
+/* Tabs */
+.fd-editform-control .ui.tabular.menu .active.item {
+  font-weight: normal;
+}
+/* Groupedit */
+.fd-editform-control .groupedit-toolbar .ui.button {
+  background: transparent;
+  color: rgba(0, 0, 0, 0.75);
+}
+.fd-editform-control .ui.button {
+  font-size: 0.875rem;
+  color: #848E99;
+}
+.fd-editform-control .ui.button:not(.icon) {
+  line-height: 1.42857143em;
+  padding: 0.64285714em 0.78571429em;
+}
+.fd-editform-control .ui.buttons .disabled.button,
+.fd-editform-control .ui.disabled.button,
+.fd-editform-control .ui.button:disabled,
+.fd-editform-control .ui.disabled.button:hover,
+.fd-editform-control .ui.disabled.active.button {
+  opacity: 1 !important;
+}
+.fd-sheet .content-mini .fd-editform-control .ui.button {
+  margin: 0;
+}
+.fd-editform-control {
+  position: relative;
+  border-radius: 0.25rem;
+}
+.fd-editform-control-toolbar {
+  position: absolute;
+  top: -1em;
+  right: 0;
+  display: none;
+}
+.fd-editform-control-toolbar .ui.button {
+  background-color: #007aff;
+  color: #fff;
+  font-size: 0.5em;
+}
+.fd-editform-control-toolbar .ui.button i.icon {
+  width: 1em;
+}
+.fd-editform-control.selected,
+.fd-editform-control .tab.selected,
+.fd-editform-control .item.selected {
+  outline: 0.2em solid #007aff;
+  background-color: rgba(79, 115, 176, 0.25);
+}
+.fd-editform-control.selected > .fd-editform-control-toolbar,
+.fd-editform-control .tab.selected > .fd-editform-control-toolbar,
+.fd-editform-control .item.selected > .fd-editform-control-toolbar {
+  display: block;
+}
+.fd-editform-control.dimmed.dimmable {
+  overflow: visible;
+}
+.fd-editform-control > .drag-anchor {
+  position: absolute;
+  display: none;
+  z-index: 1;
+  width: 2em;
+  height: 100%;
+  left: 100%;
+  border: 0 solid white;
+  border-width: .15em .15em .15em 0;
+  border-top-right-radius: .5em;
+  border-bottom-right-radius: .5em;
+  background: linear-gradient(90deg, #b1cae8 0.5em, transparent 1%) center, linear-gradient(#b1cae8 0.5em, transparent 1%) center, white;
+  background-size: .75em .75em;
+  cursor: move;
+}
+.fd-editform-control:hover {
+  background-color: rgba(177, 202, 232, 0.3);
+}
+.fd-editform-control:hover > .drag-anchor {
+  display: block;
 }
 .pushable,
 .full.height {

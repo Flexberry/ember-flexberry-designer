@@ -402,7 +402,7 @@ define('dummy/tests/integration/components/fd-editform-control-test', ['ember-qu
         controls: Ember.A([_fdEditformControl.default.create({ caption: 'Attribute #1' })])
       })])
     }));
-    assert.ok(/\s*Group #1\s*Attribute #1\s*/.test(this.$().text()), 'With group.');
+    assert.ok(/\s*NULL\s*Group #1\s*NULL\s*Attribute #1\s*/.test(this.$().text()), 'With group.');
 
     this.$('input').click();
     assert.ok(this.get('selectedControl') === this.get('control.rows.firstObject.controls.firstObject'), 'Click on nested control.');
@@ -477,7 +477,7 @@ define('dummy/tests/integration/components/fd-editform-row-test', ['ember-qunit'
     this.set('row', _fdEditformRow.default.create({
       controls: Ember.A([_fdEditformControl.default.create({ caption: 'Attribute #1' }), _fdEditformControl.default.create({ caption: 'Attribute #2' })])
     }));
-    assert.ok(/\s*Attribute #1\s*Attribute #2\s*/.test(this.$().text()), 'With many controls.');
+    assert.ok(/\s*NULL\s*Attribute #1\s*NULL\s*Attribute #2\s*/.test(this.$().text()), 'With many controls.');
     assert.ok(this.$('.fd-editform-row').hasClass('fields'));
     assert.ok(this.$('.fd-editform-row').hasClass('equal'));
     assert.ok(this.$('.fd-editform-row').hasClass('width'));
