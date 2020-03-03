@@ -5,6 +5,10 @@ All notable changes to this project will be documented in this file.
 ### Added
 * Add stage export.
 
+## [0.14.0-beta01]
+### Fixed
+* Fix setButtonStyles
+
 ## [0.13.0]
 ### Added
 * Add resize and colors to statechart diagram.
