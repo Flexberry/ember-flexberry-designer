@@ -2,6 +2,8 @@
 All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
+### Added
+* Add stage export.
 
 ## [0.13.0]
 ### Added
