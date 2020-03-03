@@ -320,7 +320,7 @@ export default Controller.extend(FdSheetCloseConfirm, FdReadonlyProjectMixin, {
 
       if (!isNone(appConfig) && !isNone(stage)) {
         const backendUrl = appConfig.APP.backendUrl;
-        const getExportFileUrl = backendUrl + '/odata/StageExportFile?project=' + stage;
+        const getExportFileUrl = backendUrl + '/stageActions/StageExportFile?projectId=' + stage;
 
         this.get('appState').loading();
 
