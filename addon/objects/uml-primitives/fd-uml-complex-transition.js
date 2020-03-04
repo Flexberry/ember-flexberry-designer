@@ -206,12 +206,12 @@ joint.shapes.flexberry.uml.ComplexTransitionHView = joint.shapes.flexberry.uml.P
   getButtons() {
     return A([{
       name: 'remove-button',
-      text: '&#xf00d',
+      text: '&#xe915',
       handler: this.removeElement.bind(this),
       attrs: {
         'element': {'ref-dx': 10,'ref-y': -15, 'ref': '.joint-highlight-stroke' },
         'circle': { r: 6, fill: '#007aff', stroke: '#007aff', 'stroke-width': 1 },
-        'text': { fill: '#ffffff','font-size': 10, 'text-anchor': 'middle', x: 0, y: 3, 'font-family': 'Icons' },
+        'text': { fill: '#ffffff','font-size': 7, 'text-anchor': 'middle', x: 0, y: 3, 'font-family': 'fd-icons' },
       }
     }]);
   },

@@ -10,7 +10,9 @@ import { A } from '@ember/array';
 import { computed, observer, set, get } from '@ember/object';
 
 import hasChanges from '../../utils/model-has-changes';
+import { getUpdatedViews } from '../../utils/fd-update-class-diagram';
 import { updateObjectByStr } from '../../utils/fd-update-str-value';
+import FdPrimitivesArraySortingMixin from '../../mixins/fd-primitives-array-sorting';
 
 import layout from '../../templates/components/fd-sheets/fd-diagram-sheet';
 
@@ -18,7 +20,8 @@ const getActualValue = (value, currentValue) => {
   return isBlank(value) && isBlank(currentValue) ? currentValue : value;
 };
 
-export default FdBaseSheet.extend({
+export default FdBaseSheet.extend(
+  FdPrimitivesArraySortingMixin, {
   layout,
 
   /**
@@ -192,6 +195,7 @@ export default FdBaseSheet.extend({
       });
 
       model.rollbackAll();
+      this.get('emptyReferenceCountItems').clear();
       this.set('isDiagramVisible', false);
       set(selectedValue, 'active', false);
     }
@@ -206,6 +210,10 @@ export default FdBaseSheet.extend({
   savePrimitives(model) {
     let promises = A();
     let primitives = model.get('primitives');
+
+    // Sort elements. Partition primitive to first.
+    primitives = this.sortingByTypePartition(primitives);
+
     primitives.forEach((primitive) => {
       if (!isNone(primitive.get('isCreated'))) {
         primitive.set('isCreated', false);
@@ -321,6 +329,13 @@ export default FdBaseSheet.extend({
 
             if (removeClasses.length > 0) {
               promises.pushObjects(removeClasses.map(mapFunction));
+
+              let updatedViews = A();
+              removeClasses.forEach(removeClasse => {
+                updatedViews.pushObjects(getUpdatedViews(store, primitives, removeClasse.get('name'), null));
+              });
+
+              promises.pushObjects(updatedViews.map(a => a.save()));
             }
 
             emptyReferenceCountItems.clear();
@@ -504,9 +519,15 @@ export default FdBaseSheet.extend({
     /**
       Delete selected diagram.
 
-       @method actions.delete
+      @method actions.delete
+      @param {Boolean} confirmation
     */
-    delete() {
+    delete(confirmation) {
+      if (isNone(confirmation)) {
+        this.get('fdDialogService').showVerificationMessage(this.get('i18n').t('components.fd-modal-message-box.delete-text').toString(), this.get('actions.delete'), this);
+        return;
+      }
+
       let store = this.get('store');
       let selectedValue = this.get('selectedValue.data');
       let modelPart = selectedValue.get('constructor.modelName').slice(11);

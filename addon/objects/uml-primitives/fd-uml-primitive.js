@@ -366,12 +366,21 @@ joint.shapes.flexberry.uml.PrimitiveElementView = joint.dia.ElementView.extend({
 
     return A([{
       name: 'remove-button',
-      text: '&#xf00d',
+      text: '&#xe915',
       handler: this.removeElement.bind(this),
       attrs: {
         'element': {'ref-dx': 0,'ref-y': 0, 'ref': '.joint-highlight-stroke' },
         'circle': { r: 6, fill: '#007aff', stroke: '#007aff', 'stroke-width': 1 },
-        'text': { fill: '#ffffff','font-size': 10, 'text-anchor': 'middle', x: 0, y: 3, 'font-family': 'Icons' },
+        'text': { fill: '#ffffff','font-size': 7, 'text-anchor': 'middle', x: 0, y: 3, 'font-family': 'fd-icons' },
+      }
+    }, {
+      name: 'color-button',
+      text: '&#xf1fc',
+      handler: this.changeColorElement.bind(this),
+      attrs: {
+        'element': {'ref-dx': -14,'ref-y': 0, 'ref': '.joint-highlight-stroke' },
+        'circle': { r: 6, fill: '#007aff', stroke: '#007aff', 'stroke-width': 1 },
+        'text': { fill: '#ffffff','font-size': 7, 'text-anchor': 'middle', x: 0, y: 2, 'font-family': 'Icons' },
       }
     }, {
       name: 'color-button',
@@ -449,6 +458,7 @@ joint.shapes.flexberry.uml.PrimitiveElementView = joint.dia.ElementView.extend({
     buttons.addObjects(sizeChangers);
     buttons.forEach(button => {
       let style = {};
+      button.name = button.name.replace(' ', '.');
       style[`.${get(button, 'name')}`] = get(button, 'attrs.element');
       style[`.${get(button, 'name')}>circle`] = get(button, 'attrs.circle');
       style[`.${get(button, 'name')}>text`] = get(button, 'attrs.text');

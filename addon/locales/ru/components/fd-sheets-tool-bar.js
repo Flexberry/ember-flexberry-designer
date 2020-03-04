@@ -8,5 +8,6 @@ export default {
   'share-button-title': 'Копировать ссылку',
   'print-button-title': 'Печать',
   'share-button-data-content': 'Скопировано!',
-  'link-caption': 'Свойства связи'
+  'link-caption': 'Свойства связи',
+  'object-locked': 'Объект заблокирован пользователем '
 };

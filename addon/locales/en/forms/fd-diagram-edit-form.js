@@ -30,6 +30,7 @@ export default {
       'add-packege': 'Packege',
       'add-note': 'Note',
       'add-note-connector': 'Note connector',
+      'add-swimline-separator': 'Swimline separator',
       'add-object-association': 'Object association',
       'add-component': 'Component',
       'add-component-instance': 'Component instance',

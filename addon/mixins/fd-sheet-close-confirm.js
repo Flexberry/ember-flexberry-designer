@@ -40,6 +40,14 @@ export default Mixin.create({
   _openingItem: undefined,
 
   /**
+    Sheet component name.
+
+    @property closeSheetName
+    @type String
+  */
+  closeSheetName: undefined,
+
+  /**
     Flag activate confirm close dialog.
 
     @private
@@ -50,30 +58,71 @@ export default Mixin.create({
   show: false,
 
   /**
-    Type message box.
+    Visible button message box.
 
-    @property isError
-    @type Object
+    @property visibleButtons
+    @type Boolean
     @default false
   */
-  isError: false,
+  visibleButtons: false,
+
+  /**
+    Header text value.
+
+    @property headerCaption
+    @type String
+  */
+  headerCaption: undefined,
 
   /**
     Message text value.
 
     @property messageText
     @type String
-    @default undefined
   */
   messageText: undefined,
 
   /**
-    Sheet component name.
+    Component's approve button caption.
 
-    @property closeSheetName
+    @property approveButtonCaption
     @type String
+    @default t('components.fd-modal-message-box.confirmation-approve')
   */
-  closeSheetName: undefined,
+  approveButtonCaption: undefined,
+
+  /**
+    Component's approve button action.
+
+    @property approveButtonAction
+    @type Object
+  */
+  approveButtonAction: undefined,
+
+  /**
+    Component's deny button caption.
+
+    @property denyButtonCaption
+    @type String
+    @default t('components.fd-modal-message-box.confirmation-deny')
+  */
+  denyButtonCaption: undefined,
+
+  /**
+    Component's deny button action.
+
+    @property denyButtonAction
+    @type Object
+  */
+  denyButtonAction: undefined,
+
+  /**
+    Context approve and deny action.
+
+    @property context
+    @type Object
+  */
+  context: undefined,
 
   /**
     Ember.observer, watching show flag and reset data in fd-heet-service.
@@ -90,8 +139,18 @@ export default Mixin.create({
 
   init() {
     this._super(...arguments);
+
     this.get('fdSheetService').on('confirmCloseTrigger', this, this.showCloseDialog);
     this.get('fdDialogService').on('showErrorMessageTriggered', this, this.showErrorMessage);
+    this.get('fdDialogService').on('showVerificationMessageTriggered', this, this.showVerificationMessage);
+  },
+
+  willDestroy() {
+    this._super(...arguments);
+
+    this.get('fdSheetService').off('confirmCloseTrigger', this, this.showCloseDialog);
+    this.get('fdDialogService').off('showErrorMessageTriggered', this, this.showErrorMessage);
+    this.get('fdDialogService').off('showVerificationMessageTriggered', this, this.showVerificationMessage);
   },
 
   /**
@@ -102,8 +161,40 @@ export default Mixin.create({
   */
   showErrorMessage(message) {
     if (this.get('router.currentRouteName') === this.get('routeName')) {
-      this.set('isError', true);
+      this.set('headerCaption', this.get('i18n').t('components.fd-modal-message-box.error-caption').toString());
       this.set('messageText', message);
+      this.set('visibleButtons', false);
+      this.set('approveButtonCaption', undefined);
+      this.set('denyButtonCaption', undefined);
+      this.set('approveButtonAction', undefined);
+      this.set('denyButtonAction', undefined);
+      this.set('context', undefined);
+
+      this.set('show', true);
+    }
+  },
+
+  /**
+    Show error message.
+
+    @method showVerificationMessage
+    @param {String} message Message
+    @param {function} action Approve action
+    @param {Object} context context
+  */
+  showVerificationMessage(message, action, context) {
+    if (this.get('router.currentRouteName') === this.get('routeName')) {
+      this.set('headerCaption', this.get('i18n').t('components.fd-modal-message-box.confirmation-caption').toString());
+      this.set('messageText', message);
+      this.set('visibleButtons', true);
+      this.set('approveButtonCaption', this.get('i18n').t('components.fd-modal-message-box.custom-approve').toString());
+      this.set('denyButtonCaption', this.get('i18n').t('components.fd-modal-message-box.custom-deny').toString());
+      this.set('approveButtonAction', action);
+      this.set('denyButtonAction', function() {
+        this.set('show', false);
+      });
+      this.set('context', context);
+
       this.set('show', true);
     }
   },
@@ -117,8 +208,15 @@ export default Mixin.create({
   */
   showCloseDialog(sheetName, currentItem) {
     if (this.get('router.currentRouteName') === this.get('routeName')) {
-      this.set('isError', false);
+      this.set('headerCaption', this.get('i18n').t('components.fd-modal-message-box.confirmation-caption').toString());
       this.set('messageText', this.get('i18n').t('components.fd-modal-message-box.confirmation-text').toString());
+      this.set('visibleButtons', true);
+      this.set('approveButtonCaption', this.get('i18n').t('components.fd-modal-message-box.confirmation-approve').toString());
+      this.set('denyButtonCaption', this.get('i18n').t('components.fd-modal-message-box.confirmation-deny').toString());
+      this.set('approveButtonAction', this.get('closeWithSaving'));
+      this.set('denyButtonAction', this.get('closeWithoutSaving'));
+      this.set('context', this);
+
       this.set('closeSheetName', sheetName);
       this.set('_openingItem', currentItem);
 
@@ -145,26 +243,53 @@ export default Mixin.create({
     this.set('show', false);
   },
 
-  actions: {
-    /**
-      Button action close sheet without saving.
+  /**
+    Button method close sheet without saving.
 
-      @method actions.closeWithoutSaving
+    @method closeWithoutSaving
+  */
+  closeWithoutSaving() {
+    const sheetName = this.get('closeSheetName')
+    this.get('fdSheetService').rollbackCurrentItem(sheetName);
+    this.confirmClose(sheetName);
+  },
+
+  /**
+    Button method save and close sheet.
+
+    @method closeWithSaving
+  */
+  closeWithSaving() {
+    const sheetName = this.get('closeSheetName')
+    this.get('fdSheetService').saveCurrentItem(sheetName, true);
+  },
+
+  actions: {
+
+    /**
+      Button approve action.
+
+      @method approveAction
     */
-    closeWithoutSaving() {
-      const sheetName = this.get('closeSheetName')
-      this.get('fdSheetService').rollbackCurrentItem(sheetName);
-      this.confirmClose(sheetName);
+    approveAction() {
+      let action = this.get('approveButtonAction');
+      if (!isNone(action)) {
+        let context = this.get('context') || this;
+        action.apply(context, [true]);
+      }
     },
 
     /**
-      Button action save and close sheet.
+      Button deny action.
 
-      @method actions.closeWithSaving
+      @method denyAction
     */
-    closeWithSaving() {
-      const sheetName = this.get('closeSheetName')
-      this.get('fdSheetService').saveCurrentItem(sheetName, true);
+    denyAction() {
+      let action = this.get('denyButtonAction');
+      if (!isNone(action)) {
+        let context = this.get('context') || this;
+        action.apply(context);
+      }
     }
   }
 });

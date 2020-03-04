@@ -12,6 +12,7 @@ import $ from 'jquery';
 import joint from 'npm:jointjs';
 import uuid from 'npm:node-uuid';
 
+import FdPrimitivesArraySortingMixin from '../mixins/fd-primitives-array-sorting';
 import FdUmlElement from '../objects/uml-primitives/fd-uml-element';
 import FdUmlLink from '../objects/uml-primitives/fd-uml-link';
 import {
@@ -26,7 +27,8 @@ import {
   @class FdUmlDiagramComponent
   @extends <a href="http://emberjs.com/api/classes/Ember.Component.html">Ember.Component</a>
 */
-export default Component.extend({
+export default Component.extend(
+  FdPrimitivesArraySortingMixin, {
   /**
     Store of current application.
 
@@ -254,6 +256,10 @@ export default Component.extend({
     paper.on('element:openpopup', this._elementOpenPopup, this);
 
     let elements = this.get('elements');
+
+    // Sort elements. Partition primitive to first.
+    elements = this.sortingByTypePartition(elements);
+
     let links = this.get('links');
     graph.addCells(elements.map(e => {
       let element = e.JointJS();
@@ -402,6 +408,116 @@ export default Component.extend({
     x = coordinates.x;
     y = coordinates.y;
     let options = { element: element, e: e, x: x, y: y };
+    if (this.get('isCreatedObjectChild')) {
+      this._addChildPrimitiveForClickedElement(options);
+    } else {
+      this._addLinkForClickedElement(options);
+    }
+  },
+
+  /**
+    Handler custom event `element:openeditform`.
+    Invokes the action specified in the `openEditFormAction` property, passing it the UML-element model.
+
+    @private
+    @method _elementOpenEditForm
+    @param {joint.dia.CellView} cellView
+  */
+  _elementOpenEditForm({ model }) {
+    let object = {
+      data: undefined,
+      selectedValueModel: model.get('objectModel'),
+      isLink: false
+    };
+
+    let store = this.get('store');
+    let modelName = 'fd-dev-association';
+    let objectId = object.selectedValueModel.get('repositoryObject').slice(1, -1);
+
+    switch (object.selectedValueModel.get('primitive.$type')) {
+      case 'STORMCASE.UML.cad.Composition, UMLCAD':
+        modelName = 'fd-dev-aggregation';
+      // eslint-disable-next-line no-fallthrough
+      case 'STORMCASE.UML.cad.Association, UMLCAD':
+        object.isLink = true;
+        object.data = store.peekRecord(`${modelName}`, objectId);
+        break;
+      default:
+        object.data = store.peekRecord('fd-dev-class', objectId);
+    }
+
+    this.get('openEditFormAction')(object);
+  },
+
+  /**
+    Handler custom event `element:openpopup`.
+    Invokes the action specified in the `openPopupForDiagramElements` property, passing it the UML-element model.
+
+    @private
+    @method _elementOpenPopup
+    @param {joint.dia.CellView} cellView
+    @param {jQuery} target
+  */
+  _elementOpenPopup(view, target) {
+    this.openPopupForDiagramElements(target, view);
+  },
+
+  /**
+    Handler event '_onDrag'.
+
+    @method actions._onDrag
+    @param {jQuery.Event} e event.
+  */
+  _onDrag(evt) {
+    evt.data.paper.snapToGrid({
+      x: evt.clientX,
+      y: evt.clientY
+    });
+
+    let coordinates = forPointerMethodOverrideResizeAndDnd(evt, evt.offsetX, evt.offsetY);
+    evt.data.element.set({
+      'target': { x: coordinates.x, y: coordinates.y },
+    });
+  },
+
+  /**
+    Handler event 'blank:contextmenu'.
+
+    @method actions._blankContextMenu
+    @param {jQuery.Event} e event.
+  */
+  _blankContextMenu(e) {
+    let coordinates = forBlankEventPointerClickAndContextMenu(e);
+    let options = { e: e, x: coordinates.x, y: coordinates.y };
+    if (this.get('blankContextMenu')(options)) {
+      this._clearLinksData(true);
+    }
+  },
+
+  /**
+    Add new Element on graph.
+
+    @method actions._addNewElement
+    @param {Object} newElement joint js element.
+   */
+  _addNewElement(newElement) {
+    if (!isNone(newElement)) {
+      let graph = this.get('graph');
+      graph.addCell([newElement]);
+    }
+  },
+
+  /**
+    Add link for clicked element.
+
+    @method _addLinkForClickedElement
+    @param {Object} options selected joint js element.
+  */
+  _addLinkForClickedElement(options) {
+    let element = options.element;
+    let x = options.x;
+    let y = options.y;
+
     if (isNone(this.get('draggedLink'))) {
       let editMode = this.paper.fDDEditMode;
       if (editMode === 'addNoteConnector' && !this._haveNote()) {
@@ -450,94 +566,16 @@ export default Component.extend({
   },
 
   /**
-    Handler custom event `element:openeditform`.
-    Invokes the action specified in the `openEditFormAction` property, passing it the UML-element model.
+    Add child primitive in clicked primitive.
 
-    @private
-    @method _elementOpenEditForm
-    @param {joint.dia.CellView} cellView
+    @method _addChildPrimitiveForClickedElement
+    @param {Object} options selected joint js element.
   */
-  _elementOpenEditForm({ model }) {
-    let object = {
-      data: undefined,
-      selectedValueModel: model.get('objectModel'),
-      isLink: false
-    };
+  _addChildPrimitiveForClickedElement(options) {
+    let newChildObject =this.get('createChildObject')(options);
 
-    let store = this.get('store');
-    let modelName = 'fd-dev-association';
-    let objectId = object.selectedValueModel.get('repositoryObject').slice(1, -1);
-
-    switch (object.selectedValueModel.get('primitive.$type')) {
-      case 'STORMCASE.UML.cad.Composition, UMLCAD':
-        modelName = 'fd-dev-aggregation';
-      // eslint-disable-next-line no-fallthrough
-      case 'STORMCASE.UML.cad.Association, UMLCAD':
-        object.isLink = true;
-        object.data = store.peekRecord(`${modelName}`, objectId);
-        break;
-      default:
-        object.data = store.peekRecord('fd-dev-class', objectId);
-    }
-
-    this.get('openEditFormAction')(object);
-  },
-
-  /**
-    Handler custom event `element:openpopup`.
-    Invokes the action specified in the `openPopupForDiagramElements` property, passing it the UML-element model.
-
-    @private
-    @method _elementOpenPopup
-    @param {joint.dia.CellView} cellView
-    @param {jQuery} target
-  */
-  _elementOpenPopup(view, target) {    
-    this.openPopupForDiagramElements(target, view);
-  },
-
-  /**
-    Handler event '_onDrag'.
-
-    @method actions._onDrag
-    @param {jQuery.Event} e event.
-  */
-  _onDrag(evt) {
-    evt.data.paper.snapToGrid({
-      x: evt.clientX,
-      y: evt.clientY
-    });
-
-    let coordinates = forPointerMethodOverrideResizeAndDnd(evt, evt.offsetX, evt.offsetY);
-    evt.data.element.set({
-      'target': { x: coordinates.x, y: coordinates.y },
-    });
-  },
-
-  /**
-    Handler event 'blank:contextmenu'.
-
-    @method actions._blankContextMenu
-    @param {jQuery.Event} e event.
-  */
-  _blankContextMenu(e) {
-    let coordinates = forBlankEventPointerClickAndContextMenu(e);
-    let options = { e: e, x: coordinates.x, y: coordinates.y };
-    if (this.get('blankContextMenu')(options)) {
-      this._clearLinksData(true);
-    }
-  },
-
-  /**
-    Add new Element on graph.
-
-    @method actions._addNewElement
-    @param {Object} newElement joint js element.
-   */
-  _addNewElement(newElement) {
-    if (!isNone(newElement)) {
-      let graph = this.get('graph');
-      graph.addCell([newElement]);
+    if (!isNone(newChildObject)) {
+        this._addNewElement(newChildObject);
     }
   },
 
@@ -606,13 +644,52 @@ export default Component.extend({
     let data = evt.data;
     if (data.ghost) {
       const shift = data.shift;
+      let shiftedPositionX = x + shift.x;
+      let shiftedPositionY = y + shift.y;
       if (data.widthResize || data.heightResize) {
         const oldSize = data.ghost.size();
-        const position = data.ghost.position();
-        let coordinates = forPointerMethodOverrideResizeAndDnd(evt, x, y);
-        data.ghost.resize(data.widthResize ? Math.max(coordinates.x - position.x, view.model.attributes.inputWidth || 0, view.model.attributes.minWidth || 0) : oldSize.width, data.heightResize ? Math.max(coordinates.y - position.y, view.model.attributes.inputHeight || 0, view.model.attributes.minHeight || 0) : oldSize.height);
+        let newSize = {
+          width: oldSize.width,
+          height: oldSize.height
+        };
+        if (data.prop) {
+          if (data.widthResize && data.heightResize) {
+            newSize.width =  x - view.model.getBBox().x;
+          } else {
+            if (data.widthResize) {
+              newSize.width =  x - view.model.getBBox().x
+            }
+            if (data.heightResize) {
+              newSize.height =  y - view.model.getBBox().y
+            }
+          }
+          if (newSize.height < view.model.attributes.minHeight) {
+            newSize.height = view.model.attributes.minHeight
+          }
+          if (newSize.width < view.model.attributes.minWidth) {
+            newSize.width = view.model.attributes.minWidth
+          }
+          let propHeight = newSize.height + ((newSize.width - oldSize.width) / oldSize.width) * newSize.height;
+          let propWidth = newSize.width + ((newSize.height - oldSize.height) / oldSize.height) * newSize.width;
+          data.ghost.resize(propWidth, propHeight);
+        } else {
+          const position = data.ghost.position();
+          let coordinates = forPointerMethodOverrideResizeAndDnd(evt, x, y);
+          data.ghost.resize(data.widthResize ? Math.max(coordinates.x - position.x, view.model.attributes.inputWidth || 0, view.model.attributes.minWidth || 0) : oldSize.width, data.heightResize ? Math.max(coordinates.y - position.y, view.model.attributes.inputHeight || 0, view.model.attributes.minHeight || 0) : oldSize.height);
+        }
       } else {
-        data.ghost.position(x + shift.x, y + shift.y);
+
+        //get border for embed element move restriction. [minX, maxX, minY, maxY]
+        let ghostMoveBorder = view.model.get('ghostMoveBorder');
+
+        if (!isNone(ghostMoveBorder)) {
+          shiftedPositionX = shiftedPositionX < ghostMoveBorder[0] ? ghostMoveBorder[0] : shiftedPositionX;
+          shiftedPositionX = shiftedPositionX > ghostMoveBorder[1] ? ghostMoveBorder[1] : shiftedPositionX;
+          shiftedPositionY = shiftedPositionY < ghostMoveBorder[2] ? ghostMoveBorder[2] : shiftedPositionY;
+          shiftedPositionY = shiftedPositionY > ghostMoveBorder[3] ? ghostMoveBorder[3] : shiftedPositionY;
+        }
+
+        data.ghost.position(shiftedPositionX, shiftedPositionY);
       }
     } else {
       let bbox = view.model.getBBox();
@@ -634,6 +711,7 @@ export default Component.extend({
       const button = $(evt.target.parentElement);
       evt.data.widthResize = button.hasClass('right-down-size-button') || button.hasClass('right-size-button');
       evt.data.heightResize = button.hasClass('right-down-size-button') || button.hasClass('down-size-button');
+      evt.data.prop = button.hasClass('prop');
       evt.data.shift = { x: bbox.x - x, y: bbox.y - y};
     }
   },
@@ -657,6 +735,17 @@ export default Component.extend({
         let shift = evt.data.shift;
         let valueX = x + shift.x < 0 ? 0 : x + shift.x;
         let valueY = y + shift.y < 0 ? 0 : y + shift.y;
+
+        //get border for embed element move restriction. [minX, maxX, minY, maxY]
+        let ghostMoveBorder = view.model.get('ghostMoveBorder');
+
+        if (!isNone(ghostMoveBorder)) {
+          valueX = valueX < ghostMoveBorder[0] ? ghostMoveBorder[0] : valueX;
+          valueX = valueX > ghostMoveBorder[1] ? ghostMoveBorder[1] : valueX;
+          valueY = valueY < ghostMoveBorder[2] ? ghostMoveBorder[2] : valueY;
+          valueY = valueY > ghostMoveBorder[3] ? ghostMoveBorder[3] : valueY;
+        }
+
         view.model.position(valueX, valueY);
       }
 

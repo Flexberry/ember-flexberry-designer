@@ -1,4 +1,5 @@
 import FdBaseSheet from './fd-base-sheet';
+import { isNone } from '@ember/utils';
 
 import layout from '../../templates/components/fd-sheets/fd-navigation-sheet';
 
@@ -83,9 +84,15 @@ export default FdBaseSheet.extend({
     /**
       Delete 'selectedNode'.
 
-       @method actions.delete
+      @method actions.delete
+      @param {Boolean} confirmation
     */
-    delete() {
+    delete(confirmation) {
+      if (isNone(confirmation)) {
+        this.get('fdDialogService').showVerificationMessage(this.get('i18n').t('components.fd-modal-message-box.delete-text').toString(), this.get('actions.delete'), this);
+        return;
+      }
+
       let jstree = this.get('treeObject').jstree(true);
       let selectedNode = this.get('selectedValue');
       jstree.delete_node(selectedNode);

@@ -284,6 +284,18 @@
   <h2 class="form-header">{{t "forms.fd-setting.project-actions-caption"}}</h2>
   <div class="ui stackable grid">
     <div class="row">
+      <span>{{t "forms.fd-setting.project-actions.rename-stage-caption"}}</span>
+      <button class="ui button basic {{if readonlyModeProject 'disabled' ''}}" {{action "renameStage"}}>
+        {{t "forms.fd-setting.project-actions.rename-stage-button"}}
+      </button>
+    </div>
+    <div class="row">
+      <span>{{t "forms.fd-setting.project-actions.action-stage-caption"}}</span>
+      <button class="ui button basic {{if readonlyModeProject 'disabled' ''}}" {{action "backup"}}>
+        {{t "forms.fd-setting.project-actions.backup-stage-button"}}
+      </button>
+    </div>
+    <div class="row">
       <span>{{t "forms.fd-setting.project-actions.delete-stage-caption"}}</span>
       <button class="ui button basic {{if readonlyModeProject 'disabled' ''}}" {{action "delete"}}>
         {{t "forms.fd-setting.project-actions.delete-stage-button"}}
@@ -295,8 +307,13 @@
 
 {{#if show}}
   {{fd-modal-message-box
-    isError=isError
+    headerCaption=headerCaption
     messageText=messageText
+    visibleButtons=visibleButtons
+    approveButtonCaption=approveButtonCaption
+    denyButtonCaption=denyButtonCaption
+    approve=(action "approveAction")
+    deny=(action "denyAction")
     hide=(action set "show" false)
   }}
 {{/if}}

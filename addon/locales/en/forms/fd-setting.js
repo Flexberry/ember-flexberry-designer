@@ -14,7 +14,12 @@ export default {
   'project-actions-caption': 'Project Actions',
   'project-actions': {
     'delete-stage-caption': 'I want forever',
+    'action-stage-caption': 'I want to do',
     'delete-stage-button': 'Delete project',
+    'rename-stage-caption': 'I want to change all string fields of stage objects (except caption and description) to',
+    'rename-stage-button': 'Transliteration',
+    'rename-stage-text': 'Performing transliteration will change all fields of the field to the stage, which can lead to its breakdown, we recommend that you backup the stage. Do stage transliteration ?',
+    'backup-stage-button': 'Project backup',
   },
   'generation-settings-caption': 'Generation settings',
   'generation-settings': {

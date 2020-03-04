@@ -4,6 +4,7 @@
 import { computed } from '@ember/object';
 import { isArray } from '@ember/array';
 import $ from 'jquery';
+import { A } from '@ember/array';
 
 import FdUmlElement from './fd-uml-element';
 import { BaseObject } from './fd-uml-baseobject';
@@ -59,7 +60,7 @@ export let UsecaseActor = BaseObject.define('flexberry.uml.UsecaseActor', {
   minWidth: 25,
 
   // Minimum height.
-  minHeight: 50,
+  minHeight: 60,
 
   attrs: {
     text: {
@@ -107,6 +108,41 @@ joint.shapes.flexberry.uml.UsecaseActorView = joint.shapes.flexberry.uml.BaseObj
     '<div class="input-buffer"></div>',
     '</div>'
   ].join(''),
+
+  getSizeChangers() {
+    if (this.paper) {
+      let readonly = this.paper.options.interactive;
+      if (!readonly && typeof readonly !== 'object') {
+        return A();
+      }
+    }
+    
+    return A([{
+      name: 'right-size-button prop',
+      text: '&#xf0da',
+      attrs: {
+        'element': { 'ref-dx': 0, 'ref-y': 0.5, 'ref': '.joint-highlight-stroke' },
+        'circle': { r: 6, fill: '#007aff', stroke: '#007aff', 'stroke-width': 1 },
+        'text': { fill: '#ffffff','font-size': 10, 'text-anchor': 'middle', x: 0.5, y: 3.5, 'font-family': 'Icons' },
+      }
+    }, {
+      name: 'right-down-size-button prop',
+      text: '&#xf0da',
+      attrs: {
+        'element': { 'ref-dx': 0, 'ref-dy': 0, 'ref': '.joint-highlight-stroke' },
+        'circle': { r: 6, fill: '#007aff', stroke: '#007aff', 'stroke-width': 1 },
+        'text': { fill: '#ffffff','font-size': 10, 'text-anchor': 'middle', x: 0.5, y: 3.5, 'transform': 'rotate(45)', 'font-family': 'Icons' },
+      }
+    }, {
+      name: 'down-size-button prop',
+      text: '&#xf0d7',
+      attrs: {
+        'element': { 'ref-x': 0.5, 'ref-dy': 0, 'ref': '.joint-highlight-stroke' },
+        'circle': { r: 6, fill: '#007aff', stroke: '#007aff', 'stroke-width': 1 },
+        'text': { fill: '#ffffff','font-size': 10, 'text-anchor': 'middle', x: 0, y: 3.5, 'font-family': 'Icons' },
+      }
+    }]);
+  },
 
   updateRectangles: function (resizedWidth, resizedHeight) {
     const minWidth = this.model.attributes.minWidth;
