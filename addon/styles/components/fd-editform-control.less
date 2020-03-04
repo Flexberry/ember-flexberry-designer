@@ -11,7 +11,8 @@
 @inputVerticalPadding: 0.64285714em;
 @inputPadding: @inputVerticalPadding @inputHorizontalPadding;
 
-.ui.form .fd-editform-control {
+.ui.form .fd-editform-control,
+.ui.form .flexberry-olv-toolbar {
    &.field > label {
     margin: 0em 0em 0.28571429em 0em;
     color: @textColor;
@@ -136,6 +137,7 @@
 }
 
 /* Dropdown */
+.ui.secondary.menu.no-margin.nav-bar,
 .fd-editform-control {
   .ui.dropdown {
     font-size: @fontSize;
@@ -144,7 +146,7 @@
     width: 100%;
   }
   .ui.selection.dropdown {
-    min-width: 14em;
+    min-width: 0;
     min-height: 2.65178571em;
     background: @inputBackgroundColor;
     padding: @inputVerticalPadding 2.28571429em @inputVerticalPadding @inputHorizontalPadding;
@@ -152,10 +154,9 @@
     box-shadow: none;
     border: 1px solid @inputBorderColor;
     border-radius: @borderRadius;
+    line-height: 1.42857143em;
   }
-  .ui.grid.fd-list & .ui.selection.dropdown {
-    padding: @inputVerticalPadding 2.28571429em @inputVerticalPadding @inputHorizontalPadding;
-  }
+
   .ui.dropdown > .dropdown.icon {
     color: @buttonColor;
     font-family: 'guideline-icons';
@@ -169,11 +170,19 @@
   .ui.dropdown > .dropdown.icon::before {
     content: "\e904";
   }
-  .ui.grid.fd-list & .ui.selection.dropdown > .dropdown.icon {
-    padding: 0.42857143em;
-  }
+
   .ui.dropdown > .dropdown.icon {
     font-size: 1.5em;
+  }
+}
+
+.ui.grid.fd-list .fd-editform-control,
+.ui.secondary.menu.no-margin.nav-bar {
+  .ui.selection.dropdown {
+    padding: @inputVerticalPadding 2.28571429em @inputVerticalPadding @inputHorizontalPadding;
+  }
+  .ui.selection.dropdown > .dropdown.icon {
+    padding: 0.42857143em;
   }
 }
 
