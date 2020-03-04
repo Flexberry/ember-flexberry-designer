@@ -1,6 +1,6 @@
 export default {
   'toggler-caption': 'Дополнительные настройки',
-  'system-caption': 'Система',
+  'system-caption': 'Каталог',
   'description-caption': 'Описание',
   'description-placeholder': 'Описание диаграммы'
 };
