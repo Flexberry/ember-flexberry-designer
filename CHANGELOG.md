@@ -3,6 +3,10 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+## [0.14.0-beta02]
+### Fixed
+* Fix locales
+
 ## [0.14.0-beta01]
 ### Fixed
 * Fix setButtonStyles
