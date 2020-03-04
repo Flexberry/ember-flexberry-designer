@@ -301,6 +301,7 @@
 .fd-editform-control {
   position: relative;
   border-radius: @borderRadius;
+  border: 0.2em solid transparent;
   &-toolbar {
     position: absolute;
     top: -1em;
@@ -319,7 +320,7 @@
   &.selected,
   .tab.selected,
   .item.selected {
-    outline: 0.2em solid @blue;
+    border-color: @blue;
     background-color: rgba(79,115,176, 0.25);
     > .fd-editform-control-toolbar {
       display: block;
