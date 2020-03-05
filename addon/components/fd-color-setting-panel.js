@@ -1,7 +1,6 @@
 import Component from '@ember/component';
 import layout from '../templates/components/fd-color-setting-panel';
 import FdPopupActions from '../mixins/fd-popup-actions';
-import $ from 'jquery';
 import { observer, computed } from '@ember/object';
 import { isNone } from '@ember/utils';
 import { A } from '@ember/array';
