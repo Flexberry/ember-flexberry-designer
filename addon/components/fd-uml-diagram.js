@@ -13,7 +13,7 @@ import joint from 'npm:jointjs';
 import uuid from 'npm:node-uuid';
 
 import FdPrimitivesArraySortingMixin from '../mixins/fd-primitives-array-sorting';
-import FdKeyPressLogicMixin from '../mixins/fd-unl-diagram-component/fd-keypress-logic';
+import FdKeyPressLogicMixin from '../mixins/fd-uml-diagram-component/fd-keypress-logic';
 import FdUmlElement from '../objects/uml-primitives/fd-uml-element';
 import FdUmlLink from '../objects/uml-primitives/fd-uml-link';
 import {
