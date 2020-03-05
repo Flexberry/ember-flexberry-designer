@@ -20,6 +20,8 @@ export default {
     'rename-stage-button': 'Транслитерацию',
     'rename-stage-text': 'Выполнение транслитерации изменит все поля поля в стадию что може привести к ее поломке, рекомендуем сделать бэкап стадии. Селать транслитерацию стадии ?',
     'backup-stage-button': 'Бэкап проекта',
+    'export-stage-button': 'Экспорт проекта',
+    'export-stage-error': 'Ошибка при экспорте стадии',
   },
   'generation-settings-caption': 'Настройки генерации',
   'generation-settings': {
