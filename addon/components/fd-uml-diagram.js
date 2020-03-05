@@ -13,6 +13,7 @@ import joint from 'npm:jointjs';
 import uuid from 'npm:node-uuid';
 
 import FdPrimitivesArraySortingMixin from '../mixins/fd-primitives-array-sorting';
+import FdKeyPressLogicMixin from '../mixins/fd-unl-diagram-component/fd-keypress-logic';
 import FdUmlElement from '../objects/uml-primitives/fd-uml-element';
 import FdUmlLink from '../objects/uml-primitives/fd-uml-link';
 import {
@@ -28,7 +29,8 @@ import {
   @extends <a href="http://emberjs.com/api/classes/Ember.Component.html">Ember.Component</a>
 */
 export default Component.extend(
-  FdPrimitivesArraySortingMixin, {
+  FdPrimitivesArraySortingMixin,
+  FdKeyPressLogicMixin, {
   /**
     Store of current application.
 
@@ -121,12 +123,12 @@ export default Component.extend(
   links: computed.filter('primitives', p => p instanceof FdUmlLink),
 
   /**
-    Current highligted element.
+    Current highligted elements.
 
-    @property highlightedElement
+    @property highlightedElements
     @type Object
   */
-  highlightedElement: undefined,
+  highlightedElements: A(),
 
   /**
     Object with flags indicates whether diagram is readonly.
@@ -254,6 +256,8 @@ export default Component.extend(
     paper.on('cell:highlight', this._highlighted, this);
     paper.on('element:openeditform', this._elementOpenEditForm, this);
     paper.on('element:openpopup', this._elementOpenPopup, this);
+
+    this.subscriptionToKeyPress(paper);
 
     let elements = this.get('elements');
 
@@ -384,7 +388,7 @@ export default Component.extend(
         default:
           if (this.get('currentTargetElementIsPointer')) {
             var linkView = element.model.findView(this.paper);
-            linkView.highlight();
+            linkView.highlight(null, { multiHighlight: e.shiftKey });
           }
       }
     } else {
@@ -528,7 +532,7 @@ export default Component.extend(
       let startDragLink = this.get('startDragLink');
       let newElement = startDragLink(options);
       if (isNone(newElement)) {
-        element.highlight();
+        element.highlight(null, { multiHighlight: options.e.shiftKey })
       } else {
         this.set('draggedLink', newElement);
         let graph = this.get('graph');
@@ -584,24 +588,48 @@ export default Component.extend(
     Handles cell:highlight action.
 
     @method _highlighted
-    @param {Object} cellView joint js element.
+    @param {Object} cellView joint js view.
+    @param {Object} el joint js element.
+    @param {Object} options highlight options.
    */
-  _highlighted(cellView) {
-    let highlightedElement = this.get('highlightedElement');
-    if (highlightedElement && highlightedElement !== cellView) {
-      if (highlightedElement.model.isLink()) {
-        highlightedElement.$el.addClass('linktools-disabled');
+  _highlighted(cellView, el, options) {
+    let highlightedElements = this.get('highlightedElements');
+    if (options && (options.multiHighlight || options.highlightAll)) {
+      if (highlightedElements.includes(cellView) && options.multiHighlight) {
+        cellView.unhighlight();
+        highlightedElements.removeObject(cellView);
+        if (highlightedElements.length === 1 && highlightedElements[0].model.isLink()) {
+          highlightedElements[0].$el.removeClass('linktools-disabled');
+          highlightedElements[0].updateArrowheadMarkers();
+        }
+      } else {
+        if (highlightedElements.length === 1 && highlightedElements[0].model.isLink()) {
+          highlightedElements[0].$el.addClass('linktools-disabled');
+        }
+
+        highlightedElements.addObject(cellView);
       }
+    } else {
+      highlightedElements.forEach((highlightedElement) => {
+        if (highlightedElement !== cellView) {
+          if (highlightedElement.model.isLink()) {
+            highlightedElement.$el.addClass('linktools-disabled');
+          }
 
-      highlightedElement.unhighlight();
+          highlightedElement.unhighlight();
+        }
+      });
+
+      highlightedElements.clear();
+      if (!isNone(cellView)) {
+        if (cellView.model.isLink() && !this.get('readonly')) {
+          cellView.$el.removeClass('linktools-disabled');
+          cellView.updateArrowheadMarkers();
+        }
+
+        highlightedElements.addObject(cellView);
+      }
     }
-
-    if (!isNone(cellView) && cellView.model.isLink() && !this.get('readonly')) {
-      cellView.$el.removeClass('linktools-disabled');
-      cellView.updateArrowheadMarkers();
-    }
-
-    this.set('highlightedElement', cellView);
   },
 
   /**
