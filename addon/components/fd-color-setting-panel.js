@@ -2,7 +2,9 @@ import Component from '@ember/component';
 import layout from '../templates/components/fd-color-setting-panel';
 import FdPopupActions from '../mixins/fd-popup-actions';
 import $ from 'jquery';
-import { observer } from '@ember/object';
+import { observer, computed } from '@ember/object';
+import { isNone } from '@ember/utils';
+import { A } from '@ember/array';
 
 export default Component.extend(
   FdPopupActions, {
@@ -28,22 +30,66 @@ export default Component.extend(
     return hex;
   },
 
+  isClass: computed('value.model.attributes.objectModel.primitive.$type', function() {
+    if (!this.get('value')) {
+      return false;
+    }
+
+    const objectModel = this.value.model.get('objectModel');
+    const objectType = objectModel.get('primitive.$type');
+
+    return objectType === 'STORMCASE.STORMNET.Repository.CADClass, STORM.NET Case Tool plugin';
+  }),
+
+  stereotypeItems: computed('value.model.attributes.objectModel.stereotype', function() {
+    const objectView = this.get('value');
+    if (!objectView) {
+      return A();
+    }
+
+    const defaultItems = A([
+      '',
+      '«application»',
+      '«businessserver»',
+      '«editform»',
+      '«enumeration»',
+      '«eventarg»',
+      '«external»',
+      '«externalinterface»',
+      '«implementation»',
+      '«interface»',
+      '«listform»',
+      '«printfrom»',
+      '«role»',
+      '«type»',
+      '«typedef»',
+      '«userform»'
+    ]);
+
+    const objectModel = objectView.model.get('objectModel');
+    const stereotype = objectModel.get('stereotype');
+    defaultItems.addObject(stereotype);
+
+    return defaultItems;
+  }),
+
   _onTextColorChange: observer('value', function() {
-    if (this.value != undefined) {
-      let textColor = this.value.model.attributes.objectModel.primitive.DrawStyle.TextColor;
-      let backgroundColor = this.value.model.attributes.objectModel.primitive.DrawStyle.DrawBrush.Color;
+    if (this.get('value')) {
+      const objectModel = this.get('value').model.get('objectModel');
+      const textColor = objectModel.get('primitive.DrawStyle.TextColor');
+      const backgroundColor = objectModel.get('primitive.DrawStyle.DrawBrush.Color');
 
-      let textColorHEX = this.rgbaToHex('rgba(' + textColor.R + ', ' + textColor.G + ', ' + textColor.B + ', ' + textColor.A + ')');
-      let backgroundColorHEX = this.rgbaToHex('rgba(' + backgroundColor.R + ', ' + backgroundColor.G + ', ' + backgroundColor.B + ', ' + backgroundColor.A + ')');
+      const textColorHEX = this.rgbaToHex('rgba(' + textColor.R + ', ' + textColor.G + ', ' + textColor.B + ', ' + textColor.A + ')');
+      const backgroundColorHEX = this.rgbaToHex('rgba(' + backgroundColor.R + ', ' + backgroundColor.G + ', ' + backgroundColor.B + ', ' + backgroundColor.A + ')');
 
-      this.textValue = textColorHEX;
-      this.backgroundValue = backgroundColorHEX;
+      const stereotypeValue = objectModel.get('stereotype');
 
       this.set('textValue', textColorHEX);
       this.set('backgroundValue', backgroundColorHEX);
+      this.set('stereotypeValue', stereotypeValue);
     }
 
-    return;   
+    return;
   }),
 
   actions: {
@@ -53,51 +99,32 @@ export default Component.extend(
       @method actions.applyNewColors
      */
     applySettings(e) {
-      const objectModel = this.value.model.get('objectModel');
+      const objectView = this.get('value');
+      const objectModel = objectView.model.get('objectModel');
 
-      if (this.stereotypeValue != undefined) {
-        objectModel.set('stereotype', this.stereotypeValue);
+      const textPath = 'primitive.DrawStyle.TextColor';
+      const brushPath = 'primitive.DrawStyle.DrawBrush.Color';
+
+      const rgbaTextValue = this.hexToRGBA(this.get('textValue'));
+      const rgbabackgroundValue = this.hexToRGBA(this.get('backgroundValue'));
+
+      objectModel.set(`${textPath}.R`, rgbaTextValue[0]);
+      objectModel.set(`${textPath}.G`, rgbaTextValue[1]);
+      objectModel.set(`${textPath}.B`, rgbaTextValue[2]);
+      objectModel.set(`${textPath}.A`, rgbaTextValue[3]);
+
+      objectModel.set(`${brushPath}.R`, rgbabackgroundValue[0]);
+      objectModel.set(`${brushPath}.G`, rgbabackgroundValue[1]);
+      objectModel.set(`${brushPath}.B`, rgbabackgroundValue[2]);
+      objectModel.set(`${brushPath}.A`, rgbabackgroundValue[3]);
+
+      objectView.setColors();
+      if (!isNone(this.get('stereotypeValue'))) {
+        objectModel.set('stereotype', this.get('stereotypeValue'));
+        objectView.updateInputValue();
       }
 
-      let textColor = objectModel.primitive.DrawStyle.TextColor;
-      let brushColor = objectModel.primitive.DrawStyle.DrawBrush.Color;
-
-      let rgbaTextValue = this.hexToRGBA(this.textValue);
-      let rgbabackgroundValue = this.hexToRGBA(this.backgroundValue);
-
-      textColor.R = rgbaTextValue[0];
-      textColor.G = rgbaTextValue[1];
-      textColor.B = rgbaTextValue[2];
-      textColor.A = rgbaTextValue[3];
-
-      brushColor.R = rgbabackgroundValue[0];
-      brushColor.G = rgbabackgroundValue[1];
-      brushColor.B = rgbabackgroundValue[2];
-      brushColor.A = rgbabackgroundValue[3];
-
-      this.value.model.set('objectModel', objectModel);
-      this.value.setColors();
-      e = $.Event('click');
-      this.closePopup(e);
-    },
-
-    /**
-      Handler for click on toolbar collapse edit panel button.
-
-      @method actions.changeTextColor
-     */
-    changeTextColor() {
-      // console.log('changeTextColor');
-      
-    },
-
-    /**
-      Handler for click on toolbar collapse edit panel button.
-
-      @method actions.changeBackgroundColor
-     */
-    changeBackgroundColor() {
-      // console.log('changeBackgroundColor');      
+      this.closePopup(e, true);
     }
   }
 });

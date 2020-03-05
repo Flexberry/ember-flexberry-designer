@@ -1,27 +1,21 @@
-{{#if (eq this.value.model.attributes.objectModel.primitive.$type 'STORMCASE.STORMNET.Repository.CADClass, STORM.NET Case Tool plugin')}}
-    <div class="ui popup-element">
-        {{flexberry-dropdown
-            items=(array 'application' 'businessserver' 'enumeration' 'eventarg' 'external' 'externalinterface' 'implementation' 'interface' 'listform' 'printfrom' 'role' 'type' 'typedef' 'userform')
-            value=stereotypeValue
-        }}
-    </div>
+{{#if isClass}}
+  <div class="ui popup-element">
+    {{flexberry-dropdown
+      items=stereotypeItems
+      value=stereotypeValue
+    }}
+  </div>
 {{/if}}
 <div class="ui popup-element">
-    {{t "components.fd-color-setting-panel.text-color-label"}}
-    {{flexberry-colorpicker
-        value=textValue
-        change=(action "changeTextColor")
-    }}
+  {{t "components.fd-color-setting-panel.text-color-label"}}
+  {{input type="color" value=textValue}}
 </div>
 <div class="ui popup-element">
-    {{t "components.fd-color-setting-panel.background-color-label"}}
-    {{flexberry-colorpicker
-        value=backgroundValue
-        change=(action "changeBackgroundColor")
-    }}
+  {{t "components.fd-color-setting-panel.background-color-label"}}
+  {{input type="color" value=backgroundValue}}
 </div>
 <div class="ui popup-element">
-     <button class='ui button primary' onclick={{action 'applySettings'}}>
-         {{t "components.fd-color-setting-panel.button-caption"}}
-     </button>
+  <button class='ui button primary' onclick={{action 'applySettings'}}>
+    {{t "components.fd-color-setting-panel.button-caption"}}
+  </button>
 </div>
