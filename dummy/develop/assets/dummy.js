@@ -6344,6 +6344,11 @@ define('dummy/ember-flexberry-designer/tests/addon.lint-test', [], function () {
     assert.ok(true, 'addon/mixins/fd-sheet-close-confirm.js should pass ESLint\n\n');
   });
 
+  QUnit.test('addon/mixins/fd-uml-diagram-component/fd-keypress-logic.js', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'addon/mixins/fd-uml-diagram-component/fd-keypress-logic.js should pass ESLint\n\n');
+  });
+
   QUnit.test('addon/mixins/fd-work-panel-toggler.js', function (assert) {
     assert.expect(1);
     assert.ok(true, 'addon/mixins/fd-work-panel-toggler.js should pass ESLint\n\n');

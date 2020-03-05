@@ -66321,6 +66321,9 @@ body.pushable > .pusher {
 .joint-paper.joint-theme-default {
   background-color: transparent;
 }
+.joint-paper.joint-theme-default:focus {
+  outline-style: none;
+}
 .ui.form .uml-link-inputs textarea,
 .ui.form .uml-link-inputs input {
   position: absolute;
