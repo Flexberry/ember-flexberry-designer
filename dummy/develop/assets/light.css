@@ -67394,6 +67394,12 @@ i.icon.exit:before {
 .flexberry-colsconfig .columns-order {
   width: 100px;
 }
+.ui.form .ui.popup-element {
+  padding-top: 10px;
+}
+.ui.form .ui.popup-element.field .selection.dropdown {
+  width: 100%;
+}
 .ui.button.cols-config-apply {
   color: #FFFFFF;
 }

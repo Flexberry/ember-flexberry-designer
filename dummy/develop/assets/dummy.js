@@ -290,6 +290,19 @@ define('dummy/components/fd-class-list-items', ['exports', 'ember-flexberry-desi
     }
   });
 });
+define('dummy/components/fd-color-setting-panel', ['exports', 'ember-flexberry-designer/components/fd-color-setting-panel'], function (exports, _fdColorSettingPanel) {
+  'use strict';
+
+  Object.defineProperty(exports, "__esModule", {
+    value: true
+  });
+  Object.defineProperty(exports, 'default', {
+    enumerable: true,
+    get: function () {
+      return _fdColorSettingPanel.default;
+    }
+  });
+});
 define('dummy/components/fd-config-panel', ['exports', 'ember-flexberry-designer/components/fd-config-panel'], function (exports, _fdConfigPanel) {
   'use strict';
 
@@ -3949,6 +3962,11 @@ define('dummy/ember-flexberry-designer/tests/addon.lint-test', [], function () {
     assert.ok(true, 'addon/components/fd-class-list-items.js should pass ESLint\n\n');
   });
 
+  QUnit.test('addon/components/fd-color-setting-panel.js', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'addon/components/fd-color-setting-panel.js should pass ESLint\n\n');
+  });
+
   QUnit.test('addon/components/fd-config-panel.js', function (assert) {
     assert.expect(1);
     assert.ok(true, 'addon/components/fd-config-panel.js should pass ESLint\n\n');
@@ -4719,6 +4737,11 @@ define('dummy/ember-flexberry-designer/tests/addon.lint-test', [], function () {
     assert.ok(true, 'addon/locales/en/components/fd-businessserver-editing-panel.js should pass ESLint\n\n');
   });
 
+  QUnit.test('addon/locales/en/components/fd-color-setting-panel.js', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'addon/locales/en/components/fd-color-setting-panel.js should pass ESLint\n\n');
+  });
+
   QUnit.test('addon/locales/en/components/fd-composition-editing-panel-link.js', function (assert) {
     assert.expect(1);
     assert.ok(true, 'addon/locales/en/components/fd-composition-editing-panel-link.js should pass ESLint\n\n');
@@ -5477,6 +5500,11 @@ define('dummy/ember-flexberry-designer/tests/addon.lint-test', [], function () {
   QUnit.test('addon/locales/ru/components/fd-businessserver-editing-panel.js', function (assert) {
     assert.expect(1);
     assert.ok(true, 'addon/locales/ru/components/fd-businessserver-editing-panel.js should pass ESLint\n\n');
+  });
+
+  QUnit.test('addon/locales/ru/components/fd-color-setting-panel.js', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'addon/locales/ru/components/fd-color-setting-panel.js should pass ESLint\n\n');
   });
 
   QUnit.test('addon/locales/ru/components/fd-composition-editing-panel-link.js', function (assert) {
@@ -9572,6 +9600,11 @@ define('dummy/ember-flexberry-designer/tests/app.lint-test', [], function () {
   QUnit.test('app/components/fd-class-list-items.js', function (assert) {
     assert.expect(1);
     assert.ok(true, 'app/components/fd-class-list-items.js should pass ESLint\n\n');
+  });
+
+  QUnit.test('app/components/fd-color-setting-panel.js', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'app/components/fd-color-setting-panel.js should pass ESLint\n\n');
   });
 
   QUnit.test('app/components/fd-config-panel.js', function (assert) {
