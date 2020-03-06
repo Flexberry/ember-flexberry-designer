@@ -5,6 +5,7 @@
 @import 'components/fd-create-view.less';
 @import 'components/fd-ember-jstree';
 @import 'components/fd-list';
+@import 'components/fd-listform';
 @import 'components/fd-round-button.less';
 @import 'components/fd-sheet';
 @import 'components/fd-uml-diagram';
@@ -374,133 +375,6 @@ i.icon.exit:before {
   }
 }
 
-// list form styles from blue-sky theme
-.ui.button.create-button,
-.ui.button.save-button,
-.ui.button.save-close-button,
-.ui.button.save-del-button,
-.ui.button.delete-button {
-  padding: 10px 18px;
-}
-i.icon.file.excel.outline:before,
-i.icon.filter:before,
-i.icon.refresh:before,
-i.icon.search:before,
-i.icon.table:before,
-i.icon.trash:before {
-  font-family: Crimean;
-}
-// refresh button
-.ui.button.refresh-button {
-  font-size: 0;
-  padding: 0 20px 0 0;
-  background: none;
-}
-i.icon.refresh:before {
-  content: "\e807";
-  font-size: 1.6rem;
-  color: #7dd4b4;
-}
-// delete button
-.ui.button.delete-button {
-  font-size: 0;
-  background: none;
-}
-.delete-button:before {
-  content: "\e814";
-  font-family: 'Crimean';
-  font-size: 1.7rem;
-  color: #ff3d00;
-}
-// sort col button
-i.icon.table:before {
-  content: "\e819";
-}
-.ui.icon.buttons .config-button.button,
-.ui.icon.button.config-button {
-  padding-top: 0;
-  .icon {
-    line-height: 0.9;
-  }
-}
-.ui.dropdown.icon.button > .dropdown.icon {
-  margin-left: -10px!important;
-  margin-top: -3px!important;
-}
-.ui.secondary.menu.no-margin{
-  .ui.button {
-    color: rgba(0, 0, 0, 0.2);
-  }
-  .ui.buttons:not(.basic):not(.inverted) > .button,
-  .ui.buttons > .ui.button:not(.basic):not(.inverted) {
-    border: none;
-    background: 0 0!important;
-  }
-}
-
-.nav-bar .ui.buttons:not(.basic):not(.inverted) > .button,
-.nav-bar .ui.buttons > .ui.button:not(.basic):not(.inverted) {
-  padding: .74em .8571em!important;
-}
-.ui.basic.buttons {
-  border: none;
-}
-.ui.icon.dropdown > .icon.dropdown:before {
-  font-size: 20px;
-}
-i.icon.check-square-o:before {
-  content: "\f046";
-  font-size: 20px;
-}
-i.icon.check-all-square-o:before {
-  content: "\e815";
-  font-family: Crimean;
-  font-size: 20px;
-}
-.ui.button.delete-button:active,
-.ui.button.delete-button:focus,
-.ui.check-all-at-page-button.button,
-.ui.clear-sorting-button.button .ui.check-all-button.button {
-  border: none;
-  background: 0 0;
-}
-.ui.check-all-button.button {
-  border: 0;
-  background: 0 0;
-}
-.ui.check-all-at-page-button.button,
-.ui.check-all-button.button {
-  width: 25px;
-  text-align: center;
-  margin: 0;
-  padding: 0;
-  height: 25px;
-}
-.ui.clear-sorting-button.button {
-  padding: 0;
-  height: 25px;
-  width: 10px;
-  text-align: center;
-  border: 0;
-  background: 0 0;
-  margin: 0;
-}
-// olv pager start
-.next-page-button:before,
-.prev-page-button:before {
-  font-family: Icons;
-}
-.prev-page-button:before {
-  content: "\f053";
-  font-size: 14px;
-  opacity: 1;
-}
-.next-page-button:before {
-  content: "\f054";
-  font-size: 14px;
-  opacity: 1;
-}
-// olv pager end
 .object-list-view-container {
   font-size: 14px;
 }
