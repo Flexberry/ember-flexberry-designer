@@ -10758,6 +10758,10 @@ define("ember-animated/test-support/index", ["exports", "@ember/test-helpers", "
   });
   _exports.time = void 0;
 
+  function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+  function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
   function animationsSettled() {
     var idle;
 
@@ -10807,26 +10811,33 @@ define("ember-animated/test-support/index", ["exports", "@ember/test-helpers", "
     });
   }
 
-  function visuallyConstant(target, fn, message) {
-    var before, after;
-    return regeneratorRuntime.async(function visuallyConstant$(_context) {
-      while (1) {
-        switch (_context.prev = _context.next) {
-          case 0:
-            before = Object.assign({}, bounds(target), shape(target));
-            _context.next = 3;
-            return regeneratorRuntime.awrap(fn());
+  function visuallyConstant(_x, _x2, _x3) {
+    return _visuallyConstant.apply(this, arguments);
+  }
 
-          case 3:
-            after = Object.assign({}, bounds(target), shape(target));
-            checkFields.call(this, ['a', 'b', 'c', 'd', 'top', 'left', 'width', 'height'], 0.25, before, after, message);
+  function _visuallyConstant() {
+    _visuallyConstant = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee(target, fn, message) {
+      var before, after;
+      return regeneratorRuntime.wrap(function _callee$(_context) {
+        while (1) {
+          switch (_context.prev = _context.next) {
+            case 0:
+              before = Object.assign({}, bounds(target), shape(target));
+              _context.next = 3;
+              return fn();
 
-          case 5:
-          case "end":
-            return _context.stop();
+            case 3:
+              after = Object.assign({}, bounds(target), shape(target));
+              checkFields.call(this, ['a', 'b', 'c', 'd', 'top', 'left', 'width', 'height'], 0.25, before, after, message);
+
+            case 5:
+            case "end":
+              return _context.stop();
+          }
         }
-      }
-    }, null, this);
+      }, _callee, this);
+    }));
+    return _visuallyConstant.apply(this, arguments);
   }
 
   function approxEqualColors(value, expected, message) {
@@ -10924,9 +10935,7 @@ define("ember-animated/test-support/motion-tester", ["exports", "ember-animated/
       return this.get('runner').perform(motion);
     },
     isAnimating: Ember.computed.alias('runner.isRunning'),
-    runner: (0, _emberScheduler.task)(
-    /*#__PURE__*/
-    regeneratorRuntime.mark(function _callee(motion) {
+    runner: (0, _emberScheduler.task)( /*#__PURE__*/regeneratorRuntime.mark(function _callee(motion) {
       return regeneratorRuntime.wrap(function _callee$(_context) {
         while (1) {
           switch (_context.prev = _context.next) {
@@ -10964,9 +10973,7 @@ define("ember-animated/test-support/time-control", ["exports", "ember-animated"]
 
   var origNow = _emberAnimated.clock.now;
 
-  var TimeControl =
-  /*#__PURE__*/
-  function () {
+  var TimeControl = /*#__PURE__*/function () {
     function TimeControl() {
       var _this = this;
 

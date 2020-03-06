@@ -65951,6 +65951,219 @@ body.pushable > .pusher {
 #mobile .ui.grid.fd-list-edited .flexberry-toggler .title.active {
   margin-bottom: 0;
 }
+table.fd-listform {
+  position: relative;
+}
+table.fd-listform td.fd-selected {
+  border-right: 0.2em solid #007aff;
+  border-left: 0.2em solid #007aff !important;
+  background-color: rgba(79, 115, 176, 0.25);
+}
+table.fd-listform th.fd-selected {
+  border-right: 0.2em solid #007aff;
+  border-left: 0.2em solid #007aff !important;
+  border-top: 0.2em solid #007aff;
+  border-top-left-radius: 0.25rem;
+  border-top-right-radius: 0.25rem;
+  background-color: rgba(79, 115, 176, 0.25);
+  position: relative;
+}
+table.fd-listform th.fd-selected > .fd-editform-control-toolbar {
+  display: block;
+}
+table.fd-listform tr:last-child > td.fd-selected {
+  border-bottom: 0.2em solid #007aff;
+  border-bottom-left-radius: 0.25rem;
+  border-bottom-right-radius: 0.25rem;
+}
+/*-------------------
+      Toolbar
+--------------------*/
+.ui.secondary.menu.no-margin:not(.nav-bar) {
+  margin-bottom: 1em;
+  align-items: center;
+  min-height: 0em;
+  min-width: 100%;
+  /* Toolbar buttons */
+}
+.ui.secondary.menu.no-margin:not(.nav-bar) .ui.button {
+  margin: 0;
+}
+.ui.secondary.menu.no-margin:not(.nav-bar) .ui.button.refresh-button,
+.ui.secondary.menu.no-margin:not(.nav-bar) .ui.button.delete-button,
+.ui.secondary.menu.no-margin:not(.nav-bar) .ui.button.icon.export-button,
+.ui.secondary.menu.no-margin:not(.nav-bar) .ui.button.icon.flexberry-menu.dropdown,
+.ui.secondary.menu.no-margin:not(.nav-bar) .ui.button.icon.config-button.settings-enabled,
+.ui.secondary.menu.no-margin:not(.nav-bar) .ui.button.adv-limit-button,
+.ui.secondary.menu.no-margin:not(.nav-bar) .ui.button.search-button,
+.ui.secondary.menu.no-margin:not(.nav-bar) .ui.button.clear-search-button {
+  background: transparent;
+}
+.ui.secondary.menu.no-margin:not(.nav-bar) .ui.button.refresh-button,
+.ui.secondary.menu.no-margin:not(.nav-bar) .ui.button.delete-button {
+  font-size: 0;
+}
+.ui.secondary.menu.no-margin:not(.nav-bar) .ui.button.create-button {
+  background: #007aff;
+  color: #FFFFFF;
+  border-radius: 0.25rem;
+  margin: 0 0.5em;
+  font-size: 0.875em;
+  line-height: 1.42857143em;
+  padding: 0.64285714em 0.78571429em;
+}
+.ui.secondary.menu.no-margin:not(.nav-bar) .filter-active.icon button {
+  background: transparent;
+  padding: 0.1em 0.3em;
+}
+.ui.secondary.menu.no-margin:not(.nav-bar) .ui.icon.button {
+  padding: 0.4em 0.5em;
+}
+.ui.secondary.menu.no-margin:not(.nav-bar) .ui.button.refresh-button:not(.disabled),
+.ui.secondary.menu.no-margin:not(.nav-bar) .ui.button.delete-button:not(.disabled),
+.ui.secondary.menu.no-margin:not(.nav-bar) .ui.buttons .button:not(.disabled) {
+  color: rgba(0, 0, 0, 0.75);
+}
+.ui.secondary.menu.no-margin:not(.nav-bar) .ui.button:focus {
+  border-color: transparent;
+}
+.ui.secondary.menu.no-margin:not(.nav-bar) .ui.button.refresh-button i.icon,
+.ui.secondary.menu.no-margin:not(.nav-bar) .ui.button.delete-button i.icon {
+  line-height: 1;
+  margin: 0 0.5em;
+}
+.ui.secondary.menu.no-margin:not(.nav-bar) .ui.button.refresh-button i.icon {
+  margin-left: 0;
+}
+.ui.secondary.menu.no-margin:not(.nav-bar) .ui.button.delete-button:before {
+  content: "";
+}
+.ui.secondary.menu.no-margin:not(.nav-bar) .ui.action.input .search-button {
+  position: absolute;
+  right: 2em;
+  height: 100%;
+}
+.ui.secondary.menu.no-margin:not(.nav-bar) .ui.action.input .clear-search-button {
+  position: absolute;
+  right: 0;
+  height: 100%;
+}
+.ui.secondary.menu.no-margin:not(.nav-bar) > .buttons:not(.filter-active) > .ui.button:not(.dropdown) {
+  padding-right: 0;
+}
+.ui.secondary.menu.no-margin:not(.nav-bar) > .buttons:not(.filter-active) .flexberry-menu.ui.dropdown {
+  padding-left: 0;
+}
+.ui.secondary.menu.no-margin:not(.nav-bar) > .buttons:not(.filter-active) .flexberry-menu.ui.dropdown > .dropdown.icon {
+  color: rgba(0, 0, 0, 0.75);
+}
+.ui.secondary.menu.no-margin:not(.nav-bar) > .buttons:not(.filter-active) .flexberry-menu.ui.dropdown > .dropdown.icon::before {
+  content: "\e905";
+}
+.ui.secondary.menu.no-margin:not(.nav-bar) .search-field {
+  margin: 0 1rem;
+  width: auto;
+}
+.ui.secondary.menu.no-margin:not(.nav-bar) i.icon {
+  font-family: 'guideline-icons';
+  font-size: 1.3rem;
+  color: rgba(0, 0, 0, 0.75);
+}
+.ui.secondary.menu.no-margin:not(.nav-bar) i.icon.filter:before {
+  content: "\e91a";
+}
+.ui.secondary.menu.no-margin:not(.nav-bar) i.icon.file.excel.outline:before {
+  content: "\e916";
+}
+.ui.secondary.menu.no-margin:not(.nav-bar) i.icon.table:before {
+  content: "\e90d";
+}
+.ui.secondary.menu.no-margin:not(.nav-bar) i.icon.refresh:before {
+  content: "\e925";
+}
+.ui.secondary.menu.no-margin:not(.nav-bar) i.icon.delete:before {
+  content: "\e911";
+}
+.ui.secondary.menu.no-margin:not(.nav-bar) i.icon.search:before {
+  content: "\e927";
+}
+.ui.secondary.menu.no-margin:not(.nav-bar) i.icon.remove:before {
+  content: "\e90e";
+}
+.ui.secondary.menu.no-margin:not(.nav-bar) i.icon.flask:before {
+  content: "\e930";
+}
+.ui.secondary.menu.no-margin:not(.nav-bar) i.icon.angle.right:before {
+  content: "\e907";
+}
+.ui.secondary.menu.no-margin:not(.nav-bar) i.icon.setting:before {
+  content: "\e914";
+}
+.ui.secondary.menu.no-margin:not(.nav-bar) i.icon.unhide:before {
+  content: "\e917";
+}
+.ui.secondary.menu.no-margin:not(.nav-bar) i.icon.checkmark.box:before {
+  content: "\e92d";
+}
+/*-------------------
+        Navbar
+--------------------*/
+div.ui.secondary.menu.no-margin.nav-bar .ui.basic.buttons {
+  align-self: auto;
+}
+div.ui.secondary.menu.no-margin.nav-bar .right.menu {
+  flex-wrap: nowrap;
+}
+.ui.secondary.menu.nav-bar {
+  height: 2.5rem;
+  margin: 0;
+  padding-top: 0;
+  min-width: 100%;
+  margin-top: 1rem;
+}
+.ui.secondary.menu.nav-bar .ui.basic.buttons .button,
+.ui.secondary.menu.nav-bar .ui.basic.button {
+  background: rgba(0, 0, 0, 0.1) !important;
+}
+.ui.secondary.menu.nav-bar .ui.basic.buttons {
+  box-shadow: none;
+  border: none;
+  border-radius: 0.25rem;
+}
+.ui.secondary.menu.nav-bar .ui.basic.buttons .ui.button {
+  border: none;
+  border-radius: 0.25rem;
+  color: rgba(0, 0, 0, 0.75) !important;
+  font-size: 0.875rem;
+  min-width: 2.5rem;
+  margin: 0 0.28571429em 0 0;
+  padding: 0 1rem;
+}
+.ui.secondary.menu.nav-bar .ui.basic.buttons .ui.button.active {
+  background: transparent !important;
+  opacity: 1!important;
+}
+.ui.secondary.menu.nav-bar .ui.basic.buttons .ui.button.prev-page-button:before,
+.ui.secondary.menu.nav-bar .ui.basic.buttons .ui.button.next-page-button:before {
+  font-family: 'guideline-icons';
+  font-size: 1.42857143em;
+  display: block;
+}
+.ui.secondary.menu.nav-bar .ui.basic.buttons .ui.button.prev-page-button::before {
+  content: "\e906";
+}
+.ui.secondary.menu.nav-bar .ui.basic.buttons .ui.button.next-page-button::before {
+  content: "\e908";
+}
+.ui.secondary.menu.nav-bar .ui.basic.buttons div.ui.button {
+  padding-top: 0.5rem;
+  background: transparent!important;
+  pointer-events: none;
+}
+.ui.secondary.menu.nav-bar .right.menu .showing-entries {
+  padding: 0.5625rem;
+  margin: 0;
+}
 .red {
   color: #DB2828;
 }
@@ -66670,27 +66883,41 @@ body.pushable > .pusher {
 .joint-link.joint-theme-default .marker-arrowhead:hover {
   fill: #007aff;
 }
-.ui.form .fd-editform-control.field > label {
+.ui.form .fd-editform-control.field > label,
+.ui.form .flexberry-olv-toolbar.field > label {
   margin: 0em 0em 0.28571429em 0em;
   color: rgba(0, 0, 0, 0.75);
   font-size: 0.875rem;
   font-weight: normal;
 }
-.ui.form .fd-editform-control .ui.input input {
+.ui.form .fd-editform-control .ui.input input,
+.ui.form .flexberry-olv-toolbar .ui.input input {
   font-size: 0.875rem;
 }
 .ui.form .fd-editform-control input:not([type]),
+.ui.form .flexberry-olv-toolbar input:not([type]),
 .ui.form .fd-editform-control input[type="date"],
+.ui.form .flexberry-olv-toolbar input[type="date"],
 .ui.form .fd-editform-control input[type="datetime-local"],
+.ui.form .flexberry-olv-toolbar input[type="datetime-local"],
 .ui.form .fd-editform-control input[type="email"],
+.ui.form .flexberry-olv-toolbar input[type="email"],
 .ui.form .fd-editform-control input[type="number"],
+.ui.form .flexberry-olv-toolbar input[type="number"],
 .ui.form .fd-editform-control input[type="password"],
+.ui.form .flexberry-olv-toolbar input[type="password"],
 .ui.form .fd-editform-control input[type="search"],
+.ui.form .flexberry-olv-toolbar input[type="search"],
 .ui.form .fd-editform-control input[type="tel"],
+.ui.form .flexberry-olv-toolbar input[type="tel"],
 .ui.form .fd-editform-control input[type="time"],
+.ui.form .flexberry-olv-toolbar input[type="time"],
 .ui.form .fd-editform-control input[type="text"],
+.ui.form .flexberry-olv-toolbar input[type="text"],
 .ui.form .fd-editform-control input[type="file"],
-.ui.form .fd-editform-control input[type="url"] {
+.ui.form .flexberry-olv-toolbar input[type="file"],
+.ui.form .fd-editform-control input[type="url"],
+.ui.form .flexberry-olv-toolbar input[type="url"] {
   line-height: 1.42857143em;
   padding: 0.64285714em 0.78571429em;
   font-size: 0.875rem;
@@ -66699,10 +66926,12 @@ body.pushable > .pusher {
   color: rgba(0, 0, 0, 0.75);
   border-radius: 0.25rem;
 }
-.ui.form .fd-editform-control input:hover {
+.ui.form .fd-editform-control input:hover,
+.ui.form .flexberry-olv-toolbar input:hover {
   border-color: #B3BBC3;
 }
-.ui.form .fd-editform-control input[readonly="readonly"] {
+.ui.form .fd-editform-control input[readonly="readonly"],
+.ui.form .flexberry-olv-toolbar input[readonly="readonly"] {
   pointer-events: none;
 }
 .ui.form .fd-editform-row:not(.fields) > .field:last-child {
@@ -66778,14 +67007,17 @@ body.pushable > .pusher {
   content: "\e90e";
 }
 /* Dropdown */
+.ui.secondary.menu.no-margin.nav-bar .ui.dropdown,
 .fd-editform-control .ui.dropdown {
   font-size: 0.875rem;
 }
+.ui.form .ui.secondary.menu.no-margin.nav-bar.field > .selection.dropdown,
 .ui.form .fd-editform-control.field > .selection.dropdown {
   width: 100%;
 }
+.ui.secondary.menu.no-margin.nav-bar .ui.selection.dropdown,
 .fd-editform-control .ui.selection.dropdown {
-  min-width: 14em;
+  min-width: 0;
   min-height: 2.65178571em;
   background: rgba(0, 0, 0, 0.1);
   padding: 0.64285714em 2.28571429em 0.64285714em 0.78571429em;
@@ -66793,30 +67025,39 @@ body.pushable > .pusher {
   box-shadow: none;
   border: 1px solid transparent;
   border-radius: 0.25rem;
+  line-height: 1.42857143em;
 }
-.ui.grid.fd-list .fd-editform-control .ui.selection.dropdown {
-  padding: 0.64285714em 2.28571429em 0.64285714em 0.78571429em;
-}
+.ui.secondary.menu.no-margin.nav-bar .ui.dropdown > .dropdown.icon,
 .fd-editform-control .ui.dropdown > .dropdown.icon {
   color: #848E99;
   font-family: 'guideline-icons';
 }
+.ui.secondary.menu.no-margin.nav-bar .ui.selection.dropdown > .search.icon,
 .fd-editform-control .ui.selection.dropdown > .search.icon,
+.ui.secondary.menu.no-margin.nav-bar .ui.selection.dropdown > .delete.icon,
 .fd-editform-control .ui.selection.dropdown > .delete.icon,
+.ui.secondary.menu.no-margin.nav-bar .ui.selection.dropdown > .dropdown.icon,
 .fd-editform-control .ui.selection.dropdown > .dropdown.icon {
   line-height: 1;
   top: 0.64285714em;
   right: 0.78571429em;
   margin: -0.64285714em;
 }
+.ui.secondary.menu.no-margin.nav-bar .ui.dropdown > .dropdown.icon::before,
 .fd-editform-control .ui.dropdown > .dropdown.icon::before {
   content: "\e904";
 }
-.ui.grid.fd-list .fd-editform-control .ui.selection.dropdown > .dropdown.icon {
-  padding: 0.42857143em;
-}
+.ui.secondary.menu.no-margin.nav-bar .ui.dropdown > .dropdown.icon,
 .fd-editform-control .ui.dropdown > .dropdown.icon {
   font-size: 1.5em;
+}
+.ui.grid.fd-list .fd-editform-control .ui.selection.dropdown,
+.ui.secondary.menu.no-margin.nav-bar .ui.selection.dropdown {
+  padding: 0.64285714em 2.28571429em 0.64285714em 0.78571429em;
+}
+.ui.grid.fd-list .fd-editform-control .ui.selection.dropdown > .dropdown.icon,
+.ui.secondary.menu.no-margin.nav-bar .ui.selection.dropdown > .dropdown.icon {
+  padding: 0.42857143em;
 }
 /* Filecontrol */
 .fd-editform-control .flexberry-file .ui.action.input:not([class*="left action"]) > .button {
@@ -66915,6 +67156,7 @@ body.pushable > .pusher {
 .fd-editform-control {
   position: relative;
   border-radius: 0.25rem;
+  border: 0.2em solid transparent;
 }
 .fd-editform-control-toolbar {
   position: absolute;
@@ -66933,7 +67175,7 @@ body.pushable > .pusher {
 .fd-editform-control.selected,
 .fd-editform-control .tab.selected,
 .fd-editform-control .item.selected {
-  outline: 0.2em solid #007aff;
+  border-color: #007aff;
   background-color: rgba(79, 115, 176, 0.25);
 }
 .fd-editform-control.selected > .fd-editform-control-toolbar,
@@ -67250,125 +67492,6 @@ i.icon.exit:before {
   .flexberry-colsconfig.content tbody td:nth-child(2) {
     width: 50px;
   }
-}
-.ui.button.create-button,
-.ui.button.save-button,
-.ui.button.save-close-button,
-.ui.button.save-del-button,
-.ui.button.delete-button {
-  padding: 10px 18px;
-}
-i.icon.file.excel.outline:before,
-i.icon.filter:before,
-i.icon.refresh:before,
-i.icon.search:before,
-i.icon.table:before,
-i.icon.trash:before {
-  font-family: Crimean;
-}
-.ui.button.refresh-button {
-  font-size: 0;
-  padding: 0 20px 0 0;
-  background: none;
-}
-i.icon.refresh:before {
-  content: "\e807";
-  font-size: 1.6rem;
-  color: #7dd4b4;
-}
-.ui.button.delete-button {
-  font-size: 0;
-  background: none;
-}
-.delete-button:before {
-  content: "\e814";
-  font-family: 'Crimean';
-  font-size: 1.7rem;
-  color: #ff3d00;
-}
-i.icon.table:before {
-  content: "\e819";
-}
-.ui.icon.buttons .config-button.button,
-.ui.icon.button.config-button {
-  padding-top: 0;
-}
-.ui.icon.buttons .config-button.button .icon,
-.ui.icon.button.config-button .icon {
-  line-height: 0.9;
-}
-.ui.dropdown.icon.button > .dropdown.icon {
-  margin-left: -10px !important;
-  margin-top: -3px !important;
-}
-.ui.secondary.menu.no-margin .ui.button {
-  color: rgba(0, 0, 0, 0.2);
-}
-.ui.secondary.menu.no-margin .ui.buttons:not(.basic):not(.inverted) > .button,
-.ui.secondary.menu.no-margin .ui.buttons > .ui.button:not(.basic):not(.inverted) {
-  border: none;
-  background: 0 0!important;
-}
-.nav-bar .ui.buttons:not(.basic):not(.inverted) > .button,
-.nav-bar .ui.buttons > .ui.button:not(.basic):not(.inverted) {
-  padding: .74em .8571em!important;
-}
-.ui.basic.buttons {
-  border: none;
-}
-.ui.icon.dropdown > .icon.dropdown:before {
-  font-size: 20px;
-}
-i.icon.check-square-o:before {
-  content: "\f046";
-  font-size: 20px;
-}
-i.icon.check-all-square-o:before {
-  content: "\e815";
-  font-family: Crimean;
-  font-size: 20px;
-}
-.ui.button.delete-button:active,
-.ui.button.delete-button:focus,
-.ui.check-all-at-page-button.button,
-.ui.clear-sorting-button.button .ui.check-all-button.button {
-  border: none;
-  background: 0 0;
-}
-.ui.check-all-button.button {
-  border: 0;
-  background: 0 0;
-}
-.ui.check-all-at-page-button.button,
-.ui.check-all-button.button {
-  width: 25px;
-  text-align: center;
-  margin: 0;
-  padding: 0;
-  height: 25px;
-}
-.ui.clear-sorting-button.button {
-  padding: 0;
-  height: 25px;
-  width: 10px;
-  text-align: center;
-  border: 0;
-  background: 0 0;
-  margin: 0;
-}
-.next-page-button:before,
-.prev-page-button:before {
-  font-family: Icons;
-}
-.prev-page-button:before {
-  content: "\f053";
-  font-size: 14px;
-  opacity: 1;
-}
-.next-page-button:before {
-  content: "\f054";
-  font-size: 14px;
-  opacity: 1;
 }
 .object-list-view-container {
   font-size: 14px;
