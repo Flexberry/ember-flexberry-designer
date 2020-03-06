@@ -73,11 +73,11 @@ export default Mixin.create({
     @method closePopup
     @param {jQuery.Event} e
   */
-  closePopup(e) {
+  closePopup(e, close) {
     e.stopPropagation();
 
     let popupNamespace = this.get('popupNamespace');
-    if ($(e.target).closest(`.custom.popup.${popupNamespace}`).length === 0) {
+    if (($(e.target).closest(`.custom.popup.${popupNamespace}`).length === 0) || close) {
       let popup = this._getPopup();
       popup.removeClass('visible');
       popup.addClass('hidden');
