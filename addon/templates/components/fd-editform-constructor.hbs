@@ -1,16 +1,14 @@
-<div class="row">
-  <div class="sixteen wide column light-text">
-    {{#each controlsTree as |row|}}
-      {{fd-editform-row
-        row=row
-        selectedItem=(readonly selectedItem)
-        selectItemAction=(action "selectItem")
-        setDragItemAction=(action "setDragItem")
-        getDragItemAction=(action "getDragItem")
-        moveDragItemAction=(action "moveDragItem")
-        getComponentPropertiesAction=(action "getComponentProperties")
-        showLookupAction=(action "showLookup")
-      }}
-    {{/each}}
-  </div>
+<div class="sixteen wide column light-text">
+  {{#each controlsTree as |row|}}
+    {{fd-editform-row
+      row=row
+      selectedItem=(readonly selectedItem)
+      selectItemAction=(action "selectItem")
+      setDragItemAction=(action "setDragItem")
+      getDragItemAction=(action "getDragItem")
+      moveDragItemAction=(action "moveDragItem")
+      getComponentPropertiesAction=(action "getComponentProperties")
+      showLookupAction=(action "showLookup")
+    }}
+  {{/each}}
 </div>

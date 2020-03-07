@@ -1,3 +1,9 @@
+<div class="fd-editform-control-toolbar">
+  <button class="ui button icon">NULL</button>
+  <button class="ui button icon"><i class="eye icon"></i></button>
+  <button class="ui button icon"><i class="icon-fd-gear icon"></i></button>
+  <button class="ui button icon"><i class="icon-fd-x-mark icon"></i></button>
+</div>
 <div class="ui inverted simple dimmer"></div>
 <div class="drag-anchor" {{action set "draggable" true on="mouseEnter"}} {{action set "draggable" false on="mouseLeave"}}></div>
 {{#if _isControl}}
@@ -27,7 +33,6 @@
 {{else if _isTab}}
   {{#fd-tabs
     tabsMenuTheme="top attached tabular"
-    class="ui segments"
     tabClick = (action "changeTab")
     selectedTab=selectedItem.caption
     as |tab|

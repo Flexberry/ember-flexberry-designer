@@ -6,11 +6,11 @@
 		margin: 0 1rem;
 
 		.column {
-			> div:not(:first-child) {
+			> div:not(:first-child):not(.fd-editform-row) {
 				margin: 1rem 0;
 			}
 
-			div:last-child {
+			div:not(.fd-editform-control):last-child {
 				margin-bottom: 0;
 			}
 		}

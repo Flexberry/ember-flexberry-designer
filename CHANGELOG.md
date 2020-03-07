@@ -2,6 +2,12 @@
 All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
+### Added
+* Add stage export.
+
+## [0.14.0-beta02]
+### Fixed
+* Fix locales
 
 ## [0.14.0-beta01]
 ### Fixed

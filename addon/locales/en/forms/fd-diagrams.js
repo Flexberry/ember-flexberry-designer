@@ -16,5 +16,5 @@ export default {
     'exist-diagram': 'Diagram with the same name already exists.',
   },
   'all-diagrams': 'All diagrams',
-  'systems': 'Systems'
+  'systems': 'Catalogs'
 };

@@ -1,30 +1,94 @@
 <div class="row">
   <div class="sixteen wide column light-text">
-    <img src="assets/images/visualEditListFormTop.png" />
-    <div class="panel-wrapper overflow-panel">
-    <table class="ui celled selectable collapsing table fd-listform">
-      <thead>
-        <tr>
-          {{#each columns as |column|}}
-            <th
-              class="{{if (eq selectedColumn column) "fd-selected"}} {{unless column.propertyDefinition.visible "blackout"}}"
-              title={{column.propertyDefinition.name}}
-              {{action "selectColumn" column bubbles=false}}
-            >{{or column.caption column.propertyDefinition.name}}</th>
-          {{/each}}
-        </tr>
-      </thead>
-      <tbody>
-        {{#each rows as |row|}}
+
+    <div class="ui secondary menu no-margin flexberry-olv-toolbar">
+      <button class="ui refresh-button button" title={{t "components.olv-toolbar.refresh-button-text"}}>{{t "components.olv-toolbar.refresh-button-text"}} <i class="refresh icon"></i></button>
+      <button class="ui create-button button" title={{t "components.olv-toolbar.add-button-text"}}>{{t "components.olv-toolbar.add-button-text"}}</button>
+      <button class="ui delete-button disabled button" title={{t "components.olv-toolbar.delete-button-text"}} disabled="disabled">{{t "components.olv-toolbar.delete-button-text"}}<i class="delete icon"></i></button>
+      <div class="ui icon buttons filter-active">
+        <button class="ui button" title={{t "components.olv-toolbar.filter-button-text"}}>
+          <i class="filter icon"></i>
+        </button>
+      </div>
+      <div class="ui action input search-field">
+        <div class="block-action-input"><input placeholder={{t "components.olv-toolbar.filter-by-any-match-placeholder"}} class="ember-text-field" type="text"></div>
+        <button class="ui  icon button search-button" title={{t "components.olv-toolbar.search-button-text"}}>
+          <i class="search icon"></i>
+        </button>
+        <button class="ui icon button clear-search-button" title={{t "components.olv-toolbar.clear-search-button-text"}}>
+          <i class="remove icon"></i>
+        </button>
+      </div>
+      <div class="ui buttons export-config">
+        <button class="ui button icon export-button " title={{t "components.olv-toolbar.export-excel-button-text"}}>
+          <i class="large file excel outline icon"></i>
+        </button>
+        <div class="flexberry-menu ui icon dropdown button">
+          <i class="dropdown icon"></i>
+        </div>
+      </div>
+      <div class="ui buttons cols-config">
+        <button class="ui icon button config-button settings-enabled" title={{t "components.colsconfig-dialog-content.title"}}>
+          <i class="large table icon"></i>
+        </button>
+        <div class="flexberry-menu ui icon dropdown button">
+          <i class="dropdown icon"></i>
+        </div>
+      </div>
+    </div>
+
+    <div class="">
+      <table class="ui celled selectable collapsing table fd-listform">
+        <thead>
           <tr>
             {{#each columns as |column|}}
-              <td class="{{if (eq selectedColumn column) "fd-selected"}} {{unless column.propertyDefinition.visible "blackout"}}" {{action "selectColumn" column bubbles=false}}>&nbsp;</td>
+              <th
+                class="{{if (eq selectedColumn column) "fd-selected"}} {{unless column.propertyDefinition.visible "blackout"}}"
+                title={{column.propertyDefinition.name}}
+                {{action "selectColumn" column bubbles=false}}
+              >
+              {{#if (eq selectedColumn column)}}
+                <div class="fd-editform-control-toolbar">
+                  <button class="ui button icon">NULL</button>
+                  <button class="ui button icon"><i class="eye icon"></i></button>
+                  <button class="ui button icon"><i class="icon-fd-gear icon"></i></button>
+                  <button class="ui button icon"><i class="icon-fd-x-mark icon"></i></button>
+                </div>
+              {{/if}}
+              {{or column.caption column.propertyDefinition.name}}</th>
             {{/each}}
           </tr>
-        {{/each}}
-      </tbody>
-    </table>
+        </thead>
+        <tbody>
+          {{#each rows as |row|}}
+            <tr>
+              {{#each columns as |column|}}
+                <td class="{{if (eq selectedColumn column) "fd-selected"}} {{unless column.propertyDefinition.visible "blackout"}}" {{action "selectColumn" column bubbles=false}}>&nbsp;</td>
+              {{/each}}
+            </tr>
+          {{/each}}
+        </tbody>
+      </table>
     </div>
-    <img src="assets/images/visualEditListFormBottom.png" />
+
+    <div class="ui secondary menu no-margin nav-bar">
+      <div class="ui basic buttons">
+        <button class="ui disabled button prev-page-button" disabled="disabled"></button>
+        <button class="ui disabled active button" disabled="disabled">1</button>
+        <button class="ui button">2</button>
+        <button class="ui button">3</button>
+        <button class="ui button">4</button>
+        <div class="ui button">...</div>
+        <button class="ui button">8</button>
+        <button class="ui button next-page-button"></button>
+    </div>
+    <div class="right menu">
+      <div class="showing-entries">{{t "components.flexberry-objectlistview.showing-entries.showing"}} 1-5 {{t "components.flexberry-objectlistview.showing-entries.of"}} 39 {{t "components.flexberry-objectlistview.showing-entries.entries"}}</div>
+      <div class="compact selection ui dropdown flexberry-dropdown selection">
+        <i class="dropdown icon"></i>
+        <div class="text">10</div>
+      </div>
+    </div>
+  </div>
   </div>
 </div>

@@ -52,7 +52,7 @@ test('it renders and works', function(assert) {
       }),
     ]),
   }));
-  assert.ok(/\s*Group #1\s*Attribute #1\s*/.test(this.$().text()), 'With group.');
+  assert.ok(/\s*NULL\s*Group #1\s*NULL\s*Attribute #1\s*/.test(this.$().text()), 'With group.');
 
   this.$('input').click();
   assert.ok(this.get('selectedControl') === this.get('control.rows.firstObject.controls.firstObject'), 'Click on nested control.');

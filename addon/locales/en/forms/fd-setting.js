@@ -20,6 +20,8 @@ export default {
     'rename-stage-button': 'Transliteration',
     'rename-stage-text': 'Performing transliteration will change all fields of the field to the stage, which can lead to its breakdown, we recommend that you backup the stage. Do stage transliteration ?',
     'backup-stage-button': 'Project backup',
+    'export-stage-button': 'Project export',
+    'export-stage-error': 'Stage export error',
   },
   'generation-settings-caption': 'Generation settings',
   'generation-settings': {
