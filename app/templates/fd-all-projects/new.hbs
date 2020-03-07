@@ -69,6 +69,19 @@
         }}
       </div>
     </div>
+    <div class="row">
+      <div class="four wide column">
+        <div>{{t "forms.fd-all-projects.import-project"}}</div>
+      </div>
+      <div class="twelve wide column light-text">
+        <input
+          multiple="false"
+          onchange={{action "upload"}}
+          accept=".crp"
+          type="file"
+        />
+      </div>
+    </div>
   </div>
   <div class="ui stackable grid actions">
     <div class="center aligned two column row">

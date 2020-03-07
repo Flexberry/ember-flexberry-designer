@@ -12,6 +12,7 @@ import { Promise, resolve, reject } from 'rsvp';
 import Builder from 'ember-flexberry-data/query/builder';
 import { transliteration } from 'ember-flexberry-designer/utils/fd-transliteration';
 import { A } from '@ember/array';
+import { getOwner } from '@ember/application';
 
 /**
   The controller for the project creation form.
@@ -20,6 +21,15 @@ import { A } from '@ember/array';
   @extends Ember.Controller
 */
 export default Controller.extend(FdSheetCloseConfirm, {
+  /**
+    Current file selected for upload.
+
+    @property _selectedFile
+    @type Object
+    @private
+  */
+  _selectedFile: undefined,
+
   /**
     The project name.
 
@@ -132,6 +142,47 @@ export default Controller.extend(FdSheetCloseConfirm, {
     return resolve();
   },
 
+  /**
+    Check data for correctness.
+
+    @method validateData
+    @param {Object} model Class model.
+  */
+  createNewStage(projectName, product, description, configuration, selectedFile) {
+    const _this = this;
+
+    return new Promise(function(resolve) {
+      _this.get('appState').loading();
+      let appConfig = getOwner(_this).factoryFor('config:environment').class;
+      const backendUrl = appConfig.APP.backendUrl;
+      const url = backendUrl + '/stageActions/StageImportFile';
+      const formData = new FormData();
+      formData.append('projectName', projectName);
+      formData.append('product', product);
+      formData.append('description', description);
+      formData.append('configuration', configuration.get('id'));
+      formData.append('stageFile', selectedFile);
+      fetch(url, {
+        method: "POST",
+        body: formData
+      })
+      .then(function(response) {
+        _this.get('appState').reset();
+        if (response.ok) {
+          return response.json();
+        } else {
+          this.get('fdDialogService').showErrorMessage(response);
+          return;
+        }
+      })
+      .then(function(response) 
+      {
+        return resolve(response);
+      });
+    });
+  },
+
+
   actions: {
     /**
       Cancel create new stage.
@@ -173,18 +224,37 @@ export default Controller.extend(FdSheetCloseConfirm, {
       .then(() => {
         const projectName = this.get('projectName');
         const productName = this.get('productName');
-
         const product = isBlank(productName) ? transliteration(projectName) : productName;
-        const stage = store.createRecord('fd-dev-stage', {
-          name: projectName,
-          product: product,
-          description: this.get('projectDescription'),
-          configuration: configuration,
-        });
+        const description = this.get('projectDescription');
+        const selectedFile = this.get("_selectedFile");
 
-        this.get('appState').loading();
+        if (!isNone(selectedFile)) {
+          return this.createNewStage(projectName, product, description, configuration, selectedFile)
+          .then((response) => {
+            //let stage = store.peekRecord('fd-dev-stage', response);
+            //return resolve(stage);
 
-        return stage.save();
+            let builder = new Builder(store)
+              .from('fd-dev-stage')
+              .selectByProjection('FdPreloadMetadata')
+              .byId(response);
+            
+            return resolve(store.query('fd-dev-stage', builder.build()).then(result => {
+              let stage = store.peekRecord('fd-dev-stage', response);
+              return resolve(stage);
+            }));
+          });
+        } else {
+          const stage = store.createRecord('fd-dev-stage', {
+            name: projectName,
+            product: product,
+            description: this.get('projectDescription'),
+            configuration: configuration,
+          });
+  
+          this.get('appState').loading();  
+          return stage.save();
+        }
       })
       .then((stage) => {
         currentProjectContext.setCurrentConfiguration(configuration);
@@ -202,6 +272,25 @@ export default Controller.extend(FdSheetCloseConfirm, {
       .finally(() => {
         this.get('appState').reset();
       });
-    }
+    },
+
+    /**
+      Create new stage from crp file.
+
+      @method actions.importStage
+    */
+    importStage() {
+      let g = 'asdasd';
+    },
+
+    /**
+      .
+
+      @method actions.cancelButton
+    */
+    upload(e) {
+      var file = e.target.files[0];
+      this.set('_selectedFile', file);
+    },
   }
 });
