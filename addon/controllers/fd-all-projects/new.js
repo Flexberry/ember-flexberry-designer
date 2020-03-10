@@ -167,10 +167,10 @@ export default Controller.extend(FdSheetCloseConfirm, {
         body: formData
       })
       .then(function(response) {
-        _this.get('appState').reset();
         if (response.ok) {
           return response.json();
         } else {
+          _this.get('appState').reset();
           this.get('fdDialogService').showErrorMessage(response);
           return;
         }
@@ -231,18 +231,14 @@ export default Controller.extend(FdSheetCloseConfirm, {
         if (!isNone(selectedFile)) {
           return this.createNewStage(projectName, product, description, configuration, selectedFile)
           .then((response) => {
-            //let stage = store.peekRecord('fd-dev-stage', response);
-            //return resolve(stage);
-
             let builder = new Builder(store)
               .from('fd-dev-stage')
               .selectByProjection('FdPreloadMetadata')
               .byId(response);
-            
-            return resolve(store.query('fd-dev-stage', builder.build()).then(() => {
-              let stage = store.peekRecord('fd-dev-stage', response);
+
+            return store.queryRecord('fd-dev-stage', builder.build()).then((stage) => {
               return resolve(stage);
-            }));
+            });
           });
         } else {
           const stage = store.createRecord('fd-dev-stage', {
