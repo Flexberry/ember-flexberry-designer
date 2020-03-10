@@ -4,6 +4,7 @@ All notable changes to this project will be documented in this file.
 ## [Unreleased]
 ### Added
 * Add stage export.
+* Add stage import.
 
 ## [0.14.0-beta02]
 ### Fixed
