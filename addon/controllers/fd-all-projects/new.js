@@ -239,7 +239,7 @@ export default Controller.extend(FdSheetCloseConfirm, {
               .selectByProjection('FdPreloadMetadata')
               .byId(response);
             
-            return resolve(store.query('fd-dev-stage', builder.build()).then(result => {
+            return resolve(store.query('fd-dev-stage', builder.build()).then(() => {
               let stage = store.peekRecord('fd-dev-stage', response);
               return resolve(stage);
             }));
@@ -275,16 +275,7 @@ export default Controller.extend(FdSheetCloseConfirm, {
     },
 
     /**
-      Create new stage from crp file.
-
-      @method actions.importStage
-    */
-    importStage() {
-      let g = 'asdasd';
-    },
-
-    /**
-      .
+      Upload stage file hook.
 
       @method actions.cancelButton
     */
