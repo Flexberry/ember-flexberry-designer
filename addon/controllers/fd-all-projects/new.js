@@ -155,7 +155,7 @@ export default Controller.extend(FdSheetCloseConfirm, {
       _this.get('appState').loading();
       let appConfig = getOwner(_this).factoryFor('config:environment').class;
       const backendUrl = appConfig.APP.backendUrl;
-      const url = backendUrl + '/stageActions/StageImportFile';
+      const url = backendUrl + '/stageActions/StageImportExportFile';
       const formData = new FormData();
       formData.append('projectName', projectName);
       formData.append('product', product);
