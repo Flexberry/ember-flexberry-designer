@@ -127,7 +127,7 @@ export default Service.extend({
      @param {String} objectTypeName Edited object type name.
   */
   deleteLock(editedObject, objectTypeName) {
-    if (editedObject && !editedObject.isNew) {
+    if (editedObject && editedObject.get('id') !== null) {
       let adapter = getOwner(this).lookup('adapter:application');
       if (objectTypeName === 'diagram-sheet') {
         const actionParams = this._createParamsForDiagramLock(editedObject);
