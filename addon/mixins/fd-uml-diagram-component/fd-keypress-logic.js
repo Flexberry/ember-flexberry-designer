@@ -4,6 +4,7 @@
 
 import Mixin from '@ember/object/mixin';
 import { inject as service } from '@ember/service';
+import $ from 'jquery';
 
 /**
   Mixin with key press logic for fd-uml-diagram component.
@@ -31,16 +32,16 @@ export default Mixin.create({
     let paperEl = paper.$el;
     paperEl.attr('tabindex', 0);
 
-    paperEl.on('mouseover', this._mouseoverHandler);
+    paperEl.on('click', this._paperClickHandler);
     paperEl.on('keydown', this._keydownHandler.bind(this));
   },
 
   /**
-    Handler 'mouseover'.
+    Paper 'click' handler.
 
-    @method _mouseoverHandler
+    @method _paperClickHandler
   */
-  _mouseoverHandler() {
+  _paperClickHandler() {
     this.focus();
   },
 
@@ -51,10 +52,9 @@ export default Mixin.create({
     @param {Event} e event.
   */
   _keydownHandler(e) {
-    e.stopPropagation();
-    e.preventDefault();
-
     if (e.ctrlKey) {
+      e.stopPropagation();
+      e.preventDefault();
       switch (e.keyCode) {
         // ctrl + a
         case 65:
@@ -86,7 +86,9 @@ export default Mixin.create({
           this.saveDiagram();
         break;
       }
-    } else if (e.keyCode === 46) {
+    } else if (e.keyCode === 46 && !$(e.target).is('textarea,input')) {
+      e.stopPropagation();
+      e.preventDefault();
       this.deleteSelectElements();
     }
   },
