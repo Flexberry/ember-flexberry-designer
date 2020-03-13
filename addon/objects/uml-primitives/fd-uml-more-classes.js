@@ -64,6 +64,10 @@ export let MoreClasses = joint.shapes.basic.Generic.define('flexberry.uml.MoreCl
     }, this);
 
     joint.shapes.basic.Generic.prototype.initialize.apply(this, arguments);
+  },
+
+  getRectangles() {
+    return A();
   }
 });
 
