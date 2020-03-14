@@ -1,6 +1,7 @@
 import Service from '@ember/service';
 import { resolve } from 'rsvp';
 import { isArray } from '@ember/array';
+import { isNone } from '@ember/utils';
 import { get } from '@ember/object';
 import { getOwner } from '@ember/application';
 
@@ -127,7 +128,7 @@ export default Service.extend({
      @param {String} objectTypeName Edited object type name.
   */
   deleteLock(editedObject, objectTypeName) {
-    if (editedObject && !editedObject.isNew) {
+    if (editedObject && !isNone(editedObject.get('id'))) {
       let adapter = getOwner(this).lookup('adapter:application');
       if (objectTypeName === 'diagram-sheet') {
         const actionParams = this._createParamsForDiagramLock(editedObject);
