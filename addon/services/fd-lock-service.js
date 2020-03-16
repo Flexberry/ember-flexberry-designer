@@ -18,8 +18,10 @@ export default Service.extend({
         case 'fd-dev-class':
         case 'STORMCASE.STORMNET.Repository.CADClass, STORM.NET Case Tool plugin':
           return 'class';
+        case 'fd-dev-aggregation':
         case 'STORMCASE.UML.cad.Aggregation, UMLCAD':
           return 'aggregation';
+        case 'fd-dev-association':
         case 'STORMCASE.UML.cad.Association, UMLCAD':
           return 'association';
       }
