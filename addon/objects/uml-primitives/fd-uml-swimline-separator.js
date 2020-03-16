@@ -102,11 +102,20 @@ export let SwimlineSeparatorH = BaseObject.define('flexberry.uml.SwimlineSeparat
      },
   },
 }, {
-  markup: [
-    '<g class="rotatable">',
-    '<polyline class = "flexberry-uml-header-poliline"/>',
-    '</g>',
-  ].join(''),
+  // markup: [
+  //   '<g class="rotatable">',
+  //   '<polyline class = "flexberry-uml-header-poliline"/>',
+  //   '</g>',
+  // ].join(''),
+
+  markup: [{
+    tagName: 'g',
+    className: 'rotatable',
+    children: [{
+      tagName: 'polyline',
+      className: 'flexberry-uml-header-poliline'
+    }]
+  }],
 
   setParent: function (parentObject) {
     this.set('parentObject', parentObject);
@@ -175,11 +184,20 @@ export let SwimlineSeparatorV = SwimlineSeparatorH.define('flexberry.uml.Swimlin
      },
   },
 }, {
-  markup: [
-    '<g class="rotatable">',
-    '<polyline class = "flexberry-uml-header-poliline"/>',
-    '</g>',
-  ].join(''),
+  // markup: [
+  //   '<g class="rotatable">',
+  //   '<polyline class = "flexberry-uml-header-poliline"/>',
+  //   '</g>',
+  // ].join(''),
+
+  markup: [{
+    tagName: 'g',
+    className: 'rotatable',
+    children: [{
+      tagName: 'polyline',
+      className: 'flexberry-uml-header-poliline'
+    }]
+  }],
 
   setParent: function (parentObject) {
     this.set('parentObject', parentObject);

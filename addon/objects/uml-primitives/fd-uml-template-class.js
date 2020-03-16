@@ -71,20 +71,51 @@ export let TemplateClass = Class.define('flexberry.uml.TemplateClass', {
     '.not-view-rect': { 'x': -1, 'y': -1, 'fill': 'black' }
   },
 }, {
-  markup: [
-    '<g class="rotatable">',
-    '<defs>',
-    '<mask id="custom-mask">',
-    '<rect class="view-rect"/>',
-    '<rect class="not-view-rect"/>',
-    '</mask>',
-    '</defs>',
-    '<rect class="flexberry-uml-header-rect"/>',
-    '<rect class="flexberry-uml-params-rect"/>',
-    '<rect class="flexberry-uml-body-rect"/>',
-    '<rect class="flexberry-uml-footer-rect"/>',
-    '</g>'
-  ].join(''),
+  // markup: [
+  //   '<g class="rotatable">',
+  //   '<defs>',
+  //   '<mask id="custom-mask">',
+  //   '<rect class="view-rect"/>',
+  //   '<rect class="not-view-rect"/>',
+  //   '</mask>',
+  //   '</defs>',
+  //   '<rect class="flexberry-uml-header-rect"/>',
+  //   '<rect class="flexberry-uml-params-rect"/>',
+  //   '<rect class="flexberry-uml-body-rect"/>',
+  //   '<rect class="flexberry-uml-footer-rect"/>',
+  //   '</g>'
+  // ].join(''),
+
+  markup: [{
+    tagName: 'g',
+    className: 'rotatable',
+    children: [{
+      tagName: 'defs',
+      children: [{
+        tagName: 'mask',
+        selector: 'custom-mask',
+        children: [{
+          tagName: 'rect',
+          className: 'view-rect'
+        }, {
+          tagName: 'rect',
+          className: 'not-view-rect'
+        }]
+      }]
+    }, {
+      tagName: 'rect',
+      className: 'flexberry-uml-header-rect'
+    }, {
+      tagName: 'rect',
+      className: 'flexberry-uml-params-rect'
+    }, {
+      tagName: 'rect',
+      className: 'flexberry-uml-body-rect'
+    }, {
+      tagName: 'rect',
+      className: 'flexberry-uml-footer-rect'
+    }]
+  }],
 
   getRectangles() {
     let objectModel = this.get('objectModel');

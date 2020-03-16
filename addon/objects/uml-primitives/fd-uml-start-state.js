@@ -63,12 +63,24 @@ export let StartState = BaseObject.define('flexberry.uml.StartState', {
     '.flexberry-uml-header-circle': { 'fill': 'black', 'r': 15, 'ref-y': 10, 'ref-x': 10 },
   },
 }, {
-  markup: [
-    '<g class="scalable">',
-    '<circle class="flexberry-uml-header-circle-outer"/>',
-    '<circle class="flexberry-uml-header-circle"/>',
-    '</g>'
-  ].join(''),
+  // markup: [
+  //   '<g class="scalable">',
+  //   '<circle class="flexberry-uml-header-circle-outer"/>',
+  //   '<circle class="flexberry-uml-header-circle"/>',
+  //   '</g>'
+  // ].join(''),
+
+  markup: [{
+    tagName: 'g',
+    className: 'scalable',
+    children: [{
+        tagName: 'circle',
+        className: 'flexberry-uml-header-circle-outer'
+    }, {
+      tagName: 'circle',
+      className: 'flexberry-uml-header-circle'
+    }]
+  }],
 
   // Minimum height.
   minHeight: 20,

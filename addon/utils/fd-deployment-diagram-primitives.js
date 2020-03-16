@@ -10,7 +10,17 @@ joint.shapes.basic.Generic.define('flexberry.uml.deploymentDiagram_Interface', {
   },
   name: [],
 }, {
-  markup: '<g class="rotatable"><g class="scalable"></g></g>',
+  // markup: '<g class="rotatable"><g class="scalable"></g></g>',
+
+  markup: [{
+    tagName: 'g',
+    className: 'rotatable',
+    children: [{
+      tagName: 'g',
+      className: 'scalable',      
+    }]
+  }],
+
   initialize: function () {
     this.attributes.endLine = new joint.shapes.basic.Circle({
       size: { width: 6, height: 6 }

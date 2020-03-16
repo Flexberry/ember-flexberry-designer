@@ -9,7 +9,22 @@ joint.shapes.basic.Generic.define('flexberry.uml.sequenceActors', {
     endLine: undefined
   }
 }, {
-  markup: '<g class="rotatable"><g class="scalable"><rect/></g><image/></g>',
+  // markup: '<g class="rotatable"><g class="scalable"><rect/></g><image/></g>',
+
+  markup: [{
+    tagName: 'g',
+    className: 'rotatable',
+    children: [{
+      tagName: 'g',
+      className: 'scalable',
+      children: [{
+        tagName: 'rect'
+      }]    
+    }, {
+      tagName: 'image'
+    }]
+  }],
+
   initialize: function () {
     let width = this.attributes.attrs.size.width;
     let height = this.attributes.attrs.size.height;

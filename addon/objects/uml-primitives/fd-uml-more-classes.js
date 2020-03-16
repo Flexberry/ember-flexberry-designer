@@ -45,13 +45,32 @@ export let MoreClasses = joint.shapes.basic.Generic.define('flexberry.uml.MoreCl
     circle: { fill: 'black', r: '10' },
   },
 }, {
-  markup: [
-      '<g class="rotatable">',
-      '<g class="scalable">',
-      '<circle/><circle transform="translate(40,0)"/><circle transform="translate(80,0)"/>',
-      '</g>',
-      '</g>'
-  ].join(''),
+  // markup: [
+  //     '<g class="rotatable">',
+  //     '<g class="scalable">',
+  //     '<circle/><circle transform="translate(40,0)"/><circle transform="translate(80,0)"/>',
+  //     '</g>',
+  //     '</g>'
+  // ].join(''),
+
+  markup: [{
+    tagName: 'g',
+    className: 'rotatable',
+    children: [{
+      tagName: 'g',
+      className: 'scalable',
+      children: [{
+        tagName: 'circle'
+      }, {
+        tagName: 'circle',
+        style: {transform: 'translate(40,0)'}
+      }, {
+        tagName: 'circle',
+        style: {transform: 'translate(80,0)'}
+      }]
+    }]
+
+  }],
 
   initialize() {
     this.on('change:position', function(element, newPosition) {

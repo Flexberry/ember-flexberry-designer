@@ -115,12 +115,24 @@ export let BaseObject = joint.shapes.basic.Generic.define('flexberry.uml.BaseObj
   // Width by inputs.
   inputWidth: 0,
 }, {
-  markup: [
-    '<g class="rotatable">',
-    '<rect class="flexberry-uml-header-rect"/>',
-    '<text class="flexberry-uml-header-text"/>',
-    '</g>'
-  ].join(''),
+  // markup: [
+  //   '<g class="rotatable">',
+  //   '<rect class="flexberry-uml-header-rect"/>',
+  //   '<text class="flexberry-uml-header-text"/>',
+  //   '</g>'
+  // ].join(''),
+
+  markup: [{
+    tagName: 'g',
+    className: 'rotatable',
+    children: [{
+        tagName: 'rect',
+        className: 'flexberry-uml-header-rect'
+    }, {
+        tagName: 'text',
+        className: 'class="flexberry-uml-header-text'
+    }]
+  }],
 
   initialize: function () {
     this.on('change:size', function(element, newSize) {

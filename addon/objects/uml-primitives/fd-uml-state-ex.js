@@ -101,12 +101,24 @@ export let StateEx = BaseObject.define('flexberry.uml.StateEx', {
   // Minimum height.
   minHeight: 60,
 }, {
-  markup: [
-    '<g class="rotatable">',
-    '<rect class="flexberry-uml-header-rect"/>',
-    '<rect class="flexberry-uml-body-rect"/>',
-    '</g>'
-  ].join(''),
+  // markup: [
+  //   '<g class="rotatable">',
+  //   '<rect class="flexberry-uml-header-rect"/>',
+  //   '<rect class="flexberry-uml-body-rect"/>',
+  //   '</g>'
+  // ].join(''),
+
+  markup: [{
+    tagName: 'g',
+    className: 'rotatable',
+    children: [{
+      tagName: 'rect',
+      className: 'flexberry-uml-header-rect'
+    }, {
+      tagName: 'rect',
+      className: 'flexberry-uml-body-rect'
+    }]
+  }],
 
   getRectangles() {
     return [

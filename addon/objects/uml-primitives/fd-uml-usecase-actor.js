@@ -78,16 +78,36 @@ export let UsecaseActor = BaseObject.define('flexberry.uml.UsecaseActor', {
     }
   }
 }, {
-  markup: [
-    '<g class="rotatable">',
-    '<g class="scalable">',
-    '<g class="flexberry-uml-header-rect">',
-    '<circle cx="15" cy="15" r="15"/>',
-    '<path  d="M 15 30 15 45 30 45 0 45 15 45 15 60 0 80 15 60 30 80 15 60" />',
-    '</g>',
-    '</g>',
-    '</g>'
-  ].join(''),
+  // markup: [
+  //   '<g class="rotatable">',
+  //   '<g class="scalable">',
+  //   '<g class="flexberry-uml-header-rect">',
+  //   '<circle cx="15" cy="15" r="15"/>',
+  //   '<path  d="M 15 30 15 45 30 45 0 45 15 45 15 60 0 80 15 60 30 80 15 60" />',
+  //   '</g>',
+  //   '</g>',
+  //   '</g>'
+  // ].join(''),
+
+  markup: [{
+    tagName: 'g',
+    className: 'rotatable',
+    children: [{
+      tagName: 'g',
+      className: 'scalable',
+      children: [{
+        tagName: 'g',
+        className: 'flexberry-uml-header-rect',
+        children: [{
+          tagName: 'circle',
+          attributes: {cx: 15, cy: 15, r:15}
+        }, {
+          tagName: 'path',
+          attributes: {d: 'M 15 30 15 45 30 45 0 45 15 45 15 60 0 80 15 60 30 80 15 60'}
+        }]
+      }]
+    }]
+  }],
 
   initialize: function () {
     BaseObject.prototype.initialize.apply(this, arguments);

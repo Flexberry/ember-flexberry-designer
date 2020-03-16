@@ -27,14 +27,29 @@ joint.dia.Element.define('flexberry.uml.ComplexTransitionHorizon', {
     }
   }
 }, {
-  markup: [
-    '<g class="rotatable">',
-    '<g class="scalable">',
-    '<polyline/>',
-    '</g>',
-    '<text/>',
-    '</g>'
-  ].join('')
+  // markup: [
+  //   '<g class="rotatable">',
+  //   '<g class="scalable">',
+  //   '<polyline/>',
+  //   '</g>',
+  //   '<text/>',
+  //   '</g>'
+  // ].join('')
+
+  markup: [{
+    tagName: 'g',
+    className: 'rotatable',
+    children: [{
+      tagName: 'g',
+      className: 'scalable',
+      children: [{
+        tagName: 'polyline'
+      }]
+    }, {
+      tagName: 'text'
+    }]
+  }],
+
 });
 
 joint.shapes.flexberry.uml.ComplexTransitionHorizon.define('flexberry.uml.ComplexTransitionVertical', {
