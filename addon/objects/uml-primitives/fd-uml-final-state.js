@@ -74,13 +74,6 @@ export let FinalState = StartState.define('flexberry.uml.FinalState', {
     return [];
   },
 }, {
-  // markup: [
-  //   '<g class="scalable">',
-  //   '<circle class="flexberry-uml-header-circle-outer"/>',
-  //   '<circle class="flexberry-uml-header-circle"/>',
-  //   '</g>'
-  // ].join(''),
-
   markup: [{
     tagName: 'g',
     className: 'scalable',

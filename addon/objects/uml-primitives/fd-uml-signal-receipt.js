@@ -86,11 +86,6 @@ export let SignalReceiptRight = BaseObject.define('flexberry.uml.SignalReceiptRi
   // Minimum height.
   minHeight: 20,
 }, {
-  // markup: [
-  //   '<g class="rotatable">',
-  //   '<path class="flexberry-uml-header-rect-path"/>',
-  //   '</g>'
-  // ].join(''),
 
   markup: [{
     tagName: 'g',
@@ -126,7 +121,6 @@ joint.shapes.flexberry.uml.SignalReceiptRightView = joint.shapes.flexberry.uml.B
     const oldSize = this.model.size();
     rects.forEach(function(rect, index, array) {
       this.markup[0].children.forEach((child) => {
-        // if (this.markup.includes('flexberry-uml-' + rect.type + '-rect') && rect.element.inputElements) {
         if ((child.className == 'flexberry-uml-' + rect.type + '-rect') && (rect.element.inputElements)) {
           let rectHeight = 0;
           let inputs = rect.element.inputElements.find('.signal-input');

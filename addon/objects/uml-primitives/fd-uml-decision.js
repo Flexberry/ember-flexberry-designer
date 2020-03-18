@@ -54,11 +54,6 @@ export let Decision = BaseObject.define('flexberry.uml.Decision', {
   // Minimum width
   minWidth: 40,
 }, {
-  // markup: [
-  //     '<g class="rotatable">',
-  //     '<path class="flexberry-uml-header-rombus-path"/>',
-  //     '</g>'
-  // ].join(''),
 
   markup: [{
     tagName: 'g',

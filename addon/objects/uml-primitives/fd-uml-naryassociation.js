@@ -72,28 +72,14 @@ export let NAryAssociation = BaseObject.define('flexberry.uml.NAryAssociation', 
 },
 {
   initialize: function () {
-    // this.markup = [
-    //   '<g class="rotatable">',
-    //   '<g class="scalable">',
-    //   `<path class="flexberry-uml-header-rect" d="M 0 ${this.get('minHeight') / 2} L ${this.get('minWidth') / 2} 0 ${this.get('minWidth')} ${this.get('minHeight') / 2} ${this.get('minWidth') / 2} ${this.get('minHeight')} Z"/>`,
-    //   '</g>',
-    //   '</g>'
-    // ].join('');
-
-    this.markup = [{
-      tagName: 'g',
-      className: 'rotatable',
-      children: [{
-        tagName: 'g',
-        className: 'scalable',
-        children: [{
-          tagName: 'path',
-          className: 'flexberry-uml-header-rect',
-          attributes: {d: `M 0 ${this.get('minHeight') / 2} L ${this.get('minWidth') / 2} 0 ${this.get('minWidth')} ${this.get('minHeight') / 2} ${this.get('minWidth') / 2} ${this.get('minHeight')} Z`}
-        }]
-      }]
-    }],
-
+    this.markup = [
+      '<g class="rotatable">',
+      '<g class="scalable">',
+      `<path class="flexberry-uml-header-rect" d="M 0 ${this.get('minHeight') / 2} L ${this.get('minWidth') / 2} 0 ${this.get('minWidth')} ${this.get('minHeight') / 2} ${this.get('minWidth') / 2} ${this.get('minHeight')} Z"/>`,
+      '</g>',
+      '</g>'
+    ].join('');
+    
     joint.shapes.flexberry.uml.BaseObject.prototype.initialize.apply(this, arguments);
   },
 

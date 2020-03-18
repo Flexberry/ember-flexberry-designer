@@ -27,14 +27,6 @@ joint.dia.Element.define('flexberry.uml.ComplexTransitionHorizon', {
     }
   }
 }, {
-  // markup: [
-  //   '<g class="rotatable">',
-  //   '<g class="scalable">',
-  //   '<polyline/>',
-  //   '</g>',
-  //   '<text/>',
-  //   '</g>'
-  // ].join('')
 
   markup: [{
     tagName: 'g',

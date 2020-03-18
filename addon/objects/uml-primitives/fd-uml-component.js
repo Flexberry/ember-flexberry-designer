@@ -69,16 +69,6 @@ export let Component = BaseObject.define('flexberry.uml.Component', {
   // Minimum width
   minWidth: 80,
 }, {
-  // markup: [
-  //   '<g class="rotatable">',
-  //   '<g class="scalable">',
-  //   '<rect class="flexberry-uml-header-rect"/>',
-  //   '<rect class="firstRect" width="10" height="5" x="-5"/>',
-  //   '<rect class="secondRect" width="10" height="5" x="-5"/>',
-  //   '</g>',
-  //   '<text class="flexberry-uml-header-text"/>',
-  //   '</g>'
-  // ].join(''),
 
   markup: [{
     tagName: 'g',
@@ -92,13 +82,11 @@ export let Component = BaseObject.define('flexberry.uml.Component', {
       }, {
         tagName: 'rect',
         className: 'firstRect',
-        style: {width: 10, height: 5},
-        attributes: {x: -5}
+        attributes: {'width': 10, 'height': 5, 'x': -5}
       }, {
         tagName: 'rect',
         className: 'secondRect',
-        style: {width: 10, height: 5},
-        attributes: {x: -5}
+        attributes: {'width': 10, 'height': 5, 'x': -5}
       }]
     }, {
         tagName: 'text',

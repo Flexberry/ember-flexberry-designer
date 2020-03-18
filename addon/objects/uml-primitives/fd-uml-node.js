@@ -69,13 +69,6 @@ export let UmlNode = BaseObject.define('flexberry.uml.UmlNode', {
   // Minimum width
   minWidth: 80,
 }, {
-  // markup: [
-  //   '<g class="rotatable">',
-  //   '<path class="back-path"/>',
-  //   '<rect class="flexberry-uml-header-rect"/>',
-  //   '<text class="flexberry-uml-header-text"/>',
-  //   '</g>'
-  // ].join(''),
 
   markup: [{
     tagName: 'g',
@@ -119,7 +112,6 @@ joint.shapes.flexberry.uml.UmlNodeView = joint.shapes.flexberry.uml.BaseObjectVi
     const oldSize = this.model.size();
     rects.forEach(function(rect, index, array) {
       this.markup[0].children.forEach((child) => {
-        // if (this.markup.includes('flexberry-uml-' + rect.type + '-rect') && rect.element.inputElements) {
         if ((child.className == 'flexberry-uml-' + rect.type + '-rect') && (rect.element.inputElements)) {
           let rectHeight = 0;
           let inputs = rect.element.inputElements.find('.' + rect.type + '-input');

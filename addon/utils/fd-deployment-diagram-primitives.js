@@ -10,7 +10,6 @@ joint.shapes.basic.Generic.define('flexberry.uml.deploymentDiagram_Interface', {
   },
   name: [],
 }, {
-  // markup: '<g class="rotatable"><g class="scalable"></g></g>',
 
   markup: [{
     tagName: 'g',
@@ -44,8 +43,13 @@ joint.shapes.basic.Generic.define('flexberry.uml.deploymentDiagram_Interface', {
       }],
     });
     let linklength = this.attributes.attrs.linklength;
-    this.attributes.link.markup = '<path class="connection" stroke="black" ' +
-      'stroke-width="1" d="M 0 0 0 0"/>';
+
+    this.attributes.link.markup = [{
+      tagName: 'path',
+      className: 'connection',
+      attributes: {'stroke': 'black', 'stroke-width': '1', 'd': 'M 0 0 0 0'}
+    }];
+
     let shift = 3;
     joint.shapes.basic.Generic.prototype.initialize.apply(this, arguments);
     this.addTo(this.attributes.graph);

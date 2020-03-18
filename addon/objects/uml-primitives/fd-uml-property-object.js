@@ -82,11 +82,6 @@ export let PropertyObject = BaseClass.define('flexberry.uml.PropertyObject', {
   // Minimum height.
   minHeight: 34,
 }, {
-    // markup: [
-    //   '<g class="rotatable">',
-    //   '<rect class="flexberry-uml-header-rect"/><rect class="flexberry-uml-body-rect"/>',
-    //   '</g>'
-    // ].join(''),
 
     markup: [{
       tagName: 'g',

@@ -78,18 +78,12 @@ export let Package = BaseClass.define('flexberry.uml.Package', {
   // Minimum height.
   minHeight: 34,
 }, {
-  // markup: [
-  //   '<g class="rotatable">',
-  //   '<g transform="scale(0.8,1)"><rect class="flexberry-uml-header-rect" /></g><rect class="flexberry-uml-body-rect"/>',
-  //   '</g>'
-  // ].join(''),
-
   markup: [{
     tagName: 'g',
     className: 'rotatable',
     children: [{
         tagName: 'g',
-        style: {transform: 'scale(0.8,1)'},
+        attributes: {'transform': 'scale(0.8,1)'},
         children: [{
           tagName: 'rect',
           className: 'flexberry-uml-header-rect'

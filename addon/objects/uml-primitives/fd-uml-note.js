@@ -75,13 +75,6 @@ export let Note = BaseObject.define('flexberry.uml.Note', {
   // Minimum height.
   minHeight: 17,
 }, {
-  // markup: [
-  //   '<g class="rotatable">',
-  //   '<rect class="flexberry-uml-header-rect"/>',
-  //   '<rect class="corner-rect" width="10" height="10"/>',
-  //   '<path class="corner"/>',
-  //   '</g>'
-  // ].join(''),
 
   markup: [{
     tagName: 'g',
@@ -92,7 +85,7 @@ export let Note = BaseObject.define('flexberry.uml.Note', {
     }, {
         tagName: 'rect',
         className: 'corner-rect',
-        style: {width: 10, height:10}
+        attributes: {'width': 10, 'height': 10}
     }, {
       tagName: 'path',
       className: 'corner'

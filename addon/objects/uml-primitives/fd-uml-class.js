@@ -155,11 +155,6 @@ export let BaseClass = joint.shapes.basic.Generic.define('flexberry.uml.BaseClas
   // Width by inputs.
   inputWidth: 0,
 }, {
-  // markup: [
-  //   '<g class="rotatable">',
-  //   '<rect class="flexberry-uml-header-rect"/><rect class="flexberry-uml-body-rect"/><rect class="flexberry-uml-footer-rect"/>',
-  //   '</g>'
-  // ].join(''),
 
   markup: [{
     tagName: 'g',
@@ -395,40 +390,42 @@ joint.shapes.flexberry.uml.ClassView = joint.shapes.flexberry.uml.PrimitiveEleme
     const minHeight = this.model.attributes.minHeight;
     const oldSize = this.model.size();
     rects.forEach(function(rect, index, array) {
-      if (this.markup.includes('flexberry-uml-' + rect.type + '-rect') && rect.element.inputElements) {
-        let rectHeight = 0;
-        let inputs = rect.element.inputElements.find('.' + rect.type + '-input');
-        let inputsDiv = inputs[0].parentElement;
-        if (! inputsDiv.parentElement || ! inputsDiv.parentElement.className.includes('joint-paper')) {
-          let jointPaper = $('.joint-paper')[0];
-          jointPaper.appendChild(inputsDiv);
-        }
-        let $buffer = rect.element.inputElements.find('.input-buffer');
-        inputs.each(function() {
-          let $input = $(this);
-          $buffer.css('font-weight', $input.css('font-weight'));
-          $buffer.text($input.val());
-          $input.width($buffer.width() + 1);
-          if ($input.width() > newWidth) {
-            newWidth = $input.width();
+      this.markup[0].children.forEach((child) => {
+        if ((child.className == 'flexberry-uml-' + rect.type + '-rect') && (rect.element.inputElements)) {
+          let rectHeight = 0;
+          let inputs = rect.element.inputElements.find('.' + rect.type + '-input');
+          let inputsDiv = inputs[0].parentElement;
+          if (! inputsDiv.parentElement || ! inputsDiv.parentElement.className.includes('joint-paper')) {
+            let jointPaper = $('.joint-paper')[0];
+            jointPaper.appendChild(inputsDiv);
+          }
+          let $buffer = rect.element.inputElements.find('.input-buffer');
+          inputs.each(function() {
+            let $input = $(this);
+            $buffer.css('font-weight', $input.css('font-weight'));
+            $buffer.text($input.val());
+            $input.width($buffer.width() + 1);
+            if ($input.width() > newWidth) {
+              newWidth = $input.width();
+            }
+
+            rectHeight += $input.height();
+          });
+
+          rectHeight += rect.element.get('heightBottomPadding') || 0;
+          newHeight += rectHeight;
+          if (array.length === index + 1) {
+            this.set('inputHeight', newHeight);
+            rect.element.attr('.flexberry-uml-' + rect.type + '-rect/height', Math.max((resizedHeight || oldSize.height) - offsetY, minHeight - offsetY, rectHeight));
+          } else {
+            rect.element.attr('.flexberry-uml-' + rect.type + '-rect/height', rectHeight);
           }
 
-          rectHeight += $input.height();
-        });
+          rect.element.attr('.flexberry-uml-' + rect.type + '-rect/transform', 'translate(0,' + offsetY + ')');
 
-        rectHeight += rect.element.get('heightBottomPadding') || 0;
-        newHeight += rectHeight;
-        if (array.length === index + 1) {
-          this.set('inputHeight', newHeight);
-          rect.element.attr('.flexberry-uml-' + rect.type + '-rect/height', Math.max((resizedHeight || oldSize.height) - offsetY, minHeight - offsetY, rectHeight));
-        } else {
-          rect.element.attr('.flexberry-uml-' + rect.type + '-rect/height', rectHeight);
+          offsetY += rectHeight;
         }
-
-        rect.element.attr('.flexberry-uml-' + rect.type + '-rect/transform', 'translate(0,' + offsetY + ')');
-
-        offsetY += rectHeight;
-      }
+      });
     }, this.model);
 
     newWidth += (this.model.get('widthPadding') || 0) * 2;

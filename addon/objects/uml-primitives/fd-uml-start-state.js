@@ -63,12 +63,6 @@ export let StartState = BaseObject.define('flexberry.uml.StartState', {
     '.flexberry-uml-header-circle': { 'fill': 'black', 'r': 15, 'ref-y': 10, 'ref-x': 10 },
   },
 }, {
-  // markup: [
-  //   '<g class="scalable">',
-  //   '<circle class="flexberry-uml-header-circle-outer"/>',
-  //   '<circle class="flexberry-uml-header-circle"/>',
-  //   '</g>'
-  // ].join(''),
 
   markup: [{
     tagName: 'g',

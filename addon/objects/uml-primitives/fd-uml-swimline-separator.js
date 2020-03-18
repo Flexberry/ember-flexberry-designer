@@ -102,11 +102,6 @@ export let SwimlineSeparatorH = BaseObject.define('flexberry.uml.SwimlineSeparat
      },
   },
 }, {
-  // markup: [
-  //   '<g class="rotatable">',
-  //   '<polyline class = "flexberry-uml-header-poliline"/>',
-  //   '</g>',
-  // ].join(''),
 
   markup: [{
     tagName: 'g',
@@ -184,11 +179,6 @@ export let SwimlineSeparatorV = SwimlineSeparatorH.define('flexberry.uml.Swimlin
      },
   },
 }, {
-  // markup: [
-  //   '<g class="rotatable">',
-  //   '<polyline class = "flexberry-uml-header-poliline"/>',
-  //   '</g>',
-  // ].join(''),
 
   markup: [{
     tagName: 'g',

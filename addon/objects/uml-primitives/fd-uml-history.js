@@ -87,15 +87,6 @@ export let History = BaseObject.define('flexberry.uml.History', {
     return [];
   },
 }, {
-  // markup: [
-  //   '<g class="rotatable">',
-  //   '<g class="scalable">',
-  //   '<circle class="flexberry-uml-header-circle-outer"/>',
-  //   '</g>',
-  //   '<text class="flexberry-uml-header-text"/>',
-  //   '</g>'
-  // ].join(''),
-
   markup: [{
     tagName: 'g',
     className: 'rotatable',
@@ -111,7 +102,6 @@ export let History = BaseObject.define('flexberry.uml.History', {
         className: 'flexberry-uml-header-text'
     }]
   }],
-
 });
 
 joint.shapes.flexberry.uml.HistoryView = joint.shapes.flexberry.uml.BaseObjectView.extend({
