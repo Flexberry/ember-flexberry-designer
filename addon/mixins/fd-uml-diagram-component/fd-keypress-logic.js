@@ -11,6 +11,7 @@ import { isNone } from '@ember/utils';
 import uuid from 'npm:node-uuid';
 import { updateObjectByStr } from '../../utils/fd-update-str-value';
 import { getDataForBuildTree } from '../../utils/fd-attributes-for-tree';
+import $ from 'jquery';
 
 /**
   Mixin with key press logic for fd-uml-diagram component.
@@ -38,16 +39,16 @@ export default Mixin.create({
     let paperEl = paper.$el;
     paperEl.attr('tabindex', 0);
 
-    paperEl.on('click', this._clickHandler);
+    paperEl.on('click', this._paperClickHandler);
     paperEl.on('keydown', this._keydownHandler.bind(this));
   },
 
   /**
-    Handler 'click'.
+    Paper 'click' handler.
 
-    @method _clickHandler
+    @method _paperClickHandler
   */
-  _clickHandler() {
+  _paperClickHandler() {
     this.focus();
   },
 
@@ -58,10 +59,10 @@ export default Mixin.create({
     @param {Event} e event.
   */
   _keydownHandler(e) {
-    e.stopPropagation();
-
-    let preventDefault = true;
     if (e.ctrlKey) {
+      e.stopPropagation();
+
+      let preventDefault = true;
       switch (e.keyCode) {
         // ctrl + a
         case 65:
@@ -97,12 +98,15 @@ export default Mixin.create({
           this.saveDiagram();
         break;
       }
-    } else if (e.keyCode === 46) {
-      this.deleteSelectElements();
-    }
 
-    if (preventDefault) {
+      if (preventDefault) {
+        e.preventDefault();
+      }
+
+    } else if (e.keyCode === 46 && !$(e.target).is('textarea,input')) {
+      e.stopPropagation();
       e.preventDefault();
+      this.deleteSelectElements();
     }
   },
 
