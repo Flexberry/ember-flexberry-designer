@@ -5,7 +5,7 @@
 import Mixin from '@ember/object/mixin';
 import FdUmlLink from '../../objects/uml-primitives/fd-uml-link';
 import { inject as service } from '@ember/service';
-import { get, set } from '@ember/object';
+import { get } from '@ember/object';
 import { A, isArray } from '@ember/array';
 import { isNone } from '@ember/utils';
 import uuid from 'npm:node-uuid';
@@ -282,15 +282,11 @@ export default Mixin.create({
       }
 
       if (isNone(existObject)) {
-        store.push(store.normalize(repObject.type, repObject.data));
-        store.peekRecord(repObject.type, repObject.data.__PrimaryKey).set('stage', stage);
+        let repObj = this._addObjectInStore(repObject.type, repObject.data, dictionaryRepObjId);
+        repObj.set('stage', stage);
+
         listRepObject.pushObject(repObject);
       } else {
-        let primitiveRepObj = primitives.filter((a) => !isNone(a.RepositoryObject) && a.RepositoryObject === `{${repObject.data.__PrimaryKey}}`);
-        primitiveRepObj.map((a) => {
-          set(a, 'RepositoryObject', `{${existObject.get('id')}}`);
-          return a;
-        });
 
         this._incrementPropertyReferenceCount(existObject);
         dictionaryRepObjId.pushObject({
@@ -316,6 +312,28 @@ export default Mixin.create({
         let oldTargetId = umlObject.get('target.id');
         let newTargetId = this._createNewPrimitiveId(oldTargetId, dictionaryPrimitivesId);
         umlObject.set('primitive.EndPrimitive.$ref', newTargetId);
+
+        let oldStartLEParent = umlObject.get('primitive.StartLE.Parent.$ref');
+        let newStartLEParent = this._createNewPrimitiveId(oldStartLEParent, dictionaryPrimitivesId);
+        umlObject.set('primitive.StartLE.Parent.$ref', newStartLEParent);
+
+        let oldStartLEPrimitive = umlObject.get('primitive.StartLE.Primitive.$ref');
+        let newStartLEPrimitive = this._createNewPrimitiveId(oldStartLEPrimitive, dictionaryPrimitivesId);
+        umlObject.set('primitive.StartLE.Primitive.$ref', newStartLEPrimitive);
+
+        let oldEndLEParent = umlObject.get('primitive.EndLE.Parent.$ref');
+        let newEndLEParent = this._createNewPrimitiveId(oldEndLEParent, dictionaryPrimitivesId);
+        umlObject.set('primitive.EndLE.Parent.$ref', newEndLEParent);
+
+        let oldEndLEPrimitive = umlObject.get('primitive.EndLE.Primitive.$ref');
+        let newEndLEPrimitive = this._createNewPrimitiveId(oldEndLEPrimitive, dictionaryPrimitivesId);
+        umlObject.set('primitive.EndLE.Primitive.$ref', newEndLEPrimitive);
+      }
+
+      let repositoryObject = umlObject.repositoryObject;
+      if(!isNone(repositoryObject)) {
+        let newRepositoryObject = this._findNewObjectId(repositoryObject.slice(1, -1), dictionaryRepObjId);
+        umlObject.set('primitive.RepositoryObject', `{${newRepositoryObject}}`);
       }
 
       this._addToPrimitives(umlObject);
@@ -369,8 +387,7 @@ export default Mixin.create({
       // Add views.
       let views = classObj.views;
       views.forEach((view) => {
-        store.push(store.normalize('fd-dev-view', view));
-        let obj = store.peekRecord('fd-dev-view', view.__PrimaryKey);
+        let obj = this._addObjectInStore('fd-dev-view', view, dictionaryRepObjId);
         obj.set('class', clsObj);
 
         let definitionArray = obj.get('definitionArray');
@@ -423,8 +440,7 @@ export default Mixin.create({
             let views = clsObj.get('views');
             let viewObj = views.findBy('name', viewName);
             if (!isNone(viewObj)) {
-              store.push(store.normalize('fd-dev-form-view', formView));
-              let obj = store.peekRecord('fd-dev-form-view', formView.__PrimaryKey);
+              let obj = this._addObjectInStore('fd-dev-form-view', formView, dictionaryRepObjId);
               obj.set('class', clsObj);
               obj.set('view', viewObj);
             }
@@ -432,6 +448,37 @@ export default Mixin.create({
         }
       });
     });
+  },
+
+  /**
+    Handler 'ctrl + s' save open diagram.
+
+    @method saveDiagram
+  */
+  saveDiagram() {
+    let readonly = this.get('readonly');
+    if (!readonly) {
+      this.get('fdSheetService').saveCurrentItem('diagram-sheet');
+    }
+  },
+
+  /**
+    Handler 'delete' delete selected diagram elements.
+
+    @method deleteSelectElements
+  */
+  deleteSelectElements() {
+    let readonly = this.get('readonly');
+    if (readonly) {
+      return;
+    }
+
+    let highlightedElements = this.get('highlightedElements');
+    highlightedElements.forEach((highlightedElement) => {
+      highlightedElement.model.remove();
+    });
+
+    highlightedElements.clear();
   },
 
   /**
@@ -507,6 +554,14 @@ export default Mixin.create({
     return dictionaryValue.newId;
   },
 
+  /**
+    Check view prop on exist.
+
+    @method _checkExistProp
+    @param {Object} cls class
+    @param {String} name propery name
+    @param {Bool} isAttr is attributes
+   */
   _checkExistProp(cls, name, isAttr) {
     let dataForClass = getDataForBuildTree(this.get('store'), cls.get('id'));
 
@@ -539,33 +594,27 @@ export default Mixin.create({
   },
 
   /**
-    Handler 'ctrl + s' save open diagram.
+    Create new model.
 
-    @method saveDiagram
-  */
-  saveDiagram() {
-    let readonly = this.get('readonly');
-    if (!readonly) {
-      this.get('fdSheetService').saveCurrentItem('diagram-sheet');
-    }
-  },
-
-  /**
-    Handler 'delete' delete selected diagram elements.
-
-    @method deleteSelectElements
-  */
-  deleteSelectElements() {
-    let readonly = this.get('readonly');
-    if (readonly) {
-      return;
-    }
-
-    let highlightedElements = this.get('highlightedElements');
-    highlightedElements.forEach((highlightedElement) => {
-      highlightedElement.model.remove();
+    @method _addObjectInStore
+    @param {String} modelName model name
+    @param {Object} object serialize model
+    @param {Array} dictionaryRepObjId dictionary id
+   */
+  _addObjectInStore(modelName, object, dictionaryRepObjId) {
+    let store = this.get('store');
+    let newId = uuid.v4();
+    let normalize = store.normalize(modelName, object);
+    let model = store.createRecord(modelName, {
+      id: newId
+    });
+    model.setProperties(normalize.data.attributes);
+    model.set('referenceCount', 1);
+    dictionaryRepObjId.pushObject({
+      oldId: object.__PrimaryKey,
+      newId: newId
     });
 
-    highlightedElements.clear();
+    return model;
   }
 });
