@@ -149,7 +149,6 @@ joint.shapes.flexberry.uml.PackageView = joint.shapes.flexberry.uml.BaseObjectVi
     const oldSize = this.model.size();
     rects.forEach(function(rect, index, array) {
       this.markup[0].children.forEach((child) => {
-        // if (this.markup.includes('flexberry-uml-' + rect.type + '-rect') && rect.element.inputElements) {
         if ((child.className == 'flexberry-uml-' + rect.type + '-rect') && (rect.element.inputElements)) {
           let rectHeight = 0;
           let inputs = rect.element.inputElements.find('.' + rect.type + '-input');
