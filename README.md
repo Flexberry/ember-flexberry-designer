@@ -1,41 +1,23 @@
 # Ember-flexberry-designer
 
-[![Travis master branch](https://img.shields.io/travis/Flexberry/ember-flexberry-designer/master.svg?label=master%20build%20)](https://travis-ci.org/Flexberry/ember-flexberry-designer)
-[![Travis develop branch](https://img.shields.io/travis/Flexberry/ember-flexberry-designer/develop.svg?label=develop%20build)](https://travis-ci.org/Flexberry/ember-flexberry-designer/branches)
-[![stability-wip](https://img.shields.io/badge/stability-work_in_progress-lightgrey.svg)](https://github.com/orangemug/stability-badges#work-in-progress)
+## Процесс развития проекта
 
-This README outlines the details of collaborating on this Ember addon.
+Flexberry designer активно развивается.  Если вы хотите поучаствовать в этом, создайте issue с предложением\пожеланием. В ближайшее время оно будет рассмотрено, и мы ответим будем ли это реализовывать и когда или же нет и почему. Подробный алгоритм обработки issue выглядит так:
+1. Поступило новое issue – установили на него label (маркер) - question
+2. Далее принимается решение — будет это реализовано или нет.
 
-## Published Dummy applications for this addon
+Если решили реализовывать:
 
-* `master` branch: <https://flexberry.github.io/ember-flexberry-designer/dummy/master/>
-* `develop` branch: <https://flexberry.github.io/ember-flexberry-designer/dummy/develop/>
-* `dummy-test` branch: <https://flexberry.github.io/ember-flexberry-designer/dummy/dummy-test/>
+3. Убираем label (маркер) - question.
+4. Переносим issue на доску (если она уже есть)
+5. Устанавливаем milestone (итерацию в которой будет реализовано)
+6. В комментарии к issue пишем приблизительный срок выполнении и уточняем при необходимости вопросы.
 
-## Autodocumentation (coming soon)
+Если решили не реализовывать:
 
-* `master` branch: <https://flexberry.github.io/ember-flexberry-designer/autodoc/master/>
-* `develop` branch: <https://flexberry.github.io/ember-flexberry-designer/autodoc/develop/>
+3. Убираем label (маркер) - question
+4. Закрываем issue.
+5. В комментарии к issue пишем причину отказа в доработке.
 
-## Installation
-
-* `git clone <repository-url>` this repository
-* `cd my-addon`
-* `npm install`
-
-## Running
-
-* `ember serve`
-* Visit your app at [http://localhost:4200](http://localhost:4200).
-
-## Running Tests
-
-* `npm test` (Runs `ember try:each` to test your addon against multiple Ember versions)
-* `ember test`
-* `ember test --server`
-
-## Building
-
-* `ember build`
-
-For more information on using ember-cli, visit [https://ember-cli.com/](https://ember-cli.com/).
+Issue должно содержать описание функционала, который вы хотите видеть, а так же причину, по которой вы хотели бы его реализацию.
+Перед тем как создать issue, внимательно проверьте, что аналогичного нет.

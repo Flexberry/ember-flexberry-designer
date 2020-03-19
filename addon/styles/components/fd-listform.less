@@ -4,17 +4,263 @@ table.fd-listform {
 
   td.fd-selected
   {
-    border-right: @width dashed rgb(79,115,176);
-    border-left: @width dashed rgb(79,115,176) !important;
+    border-right: @width solid @blue;
+    border-left: @width solid @blue !important;
     background-color: rgba(79,115,176, 0.25);
   }
   th.fd-selected {
-    border-right: @width dashed rgb(79,115,176);
-    border-left: @width dashed rgb(79,115,176) !important;
-    border-top: @width dashed rgb(79,115,176);
+    border-right: @width solid @blue;
+    border-left: @width solid @blue !important;
+    border-top: @width solid @blue;
+    border-top-left-radius: 0.25rem;
+    border-top-right-radius: 0.25rem;
     background-color: rgba(79,115,176, 0.25);
+    position: relative;
+    > .fd-editform-control-toolbar {
+      display: block;
+    }
   }
   tr:last-child > td.fd-selected {
-    border-bottom: @width dashed rgb(79,115,176);
+    border-bottom: @width solid @blue;
+    border-bottom-left-radius: 0.25rem;
+    border-bottom-right-radius: 0.25rem;
+  }
+}
+
+/*-------------------
+      Toolbar
+--------------------*/
+.ui.secondary.menu.no-margin:not(.nav-bar) {
+  margin-bottom: 1em;
+  align-items: center;
+  min-height: 0em;
+  min-width: 100%;
+
+  /* Toolbar buttons */
+  .ui.button {
+    margin: 0;
+    &.refresh-button,
+    &.delete-button,
+    &.icon.export-button,
+    &.icon.flexberry-menu.dropdown,
+    &.icon.config-button.settings-enabled,
+    &.adv-limit-button,
+    &.search-button,
+    &.clear-search-button {
+      background: transparent;
+    }
+
+    &.refresh-button,
+    &.delete-button {
+      font-size: 0;
+    }
+
+    &.create-button {
+      background: @blue;
+      color: @white;
+      border-radius: 0.25rem;
+      margin: 0 0.5em;
+      font-size: 0.875em;
+      line-height: 1.42857143em;
+      padding: 0.64285714em 0.78571429em;
+    }
+  }
+
+  .filter-active.icon button {
+    background: transparent;
+    padding: 0.1em 0.3em;
+  }
+
+  .ui.icon.button {
+    padding: 0.4em 0.5em;
+  }
+
+  .ui.button.refresh-button,
+  .ui.button.delete-button,
+  .ui.buttons .button {
+    &:not(.disabled) {
+      color: @textColor;
+    }
+  }
+
+  .ui.button {
+    &:focus {
+      border-color: transparent;
+    }
+
+    &.refresh-button,
+    &.delete-button {
+      i.icon {
+        line-height: 1;
+        margin: 0 0.5em;
+      }
+    }
+
+    &.refresh-button i.icon {
+      margin-left: 0;
+    }
+    &.delete-button:before {
+      content: "";
+    }
+  }
+
+  .ui.action.input {
+    .search-button {
+      position: absolute;
+      right: 2em;
+      height: 100%;
+    }
+
+    .clear-search-button {
+      position: absolute;
+      right: 0;
+      height: 100%;
+    }
+  }
+
+  > .buttons:not(.filter-active) {
+    > .ui.button:not(.dropdown) {
+      padding-right: 0;
+    }
+
+    .flexberry-menu.ui.dropdown {
+      padding-left: 0;
+
+      > .dropdown.icon {
+        color: @textColor;
+
+        &::before {
+          content: "\e905";
+        }
+      }
+    }
+  }
+
+  .search-field {
+    margin: 0 1rem;
+    width: auto;
+  }
+
+  i.icon {
+    font-family: 'guideline-icons';
+    font-size: 1.3rem;
+    color: @textColor;
+
+    &.filter:before {
+      content: "\e91a";
+    }
+
+    &.file.excel.outline:before {
+      content: "\e916";
+    }
+
+    &.table:before {
+      content: "\e90d";
+    }
+
+    &.refresh:before {
+      content: "\e925";
+    }
+
+    &.delete:before {
+      content: "\e911";
+    }
+
+    &.search:before {
+      content: "\e927";
+    }
+
+    &.remove:before {
+      content: "\e90e";
+    }
+
+    &.flask:before {
+      content: "\e930";
+    }
+    &.angle.right:before {
+      content: "\e907";
+    }
+
+    &.setting:before {
+      content: "\e914";
+    }
+
+    &.unhide:before {
+      content: "\e917";
+    }
+
+    &.checkmark.box:before {
+      content: "\e92d";
+    }
+  }
+}
+
+/*-------------------
+        Navbar
+--------------------*/
+div.ui.secondary.menu.no-margin.nav-bar .ui.basic.buttons {
+  align-self: auto;
+}
+div.ui.secondary.menu.no-margin.nav-bar .right.menu {
+  flex-wrap: nowrap;
+}
+.ui.secondary.menu.nav-bar {
+  height: 2.5rem;
+  margin: 0;
+  padding-top: 0;
+  min-width: 100%;
+  margin-top: 1rem;
+  .ui.basic.buttons .button,
+  .ui.basic.button {
+    background: @sidebarBg !important;
+  }
+
+  .ui.basic.buttons {
+    box-shadow: none;
+    border: none;
+    border-radius: 0.25rem;
+    .ui.button {
+      border:none;
+      border-radius: 0.25rem;
+      color: @textColor!important;
+      font-size: 0.875rem;
+      min-width: 2.5rem;
+      margin: 0 unit(4 / 14, em) 0 0;
+      padding: 0 1rem;
+
+      &.active {
+        background: transparent !important;
+        opacity: 1!important;
+      }
+
+      &.prev-page-button,
+      &.next-page-button {
+        &:before {
+          font-family: 'guideline-icons';
+          font-size:  unit(20 / 14, em);
+          display: block;
+        }
+      }
+
+      &.prev-page-button::before {
+        content: "\e906";
+      }
+
+      &.next-page-button::before {
+        content: "\e908";
+      }
+    }
+    div.ui.button {
+      padding-top: 0.5rem;
+      background: transparent!important;
+      pointer-events: none;
+    }
+  }
+
+  .right.menu {
+    .showing-entries {
+      padding: 0.5625rem;
+      margin: 0;
+    }
   }
 }

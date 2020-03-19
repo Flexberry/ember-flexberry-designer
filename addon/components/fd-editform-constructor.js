@@ -25,6 +25,8 @@ import FdDataTypes from '../utils/fd-datatypes';
 export default Component.extend({
   layout,
 
+  classNames: ['row'],
+  
   /**
     Service for managing the state of the application.
 

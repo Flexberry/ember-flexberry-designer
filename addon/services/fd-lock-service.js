@@ -1,6 +1,7 @@
 import Service from '@ember/service';
 import { resolve } from 'rsvp';
 import { isArray } from '@ember/array';
+import { isNone } from '@ember/utils';
 import { get } from '@ember/object';
 import { getOwner } from '@ember/application';
 
@@ -17,8 +18,10 @@ export default Service.extend({
         case 'fd-dev-class':
         case 'STORMCASE.STORMNET.Repository.CADClass, STORM.NET Case Tool plugin':
           return 'class';
+        case 'fd-dev-aggregation':
         case 'STORMCASE.UML.cad.Aggregation, UMLCAD':
           return 'aggregation';
+        case 'fd-dev-association':
         case 'STORMCASE.UML.cad.Association, UMLCAD':
           return 'association';
       }
@@ -127,7 +130,7 @@ export default Service.extend({
      @param {String} objectTypeName Edited object type name.
   */
   deleteLock(editedObject, objectTypeName) {
-    if (editedObject) {
+    if (editedObject && !isNone(editedObject.get('id'))) {
       let adapter = getOwner(this).lookup('adapter:application');
       if (objectTypeName === 'diagram-sheet') {
         const actionParams = this._createParamsForDiagramLock(editedObject);

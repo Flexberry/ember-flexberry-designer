@@ -2,6 +2,19 @@
 All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
+### Added
+* Add stage export.
+
+### Fixed
+* Unlock empty object. When object creating.
+
+## [0.14.0-beta02]
+### Fixed
+* Fix locales
+
+## [0.14.0-beta01]
+### Fixed
+* Fix setButtonStyles
 
 ## [0.13.0]
 ### Added

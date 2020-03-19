@@ -1,4 +1,5 @@
 import Controller from '@ember/controller';
+import $ from 'jquery';
 import FdSheetCloseConfirm from '../mixins/fd-sheet-close-confirm';
 import FdReadonlyProjectMixin from '../mixins/fd-readonly-project';
 import { A } from '@ember/array';
@@ -7,6 +8,7 @@ import { resolve, reject } from 'rsvp';
 import { isNone, isBlank } from '@ember/utils';
 import { transliteration } from '../utils/fd-transliteration';
 import { set, computed } from '@ember/object';
+import { getOwner } from '@ember/application';
 
 import { SimplePredicate, ComplexPredicate } from 'ember-flexberry-data/query/predicate';
 import Builder from 'ember-flexberry-data/query/builder';
@@ -298,6 +300,50 @@ export default Controller.extend(FdSheetCloseConfirm, FdReadonlyProjectMixin, {
     */
     dropdownChangeAccess(model, value) {
       set(model, 'access', value);
+    },
+
+    /**
+      Run project backup.
+
+      @method actions.backup
+    */
+    backup() {
+      let store = this.get('store');
+      let adapter = store.adapterFor('application');
+      const stage = this.get('currentProjectContext').getCurrentStage();
+      const data = { project: stage };
+
+      adapter.callFunction('StageBackup', data, null, { withCredentials: true });
+    },
+
+    /**
+      Run project export.
+
+      @method actions.export
+    */
+    export() {
+      const stage = this.get('currentProjectContext').getCurrentStage();
+      // Import application config\environment.
+      let appConfig = getOwner(this).factoryFor('config:environment').class;
+
+      if (!isNone(appConfig) && !isNone(stage)) {
+        const backendUrl = appConfig.APP.backendUrl;
+        const getExportFileUrl = backendUrl + '/stageActions/StageExportFile?projectId=' + stage;
+
+        this.get('appState').loading();
+
+        $.flexberry.downloadFile({
+          url: getExportFileUrl,
+          onSuccess: () => {
+            this.get('appState').reset();
+          },
+          onError: (errorMessage) => {
+            this.get('appState').reset();
+            const messageCaption = this.get('i18n').t('forms.fd-setting.project-actions.export-stage-error');
+            this.get('fdDialogService').showErrorMessage(messageCaption + '\n' + errorMessage);
+          }
+        });
+      }
     },
 
     /**
