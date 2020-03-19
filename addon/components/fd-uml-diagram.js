@@ -90,12 +90,20 @@ export default Component.extend(
   draggedLinkView: undefined,
 
   /**
+    model of the UML diagram.
+
+    @property model
+    @default undefined
+  */
+  model: undefined,
+
+  /**
     All primitives of the UML diagram.
 
     @property primitives
     @type Ember.Array
   */
-  primitives: undefined,
+  primitives: computed.alias('model.primitives'),
 
   /**
     True when link adding in process.

@@ -42,106 +42,94 @@ let Model = CODModel.extend(DevUMLCODMixin, {
 
     for (let i = 0; i < primitives.length; i++) {
       let primitive = primitives[i];
-      switch (primitive.$type) {
-        case 'STORMCASE.UML.cod.ActiveObject, UMLCOD':
-          result.pushObject(FdUmlActiveObject.create({ primitive }));
-          break;
-
-        case 'STORMCASE.UML.cod.NarLink, UMLCOD':
-          result.pushObject(FdUmlNAryAssociation.create({ primitive }));
-          break;
-
-        case 'STORMCASE.UML.cod.Instance, UMLCOD':
-          result.pushObject(FdUmlInstance.create({ primitive }));
-          break;
-
-        case 'STORMCASE.UML.cod.MultiObject, UMLCOD':
-          result.pushObject(FdUmlMultiObject.create({ primitive }));
-          break;
-
-        case 'STORMCASE.UML.Common.Note, UMLCommon':
-          result.pushObject(FdUmlNote.create({ primitive }));
-          break;
-
-        case 'STORMCASE.UML.cod.Inheritance, UMLCOD':
-          result.pushObject(FdUmlGeneralizationCod.create({ primitive }));
-          break;
-
-        case 'STORMCASE.UML.Common.NoteConnector, UMLCommon':
-          result.pushObject(FdUmlNoteConnector.create({ primitive }));
-          break;
-
-        case 'STORMCASE.UML.cod.QualifiedAggregationLink, UMLCOD':
-          result.pushObject(FdUmlQAggregation.create({ primitive }));
-          break;
-
-        case 'STORMCASE.UML.cod.QualifiedCompositionLink, UMLCOD':
-          result.pushObject(FdUmlQComposition.create({ primitive }));
-          break;
-
-        case 'STORMCASE.UML.cod.QualifiedLink, UMLCOD':
-          result.pushObject(FdUmlQAssociation.create({ primitive }));
-          break;
-
-        case 'STORMCASE.UML.cod.NaryLink, UMLCOD':
-          result.pushObject(FdUmlNAryAssociationConnector.create({ primitive }));
-          break;
-
-        case 'STORMCASE.UML.cod.AggregationLink, UMLCOD':
-          result.pushObject(FdUmlAggregationLink.create({ primitive }));
-          break;
-
-        case 'STORMCASE.UML.cod.Link, UMLCOD':
-          result.pushObject(FdUmlAssociationLink.create({ primitive }));
-          break;
-
-        case 'STORMCASE.UML.cod.CompositionLink, UMLCOD':
-          result.pushObject(FdUmlCompositionLink.create({ primitive }));
-          break;
-
-        case 'STORMCASE.UML.cod.DesignPatternConnector, UMLCOD':
-          result.pushObject(FdUmlDesignPatternConnector.create({ primitive }));
-          break;
-
-        case 'STORMCASE.UML.cod.DesignPattern, UMLCOD':
-          result.pushObject(FdUmlDesignPattern.create({ primitive }));
-          break;
-
-        case 'STORMCASE.UML.cod.Actor, UMLCOD':
-          result.pushObject(FdUmlUsecaseActor.create({ primitive }));
-          break;
-
-        case 'STORMCASE.UML.cod.ForwardFlatMessage, UMLCOD':
-          result.pushObject(FdUmlForwardFlatMessage.create({ primitive }));
-          break;
-
-        case 'STORMCASE.UML.cod.ForwardNestedMessage, UMLCOD':
-          result.pushObject(FdUmlForwardNestedMessage.create({ primitive }));
-          break;
-
-        case 'STORMCASE.UML.cod.ForwardAsyncMessage, UMLCOD':
-          result.pushObject(FdUmlForwardAsyncMessage.create({ primitive }));
-          break;
-
-        case 'STORMCASE.UML.cod.BackwardNestedMessage, UMLCOD':
-          result.pushObject(FdUmlBackwardNestedMessage.create({ primitive }));
-          break;
-
-        case 'STORMCASE.UML.cod.BackwardFlatMessage, UMLCOD':
-          result.pushObject(FdUmlBackwardFlatMessage.create({ primitive }));
-          break;
-
-        case 'STORMCASE.UML.cod.BackwardAsyncMessage, UMLCOD':
-          result.pushObject(FdUmlBackwardAsyncMessage.create({ primitive }));
-          break;
-
-        default:
-          throw new Error(`Unknown primitive type: '${primitive.$type}'.`);
-      }
+      let umlObject = this.createUmlObject(primitive);
+      result.pushObject(umlObject);
     }
 
     return result;
   }),
+
+  /**
+    Create uml object by primitive.
+
+    @method createUmlObject
+    @param {Object} primitive primitive uml.
+  */
+  createUmlObject(primitive) {
+    switch (primitive.$type) {
+      case 'STORMCASE.UML.cod.ActiveObject, UMLCOD':
+        return FdUmlActiveObject.create({ primitive });
+
+      case 'STORMCASE.UML.cod.NarLink, UMLCOD':
+        return FdUmlNAryAssociation.create({ primitive });
+
+      case 'STORMCASE.UML.cod.Instance, UMLCOD':
+        return FdUmlInstance.create({ primitive });
+
+      case 'STORMCASE.UML.cod.MultiObject, UMLCOD':
+        return FdUmlMultiObject.create({ primitive });
+
+      case 'STORMCASE.UML.Common.Note, UMLCommon':
+        return FdUmlNote.create({ primitive });
+
+      case 'STORMCASE.UML.cod.Inheritance, UMLCOD':
+        return FdUmlGeneralizationCod.create({ primitive });
+
+      case 'STORMCASE.UML.Common.NoteConnector, UMLCommon':
+        return FdUmlNoteConnector.create({ primitive });
+
+      case 'STORMCASE.UML.cod.QualifiedAggregationLink, UMLCOD':
+        return FdUmlQAggregation.create({ primitive });
+
+      case 'STORMCASE.UML.cod.QualifiedCompositionLink, UMLCOD':
+        return FdUmlQComposition.create({ primitive });
+
+      case 'STORMCASE.UML.cod.QualifiedLink, UMLCOD':
+        return FdUmlQAssociation.create({ primitive });
+
+      case 'STORMCASE.UML.cod.NaryLink, UMLCOD':
+        return FdUmlNAryAssociationConnector.create({ primitive });
+
+      case 'STORMCASE.UML.cod.AggregationLink, UMLCOD':
+        return FdUmlAggregationLink.create({ primitive });
+
+      case 'STORMCASE.UML.cod.Link, UMLCOD':
+        return FdUmlAssociationLink.create({ primitive });
+
+      case 'STORMCASE.UML.cod.CompositionLink, UMLCOD':
+        return FdUmlCompositionLink.create({ primitive });
+
+      case 'STORMCASE.UML.cod.DesignPatternConnector, UMLCOD':
+        return FdUmlDesignPatternConnector.create({ primitive });
+
+      case 'STORMCASE.UML.cod.DesignPattern, UMLCOD':
+        return FdUmlDesignPattern.create({ primitive });
+
+      case 'STORMCASE.UML.cod.Actor, UMLCOD':
+        return FdUmlUsecaseActor.create({ primitive });
+
+      case 'STORMCASE.UML.cod.ForwardFlatMessage, UMLCOD':
+        return FdUmlForwardFlatMessage.create({ primitive });
+
+      case 'STORMCASE.UML.cod.ForwardNestedMessage, UMLCOD':
+        return FdUmlForwardNestedMessage.create({ primitive });
+
+      case 'STORMCASE.UML.cod.ForwardAsyncMessage, UMLCOD':
+        return FdUmlForwardAsyncMessage.create({ primitive });
+
+      case 'STORMCASE.UML.cod.BackwardNestedMessage, UMLCOD':
+        return FdUmlBackwardNestedMessage.create({ primitive });
+
+      case 'STORMCASE.UML.cod.BackwardFlatMessage, UMLCOD':
+        return FdUmlBackwardFlatMessage.create({ primitive });
+
+      case 'STORMCASE.UML.cod.BackwardAsyncMessage, UMLCOD':
+        return FdUmlBackwardAsyncMessage.create({ primitive });
+
+      default:
+        throw new Error(`Unknown primitive type: '${primitive.$type}'.`);
+    }
+  }
 });
 defineBaseModel(Model);
 export default Model;
