@@ -1,6 +1,7 @@
 import Component from '@ember/component';
 import FdReadonlyProjectMixin from '../../mixins/fd-readonly-project';
 import { inject as service } from '@ember/service';
+import { A } from '@ember/array';
 import { computed, observer } from '@ember/object';
 import { isNone } from '@ember/utils';
 import layout from '../../templates/components/fd-sheets/fd-sheets-tool-bar';
@@ -61,6 +62,12 @@ export default Component.extend(FdReadonlyProjectMixin, {
   router: service(),
 
   /**
+    @property store
+    @type Service
+  */
+  store: service(),
+
+  /**
     Array button.
 
     @property sheetButtons
@@ -101,14 +108,6 @@ export default Component.extend(FdReadonlyProjectMixin, {
   customButtonTitle: undefined,
 
   /**
-    Share button value.
-
-    @property shareSheetValue
-    @type Object
-  */
-  shareSheetValue: undefined,
-
-  /**
     Flag: indicates whether to show toolbar.
 
     @property toolbarVisible
@@ -134,6 +133,27 @@ export default Component.extend(FdReadonlyProjectMixin, {
   isNewModel: false,
 
   /**
+    Table headers for dependencies popup.
+
+    @property tableViewDiagrams
+    @type Array
+  */
+  tableViewDiagrams: computed(() => (
+    A([{
+      columnCaption: 'components.fd-sheets-tool-bar.dependencies-panel-title',
+      columnProperty: 'name',
+    }])
+  )),
+
+  /**
+    Array of diagrams where current class exists.
+
+    @property classDiagrams
+    @type Array
+  */
+  classDiagrams: null,
+
+  /**
     Update locks.
 
     @method readonlyModeObserver
@@ -145,11 +165,11 @@ export default Component.extend(FdReadonlyProjectMixin, {
       const lockService = this.get('fdLockService');
       const refreshLockTime = lockService.getRefreshLockTime();
       const sheetComponentName = _this.get('sheetComponentName');
-      const editedObject = _this.get('editedObject');
-      lockService.createLock(editedObject, sheetComponentName);
+      const contentSheetValue= _this.get('contentSheetValue');
+      lockService.createLock(contentSheetValue, sheetComponentName);
       setTimeout(function tick() {
         if (!_this.get('readonlyMode'))  {
-          lockService.createLock(editedObject, sheetComponentName);
+          lockService.createLock(contentSheetValue, sheetComponentName);
           setTimeout(tick, refreshLockTime);
         }
       }, refreshLockTime);
@@ -160,8 +180,8 @@ export default Component.extend(FdReadonlyProjectMixin, {
     this._super(...arguments);
     this.set('readonlyMode', true);
     const sheetComponentName = this.get('sheetComponentName');
-    const editedObject = this.get('editedObject');
-    this.get('fdLockService').deleteLock(editedObject, sheetComponentName);
+    const contentSheetValue = this.get('contentSheetValue');
+    this.get('fdLockService').deleteLock(contentSheetValue, sheetComponentName);
   },
 
   actions: {
@@ -194,7 +214,7 @@ export default Component.extend(FdReadonlyProjectMixin, {
       this.get('saveSheet')();
       this.set('readonlyMode', true);
       let sheetComponentName = this.get('sheetComponentName');
-      this.get('fdLockService').deleteLock(this.get('editedObject'), sheetComponentName);
+      this.get('fdLockService').deleteLock(this.get('contentSheetValue'), sheetComponentName);
     },
 
     /**
@@ -215,7 +235,7 @@ export default Component.extend(FdReadonlyProjectMixin, {
       let _this = this;
 
       let sheetComponentName = this.get('sheetComponentName');
-      this.get('fdLockService').checkLock(this.get('editedObject'), sheetComponentName).then(result => {
+      this.get('fdLockService').checkLock(this.get('contentSheetValue'), sheetComponentName).then(result => {
         if (result && !result.Acquired) {
           _this.set('readonlyMode', false);
         } else {
@@ -236,14 +256,14 @@ export default Component.extend(FdReadonlyProjectMixin, {
       let stage = `?gotostage=${this.get('currentProjectContext').getCurrentStage()}`;
       let object = '';
 
-      let shareSheetValue = this.get('shareSheetValue');
-      if (!isNone(shareSheetValue)) {
-        let gototype = shareSheetValue.get('constructor.modelName');
+      let contentSheetValue = this.get('contentSheetValue');
+      if (!isNone(contentSheetValue)) {
+        let gototype = contentSheetValue.get('constructor.modelName');
         if (gototype === 'fd-dev-class' || gototype === 'fd-dev-view') {
           hash = '#/fd-application-model';
         }
 
-        object = `&gototype=${gototype}&gotoobj=${shareSheetValue.get('id')}`;
+        object = `&gototype=${gototype}&gotoobj=${contentSheetValue.get('id')}`;
       }
 
       // Create new element
@@ -262,7 +282,6 @@ export default Component.extend(FdReadonlyProjectMixin, {
       let sharePopup = this.$('.share.button');
       sharePopup.popup({
         on: 'manual',
-        position: 'bottom center',
         inline: true
       }).popup('show');
       this.set('copied', true);
@@ -270,6 +289,56 @@ export default Component.extend(FdReadonlyProjectMixin, {
         sharePopup.popup('hide');
         this.set('copied', false);
       }), 2000);
+    },
+
+    /**
+      Show diagramm dependencies of current class.
+
+      @method actions.showDependencies
+    */
+    showDependencies() {
+      const store = this.get('store');
+      const stage = this.get('currentProjectContext').getCurrentStageModel();
+
+      // Get current cad diagrams.
+      const allCadDiagrams = store.peekAll('fd-dev-uml-cad');
+      const cadDiagramsCurrentStage = allCadDiagrams.filterBy('subsystem.stage.id', stage.get('id'));
+      const currentClassName = this.get('contentSheetValue.name');
+
+      let classDiagrams = A();
+
+      classDiagrams.pushObjects(cadDiagramsCurrentStage.filter(function (diagram) {
+        if (!isNone(diagram.caseObjectsString)) {
+          return diagram.caseObjectsString.includes("Class:(" + currentClassName + ")"); 
+        }
+      }));
+
+      this.set('classDiagrams', classDiagrams);
+
+      let diagramsPopup = this.$('.ui.popup');
+      diagramsPopup.popup({
+        on: 'click',
+        position: 'bottom right',
+        target: '.dependencies.button',
+      }).popup('show');      
+    },
+
+    /**
+      Transition to dependent diagram.
+
+      @method actions.openDependentDiagram
+    */
+    openDependentDiagram(diagram) {
+      if (!isNone(diagram)) {
+        const gototype = diagram.get('constructor.modelName');
+
+        this.get('router').transitionTo('fd-diagrams', {
+          queryParams: {
+            gototype: gototype,
+            gotoobj: diagram.get('id')
+          }
+        });
+      }
     },
 
     /**

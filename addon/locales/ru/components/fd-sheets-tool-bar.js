@@ -6,6 +6,8 @@ export default {
   'expand-button-title': 'Развернуть',
   'delete-button-title': 'Удалить',
   'share-button-title': 'Копировать ссылку',
+  'dependencies-button-title': 'Существующие диаграммы',
+  'dependencies-panel-title': 'Диаграммы на которых присутствует класс',
   'print-button-title': 'Печать',
   'share-button-data-content': 'Скопировано!',
   'link-caption': 'Свойства связи',
