@@ -20,13 +20,11 @@ export default Mixin.create({
       columnCaption: 'components.fd-attribute-table.store-instances.data',
       columnProperty: 'data',
       attrPlaceholder: 'components.fd-attribute-table.store-instances.data-placeholder',
-      columnClass: 'three'
     },
     {
       columnCaption: 'components.fd-attribute-table.store-instances.ds',
       columnProperty: 'dataService',
       attrPlaceholder: 'components.fd-attribute-table.store-instances.ds-placeholder',
-      columnClass: 'four'
     },
   ],
 

@@ -320,7 +320,7 @@ export default FdBaseSheet.extend({
       let selectedValue = this.get('selectedValue.data');
       let modelHash = this.getModelArrayByStereotype(selectedValue);
 
-      let deleteObject;
+      let deleteObjectClass;
       let deleteModels = A();
       let stereotype = selectedValue.get('stereotype');
       if (stereotype === '«businessserver»') {
@@ -334,19 +334,16 @@ export default FdBaseSheet.extend({
       }
 
       if (stereotype === '«implementation»' || isBlank(stereotype)) {
-        let deleteObjectClass = modelHash.findBy('settings.data.id', selectedValue.id);
+        deleteObjectClass = modelHash.findBy('settings.data.id', selectedValue.id);
         deleteModels.pushObjects(deleteObjectClass.listForms);
         deleteModels.pushObjects(deleteObjectClass.editForms);
-        deleteObject = deleteObjectClass.settings;
-        modelHash.removeObject(deleteObjectClass);
+        deleteModels.pushObject(deleteObjectClass.settings);
       } else {
-        deleteObject = modelHash.findBy('data.id', selectedValue.id);
-        modelHash.removeObject(deleteObject);
+        deleteObjectClass = modelHash.findBy('data.id', selectedValue.id);
+        deleteModels.pushObject(deleteObjectClass);
       }
 
       this.get('appState').loading();
-
-      deleteModels.pushObject(deleteObject);
       let modelsForBatchUpdate = deleteModels.map((a) => {
         let data = a.data;
         data.deleteRecord();
@@ -359,6 +356,7 @@ export default FdBaseSheet.extend({
 
       store.batchUpdate(modelsForBatchUpdate)
       .then(() => {
+        modelHash.removeObject(deleteObjectClass);
         this.get('updateModel')();
         this.set('selectedValue', undefined);
         this.get('fdSheetService').closeSheet(this.get('sheetComponentName'));
