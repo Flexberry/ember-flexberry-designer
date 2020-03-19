@@ -4,7 +4,6 @@ All notable changes to this project will be documented in this file.
 ## [Unreleased]
 ### Added
 * Add stage export.
-### Added
 * Add panel of class dependencies diagrams on class sheet.
 
 ### Fixed
