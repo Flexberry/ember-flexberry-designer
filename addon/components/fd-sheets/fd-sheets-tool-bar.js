@@ -253,6 +253,10 @@ export default Component.extend(FdReadonlyProjectMixin, {
       let origin = this.get('router.location.location.origin');
       let pathname = this.get('router.location.location.pathname');
       let hash = this.get('router.location.location.hash');
+
+      let queryParamBegin = hash.indexOf('?');
+      let hashWithoutQueryParams = (queryParamBegin > 0) ? hash.substring(0, queryParamBegin): hash;
+
       let stage = `?gotostage=${this.get('currentProjectContext').getCurrentStage()}`;
       let object = '';
 
@@ -260,7 +264,7 @@ export default Component.extend(FdReadonlyProjectMixin, {
       if (!isNone(contentSheetValue)) {
         let gototype = contentSheetValue.get('constructor.modelName');
         if (gototype === 'fd-dev-class' || gototype === 'fd-dev-view') {
-          hash = '#/fd-application-model';
+          hashWithoutQueryParams = '#/fd-application-model';
         }
 
         object = `&gototype=${gototype}&gotoobj=${contentSheetValue.get('id')}`;
@@ -270,7 +274,7 @@ export default Component.extend(FdReadonlyProjectMixin, {
       var el = document.createElement('textarea');
 
       // Set value (string to be copied), set non-editable to avoid focus and move outside of view
-      el.value =  `${origin}${pathname}${hash}${stage}${object}`;
+      el.value =  `${origin}${pathname}${hashWithoutQueryParams}${stage}${object}`;
       el.style = { display: 'none' };
       document.body.appendChild(el);
 
