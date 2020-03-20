@@ -132,7 +132,9 @@ export default Mixin.create({
       this.get('fdSheetService').openSheet(sheetComponentName, sheetItem);
 
       if ($('.ui.sidebar.main.menu').hasClass('visible')) {
-        getOwner(controller).lookup('controller:application').send('toggleSidebar');
+        later(this, function() {
+          getOwner(controller).lookup('controller:application').send('toggleSidebar');
+        }, 500);
       }
 
       later(this, function() {
