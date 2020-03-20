@@ -46,6 +46,7 @@ export default {
     'backend-pri-key': 'Private SSH key for the repository with the server part',
     'pri-key-placeholder': 'Enter the private SSH key',
     'frontend-publish': 'Publish an application to gh-pages',
+    'git-disconnect-button-caption': 'Disconnect Github',
   },
   'access-settings-caption': 'Members',
   'access-settings': {

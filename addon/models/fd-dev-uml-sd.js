@@ -1,5 +1,6 @@
 import { computed } from '@ember/object';
 import { A } from '@ember/array';
+import { isNone } from '@ember/utils';
 import {
   Model as DevUMLSDMixin,
   defineBaseModel
@@ -30,56 +31,58 @@ let Model = SDModel.extend(DevUMLSDMixin, {
 
     for (let i = 0; i < primitives.length; i++) {
       let primitive = primitives[i];
-      switch (primitive.$type) {
-        case 'STORMCASE.UML.Common.Note, UMLCommon':
-          result.pushObject(FdUmlNote.create({ primitive }));
-          break;
-
-        case 'STORMCASE.UML.Common.NoteConnector, UMLCommon':
-          result.pushObject(FdUmlNoteConnector.create({ primitive }));
-          break;
-
-        case 'STORMCASE.UML.sd.Actor, UMLSD':
-          result.pushObject(FdUmlSequenceActor.create({ primitive }));
-          break;
-
-        case 'STORMCASE.UML.sd.InactiveObject, UMLSD':
-          result.pushObject(FdUmlSequenceObject.create({ primitive }));
-          break;
-
-        case 'STORMCASE.UML.sd.ActiveObject, UMLSD':
-          result.pushObject(FdUmlSequenceActiveObject.create({ primitive }));
-          break;
-
-        case 'STORMCASE.UML.sd.Terminator, UMLSD':
-          result.pushObject(FdUmlTerminator.create({ primitive }));
-          break;
-
-        case 'STORMCASE.UML.sd.ProcedureCall, UMLSD':
-          result.pushObject(FdUmlProcedureCall.create({ primitive }));
-          break;
-
-        case 'STORMCASE.UML.sd.FlatMessage, UMLSD':
-          result.pushObject(FdUmlFlatMsg.create({ primitive }));
-          break;
-
-        case 'STORMCASE.UML.sd.AsyncMessage, UMLSD':
-          result.pushObject(FdUmlAsyncMsg.create({ primitive }));
-          break;
-
-        case 'STORMCASE.UML.sd.ReturnMessage, UMLSD':
-          result.pushObject(FdUmlReturnMsg.create({ primitive }));
-          break;
-
-        default:
-
-          //throw new Error(`Unknown primitive type: '${primitive.$type}'.`);
-          break;
+      let umlObject = this.createUmlObject(primitive);
+      if (!isNone(umlObject)) {
+        result.pushObject(umlObject);
       }
     }
 
     return result;
   }),
+
+  /**
+    Create uml object by primitive.
+
+    @method createUmlObject
+    @param {Object} primitive primitive uml.
+  */
+  createUmlObject(primitive) {
+    switch (primitive.$type) {
+      case 'STORMCASE.UML.Common.Note, UMLCommon':
+        return FdUmlNote.create({ primitive });
+
+      case 'STORMCASE.UML.Common.NoteConnector, UMLCommon':
+        return FdUmlNoteConnector.create({ primitive });
+
+      case 'STORMCASE.UML.sd.Actor, UMLSD':
+        return FdUmlSequenceActor.create({ primitive });
+
+      case 'STORMCASE.UML.sd.InactiveObject, UMLSD':
+        return FdUmlSequenceObject.create({ primitive });
+
+      case 'STORMCASE.UML.sd.ActiveObject, UMLSD':
+        return FdUmlSequenceActiveObject.create({ primitive });
+
+      case 'STORMCASE.UML.sd.Terminator, UMLSD':
+        return FdUmlTerminator.create({ primitive });
+
+      case 'STORMCASE.UML.sd.ProcedureCall, UMLSD':
+        return FdUmlProcedureCall.create({ primitive });
+
+      case 'STORMCASE.UML.sd.FlatMessage, UMLSD':
+        return FdUmlFlatMsg.create({ primitive });
+
+      case 'STORMCASE.UML.sd.AsyncMessage, UMLSD':
+        return FdUmlAsyncMsg.create({ primitive });
+
+      case 'STORMCASE.UML.sd.ReturnMessage, UMLSD':
+        return FdUmlReturnMsg.create({ primitive });
+
+      default:
+        //throw new Error(`Unknown primitive type: '${primitive.$type}'.`);
+        return;
+    }
+  }
 });
 defineBaseModel(Model);
 

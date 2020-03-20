@@ -16,5 +16,19 @@ export default Service.extend(Evented, {
     }
 
     this.trigger('updateJointObjectViewTriggered', id);
+  },
+
+  /**
+    Trigger keypress logic.
+
+     @method triggerKeypressLogic
+     @param {String} eventName name event.
+  */
+  triggerKeypressLogic(eventName) {
+    if (isNone(eventName)) {
+      return;
+    }
+
+    this.trigger('keypressLogicTriggered', eventName);
   }
 });

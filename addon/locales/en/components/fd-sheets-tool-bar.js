@@ -11,5 +11,9 @@ export default {
   'print-button-title': 'Print',
   'share-button-data-content': 'Copied!',
   'link-caption': 'Link properties',
-  'object-locked': 'Locked by '
+  'object-locked': 'Locked by ',
+  'undo-button-title': 'Undo',
+  'redo-button-title': 'Redo',
+  'cut-button-title': 'Cut selected elements',
+  'copy-button-title': 'Copy selected elements'
 };

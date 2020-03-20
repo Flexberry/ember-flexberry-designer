@@ -39,7 +39,7 @@
       {{/each}}
       {{#if editButtonInRow}}
         <div class="fd-edit-button-in-row display-flex">
-          <button class="ui basic button icon circular" {{action 'editButtonInRowAction' value}}>
+          <button class="ui basic button icon circular {{if readonlyButton 'disabled' ''}}" {{action 'editButtonInRowAction' value}}>
             <i class="icon edit"></i>
           </button>
         </div>

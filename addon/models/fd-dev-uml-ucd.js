@@ -1,6 +1,6 @@
 import { computed } from '@ember/object';
 import { A } from '@ember/array';
-
+import { isNone } from '@ember/utils';
 import {
   Model as DevUMLUCDMixin,
   defineBaseModel
@@ -31,39 +31,43 @@ let Model = UCDModel.extend(DevUMLUCDMixin, {
 
     for (let i = 0; i < primitives.length; i++) {
       let primitive = primitives[i];
-      switch (primitive.$type) {
-        case 'STORMCASE.UML.Common.Note, UMLCommon':
-          result.pushObject(FdUmlNote.create({ primitive }));
-          break;
-        case 'STORMCASE.UML.Common.NoteConnector, UMLCommon':
-          result.pushObject(FdUmlNoteConnector.create({ primitive }));
-          break;
-        case 'STORMCASE.UML.ucd.Actor, UMLUCD':
-          result.pushObject(FdUmlUsecaseActor.create({ primitive }));
-          break;
-        case 'STORMCASE.UML.ucd.UseCase, UMLUCD':
-          result.pushObject(FdUmlUseCase.create({ primitive }));
-          break;
-        case 'STORMCASE.UML.ucd.UndirectedAssoc, UMLUCD':
-          result.pushObject(FdUmlUnDirectedAssociation.create({ primitive }));
-          break;
-        case 'STORMCASE.UML.ucd.DirectedAssoc, UMLUCD':
-          result.pushObject(FdUmlDirectedAssociation.create({ primitive }));
-          break;
-        case 'STORMCASE.UML.ucd.Dependency, UMLUCD':
-          result.pushObject(FdUmlDependency.create({ primitive }));
-          break;
-        case 'STORMCASE.UML.ucd.Generalization, UMLUCD':
-          result.pushObject(FdUmlUsecaseGeneralization.create({ primitive }));
-          break;
-        case 'STORMCASE.UML.ucd.Boundary, UMLUCD':
-          result.pushObject(FdUmlPartition.create({ primitive }));
-          break;
+      let umlObject = this.createUmlObject(primitive);
+      if (!isNone(umlObject)) {
+        result.pushObject(umlObject);
       }
     }
 
     return result;
   }),
+
+  /**
+    Create uml object by primitive.
+
+    @method createUmlObject
+    @param {Object} primitive primitive uml.
+  */
+  createUmlObject(primitive) {
+    switch (primitive.$type) {
+      case 'STORMCASE.UML.Common.Note, UMLCommon':
+        return FdUmlNote.create({ primitive });
+      case 'STORMCASE.UML.Common.NoteConnector, UMLCommon':
+        return FdUmlNoteConnector.create({ primitive });
+      case 'STORMCASE.UML.ucd.Actor, UMLUCD':
+        return FdUmlUsecaseActor.create({ primitive });
+      case 'STORMCASE.UML.ucd.UseCase, UMLUCD':
+        return FdUmlUseCase.create({ primitive });
+      case 'STORMCASE.UML.ucd.UndirectedAssoc, UMLUCD':
+        return FdUmlUnDirectedAssociation.create({ primitive });
+      case 'STORMCASE.UML.ucd.DirectedAssoc, UMLUCD':
+        return FdUmlDirectedAssociation.create({ primitive });
+      case 'STORMCASE.UML.ucd.Dependency, UMLUCD':
+        return FdUmlDependency.create({ primitive });
+      case 'STORMCASE.UML.ucd.Generalization, UMLUCD':
+        return FdUmlUsecaseGeneralization.create({ primitive });
+      case 'STORMCASE.UML.ucd.Boundary, UMLUCD':
+        return FdUmlPartition.create({ primitive });
+    }
+  }
 });
 defineBaseModel(Model);
 export default Model;

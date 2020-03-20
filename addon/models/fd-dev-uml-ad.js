@@ -1,5 +1,6 @@
 import { computed } from '@ember/object';
 import { A } from '@ember/array';
+import { isNone } from '@ember/utils';
 import {
   Model as DevUMLADMixin,
   defineBaseModel
@@ -35,87 +36,82 @@ let Model = ADModel.extend(DevUMLADMixin, {
 
     for (let i = 0; i < primitives.length; i++) {
       let primitive = primitives[i];
-      switch (primitive.$type) {
-        case 'STORMCASE.UML.ad.Decision, UMLAD':
-          result.pushObject(FdUmlDecision.create({ primitive }));
-          break;
-
-        case 'STORMCASE.UML.ad.State, UMLAD':
-          result.pushObject(FdUmlActiveState.create({ primitive }));
-          break;
-
-        case 'STORMCASE.UML.ad.StartState, UMLAD':
-          result.pushObject(FdUmlStartState.create({ primitive }));
-          break;
-
-        case 'STORMCASE.UML.ad.FinalState, UMLAD':
-          result.pushObject(FdUmlFinalState.create({ primitive }));
-          break;
-
-        case 'STORMCASE.UML.ad.ComplexTransitionH, UMLAD':
-          result.pushObject(FdUmlComplexTransition.create({ primitive }));
-          break;
-
-        case 'STORMCASE.UML.ad.ComplexTransitionV, UMLAD':
-          result.pushObject(FdUmlComplexTransition.create({ primitive }));
-          break;
-
-        case 'STORMCASE.UML.ad.ObjectInState, UMLAD':
-          result.pushObject(FdUmlObjectInState.create({ primitive }));
-          break;
-
-        case 'STORMCASE.UML.ad.SignalReceiptLeft, UMLAD':
-          result.pushObject(FdUmlSignalReceipt.create({ primitive }));
-          break;
-
-        case 'STORMCASE.UML.ad.SignalReceiptRight, UMLAD':
-          result.pushObject(FdUmlSignalReceipt.create({ primitive }));
-          break;
-
-        case 'STORMCASE.UML.ad.SignalSendLeft, UMLAD':
-          result.pushObject(FdUmlSignalSend.create({ primitive }));
-          break;
-
-        case 'STORMCASE.UML.ad.SignalSendRight, UMLAD':
-          result.pushObject(FdUmlSignalSend.create({ primitive }));
-          break;
-
-        case 'STORMCASE.UML.ad.Transition, UMLAD':
-          result.pushObject(FdUmlTransition.create({ primitive }));
-          break;
-
-        case 'STORMCASE.UML.ad.ObjectFlow, UMLAD':
-          result.pushObject(FdUmlObjectFlow.create({ primitive }));
-          break;
-
-        case 'STORMCASE.UML.ad.Partition, UMLAD':
-          result.pushObject(FdUmlPartition.create({ primitive }));
-          break;
-
-        case 'STORMCASE.UML.Common.NoteConnector, UMLCommon':
-          result.pushObject(FdUmlNoteConnector.create({ primitive }));
-          break;
-
-        case 'STORMCASE.UML.Common.Note, UMLCommon':
-          result.pushObject(FdUmlNote.create({ primitive }));
-          break;
-
-        case 'STORMCASE.UML.ad.ConcurrentStateH, UMLAD':
-          result.pushObject(FdUmlSwimlineSeparator.create({ primitive }));
-          break;
-
-        case 'STORMCASE.UML.ad.ConcurrentStateV, UMLAD':
-          result.pushObject(FdUmlSwimlineSeparator.create({ primitive }));
-          break;
-
-        default:
-          /* TODO: throw */ new Error(`Unknown primitive type: '${primitive.$type}'.`);
-          break;
+      let umlObject = this.createUmlObject(primitive);
+      if (!isNone(umlObject)) {
+        result.pushObject(umlObject);
       }
     }
 
     return result;
-  })
+  }),
+
+  /**
+    Create uml object by primitive.
+
+    @method createUmlObject
+    @param {Object} primitive primitive uml.
+  */
+  createUmlObject(primitive) {
+    switch (primitive.$type) {
+      case 'STORMCASE.UML.ad.Decision, UMLAD':
+        return FdUmlDecision.create({ primitive });
+
+      case 'STORMCASE.UML.ad.State, UMLAD':
+        return FdUmlActiveState.create({ primitive });
+
+      case 'STORMCASE.UML.ad.StartState, UMLAD':
+        return FdUmlStartState.create({ primitive });
+
+      case 'STORMCASE.UML.ad.FinalState, UMLAD':
+        return FdUmlFinalState.create({ primitive });
+
+      case 'STORMCASE.UML.ad.ComplexTransitionH, UMLAD':
+        return FdUmlComplexTransition.create({ primitive });
+
+      case 'STORMCASE.UML.ad.ComplexTransitionV, UMLAD':
+        return FdUmlComplexTransition.create({ primitive });
+
+      case 'STORMCASE.UML.ad.ObjectInState, UMLAD':
+        return FdUmlObjectInState.create({ primitive });
+
+      case 'STORMCASE.UML.ad.SignalReceiptLeft, UMLAD':
+        return FdUmlSignalReceipt.create({ primitive });
+
+      case 'STORMCASE.UML.ad.SignalReceiptRight, UMLAD':
+        return FdUmlSignalReceipt.create({ primitive });
+
+      case 'STORMCASE.UML.ad.SignalSendLeft, UMLAD':
+        return FdUmlSignalSend.create({ primitive });
+
+      case 'STORMCASE.UML.ad.SignalSendRight, UMLAD':
+        return FdUmlSignalSend.create({ primitive });
+
+      case 'STORMCASE.UML.ad.Transition, UMLAD':
+        return FdUmlTransition.create({ primitive });
+
+      case 'STORMCASE.UML.ad.ObjectFlow, UMLAD':
+        return FdUmlObjectFlow.create({ primitive });
+
+      case 'STORMCASE.UML.ad.Partition, UMLAD':
+        return FdUmlPartition.create({ primitive });
+
+      case 'STORMCASE.UML.Common.NoteConnector, UMLCommon':
+        return FdUmlNoteConnector.create({ primitive });
+
+      case 'STORMCASE.UML.Common.Note, UMLCommon':
+        return FdUmlNote.create({ primitive });
+
+      case 'STORMCASE.UML.ad.ConcurrentStateH, UMLAD':
+        return FdUmlSwimlineSeparator.create({ primitive });
+
+      case 'STORMCASE.UML.ad.ConcurrentStateV, UMLAD':
+        return FdUmlSwimlineSeparator.create({ primitive });
+
+      default:
+        /* TODO: throw */ new Error(`Unknown primitive type: '${primitive.$type}'.`);
+        return;
+    }
+  }
 
 });
 

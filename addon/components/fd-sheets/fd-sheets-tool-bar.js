@@ -55,6 +55,15 @@ export default Component.extend(FdReadonlyProjectMixin, {
   fdDialogService: service(),
 
   /**
+   Service for managing objects diagram.
+
+   @property fdDiagramService
+   @type {Class}
+   @default Ember.inject.service()
+   */
+  fdDiagramService: service('fd-diagram-service'),
+
+  /**
     Router service of current application.
     @property router
     @type RouterService
@@ -343,6 +352,16 @@ export default Component.extend(FdReadonlyProjectMixin, {
           }
         });
       }
+    },
+
+    /**
+      Trigger keypress logic.
+
+      @method actions.duplicatedHotkeys
+      @param {String} eventName event name.
+    */
+    duplicatedHotkeys(eventName) {
+      this.get('fdDiagramService').triggerKeypressLogic(eventName);
     },
 
     /**
