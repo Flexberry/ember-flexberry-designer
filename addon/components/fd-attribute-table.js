@@ -85,6 +85,15 @@ export default Component.extend({
   tableTextBoxReadonly: false,
 
   /**
+    Flag: indicates whether show checkbox in row.
+
+    @property checkboxInRow
+    @type Boolean
+    @default true
+   */
+  checkboxInRow: true,
+
+  /**
     Flag: indicates whether show edit button in row.
 
     @property editButtonInRow

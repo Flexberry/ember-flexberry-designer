@@ -30,6 +30,15 @@ export default Mixin.create({
   fdSheetService: service(),
 
   /**
+   Service for managing objects diagram.
+
+   @property fdDiagramService
+   @type {Class}
+   @default Ember.inject.service()
+   */
+  fdDiagramService: service('fd-diagram-service'),
+
+  /**
     Subscription on mouseover and keydown.
 
     @method subscriptionToKeyPress
@@ -630,5 +639,46 @@ export default Mixin.create({
     });
 
     return model;
+  },
+
+  /**
+    Trigger keypress logic.
+
+    @method _triggerKeypressLogic
+    @param {String} eventName event name
+   */
+  _triggerKeypressLogic(eventName) {
+    switch (eventName) {
+      case 'copy':
+        this.copyHighlightElements(false);
+        break;
+      case 'cut':
+        this.copyHighlightElements(true);
+        break;
+      case 'undo':
+
+        break;
+      case 'redo':
+
+        break;
+    }
+  },
+
+  /**
+    Initialization hook.
+  */
+  init() {
+    this._super(...arguments);
+
+    this.get('fdDiagramService').on('keypressLogicTriggered', this, this._triggerKeypressLogic);
+  },
+
+  /**
+    Destroys helper.
+  */
+  willDestroy() {
+    this._super(...arguments);
+
+    this.get('fdDiagramService').off('keypressLogicTriggered', this, this._triggerKeypressLogic);
   }
 });
