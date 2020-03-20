@@ -141,6 +141,13 @@ export default Component.extend(FdReadonlyProjectMixin, {
   */
   isNewModel: false,
 
+  /**	
+    Current sheet content value.	
+    @property contentSheetValue	
+    @type Object	
+  */	
+  contentSheetValue: undefined,
+
   /**
     Table headers for dependencies popup.
 
