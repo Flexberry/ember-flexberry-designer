@@ -55,6 +55,24 @@
         <i class="{{if copied 'check' 'share alternate'}} icon"></i>
       </button>
     {{/if}}
+    {{#if (and (not isNewModel) buttonVisible.dependencies)}}
+      <button class="ui icon button dependencies" {{action 'showDependencies'}} title={{t "components.fd-sheets-tool-bar.dependencies-button-title"}}>
+        <i class="icon icon-fd-diagram"></i>
+      </button>
+      <div class="ui popup top left transition hidden" data-variation="wide">
+        <div class="ui stackable grid fd-list">
+          {{fd-attribute-table
+            tableView=tableViewDiagrams 
+            model=classDiagrams
+            edit=(action 'openDependentDiagram')
+            toolbarVisible=false
+            editButtonInRow=true
+            checkboxInRow=false
+            readonly=true
+          }}
+        </div>
+      </div>
+    {{/if}}
   {{/if}}
   <button class="ui icon button fd-expand" {{action 'expand'}} title={{t "components.fd-sheets-tool-bar.expand-button-title"}}>
     <i class="icon-fd-resize icon" ></i>

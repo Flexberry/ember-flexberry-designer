@@ -9,12 +9,14 @@
 {{#each model as |value|}}
   {{#if (not value.isDeleted)}}
     <div class="row">
-      <div class="column fd-table-checkbox">
-        {{flexberry-checkbox
-          onChange=(action 'selectValue' value)
-          readonly=readonly
-        }}
-      </div>
+      {{#if checkboxInRow}}
+        <div class="column fd-table-checkbox">
+          {{flexberry-checkbox
+            onChange=(action 'selectValue' value)
+            readonly=readonly
+          }}
+        </div>
+      {{/if}}
       {{#each tableView as |tableView|}}
         <div class="column light-text">
           {{#if tableView.isDropDown}}

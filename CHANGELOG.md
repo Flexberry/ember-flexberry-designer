@@ -4,6 +4,7 @@ All notable changes to this project will be documented in this file.
 ## [Unreleased]
 ### Added
 * Add stage export.
+* Add panel of class dependencies diagrams on class sheet.
 
 ### Fixed
 * Unlock empty object. When object creating.

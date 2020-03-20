@@ -9,10 +9,9 @@
       isNewModel=selectedValue.data.isNew
       sheetButtons=(array 'delete' 'save' 'print' 'share' 'steps' 'copy')
       toolbarVisible=(not isAddMode)
-      shareSheetValue=selectedValue.data
       saveSheet=(action 'save')
       deleteSheet=(action 'delete')
-      editedObject=selectedValue.data
+      contentSheetValue=selectedValue.data
     }}
     {{flexberry-textbox
       value=computedTitle
