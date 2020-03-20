@@ -656,10 +656,10 @@ export default Mixin.create({
         this.copyHighlightElements(true);
         break;
       case 'undo':
-
+        this.undoChanges();
         break;
       case 'redo':
-
+        this.redoChanges();
         break;
     }
   },
