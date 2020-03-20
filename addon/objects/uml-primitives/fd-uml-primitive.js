@@ -422,6 +422,8 @@ joint.shapes.flexberry.uml.PrimitiveElementView = joint.dia.ElementView.extend({
 
   removeElement(e) {
     e.stopPropagation();
+    const elementJson = JSON.stringify(this.model.get('objectModel'));
+    this.triggerHistoryStep('Delete', null, elementJson);
     this.model.remove();
   },
 
@@ -508,5 +510,60 @@ joint.shapes.flexberry.uml.PrimitiveElementView = joint.dia.ElementView.extend({
         $(input).find('input, textarea').css('color', textColor);
       });
     }
+  },
+
+  /**
+    Create size change.
+
+    @method getOldSizeHistoryChange
+    @returns Object with size change.
+  */
+  getOldSizeHistoryChange() {
+    const oldInputSize = this.model.get('oldInputSize');
+    if (!isNone(oldInputSize)) {
+      this.model.set('oldInputSize', undefined);
+      return { field: 'size', oldValue: oldInputSize, newValue: this.model.get('size') };
+    }
+
+    return undefined;
+  },
+
+  /**
+    Sets old element size.
+
+    @method setOldSize
+  */
+  setOldSize() {
+    if (!this.model.get('oldInputSize')) {
+      this.model.set('oldInputSize', this.model.get('size'));
+    }
+  },
+
+  /**
+    Create new history step.
+
+    @method triggerHistoryStep
+    @param propName Property name.
+    @param newValue New value.
+    @param oldValue Old value.
+  */
+  triggerHistoryStep(propName, newValue, oldValue) {
+    let changes = A();
+    const sizeStep = this.getOldSizeHistoryChange();
+    if (!isNone(sizeStep)) {
+      changes.addObject(sizeStep);
+    }
+
+    if (propName === 'Delete') {
+      const connectedLinks = this.model.graph.getConnectedLinks(this.model);
+      connectedLinks.forEach(linkModel => {
+        const linkJson = JSON.stringify(linkModel.get('objectModel'));
+        changes.addObject({ field: 'DeleteCascade', oldValue: linkJson, newValue: null });
+      }, this);
+    }
+
+    const objectModel = this.model.get('objectModel');
+    changes.addObject({ field: propName, oldValue: oldValue || objectModel.get(propName), newValue: newValue });
+    this.model.graph.trigger('history:add', this.model.get('id'), changes);
   }
 });

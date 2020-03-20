@@ -73,7 +73,7 @@ module.exports = function (environment) {
 
       // Custom property with offline mode settings.
       offline: {
-        dbName: 'ember-app',
+        dbName: 'flexberry-designer',
 
         // Flag that indicates whether offline mode in application is enabled or not.
         offlineEnabled: true,

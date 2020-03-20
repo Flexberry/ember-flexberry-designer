@@ -118,9 +118,9 @@ export let SwimlineSeparatorH = BaseObject.define('flexberry.uml.SwimlineSeparat
 
     let positionShiftY = this.get('position').y - parentObject.get('position').y;
     this.set('positionShiftY', positionShiftY);
-    
-    this.set('ghostMoveBorder', this.calculateGhostMoveBorder(parentObject.get('position'), parentObject.get('size').height)); 
-    
+
+    this.set('ghostMoveBorder', this.calculateGhostMoveBorder(parentObject.get('position'), parentObject.get('size').height));
+
     this.on('change:position', function(element, newPosition) {
       positionShiftY = newPosition.y - parentObject.get('position').y;
       this.set('positionShiftY', positionShiftY);
@@ -255,6 +255,7 @@ joint.shapes.flexberry.uml.SwimlineSeparatorHView = joint.shapes.flexberry.uml.B
     });
 
     this.$box.find('.class-name-input').on('input', function(evt) {
+      this.setOldSize();
       let $textarea = $(evt.currentTarget);
       let textareaText = $textarea.val();
       let rows = textareaText.split(/[\n\r|\r|\n]/);
@@ -268,10 +269,9 @@ joint.shapes.flexberry.uml.SwimlineSeparatorHView = joint.shapes.flexberry.uml.B
       let rows = textareaText.split(/[\n\r|\r|\n]/);
       $textarea.prop('rows', rows.length);
       let objectModel = this.model.get('objectModel');
+      this.triggerHistoryStep('name', textareaText);
       objectModel.set('name', textareaText);
     }.bind(this));
-
-    this.updateInputValue();
 
     // Update the box position whenever the underlying model changes.
     this.model.on('change', this.updateBox, this);
@@ -282,8 +282,8 @@ joint.shapes.flexberry.uml.SwimlineSeparatorHView = joint.shapes.flexberry.uml.B
     this.options.model.graph.on('remove', this.checkParentExist, this);
   },
 
-  updateInputValue() {
-    let objectModel = this.model.get('objectModel');
+  setInputValues() {
+    const objectModel = this.model.get('objectModel');
     let classNameInput = this.$box.find('.class-name-input');
 
     classNameInput.prop('rows', objectModel.get('name').split(/[\n\r|\r|\n]/).length || 1);
@@ -318,7 +318,7 @@ joint.shapes.flexberry.uml.SwimlineSeparatorHView = joint.shapes.flexberry.uml.B
     let $buffer = this.$box.find('.input-buffer');
     let $input = this.$box.find('.class-name-input');
     $buffer.css('font-weight', $input.css('font-weight'));
-    $buffer.text($input.val());    
+    $buffer.text($input.val());
     $input.width($buffer.width() + 3);
 
     //shift state text

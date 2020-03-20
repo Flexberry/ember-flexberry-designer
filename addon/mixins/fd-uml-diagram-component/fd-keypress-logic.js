@@ -87,10 +87,12 @@ export default Mixin.create({
 
         // ctrl + z
         case 90:
+          this.undoChanges();
         break;
 
         // ctrl + y
         case 89:
+          this.redoChanges();
         break;
 
         // ctrl + s
@@ -102,6 +104,8 @@ export default Mixin.create({
       if (preventDefault) {
         e.preventDefault();
       }
+
+      this.get('paper').$el.focus();
 
     } else if (e.keyCode === 46 && !$(e.target).is('textarea,input')) {
       e.stopPropagation();
@@ -302,7 +306,7 @@ export default Mixin.create({
 
     // Add primitives on diagram.
     let dictionaryPrimitivesId = A();
-    this.get('graph').addCells(primitives.map((primitive) => {
+    let newPrimitives = primitives.map((primitive) => {
       let umlObject = model.createUmlObject(primitive);
       let oldId = umlObject.get('id');
       let newId = this._createNewPrimitiveId(oldId, dictionaryPrimitivesId);
@@ -344,6 +348,11 @@ export default Mixin.create({
       let element = umlObject.JointJS();
 
       return element;
+    });
+    this.get('graph').addCells(newPrimitives);
+    const paper = this.get('paper');
+    this.createAddDeleteSteps(newPrimitives.map(cellModel => {
+      return paper.findViewByModel(cellModel);
     }));
 
     // Add link properties.
@@ -478,6 +487,7 @@ export default Mixin.create({
     }
 
     let highlightedElements = this.get('highlightedElements');
+    this.createAddDeleteSteps(highlightedElements, true);
     highlightedElements.forEach((highlightedElement) => {
       highlightedElement.model.remove();
     });

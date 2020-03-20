@@ -167,7 +167,6 @@ export let BaseClass = joint.shapes.basic.Generic.define('flexberry.uml.BaseClas
       if (objectModel) {
         objectModel.set('height', newSize.height);
         objectModel.set('width', newSize.width);
-        this.trigger('uml-update');
       }
     }, this);
 
@@ -176,7 +175,6 @@ export let BaseClass = joint.shapes.basic.Generic.define('flexberry.uml.BaseClas
       if (objectModel) {
         objectModel.set('x', newPosition.x);
         objectModel.set('y', newPosition.y);
-        this.trigger('uml-update');
       }
     }, this);
 
@@ -239,6 +237,7 @@ joint.shapes.flexberry.uml.ClassView = joint.shapes.flexberry.uml.PrimitiveEleme
     });
 
     this.$box.find('.attributes-input').on('input', function(evt) {
+      this.setOldSize();
       let $textarea = $(evt.currentTarget);
       let textareaText = $textarea.val();
       let rows = textareaText.split(/[\n\r|\r|\n]/);
@@ -247,6 +246,7 @@ joint.shapes.flexberry.uml.ClassView = joint.shapes.flexberry.uml.PrimitiveEleme
     }.bind(this));
 
     this.$box.find('.methods-input').on('input', function(evt) {
+      this.setOldSize();
       let $textarea = $(evt.currentTarget);
       let textareaText = $textarea.val();
       let rows = textareaText.split(/[\n\r|\r|\n]/);
@@ -255,6 +255,7 @@ joint.shapes.flexberry.uml.ClassView = joint.shapes.flexberry.uml.PrimitiveEleme
     }.bind(this));
 
     this.$box.find('.class-name-input').on('input', function(evt) {
+      this.setOldSize();
       let $textarea = $(evt.currentTarget);
       let textareaText = $textarea.val();
       let rows = textareaText.split(/[\n\r|\r|\n]/);
@@ -276,6 +277,7 @@ joint.shapes.flexberry.uml.ClassView = joint.shapes.flexberry.uml.PrimitiveEleme
       let rows = textareaText.split(/[\n\r|\r|\n]/);
       $textarea.prop('rows', rows.length);
       let objectModel = this.model.get('objectModel');
+      this.triggerHistoryStep('attributes', rows);
       objectModel.set('attributes', rows);
       this.paper.trigger('updaterepobj', objectModel, 'attributesStr', textareaText);
     }.bind(this));
@@ -286,6 +288,7 @@ joint.shapes.flexberry.uml.ClassView = joint.shapes.flexberry.uml.PrimitiveEleme
       let rows = textareaText.split(/[\n\r|\r|\n]/);
       $textarea.prop('rows', rows.length);
       let objectModel = this.model.get('objectModel');
+      this.triggerHistoryStep('methods', rows);
       objectModel.set('methods', rows);
       this.paper.trigger('updaterepobj', objectModel, 'methodsStr', textareaText);
     }.bind(this));
@@ -296,12 +299,14 @@ joint.shapes.flexberry.uml.ClassView = joint.shapes.flexberry.uml.PrimitiveEleme
       let rows = textareaText.split(/[\n\r|\r|\n]/);
       $textarea.prop('rows', rows.length);
       let objectModel = this.model.get('objectModel');
+      this.triggerHistoryStep('name', textareaText);
       objectModel.set('name', textareaText);
 
       this.paper.trigger('checkexistelements', objectModel, this);
     }.bind(this));
 
     this.$box.find('.class-stereotype-input').on('focus', function(evt) {
+      this.setOldSize();
       let stereotype = this.normalizeStereotype($(evt.target).val());
       this.$box.find('.class-stereotype-input').val(stereotype.slice(1, -1));
       this.updateRectangles();
@@ -324,12 +329,13 @@ joint.shapes.flexberry.uml.ClassView = joint.shapes.flexberry.uml.PrimitiveEleme
       $stereotypeInput.val(stereotype);
       $stereotypeInput.prop('rows', rows.length);
       let objectModel = this.model.get('objectModel');
+      this.triggerHistoryStep('stereotype', stereotype);
       objectModel.set('stereotype', stereotype);
       this.paper.trigger('updaterepobj', objectModel, 'stereotype', stereotype);
       this.updateRectangles();
     }.bind(this));
 
-    this.updateInputValue();
+    this.setInputValues();
 
     // Update the box position whenever the underlying model changes.
     this.model.on('change', this.updateBox, this);
@@ -430,6 +436,11 @@ joint.shapes.flexberry.uml.ClassView = joint.shapes.flexberry.uml.PrimitiveEleme
   },
 
   updateInputValue() {
+    this.setInputValues();
+    this.updateRectangles();
+  },
+
+  setInputValues() {
     let objectModel = this.model.get('objectModel');
     let classNameInput = this.$box.find('.class-name-input');
     let classStereotypeInput = this.$box.find('.class-stereotype-input');
@@ -445,7 +456,6 @@ joint.shapes.flexberry.uml.ClassView = joint.shapes.flexberry.uml.PrimitiveEleme
     attributesInput.val(objectModel.get('attributes').join('\n'));
     methodsInput.prop('rows', objectModel.get('methods').length || 1);
     methodsInput.val(objectModel.get('methods').join('\n'));
-    this.updateRectangles();
   },
 
   getButtons() {
@@ -456,7 +466,7 @@ joint.shapes.flexberry.uml.ClassView = joint.shapes.flexberry.uml.PrimitiveEleme
     buttons.pushObject({
       name: 'collapse-button',
       text: collapsed ? '&#xf065' : '&#xf066',
-      handler: this.collapseElementView.bind(this),
+      handler: this.collapseElementViewHandler.bind(this),
       attrs: {
         'element': {'ref-x': 0,'ref-y': 0, 'ref': '.joint-highlight-stroke' },
         'circle': { r: 6, fill: '#007aff', stroke: '#007aff', 'stroke-width': 1 },
@@ -480,13 +490,20 @@ joint.shapes.flexberry.uml.ClassView = joint.shapes.flexberry.uml.PrimitiveEleme
     return buttons;
   },
 
-  collapseElementView(e) {
+  collapseElementViewHandler(e) {
     e.stopPropagation();
+    this.setOldSize();
+    this.collapseElementView();
+    const objectModel = this.model.get('objectModel');
+    const collapsed = objectModel.get('collapsed');
+    this.triggerHistoryStep('collapsed', !collapsed);
+  },
+
+  collapseElementView() {
     let objectModel = this.model.get('objectModel');
-    let collapsedToggle = !objectModel.get('collapsed');
-    objectModel.set('collapsed', collapsedToggle);
-    this.model.set('minHeight', collapsedToggle ? 34 : 64);
-    this.setColors();
+    let newCollapseValue = !objectModel.get('collapsed');
+    objectModel.set('collapsed', newCollapseValue);
+    this.model.set('minHeight', newCollapseValue ? 34 : 64);
     this.applyDisplayFromCollapseValue();
   },
 
@@ -506,6 +523,10 @@ joint.shapes.flexberry.uml.ClassView = joint.shapes.flexberry.uml.PrimitiveEleme
     let styleVisibilityValue = collapsed ? 'hidden' : 'visible';
     this.$box.find('.attributes-input').css('visibility', styleVisibilityValue);
     this.$box.find('.methods-input').css('visibility', styleVisibilityValue);
+
+    if (!collapsed) {
+      this.setColors();
+    }
 
     const size = collapsed ? this.model.attr('.flexberry-uml-header-rect') : this.model.size();
     this.updateBox();
