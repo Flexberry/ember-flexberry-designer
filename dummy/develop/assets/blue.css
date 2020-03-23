@@ -56201,9 +56201,43 @@ a.ui.nag {
 /*******************************
          Theme Overrides
 *******************************/
-.share.button ~ .ui.popup {
+.share.button + .ui.popup {
   font-size: 0.8rem;
   padding: 0.5em 0.7em;
+}
+.dependencies.button + .ui.popup {
+  max-width: 68%;
+}
+.fd-sheet-toolbar .ui.popup {
+  text-align: left;
+}
+.ui.popup .ui.grid > .row {
+  margin: 0;
+}
+.ui.popup .ui.grid.fd-table {
+  padding: 0;
+}
+.ui.popup .ui.grid.fd-table input {
+  padding-right: 2.5rem;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.ui.popup .ui.grid.fd-table .ui.fluid.input > input {
+  width: 100% !important;
+}
+.ui.popup .ui.grid.fd-table .fd-edit-button-in-row {
+  right: 1em;
+}
+.ui.custom.popup.diagrams-popup input[type="color"] {
+  float: right;
+}
+.ui.custom.popup.diagrams-popup label {
+  font-size: 1rem;
+  font-weight: normal;
+}
+.ui.custom.popup.diagrams-popup .ui.selection.dropdown {
+  padding-left: 0;
 }
 /*!
  * # Semantic UI - Progress Bar
@@ -61264,6 +61298,11 @@ body.pushable > .pusher {
 /*******************************
          Theme Overrides
 *******************************/
+.arrow {
+  content: '';
+  position: absolute;
+  border: 0.4em solid transparent;
+}
 .pushable {
   overflow: hidden;
 }
@@ -61277,8 +61316,8 @@ body.pushable > .pusher {
 .ui.accordion .accordion .title .dropdown.icon:before {
   content: '';
   position: absolute;
-  top: calc(50% - 0.4em);
   border: 0.4em solid transparent;
+  top: calc(50% - 0.4em);
   left: 0;
   border-left: 0.7em solid rgba(0, 110, 255, 0.2);
   top: calc(50% - 0.5em);
@@ -61303,14 +61342,11 @@ body.pushable > .pusher {
   position: absolute;
   top: 1rem;
 }
-.ui.button.toggle-sidebar::before,
-.ui.button.toggle-sidebar-visible::before {
+.ui.button.toggle-sidebar::before {
   content: '';
   position: absolute;
-  top: calc(50% - 0.4em);
   border: 0.4em solid transparent;
-}
-.ui.button.toggle-sidebar::before {
+  top: calc(50% - 0.4em);
   left: 0;
   border-left: 0.7em solid rgba(0, 110, 255, 0.2);
 }
@@ -61324,13 +61360,17 @@ body.pushable > .pusher {
   opacity: 0;
   right: 0;
 }
+.ui.button.toggle-sidebar-visible::before {
+  content: '';
+  position: absolute;
+  border: 0.4em solid transparent;
+  top: calc(50% - 0.4em);
+  right: 0;
+  border-right: 0.7em solid rgba(0, 110, 255, 0.2);
+}
 .ui.button.toggle-sidebar-visible::after {
   border-top-right-radius: 0;
   border-bottom-right-radius: 0;
-}
-.ui.button.toggle-sidebar-visible::before {
-  right: 0;
-  border-right: 0.7em solid rgba(0, 110, 255, 0.2);
 }
 .ui.button.toggle-sidebar::after {
   border-top-left-radius: 0;
@@ -66515,6 +66555,9 @@ div.ui.secondary.menu.no-margin.nav-bar .right.menu {
   height: 5rem;
   line-height: 5rem;
 }
+.fd-sheet .diagram-sheet .fd-sheet-header {
+  padding-bottom: 1rem;
+}
 /* Mobile */
 #mobile .fd-sheet.visible {
   -webkit-transform: translate3d(0, 0, 0) !important;
@@ -66534,6 +66577,11 @@ div.ui.secondary.menu.no-margin.nav-bar .right.menu {
 }
 .fade #mobile .full.height {
   overflow: hidden;
+}
+.arrow {
+  content: '';
+  position: absolute;
+  border: 0.4em solid transparent;
 }
 .joint-paper.joint-theme-default {
   background-color: transparent;
@@ -66822,11 +66870,27 @@ div.ui.secondary.menu.no-margin.nav-bar .right.menu {
   border-radius: 0.5rem;
   border-bottom-right-radius: 0;
   border-bottom-left-radius: 0;
-  padding: 5px 15px;
-  padding-bottom: 0;
   position: absolute;
-  top: -1.3125em;
+  top: -1.2em;
   left: 0.86rem;
+  height: 1.2em;
+  width: 2.3em;
+}
+.ui.button.toggle-diagram-toolbar i.down {
+  content: '';
+  position: absolute;
+  border: 0.4em solid transparent;
+  left: calc(50% - 0.4em);
+  top: 0.4em;
+  border-top: 0.7em solid rgba(0, 110, 255, 0.2);
+}
+.ui.button.toggle-diagram-toolbar i.up {
+  content: '';
+  position: absolute;
+  border: 0.4em solid transparent;
+  left: calc(50% - 0.4em);
+  bottom: 0;
+  border-bottom: 0.7em solid rgba(0, 110, 255, 0.2);
 }
 .content-mini.fade .fd-uml-diagram-toolbar::after,
 .content-mini.fade .toggle-diagram-toolbar::after {
@@ -67392,17 +67456,17 @@ i.icon.exit:before {
 .hidden {
   display: none !important;
 }
+hr {
+  border: none;
+  color: rgba(0, 0, 0, 0.1);
+  background-color: rgba(0, 0, 0, 0.1);
+  height: 1px;
+}
 .flexberry-colsconfig .show-columns {
   width: 60px;
 }
 .flexberry-colsconfig .columns-order {
   width: 100px;
-}
-.ui.form .ui.popup-element {
-  padding-top: 10px;
-}
-.ui.form .ui.popup-element.field .selection.dropdown {
-  width: 100%;
 }
 .ui.button.cols-config-apply {
   color: #FFFFFF;
