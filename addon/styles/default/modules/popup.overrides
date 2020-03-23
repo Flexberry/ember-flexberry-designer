@@ -1,4 +1,51 @@
-.share.button ~ .ui.popup {
+.share.button + .ui.popup {
   font-size: 0.8rem;
   padding: 0.5em 0.7em;
+}
+
+.dependencies.button + .ui.popup{
+  max-width: 68%;
+}
+
+.fd-sheet-toolbar .ui.popup {
+  text-align: left;
+}
+
+.ui.popup {
+  .ui.grid > .row {
+    margin: 0;
+  }
+  .ui.grid.fd-table {
+    padding: 0;
+  }
+
+  .ui.grid.fd-table {
+    input{
+      padding-right: 2.5rem;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+    }
+
+    .ui.fluid.input > input {
+      width: 100% !important;
+    }
+    .fd-edit-button-in-row {
+      right: 1em;
+    }
+  }
+}
+
+// diagrams color-popup
+.ui.custom.popup.diagrams-popup {
+  input[type="color"] {
+    float: right;
+  }
+  label {
+    font-size: 1rem;
+    font-weight: normal;
+  }
+  .ui.selection.dropdown {
+    padding-left: 0;
+  }
 }
