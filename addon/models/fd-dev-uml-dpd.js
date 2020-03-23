@@ -1,5 +1,6 @@
 import { computed } from '@ember/object';
 import { A } from '@ember/array';
+import { isNone } from '@ember/utils';
 import { Model as DevUMLDPDMixin, defineBaseModel  } from
   '../mixins/regenerated/models/fd-dev-uml-dpd';
 import DPDModel from './fd-dpd';
@@ -26,51 +27,56 @@ let Model = DPDModel.extend(DevUMLDPDMixin, {
 
     for (let i = 0; i < primitives.length; i++) {
       let primitive = primitives[i];
-      switch (primitive.$type) {
-        case 'STORMCASE.UML.Common.Note, UMLCommon':
-          result.pushObject(FdUmlNote.create({ primitive }));
-          break;
-
-        case 'STORMCASE.UML.Common.NoteConnector, UMLCommon':
-          result.pushObject(FdUmlNoteConnector.create({ primitive }));
-          break;
-
-        case 'STORMCASE.UML.dpd.Dependency, UMLDPD':
-          result.pushObject(FdUmlDependency.create({ primitive }));
-          break;
-
-        case 'STORMCASE.UML.dpd.Connection, UMLDPD':
-          result.pushObject(FdUmlConnection.create({ primitive }));
-          break;
-
-        case 'STORMCASE.UML.dpd.ActiveDeploymentObject, UMLDPD':
-          result.pushObject(FdUmlDeploymentActiveObject.create({ primitive }));
-          break;
-
-        case 'STORMCASE.UML.dpd.DeploymentObject, UMLDPD':
-          result.pushObject(FdUmlInstance.create({ primitive }));
-          break;
-
-        case 'STORMCASE.UML.dpd.ComponentInstance, UMLDPD':
-        case 'STORMCASE.UML.dpd.Component, UMLDPD':
-          result.pushObject(FdUmlComponent.create({ primitive }));
-          break;
-
-        case 'STORMCASE.UML.dpd.NodeInstance, UMLDPD':
-        case 'STORMCASE.UML.dpd.Node, UMLDPD':
-          result.pushObject(FdUmlNode.create({ primitive }));
-          break;
-
-        case 'STORMCASE.UML.dpd.Interface, UMLDPD': //TODO need fix primitive 'Interface' TFS 169736
-          break;
-
-        default:
-          throw new Error(`Unknown primitive type: '${primitive.$type}'.`);
+      let umlObject = this.createUmlObject(primitive);
+      if (!isNone(umlObject)) {
+        result.pushObject(umlObject);
       }
     }
 
     return result;
   }),
+
+  /**
+    Create uml object by primitive.
+
+    @method createUmlObject
+    @param {Object} primitive primitive uml.
+  */
+  createUmlObject(primitive) {
+    switch (primitive.$type) {
+      case 'STORMCASE.UML.Common.Note, UMLCommon':
+        return FdUmlNote.create({ primitive });
+
+      case 'STORMCASE.UML.Common.NoteConnector, UMLCommon':
+        return FdUmlNoteConnector.create({ primitive });
+
+      case 'STORMCASE.UML.dpd.Dependency, UMLDPD':
+        return FdUmlDependency.create({ primitive });
+
+      case 'STORMCASE.UML.dpd.Connection, UMLDPD':
+        return FdUmlConnection.create({ primitive });
+
+      case 'STORMCASE.UML.dpd.ActiveDeploymentObject, UMLDPD':
+        return FdUmlDeploymentActiveObject.create({ primitive });
+
+      case 'STORMCASE.UML.dpd.DeploymentObject, UMLDPD':
+        return FdUmlInstance.create({ primitive });
+
+      case 'STORMCASE.UML.dpd.ComponentInstance, UMLDPD':
+      case 'STORMCASE.UML.dpd.Component, UMLDPD':
+        return FdUmlComponent.create({ primitive });
+
+      case 'STORMCASE.UML.dpd.NodeInstance, UMLDPD':
+      case 'STORMCASE.UML.dpd.Node, UMLDPD':
+        return FdUmlNode.create({ primitive });
+
+      case 'STORMCASE.UML.dpd.Interface, UMLDPD': //TODO need fix primitive 'Interface' TFS 169736
+        return;
+
+      default:
+        throw new Error(`Unknown primitive type: '${primitive.$type}'.`);
+    }
+  }
 });
 defineBaseModel(Model);
 export default Model;

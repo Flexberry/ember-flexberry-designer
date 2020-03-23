@@ -130,13 +130,16 @@ export default Mixin.create({
       }
 
       this.get('fdSheetService').openSheet(sheetComponentName, sheetItem);
-      this.get('fdSheetService').expand(sheetComponentName);
 
       if ($('.ui.sidebar.main.menu').hasClass('visible')) {
-        later(this.get('fdSheetService'), function() {
+        later(this, function() {
           getOwner(controller).lookup('controller:application').send('toggleSidebar');
         }, 500);
       }
+
+      later(this, function() {
+        this.get('fdSheetService').expand(sheetComponentName);
+      }, 1000);
     });
   },
 

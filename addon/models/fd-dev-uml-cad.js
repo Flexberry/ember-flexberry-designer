@@ -78,112 +78,100 @@ let Model = CADModel.extend(DevUMLCADMixin, {
           primitive.EndLE.refType = 'Element';
         }
       }
-      switch (primitive.$type) {
-        case 'STORMCASE.UML.Common.Note, UMLCommon':
-          result.pushObject(FdUmlNote.create({ primitive }));
-          break;
 
-        case 'STORMCASE.UML.cad.Class, UMLCAD': {
-          let classObject = FdUmlClass.create({ primitive, isCreated: isBlank(primitive.Name.Text) });
-          classObject.set('primitive.$type', 'STORMCASE.STORMNET.Repository.CADClass, STORM.NET Case Tool plugin');
-          result.pushObject(classObject);
-          break;
-        }
-        case 'STORMCASE.STORMNET.Repository.CADClass, STORM.NET Case Tool plugin':
-          result.pushObject(FdUmlClass.create({ primitive, isCreated: isBlank(primitive.Name.Text) }));
-          break;
-
-        case 'STORMCASE.UML.Common.NoteConnector, UMLCommon':
-          result.pushObject(FdUmlNoteConnector.create({ primitive }));
-          break;
-
-        case 'STORMCASE.UML.cad.Association, UMLCAD':
-          result.pushObject(FdUmlAssociation.create({ primitive }));
-          break;
-
-        case 'STORMCASE.UML.cad.ObjectAssociation, UMLCAD':
-          result.pushObject(FdUmlObjectAssociation.create({ primitive }));
-          break;
-
-        case 'STORMCASE.UML.cad.NaryLink, UMLCAD':
-          result.pushObject(FdUmlNAryAssociationConnector.create({ primitive }));
-          break;
-
-        case 'STORMCASE.UML.cad.QualifiedAggregationLink, UMLCAD':
-          result.pushObject(FdUmlQAggregation.create({ primitive }));
-          break;
-
-        case 'STORMCASE.UML.cad.Composition, UMLCAD':
-          result.pushObject(FdUmlComposition.create({ primitive }));
-          break;
-
-        case 'STORMCASE.UML.cad.Inheritance, UMLCAD':
-          result.pushObject(FdUmlGeneralization.create({ primitive }));
-          break;
-
-        case 'STORMCASE.UML.cad.PropertyObject, UMLCAD':
-          result.pushObject(FdUmlPropertyObject.create({ primitive }));
-          break;
-
-        case 'STORMCASE.UML.cad.MultiObject, UMLCAD':
-          result.pushObject(FdUmlMultiObject.create({ primitive }));
-          break;
-
-        case 'STORMCASE.UML.cad.Instance, UMLCAD':
-          result.pushObject(FdUmlInstance.create({ primitive }));
-          break;
-
-        case 'STORMCASE.UML.cad.MoreClasses, UMLCAD':
-          result.pushObject(FdUmlMoreClasses.create({ primitive }));
-          break;
-
-        case 'STORMCASE.UML.cad.NarLink, UMLCAD':
-          result.pushObject(FdUmlNAryAssociation.create({ primitive }));
-          break;
-
-        case 'STORMCASE.UML.cad.ActiveObject, UMLCAD':
-          result.pushObject(FdUmlActiveObject.create({ primitive }));
-          break;
-
-        case 'STORMCASE.UML.cad.TemplateClass, UMLCAD':
-          result.pushObject(FdUmlTemplateClass.create({ primitive }));
-          break;
-
-        case 'STORMCASE.UML.cad.Package, UMLCAD':
-          result.pushObject(FdUmlPackage.create({ primitive }));
-          break;
-
-        case 'STORMCASE.UML.cad.NestedClassAssoc, UMLCAD':
-          result.pushObject(FdUmlNestedAssociation.create({ primitive }));
-          break;
-
-        case 'STORMCASE.UML.cad.Aggregation, UMLCAD':
-          result.pushObject(FdUmlAggregation.create({ primitive }));
-          break;
-
-        case 'STORMCASE.UML.cad.Dependency, UMLCAD':
-          result.pushObject(FdUmlDependency.create({ primitive }));
-          break;
-
-        case 'STORMCASE.UML.cad.QualifiedLink, UMLCAD':
-          result.pushObject(FdUmlQAssociation.create({ primitive }));
-          break;
-
-        case 'STORMCASE.UML.cad.QualifiedCompositionLink, UMLCAD':
-          result.pushObject(FdUmlQComposition.create({ primitive }));
-          break;
-
-        case 'STORMCASE.UML.cad.Realization, UMLCAD':
-          result.pushObject(FdUmlRealization.create({ primitive }));
-          break;
-
-        default:
-          throw new Error(`Unknown primitive type: '${primitive.$type}'.`);
-      }
+      let umlObject = this.createUmlObject(primitive);
+      result.pushObject(umlObject);
     }
 
     return result;
-  })
+  }),
+
+  /**
+    Create uml object by primitive.
+
+    @method createUmlObject
+    @param {Object} primitive primitive uml.
+  */
+  createUmlObject(primitive) {
+    switch (primitive.$type) {
+      case 'STORMCASE.UML.Common.Note, UMLCommon':
+        return FdUmlNote.create({ primitive });
+
+      case 'STORMCASE.UML.cad.Class, UMLCAD': {
+        let classObject = FdUmlClass.create({ primitive, isCreated: isBlank(primitive.Name.Text) });
+        classObject.set('primitive.$type', 'STORMCASE.STORMNET.Repository.CADClass, STORM.NET Case Tool plugin');
+        return classObject;
+      }
+      case 'STORMCASE.STORMNET.Repository.CADClass, STORM.NET Case Tool plugin':
+        return FdUmlClass.create({ primitive, isCreated: isBlank(primitive.Name.Text) });
+
+      case 'STORMCASE.UML.Common.NoteConnector, UMLCommon':
+        return FdUmlNoteConnector.create({ primitive });
+
+      case 'STORMCASE.UML.cad.Association, UMLCAD':
+        return FdUmlAssociation.create({ primitive });
+
+      case 'STORMCASE.UML.cad.ObjectAssociation, UMLCAD':
+        return FdUmlObjectAssociation.create({ primitive });
+
+      case 'STORMCASE.UML.cad.NaryLink, UMLCAD':
+        return FdUmlNAryAssociationConnector.create({ primitive });
+
+      case 'STORMCASE.UML.cad.QualifiedAggregationLink, UMLCAD':
+        return FdUmlQAggregation.create({ primitive });
+
+      case 'STORMCASE.UML.cad.Composition, UMLCAD':
+        return FdUmlComposition.create({ primitive });
+
+      case 'STORMCASE.UML.cad.Inheritance, UMLCAD':
+        return FdUmlGeneralization.create({ primitive });
+
+      case 'STORMCASE.UML.cad.PropertyObject, UMLCAD':
+        return FdUmlPropertyObject.create({ primitive });
+
+      case 'STORMCASE.UML.cad.MultiObject, UMLCAD':
+        return FdUmlMultiObject.create({ primitive });
+
+      case 'STORMCASE.UML.cad.Instance, UMLCAD':
+        return FdUmlInstance.create({ primitive });
+
+      case 'STORMCASE.UML.cad.MoreClasses, UMLCAD':
+        return FdUmlMoreClasses.create({ primitive });
+
+      case 'STORMCASE.UML.cad.NarLink, UMLCAD':
+        return FdUmlNAryAssociation.create({ primitive });
+
+      case 'STORMCASE.UML.cad.ActiveObject, UMLCAD':
+        return FdUmlActiveObject.create({ primitive });
+
+      case 'STORMCASE.UML.cad.TemplateClass, UMLCAD':
+        return FdUmlTemplateClass.create({ primitive });
+
+      case 'STORMCASE.UML.cad.Package, UMLCAD':
+        return FdUmlPackage.create({ primitive });
+
+      case 'STORMCASE.UML.cad.NestedClassAssoc, UMLCAD':
+        return FdUmlNestedAssociation.create({ primitive });
+
+      case 'STORMCASE.UML.cad.Aggregation, UMLCAD':
+        return FdUmlAggregation.create({ primitive });
+
+      case 'STORMCASE.UML.cad.Dependency, UMLCAD':
+        return FdUmlDependency.create({ primitive });
+
+      case 'STORMCASE.UML.cad.QualifiedLink, UMLCAD':
+        return FdUmlQAssociation.create({ primitive });
+
+      case 'STORMCASE.UML.cad.QualifiedCompositionLink, UMLCAD':
+        return FdUmlQComposition.create({ primitive });
+
+      case 'STORMCASE.UML.cad.Realization, UMLCAD':
+        return FdUmlRealization.create({ primitive });
+
+      default:
+        throw new Error(`Unknown primitive type: '${primitive.$type}'.`);
+    }
+  }
 });
 
 defineBaseModel(Model);

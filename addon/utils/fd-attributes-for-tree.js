@@ -32,7 +32,7 @@ let getDataForBuildTree = function(store, id) {
     for (let i = 0; i < inheritanceData.length; i++) {
       let inheritance = inheritanceData[i];
       let parentStereotype = inheritance.get('parent.stereotype');
-      if (isNone(parentStereotype)) {
+      if (isNone(parentStereotype) || parentStereotype === '«implementation»') {
         parentID = inheritance.get('parent.id');
         classData.pushObjects(recordsDevClass.filterBy('id', parentID));
         associationData.pushObjects(recordsAssociation.filterBy('endClass.id', parentID));

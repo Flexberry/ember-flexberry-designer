@@ -5,6 +5,10 @@ All notable changes to this project will be documented in this file.
 ### Added
 * Add stage export.
 * Add stage import.
+* Add panel of class dependencies diagrams on class sheet.
+
+### Fixed
+* Unlock empty object. When object creating.
 
 ## [0.14.0-beta02]
 ### Fixed

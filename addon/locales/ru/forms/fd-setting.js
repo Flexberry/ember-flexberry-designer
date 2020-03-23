@@ -46,6 +46,7 @@ export default {
     'backend-pri-key': 'Закрытый SSH ключ для рапозитория с серверной частью',
     'pri-key-placeholder': 'Введите закрытый SSH ключ',
     'frontend-publish': 'Публикация приложения в gh-pages',
+    'git-disconnect-button-caption': 'Отключить учетную запись от Github',
   },
   'access-settings-caption': 'Участники',
   'access-settings': {
