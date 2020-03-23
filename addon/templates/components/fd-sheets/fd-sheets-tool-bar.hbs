@@ -51,26 +51,24 @@
       </button>
     {{/if}}
     {{#if (and (not isNewModel) buttonVisible.share)}}
-      <button class="ui icon button share" {{action 'share'}} data-content={{t "components.fd-sheets-tool-bar.share-button-data-content"}} title={{t "components.fd-sheets-tool-bar.share-button-title"}}>
+      <button class="ui icon button share" onclick={{action 'share'}} data-content={{t "components.fd-sheets-tool-bar.share-button-data-content"}} title={{t "components.fd-sheets-tool-bar.share-button-title"}}>
         <i class="{{if copied 'check' 'share alternate'}} icon"></i>
       </button>
     {{/if}}
     {{#if (and (not isNewModel) buttonVisible.dependencies)}}
-      <button class="ui icon button dependencies" {{action 'showDependencies'}} title={{t "components.fd-sheets-tool-bar.dependencies-button-title"}}>
+      <button class="ui icon button dependencies" onclick={{action 'showDependencies'}} title={{t "components.fd-sheets-tool-bar.dependencies-button-title"}}>
         <i class="icon icon-fd-diagram"></i>
       </button>
-      <div class="ui popup top left transition hidden" data-variation="wide">
-        <div class="ui stackable grid fd-list">
-          {{fd-attribute-table
-            tableView=tableViewDiagrams 
-            model=classDiagrams
-            edit=(action 'openDependentDiagram')
-            toolbarVisible=false
-            editButtonInRow=true
-            checkboxInRow=false
-            readonly=true
-          }}
-        </div>
+      <div class="ui flowing popup" data-variation="wide">
+        {{fd-attribute-table
+          tableView=tableViewDiagrams 
+          model=classDiagrams
+          edit=(action 'openDependentDiagram')
+          toolbarVisible=false
+          editButtonInRow=true
+          checkboxInRow=false
+          readonly=true
+        }}
       </div>
     {{/if}}
   {{/if}}

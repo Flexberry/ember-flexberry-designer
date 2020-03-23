@@ -265,7 +265,7 @@ export default Component.extend(FdReadonlyProjectMixin, {
 
       @method actions.share
     */
-    share() {
+    share(event) {
       let origin = this.get('router.location.location.origin');
       let pathname = this.get('router.location.location.pathname');
       let hash = this.get('router.location.location.hash');
@@ -299,10 +299,11 @@ export default Component.extend(FdReadonlyProjectMixin, {
       document.execCommand('copy');
       document.body.removeChild(el);
 
-      let sharePopup = this.$('.share.button');
+      let sharePopup = this.$(event.currentTarget);
       sharePopup.popup({
         on: 'manual',
-        inline: true
+        inline: true,
+        position: 'bottom center',
       }).popup('show');
       this.set('copied', true);
       later(this, (function() {
@@ -316,7 +317,7 @@ export default Component.extend(FdReadonlyProjectMixin, {
 
       @method actions.showDependencies
     */
-    showDependencies() {
+    showDependencies(event) {
       const store = this.get('store');
       const stage = this.get('currentProjectContext').getCurrentStageModel();
 
@@ -335,11 +336,11 @@ export default Component.extend(FdReadonlyProjectMixin, {
 
       this.set('classDiagrams', classDiagrams);
 
-      let diagramsPopup = this.$('.ui.popup');
+      let diagramsPopup = this.$(event.currentTarget.nextElementSibling);
       diagramsPopup.popup({
         on: 'click',
         position: 'bottom right',
-        target: '.dependencies.button',
+        target: event.currentTarget,
       }).popup('show');      
     },
 

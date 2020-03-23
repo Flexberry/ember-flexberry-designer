@@ -1,4 +1,5 @@
 @import '../cross-browser-mixins';
+@import 'common/toggle-button';
 
 .joint-paper.joint-theme-default {
   background-color: transparent;
@@ -239,11 +240,17 @@
   border-radius: @itemActiveBorderRadius;
   border-bottom-right-radius: 0;
   border-bottom-left-radius: 0;
-  padding: 5px 15px;
-  padding-bottom: 0;
   position: absolute;
-  top: -1.3125em;
+  top: -@bottonWidthSize;
   left: 0.86rem;
+  height: @bottonWidthSize;
+  width: @bottonHeightSize;
+  i.down {
+    .top-arrow();
+  }
+  i.up {
+    .bottom-arrow();
+  }
 }
 
 .content-mini.fade {

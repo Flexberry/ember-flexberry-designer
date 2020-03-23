@@ -1,21 +1,23 @@
 {{#if isClass}}
-  <div class="field ui popup-element">
+  <div class="field">
     <label>{{t "components.fd-color-setting-panel.stereotype-label"}}</label>
     {{flexberry-dropdown
       items=stereotypeItems
       value=stereotypeValue
+      class="fluid input"
     }}
+    <hr>
   </div>
 {{/if}}
-<div class="ui popup-element">
+<div class="field">
   {{t "components.fd-color-setting-panel.text-color-label"}}
   {{input type="color" value=textValue}}
 </div>
-<div class="ui popup-element">
+<div class="field">
   {{t "components.fd-color-setting-panel.background-color-label"}}
   {{input type="color" value=backgroundValue}}
 </div>
-<div class="ui popup-element">
+<div class="field text-align-center">
   <button class='ui button primary' onclick={{action 'applySettings'}}>
     {{t "components.fd-color-setting-panel.button-caption"}}
   </button>

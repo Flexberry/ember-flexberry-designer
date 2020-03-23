@@ -1,0 +1,44 @@
+@iconHeight:0.4em;
+@iconBorder: 0.7em solid fadein(@sidebarBg, 10%);
+@bottonWidthSize: 1.2em;
+@bottonHeightSize: 2.3em;
+
+.arrow {
+  content: '';
+  position: absolute;
+  border: @iconHeight solid transparent;
+}
+
+.arrow-verticsl-button() {
+  .arrow();
+  top: calc(~'50% - @{iconHeight}');
+}
+
+.arrow-horisontal-button() {
+  .arrow();
+  left: calc(~'50% - @{iconHeight}');
+}
+
+.right-arrow() {
+  .arrow-verticsl-button();
+  right: 0;
+  border-right: @iconBorder; 
+}
+
+.left-arrow() {
+  .arrow-verticsl-button();
+  left: 0;
+  border-left: @iconBorder;
+}
+
+.top-arrow() {
+  .arrow-horisontal-button();
+  top: @iconHeight;
+  border-top: @iconBorder;
+}
+
+.bottom-arrow() {
+  .arrow-horisontal-button();
+  bottom: 0;
+  border-bottom: @iconBorder;
+}
