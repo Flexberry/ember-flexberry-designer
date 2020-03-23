@@ -33,4 +33,5 @@ export default {
   'create-project': 'Create project',
   'empty-name': 'Name cannot be empty',
   'exist-stage': 'Project with the same name already exists',
+  'import-project': 'Create project based on saved file',
 };
