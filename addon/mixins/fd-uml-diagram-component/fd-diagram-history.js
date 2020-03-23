@@ -79,13 +79,16 @@ export default Mixin.create({
       elements = A([elements]);
     }
 
-    const operation = isDelete ? 'Delete' : 'Add';
-
     let changes = A();
     elements.forEach(element => {
       const elementObjectModel = element.model.get('objectModel');
       const elementJson = JSON.stringify(elementObjectModel);
-      changes.addObject({ field: operation, oldValue: elementJson, newValue: null });
+      if (isDelete) {
+        changes.addObject({ field: 'Delete', oldValue: elementJson, newValue: null });
+      } else {
+        changes.addObject({ field: 'Add', oldValue: null, newValue: elementJson });
+      }
+
       if (isDelete) {
         const connectedLinks = this.graph.getConnectedLinks(element.model);
         connectedLinks.forEach(linkModel => {
@@ -169,6 +172,8 @@ export default Mixin.create({
       let newValue;
       switch (d.field) {
         case 'Add':
+          newValue = JSON.parse(d.newValue);
+          break;
         case 'Delete':
         case 'DeleteCascade':
           newValue = JSON.parse(d.oldValue);
