@@ -128,7 +128,6 @@ export let BaseObject = joint.shapes.basic.Generic.define('flexberry.uml.BaseObj
       if (objectModel) {
         objectModel.set('height', newSize.height);
         objectModel.set('width', newSize.width);
-        this.trigger('uml-update');
       }
     }, this);
 
@@ -137,7 +136,6 @@ export let BaseObject = joint.shapes.basic.Generic.define('flexberry.uml.BaseObj
       if (objectModel) {
         objectModel.set('x', newPosition.x);
         objectModel.set('y', newPosition.y);
-        this.trigger('uml-update');
       }
     }, this);
 
@@ -153,27 +151,6 @@ export let BaseObject = joint.shapes.basic.Generic.define('flexberry.uml.BaseObj
       { type: 'header', text: this.getObjName(), element: this },
       { type: 'body', text: this.get('objectModel.attributes'), element: this },
     ];
-  },
-
-  // Delete this after inserting inputs in all objects.
-  updateRectanglesOld: function () {
-    let attrs = this.get('attrs');
-    let objName = this.getObjName();
-    let lines = Array.isArray(objName) ? objName : [objName];
-    let maxStringChars = 0;
-    lines.forEach(function (line) {
-      if (line.length > maxStringChars) {
-        maxStringChars = line.length;
-      }
-    });
-
-    let hightStep = attrs['.flexberry-uml-header-text'].fontSize;
-    let rectHeight = lines.length * hightStep + this.get('heightPadding');
-    let widthStep = attrs['.flexberry-uml-header-text'].fontSize / 1.5;
-    let rectWidth = maxStringChars * widthStep + 10;
-    attrs['.flexberry-uml-header-text'].text = lines.join('\n');
-    attrs['.flexberry-uml-header-rect'].height = rectHeight;
-    attrs['.flexberry-uml-header-rect'].width = rectWidth;
   }
 });
 joint.util.setByPath(joint.shapes, 'flexberry.uml.BaseObject', BaseObject, '.');
@@ -200,6 +177,7 @@ joint.shapes.flexberry.uml.BaseObjectView = joint.shapes.flexberry.uml.Primitive
     });
 
     this.$box.find('.attributes-input').on('input', function (evt) {
+      this.setOldSize();
       let $textarea = $(evt.currentTarget);
       let textareaText = $textarea.val();
       let rows = textareaText.split(/[\n\r|\r|\n]/);
@@ -208,6 +186,7 @@ joint.shapes.flexberry.uml.BaseObjectView = joint.shapes.flexberry.uml.Primitive
     }.bind(this));
 
     this.$box.find('.class-name-input').on('input', function (evt) {
+      this.setOldSize();
       let $textarea = $(evt.currentTarget);
       let textareaText = $textarea.val();
       let rows = textareaText.split(/[\n\r|\r|\n]/);
@@ -221,6 +200,7 @@ joint.shapes.flexberry.uml.BaseObjectView = joint.shapes.flexberry.uml.Primitive
       let rows = textareaText.split(/[\n\r|\r|\n]/);
       $textarea.prop('rows', rows.length);
       let objectModel = this.model.get('objectModel');
+      this.triggerHistoryStep('attributes', rows);
       objectModel.set('attributes', rows);
     }.bind(this));
 
@@ -230,21 +210,11 @@ joint.shapes.flexberry.uml.BaseObjectView = joint.shapes.flexberry.uml.Primitive
       let rows = textareaText.split(/[\n\r|\r|\n]/);
       $textarea.prop('rows', rows.length);
       let objectModel = this.model.get('objectModel');
+      this.triggerHistoryStep('name', textareaText);
       objectModel.set('name', textareaText);
     }.bind(this));
 
-    let objectModel = this.model.get('objectModel');
-    let classNameInput = this.$box.find('.class-name-input');
-    let attributesInput = this.$box.find('.attributes-input');
-    classNameInput.prop('rows', objectModel.get('name').split(/[\n\r|\r|\n]/).length || 1);
-    classNameInput.val(objectModel.get('name'));
-
-    if (isPresent(objectModel.get('attributes'))) {
-      attributesInput.prop('rows', objectModel.get('attributes').length || 1);
-      attributesInput.val(objectModel.get('attributes').join('\n'));
-    } else {
-      attributesInput.prop('rows', 1);
-    }
+    this.setInputValues();
 
     // Update the box position whenever the underlying model changes.
     this.model.on('change', this.updateBox, this);
@@ -281,6 +251,26 @@ joint.shapes.flexberry.uml.BaseObjectView = joint.shapes.flexberry.uml.Primitive
 
   removeBox: function () {
     this.$box.remove();
+  },
+
+  updateInputValue: function() {
+    this.setInputValues();
+    this.updateRectangles();
+  },
+
+  setInputValues: function() {
+    const objectModel = this.model.get('objectModel');
+    const classNameInput = this.$box.find('.class-name-input');
+    const attributesInput = this.$box.find('.attributes-input');
+    classNameInput.prop('rows', objectModel.get('name').split(/[\n\r|\r|\n]/).length || 1);
+    classNameInput.val(objectModel.get('name'));
+
+    if (isPresent(objectModel.get('attributes'))) {
+      attributesInput.prop('rows', objectModel.get('attributes').length || 1);
+      attributesInput.val(objectModel.get('attributes').join('\n'));
+    } else {
+      attributesInput.prop('rows', 1);
+    }
   },
 
   updateRectangles: function (resizedWidth, resizedHeight) {

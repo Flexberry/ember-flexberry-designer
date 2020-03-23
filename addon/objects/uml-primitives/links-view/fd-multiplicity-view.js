@@ -37,12 +37,14 @@ export let MultiplicityView = RoleView.extend({
 
     this.$box.find('.start-multiplicity-input').on('change', function(evt) {
       let startMultiplicityText = $(evt.target).val();
+      this.triggerHistoryStep('startMultiplicity', startMultiplicityText);
       this.model.setLabelText('startMultiplicity', startMultiplicityText);
       this.paper.trigger('updaterepobj', this.model.get('objectModel'), 'startMultiplicity', startMultiplicityText);
     }.bind(this));
 
     this.$box.find('.end-multiplicity-input').on('change', function(evt) {
       let endMultiplicityText = $(evt.target).val();
+      this.triggerHistoryStep('endMultiplicity', endMultiplicityText);
       this.model.setLabelText('endMultiplicity', endMultiplicityText);
       this.paper.trigger('updaterepobj', this.model.get('objectModel'), 'endMultiplicity', endMultiplicityText);
     }.bind(this));
@@ -63,8 +65,14 @@ export let MultiplicityView = RoleView.extend({
 
   updateInputValue() {
     RoleView.prototype.updateInputValue.apply(this, arguments);
+    this.updateInputWidth('.start-multiplicity-input');
+    this.updateInputWidth('.end-multiplicity-input');
+  },
 
-    let objectModel = this.model.get('objectModel');
+  setInputValues() {
+    RoleView.prototype.setInputValues.apply(this, arguments);
+
+    const objectModel = this.model.get('objectModel');
     let startMultiplicityInput = this.$box.find('.start-multiplicity-input');
     let endMultiplicityInput = this.$box.find('.end-multiplicity-input');
 
@@ -72,7 +80,5 @@ export let MultiplicityView = RoleView.extend({
     startMultiplicityInput.val(objectModel.get('startMultiplicity'));
     endMultiplicityInput.prop('rows', objectModel.get('endMultiplicity').split(/[\n\r|\r|\n]/).length || 1);
     endMultiplicityInput.val(objectModel.get('endMultiplicity'));
-    this.updateInputWidth('.start-multiplicity-input');
-    this.updateInputWidth('.end-multiplicity-input');
   }
 });

@@ -165,8 +165,11 @@ function getUpdatedViews(store, primitives, className, newClassName) {
   primitives.forEach((primitive) => {
     //Update definitions array in primitive repository object. For views.
     const repositoryObjectRecord = (!isNone(primitive.primitive)) ? primitive.primitive.RepositoryObject : primitive.RepositoryObject;
-    const repositoryObjectRecordId = repositoryObjectRecord.slice(1, -1);
-    let repositoryObject = store.peekRecord('fd-dev-class', repositoryObjectRecordId);
+    let repositoryObject;
+    if (!isNone(repositoryObjectRecord)) {
+      const repositoryObjectRecordId = repositoryObjectRecord.slice(1, -1);
+      repositoryObject = store.peekRecord('fd-dev-class', repositoryObjectRecordId);
+    }
 
     if (!isNone(repositoryObject)) {
       let views = repositoryObject.get('views');

@@ -109,24 +109,26 @@ joint.shapes.flexberry.uml.PackageView = joint.shapes.flexberry.uml.BaseObjectVi
       let rows = textareaText.split(/[\n\r|\r|\n]/);
       $textarea.prop('rows', rows.length);
       let objectModel = this.model.get('objectModel');
+      this.triggerHistoryStep('name', textareaText);
       objectModel.set('name', textareaText);
     }.bind(this));
 
     this.$box.find('.package-header-input').on('input', function (evt) {
+      this.setOldSize();
       let $textarea = $(evt.currentTarget);
       let textareaText = $textarea.val();
       let rows = textareaText.split(/[\n\r|\r|\n]/);
       $textarea.prop('rows', rows.length);
       this.updateRectangles();
     }.bind(this));
+  },
 
-    let objectModel = this.model.get('objectModel');
+  setInputValues: function() {
+    joint.shapes.flexberry.uml.BaseObjectView.prototype.setInputValues.apply(this, arguments);
+    const objectModel = this.model.get('objectModel');
     let upperInput = this.$box.find('.package-header-input');
     upperInput.prop('rows', objectModel.get('name').split(/[\n\r|\r|\n]/).length || 1);
     upperInput.val(objectModel.get('name'));
-
-    const initSize = this.model.size();
-    this.updateRectangles(initSize.width, initSize.height);
   },
 
   updateRectangles: function (resizedWidth, resizedHeight) {

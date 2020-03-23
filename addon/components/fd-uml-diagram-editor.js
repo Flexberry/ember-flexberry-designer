@@ -274,7 +274,7 @@ FdPopupActions, {
               let jointjsCallback = this.get('jointjsCallback');
               let newObject = jointjsCallback(x, y);
               this.clearData();
-    
+
               return newObject;
             }
 
@@ -372,7 +372,7 @@ FdPopupActions, {
           if (storeCallback) {
             let linkRecord = storeCallback({ startClassRepObj: newLink.get('startClassRepObj'), endClassRepObj: newLink.get('endClassRepObj') });
             newLink.set({ 'repositoryObject': linkRecord });
-            this.paper.trigger('checkexistelements', newLink.get('objectModel'), this.paper.findViewByModel(newLink));
+            this.paper.trigger('checkexistelements:addstep', newLink, this.paper.findViewByModel(newLink));
           }
 
           this.clearData();

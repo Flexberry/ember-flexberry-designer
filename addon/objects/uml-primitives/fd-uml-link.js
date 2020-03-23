@@ -4,6 +4,7 @@
 
 import { computed, get } from '@ember/object';
 import { isNone } from '@ember/utils';
+import { A } from '@ember/array';
 
 import joint from 'npm:jointjs';
 import FdUmlPrimitive from './fd-uml-primitive';
@@ -465,6 +466,22 @@ export let Link = joint.dia.Link.define('flexberry.uml.Link', {
       }, this);
 
       joint.dia.Link.prototype.initialize.apply(this, arguments);
+    },
+
+    /**
+      Add new history step.
+
+      @method triggerHistoryStep
+      @param {String} propName Changed property name
+      @param {Object} newValue New value
+      @param {Object} oldValue Old value
+    */
+    triggerHistoryStep(propName, newValue, oldValue) {
+      let changes = A();
+
+      const objectModel = this.get('objectModel');
+      changes.addObject({ field: propName, oldValue: oldValue || objectModel.get(propName), newValue: newValue });
+      this.graph.trigger('history:add', this.get('id'), changes);
     },
 
     connectedToLine: function() {

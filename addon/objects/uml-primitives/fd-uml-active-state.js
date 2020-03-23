@@ -110,6 +110,7 @@ joint.shapes.flexberry.uml.ActiveStateView = joint.shapes.flexberry.uml.BaseObje
     });
 
     this.$box.find('.class-name-input').on('input', function (evt) {
+      this.setOldSize();
       let $textarea = $(evt.currentTarget);
       let textareaText = $textarea.val();
       let rows = textareaText.split(/[\n\r|\r|\n]/);
@@ -123,6 +124,7 @@ joint.shapes.flexberry.uml.ActiveStateView = joint.shapes.flexberry.uml.BaseObje
       let rows = textareaText.split(/[\n\r|\r|\n]/);
       $textarea.prop('rows', rows.length);
       let objectModel = this.model.get('objectModel');
+      this.triggerHistoryStep('name', textareaText);
       objectModel.set('name', textareaText);
     }.bind(this));
 
@@ -135,16 +137,21 @@ joint.shapes.flexberry.uml.ActiveStateView = joint.shapes.flexberry.uml.BaseObje
     }.bind(this));
 
     this.$box.find('.state-input').on('focus', function(evt) {
+      this.setOldSize();
       let state = this.normalizeState($(evt.target).val());
       this.$box.find('.state-input').val(state.slice(1, -1));
       this.updateRectangles();
     }.bind(this));
 
     this.$box.find('.state-input').on('blur', function(evt) {
-      this.showNormalizedStateOnInput($(evt.target));
+      const textareaText = this.showNormalizedStateOnInput($(evt.target));
+      let objectModel = this.model.get('objectModel');
+      this.triggerHistoryStep('state', textareaText);
+      objectModel.set('state', textareaText);
+      this.updateRectangles();
     }.bind(this));
 
-    this.updateInputValue();
+    this.setInputValues();
     this.showNormalizedStateOnInput(this.$box.find('.state-input'));
 
     // Update the box position whenever the underlying model changes.
@@ -157,7 +164,7 @@ joint.shapes.flexberry.uml.ActiveStateView = joint.shapes.flexberry.uml.BaseObje
     this.updateRectangles(initSize.width, initSize.height);
   },
 
-  updateInputValue() {
+  setInputValues() {
     let objectModel = this.model.get('objectModel');
     let classNameInput = this.$box.find('.class-name-input');
     let stateInput = this.$box.find('.state-input');
@@ -166,7 +173,7 @@ joint.shapes.flexberry.uml.ActiveStateView = joint.shapes.flexberry.uml.BaseObje
     classNameInput.val(objectModel.get('name'));
     stateInput.prop('rows', objectModel.get('state').split(/[\n\r|\r|\n]/).length || 1);
     stateInput.val(objectModel.get('state'));
-    this.updateRectangles();
+    this.showNormalizedStateOnInput(stateInput);
   },
 
   normalizeState(state) {
@@ -192,6 +199,6 @@ joint.shapes.flexberry.uml.ActiveStateView = joint.shapes.flexberry.uml.BaseObje
     let rows = stateText.split(/[\n\r|\r|\n]/);
     element.val(state);
     element.prop('rows', rows.length);
-    this.updateRectangles();
+    return state;
   }
 });

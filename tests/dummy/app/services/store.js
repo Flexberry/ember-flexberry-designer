@@ -1,14 +1,11 @@
-import StoreMixin from 'ember-flexberry-data/mixins/store';
-import BaseStore from 'ember-flexberry-data/stores/base-store';
+import DesignerStore from 'ember-flexberry-designer/services/store';
 import config from '../config/environment';
 
-export default BaseStore.reopen(StoreMixin, {
+export default DesignerStore.extend({
   init() {
     this.set('offlineSchema', {
-      [config.APP.offline.dbName]: {
-        // Paste your offline scheme here.
-      }
+      [config.APP.offline.dbName]: { 2: this.get('offlineGlobals').getOfflineSchema() },
     });
-    return this._super(...arguments);
+    this._super(...arguments);
   }
 });
