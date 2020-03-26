@@ -118,6 +118,7 @@ joint.shapes.flexberry.uml.TemplateClassView = joint.shapes.flexberry.uml.ClassV
   initialize: function() {
     joint.shapes.flexberry.uml.ClassView.prototype.initialize.apply(this, arguments);
     this.$box.find('.params-input').on('input', function (evt) {
+      this.setOldSize();
       let $textarea = $(evt.currentTarget);
       let textareaText = $textarea.val();
       let rows = textareaText.split(/[\n\r|\r|\n]/);
@@ -131,14 +132,17 @@ joint.shapes.flexberry.uml.TemplateClassView = joint.shapes.flexberry.uml.ClassV
       let rows = textareaText.split(/[\n\r|\r|\n]/);
       $textarea.prop('rows', rows.length);
       let objectModel = this.model.get('objectModel');
-      objectModel.set('params', textareaText);
+      this.triggerHistoryStep('params', rows);
+      objectModel.set('params', rows);
     }.bind(this));
+  },
 
-    let objectModel = this.model.get('objectModel');
+  setInputValues: function() {
+    joint.shapes.flexberry.uml.ClassView.prototype.setInputValues.apply(this, arguments);
+    const objectModel = this.model.get('objectModel');
     let paramsInput = this.$box.find('.params-input');
     paramsInput.prop('rows', objectModel.get('params').length || 1);
     paramsInput.val(objectModel.get('params').join('\n'));
-    this.updateRectangles();
   },
 
   updateBox: function() {
@@ -166,7 +170,10 @@ joint.shapes.flexberry.uml.TemplateClassView = joint.shapes.flexberry.uml.ClassV
     let mask = document.getElementById('custom-mask');
     let viewMaskId = $(mask).children('.view-rect').attr('id');
     let maskId = 'mask_tc_' + viewMaskId;
-    mask.setAttribute('id', maskId);
+    if (mask) {
+      mask.setAttribute('id', maskId);
+    }
+
     let attrs = this.model.get('attrs');
     attrs['.flexberry-uml-header-rect'].mask = 'url(#' + maskId + ')';
     this.updateRectangles();

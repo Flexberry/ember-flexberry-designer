@@ -112,6 +112,7 @@ joint.shapes.flexberry.uml.ComplexTransitionHView = joint.shapes.flexberry.uml.P
     });
 
     this.$box.find('.class-name-input').on('input', function(evt) {
+      this.setOldSize();
       let $textarea = $(evt.currentTarget);
       let textareaText = $textarea.val();
       let rows = textareaText.split(/[\n\r|\r|\n]/);
@@ -125,10 +126,11 @@ joint.shapes.flexberry.uml.ComplexTransitionHView = joint.shapes.flexberry.uml.P
       let rows = textareaText.split(/[\n\r|\r|\n]/);
       $textarea.prop('rows', rows.length);
       let objectModel = this.model.get('objectModel');
+      this.triggerHistoryStep('name', textareaText);
       objectModel.set('name', textareaText);
     }.bind(this));
 
-    this.updateInputValue();
+    this.setInputValues();
     this.setColors();
 
     // Update the box position whenever the underlying model changes.
@@ -136,15 +138,17 @@ joint.shapes.flexberry.uml.ComplexTransitionHView = joint.shapes.flexberry.uml.P
 
     // Remove the box when the model gets removed from the graph.
     this.model.on('remove', this.removeBox, this);
+
+    const initSize = this.model.size();
+    this.updateRectangles(initSize.width, initSize.height);
   },
 
-  updateInputValue() {
+  setInputValues() {
     let objectModel = this.model.get('objectModel');
     let classNameInput = this.$box.find('.class-name-input');
 
     classNameInput.prop('rows', objectModel.get('name').split(/[\n\r|\r|\n]/).length || 1);
     classNameInput.val(objectModel.get('name'));
-    this.updateRectangles();
   },
 
   render: function () {

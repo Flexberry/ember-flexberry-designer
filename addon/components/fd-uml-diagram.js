@@ -14,6 +14,7 @@ import uuid from 'npm:node-uuid';
 
 import FdPrimitivesArraySortingMixin from '../mixins/fd-primitives-array-sorting';
 import FdKeyPressLogicMixin from '../mixins/fd-uml-diagram-component/fd-keypress-logic';
+import FdDiagramHistoryMixin from '../mixins/fd-uml-diagram-component/fd-diagram-history';
 import FdUmlElement from '../objects/uml-primitives/fd-uml-element';
 import FdUmlLink from '../objects/uml-primitives/fd-uml-link';
 import {
@@ -30,7 +31,8 @@ import {
 */
 export default Component.extend(
   FdPrimitivesArraySortingMixin,
-  FdKeyPressLogicMixin, {
+  FdKeyPressLogicMixin,
+  FdDiagramHistoryMixin, {
   /**
     Store of current application.
 
@@ -217,6 +219,7 @@ export default Component.extend(
     this._super(...arguments);
 
     const namespace = joint.shapes;
+    this.set('diagramTempId', uuid.v4());
     let graph = this.set('graph', new joint.dia.Graph({}, { cellNamespace: namespace , cellViewNamespace: namespace}));
     let paper = this.set('paper', new joint.dia.Paper({
       el: this.get('element'),
@@ -261,6 +264,7 @@ export default Component.extend(
     paper.on('updaterepobj', this._updateRepObj, this);
     paper.on('getrepobjvalues', this._getRepObjValues, this);
     paper.on('checkexistelements', this._checkOnExistElements, this);
+    paper.on('checkexistelements:addstep', this._checkOnExistElementsAddStep, this);
     paper.on('cell:highlight', this._highlighted, this);
     paper.on('element:openeditform', this._elementOpenEditForm, this);
     paper.on('element:openpopup', this._elementOpenPopup, this);
@@ -311,6 +315,7 @@ export default Component.extend(
     graph.on('change:vertices', fitPaperToContent);
     graph.on('remove', fitPaperToContent);
     graph.on('remove', this._removeElements, this);
+    graph.on('history:add', this._createHistoryRecord, this);
 
     fitPaperToContent();
 
@@ -318,7 +323,7 @@ export default Component.extend(
     this.get('readonlyObserver').apply(this);
   },
 
-  willDestroy() {
+  willDestroyElement() {
     this._super(...arguments);
 
     this.get('fdDiagramService').off('updateJointObjectViewTriggered', this, this._updateJointObjectView);
@@ -396,7 +401,7 @@ export default Component.extend(
         default:
           if (this.get('currentTargetElementIsPointer')) {
             var linkView = element.model.findView(this.paper);
-            linkView.highlight(null, { multiHighlight: e.shiftKey });
+            linkView.highlight(null, { multiHighlight: e.shiftKey || e.ctrlKey });
           }
       }
     } else {
@@ -514,6 +519,7 @@ export default Component.extend(
    */
   _addNewElement(newElement) {
     if (!isNone(newElement)) {
+      this._createHistoryRecord(newElement.get('id'), { field: 'Add', oldValue: null, newValue: JSON.stringify(newElement.get('objectModel').get('primitive')) });
       let graph = this.get('graph');
       graph.addCell([newElement]);
     }
@@ -539,7 +545,7 @@ export default Component.extend(
       let startDragLink = this.get('startDragLink');
       let newElement = startDragLink(options);
       if (isNone(newElement)) {
-        element.highlight(null, { multiHighlight: options.e.shiftKey })
+        element.highlight(null, { multiHighlight: options.e.shiftKey || options.e.ctrlKey })
       } else {
         this.set('draggedLink', newElement);
         let graph = this.get('graph');
@@ -766,6 +772,7 @@ export default Component.extend(
     if (data.ghost) {
       if (data.widthResize || data.heightResize) {
         let newSize = data.ghost.size();
+        this._createHistoryRecord(view.model.get('id'), { field: 'size', oldValue: view.model.get('size'), newValue: newSize });
         view.updateRectangles(newSize.width, newSize.height);
       } else {
         let shift = evt.data.shift;
@@ -782,6 +789,7 @@ export default Component.extend(
           valueY = valueY > ghostMoveBorder[3] ? ghostMoveBorder[3] : valueY;
         }
 
+        this._createHistoryRecord(view.model.get('id'), { field: 'position', oldValue: view.model.position(), newValue: { x: valueX, y: valueY }});
         view.model.position(valueX, valueY);
       }
 
@@ -796,6 +804,7 @@ export default Component.extend(
       });
 
       view.highlight();
+      paper.$el.focus();
     }
   },
 
@@ -816,8 +825,7 @@ export default Component.extend(
     let store = this.get('store');
     let modelName = this._getModelName(objectModel.get('primitive.$type'));
 
-    let allModels = store.peekAll(`${modelName}`);
-    let repositoryObject = allModels.findBy('id', repositoryObjectId.slice(1, -1));
+    let repositoryObject = store.peekRecord(modelName, repositoryObjectId.slice(1, -1));
     if (isNone(repositoryObject)) {
       return;
     }
@@ -904,6 +912,20 @@ export default Component.extend(
     let newConnectedClass = allClass.findBy('id', primitive.get('repositoryObject').slice(1, -1));
 
     return newConnectedClass;
+  },
+
+  /**
+    Find exist elements and update repository object and add history step.
+
+    @method _checkOnExistElementsAddStep
+    @param {Object} newLink new link.
+    @param {Object} view JoinJS view of this element.
+    @param {Boolean} isSourse flag.
+   */
+  _checkOnExistElementsAddStep(newLink, view, isSource) {
+    const objectModel = newLink.get('objectModel');
+    this._checkOnExistElements(objectModel, view, isSource);
+    this._createHistoryRecord(newLink.get('id'), { field: 'Add', oldValue: null, newValue: JSON.stringify(objectModel.get('primitive')) });
   },
 
   /**
@@ -1225,8 +1247,7 @@ export default Component.extend(
     if (!isNone(repositoryObject)) {
       let store = this.get('store');
       let modelName = this._getModelName(removeObject.get('primitive.$type'));
-      let allModels = store.peekAll(`${modelName}`);
-      let currentRepObj = allModels.findBy('id', repositoryObject.slice(1, -1));
+      let currentRepObj = store.peekRecord(modelName, repositoryObject.slice(1, -1));
       if (!isNone(currentRepObj)) {
         this._decrementPropertyReferenceCount(currentRepObj);
       }

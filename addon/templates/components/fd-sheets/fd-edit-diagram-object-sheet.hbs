@@ -7,7 +7,7 @@
       sheetComponentName=sheetComponentName
       readonlyMode=readonlyMode
       isNewModel=selectedValue.isNew
-      sheetButtons=(array 'save' 'share' 'dependencies')
+      sheetButtons=(array 'save' 'share' (if (not isLink) 'dependencies'))
       saveSheet=(action 'save')
       contentSheetValue=selectedValue
     }}

@@ -46,7 +46,9 @@ export let DescriptionView = EmptyView.extend({
     }.bind(this));
 
     this.$box.find('.description-input').on('change', function(evt) {
-      this.model.setLabelText('description', $(evt.target).val());
+      const newValue = $(evt.target).val();
+      this.triggerHistoryStep('description', newValue);
+      this.model.setLabelText('description', newValue);
       this.paper.trigger('checkexistelements', this.model.get('objectModel'), this);
     }.bind(this));
 
@@ -96,12 +98,16 @@ export let DescriptionView = EmptyView.extend({
   },
 
   updateInputValue() {
-    let objectModel = this.model.get('objectModel');
+    this.setInputValues();
+    this.updateInputWidth('.description-input');
+  },
+
+  setInputValues() {
+    const objectModel = this.model.get('objectModel');
     let descriptionInput = this.$box.find('.description-input');
 
     descriptionInput.prop('rows', objectModel.get('description').split(/[\n\r|\r|\n]/).length || 1);
     descriptionInput.val(objectModel.get('description'));
-    this.updateInputWidth('.description-input');
   },
 
   removeBox: function() {

@@ -33,6 +33,7 @@ export let RoleView = DescriptionView.extend({
 
     this.$box.find('.start-role-input').on('change', function(evt) {
       let inputText = this.normalizeRoleText($(evt.target).val());
+      this.triggerHistoryStep('startRoleTxt', inputText);
       $(evt.target).val(inputText);
       this.model.setLabelText('startRole', inputText);
       this.updateInputWidth('.start-role-input');
@@ -42,6 +43,7 @@ export let RoleView = DescriptionView.extend({
 
     this.$box.find('.end-role-input').on('change', function(evt) {
       let inputText = this.normalizeRoleText($(evt.target).val());
+      this.triggerHistoryStep('endRoleTxt', inputText);
       $(evt.target).val(inputText);
       this.model.setLabelText('endRole', inputText);
       this.updateInputWidth('.end-role-input');
@@ -65,8 +67,14 @@ export let RoleView = DescriptionView.extend({
 
   updateInputValue() {
     DescriptionView.prototype.updateInputValue.apply(this, arguments);
+    this.updateInputWidth('.start-role-input');
+    this.updateInputWidth('.end-role-input');
+  },
 
-    let objectModel = this.model.get('objectModel');
+  setInputValues() {
+    DescriptionView.prototype.setInputValues.apply(this, arguments);
+
+    const objectModel = this.model.get('objectModel');
     let startRoleInput = this.$box.find('.start-role-input');
     let endRoleInput = this.$box.find('.end-role-input');
 
@@ -74,8 +82,6 @@ export let RoleView = DescriptionView.extend({
     startRoleInput.val(objectModel.get('startRoleTxt'));
     endRoleInput.prop('rows', objectModel.get('endRoleTxt').split(/[\n\r|\r|\n]/).length || 1);
     endRoleInput.val(objectModel.get('endRoleTxt'));
-    this.updateInputWidth('.start-role-input');
-    this.updateInputWidth('.end-role-input');
   },
 
   normalizeRoleText(text) {

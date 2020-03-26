@@ -31,12 +31,27 @@ export let EmptyView = joint.dia.LinkView.extend({
             this.highlight();
           });
 
+          if (this.oldSourceValue) {
+            if (!get(this, 'oldSourceValue.connectionPoint.args.coords')) {
+              this.oldSourceValue.connectionPoint = { name: 'toPointConnection', args: { coords: this.sourcePoint } };
+            }
+
+            if (this.oldSourceValue.id) {
+              this.triggerHistoryStep('source', newSource, this.oldSourceValue);
+            }
+
+            this.oldSourceValue = undefined;
+          }
+
           objectModel.set('source', newSource);
           objectModel.set('startPoint', this.sourcePoint);
           this.paper.trigger('checkexistelements', objectModel, this, true);
         } else {
-          this.$box.css('visibility', 'hidden');
-          this.unhighlight();
+          if (!this.oldSourceValue) {
+            this.oldSourceValue = this.model.previous('source');
+            this.$box.css('visibility', 'hidden');
+            this.unhighlight();
+          }
         }
       }
     }, this);
@@ -50,12 +65,28 @@ export let EmptyView = joint.dia.LinkView.extend({
             this.updateBox();
             this.highlight();
           });
+
+          if (this.oldTargetValue) {
+            if (!get(this, 'oldTargetValue.connectionPoint.args.coords')) {
+              this.oldTargetValue.connectionPoint = { name: 'toPointConnection', args: { coords: this.targetPoint } };
+            }
+
+            if (this.oldTargetValue.id) {
+              this.triggerHistoryStep('target', newTarget, this.oldTargetValue);
+            }
+
+            this.oldTargetValue = undefined;
+          }
+
           objectModel.set('target', newTarget);
           objectModel.set('endPoint', this.targetPoint);
           this.paper.trigger('checkexistelements', objectModel, this, false);
         } else {
-          this.$box.css('visibility', 'hidden');
-          this.unhighlight();
+          if (!this.oldTargetValue) {
+            this.oldTargetValue = this.model.previous('target');
+            this.$box.css('visibility', 'hidden');
+            this.unhighlight();
+          }
         }
       }
     }, this);
@@ -66,14 +97,7 @@ export let EmptyView = joint.dia.LinkView.extend({
         this.$box.css('visibility', 'hidden');
         this.unhighlight();
         if (!this.$el.hasClass('edit-disabled')) {
-          this.paper.once('link:pointerup', function() {
-            this.verticesChanging = false;
-            this.$box.css('visibility', 'visible');
-            schedule('afterRender', this, function() {
-              this.updateBox();
-              this.highlight();
-            });
-          }, this)
+          this.paper.once('link:pointerup', this._verticesChanged, this);
         } else {
           this.verticesChanging = false;
         }
@@ -162,10 +186,11 @@ export let EmptyView = joint.dia.LinkView.extend({
   pointerdblclick: function(evt, x, y) {
     let readonly = this.paper.options.interactive;
     if (!isNone(readonly) && typeof readonly === 'object') {
+      this._setVerticesValue();
       this.addVertex(x, y);
-      this.unhighlight();
-      this.highlight();
-      this.verticesChanging = false
+      this.paper.off('link:pointerup', this._verticesChanged, this);
+      this._verticesChanged();
+      this._checkVerticesChanges();
     }
   },
 
@@ -200,6 +225,8 @@ export let EmptyView = joint.dia.LinkView.extend({
 
   removeLink(e) {
     e.stopPropagation();
+    const linkJson = JSON.stringify(this.model.get('objectModel'));
+    this.triggerHistoryStep('Delete', null, linkJson);
     this.model.remove();
   },
 
@@ -212,6 +239,7 @@ export let EmptyView = joint.dia.LinkView.extend({
     Update coordinates for FF.
   */
   pointerdown(evt, x, y) {
+    this._setVerticesValue();
     let readonly = this.paper.options.interactive;
     if (readonly && typeof readonly === 'object') {
       $(this.paper.el).find('input,textarea').addClass('click-disabled');
@@ -227,6 +255,7 @@ export let EmptyView = joint.dia.LinkView.extend({
   },
 
   pointerup(evt, x, y) {
+    this._checkVerticesChanges();
     let readonly = this.paper.options.interactive;
     if (readonly && typeof readonly === 'object') {
       $(this.paper.el).find('input,textarea').removeClass('click-disabled');
@@ -234,5 +263,63 @@ export let EmptyView = joint.dia.LinkView.extend({
 
     let coordinates = forPointerMethodOverrideResizeAndDnd(evt, x, y);
     joint.dia.LinkView.prototype.pointerup.apply(this, [evt, coordinates.x, coordinates.y]);
+  },
+
+  triggerHistoryStep(propName, newValue, oldValue) {
+    let changes = A();
+
+    const objectModel = this.model.get('objectModel');
+    changes.addObject({ field: propName, oldValue: oldValue || objectModel.get(propName), newValue: newValue });
+    this.model.graph.trigger('history:add', this.model.get('id'), changes);
+  },
+
+  _setVerticesValue() {
+    this.needStepOnConnect = true;
+    const objectModel = this.model.get('objectModel');
+    this.oldVerticesValue = {
+      vertices: objectModel.get('vertices'),
+      source: objectModel.get('source'),
+      target: objectModel.get('target'),
+      endPoint: objectModel.get('endPoint'),
+      startPoint: objectModel.get('startPoint')
+    };
+  },
+
+  _checkVerticesChanges() {
+    const objectModel = this.model.get('objectModel');
+    const oldObjectModel = this.oldVerticesValue;
+    const vertices = objectModel.get('vertices');
+    if (JSON.stringify(oldObjectModel.vertices) !== JSON.stringify(vertices)) {
+      this.triggerHistoryStep('vertices', vertices, oldObjectModel.vertices);
+    }
+
+    /*if (JSON.stringify(oldObjectModel.source) !== JSON.stringify(objectModel.get('source')) ||
+      JSON.stringify(oldObjectModel.startPoint) !== JSON.stringify(objectModel.get('startPoint'))) {
+        let changes = A();
+
+        const objectModel = this.model.get('objectModel');
+        changes.addObject({ field: 'source', oldValue: oldObjectModel.source, newValue: objectModel.get('source') });
+        changes.addObject({ field: 'startPoint', oldValue: oldObjectModel.startPoint, newValue: objectModel.get('startPoint') });
+        this.model.graph.trigger('history:add', this.model.get('id'), changes);
+    }
+
+    if (JSON.stringify(oldObjectModel.target) !== JSON.stringify(objectModel.get('target')) ||
+      JSON.stringify(oldObjectModel.endPoint) !== JSON.stringify(objectModel.get('endPoint'))) {
+        let changes = A();
+
+        const objectModel = this.model.get('objectModel');
+        changes.addObject({ field: 'target', oldValue: oldObjectModel.target, newValue: objectModel.get('target') });
+        changes.addObject({ field: 'endPoint', oldValue: oldObjectModel.endPoint, newValue: objectModel.get('endPoint') });
+        this.model.graph.trigger('history:add', this.model.get('id'), changes);
+    }*/
+  },
+
+  _verticesChanged() {
+    this.verticesChanging = false;
+    this.$box.css('visibility', 'visible');
+    schedule('afterRender', this, function() {
+      this.updateBox();
+      this.highlight();
+    });
   }
 });

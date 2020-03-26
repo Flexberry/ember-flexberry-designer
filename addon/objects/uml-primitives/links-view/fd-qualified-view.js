@@ -30,7 +30,9 @@ export let QualifiedView = RoleView.extend({
     }.bind(this));
 
     this.$box.find('.qualified-input').on('change', function(evt) {
-      this.model.setLabelText('qualified', $(evt.target).val());
+      const qualifiedText = $(evt.target).val();
+      this.triggerHistoryStep('qualified', qualifiedText);
+      this.model.setLabelText('qualified', qualifiedText);
     }.bind(this));
 
     // Initialize inputs values.
@@ -46,12 +48,16 @@ export let QualifiedView = RoleView.extend({
 
   updateInputValue() {
     RoleView.prototype.updateInputValue.apply(this, arguments);
+    this.updateInputWidth('.qualified-input');
+  },
+
+  setInputValues() {
+    RoleView.prototype.setInputValues.apply(this, arguments);
 
     let objectModel = this.model.get('objectModel');
     let qualifiedInput = this.$box.find('.qualified-input');
 
     qualifiedInput.prop('rows', objectModel.get('qualified').split(/[\n\r|\r|\n]/).length || 1);
     qualifiedInput.val(objectModel.get('qualified'));
-    this.updateInputWidth('.qualified-input');
   }
 });

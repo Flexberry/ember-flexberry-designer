@@ -7,21 +7,6 @@ export let NormalizedDescriptionView = DescriptionView.extend({
   initialize: function() {
     DescriptionView.prototype.initialize.apply(this, arguments);
 
-    // Prevent paper from handling pointerdown.
-    this.$box.find('input').on('mousedown click', function(evt) {
-      evt.stopPropagation();
-    });
-
-    this.$box.find('.description-input').on('input', function() {
-      this.updateInputWidth('.description-input');
-      this.updateInputPosition(0, '.description-input', 0.5);
-    }.bind(this));
-
-    this.$box.find('.description-input').on('change', function(evt) {
-      this.model.setLabelText('description', $(evt.target).val());
-      this.paper.trigger('checkexistelements', this.model.get('objectModel'), this);
-    }.bind(this));
-
     this.$box.find('.description-input').on('focus', function(evt) {
       let description = this.normalizeDescription($(evt.target).val());
       $(evt.target).val(description.slice(1, -1));
@@ -38,6 +23,11 @@ export let NormalizedDescriptionView = DescriptionView.extend({
     this.showNormalizedDescriptionOnInput(this.$box.find('.description-input'));
 
     this.model.on('remove', this.removeBox, this);
+  },
+
+  updateBox() {
+    DescriptionView.prototype.updateBox.apply(this, arguments);
+    this.showNormalizedDescriptionOnInput(this.$box.find('.description-input'));
   },
 
   normalizeDescription(description) {

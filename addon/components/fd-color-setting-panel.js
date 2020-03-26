@@ -106,6 +106,10 @@ export default Component.extend(
 
       const rgbaTextValue = this.hexToRGBA(this.get('textValue'));
       const rgbabackgroundValue = this.hexToRGBA(this.get('backgroundValue'));
+      const oldText = objectModel.get(textPath);
+      const oldBrush = objectModel.get(brushPath);
+      const oldTextValue = this._getRgbaArray(oldText);
+      const oldBrushValue = this._getRgbaArray(oldBrush);
 
       objectModel.set(`${textPath}.R`, rgbaTextValue[0]);
       objectModel.set(`${textPath}.G`, rgbaTextValue[1]);
@@ -118,12 +122,47 @@ export default Component.extend(
       objectModel.set(`${brushPath}.A`, rgbabackgroundValue[3]);
 
       objectView.setColors();
-      if (!isNone(this.get('stereotypeValue'))) {
-        objectModel.set('stereotype', this.get('stereotypeValue'));
-        objectView.updateInputValue();
+      const oldStereotype = objectModel.get('stereotype');
+      const newStereotype = this.get('stereotypeValue');
+      if (!isNone(newStereotype)) {
+        objectModel.set('stereotype', newStereotype);
+        objectView.setInputValues();
+        objectView.updateRectangles();
       }
 
+      this._createHistoryStep(oldTextValue, rgbaTextValue, oldBrushValue, rgbabackgroundValue, oldStereotype, newStereotype);
       this.closePopup(e, true);
+      objectView.paper.$el.focus();
     }
+  },
+
+  /**
+    Get rgba array from color JSON.
+
+    @method _getRgbaArray
+   */
+  _getRgbaArray(colorObject) {
+    return A([colorObject.R, colorObject.G, colorObject.B, colorObject.A]);
+  },
+
+  /**
+    Create history step for colors/stereotype changing.
+
+    @method _createHistoryStep
+   */
+  _createHistoryStep(oldTextValue, newTextValue, oldBrushValue, newBrushValue, oldStereotype, newStereotype) {
+    const graph = this.get('value.model.graph');
+    if (isNone(graph)) {
+      return;
+    }
+
+    let changes = A();
+    changes.addObject({ field: 'textColor', oldValue: oldTextValue, newValue: newTextValue });
+    changes.addObject({ field: 'brushColor', oldValue: oldBrushValue, newValue: newBrushValue });
+    if (!isNone(newStereotype)) {
+      changes.addObject({ field: 'stereotype', oldValue: oldStereotype, newValue: newStereotype });
+    }
+
+    graph.trigger('history:add', this.get('value.model').get('id'), changes);
   }
 });

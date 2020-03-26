@@ -2,21 +2,31 @@
 All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
+
+## [0.14.0]
 ### Added
 * Add stage export.
 * Add stage import.
 * Add panel of class dependencies diagrams on class sheet.
+* Add settings color diagram elements.
+* Add support "Delete" hotkey for diagram.
+* Add support "Ctrl + A" hotkey for diagram.
+* Add support "Ctrl + C" hotkey for diagram.
+* Add support "Ctrl + V" hotkey for diagram.
+* Add support "Ctrl + S" hotkey for diagram.
+* Add support "Ctrl + Z" hotkey for diagram.
+* Add support "Ctrl + Y" hotkey for diagram.
+* Add support selected diagram element with press "Shift" or "Ctrl".
+* Add git unlogin.
 
 ### Fixed
 * Unlock empty object. When object creating.
-
-## [0.14.0-beta02]
-### Fixed
-* Fix locales
-
-## [0.14.0-beta01]
-### Fixed
-* Fix setButtonStyles
+* Fix setButtonStyles.
+* Fix locales.
+* Fix style editform and listform constructors.
+* Fix delete class.
+* Fix disabled link imputs.
+* Fix link lock.
 
 ## [0.13.0]
 ### Added
