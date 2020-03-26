@@ -120,6 +120,15 @@ export default Controller.extend(FdSheetCloseConfirm, {
   },
 
   /**
+    Reset current stage file for import.
+
+     @method resetSelectedFile
+  */
+  resetSelectedFile() {
+    this.set('_selectedFile', undefined);
+  },
+
+  /**
     Check data for correctness.
 
     @method validateData
@@ -143,10 +152,14 @@ export default Controller.extend(FdSheetCloseConfirm, {
   },
 
   /**
-    Check data for correctness.
+    Create new stage from selected stage file, whitch posted to backend.
 
-    @method validateData
-    @param {Object} model Class model.
+    @method createNewStage
+    @param {String} projectName Project name.
+    @param {String} product Product name.
+    @param {String} description Description.
+    @param {Object} configuration Current configuration.
+    @param {Object} selectedFile Stage file in .crp or .zip format.
   */
   createNewStage(projectName, product, description, configuration, selectedFile) {
     const _this = this;
@@ -273,7 +286,8 @@ export default Controller.extend(FdSheetCloseConfirm, {
     /**
       Upload stage file hook.
 
-      @method actions.cancelButton
+      @method actions.upload
+      @param {jQuery.Event} e event.
     */
     upload(e) {
       var file = e.target.files[0];
