@@ -2,6 +2,9 @@
 All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
+### Changed
+* Change use template caption, when create new project.
+* Swap diagrams and model position in main menu.
 
 ## [0.14.0]
 ### Added

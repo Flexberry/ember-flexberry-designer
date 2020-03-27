@@ -9,7 +9,7 @@ export default {
   'name-placeholder': 'Название',
   product: 'Кодовое имя проекта',
   'product-placeholder': 'Если оставить пустым, поле создастся автоматически по названию проекта',
-  'name-example': 'Например',
+  'name-example': 'Применить шаблон',
   'name-examples': {
     library: 'Учетная система для библиотеки',
     school: 'Учетная система для школы',

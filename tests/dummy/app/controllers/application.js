@@ -97,16 +97,16 @@ export default Controller.extend({
 
     if (!singleStageMode) {
       sitemap.nodes.push({
-        link: 'fd-application-model',
-        caption: i18n.t('forms.application.sitemap.root.fd-application-model.caption'),
-        title: i18n.t('forms.application.sitemap.root.fd-application-model.title'),
-        icon: 'icon-fd-menu'
-      },
-      {
         link: 'fd-diagrams',
         caption: i18n.t('forms.application.sitemap.root.fd-diagrams.caption'),
         title: i18n.t('forms.application.sitemap.root.fd-diagrams.title'),
         icon: 'icon-fd-diagram'
+      },
+      {        
+        link: 'fd-application-model',
+        caption: i18n.t('forms.application.sitemap.root.fd-application-model.caption'),
+        title: i18n.t('forms.application.sitemap.root.fd-application-model.title'),
+        icon: 'icon-fd-menu'
       },
       {
         link: 'fd-navigation',
