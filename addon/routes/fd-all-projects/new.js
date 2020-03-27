@@ -33,6 +33,7 @@ export default Route.extend({
       controller.set('nameFromSearch', '');
     }
 
+    controller.resetSelectedFile();
     return this._super(...arguments);
   },
 
