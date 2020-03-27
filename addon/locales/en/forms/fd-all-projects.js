@@ -9,7 +9,7 @@ export default {
   'name-placeholder': 'Name',
   product: 'Short project name',
   'product-placeholder': 'If left blank, the field will be created automatically by the name of the project',
-  'name-example': 'Use template',
+  'name-example': 'Apply template',
   'name-examples': {
     library: 'Library accounting system',
     school: 'School accounting system',
