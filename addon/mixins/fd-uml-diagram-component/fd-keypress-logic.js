@@ -68,6 +68,10 @@ export default Mixin.create({
     @param {Event} e event.
   */
   _keydownHandler(e) {
+    if ($(e.target).is('textarea,input')) {
+      return;
+    }
+
     if (e.ctrlKey) {
       e.stopPropagation();
 
@@ -116,7 +120,7 @@ export default Mixin.create({
 
       this.get('paper').$el.focus();
 
-    } else if (e.keyCode === 46 && !$(e.target).is('textarea,input')) {
+    } else if (e.keyCode === 46) {
       e.stopPropagation();
       e.preventDefault();
       this.deleteSelectElements();

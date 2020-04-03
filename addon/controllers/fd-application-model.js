@@ -178,6 +178,7 @@ export default Controller.extend(FdSheetCloseConfirm, FdReadonlyProjectMixin, Fd
         stereotype: stereotype
       });
 
+      newClass.incrementProperty('referenceCount');
       if (!isBlank(dataobject) && !(dataobject instanceof $.Event)) {
         let formView = store.createRecord('fd-dev-form-view', {
           view: null,

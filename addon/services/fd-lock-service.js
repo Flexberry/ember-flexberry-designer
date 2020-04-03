@@ -173,6 +173,11 @@ export default Service.extend({
           return JSON.parse(result.value);
         });
       }
+
+      // Delete this when aadd lock for view git #709
+      if (objectTypeName === 'view-sheet') {
+        return resolve(true);
+      }
     }
 
     return resolve(false);

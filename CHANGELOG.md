@@ -2,9 +2,15 @@
 All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
+
+## [0.14.1]
 ### Changed
 * Change use template caption, when create new project.
 * Swap diagrams and model position in main menu.
+
+### Fixed
+* Fix work hotkey in inputs on diagrams primitives.
+* FIx save class.
 
 ## [0.14.0]
 ### Added
