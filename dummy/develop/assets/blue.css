@@ -61298,7 +61298,7 @@ body.pushable > .pusher {
 /*******************************
          Theme Overrides
 *******************************/
-.arrow {
+.toggle-arrow {
   content: '';
   position: absolute;
   border: 0.4em solid transparent;
@@ -66578,7 +66578,7 @@ div.ui.secondary.menu.no-margin.nav-bar .right.menu {
 .fade #mobile .full.height {
   overflow: hidden;
 }
-.arrow {
+.toggle-arrow {
   content: '';
   position: absolute;
   border: 0.4em solid transparent;
