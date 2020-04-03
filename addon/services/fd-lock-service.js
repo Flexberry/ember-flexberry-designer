@@ -174,7 +174,7 @@ export default Service.extend({
         });
       }
 
-      // Delete this when aadd lock for view git #709
+      // Delete this when add lock for view git #709
       if (objectTypeName === 'view-sheet') {
         return resolve(true);
       }
