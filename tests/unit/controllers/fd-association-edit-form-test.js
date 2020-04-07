@@ -6,6 +6,7 @@ moduleFor('controller:fd-association-edit-form', 'Unit | Controller | fd associa
   needs: [
     'controller:advlimit-dialog',
     'controller:colsconfig-dialog',
+    'controller:filters-dialog',
     'service:objectlistviewEvents',
     'controller:lookup-dialog',
     'controller:flexberry-file-view-dialog',

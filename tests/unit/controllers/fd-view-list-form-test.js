@@ -5,6 +5,7 @@ moduleFor('controller:fd-view-list-form', 'Unit | Controller | fd view list form
   // needs: ['controller:foo']
   needs: [
     'controller:advlimit-dialog',
+    'controller:filters-dialog',
     'service:user-settings',
     'service:objectlistview-events',
     'controller:colsconfig-dialog',

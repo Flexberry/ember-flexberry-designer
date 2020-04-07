@@ -5,6 +5,7 @@ moduleFor('controller:new-platform-flexberry-web-designer-generation-l', 'Unit |
   // needs: ['controller:foo']
   needs: [
     'controller:advlimit-dialog',
+    'controller:filters-dialog',
     'service:user-settings',
     'service:objectlistview-events',
     'controller:colsconfig-dialog',
