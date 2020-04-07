@@ -6,6 +6,7 @@ moduleFor('controller:fd-system-edit-form', 'Unit | Controller | fd system edit 
   needs: [
     'controller:advlimit-dialog',
     'controller:colsconfig-dialog',
+    'controller:filters-dialog',
     'service:objectlistviewEvents',
     'controller:lookup-dialog',
     'controller:flexberry-file-view-dialog',

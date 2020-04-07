@@ -5,6 +5,7 @@ moduleFor('controller:fd-stage-list-form', 'Unit | Controller | fd stage list fo
   // needs: ['controller:foo']
   needs: [
     'controller:advlimit-dialog',
+    'controller:filters-dialog',
     'service:user-settings',
     'service:objectlistview-events',
     'controller:colsconfig-dialog',

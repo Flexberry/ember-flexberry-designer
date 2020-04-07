@@ -6,6 +6,7 @@ moduleFor('controller:fd-class-edit-form', 'Unit | Controller | fd class edit fo
   needs: [
     'controller:advlimit-dialog',
     'controller:colsconfig-dialog',
+    'controller:filters-dialog',
     'service:fd-current-project-context',
     'service:objectlistviewEvents',
     'controller:lookup-dialog',

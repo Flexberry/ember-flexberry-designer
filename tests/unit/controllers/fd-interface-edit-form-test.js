@@ -6,6 +6,7 @@ moduleFor('controller:fd-interface-edit-form', 'Unit | Controller | fd interface
   needs: [
     'controller:advlimit-dialog',
     'controller:colsconfig-dialog',
+    'controller:filters-dialog',
     'service:objectlistviewEvents',
     'controller:lookup-dialog',
     'controller:flexberry-file-view-dialog',

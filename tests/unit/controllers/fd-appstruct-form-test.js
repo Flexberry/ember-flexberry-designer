@@ -6,6 +6,7 @@ moduleFor('controller:fd-appstruct-form', 'Unit | Controller | new platform flex
   needs: [
     'controller:advlimit-dialog',
     'controller:colsconfig-dialog',
+    'controller:filters-dialog',
     'service:fd-current-project-context',
     'service:appState',
     'service:objectlistviewEvents',

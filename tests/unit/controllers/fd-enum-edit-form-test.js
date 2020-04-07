@@ -6,6 +6,7 @@ moduleFor('controller:fd-enum-edit-form', 'Unit | Controller | fd enum edit form
   needs: [
     'controller:advlimit-dialog',
     'controller:colsconfig-dialog',
+    'controller:filters-dialog',
     'service:objectlistviewEvents',
     'controller:lookup-dialog',
     'controller:flexberry-file-view-dialog',
