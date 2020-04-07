@@ -1,6 +1,6 @@
 {
   "name": "ember-flexberry-designer",
-  "version": "0.14.1",
+  "version": "0.14.2",
   "description": "CASE addon for ember-flexberry applications",
   "keywords": [
     "ember-addon",
@@ -57,7 +57,7 @@
     "ember-data": "~3.1.1",
     "ember-disable-prototype-extensions": "^1.1.2",
     "ember-export-application-global": "^2.0.0",
-    "ember-flexberry": "3.3.0-beta.0",
+    "ember-flexberry": "3.4.0-beta.0",
     "ember-inflector": "^3.0.0",
     "ember-link-action": "0.0.36",
     "ember-load-initializers": "^1.0.0",
