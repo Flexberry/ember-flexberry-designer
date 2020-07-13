@@ -47,6 +47,7 @@ export default {
     'pri-key-placeholder': 'Enter the private SSH key',
     'frontend-publish': 'Publish an application to gh-pages',
     'git-disconnect-button-caption': 'Disconnect Github',
+    'clear-module-settings': 'Clear module settings',
   },
   'access-settings-caption': 'Members',
   'access-settings': {
