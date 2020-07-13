@@ -2,6 +2,8 @@
 All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
+
+## [0.14.3]
 ### Added
 * Clear mofule settings button.
 
