@@ -357,5 +357,18 @@ export default Controller.extend(FdSheetCloseConfirm, FdReadonlyProjectMixin, {
 
       adapter.callAction('ClearUserAuthData', { username: this.get('userService._username') });
     },
+
+    /**
+      Clear module settings of current stage.
+
+      @method actions.clearModuleSettings
+    */
+    clearModuleSettings() {
+      let store = this.get('store');
+      let adapter = store.adapterFor('application');
+      let stage = this.get('model.stage');
+
+      adapter.callAction('ClearModuleSettings', { projectString: stage.get('id') });
+    }
   }
 });

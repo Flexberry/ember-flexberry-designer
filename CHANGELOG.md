@@ -2,6 +2,9 @@
 All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
+### Added
+* Clear mofule settings button.
+
 ## [0.14.2]
 ### Fixed
 * Fix update store when batch.
