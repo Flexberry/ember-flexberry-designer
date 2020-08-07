@@ -188,7 +188,7 @@ export default Controller.extend(FdSheetCloseConfirm, {
           return;
         }
       })
-      .then(function(response) 
+      .then(function(response)
       {
         return resolve(response);
       });
@@ -225,7 +225,7 @@ export default Controller.extend(FdSheetCloseConfirm, {
           .selectByProjection('ListFormView')
           .top(1);
 
-          store.query(modelName, builder.build()).then(result => {
+          return store.query(modelName, builder.build()).then(result => {
             configuration = result.firstObject;
             resolve();
           });
@@ -260,8 +260,8 @@ export default Controller.extend(FdSheetCloseConfirm, {
             description: this.get('projectDescription'),
             configuration: configuration,
           });
-  
-          this.get('appState').loading();  
+
+          this.get('appState').loading();
           return stage.save();
         }
       })

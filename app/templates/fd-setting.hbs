@@ -271,7 +271,7 @@
     </div>
   </div>
 
-  {{#if model.usersAccess}}
+  {{#if (is-array model.usersAccess)}}
     <h2 class="form-header">{{t "forms.fd-setting.access-settings-caption"}}</h2>
     <div class="ui stackable grid fd-list-edited">
       <div class="row">
