@@ -10,6 +10,7 @@ export default {
     'caption-placeholder': 'Enter caption',
     'type': 'Type',
     'type-placeholder': 'Enter type',
+    'not-null': 'Not null',
     'description': 'Description',
     'description-placeholder': 'Enter description',
     'create-btn': 'Create attribute',

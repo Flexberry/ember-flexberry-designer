@@ -3,9 +3,14 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+## [0.15.0-beta.1]
+### Fixed
+* Fix user access table.
+* Fix attributes property.
+
 ## [0.14.3]
 ### Added
-* Clear mofule settings button.
+* Clear module settings button.
 
 ## [0.14.2]
 ### Fixed

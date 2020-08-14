@@ -28,12 +28,19 @@
               readonly=(or readonly tableTextBoxReadonly)
             }}
           {{else}}
-            {{flexberry-textbox
-              value=(mut (get value tableView.columnProperty))
-              class='fluid input'
-              placeholder=(t tableView.attrPlaceholder)
-              readonly=(or readonly tableTextBoxReadonly)
-            }}
+            {{#if tableView.isCheckBox}}
+              {{flexberry-checkbox
+                readonly=(or readonly tableTextBoxReadonly)
+                value=(mut (get value tableView.columnProperty))
+              }}
+            {{else}}
+              {{flexberry-textbox
+                value=(mut (get value tableView.columnProperty))
+                class='fluid input'
+                placeholder=(t tableView.attrPlaceholder)
+                readonly=(or readonly tableTextBoxReadonly)
+              }}
+            {{/if}}
           {{/if}}
         </div>
       {{/each}}
