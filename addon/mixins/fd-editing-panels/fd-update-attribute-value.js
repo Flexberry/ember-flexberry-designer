@@ -41,10 +41,20 @@ export default Mixin.create({
       attrPlaceholder: 'components.fd-attribute-table.attribute.type-placeholder',
     },
     {
+      columnCaption: 'components.fd-attribute-table.attribute.not-null',
+      columnProperty: 'notNull',
+      isCheckBox: true,
+    },
+    {
+      columnCaption: 'components.fd-attribute-table.attribute.default-value',
+      columnProperty: 'defaultValue',
+      attrPlaceholder: 'components.fd-attribute-table.attribute.default-value-placeholder',
+    },
+    {
       columnCaption: 'components.fd-attribute-table.attribute.description',
       columnProperty: 'description',
       attrPlaceholder: 'components.fd-attribute-table.attribute.description-placeholder',
-    },
+    }
   ],
 
   /**

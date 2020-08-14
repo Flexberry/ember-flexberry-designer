@@ -12,6 +12,7 @@ export default {
     'type-placeholder': 'Введите тип',
     'description': 'Описание',
     'description-placeholder': 'Введите описание',
+    'not-null': 'Не пустое',
     'create-btn': 'Создать атрибут',
     'delete-btn': 'Удалить выбранные',
   },
