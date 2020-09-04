@@ -205,6 +205,7 @@ export let EmptyView = joint.dia.LinkView.extend({
     return A([{
       name: 'remove-button',
       text: '&#xe915',
+      title: window.i18n.t('components.fd-diagram-editing-panel.remove-button-title').string,
       handler: this.removeLink.bind(this),
       attrs: {
         'element': { atConnectionRatio: .2 },
@@ -214,6 +215,7 @@ export let EmptyView = joint.dia.LinkView.extend({
     },  {
       name: 'color-button',
       text: '&#xf1fc',
+      title: window.i18n.t('components.fd-diagram-editing-panel.color-button-title').string,
       handler: this.changeColorElement.bind(this),
       attrs: {
         'element': { atConnectionRatio: .3 },

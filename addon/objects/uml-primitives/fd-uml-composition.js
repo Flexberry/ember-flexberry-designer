@@ -78,6 +78,7 @@ joint.shapes.flexberry.uml.CompositionView = MultiplicityView.extend({
       buttons.pushObject({
         name: 'open-edit-form-button',
         text: '&#xf013',
+        title: window.i18n.t('components.fd-diagram-editing-panel.open-edit-form-title').string,
         handler: this.openEditForm.bind(this),
         attrs: {
           'element': { atConnectionRatio: .4 },

@@ -322,9 +322,12 @@ joint.highlighters.strokeAndButtons = {
       g.setAttributeNS(null, 'class', name || '');
       let circle = document.createElementNS(svgNS, 'circle');
       let text = document.createElementNS(svgNS, 'text');
+      let title = document.createElementNS(svgNS, 'title');
       text.innerHTML = get(button, 'text');
+      title.innerHTML = get(button, 'title');
       g.appendChild(circle);
       g.appendChild(text);
+      g.appendChild(title);
       g.onmousedown = this._onMouseDown;
       g.onclick = get(button, 'handler');
       if (!isArray(this._buttons[id])) {
@@ -367,6 +370,7 @@ joint.shapes.flexberry.uml.PrimitiveElementView = joint.dia.ElementView.extend({
     return A([{
       name: 'remove-button',
       text: '&#xe915',
+      title: window.i18n.t('components.fd-diagram-editing-panel.remove-button-title').string,
       handler: this.removeElement.bind(this),
       attrs: {
         'element': {'ref-dx': 0,'ref-y': 0, 'ref': '.joint-highlight-stroke' },
@@ -376,6 +380,7 @@ joint.shapes.flexberry.uml.PrimitiveElementView = joint.dia.ElementView.extend({
     }, {
       name: 'color-button',
       text: '&#xf1fc',
+      title: window.i18n.t('components.fd-diagram-editing-panel.color-button-title').string,
       handler: this.changeColorElement.bind(this),
       attrs: {
         'element': {'ref-dx': -14,'ref-y': 0, 'ref': '.joint-highlight-stroke' },
