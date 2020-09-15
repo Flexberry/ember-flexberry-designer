@@ -380,6 +380,10 @@ $.extend(true, translations, {
             title: '',
           }
         },
+        share: {
+          'share-button-data-content': 'Скопировано!',
+          'share-button-title': 'Копировать ссылку'
+        }
       }
     },
 

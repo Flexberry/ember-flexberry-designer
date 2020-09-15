@@ -125,7 +125,7 @@
   .flex-direction(column);
   justify-content: space-between;
   align-content: stretch;
-  
+
   min-height: 100%;
 
   .item .icon {
@@ -172,7 +172,7 @@
 
   &.visible {
     width: @sidebarWdth;
-  
+
     .item {
       font-size: 1rem;
     }
@@ -188,7 +188,7 @@
 
   .current-project-name-header,
   .current-project-name {
-    .icon {
+    > div > i.icon {
       visibility: hidden;
     }
   }

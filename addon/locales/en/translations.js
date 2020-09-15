@@ -381,6 +381,10 @@ $.extend(true, translations, {
             title: '',
           }
         },
+        share: {
+          'share-button-data-content': 'Copied!',
+          'share-button-title': 'Copy link'
+        }
       }
     },
 

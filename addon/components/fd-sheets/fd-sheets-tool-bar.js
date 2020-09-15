@@ -1,13 +1,13 @@
 import Component from '@ember/component';
 import FdReadonlyProjectMixin from '../../mixins/fd-readonly-project';
+import FdShareFunctionMixin from '../../mixins/fd-share-function';
 import { inject as service } from '@ember/service';
 import { A } from '@ember/array';
 import { computed, observer } from '@ember/object';
 import { isNone } from '@ember/utils';
 import layout from '../../templates/components/fd-sheets/fd-sheets-tool-bar';
-import { later } from '@ember/runloop';
 
-export default Component.extend(FdReadonlyProjectMixin, {
+export default Component.extend(FdReadonlyProjectMixin, FdShareFunctionMixin, {
   layout,
 
   /**
@@ -141,11 +141,11 @@ export default Component.extend(FdReadonlyProjectMixin, {
   */
   isNewModel: false,
 
-  /**	
-    Current sheet content value.	
-    @property contentSheetValue	
-    @type Object	
-  */	
+  /**
+    Current sheet content value.
+    @property contentSheetValue
+    @type Object
+  */
   contentSheetValue: undefined,
 
   /**
@@ -286,30 +286,9 @@ export default Component.extend(FdReadonlyProjectMixin, {
         object = `&gototype=${gototype}&gotoobj=${contentSheetValue.get('id')}`;
       }
 
-      // Create new element
-      var el = document.createElement('textarea');
-
-      // Set value (string to be copied), set non-editable to avoid focus and move outside of view
-      el.value =  `${origin}${pathname}${hashWithoutQueryParams}${stage}${object}`;
-      el.style = { display: 'none' };
-      document.body.appendChild(el);
-
-      // Select text inside element, copy text to clipboard and remove temporary element.
-      el.select();
-      document.execCommand('copy');
-      document.body.removeChild(el);
-
-      let sharePopup = this.$(event.currentTarget);
-      sharePopup.popup({
-        on: 'manual',
-        inline: true,
-        position: 'bottom center',
-      }).popup('show');
-      this.set('copied', true);
-      later(this, (function() {
-        sharePopup.popup('hide');
-        this.set('copied', false);
-      }), 2000);
+      let value =  `${origin}${pathname}${hashWithoutQueryParams}${stage}${object}`;
+      this.copyInClipboardValue(value);
+      this.showSharePopup(event);
     },
 
     /**
@@ -330,7 +309,7 @@ export default Component.extend(FdReadonlyProjectMixin, {
 
       classDiagrams.pushObjects(cadDiagramsCurrentStage.filter(function (diagram) {
         if (!isNone(diagram.caseObjectsString)) {
-          return diagram.caseObjectsString.includes("Class:(" + currentClassName + ")"); 
+          return diagram.caseObjectsString.includes("Class:(" + currentClassName + ")");
         }
       }));
 
@@ -341,7 +320,7 @@ export default Component.extend(FdReadonlyProjectMixin, {
         on: 'click',
         position: 'bottom right',
         target: event.currentTarget,
-      }).popup('show');      
+      }).popup('show');
     },
 
     /**
