@@ -135,6 +135,13 @@
     min-height: 1.125em;
   }
 
+  .ui.share.button {
+    background-color: transparent;
+    &:hover .icon {
+      color: fadein(@sidebarIconColor, 10%);
+    }
+  }
+
   .item {
     border-radius: @itemActiveBorderRadius !important;
     margin: 0.2rem .6rem;
@@ -157,6 +164,12 @@
 
   &.sidebar-mini {
     width: @sidebarMiniWidth;
+    .current-project-name-header,
+    .current-project-name {
+      > div > i.icon {
+        display: none;
+      }
+    }
 
     .item {
       font-size: 0;

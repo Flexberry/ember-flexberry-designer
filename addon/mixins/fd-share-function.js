@@ -47,8 +47,8 @@ export default Mixin.create({
     }).popup('show');
     this.set('copied', true);
     later(this, (function() {
-      sharePopup.popup('hide');
-      this.set('copied', false);
+      // sharePopup.popup('hide');
+      // this.set('copied', false);
     }), 2000);
   }
 });
