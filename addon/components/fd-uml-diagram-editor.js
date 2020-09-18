@@ -198,15 +198,6 @@ FdPopupActions, {
     return this.get('readonlyMode') && !this.get('model.isNew');
   }),
 
-  diagramType: computed('model.constructor.modelName', function() {
-    let type = this.get('model.constructor.modelName');
-    if (isNone(type)) {
-      return undefined;
-    }
-
-    return type.split('-').pop();
-  }),
-
   init() {
     this._super(...arguments);
 

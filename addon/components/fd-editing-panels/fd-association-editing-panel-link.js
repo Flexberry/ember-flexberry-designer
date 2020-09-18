@@ -13,4 +13,12 @@ export default Component.extend(FdReadonlyModeMixin, {
     @default undefined
   */
   model: undefined,
+
+  /**
+    Url video help.
+
+    @property urlHelp
+    @type String
+  */
+  urlHelp: 'https://www.youtube.com/embed/G9zoWWLCwuk'
 });
