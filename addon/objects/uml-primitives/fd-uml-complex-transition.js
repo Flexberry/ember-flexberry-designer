@@ -211,6 +211,7 @@ joint.shapes.flexberry.uml.ComplexTransitionHView = joint.shapes.flexberry.uml.P
     return A([{
       name: 'remove-button',
       text: '&#xe915',
+      title: window.i18n.t('components.fd-diagram-editing-panel.remove-button-title').string,
       handler: this.removeElement.bind(this),
       attrs: {
         'element': {'ref-dx': 10,'ref-y': -15, 'ref': '.joint-highlight-stroke' },
