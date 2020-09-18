@@ -91,6 +91,23 @@ export default FdBaseSheet.extend({
   }),
 
   /**
+    Url video help.
+
+    @method urlVideoHelp
+  */
+  urlVideoHelp: computed('componentNamePart', function() {
+    let componentNamePart = this.get('componentNamePart');
+    if (isNone(componentNamePart)) {
+      return;
+    }
+
+    let componentName = `fd-editing-panels/fd-${componentNamePart}-editing-panel`;
+    let url = this.getHelpUrl(componentName);
+
+    return url;
+  }),
+
+  /**
     Opening sheet.
 
      @method openSheet

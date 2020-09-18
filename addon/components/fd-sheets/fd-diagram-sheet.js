@@ -123,6 +123,37 @@ export default FdBaseSheet.extend(
   }),
 
   /**
+    Type diagram.
+
+    @method diagramType
+  */
+  diagramType: computed('selectedValue.data.constructor.modelName', function() {
+    let type = this.get('selectedValue.data.constructor.modelName');
+    if (isNone(type)) {
+      return undefined;
+    }
+
+    return type.split('-').pop();
+  }),
+
+  /**
+    Url video help.
+
+    @method urlVideoHelp
+  */
+  urlVideoHelp: computed('diagramType', function() {
+    let diagramType = this.get('diagramType');
+    if (isNone(diagramType)) {
+      return;
+    }
+
+    let componentName = `fd-uml-diagram-toolbars/fd-${diagramType}-toolbar`;
+    let url = this.getHelpUrl(componentName);
+
+    return url;
+  }),
+
+  /**
     Opening sheet.
 
      @method openSheet

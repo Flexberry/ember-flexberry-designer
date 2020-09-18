@@ -1,5 +1,9 @@
 <form class="ui form flexberry-vertical-form settings-form">
   <div class="fd-sheet-toolbar">
+    {{fd-view-helper
+      url='https://www.youtube.com/embed/ycw9i0-1fBM'
+      position='right'
+    }}
     <button class="ui button {{if readonlyModeProject 'disabled' ''}}" {{action "save"}}>
       {{t "forms.fd-setting.save-button"}}
     </button>

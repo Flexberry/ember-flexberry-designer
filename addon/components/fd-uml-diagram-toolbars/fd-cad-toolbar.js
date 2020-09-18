@@ -4,5 +4,13 @@ import layout from '../../templates/components/fd-uml-diagram-toolbars/fd-cad-to
 export default Component.extend({
   layout,
 
-  tagName: ''
+  tagName: '',
+
+  /**
+    Url video help.
+
+    @property urlHelp
+    @type String
+  */
+  urlHelp: 'https://www.youtube.com/embed/tQLDUXOnxnA'
 });

@@ -1,8 +1,9 @@
 import Component from '@ember/component';
 import FdSaveHasManyRelationshipsMixin from '../../mixins/fd-save-has-many-relationships';
 import { inject as service } from '@ember/service';
-import { isBlank } from '@ember/utils';
+import { isBlank, isNone } from '@ember/utils';
 import { assert } from '@ember/debug';
+import { getOwner } from '@ember/application';
 
 export default Component.extend(FdSaveHasManyRelationshipsMixin, {
 
@@ -71,6 +72,21 @@ export default Component.extend(FdSaveHasManyRelationshipsMixin, {
     @default true
    */
   readonlyMode: true,
+
+  /**
+    Get url video help.
+
+     @method getHelpUrl
+     @param {String} componentName Component name.
+  */
+  getHelpUrl(componentName) {
+    let component = getOwner(this).lookup(`component:${componentName}`);
+    if (isNone(component)) {
+      return;
+    }
+
+    return component.get('urlHelp');
+  },
 
   init() {
     this._super(...arguments);

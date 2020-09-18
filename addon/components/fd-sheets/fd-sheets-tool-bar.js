@@ -85,6 +85,14 @@ export default Component.extend(FdReadonlyProjectMixin, {
   sheetButtons: undefined,
 
   /**
+    Url video helper.
+
+    @property sheetHelper
+    @type String
+  */
+  sheetHelper: undefined,
+
+  /**
     Object visible button.
 
     @property buttonArray
@@ -141,11 +149,11 @@ export default Component.extend(FdReadonlyProjectMixin, {
   */
   isNewModel: false,
 
-  /**	
-    Current sheet content value.	
-    @property contentSheetValue	
-    @type Object	
-  */	
+  /**
+    Current sheet content value.
+    @property contentSheetValue
+    @type Object
+  */
   contentSheetValue: undefined,
 
   /**
@@ -330,7 +338,7 @@ export default Component.extend(FdReadonlyProjectMixin, {
 
       classDiagrams.pushObjects(cadDiagramsCurrentStage.filter(function (diagram) {
         if (!isNone(diagram.caseObjectsString)) {
-          return diagram.caseObjectsString.includes("Class:(" + currentClassName + ")"); 
+          return diagram.caseObjectsString.includes("Class:(" + currentClassName + ")");
         }
       }));
 
@@ -341,7 +349,7 @@ export default Component.extend(FdReadonlyProjectMixin, {
         on: 'click',
         position: 'bottom right',
         target: event.currentTarget,
-      }).popup('show');      
+      }).popup('show');
     },
 
     /**

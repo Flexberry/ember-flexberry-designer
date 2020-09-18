@@ -146,6 +146,24 @@ export default FdBaseSheet.extend({
   }),
 
   /**
+    Url video help.
+
+    @method urlVideoHelp
+  */
+  urlVideoHelp: computed('objectEditFormNamePart', function() {
+    let componentNamePart = this.get('objectEditFormNamePart');
+    if (isNone(componentNamePart)) {
+      return;
+    }
+
+    let isLink = this.get('isLink') ? '-link' : '';
+    let componentName = `fd-editing-panels/fd-${componentNamePart}-editing-panel${isLink}`;
+    let url = this.getHelpUrl(componentName);
+
+    return url;
+  }),
+
+  /**
     Opening sheet.
 
      @method openSheet

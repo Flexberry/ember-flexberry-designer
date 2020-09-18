@@ -1,4 +1,10 @@
 <div class="fd-sheet-toolbar">
+  {{#if sheetHelper}}
+    {{fd-view-helper
+      url=sheetHelper
+      position='right'
+    }}
+  {{/if}}
   {{#if customButtonVisible}}
     <button class="ui button" {{action 'customButtonAction'}}>
       {{t customButtonTitle}}
@@ -61,7 +67,7 @@
       </button>
       <div class="ui flowing popup" data-variation="wide">
         {{fd-attribute-table
-          tableView=tableViewDiagrams 
+          tableView=tableViewDiagrams
           model=classDiagrams
           edit=(action 'openDependentDiagram')
           toolbarVisible=false
