@@ -115,6 +115,11 @@ define('dummy/tests/app.lint-test', [], function () {
     assert.ok(true, 'routes/fd-sequence-diagram-primitives-demo.js should pass ESLint\n\n');
   });
 
+  QUnit.test('routes/index.js', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'routes/index.js should pass ESLint\n\n');
+  });
+
   QUnit.test('routes/statechart-diagram-primitives-demo.js', function (assert) {
     assert.expect(1);
     assert.ok(true, 'routes/statechart-diagram-primitives-demo.js should pass ESLint\n\n');
@@ -4678,7 +4683,7 @@ define('dummy/tests/unit/routes/index-test', ['ember-qunit'], function (_emberQu
 
   (0, _emberQunit.moduleFor)('route:index', 'Unit | Route | index', {
     // Specify the other units that are required for this test.
-    // needs: ['controller:foo']
+    needs: ['service:appState', 'service:fd-current-project-context']
   });
 
   (0, _emberQunit.test)('it exists', function (assert) {

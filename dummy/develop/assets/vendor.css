@@ -39154,20 +39154,20 @@ body.pushable > .pusher {
 
 @font-face {
   font-family: 'fd-icons';
-  src:  url('fonts/fd-icons.eot?lyi78e');
-  src:  url('fonts/fd-icons.eot?lyi78e#iefix') format('embedded-opentype'),
-    url('fonts/fd-icons.ttf?lyi78e') format('truetype'),
-    url('fonts/fd-icons.woff?lyi78e') format('woff'),
-    url('fonts/fd-icons.svg?lyi78e#fd-icons') format('svg');
+  src:  url('fonts/fd-icons.eot?ji7kxs');
+  src:  url('fonts/fd-icons.eot?ji7kxs#iefix') format('embedded-opentype'),
+    url('fonts/fd-icons.ttf?ji7kxs') format('truetype'),
+    url('fonts/fd-icons.woff?ji7kxs') format('woff'),
+    url('fonts/fd-icons.svg?ji7kxs#fd-icons') format('svg');
   font-weight: normal;
   font-style: normal;
   font-display: block;
 }
 
-[class^="icon-"], [class*=" icon-"] {
+[class^="icon-fd-"], [class*=" icon-fd-"] {
   /* use !important to prevent issues with browser extensions that change fonts */
   font-family: 'fd-icons' !important;
-  speak: none;
+  speak: never;
   font-style: normal;
   font-weight: normal;
   font-variant: normal;
@@ -39253,6 +39253,9 @@ body.pushable > .pusher {
 }
 .icon-fd-x-mark-thin:before {
   content: "\e916";
+}
+.icon-fd-share:before {
+  content: "\e919";
 }
 
 /*! JointJS v2.0.1 (2017-11-15) - JavaScript diagramming library

@@ -61443,6 +61443,12 @@ body.pushable > .pusher {
   margin: 0em 0.5rem 0em 0em;
   min-height: 1.125em;
 }
+.ui.sidebar.main.menu .ui.share.button {
+  background-color: transparent;
+}
+.ui.sidebar.main.menu .ui.share.button:hover .icon {
+  color: rgba(0, 0, 0, 0.6);
+}
 .ui.sidebar.main.menu .item {
   border-radius: 0.5rem !important;
   margin: 0.2rem .6rem;
@@ -61466,6 +61472,10 @@ body.pushable > .pusher {
 .ui.sidebar.main.menu.sidebar-mini {
   width: 60px;
 }
+.ui.sidebar.main.menu.sidebar-mini .current-project-name-header > div > i.icon,
+.ui.sidebar.main.menu.sidebar-mini .current-project-name > div > i.icon {
+  display: none;
+}
 .ui.sidebar.main.menu.sidebar-mini .item {
   font-size: 0;
   padding-left: 0;
@@ -61488,8 +61498,8 @@ body.pushable > .pusher {
 .ui.sidebar.main.menu.visible .ui.button.toggle-sidebar-visible {
   opacity: 1;
 }
-.ui.sidebar.main.menu .current-project-name-header .icon,
-.ui.sidebar.main.menu .current-project-name .icon {
+.ui.sidebar.main.menu .current-project-name-header > div > i.icon,
+.ui.sidebar.main.menu .current-project-name > div > i.icon {
   visibility: hidden;
 }
 .ui.sidebar.main.menu .item.current-project-name-header {
