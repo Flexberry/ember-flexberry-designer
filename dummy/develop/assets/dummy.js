@@ -4784,6 +4784,11 @@ define('dummy/ember-flexberry-designer/tests/addon.lint-test', [], function () {
     assert.ok(true, 'addon/initializers/flexberry-objectlistview.js should pass ESLint\n\n');
   });
 
+  QUnit.test('addon/instance-initializers/i18n-for-object.js', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'addon/instance-initializers/i18n-for-object.js should pass ESLint\n\n');
+  });
+
   QUnit.test('addon/locales/en/components/fd-application-editing-panel.js', function (assert) {
     assert.expect(1);
     assert.ok(true, 'addon/locales/en/components/fd-application-editing-panel.js should pass ESLint\n\n');
@@ -10454,6 +10459,11 @@ define('dummy/ember-flexberry-designer/tests/app.lint-test', [], function () {
     assert.ok(true, 'app/initializers/flexberry-objectlistview.js should pass ESLint\n\n');
   });
 
+  QUnit.test('app/instance-initializers/i18n-for-object.js', function (assert) {
+    assert.expect(1);
+    assert.ok(true, 'app/instance-initializers/i18n-for-object.js should pass ESLint\n\n');
+  });
+
   QUnit.test('app/models/fd-ad.js', function (assert) {
     assert.expect(1);
     assert.ok(true, 'app/models/fd-ad.js should pass ESLint\n\n');
@@ -13135,6 +13145,25 @@ define('dummy/instance-initializers/ember-i18n', ['exports', 'ember-i18n/instanc
     value: true
   });
   exports.default = _emberI18n.default;
+});
+define('dummy/instance-initializers/i18n-for-object', ['exports', 'ember-flexberry-designer/instance-initializers/i18n-for-object'], function (exports, _i18nForObject) {
+  'use strict';
+
+  Object.defineProperty(exports, "__esModule", {
+    value: true
+  });
+  Object.defineProperty(exports, 'default', {
+    enumerable: true,
+    get: function () {
+      return _i18nForObject.default;
+    }
+  });
+  Object.defineProperty(exports, 'initialize', {
+    enumerable: true,
+    get: function () {
+      return _i18nForObject.initialize;
+    }
+  });
 });
 define('dummy/instance-initializers/i18n', ['exports', 'ember-flexberry/instance-initializers/moment'], function (exports, _moment) {
   'use strict';
