@@ -125,7 +125,7 @@
   .flex-direction(column);
   justify-content: space-between;
   align-content: stretch;
-  
+
   min-height: 100%;
 
   .item .icon {
@@ -133,6 +133,13 @@
     font-size: 1rem;
     margin: 0em 0.5rem 0em 0em;
     min-height: 1.125em;
+  }
+
+  .ui.share.button {
+    background-color: transparent;
+    &:hover .icon {
+      color: fadein(@sidebarIconColor, 10%);
+    }
   }
 
   .item {
@@ -157,6 +164,12 @@
 
   &.sidebar-mini {
     width: @sidebarMiniWidth;
+    .current-project-name-header,
+    .current-project-name {
+      > div > i.icon {
+        display: none;
+      }
+    }
 
     .item {
       font-size: 0;
@@ -172,7 +185,7 @@
 
   &.visible {
     width: @sidebarWdth;
-  
+
     .item {
       font-size: 1rem;
     }
@@ -188,7 +201,7 @@
 
   .current-project-name-header,
   .current-project-name {
-    .icon {
+    > div > i.icon {
       visibility: hidden;
     }
   }

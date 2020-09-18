@@ -1,4 +1,5 @@
 import Controller from '@ember/controller';
+import FdShareFunctionMixin from 'ember-flexberry-designer/mixins/fd-share-function';
 import { computed, observer } from '@ember/object';
 import { inject as service } from '@ember/service';
 import { A } from '@ember/array';
@@ -8,7 +9,7 @@ import $ from 'jquery';
 import config from '../config/environment';
 import fade from 'ember-animated/transitions/fade';
 
-export default Controller.extend({
+export default Controller.extend(FdShareFunctionMixin, {
   /**
     Array queryParams form
 
@@ -102,7 +103,7 @@ export default Controller.extend({
         title: i18n.t('forms.application.sitemap.root.fd-diagrams.title'),
         icon: 'icon-fd-diagram'
       },
-      {        
+      {
         link: 'fd-application-model',
         caption: i18n.t('forms.application.sitemap.root.fd-application-model.caption'),
         title: i18n.t('forms.application.sitemap.root.fd-application-model.title'),
@@ -327,6 +328,20 @@ export default Controller.extend({
       sidebar.sidebar('setting', 'transition', 'overlay')
       .sidebar('attach events', '.ui.sidebar.main.menu a.item')
       .sidebar('toggle');
+    },
+
+    /**
+      @method actions.share
+    */
+    share(event) {
+      let origin = this.get('router.location.location.origin');
+      let pathname = this.get('router.location.location.pathname');
+      let hash = this.get('router.location.location.hash').slice(0, 1) === '#' ? '#/' : '';
+      let stage = `?gotostage=${this.get('currentContext').getCurrentStage()}`;
+      let value =  `${origin}${pathname}${hash}${stage}`;
+
+      this.copyInClipboardValue(value);
+      this.showSharePopup(event);
     }
   }
 });
