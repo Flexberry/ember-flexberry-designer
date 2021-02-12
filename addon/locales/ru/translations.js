@@ -153,6 +153,7 @@ import FdArchitectureForm from './forms/fd-architecture';
 import FdGisSubsystem from './components/fd-gis-subsystem';
 import FdColorSettingPanel from './components/fd-color-setting-panel';
 import FdViewHelperPanel from './components/fd-view-helper';
+import FdGenerationSettings from './components/fd-generation-settings';
 
 const translations = {};
 $.extend(true, translations, EmberFlexberryTranslations);
@@ -478,7 +479,8 @@ $.extend(true, translations, {
     'fd-modal-message-box': FdfModalMessageBox,
     'fd-gis-subsystem': FdGisSubsystem,
     'fd-color-setting-panel': FdColorSettingPanel,
-    'fd-view-helper': FdViewHelperPanel
+    'fd-view-helper': FdViewHelperPanel,
+    'fd-generation-settings': FdGenerationSettings,
   }
 
 });

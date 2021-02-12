@@ -1,8 +1,9 @@
-<h2 class='form-header'>
-  {{t "forms.fd-generation.generation-list"}}
-</h2>
+
 
 <form class="ui form flexberry-vertical-form">
+  <h2 class='form-header'>
+    {{t "forms.fd-generation.generation-list"}}
+  </h2>
   <div class="ui stackable grid fd-list-edited">
     <div class="row">
       <div class="three wide column light-text">
@@ -19,12 +20,6 @@
           value=searchValue
         }}
       </div>
-    </div>
-    <div class="row">
-      <button class="ui basic button table-btn {{if readonlyModeProject 'disabled' ''}}" {{action "generate"}}>
-        {{t "forms.fd-generation.generate-app"}}
-      </button>
-      <span class="light-text">{{t "forms.fd-generation.with-selected"}} {{link-to (t "forms.fd-generation.settings") "fd-setting"  class="fd-styled-link"}}</span>
     </div>
 
     {{!-- Running --}}

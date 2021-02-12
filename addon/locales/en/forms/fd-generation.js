@@ -1,8 +1,11 @@
 export default {
+  'generation': 'Generation',
   'generation-list': 'Generation list',
-  'generate-app': 'Generate application',
+  'generate-app': 'Generate',
   'with-selected': 'with selected',
   settings: 'settings',
+  'show-generation-list': 'see the list of generations',
+  'or': 'or',
   'generation-log': 'Generation log',
   'start-time': 'Start time',
   'end-time': 'End time',

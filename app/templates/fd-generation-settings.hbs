@@ -1,0 +1,16 @@
+<form class="ui form flexberry-vertical-form">
+  <h2 class='form-header'>
+    {{t "forms.fd-generation.generation-list"}}
+  </h2>
+  <div class="ui stackable grid fd-list-edited">
+    <div class="row">
+      <button class="ui basic button table-btn {{if readonlyModeProject 'disabled' ''}}" {{action "generate"}}>
+        {{t "forms.fd-generation.generate-app"}}
+      </button>
+      <span class="light-text">{{t "forms.fd-generation.with-selected"}} {{link-to (t "forms.fd-generation.settings") "fd-setting"  class="fd-styled-link"}}&ensp;</span>
+      <span class="light-text">{{t "forms.fd-generation.or"}} {{link-to (t "forms.fd-generation.show-generation-list") "fd-generation" class="fd-styled-link"}}</span>
+    </div>
+  </div>
+
+  {{fd-generation-settings genSettingsFile=genSettingsFile}}
+</form>
