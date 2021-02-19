@@ -7,6 +7,12 @@ import layout from '../templates/components/fd-generation-settings';
 import { computed, observer } from '@ember/object';
 import { set } from '@ember/object';
 
+/**
+ * This component renders a list of generation settings.
+ *
+ * @class FdGenerationSettingsComponent
+ * @extends <a href="http://emberjs.com/api/classes/Ember.Component.html">Ember.Component</a>
+ */
 export default Component.extend({
   layout,
 
@@ -16,12 +22,22 @@ export default Component.extend({
     @property classNames
   */
   classNames: ['fd-generation-settings'],
-
+  
+  /**
+   * Handles changes in i18n.locale.
+   *
+   * @method localeObserver
+   */
   localeObserver: observer('i18n.locale', function() {
     this.set('newGenerationItems', {})
     this.setGenerationItems(this.get('genSettingsFile.GenerationItems'));
   }),
 
+  /**
+   * Generation settings headers.
+   *
+   * @property {object} generationItemsTitles
+   */
   generationItemsTitles: computed('i18n.locale', function() {
     let i18n = this.get('i18n');
     return {
@@ -51,13 +67,31 @@ export default Component.extend({
     }
   }),
 
+  /**
+   * Generation settings for display on the page.
+   *
+   * @property {object} newGenerationItems
+   */
   newGenerationItems: null,
 
+  /**
+   * Get setting header.
+   *
+   * @method getSettingTitle
+   * @param {string} settingKey
+   */
   getSettingTitle(settingKey) {
     let title = this.get(`generationItemsTitles.${settingKey}`);
     return title ? title : settingKey;
   },
 
+  /**
+   * Get setting items.
+   *
+   * @method getSettingItems
+   * @param {object} genItemsCard
+   * @param {string} genItem
+   */
   getSettingItems(genItemsCard, genItem) {
     let i18n = this.get('i18n');
     let items={};
@@ -83,6 +117,12 @@ export default Component.extend({
     set(this.get('newGenerationItems'), title, items)
   },
 
+  /**
+   * Set generation items.
+   *
+   * @method setGenerationItems
+   * @param {object} generationItems
+   */
   setGenerationItems(generationItems) {
     for (let generationItem in generationItems) {
       let genItems = generationItems[generationItem];
@@ -99,10 +139,10 @@ export default Component.extend({
   },
 
   /**
-    See [EmberJS API](https://emberjs.com/).
-
-    @method didInsertElement
-  */
+   * See [EmberJS API](https://emberjs.com/).
+   *
+   * @method didInsertElement
+   */
   didInsertElement() {
     this._super(...arguments);
     this.set('newGenerationItems', {})

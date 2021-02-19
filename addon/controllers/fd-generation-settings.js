@@ -1,6 +1,21 @@
+/**
+ * @module ember-flexberry-designer
+ */
 import Controller from '@ember/controller';
 
+/**
+ * The controller for the form with a generation settings.
+ *
+ * @class FdGenerationSettingsController
+ * @extends Ember.Controller
+ */
 export default Controller.extend({
+
+  /**
+   * Generation settings file.
+   *
+   * @property {object} genSettingsFile
+   */
   genSettingsFile: {
     "ProjectId": "00000000-0000-0000-0000-000000000000",
     "CrpLocalPath": "sample.crp",
