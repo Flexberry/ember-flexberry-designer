@@ -1,8 +1,11 @@
 export default {
+  'generation': 'Генерация',
   'generation-list': 'Список генераций',
-  'generate-app': 'Генерировать приложение',
+  'generate-app': 'Генерировать',
   'with-selected': 'с выбранными',
   settings: 'настройками',
+  'show-generation-list': 'посмотреть список генераций',
+  'or': 'или',
   'generation-log': 'Журнал генерации',
   'start-time': 'Время начала',
   'end-time': 'Время окончания',

@@ -130,7 +130,8 @@ Router.map(function () {
   this.route('fd-application-model');
   this.route('fd-diagrams');
   this.route('fd-navigation');
-  this.route('fd-generation', { path: 'generation' });
+  this.route('fd-generation', { path: 'generation-list' });
+  this.route('fd-generation-settings', { path: 'generation' });
 
   this.route('fd-setting');
   this.route('fd-architecture');

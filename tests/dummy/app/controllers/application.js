@@ -116,7 +116,7 @@ export default Controller.extend(FdShareFunctionMixin, {
         icon: 'icon-fd-sitemap'
       },
       {
-        link: 'fd-generation',
+        link: 'fd-generation-settings',
         caption: i18n.t('forms.application.sitemap.root.fd-generation.caption'),
         title: i18n.t('forms.application.sitemap.root.fd-generation.title'),
         icon: 'icon-fd-shipping-box'

@@ -1,0 +1,29 @@
+<div class="ui stackable grid">
+  <div class="row">
+    {{#each-in newGenerationItems as |title items|}}
+      {{#if items.caption}}
+        <h2 class="form-header">{{items.caption}}</h2>
+      {{/if}}
+      <div class="eight wide large screen sixteen wide computer column">
+        <div class="fd-card horizontal expanded {{items.className}}">
+          <div class="image text-align-center">
+            <h4 class="header">{{title}}</h4>
+            {{fd-generation-settings/products-logo className=items.className}}
+          </div>
+          <div class="content">
+            {{#each-in items as |label value|}}
+            {{#if (and (not-eq label "className") (not-eq label "caption") (not-eq label "ConnectionString"))}}
+              <div class="field">
+                {{flexberry-checkbox
+                  value=value
+                  label=label
+                }}
+              </div>
+            {{/if}}
+            {{/each-in}}
+          </div>
+        </div>
+      </div>
+    {{/each-in}}
+  </div>
+</div>
