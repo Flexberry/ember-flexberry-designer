@@ -3,6 +3,10 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+## [0.15.0-beta.2]
+### Changed
+* Changed generation.
+
 ## [0.15.0-beta.1]
 ### Fixed
 * Fix user access table.

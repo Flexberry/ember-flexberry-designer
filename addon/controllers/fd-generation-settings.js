@@ -2,6 +2,8 @@
  * @module ember-flexberry-designer
  */
 import Controller from '@ember/controller';
+import { resolve } from 'rsvp';
+import { inject as service } from '@ember/service';
 import { computed } from '@ember/object';
 
 /**
@@ -11,6 +13,15 @@ import { computed } from '@ember/object';
  * @extends Ember.Controller
  */
 export default Controller.extend({
+
+  /**
+   Service that get current project contexts.
+
+   @property currentProjectContext
+   @type {Class}
+   @default service()
+   */
+  currentProjectContext: service('fd-current-project-context'),
 
   /**
    * Generation settings file.
@@ -93,5 +104,16 @@ export default Controller.extend({
         }
       }
     }
-  })
+  }),
+
+  actions: {
+    /**
+      Starts generation, opens its log when it starts successfully.
+
+      @method actions.generate
+    */
+    generate() {
+      return resolve();
+    },
+  }
 })
