@@ -2,6 +2,7 @@
   @module ember-flexberry-designer
 */
 import Route from '@ember/routing/route';
+import FdShareLoadData from '../mixins/fd-share-load-data';
 
 /**
  * Route for generation settings form.
@@ -9,4 +10,4 @@ import Route from '@ember/routing/route';
  * @class FdGenerationSettingsRoute
  * @extends Ember.Route
  */
-export default Route.extend({});
+export default Route.extend(FdShareLoadData, {});
