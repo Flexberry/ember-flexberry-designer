@@ -10,6 +10,7 @@
       toolbarVisible=(not isAddMode)
       saveSheet=save
       deleteSheet=(action 'delete')
+      contentSheetValue=model
 
       customButtonVisible=isAddMode
       customButtonTitle=customButtonTitle
@@ -27,7 +28,7 @@
     {{#if isAddMode}}
       {{fd-navigation-editing-panels/fd-create-node-editing-panel
         node=selectedValue
-        forms=model
+        forms=forms
         addSubFormAction=addSubForm
       }}
     {{else}}

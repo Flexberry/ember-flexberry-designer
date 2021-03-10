@@ -24,6 +24,14 @@ export default FdBaseSheet.extend({
   model: undefined,
 
   /**
+    Forms.
+
+    @property forms
+    @type Object
+  */
+  forms: undefined,
+
+  /**
     Value selected view.
 
     @property selectedValue

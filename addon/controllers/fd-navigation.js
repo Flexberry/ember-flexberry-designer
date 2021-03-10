@@ -36,6 +36,15 @@ export default Controller.extend(FdSheetCloseConfirm, FdReadonlyProjectMixin, {
   fdSheetService: service(),
 
   /**
+   Service for managing locks.
+
+   @property fdLockService
+   @type {Class}
+   @default service()
+   */
+  fdLockService: service(),
+
+  /**
     Service for managing the state of the component.
 
     @property fdDialogService
@@ -129,7 +138,16 @@ export default Controller.extend(FdSheetCloseConfirm, FdReadonlyProjectMixin, {
        @method actions.edit
     */
     edit() {
-      this.set('readonlyMode', false);
+      let _this = this;
+
+      let sheetComponentName = this.get('sheetComponentName');
+      this.get('fdLockService').checkLock(this.get('model.app'), sheetComponentName).then(result => {
+        if (result && !result.Acquired) {
+          _this.set('readonlyMode', false);
+        } else {
+          _this.get('fdDialogService').showErrorMessage(this.get('i18n').t('components.fd-sheets-tool-bar.object-locked').toString() + (result ? result.UseName : ''));
+        }
+      });
     },
 
     /**
