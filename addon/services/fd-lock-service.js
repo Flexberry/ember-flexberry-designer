@@ -111,7 +111,7 @@ export default Service.extend({
         });
       }
 
-      if (objectTypeName === 'edit-diagram-object-sheet' || objectTypeName === 'class-sheet') {
+      if (objectTypeName === 'edit-diagram-object-sheet' || objectTypeName === 'class-sheet' || objectTypeName === 'navigation-sheet') {
         const repObjectType = this._getRepObjectType(editedObject);
         return adapter.callAction('LockRepObject', { repObject: editedObject.id, objectType: repObjectType }, null, { withCredentials: true }).then(result => {
           return JSON.parse(result.value);
@@ -139,7 +139,7 @@ export default Service.extend({
         });
       }
 
-      if (objectTypeName === 'edit-diagram-object-sheet' || objectTypeName === 'class-sheet') {
+      if (objectTypeName === 'edit-diagram-object-sheet' || objectTypeName === 'class-sheet' || objectTypeName === 'navigation-sheet') {
         const repObjectType = this._getRepObjectType(editedObject);
         return adapter.callAction('UnlockRepObject', { repObject: editedObject.id, objectType: repObjectType }, null, { withCredentials: true }).then(result => {
           return result.value;
@@ -167,7 +167,7 @@ export default Service.extend({
         });
       }
 
-      if (objectTypeName === 'edit-diagram-object-sheet' || objectTypeName === 'class-sheet') {
+      if (objectTypeName === 'edit-diagram-object-sheet' || objectTypeName === 'class-sheet' || objectTypeName === 'navigation-sheet') {
         const repObjectType = this._getRepObjectType(editedObject);
         return adapter.callAction('GetRepObjectLock', { repObject: editedObject.id, objectType: repObjectType }, null, { withCredentials: true }).then(result => {
           return JSON.parse(result.value);
