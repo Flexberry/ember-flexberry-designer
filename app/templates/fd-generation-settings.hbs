@@ -10,6 +10,11 @@
       <span class="light-text">{{t "forms.fd-generation.with-selected"}} {{link-to (t "forms.fd-generation.settings") "fd-setting"  class="fd-styled-link"}}&ensp;</span>
       <span class="light-text">{{t "forms.fd-generation.or"}} {{link-to (t "forms.fd-generation.show-generation-list") "fd-generation" class="fd-styled-link"}}</span>
     </div>
+    <div class="row">
+      <button class="ui flexberry-button basic button icon" type="button" {{action "disconnectGithub" on="click"}}>
+        {{t "forms.fd-setting.generation-settings.git-disconnect-button-caption"}}
+      </button>
+    </div>
   </div>
 
   {{fd-generation-settings genSettingsFile=genSettingsFile}}

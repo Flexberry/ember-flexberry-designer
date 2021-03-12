@@ -108,6 +108,19 @@ export default Controller.extend({
 
   actions: {
     /**
+      User disconnect from Github.
+
+      @method actions.disconnectGithub
+    */
+    disconnectGithub() {
+      this.set('reloadPage', true);
+      let store = this.get('store');
+      let adapter = store.adapterFor('application');
+
+      adapter.callAction('ClearUserAuthData', { username: this.get('userService._username') });
+    },
+
+    /**
       Starts generation, opens its log when it starts successfully.
 
       @method actions.generate
