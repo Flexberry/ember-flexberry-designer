@@ -3,6 +3,11 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+## [0.15.0-beta.4]
+### Fixed
+* Fixed navigation form.
+* Transferred disconnectGithub in generation form.
+
 ## [0.15.0-beta.3]
 ### Fixed
 * Fixed generation form.
