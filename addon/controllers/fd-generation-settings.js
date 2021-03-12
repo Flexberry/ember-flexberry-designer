@@ -113,7 +113,6 @@ export default Controller.extend({
       @method actions.disconnectGithub
     */
     disconnectGithub() {
-      this.set('reloadPage', true);
       let store = this.get('store');
       let adapter = store.adapterFor('application');
 
