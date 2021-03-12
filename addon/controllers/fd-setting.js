@@ -347,18 +347,6 @@ export default Controller.extend(FdSheetCloseConfirm, FdReadonlyProjectMixin, {
     },
 
     /**
-      User disconnect from Github.
-
-      @method actions.disconnectGithub
-    */
-    disconnectGithub() {
-      let store = this.get('store');
-      let adapter = store.adapterFor('application');
-
-      adapter.callAction('ClearUserAuthData', { username: this.get('userService._username') });
-    },
-
-    /**
       Clear module settings of current stage.
 
       @method actions.clearModuleSettings
