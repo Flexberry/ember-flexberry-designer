@@ -10,6 +10,7 @@ export default {
     'access-public': 'Открыт для всего интернета',
     description: 'Описание',
     'description-placeholder': 'Введите описание',
+    'data-types-map': 'Карта типов',
   },
   'project-actions-caption': 'Действия с проектом',
   'project-actions': {

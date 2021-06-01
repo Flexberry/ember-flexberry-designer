@@ -4,7 +4,8 @@ moduleFor('controller:fd-data-types-map', 'Unit | Controller | fd data types map
   // Specify the other units that are required for this test.
   // needs: ['controller:foo']
   needs: [
-    'service:appState'
+    'service:appState',
+    'service:fd-readonly-mode-service'
   ]
 });
 
