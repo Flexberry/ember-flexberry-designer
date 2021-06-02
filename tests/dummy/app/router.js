@@ -110,7 +110,6 @@ Router.map(function () {
   this.route('fd-generation-process-form',
   { path: 'fd-generation-process-form/:id' });
   this.route('fd-generation-list-form');
-  this.route('fd-data-types-map');
   this.route('fd-sequence-diagram-primitives-demo');
   this.route('class-diagram-primitives-demo');
   this.route('activity-diagram-primitives-demo');
@@ -134,6 +133,7 @@ Router.map(function () {
   this.route('fd-generation-settings', { path: 'generation' });
 
   this.route('fd-setting');
+  this.route('fd-data-types-map');
   this.route('fd-architecture');
   this.route('fd-all-projects', { path: 'all-projects' }, function() {
     this.route('index', { path: '' });

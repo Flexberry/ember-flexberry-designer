@@ -12,6 +12,7 @@ import { A } from '@ember/array';
 import FdDataType from '../objects/fd-data-type';
 import { deserialize } from '../utils/transforms-utils/fd-type-map-functions';
 import FdFormUnsavedData from '../mixins/fd-form-unsaved-data';
+import FdReadonlyProjectMixin from '../mixins/fd-readonly-project';
 
 /**
   Controller for the edit form of the type map.
@@ -19,21 +20,13 @@ import FdFormUnsavedData from '../mixins/fd-form-unsaved-data';
   @class FdDataTypesMapController
   @extends <a href="http://emberjs.com/api/classes/Ember.Controller.html">Ember.Controller</a>
 */
-export default Controller.extend(FdFormUnsavedData, {
+export default Controller.extend(FdFormUnsavedData, FdReadonlyProjectMixin, {
   /**
     Service for managing the state of the application.
      @property appState
     @type AppStateService
   */
   appState: service(),
-
-  /**
-    Transition, aborted for some reason.
-
-    @property abortedTransition
-    @type Transition
-  */
-  abortedTransition: undefined,
 
   /**
     Specifies whether to render the type map.
@@ -123,16 +116,18 @@ export default Controller.extend(FdFormUnsavedData, {
     }
 
     this.get('typedefs').forEach((typedef) => {
-      let dataType = typeMap.findBy('name', typedef.get('name'));
+      let typedefName = typedef.get('name') || typedef.get('nameStr');
+      let dataType = typeMap.findBy('name', typedefName);
       if (!dataType) {
-        typeMap.pushObject(FdDataType.create({ name: typedef.get('name') }));
+        typeMap.pushObject(FdDataType.create({ name: typedefName }));
       }
     });
 
     this.get('types').forEach((type) => {
-      let dataType = typeMap.findBy('name', type.get('name'));
+      let typeName = type.get('name') || type.get('nameStr');
+      let dataType = typeMap.findBy('name', typeName);
       if (!dataType) {
-        typeMap.pushObject(FdDataType.create({ name: type.get('name'), sqlOnly: true }));
+        typeMap.pushObject(FdDataType.create({ name: typeName, sqlOnly: true }));
       } else {
         dataType.set('sqlOnly', true);
       }
@@ -158,24 +153,6 @@ export default Controller.extend(FdFormUnsavedData, {
     },
 
     /**
-      Save changes and close form
-
-      @method actions.closeWithSaving
-    */
-    closeWithSaving() {
-      this.send('save', true);
-    },
-
-    /**
-      Save changes and close form
-
-      @method actions.closeWithSaving
-    */
-    close() {
-      history.back();
-    },
-
-    /**
       Saves the changes made to the type map.
 
       @method actions.save
@@ -185,7 +162,7 @@ export default Controller.extend(FdFormUnsavedData, {
       this.get('appState').loading();
       run.next(() => {
         let promise = resolve();
-        if (this.serializeTypeMap()) {
+        if (this.findUnsavedFormData()) {
           promise = this.get('stage').save();
         }
 

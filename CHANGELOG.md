@@ -3,6 +3,10 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+## [0.15.0-beta.5]
+### Added
+* Add data types map.
+
 ## [0.15.0-beta.4]
 ### Fixed
 * Fixed navigation form.

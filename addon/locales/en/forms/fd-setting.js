@@ -10,6 +10,7 @@ export default {
     'access-public': 'Open to all over the internet',
     description: 'Description',
     'description-placeholder': 'Enter description',
+    'data-types-map': 'Data types map',
   },
   'project-actions-caption': 'Project Actions',
   'project-actions': {

@@ -1,28 +1,13 @@
-<h3 class="ui header">
-  {{t "forms.fd-data-types-map.caption"}}
-  {{#if readonly}}
-    ({{t 'forms.fd-edit-form.readonly-mode'}})
-  {{/if}}
-</h3>
-
-<form class="ui form flexberry-vertical-form" role="form">
-  {{flexberry-error error=error}}
-  <div class="field">
-    <div class="flexberry-edit-panel">
-      {{#unless readonly}}
-        <button type="button" class="ui button save-button" {{action "save"}}>
-          {{t "forms.edit-form.save-button-text"}}
-        </button>
-        <button type="button" class="ui button save-close-button" {{action "save" true}}>
-          {{t "forms.edit-form.saveAndClose-button-text"}}
-        </button>
-      {{/unless}}
-      <button type="button" class="ui button close-button" {{action "close"}}>
-        {{t "forms.edit-form.close-button-text"}}
-      </button>
-    </div>
+<form class="ui form flexberry-vertical-form settings-form">
+  <div class="fd-sheet-toolbar">
+    <button class="ui button {{if readonlyModeProject 'disabled' ''}}" {{action "save"}}>
+      {{t "forms.edit-form.save-button-text"}}
+    </button>
+    {{#link-to "fd-setting" class="ui icon button" title="Закрыть"}}
+      <i class="icon-fd-x-mark icon"></i>
+    {{/link-to}}
   </div>
-
+  <h2 class="form-header">{{t "forms.fd-data-types-map.caption"}}</h2>
   {{#if showTypeMap}}
     {{#flexberry-tree class="styled fluid"}}
       {{#block-slot "content"}}
@@ -35,26 +20,26 @@
               <div class="equal width fields">
                 <div class="ui field">
                   <label>C#</label>
-                  <div class="ui input">{{input value=dataType.cs placeholder=(t "components.flexberry-textbox.placeholder")}}</div>
+                  <div class="ui input">{{input value=dataType.cs placeholder=(t "components.flexberry-textbox.placeholder") disabled=(if readonlyModeProject 'disabled' '')}}</div>
                 </div>
                 <div class="ui field">
                   <label>Assembly DLL</label>
-                  <div class="ui input">{{input value=dataType.assemblyDll placeholder=(t "components.flexberry-textbox.placeholder")}}</div>
+                  <div class="ui input">{{input value=dataType.assemblyDll placeholder=(t "components.flexberry-textbox.placeholder") disabled=(if readonlyModeProject 'disabled' '')}}</div>
                 </div>
               </div>
             {{/unless}}
             <div class="equal width fields">
               <div class="ui field">
                 <label>Microsoft SQL Server</label>
-                <div class="ui input">{{input value=dataType.sql placeholder=(t "components.flexberry-textbox.placeholder")}}</div>
+                <div class="ui input">{{input value=dataType.sql placeholder=(t "components.flexberry-textbox.placeholder") disabled=(if readonlyModeProject 'disabled' '')}}</div>
               </div>
               <div class="ui field">
                 <label>Postgre SQL</label>
-                <div class="ui input">{{input value=dataType.postgre placeholder=(t "components.flexberry-textbox.placeholder")}}</div>
+                <div class="ui input">{{input value=dataType.postgre placeholder=(t "components.flexberry-textbox.placeholder") disabled=(if readonlyModeProject 'disabled' '')}}</div>
               </div>
               <div class="ui field">
                 <label>Oracle</label>
-                <div class="ui input">{{input value=dataType.oracle placeholder=(t "components.flexberry-textbox.placeholder")}}</div>
+                <div class="ui input">{{input value=dataType.oracle placeholder=(t "components.flexberry-textbox.placeholder") disabled=(if readonlyModeProject 'disabled' '')}}</div>
               </div>
             </div>
           </div>
@@ -62,5 +47,4 @@
       {{/block-slot}}
     {{/flexberry-tree}}
   {{/if}}
-
 </form>
