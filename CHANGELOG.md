@@ -3,6 +3,10 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+## [0.15.0-beta.6]
+### Fixed
+* Fixed update generation settings file.
+
 ## [0.15.0-beta.5]
 ### Added
 * Add data types map.

@@ -5,7 +5,7 @@
 import Component from '@ember/component';
 import layout from '../templates/components/fd-generation-settings';
 import { computed, observer } from '@ember/object';
-import { set } from '@ember/object';
+import { set, get } from '@ember/object';
 
 /**
  * This component renders a list of generation settings.
@@ -22,7 +22,7 @@ export default Component.extend({
     @property classNames
   */
   classNames: ['fd-generation-settings'],
-  
+
   /**
    * Handles changes in i18n.locale.
    *
@@ -30,7 +30,7 @@ export default Component.extend({
    */
   localeObserver: observer('i18n.locale', function() {
     this.set('newGenerationItems', {})
-    this.setGenerationItems(this.get('genSettingsFile.GenerationItems'));
+    this.setGenerationItems(this.get('genSettingsFile'));
   }),
 
   /**
@@ -146,6 +146,42 @@ export default Component.extend({
   didInsertElement() {
     this._super(...arguments);
     this.set('newGenerationItems', {})
-    this.setGenerationItems(this.get('genSettingsFile.GenerationItems'));
+    this.setGenerationItems(this.get('genSettingsFile'));
+  },
+
+  actions: {
+
+    /**
+      Chenge genSettingsFile json.
+
+      @method selectGenSetting
+      @param {String} label label chenge setting.
+      @param {Object} items items chenge setting.
+      @param {Object} value new prop value.
+    */
+    selectGenSetting(label, items, value) {
+      let generationItemsTitles = this.get('generationItemsTitles');
+      let generationItems = this.get('genSettingsFile');
+      let getKeyInObj = function(object, value, byKey) {
+        for (let key in object) {
+          if (object.hasOwnProperty(key)) {
+            let prop  = byKey ? key : object[key];
+            if (prop === value) {
+              return key;
+            } else if (typeof object[key] === 'object') {
+              let res = getKeyInObj(object[key], value, byKey);
+              if (res) {
+                return prop + '.' + res;
+              }
+            }
+          }
+        }
+      };
+
+      let keyGroup = getKeyInObj(generationItems, get(items, 'className'), true);
+      let propName = getKeyInObj(generationItemsTitles, label, false);
+      let settings = get(generationItems, keyGroup);
+      set(settings, propName, value.checked);
+    }
   }
 });
