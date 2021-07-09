@@ -22,7 +22,7 @@ export default Controller.extend({
       let store = this.get('store');
       let adapter = store.adapterFor('application');
 
-      adapter.callAction('ClearUserAuthData', { username: this.get('userService._username') });
+      adapter.callFunction('ClearUserAuthData');
     },
 
     /**

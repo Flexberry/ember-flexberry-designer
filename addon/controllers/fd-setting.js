@@ -50,14 +50,6 @@ export default Controller.extend(FdSheetCloseConfirm, FdReadonlyProjectMixin, {
   accessIsPublic: true,
 
   /**
-    Service that triggers user events.
-
-    @property userService
-    @type Service
-  */
-  userService: service('user'),
-
-  /**
     Table headers.
 
     @property tableUsersAccess
