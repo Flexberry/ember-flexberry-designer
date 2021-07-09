@@ -124,7 +124,7 @@ export default Component.extend(FdReadonlyModeMixin, {
     @property tree
     @type Object
   */
-  tree: computed('model.name', 'model.attributes.@each.{hasDirtyAttributes,isNew}', 'model.views.@each.{definitionArray}', function() {
+  tree: computed('model.name', 'model.attributes.@each.{hasDirtyAttributes,isNew}', function() {
     let model = this.get('model');
     if (isNone(model)) {
       return null;
@@ -204,7 +204,7 @@ export default Component.extend(FdReadonlyModeMixin, {
 
     @method selectedPropertyObserver
   */
-  selectedPropertyObserver: observer('selectedProperty', function() {
+  selectedPropertyObserver: observer('selectedProperty', 'selectedProperty.lookupType', function() {
     next(() => {
       let attrProp = $('.fd-attr-prop').outerHeight(true);
       let attrPropHeight = attrProp === undefined ? 0 : attrProp;

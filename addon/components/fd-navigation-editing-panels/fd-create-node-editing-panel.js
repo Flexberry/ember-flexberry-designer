@@ -116,6 +116,7 @@ export default Component.extend({
         }));
       });
 
+      selectedValues.clear();
       this.get('addSubFormAction')(nodes, this.get('node'));
     }
   }
