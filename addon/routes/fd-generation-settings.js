@@ -36,12 +36,12 @@ export default Route.extend(FdShareLoadData, {
         }
       },
       "Backend": {
-        "AspNet": false,
-        "AspNetCore": true,
+        "AspNet": true,
+        "AspNetCore": false,
         "Java": false
       },
       "Docker": {
-        "Dockerfile": false,
+        "Dockerfile": true,
         "DockerfileAutobuild": false,
         "DockerBuildShellScript": false,
         "DockerSwarm": false
