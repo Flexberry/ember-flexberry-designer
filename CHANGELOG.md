@@ -3,6 +3,10 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+## [0.15.0-beta.8]
+### Fixed
+* Fixed update genSettingsFile.
+
 ## [0.15.0-beta.7]
 ### Fixed
 * Fixed minor bugs.

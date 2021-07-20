@@ -179,7 +179,7 @@ export default Component.extend({
       };
 
       let keyGroup = getKeyInObj(generationItems, get(items, 'className'), true);
-      let propName = getKeyInObj(generationItemsTitles, label, false);
+      let propName = getKeyInObj(generationItemsTitles, label, false) || label;
       let settings = get(generationItems, keyGroup);
       set(settings, propName, value.checked);
     }
