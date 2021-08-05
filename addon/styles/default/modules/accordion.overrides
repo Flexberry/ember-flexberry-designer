@@ -1,0 +1,9 @@
+.ui.styled.accordion.flexberry-tree .title .dropdown.icon,
+.ui.styled.accordion.flexberry-tree .accordion .title .dropdown.icon {
+  position: relative;
+}
+
+.ui.styled.accordion.flexberry-tree .title .dropdown.icon:before,
+.ui.styled.accordion.flexberry-tree .accordion .title .dropdown.icon:before {
+  top: calc(~'50% - 0.3em');
+}
