@@ -1,5 +1,6 @@
 import FdBaseSheet from './fd-base-sheet';
 import { isNone } from '@ember/utils';
+import { computed } from '@ember/object';
 
 import layout from '../../templates/components/fd-sheets/fd-navigation-sheet';
 
@@ -40,15 +41,6 @@ export default FdBaseSheet.extend({
   selectedValue: undefined,
 
   /**
-    Custom button title.
-
-    @property customButtonTitle
-    @type String
-    @default 'forms.fd-navigation.cancel'
-  */
-  customButtonTitle: 'forms.fd-navigation.cancel',
-
-  /**
     Flag: indicates whether to show create editing panel.
 
     @property isAddMode
@@ -56,6 +48,21 @@ export default FdBaseSheet.extend({
     @default false
   */
   isAddMode: false,
+
+  /**
+    Custom buttons for `fd-sheets-tool-bar` on `fd-navigation-sheet` route.
+
+    @property customButtons
+    @type Array
+  */
+  customButtons: computed('i18n.locale', 'isAddMode', function() {
+    let i18n = this.get('i18n');
+    return [{
+      buttonVisible: this.get('isAddMode'),
+      buttonName: i18n.t('forms.fd-navigation.cancel'),
+      buttonAction: 'isAddModeCancel',
+    }]
+  }),
 
   /**
     Opening sheet.
@@ -88,6 +95,10 @@ export default FdBaseSheet.extend({
   },
 
   actions: {
+
+    isAddModeCancel() {
+      this.set('isAddMode', false);
+    },
 
     /**
       Delete 'selectedNode'.

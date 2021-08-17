@@ -18,6 +18,6 @@
 
 /* Кнопки тулбара */
 @fontWeight: normal;
-@verticalPadding: 0.55em;
+@verticalPadding: 0.5em;
 @hoverBackgroundColor: fadein(@toolbarButtonBackground, 10%);
 @downBackgroundColor: fadein(@toolbarButtonBackground, 20%);

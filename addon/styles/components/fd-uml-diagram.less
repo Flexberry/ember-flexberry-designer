@@ -253,6 +253,56 @@
   }
 }
 
+.fd-sheet-diagram-header {
+  position: relative;
+  box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.1);
+  .transition(transform 0.5s);
+
+  .form-header {
+    .transition(margin 0.5s);
+  }
+
+  &.fd-toolbar-hidden {
+    .transform(translate(0, calc(~'29px + 24px - 100%')));
+
+    .ui.form & .form-header {
+      margin: 0.5em 0;
+      max-width: calc(~'100% - 200px');
+    }
+
+    .fd-sheet-toolbar {
+      line-height: 3.3rem;
+      height: 0;
+
+      .ui.button:not(.fd-expand):not(.fd-close):not(.fd-save):not(.fd-edit) {
+        opacity: 0;
+        font-size: 0;
+      }
+    }
+  }
+
+  .ui.button.toggle-diagram-toolbar {
+    bottom: -@bottonWidthSize;
+    top: auto;
+    left: auto;
+    transform: rotate(180deg);
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-bottom: none;
+    z-index: 1;
+    &::before {
+      background-color: @fdSheetBg;
+    }
+  }
+
+  .ui.grid.fd-list {
+    margin-bottom: 0;
+  }
+
+  .ui.grid.fd-list > .row:last-child {
+    border-bottom: none;
+  }
+}
+
 .content-mini.fade {
   .fd-uml-diagram-toolbar,
   .toggle-diagram-toolbar {

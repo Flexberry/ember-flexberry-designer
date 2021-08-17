@@ -5,36 +5,50 @@
       position='right'
     }}
   {{/if}}
-  {{#if customButtonVisible}}
-    <button class="ui button" {{action 'customButtonAction'}}>
-      {{t customButtonTitle}}
-    </button>
-  {{/if}}
+  {{#each customButtons as |customButton|}}
+    {{#if customButton.buttonVisible}}
+      <button
+        type="button"
+        class="ui {{if customButton.iconClasses 'icon'}} {{if customButton.buttonClasses customButton.buttonClasses}} button"
+        title={{if customButton.buttonTitle customButton.buttonTitle}}
+        disabled={{customButton.disabled}}
+        onclick={{action "customButtonAction" customButton.buttonAction}}>
+          {{#if customButton.iconClasses}}
+            <i class={{customButton.iconClasses}}></i>
+            {{customButton.buttonName}}
+          {{else if customButton.buttonName}}
+            {{customButton.buttonName}}
+          {{else}}
+            {{t "components.olv-toolbar.custom-button-text"}}
+          {{/if}}
+      </button>
+    {{/if}}
+  {{/each}}
   {{#if toolbarVisible}}
     {{#if (and readonlyMode (not isNewModel))}}
       {{#if (not readonlyModeProject)}}
-        <button class="ui button" {{action 'edit'}}>
+        <button class="ui button fd-edit" {{action 'edit'}}>
           {{t "components.fd-sheets-tool-bar.edit-caption"}}
         </button>
       {{/if}}
     {{else}}
       {{#if buttonVisible.save}}
-        <button class="ui button" {{action 'save'}}>
+        <button class="ui button fd-save" {{action 'save'}}>
           {{t "components.fd-sheets-tool-bar.save-caption"}}
         </button>
       {{/if}}
       {{#if (and (not isNewModel) buttonVisible.delete)}}
         <button class="ui icon button" {{action 'delete'}} title={{t "components.fd-sheets-tool-bar.delete-button-title"}}>
-          <i class="icon-fd-trash-can icon" ></i>
+          <i class="icon-fd-trash icon" ></i>
         </button>
       {{/if}}
       {{#if buttonVisible.steps}}
         <div class="ui large buttons">
           <button class="ui icon button" {{action 'duplicatedHotkeys' 'undo'}} title={{t "components.fd-sheets-tool-bar.undo-button-title"}}>
-            <i class="reply icon" ></i>
+            <i class="icon-fd-undo icon" ></i>
           </button>
           <button class="ui icon button" {{action 'duplicatedHotkeys' 'redo'}} title={{t "components.fd-sheets-tool-bar.redo-button-title"}}>
-            <i class="share icon" ></i>
+            <i class="icon-fd-redo icon" ></i>
           </button>
         </div>
       {{/if}}
@@ -43,22 +57,22 @@
       <div class="ui large buttons">
         {{#if (or (not readonlyMode) isNewModel)}}
           <button class="ui icon button cut" {{action 'duplicatedHotkeys' 'cut'}} title={{t "components.fd-sheets-tool-bar.cut-button-title"}}>
-            <i class="cut icon" ></i>
+            <i class="icon-fd-cut icon" ></i>
           </button>
         {{/if}}
         <button class="ui icon button copy" {{action 'duplicatedHotkeys' 'copy'}} title={{t "components.fd-sheets-tool-bar.copy-button-title"}}>
-          <i class="copy icon" ></i>
+          <i class="icon-fd-copy icon" ></i>
         </button>
       </div>
     {{/if}}
     {{#if (and (not isNewModel) buttonVisible.print)}}
       <button class="ui icon button" {{action 'print'}} title={{t "components.fd-sheets-tool-bar.print-button-title"}}>
-        <i class="print icon" ></i>
+        <i class="icon-fd-print icon" ></i>
       </button>
     {{/if}}
     {{#if (and (not isNewModel) buttonVisible.share)}}
       <button class="ui icon button share" onclick={{action 'share'}} data-content={{t "components.fd-sheets-tool-bar.share-button-data-content"}} title={{t "components.fd-sheets-tool-bar.share-button-title"}}>
-        <i class="{{if copied 'check' 'share alternate'}} icon"></i>
+        <i class="{{if copied 'check' 'icon-fd-share'}} icon"></i>
       </button>
     {{/if}}
     {{#if (and (not isNewModel) buttonVisible.dependencies)}}
@@ -81,7 +95,7 @@
   <button class="ui icon button fd-expand" {{action 'expand'}} title={{t "components.fd-sheets-tool-bar.expand-button-title"}}>
     <i class="icon-fd-resize icon" ></i>
   </button>
-  <button class="ui icon button" {{action 'closeSheet'}} title={{t "components.fd-sheets-tool-bar.close-button-title"}}>
+  <button class="ui icon button fd-close" {{action 'closeSheet'}} title={{t "components.fd-sheets-tool-bar.close-button-title"}}>
     <i class="icon-fd-x-mark icon" ></i>
   </button>
 </div>

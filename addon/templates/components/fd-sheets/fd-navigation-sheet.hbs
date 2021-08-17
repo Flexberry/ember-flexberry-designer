@@ -11,10 +11,8 @@
       saveSheet=save
       deleteSheet=(action 'delete')
       contentSheetValue=model
-
-      customButtonVisible=isAddMode
-      customButtonTitle=customButtonTitle
-      customButtonSheet=(action set 'isAddMode' false)
+      isAddModeCancel=(action 'isAddModeCancel')
+      customButtons=customButtons
     }}
     {{flexberry-textbox
       value=(if isAddMode (t "components.fd-create-node-editing-panel.create-page") (concat (t "forms.fd-navigation.caption-sheet") selectedValue.text))

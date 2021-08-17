@@ -3,17 +3,31 @@
   padding: 0.5em 1.2em;
 }
 
-.fd-sheet-toolbar {
-  .ui.buttons {
-    .ui.button {
-    margin-right: @toolbarBtnsmargin;
-    }
-  }
-  i.icon {
+.ui.icon.buttons .button,
+.ui.icon.button {
+  padding: unit((7 / 18), em);
+  font-size: 18px;
+
+  > .icon:not(.button) {
     width: 1em;
-    &::before {
-      font-size: 0.9rem;
-    }
+    height: 1em;
+  }
+}
+.fd-sheet-toolbar {
+  font-size: 0;
+  .transition(all 0.5s);
+
+  .ui.buttons {
+    vertical-align: middle;
+  }
+  .ui.button {
+    margin-right: @toolbarBtnsmargin;
+    vertical-align: middle;
+    .transition(all 0.5s);
+  }
+
+  .ui.buttons .ui.button:first-child {
+    margin-right: unit((3 / 18), em);
   }
 }
 

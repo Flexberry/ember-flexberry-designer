@@ -109,22 +109,6 @@ export default Component.extend(FdReadonlyProjectMixin, FdShareFunctionMixin, {
   }),
 
   /**
-    Custom button visible.
-
-    @property customButton
-    @type Bool
-  */
-  customButtonVisible: false,
-
-  /**
-    Custom button title.
-
-    @property customButton
-    @type String
-  */
-  customButtonTitle: undefined,
-
-  /**
     Flag: indicates whether to show toolbar.
 
     @property toolbarVisible
@@ -364,8 +348,15 @@ export default Component.extend(FdReadonlyProjectMixin, FdShareFunctionMixin, {
 
       @method actions.customButtonAction
     */
-    customButtonAction() {
-      this.get('customButtonSheet')();
+    customButtonAction(action) {
+      let actionType = typeof action;
+      if (actionType === 'function') {
+        action();
+      } else if (actionType === 'string') {
+        this.get(action)();
+      } else {
+        throw new Error('Unsupported action type for custom buttons.');
+      }
     },
 
     /**
