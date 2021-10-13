@@ -92,6 +92,40 @@ export default FdBaseSheet.extend(
   systemsItems: undefined,
 
   /**
+    Flag: indicates when additional settings displayed.
+
+    @property showSettins
+    @type boolean
+    @default false
+  */
+  showSettins: false,
+
+  /**
+    Ember.observer, watching string `model.isNew` and `readonlyMode` and update 'showSettins' property.
+
+    @method _bsObserver
+  */
+  showSettinsObserver: observer('readonlyMode', 'selectedValue.data.isNew', function(){
+    this.set('showSettins', !this.get('readonlyMode') && !this.get('selectedValue.data.isNew') && this.get('showSettins'));
+  }),
+
+  /**
+    Custom buttons for `fd-sheets-tool-bar` on `fd-diagram-sheet` route.
+
+    @property customButtons
+    @type Array
+  */
+  customButtons: computed('i18n.locale', 'selectedValue.data.isNew', 'isAddMode', 'readonlyMode', function() {
+    const i18n = this.get('i18n');
+    return [{
+      buttonTitle: i18n.t('components.fd-diagram-editing-panel.toggler-caption'),
+      buttonVisible: this.get('selectedValue.data.isNew') || (!this.get('isAddMode') && !this.get('readonlyMode')),
+      iconClasses: 'icon-fd-gear icon',
+      buttonAction: () => this.toggleProperty('showSettins'),
+    }]
+  }),
+
+  /**
     Ember.observer, watching string `model.name` and update 'systemValue' property.
 
     @method _bsObserver
@@ -168,6 +202,7 @@ export default FdBaseSheet.extend(
     }
 
     this.set('readonlyMode', true);
+    this.set('_collapseToolbar', false);
     schedule('afterRender', this, function() {
       this.set('isDiagramVisible', true);
     });
@@ -506,7 +541,29 @@ export default FdBaseSheet.extend(
     this.get('systemObserver').apply(this);
   },
 
+  /**
+    Flag indicates when toolbar is collapsed.
+
+    @property _collapseToolbar
+    @type Boolean
+    @default false
+    @private
+  */
+  _collapseToolbar: false,
+
   actions: {
+    /**
+      Handler for click on toolbar collapse button.
+
+      @method actions.collapseToolbar
+    */
+    collapseToolbar() {
+      this.toggleProperty('_collapseToolbar');
+      if (this.get('showSettins')) {
+        this.set('showSettins', false)
+      }
+    },
+
     /**
       Save 'selectedValue'.
 

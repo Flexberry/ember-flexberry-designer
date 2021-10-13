@@ -45,7 +45,7 @@
 @sidebarWdth:300px;
 
 /* Кнопки тулбара */
-@toolbarBtnsmargin: 0.2rem;
+@toolbarBtnsmargin: unit((5 / 18), em);
 
 /*--------------------------------------
     ember flexberry designer colors

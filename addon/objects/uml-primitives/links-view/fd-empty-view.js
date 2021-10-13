@@ -204,13 +204,13 @@ export let EmptyView = joint.dia.LinkView.extend({
 
     return A([{
       name: 'remove-button',
-      text: '&#xe915',
+      text: '&#xe827',
       title: window.i18n.t('components.fd-diagram-editing-panel.remove-button-title').string,
       handler: this.removeLink.bind(this),
       attrs: {
         'element': { atConnectionRatio: .2 },
         'circle': { r: 6, fill: '#007aff', stroke: '#007aff', 'stroke-width': 1, 'cursor': 'pointer' },
-        'text': { fill: '#ffffff','font-size': 7, 'text-anchor': 'middle', x: 0, y: 3, 'font-family': 'fd-icons', visibility: 'visible', 'cursor': 'pointer' },
+        'text': { fill: '#ffffff','font-size': 8, 'text-anchor': 'middle', x: 0, y: 2, 'font-family': 'fd-icons', visibility: 'visible', 'cursor': 'pointer' },
       }
     },  {
       name: 'color-button',
