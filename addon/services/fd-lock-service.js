@@ -24,6 +24,8 @@ export default Service.extend({
         case 'fd-dev-association':
         case 'STORMCASE.UML.cad.Association, UMLCAD':
           return 'association';
+        case 'fd-dev-stage':
+          return 'stage';
       }
     }
   },
