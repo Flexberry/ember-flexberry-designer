@@ -3,6 +3,14 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+## [0.15.0-beta.9]
+### Added
+* Add toolbar collapsed button to diagram sheet.
+
+### Fixed
+* Fix list buttons style.
+* Fix default gen setting.
+
 ## [0.15.0-beta.8]
 ### Fixed
 * Fixed update genSettingsFile.
