@@ -3,6 +3,11 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+## [0.15.0-beta.10]
+### Changed
+* Fixed lock service.
+* Fixed view-helper.
+
 ## [0.15.0-beta.9]
 ### Added
 * Add toolbar collapsed button to diagram sheet.
