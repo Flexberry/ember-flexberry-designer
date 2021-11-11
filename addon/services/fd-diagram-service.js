@@ -30,5 +30,19 @@ export default Service.extend(Evented, {
     }
 
     this.trigger('keypressLogicTriggered', eventName);
+  },
+
+  /**
+    Trigger generation for selected class logic.
+
+     @method triggerGenForSelectedClassLogic
+     @param {String} eventName name event.
+  */
+  triggerGenForSelectedClassLogic(eventName) {
+    if (isNone(eventName)) {
+      return;
+    }
+
+    this.trigger('genForSelectedClassLogicTriggered', eventName);
   }
 });
