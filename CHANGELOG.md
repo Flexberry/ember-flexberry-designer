@@ -3,6 +3,10 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+## [0.15.0-beta.11]
+### Added
+* Add trigger generation for selected class.
+
 ## [0.15.0-beta.10]
 ### Changed
 * Fixed lock service.

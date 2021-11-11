@@ -134,6 +134,14 @@ export default Component.extend(FdReadonlyProjectMixin, FdShareFunctionMixin, {
   isNewModel: false,
 
   /**
+    Flag: indicates whether to not show gen button.
+
+    @property GenToolbarVisible
+    @type Bool
+  */
+  genToolbarVisible: false,
+
+  /**
     Current sheet content value.
     @property contentSheetValue
     @type Object
@@ -341,6 +349,16 @@ export default Component.extend(FdReadonlyProjectMixin, FdShareFunctionMixin, {
     */
     duplicatedHotkeys(eventName) {
       this.get('fdDiagramService').triggerKeypressLogic(eventName);
+    },
+
+    /**
+      Trigger generation for selected class logic.
+
+      @method actions.generationForSelectedClass
+      @param {String} eventName event name.
+    */
+    generationForSelectedClass(eventName) {
+      this.get('fdDiagramService').triggerGenForSelectedClassLogic(eventName);
     },
 
     /**
