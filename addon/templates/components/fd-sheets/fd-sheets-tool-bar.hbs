@@ -71,11 +71,9 @@
       </button>
     {{/if}}
     {{#if (and (not isNewModel) genToolbarVisible)}}
-      <div class="ui buttons">
-        <button class="ui icon button" {{action 'generationForSelectedClass'}} title={{t "components.fd-sheets-tool-bar.code-button-title"}}>
-          <i class="magic icon" ></i>
-        </button>
-      </div>
+      <button class="ui icon button" {{action 'generationForSelectedClass'}} title={{t "components.fd-sheets-tool-bar.code-button-title"}}>
+        <i class="magic icon" ></i>
+      </button>
     {{/if}}
     {{#if (and (not isNewModel) buttonVisible.share)}}
       <button class="ui icon button share" onclick={{action 'share'}} data-content={{t "components.fd-sheets-tool-bar.share-button-data-content"}} title={{t "components.fd-sheets-tool-bar.share-button-title"}}>
