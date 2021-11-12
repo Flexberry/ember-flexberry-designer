@@ -17,7 +17,5 @@ export default {
   'cut-button-title': 'Cut selected elements',
   'copy-button-title': 'Copy selected elements',
   'code-caption': 'Code',
-  'code-button-title': 'Generate frontend for selected classes',
-  'sql-caption': 'SQL',
-  'sql-button-title': 'Generate SQL for selected classes'
+  'code-button-title': 'Generate code for selected classes',
 };

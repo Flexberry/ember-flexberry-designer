@@ -16,8 +16,5 @@ export default {
   'redo-button-title': 'Повтор шага',
   'cut-button-title': 'Вырезать выделенные элементы',
   'copy-button-title': 'Копировать выделенные элементы',
-  'code-caption': 'Code',
-  'code-button-title': 'Генерировать фронтенд для выбранных классов',
-  'sql-caption': 'SQL',
-  'sql-button-title': 'Генерировать SQL для выбранных классов'
+  'code-button-title': 'Генерировать код для выбранных классов',
 };

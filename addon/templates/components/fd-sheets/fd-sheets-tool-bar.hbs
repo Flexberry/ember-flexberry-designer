@@ -43,7 +43,7 @@
         </button>
       {{/if}}
       {{#if buttonVisible.steps}}
-        <div class="ui large buttons">
+        <div class="ui buttons">
           <button class="ui icon button" {{action 'duplicatedHotkeys' 'undo'}} title={{t "components.fd-sheets-tool-bar.undo-button-title"}}>
             <i class="icon-fd-undo icon" ></i>
           </button>
@@ -54,7 +54,7 @@
       {{/if}}
     {{/if}}
     {{#if buttonVisible.copy}}
-      <div class="ui large buttons">
+      <div class="ui buttons">
         {{#if (or (not readonlyMode) isNewModel)}}
           <button class="ui icon button cut" {{action 'duplicatedHotkeys' 'cut'}} title={{t "components.fd-sheets-tool-bar.cut-button-title"}}>
             <i class="icon-fd-cut icon" ></i>
@@ -71,12 +71,9 @@
       </button>
     {{/if}}
     {{#if (and (not isNewModel) genToolbarVisible)}}
-      <div class="ui large buttons">
-        <button class="ui icon button" {{action 'generationForSelectedClass' 'code'}} title={{t "components.fd-sheets-tool-bar.code-button-title"}}>
-          {{t "components.fd-sheets-tool-bar.code-caption"}}
-        </button>
-        <button class="ui icon button" {{action 'generationForSelectedClass' 'sql'}} title={{t "components.fd-sheets-tool-bar.sql-button-title"}}>
-          {{t "components.fd-sheets-tool-bar.sql-caption"}}
+      <div class="ui buttons">
+        <button class="ui icon button" {{action 'generationForSelectedClass'}} title={{t "components.fd-sheets-tool-bar.code-button-title"}}>
+          <i class="magic icon" ></i>
         </button>
       </div>
     {{/if}}
