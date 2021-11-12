@@ -355,10 +355,9 @@ export default Component.extend(FdReadonlyProjectMixin, FdShareFunctionMixin, {
       Trigger generation for selected class logic.
 
       @method actions.generationForSelectedClass
-      @param {String} eventName event name.
     */
-    generationForSelectedClass(eventName) {
-      this.get('fdDiagramService').triggerGenForSelectedClassLogic(eventName);
+    generationForSelectedClass() {
+      this.get('fdDiagramService').triggerGenForSelectedClassLogic();
     },
 
     /**

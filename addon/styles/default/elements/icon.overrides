@@ -5,3 +5,7 @@
     float: right;
   }
 }
+
+.fd-sheet-toolbar .magic.icon::before {
+  vertical-align: middle;
+}
