@@ -3,6 +3,10 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+## [0.15.0-beta.13]
+### Changed
+* Fixed trigger generation for selected class.
+
 ## [0.15.0-beta.12]
 ### Changed
 * Fixed trigger generation for selected class.
