@@ -101,6 +101,14 @@ export default FdBaseSheet.extend(
   showSettins: false,
 
   /**
+    Flag: indicates whether to not show gen button.
+
+    @property GenToolbarVisible
+    @type Bool
+  */
+  genToolbarVisible: false,
+
+  /**
     Ember.observer, watching string `model.isNew` and `readonlyMode` and update 'showSettins' property.
 
     @method _bsObserver
