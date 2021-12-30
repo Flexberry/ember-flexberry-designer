@@ -29,7 +29,7 @@ export default Route.extend(FdShareLoadData, {
           "GitClone": false,
           "GitPush": false,
           "GhPagesPush": true,
-          "Metadata": true
+          "EmberMetadata": false
         },
         "ApacheCordova": {
           "CordovaProject": false,
@@ -84,7 +84,9 @@ export default Route.extend(FdShareLoadData, {
       },
       "Metadata": {
         "Crp": false,
-        "Json": false
+        "Json": false,
+        "Jdl": false,
+        "PlantUML": false
       }
     }
   }),
