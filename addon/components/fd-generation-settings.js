@@ -48,6 +48,7 @@ export default Component.extend({
       'GitClone': 'Git clone',
       'GitPush': 'Git push',
       'GhPagesPush': i18n.t('components.fd-generation-settings.GhPagesPush').string,
+      'EmberMetadata': i18n.t('components.fd-generation-settings.EmberMetadata').string,
       'ApacheCordova': 'Apache Cordova',
       'CordovaProject': i18n.t('components.fd-generation-settings.CordovaProject').string,
       'BuildApp': i18n.t('components.fd-generation-settings.BuildApp').string,

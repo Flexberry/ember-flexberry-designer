@@ -5,6 +5,7 @@ export default {
   'EmberAddon': 'Generate metadata',
   'Build': 'Build',
   'GhPagesPush': 'Publish to gh-pages',
+  'EmberMetadata': 'Metadata',
   'CordovaProject': 'Create a mobile app',
   'BuildApp': 'Generate project',
   'Dockerfile': 'Create Dockerfile',
