@@ -15,6 +15,10 @@ export default {
     'empty-diagram': 'Имя диаграммы не может быть пустым',
     'exist-diagram': 'Диаграмма с таким именем уже существует',
   },
+  'custom-message': {
+    'validate-header': 'Результат проверки диаграммы',
+    'no-errors': 'Ошибок нет'
+  },
   'all-diagrams': 'Все диаграммы',
   'systems': 'Каталоги'
 };

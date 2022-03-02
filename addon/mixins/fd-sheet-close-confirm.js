@@ -142,6 +142,7 @@ export default Mixin.create({
 
     this.get('fdSheetService').on('confirmCloseTrigger', this, this.showCloseDialog);
     this.get('fdDialogService').on('showErrorMessageTriggered', this, this.showErrorMessage);
+    this.get('fdDialogService').on('showCustomMessageTriggered', this, this.showCustomMessage);
     this.get('fdDialogService').on('showVerificationMessageTriggered', this, this.showVerificationMessage);
   },
 
@@ -150,6 +151,7 @@ export default Mixin.create({
 
     this.get('fdSheetService').off('confirmCloseTrigger', this, this.showCloseDialog);
     this.get('fdDialogService').off('showErrorMessageTriggered', this, this.showErrorMessage);
+    this.get('fdDialogService').off('showCustomMessageTriggered', this, this.showCustomMessage);
     this.get('fdDialogService').off('showVerificationMessageTriggered', this, this.showVerificationMessage);
   },
 
@@ -175,7 +177,43 @@ export default Mixin.create({
   },
 
   /**
-    Show error message.
+    Show custom message.
+
+    @method showCustomMessage
+    @param {String} message message
+    @param {String} header header
+    @param {Boolean} visibleButtons visible buttons
+    @param {String} approveButtonCaption approve caption
+    @param {String} denyButtonCaption deny caption
+    @param {function} approveButtonAction approve action
+    @param {function} denyButtonAction deny action
+    @param {Object} context context
+  */
+  showCustomMessage(message, header, visibleButtons = false, approveButtonCaption, denyButtonCaption, approveButtonAction, denyButtonAction, context) {
+    if (this.get('router.currentRouteName') === this.get('routeName')) {
+      this.set('headerCaption', header);
+      this.set('messageText', message);
+      this.set('visibleButtons', visibleButtons);
+      if (!visibleButtons) {
+        this.set('approveButtonCaption', undefined);
+        this.set('denyButtonCaption', undefined);
+        this.set('approveButtonAction', undefined);
+        this.set('denyButtonAction', undefined);
+        this.set('context', undefined);
+      } else {
+        this.set('approveButtonCaption', approveButtonCaption);
+        this.set('denyButtonCaption', denyButtonCaption);
+        this.set('approveButtonAction', approveButtonAction);
+        this.set('denyButtonAction', denyButtonAction);
+        this.set('context', context);
+      }
+
+      this.set('show', true);
+    }
+  },
+
+  /**
+    Show verification message.
 
     @method showVerificationMessage
     @param {String} message Message

@@ -14,6 +14,24 @@ export default Service.extend(Evented, {
   },
 
   /**
+    Trigger in mixin actions for show message.
+
+    @method showCustomMessage
+    @param {String} message message
+    @param {String} header header
+
+    @param {Boolean} visibleButtons visible buttons
+    @param {String} approveButtonCaption approve caption
+    @param {String} denyButtonCaption deny caption
+    @param {function} approveButtonAction approve action
+    @param {function} denyButtonAction deny action
+    @param {Object} context context
+  */
+  showCustomMessage(message, header, visibleButtons, approveButtonCaption, denyButtonCaption, approveButtonAction, denyButtonAction, context) {
+    this.trigger('showCustomMessageTriggered', message, header, visibleButtons, approveButtonCaption, denyButtonCaption, approveButtonAction, denyButtonAction, context);
+  },
+
+  /**
     Trigger in mixin actions for show verification message.
 
     @method showVerificationMessage
