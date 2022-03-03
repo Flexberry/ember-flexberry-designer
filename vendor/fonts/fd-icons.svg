@@ -1,11 +1,15 @@
 <?xml version="1.0" standalone="no"?>
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
 <svg xmlns="http://www.w3.org/2000/svg">
-<metadata>Copyright (C) 2021 by original authors @ fontello.com</metadata>
+<metadata>Copyright (C) 2022 by original authors @ fontello.com</metadata>
 <defs>
 <font id="fd-icons" horiz-adv-x="1000" >
 <font-face font-family="fd-icons" font-weight="400" font-stretch="normal" units-per-em="1000" ascent="850" descent="-150" />
 <missing-glyph horiz-adv-x="1000" />
+<glyph glyph-name="uml-valid" unicode="&#xe800;" d="M83 392v333h292v-125h250v125h292v-333h-292v125h-83v-417h-167v-125h-292v333h292v-125h83v334h-83v-125h-292z m625 83h125v167h-125v-167z m-416-250h-125v-167h125v167z m0 417h-125v-167h125v167z m472-292c-115 0-208-93-208-208 0-115 93-209 208-209 115 0 208 94 208 209 0 115-93 208-208 208z m21-333h-42v41h42v-41z m0 83h-42v167h42v-167z" horiz-adv-x="1000" />
+
+<glyph glyph-name="uml-edit" unicode="&#xe801;" d="M83 392v333h292v-125h250v125h292v-333h-292v125h-83v-417h-167v-125h-292v333h292v-125h83v334h-83v-125h-292z m625 83h125v167h-125v-167z m-416-250h-125v-167h125v167z m0 417h-125v-167h125v167z m620-346l-49 49c-2 2-4 3-6 4-2 1-4 1-6 1-2 0-5 0-7-1-2-1-4-2-5-4l-37-37 73-73 37 37c1 2 3 4 3 6 1 2 2 4 2 6 0 2-1 5-2 7 0 2-2 4-3 5z m-412-290v-73h73l278 278-73 73-278-278z" horiz-adv-x="1000" />
+
 <glyph glyph-name="copy" unicode="&#xe819;" d="M306-67v667h583v-314c0-171-250-103-250-103 0 0 63-250-110-250h-223v0z m666 318v432h-750v-833h342c131 0 408 301 408 401z m-416-68h-167v42h167v-42z m250 167h-417v-42h417v42z m0 125h-417v-42h417v42z m41 292h-708v-792h-83v875h791v-83z" horiz-adv-x="1000" />
 
 <glyph glyph-name="cut" unicode="&#xe81a;" d="M501 272c-129-62-278-134-314-152-69-33-131 54-131 54l324 156 121-58z m294-255c-26 0-52 5-77 17-72 35-109 112-92 180 9 39-11 45-43 60l-525 254c0 0 63 86 131 53 42-20 211-101 356-172l37 18c31 15 52 20 42 59-16 69 21 145 93 180 25 12 51 17 76 17 86 0 150-62 150-140 0-59-36-117-97-148-60-30-102-6-162-35l-19-9 21-10c60-30 102-6 162-37 60-30 96-88 96-147 0-78-64-140-149-140v0z m-95 474c18-38 70-51 115-29 45 22 67 70 49 108-19 38-70 51-115 29-45-21-67-70-49-108v0z m-135-134c0 15-12 28-28 28-15 0-27-13-27-28 0-15 12-28 27-28 16 0 28 13 28 28z m251-119c-45 22-96 9-114-29-19-38 3-86 48-108 45-22 97-9 115 29 18 38-4 86-49 108z" horiz-adv-x="1000" />
