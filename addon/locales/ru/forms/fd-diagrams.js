@@ -17,7 +17,9 @@ export default {
   },
   'custom-message': {
     'validate-header': 'Результат проверки диаграммы',
-    'no-errors': 'Ошибок нет'
+    'no-errors': 'Ошибок нет',
+    'corrector-header': 'Диаграмма исправлена',
+    'corrector-message': 'Необходимо перезагрузить проект, чтобы подгрузить внесенные изменения:'
   },
   'all-diagrams': 'Все диаграммы',
   'systems': 'Каталоги'

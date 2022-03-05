@@ -17,7 +17,9 @@ export default {
   },
   'custom-message': {
     'validate-header': 'Diagram check result',
-    'no-errors': 'No errors'
+    'no-errors': 'No errors',
+    'corrector-header': 'Diagram corrected',
+    'corrector-message': 'Need to reload the project to load the changes:'
   },
   'all-diagrams': 'All diagrams',
   'systems': 'Catalogs'

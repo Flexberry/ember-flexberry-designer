@@ -11,6 +11,8 @@ export default {
     'validate-header': 'Errors found in the model',
     'validate-approve': 'Run auto-correct',
     'validate-deny': 'Fix it yourself',
-    'lock-stage': 'One or more objects of the stage are lock, it is not possible to start the corrector'
+    'lock-stage': 'One or more objects of the project are lock, it is not possible to start the corrector',
+    'corrector-header': 'Project corrected',
+    'corrector-message': 'Need to reload the project to load the changes:'
   },
 };

@@ -26,13 +26,6 @@ export default FdBaseSheet.extend(
   layout,
 
   /**
-    Router service of current application.
-    @property router
-    @type RouterService
-  */
-  router: service(),
-
-  /**
    Service for managing locks.
 
    @property fdLockService
@@ -147,13 +140,13 @@ export default FdBaseSheet.extend(
       {
         buttonTitle: i18n.t('components.fd-diagram-editing-panel.uml-validator-title'),
         buttonVisible: diagramType === 'cad' && !this.get('selectedValue.data.isNew') && !this.get('isAddMode') && this.get('readonlyMode'),
-        iconClasses: 'icon-fd-gear icon',
+        iconClasses: 'icon-fd-uml-valid icon',
         buttonAction: this.get('umlValidator').bind(this)
       },
       {
         buttonTitle: i18n.t('components.fd-diagram-editing-panel.uml-corrector-title'),
         buttonVisible: diagramType === 'cad' && !this.get('selectedValue.data.isNew') && !this.get('isAddMode') && this.get('readonlyMode'),
-        iconClasses: 'icon-fd-gear icon',
+        iconClasses: ' icon-fd-uml-edit icon',
         buttonAction: this.get('umlСorrector').bind(this)
       },
       {
@@ -301,7 +294,6 @@ export default FdBaseSheet.extend(
     fdLockService.checkLock(selectedDiagram, sheetComponentName).then(result => {
       return result && !result.Acquired ? resolve() : reject({ message: this.get('i18n').t('components.fd-sheets-tool-bar.object-locked').toString() + (result ? result.UseName : '') });
     })
-    .then(() => fdLockService.createLock(selectedDiagram, sheetComponentName))
     .then(() => {
       const store = this.get('store');
       const adapter = store.adapterFor('application');
@@ -310,15 +302,26 @@ export default FdBaseSheet.extend(
       return adapter.callFunction('CorrectUmlDiagram', data, null, { withCredentials: true });
     })
     .then((result) => {
-      return new Promise((resolve, reject) => {
-        fdLockService.deleteLock(selectedDiagram, sheetComponentName)
-        .then(() => resolve(result))
-        .catch((error) => reject(error));
-      });
-    })
-    .then((result) => {
-      if (result.value) {
-        this.get('router').transitionTo('fd-diagrams', { queryParams: { gotostage: context.getCurrentStage(), gototype: 'fd-dev-uml-cad', gotoobj: selectedDiagram.get('id') } });
+      if (!isBlank(result.value)) {
+        this.get('appState').reset();
+        const i18n = this.get('i18n');
+        let pageContext = this.get('targetObject');
+        let message = i18n.t('forms.fd-diagrams.custom-message.corrector-message').toString() + `\n ${result.value}`;
+
+        this.get('fdDialogService').showCustomMessage(
+          message,
+          i18n.t('forms.fd-diagrams.custom-message.corrector-header').toString(),
+          false
+        );
+
+        let transitionFunction = function() {
+          pageContext.removeObserver('show', this, transitionFunction);
+          let stageId = context.getCurrentStage();
+          context.resetCurrentStage();
+          pageContext.transitionToRoute('fd-diagrams', { queryParams: { gotostage: stageId, gototype: 'fd-dev-uml-cad', gotoobj: selectedDiagram.get('id') } });
+        };
+
+        pageContext.addObserver('show', this, transitionFunction);
       }
     }).catch((error) => {
       this.get('fdDialogService').showErrorMessage(error.message);
