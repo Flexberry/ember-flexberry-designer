@@ -15,6 +15,12 @@ export default {
     'empty-diagram': 'Diagram name cannot be empty',
     'exist-diagram': 'Diagram with the same name already exists.',
   },
+  'custom-message': {
+    'validate-header': 'Diagram check result',
+    'no-errors': 'No errors',
+    'corrector-header': 'Diagram corrected',
+    'corrector-message': 'Need to reload the project to load the changes:'
+  },
   'all-diagrams': 'All diagrams',
   'systems': 'Catalogs'
 };

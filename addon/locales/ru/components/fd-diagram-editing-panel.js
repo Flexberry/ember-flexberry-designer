@@ -6,5 +6,7 @@ export default {
   'remove-button-title': 'Удалить объект',
   'color-button-title': 'Настройки внешнего вида объекта',
   'open-edit-form-title': 'Открыть форму редактирования свойств',
-  'collapse-title': 'Свернуть объект'
+  'collapse-title': 'Свернуть объект',
+  'uml-validator-title': 'UML валидатор',
+  'uml-corrector-title': 'UML корректор'
 };

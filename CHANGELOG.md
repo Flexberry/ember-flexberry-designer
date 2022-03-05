@@ -3,6 +3,10 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+## [0.15.0-beta.15]
+### Added
+* Add UML validator and corrector odata function.
+
 ## [0.15.0-beta.14]
 ### Changed
 * Add new generation settings.
