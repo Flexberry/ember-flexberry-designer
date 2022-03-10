@@ -8,6 +8,7 @@ export let Serializer = Mixin.create({
       configuration: { serialize: 'odata-id', deserialize: 'records' },
       systems: { serialize: false, deserialize: 'records' },
       inheritances: { serialize: false, deserialize: 'records' },
+      realizations: { serialize: false, deserialize: 'records' },
       associations: { serialize: false, deserialize: 'records' },
       classes: { serialize: false, deserialize: 'records' }
     };

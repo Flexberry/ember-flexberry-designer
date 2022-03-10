@@ -19,8 +19,8 @@ export let Model = Mixin.create({
     @private
     @example
       ```javascript
-      _additionalPluginsSettingsChanged: Ember.on('init', Ember.observer('additionalPluginsSettings', function() {
-        Ember.run.once(this, '_additionalPluginsSettingsCompute');
+      _additionalPluginsSettingsChanged: on('init', observer('additionalPluginsSettings', function() {
+        once(this, '_additionalPluginsSettingsCompute');
       }))
       ```
   */
@@ -46,8 +46,8 @@ export let Model = Mixin.create({
     @private
     @example
       ```javascript
-      _chosenPaletteChanged: Ember.on('init', Ember.observer('chosenPalette', function() {
-        Ember.run.once(this, '_chosenPaletteCompute');
+      _chosenPaletteChanged: on('init', observer('chosenPalette', function() {
+        once(this, '_chosenPaletteCompute');
       }))
       ```
   */
@@ -74,8 +74,8 @@ export let Model = Mixin.create({
     @private
     @example
       ```javascript
-      _defaultAccessTypeChanged: Ember.on('init', Ember.observer('defaultAccessType', function() {
-        Ember.run.once(this, '_defaultAccessTypeCompute');
+      _defaultAccessTypeChanged: on('init', observer('defaultAccessType', function() {
+        once(this, '_defaultAccessTypeCompute');
       }))
       ```
   */
@@ -102,8 +102,8 @@ export let Model = Mixin.create({
     @private
     @example
       ```javascript
-      _defaultTypeMapTypesChanged: Ember.on('init', Ember.observer('defaultTypeMapTypes', function() {
-        Ember.run.once(this, '_defaultTypeMapTypesCompute');
+      _defaultTypeMapTypesChanged: on('init', observer('defaultTypeMapTypes', function() {
+        once(this, '_defaultTypeMapTypesCompute');
       }))
       ```
   */
@@ -127,8 +127,8 @@ export let Model = Mixin.create({
     @private
     @example
       ```javascript
-      _doNotDeleteExtraTablesChanged: Ember.on('init', Ember.observer('doNotDeleteExtraTables', function() {
-        Ember.run.once(this, '_doNotDeleteExtraTablesCompute');
+      _doNotDeleteExtraTablesChanged: on('init', observer('doNotDeleteExtraTables', function() {
+        once(this, '_doNotDeleteExtraTablesCompute');
       }))
       ```
   */
@@ -152,8 +152,8 @@ export let Model = Mixin.create({
     @private
     @example
       ```javascript
-      _enableAuElementChanged: Ember.on('init', Ember.observer('enableAuElement', function() {
-        Ember.run.once(this, '_enableAuElementCompute');
+      _enableAuElementChanged: on('init', observer('enableAuElement', function() {
+        once(this, '_enableAuElementCompute');
       }))
       ```
   */
@@ -179,8 +179,8 @@ export let Model = Mixin.create({
     @private
     @example
       ```javascript
-      _lastIndexDateChanged: Ember.on('init', Ember.observer('lastIndexDate', function() {
-        Ember.run.once(this, '_lastIndexDateCompute');
+      _lastIndexDateChanged: on('init', observer('lastIndexDate', function() {
+        once(this, '_lastIndexDateCompute');
       }))
       ```
   */
@@ -208,8 +208,8 @@ export let Model = Mixin.create({
     @private
     @example
       ```javascript
-      _realDataObjectNameSpaceChanged: Ember.on('init', Ember.observer('realDataObjectNameSpace', function() {
-        Ember.run.once(this, '_realDataObjectNameSpaceCompute');
+      _realDataObjectNameSpaceChanged: on('init', observer('realDataObjectNameSpace', function() {
+        once(this, '_realDataObjectNameSpaceCompute');
       }))
       ```
   */
@@ -242,8 +242,8 @@ export let Model = Mixin.create({
     @private
     @example
       ```javascript
-      _typeMapAccessChanged: Ember.on('init', Ember.observer('typeMapAccess', function() {
-        Ember.run.once(this, '_typeMapAccessCompute');
+      _typeMapAccessChanged: on('init', observer('typeMapAccess', function() {
+        once(this, '_typeMapAccessCompute');
       }))
       ```
   */
@@ -267,8 +267,8 @@ export let Model = Mixin.create({
     @private
     @example
       ```javascript
-      _typeMapCSChanged: Ember.on('init', Ember.observer('typeMapCS', function() {
-        Ember.run.once(this, '_typeMapCSCompute');
+      _typeMapCSChanged: on('init', observer('typeMapCS', function() {
+        once(this, '_typeMapCSCompute');
       }))
       ```
   */
@@ -292,8 +292,8 @@ export let Model = Mixin.create({
     @private
     @example
       ```javascript
-      _typeMapOracleChanged: Ember.on('init', Ember.observer('typeMapOracle', function() {
-        Ember.run.once(this, '_typeMapOracleCompute');
+      _typeMapOracleChanged: on('init', observer('typeMapOracle', function() {
+        once(this, '_typeMapOracleCompute');
       }))
       ```
   */
@@ -317,8 +317,8 @@ export let Model = Mixin.create({
     @private
     @example
       ```javascript
-      _typeMapPostgreChanged: Ember.on('init', Ember.observer('typeMapPostgre', function() {
-        Ember.run.once(this, '_typeMapPostgreCompute');
+      _typeMapPostgreChanged: on('init', observer('typeMapPostgre', function() {
+        once(this, '_typeMapPostgreCompute');
       }))
       ```
   */
@@ -342,8 +342,8 @@ export let Model = Mixin.create({
     @private
     @example
       ```javascript
-      _typeMapSQLChanged: Ember.on('init', Ember.observer('typeMapSQL', function() {
-        Ember.run.once(this, '_typeMapSQLCompute');
+      _typeMapSQLChanged: on('init', observer('typeMapSQL', function() {
+        once(this, '_typeMapSQLCompute');
       }))
       ```
   */
@@ -367,8 +367,8 @@ export let Model = Mixin.create({
     @private
     @example
       ```javascript
-      _typeMapVBChanged: Ember.on('init', Ember.observer('typeMapVB', function() {
-        Ember.run.once(this, '_typeMapVBCompute');
+      _typeMapVBChanged: on('init', observer('typeMapVB', function() {
+        once(this, '_typeMapVBCompute');
       }))
       ```
   */

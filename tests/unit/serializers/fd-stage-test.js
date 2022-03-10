@@ -70,6 +70,7 @@ moduleForModel('fd-stage', 'Unit | Serializer | fd-stage', {
     'model:fd-generation-step-log',
     'model:fd-generation',
     'model:fd-inheritance',
+    'model:fd-realization',
     'model:fd-object-in-system',
     'model:fd-plugin-on-rep-object',
     'model:fd-project',

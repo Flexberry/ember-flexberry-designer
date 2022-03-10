@@ -119,6 +119,8 @@ import FdUserAuthProfileModel from './models/fd-user-auth-profile';
 import FdUserInStageModel from './models/fd-user-in-stage';
 import FdViewModel from './models/fd-view';
 import FdVisualControlModel from './models/fd-visual-control';
+import FdDevRealizationModel from './models/fd-dev-realization';
+import FdRealizationModel from './models/fd-realization';
 import FdVisualControlComponent from './components/fd-visual-control';
 import FdVisualEditControlTreeComponent from './components/fd-visual-edit-control-tree';
 import FdTabs from './components/fd-tabs';
@@ -233,6 +235,8 @@ $.extend(true, translations, {
     'fd-user-in-stage': FdUserInStageModel,
     'fd-view': FdViewModel,
     'fd-visual-control': FdVisualControlModel,
+    'fd-dev-realization': FdDevRealizationModel,
+    'fd-realization': FdRealizationModel
   },
 
   'application-name': 'Application caption',

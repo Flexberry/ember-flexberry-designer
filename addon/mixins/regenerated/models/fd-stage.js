@@ -19,8 +19,8 @@ export let Model = Mixin.create({
     @private
     @example
       ```javascript
-      _chosenPaletteChanged: Ember.on('init', Ember.observer('chosenPalette', function() {
-        Ember.run.once(this, '_chosenPaletteCompute');
+      _chosenPaletteChanged: on('init', observer('chosenPalette', function() {
+        once(this, '_chosenPaletteCompute');
       }))
       ```
   */
@@ -31,6 +31,7 @@ export let Model = Mixin.create({
   configuration: DS.belongsTo('fd-configuration', { inverse: 'stages', async: false }),
   systems: DS.hasMany('fd-subsystem', { inverse: 'stage', async: false }),
   inheritances: DS.hasMany('fd-inheritance', { inverse: 'stage', async: false }),
+  realizations: DS.hasMany('fd-realization', { inverse: 'stage', async: false }),
   associations: DS.hasMany('fd-base-association', { inverse: 'stage', async: false }),
   classes: DS.hasMany('fd-class', { inverse: 'stage', async: false }),
   getValidations: function () {
@@ -45,6 +46,7 @@ export let Model = Mixin.create({
     this._super(...arguments);
   }
 });
+
 export let defineBaseModel = function (modelClass) {
   modelClass.reopenClass({
     _parentModelName: 'fd-repository-browser-data-object-with-a-c-l'
@@ -112,8 +114,19 @@ export let defineProjections = function (modelClass) {
       child: belongsTo('fd-class', '', {
 
       })
+    }),
+    realizations: hasMany('fd-realization', 'Realizations', {
+      referenceCount: attr(''),
+      name: attr(''),
+      child: belongsTo('fd-class', '', {
+
+      }),
+      parent: belongsTo('fd-class', '', {
+
+      })
     })
   });
+
   modelClass.defineProjection('InheritanceCyclesCheckView', 'fd-stage', {
     inheritances: hasMany('fd-inheritance', '', {
       referenceCount: attr(''),
@@ -149,6 +162,9 @@ export let defineProjections = function (modelClass) {
       referenceCount: attr('')
     }),
     inheritances: hasMany('fd-inheritance', '', {
+      referenceCount: attr('')
+    }),
+    realizations: hasMany('fd-realization', 'Realizations', {
       referenceCount: attr('')
     })
   });

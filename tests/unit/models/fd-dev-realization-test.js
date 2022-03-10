@@ -1,23 +1,8 @@
 import { moduleForModel, test } from 'ember-qunit';
 
-moduleForModel('fd-dev-stage', 'Unit | Serializer | fd-dev-stage', {
+moduleForModel('fd-dev-realization', 'Unit | Model | fd-dev-realization', {
   // Specify the other units that are required for this test.
   needs: [
-    'serializer:fd-dev-stage',
-    'transform:file',
-    'transform:decimal',
-    'transform:guid',
-
-    'transform:i-c-s-soft-s-t-o-r-m-n-e-t-access-type',
-    'transform:i-c-s-soft-s-t-o-r-m-n-e-t-business-audit-objects-t-write-mode',
-    'transform:i-c-s-soft-s-t-o-r-m-n-e-t-business-data-service-object-events',
-    'transform:new-platform-flexberry-web-designer-access-mode',
-    'transform:new-platform-flexberry-web-designer-generation-state',
-    'transform:s-t-o-r-m-c-a-s-e-repository-access-modifier',
-    'transform:s-t-o-r-m-c-a-s-e-s-t-o-r-m-n-e-t-repository-parameter-modifier',
-
-    'transform:new-platform-flexberry-web-designer-business-server-class',
-
     'model:fd-ad',
     'model:fd-aggregation',
     'model:fd-application-user',
@@ -47,6 +32,7 @@ moduleForModel('fd-dev-stage', 'Unit | Serializer | fd-dev-stage', {
     'model:fd-dev-module-setting',
     'model:fd-dev-parameter',
     'model:fd-dev-process-status',
+    'model:fd-dev-realization',
     'model:fd-dev-stage-history',
     'model:fd-dev-stage',
     'model:fd-dev-system',
@@ -70,10 +56,10 @@ moduleForModel('fd-dev-stage', 'Unit | Serializer | fd-dev-stage', {
     'model:fd-generation-step-log',
     'model:fd-generation',
     'model:fd-inheritance',
-    'model:fd-realization',
     'model:fd-object-in-system',
     'model:fd-plugin-on-rep-object',
     'model:fd-project',
+    'model:fd-realization',
     'model:fd-registered-plug-in',
     'model:fd-repository-browser-data-object-with-a-c-l',
     'model:fd-repository-browser-data-object',
@@ -91,16 +77,19 @@ moduleForModel('fd-dev-stage', 'Unit | Serializer | fd-dev-stage', {
     'model:fd-user-in-stage',
     'model:fd-view',
     'model:i-c-s-soft-s-t-o-r-m-n-e-t-security-agent',
-
-    'service:syncer'
-  ]
+    'validator:ds-error',
+    'validator:presence',
+    'validator:number',
+    'validator:date',
+    'validator:belongs-to',
+    'validator:has-many',
+    'service:syncer',
+  ],
 });
 
-// Replace this with your real tests.
-test('it serializes records', function(assert) {
-  let record = this.subject();
+test('it exists', function(assert) {
+  let model = this.subject();
 
-  let serializedRecord = record.serialize();
-
-  assert.ok(serializedRecord);
+  // let store = this.store();
+  assert.ok(!!model);
 });
