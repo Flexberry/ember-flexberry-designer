@@ -362,6 +362,9 @@ export default FdBaseSheet.extend(
           case 'STORMCASE.UML.cad.Association, UMLCAD':
             modelName = 'fd-dev-association';
             break;
+          case 'STORMCASE.UML.cad.Realization, UMLCAD':
+            modelName = 'fd-dev-realization';
+            break;
           case 'STORMCASE.UML.cad.LinkInheritance, UMLCAD':
             break;
           default:
@@ -440,8 +443,14 @@ export default FdBaseSheet.extend(
             let allRepObjects;
 
             switch (type) {
+              case 'STORMCASE.UML.cad.Realization, UMLCAD':
+                allRepObjects = store.peekAll('fd-dev-realization');
+              // eslint-disable-next-line no-fallthrough
               case 'STORMCASE.UML.cad.Inheritance, UMLCAD':
-                allRepObjects = store.peekAll('fd-dev-inheritance');
+                if (isNone(allRepObjects)) {
+                  allRepObjects = store.peekAll('fd-dev-inheritance');
+                }
+
                 repObject = allRepObjects.findBy('id', repId);
                 if (repObject) {
                   let description = p.getWithDefault('description', '').trim();
@@ -749,6 +758,9 @@ export default FdBaseSheet.extend(
           switch (type) {
             case 'STORMCASE.UML.cad.Inheritance, UMLCAD':
               allRepObjects = store.peekAll('fd-dev-inheritance');
+              break;
+            case 'STORMCASE.UML.cad.Realization, UMLCAD':
+              allRepObjects = store.peekAll('fd-dev-realization');
               break;
             case 'STORMCASE.UML.cad.Composition, UMLCAD':
               allRepObjects = store.peekAll('fd-dev-aggregation');

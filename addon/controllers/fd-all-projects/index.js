@@ -72,6 +72,7 @@ export default Controller.extend({
       store.unloadAll('fd-dev-association');
       store.unloadAll('fd-dev-aggregation');
       store.unloadAll('fd-dev-inheritance');
+      store.unloadAll('fd-dev-realization');
       store.unloadAll('fd-dev-system');
       store.unloadAll('new-platform-flexberry-services-lock');
 

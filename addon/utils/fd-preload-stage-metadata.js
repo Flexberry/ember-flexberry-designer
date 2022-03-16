@@ -57,6 +57,9 @@ export default function fdPreloadStageMetadata(store, stagePk) {
     // inheritances promise
     promises.push(getPromise(store, stagePk, 'fd-dev-inheritance', projectionName));
 
+    // realizations promise
+    promises.push(getPromise(store, stagePk, 'fd-dev-realization', projectionName));
+
     // system and diagrams promise
     promises.push(getPromise(store, stagePk, 'fd-dev-system', projectionName));
 
@@ -84,7 +87,8 @@ export default function fdPreloadStageMetadata(store, stagePk) {
           let needToDeleteLock = tryPeekRecord(store, 'fd-dev-class', item.get('id'), stagePk) ||
             tryPeekRecord(store, 'fd-dev-association', item.get('id'), stagePk) ||
             tryPeekRecord(store, 'fd-dev-aggregation', item.get('id'), stagePk) ||
-            tryPeekRecord(store, 'fd-dev-inheritance', item.get('id'), stagePk);
+            tryPeekRecord(store, 'fd-dev-inheritance', item.get('id'), stagePk) ||
+            tryPeekRecord(store, 'fd-dev-realization', item.get('id'), stagePk);
 
           if (needToDeleteLock) {
             deleteLocksPromises.push(item.destroyRecord());
