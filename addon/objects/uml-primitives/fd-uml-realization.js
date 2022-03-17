@@ -2,10 +2,10 @@
   @module ember-flexberry-designer
 */
 import joint from 'npm:jointjs';
+import { isNone } from '@ember/utils';
 
-import FdUmlLink from './fd-uml-link';
-import { Link } from './fd-uml-link';
-import { EmptyView } from './links-view/fd-empty-view';
+import FdUmlLink, { Link } from './fd-uml-link';
+import { DescriptionView } from './links-view/fd-description-view';
 
 /**
   An object that describes a link of the Realization type on the UML diagram.
@@ -38,9 +38,26 @@ export default FdUmlLink.extend({
 */
 export let Realization = Link.define('flexberry.uml.Realization', {
   attrs: {
-    '.marker-target': { d: 'M 0 0 z' },
-    '.connection': { stroke: 'black', 'stroke-width': 1, 'stroke-dasharray': '7 2' },
+    '.marker-source': { d: 'M 20 0 L 0 10 L 20 20 z', fill: 'white' },
+    '.connection': { stroke: 'black', 'stroke-width': 1, 'stroke-dasharray': '7 2' }
   },
+  text: { visibility: 'hidden' },
+  rect: { visibility: 'hidden' }
 });
 
-joint.shapes.flexberry.uml.RealizationView = EmptyView;
+joint.shapes.flexberry.uml.RealizationView = DescriptionView.extend({
+  setColors() {
+    DescriptionView.prototype.setColors.apply(this, arguments);
+
+    const textColor = this.getTextColor();
+    const brushColor = this.getBrushColor();
+
+    if (!isNone(textColor)) {
+      this.model.attr('.marker-source/stroke', textColor);
+    }
+
+    if (!isNone(brushColor)) {
+      this.model.attr('.marker-source/fill', brushColor);
+    }
+  }
+});

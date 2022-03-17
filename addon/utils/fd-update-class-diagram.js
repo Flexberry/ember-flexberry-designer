@@ -46,6 +46,9 @@ function deletePrimitives(store, currentProjectContext, classArray) {
               case 'STORMCASE.UML.cad.Inheritance, UMLCAD':
                 allRepObjects = store.peekAll('fd-dev-inheritance');
                 break;
+              case 'STORMCASE.UML.cad.Realization, UMLCAD':
+                allRepObjects = store.peekAll('fd-dev-realization');
+                break;
               case 'STORMCASE.UML.cad.Composition, UMLCAD':
                 allRepObjects = store.peekAll('fd-dev-aggregation');
                 break;

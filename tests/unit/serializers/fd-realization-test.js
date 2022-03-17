@@ -1,9 +1,10 @@
 import { moduleForModel, test } from 'ember-qunit';
 
-moduleForModel('fd-dev-stage', 'Unit | Serializer | fd-dev-stage', {
+moduleForModel('fd-realization', 'Unit | Serializer | fd-realization', {
   // Specify the other units that are required for this test.
   needs: [
-    'serializer:fd-dev-stage',
+    'serializer:fd-realization',
+    'service:syncer',
     'transform:file',
     'transform:decimal',
     'transform:guid',
@@ -70,10 +71,10 @@ moduleForModel('fd-dev-stage', 'Unit | Serializer | fd-dev-stage', {
     'model:fd-generation-step-log',
     'model:fd-generation',
     'model:fd-inheritance',
-    'model:fd-realization',
     'model:fd-object-in-system',
     'model:fd-plugin-on-rep-object',
     'model:fd-project',
+    'model:fd-realization',
     'model:fd-registered-plug-in',
     'model:fd-repository-browser-data-object-with-a-c-l',
     'model:fd-repository-browser-data-object',
@@ -91,9 +92,13 @@ moduleForModel('fd-dev-stage', 'Unit | Serializer | fd-dev-stage', {
     'model:fd-user-in-stage',
     'model:fd-view',
     'model:i-c-s-soft-s-t-o-r-m-n-e-t-security-agent',
-
-    'service:syncer'
-  ]
+    'validator:ds-error',
+    'validator:presence',
+    'validator:number',
+    'validator:date',
+    'validator:belongs-to',
+    'validator:has-many',
+  ],
 });
 
 // Replace this with your real tests.

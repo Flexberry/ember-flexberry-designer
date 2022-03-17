@@ -281,7 +281,7 @@ export default Mixin.create({
       if (repObject.type === 'fd-dev-class') {
         existObject = allObjectsCurrentStage.findBy('name', repObject.data.Name);
       } else {
-        let isInh = repObject.type === 'fd-dev-inheritance';
+        let isInh = repObject.type === 'fd-dev-inheritance' || repObject.type === 'fd-dev-realization';
         existObject = allObjectsCurrentStage.find((a) => {
           let repStartObj = repObject.data[`${(isInh ? 'Parent' : 'StartClass')}@odata.bind`].slice(12, -1);
           repStartObj = this._findNewObjectId(repStartObj, dictionaryRepObjId);
@@ -376,7 +376,7 @@ export default Mixin.create({
       let linkId = this._findNewObjectId(linkObj.data.__PrimaryKey, dictionaryRepObjId);
       let linkRepObj = store.peekRecord(linkObj.type, linkId);
 
-      let isInh = linkObj.type === 'fd-dev-inheritance';
+      let isInh = linkObj.type === 'fd-dev-inheritance' || linkObj.type === 'fd-dev-realization';
       let repStartObj = linkObj.data[`${(isInh ? 'Parent' : 'StartClass')}@odata.bind`].slice(12, -1);
       let repEndObj = linkObj.data[`${(isInh ? 'Child' : 'EndClass')}@odata.bind`].slice(12, -1);
 

@@ -124,6 +124,21 @@ export default {
         child: {
           __caption__: ''
         }
+      },
+      realizations: {
+        __caption__: 'Realizations',
+        referenceCount: {
+          __caption__: ''
+        },
+        name: {
+          __caption__: ''
+        },
+        child: {
+          __caption__: ''
+        },
+        parent: {
+          __caption__: ''
+        }
       }
     },
     InheritanceCyclesCheckView: {
@@ -186,6 +201,12 @@ export default {
       },
       inheritances: {
         __caption__: '',
+        referenceCount: {
+          __caption__: ''
+        }
+      },
+      realizations: {
+        __caption__: 'Realizations',
         referenceCount: {
           __caption__: ''
         }

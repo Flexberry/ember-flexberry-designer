@@ -961,7 +961,8 @@ export default Component.extend(
     let newConnectedClass;
     if (!isNone(isSourse) && modelName !== 'fd-dev-class') {
       newConnectedClass = this._updateConnectedElements(objectModel, isSourse, store);
-      repProp = isSourse ? (modelName === 'fd-dev-inheritance' ? 'parent' : 'startClass' ) : (modelName === 'fd-dev-inheritance' ? 'child' : 'endClass' );
+      let isInh = modelName === 'fd-dev-inheritance' || modelName === 'fd-dev-realization';
+      repProp = isSourse ? (isInh ? 'parent' : 'startClass' ) : (isInh ? 'child' : 'endClass' );
     }
 
     let newRepObj;
@@ -1009,6 +1010,7 @@ export default Component.extend(
         });
         break;
       }
+      case 'fd-dev-realization':
       case 'fd-dev-inheritance': {
         let parentId = currentRepObj.get('parent.id');
         let childId = currentRepObj.get('child.id');
@@ -1128,7 +1130,7 @@ export default Component.extend(
 
         view.updateRectangles();
 
-      } else if (modelName === 'fd-dev-inheritance') {
+      } else if (modelName === 'fd-dev-inheritance' || modelName === 'fd-dev-realization') {
 
         let name = objectModel.get('description');
         newElement.set('child', currentRepObj.get('child'));
@@ -1198,6 +1200,9 @@ export default Component.extend(
         break;
       case 'STORMCASE.UML.cad.Inheritance, UMLCAD':
         modelName = 'fd-dev-inheritance';
+        break;
+      case 'STORMCASE.UML.cad.Realization, UMLCAD':
+        modelName = 'fd-dev-realization';
         break;
     }
 
@@ -1282,7 +1287,8 @@ export default Component.extend(
   _updateEmptylink(link) {
     let objectModel = link.get('objectModel');
     let type = objectModel.get('primitive.$type');
-    if (type !== 'STORMCASE.UML.cad.Association, UMLCAD' && type !== 'STORMCASE.UML.cad.Inheritance, UMLCAD' && type !== 'STORMCASE.UML.cad.Composition, UMLCAD') {
+    if (type !== 'STORMCASE.UML.cad.Association, UMLCAD' && type !== 'STORMCASE.UML.cad.Inheritance, UMLCAD' &&
+      type !== 'STORMCASE.UML.cad.Composition, UMLCAD' && type !== 'STORMCASE.UML.cad.Realization, UMLCAD') {
       return;
     }
 
@@ -1312,7 +1318,7 @@ export default Component.extend(
     let modelsCurrentStage = allModels.filterBy('stage.id', stage.get('id'));
 
     let newElement;
-    if (modelName === 'fd-dev-inheritance') {
+    if (modelName === 'fd-dev-inheritance' || modelName === 'fd-dev-realization') {
       let objectModelName = objectModel.get('description');
 
       newElement = modelsCurrentStage.find(function(item) {
@@ -1352,7 +1358,7 @@ export default Component.extend(
         stage: stage
       });
 
-      if (modelName === 'fd-dev-inheritance') {
+      if (modelName === 'fd-dev-inheritance' || modelName === 'fd-dev-realization') {
         newElement.set('child', endPrimitiveRepObj);
         newElement.set('parent', startPrimitiveRepObj);
       } else {
@@ -1365,7 +1371,7 @@ export default Component.extend(
       }
 
       newElement.set('name', objectModel.get('description'));
-    } else if (modelName !== 'fd-dev-inheritance') {
+    } else if (modelName !== 'fd-dev-inheritance' && modelName !== 'fd-dev-realization') {
       let view = this.paper.findViewByModel(link);
       let startMultiplicity = newElement.get('startMultiplicity')
       view.model.setLabelText('startMultiplicity', startMultiplicity);

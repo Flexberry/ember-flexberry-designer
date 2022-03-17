@@ -313,7 +313,10 @@ export default Mixin.create({
           linkProperties.source,
           null,
           linkProperties.target,
-          null
+          null,
+          A(),
+          { Name: '' },
+          { NamePos: 0.0 },
         );
 
         let realizationObject = FdUmlRealization.create({ primitive: jsonObject });
@@ -322,10 +325,28 @@ export default Mixin.create({
         this._addToPrimitives(realizationObject);
 
         return realizationObject.JointJS();
-      }).bind(this), e, {
-        start: A(['flexberry.uml.NAryAssociation']),
-        end: A(['flexberry.uml.Class', 'flexberry.uml.TemplateClass'])
-      });
+      }).bind(this), e, A(['flexberry.uml.Class', 'flexberry.uml.TemplateClass']), function(linkProperties) {
+        let store = this.get('store');
+        let stage = this.get('currentProjectContext').getCurrentStageModel();
+
+        let childClass = this.getRepObj(store, stage, linkProperties.endClassRepObj.id, 'fd-dev-class');
+        let parentClass = this.getRepObj(store, stage, linkProperties.startClassRepObj.id, 'fd-dev-class');
+
+        if (isNone(childClass) || isNone(parentClass)) {
+          return null;
+        }
+
+        let id = uuid.v4();
+        let newRealization = store.createRecord('fd-dev-realization', {
+          id: id,
+          child: childClass,
+          parent: parentClass,
+          stage: stage,
+        });
+        newRealization.incrementProperty('referenceCount');
+
+        return newRealization;
+      }.bind(this));
     },
 
     /**
