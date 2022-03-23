@@ -8,11 +8,12 @@ import { computed } from '@ember/object';
 import { run } from '@ember/runloop';
 import { resolve } from 'rsvp';
 import { A } from '@ember/array';
+import { isNone } from '@ember/utils';
 
 import FdDataType from '../objects/fd-data-type';
 import { deserialize } from '../utils/transforms-utils/fd-type-map-functions';
-import FdFormUnsavedData from '../mixins/fd-form-unsaved-data';
 import FdReadonlyProjectMixin from '../mixins/fd-readonly-project';
+import FdSheetCloseConfirm from '../mixins/fd-sheet-close-confirm';
 
 /**
   Controller for the edit form of the type map.
@@ -20,7 +21,7 @@ import FdReadonlyProjectMixin from '../mixins/fd-readonly-project';
   @class FdDataTypesMapController
   @extends <a href="http://emberjs.com/api/classes/Ember.Controller.html">Ember.Controller</a>
 */
-export default Controller.extend(FdFormUnsavedData, FdReadonlyProjectMixin, {
+export default Controller.extend(FdSheetCloseConfirm, FdReadonlyProjectMixin, {
   /**
     Service for managing the state of the application.
      @property appState
@@ -137,19 +138,13 @@ export default Controller.extend(FdFormUnsavedData, FdReadonlyProjectMixin, {
   }),
 
   actions: {
+
     /**
-      Cancels the changes made to the type map, and send `close` action.
-
-      @method rollback
+      Close form.
+      @method actions.close
     */
-    rollback() {
-      this.get('stage').rollbackAttributes();
-
-      this.set('showTypeMap', false);
-      this.notifyPropertyChange('typeMap');
-
-      this.send('removeModalDialog');
-      this.send('close');
+    close() {
+      history.back();
     },
 
     /**
@@ -168,7 +163,10 @@ export default Controller.extend(FdFormUnsavedData, FdReadonlyProjectMixin, {
 
         promise.then(() => {
           if (close) {
-            this.send('close');
+            let goAbortedTransition = this.get('goAbortedTransition').bind(this);
+            if (!isNone(goAbortedTransition)) {
+              goAbortedTransition();
+            }
           }
         }).catch((error) => {
           this.set('error', error);
@@ -177,6 +175,46 @@ export default Controller.extend(FdFormUnsavedData, FdReadonlyProjectMixin, {
         });
       });
     },
+  },
+
+  /**
+    Cancels the changes made to the type map, and send `close` action.
+
+    @method rollback
+  */
+  rollback() {
+    this.get('stage').rollbackAttributes();
+
+    this.set('showTypeMap', false);
+    this.notifyPropertyChange('typeMap');
+    this.set('show', false);
+
+    let goAbortedTransition = this.get('goAbortedTransition').bind(this);
+    if (!isNone(goAbortedTransition)) {
+      goAbortedTransition();
+    }
+  },
+
+  /**
+    Save changes and close form
+    @method actions.closeWithSaving
+  */
+  closeWithSaving() {
+    this.set('show', false);
+    this.send('save', true);
+  },
+
+  /**
+    Go abortedTransition
+    @method actions.goAbortedTransition
+  */
+  goAbortedTransition() {
+    if (this.get('abortedTransition')) {
+      this.get('abortedTransition').retry();
+      this.set('abortedTransition', undefined);
+    } else {
+      this.send('close');
+    }
   },
 
   /**
