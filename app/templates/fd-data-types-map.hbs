@@ -48,3 +48,16 @@
     {{/flexberry-tree}}
   {{/if}}
 </form>
+
+{{#if show}}
+  {{fd-modal-message-box
+    headerCaption=headerCaption
+    messageText=messageText
+    visibleButtons=visibleButtons
+    approveButtonCaption=approveButtonCaption
+    denyButtonCaption=denyButtonCaption
+    approve=(action "approveAction")
+    deny=(action "denyAction")
+    hide=(action set "show" false)
+  }}
+{{/if}}

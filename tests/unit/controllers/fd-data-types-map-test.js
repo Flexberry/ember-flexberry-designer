@@ -5,6 +5,9 @@ moduleFor('controller:fd-data-types-map', 'Unit | Controller | fd data types map
   // needs: ['controller:foo']
   needs: [
     'service:appState',
+    'service:fd-dialog-service',
+    'service:fdSheetService',
+    'service:fdLockService',
     'service:fd-readonly-mode-service'
   ]
 });

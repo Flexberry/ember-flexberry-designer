@@ -5,6 +5,8 @@ moduleFor('route:fd-data-types-map', 'Unit | Route | fd data types map', {
   // needs: ['controller:foo']
   needs: [
     'service:fd-current-project-context',
+    'service:fdSheetService',
+    'service:fd-dialog-service',
     'service:appState'
   ]
 });
