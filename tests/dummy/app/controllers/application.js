@@ -337,7 +337,7 @@ export default Controller.extend(FdShareFunctionMixin, {
       let origin = this.get('router.location.location.origin');
       let pathname = this.get('router.location.location.pathname');
       let hash = this.get('router.location.location.hash').slice(0, 1) === '#' ? '#/' : '';
-      let stage = `?gotostage=${this.get('currentContext').getCurrentStage()}`;
+      let stage = `fd-diagrams?gotostage=${this.get('currentContext').getCurrentStage()}`;
       let value =  `${origin}${pathname}${hash}${stage}`;
 
       this.copyInClipboardValue(value);
