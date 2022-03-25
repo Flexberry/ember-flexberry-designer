@@ -3,6 +3,11 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+## [0.15.0-beta.17]
+### Added
+* Add button add audit in all class.
+* Add new models.
+
 ## [0.15.0-beta.16]
 ### Added
 * Add orange color sheme.

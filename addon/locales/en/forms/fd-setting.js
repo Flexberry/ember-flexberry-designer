@@ -24,6 +24,10 @@ export default {
     'export-stage-button': 'Project export',
     'export-stage-error': 'Stage export error',
   },
+  'audit-actions-caption': 'Audit settings',
+  'audit-actions': {
+    'audit-all-class-caption': 'Enable auditing in all classes',
+  },
   'generation-settings-caption': 'Generation settings',
   'generation-settings': {
     'frontend-caption': 'Client part',

@@ -24,6 +24,10 @@ export default {
     'export-stage-button': 'Экспорт проекта',
     'export-stage-error': 'Ошибка при экспорте стадии',
   },
+  'audit-actions-caption': 'Настройки аудита',
+  'audit-actions': {
+    'audit-all-class-caption': 'Включить аудит во всех классах',
+  },
   'generation-settings-caption': 'Настройки генерации',
   'generation-settings': {
     'frontend-caption': 'Клиентская часть',
