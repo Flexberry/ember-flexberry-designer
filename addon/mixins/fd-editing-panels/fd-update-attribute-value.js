@@ -21,6 +21,14 @@ export default Mixin.create({
   store: service(),
 
   /**
+    Service for managing the state of the sheet component.
+
+    @property fdSheetService
+    @type FdSheetService
+  */
+  fdSheetService: service(),
+
+  /**
     Table headers for attribute.
 
     @property tableViewAttribute
@@ -75,6 +83,10 @@ export default Mixin.create({
     }
 
     return tableViewAttribute;
+  }),
+
+  isExpanded: computed('fdSheetService.sheetSettings.expanded.class-sheet', function() {
+    return this.get('fdSheetService.sheetSettings.expanded.class-sheet');
   }),
 
   /**
