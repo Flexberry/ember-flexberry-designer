@@ -1,5 +1,7 @@
 import Mixin from '@ember/object/mixin';
 import { inject as service } from '@ember/service';
+import { computed } from '@ember/object';
+import { A } from '@ember/array';
 import RepositoryAccessModifier  from '../../enums/s-t-o-r-m-c-a-s-e-repository-access-modifier';
 
 /**
@@ -19,13 +21,21 @@ export default Mixin.create({
   store: service(),
 
   /**
+    Service for managing the state of the sheet component.
+
+    @property fdSheetService
+    @type FdSheetService
+  */
+  fdSheetService: service(),
+
+  /**
     Table headers for attribute.
 
     @property tableViewAttribute
     @type Array
   */
-  tableViewAttribute: [
-    {
+  tableViewAttribute: computed('isExpanded' , function() {
+    let tableViewAttribute = A([{
       columnCaption: 'components.fd-attribute-table.attribute.name',
       columnProperty: 'name',
       attrPlaceholder: 'components.fd-attribute-table.attribute.name-placeholder',
@@ -44,18 +54,40 @@ export default Mixin.create({
       columnCaption: 'components.fd-attribute-table.attribute.not-null',
       columnProperty: 'notNull',
       isCheckBox: true,
-    },
-    {
-      columnCaption: 'components.fd-attribute-table.attribute.default-value',
-      columnProperty: 'defaultValue',
-      attrPlaceholder: 'components.fd-attribute-table.attribute.default-value-placeholder',
-    },
-    {
-      columnCaption: 'components.fd-attribute-table.attribute.description',
-      columnProperty: 'description',
-      attrPlaceholder: 'components.fd-attribute-table.attribute.description-placeholder',
+    }]);
+
+    if (this.get('isExpanded')) {
+      tableViewAttribute.push({
+          columnCaption: 'components.fd-attribute-table.attribute.default-value',
+          columnProperty: 'defaultValue',
+          attrPlaceholder: 'components.fd-attribute-table.attribute.default-value-placeholder',
+        },
+        {
+          columnCaption: 'components.fd-attribute-table.attribute.description',
+          columnProperty: 'description',
+          attrPlaceholder: 'components.fd-attribute-table.attribute.description-placeholder',
+          isTextArea: true,
+        },
+        {
+          columnCaption: 'components.fd-attribute-table.attribute.stored',
+          columnProperty: 'stored',
+          isCheckBox: true,
+        },
+        {
+          columnCaption: 'components.fd-attribute-table.attribute.dataServiceExpression',
+          columnProperty: 'dataServiceExpression',
+          attrPlaceholder: 'components.fd-attribute-table.attribute.dataServiceExpression-placeholder',
+          isTextArea: true,
+        }
+      )
     }
-  ],
+
+    return tableViewAttribute;
+  }),
+
+  isExpanded: computed('fdSheetService.sheetSettings.expanded.class-sheet', function() {
+    return this.get('fdSheetService.sheetSettings.expanded.class-sheet');
+  }),
 
   /**
     Button locale path for attribute.

@@ -1,0 +1,9 @@
+.ui.form :read-only:focus::-webkit-input-placeholder {
+  color: @lightTextColor;
+}
+.ui.form :read-only:focus:-ms-input-placeholder {
+  color: @lightTextColor;
+}
+.ui.form :read-only:focus::-moz-placeholder {
+  color: @lightTextColor;
+}

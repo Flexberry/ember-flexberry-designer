@@ -1,6 +1,6 @@
 <div class="row">
   {{#each tableView as |tableView|}}
-    <div class="column light-text fd-table-header">
+    <div class="{{if tableView.isCheckBox "one wide"}} column light-text fd-table-header">
       {{t tableView.columnCaption}}
     </div>
   {{/each}}
@@ -18,7 +18,7 @@
         </div>
       {{/if}}
       {{#each tableView as |tableView|}}
-        <div class="column light-text">
+        <div class="{{if tableView.isCheckBox "one wide"}} column light-text">
           {{#if tableView.isDropDown}}
             {{flexberry-dropdown
               items=dropdownItemsObject
@@ -27,20 +27,25 @@
               class="fluid input"
               readonly=(or readonly tableTextBoxReadonly)
             }}
+          {{else if tableView.isCheckBox}}
+            {{flexberry-checkbox
+              readonly=(or readonly tableTextBoxReadonly)
+              value=(mut (get value tableView.columnProperty))
+            }}
+          {{else if tableView.isTextArea}}
+            {{flexberry-textarea
+              value=(mut (get value tableView.columnProperty))
+              class='fluid input'
+              placeholder=(t tableView.attrPlaceholder)
+              readonly=(or readonly tableTextBoxReadonly)
+            }}
           {{else}}
-            {{#if tableView.isCheckBox}}
-              {{flexberry-checkbox
-                readonly=(or readonly tableTextBoxReadonly)
-                value=(mut (get value tableView.columnProperty))
-              }}
-            {{else}}
-              {{flexberry-textbox
-                value=(mut (get value tableView.columnProperty))
-                class='fluid input'
-                placeholder=(t tableView.attrPlaceholder)
-                readonly=(or readonly tableTextBoxReadonly)
-              }}
-            {{/if}}
+            {{flexberry-textbox
+              value=(mut (get value tableView.columnProperty))
+              class='fluid input'
+              placeholder=(t tableView.attrPlaceholder)
+              readonly=(or readonly tableTextBoxReadonly)
+            }}
           {{/if}}
         </div>
       {{/each}}
