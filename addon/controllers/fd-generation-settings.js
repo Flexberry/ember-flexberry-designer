@@ -3,14 +3,14 @@
  */
 import Controller from '@ember/controller';
 import { resolve } from 'rsvp';
-
+import FdSheetCloseConfirm from '../mixins/fd-sheet-close-confirm';
 /**
  * The controller for the form with a generation settings.
  *
  * @class FdGenerationSettingsController
  * @extends Ember.Controller
  */
-export default Controller.extend({
+export default Controller.extend(FdSheetCloseConfirm, {
 
   actions: {
     /**
