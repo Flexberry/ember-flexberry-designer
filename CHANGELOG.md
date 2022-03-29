@@ -3,6 +3,13 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+## [0.15.0-beta.18]
+### Added
+* Add message box on gen form.
+
+### Changed
+* Update attribute table.
+
 ## [0.15.0-beta.17]
 ### Added
 * Add button add audit in all class.
