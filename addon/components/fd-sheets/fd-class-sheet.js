@@ -55,6 +55,10 @@ export default FdBaseSheet.extend({
   */
   isAddMode: false,
 
+  isExpanded: computed('fdSheetService.sheetSettings.expanded.class-sheet', function() {
+    return this.get('fdSheetService.sheetSettings.expanded.class-sheet');
+  }),
+
   /**
     Sheet title value.
 

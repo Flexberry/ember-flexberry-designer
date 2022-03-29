@@ -8,6 +8,14 @@
     width: 2em;
   }
 
+  > .row > [class*="one wide"].column {
+    width: 7.25% !important;
+  }
+
+  .fd-sheet:not(.expand) & > .row > [class*="one wide"].column {
+    width: 13.25% !important;
+  }
+
   .fd-edit-button-in-row {
     height: 100%;
     position: absolute;
@@ -16,6 +24,26 @@
 
     .ui.button {
       margin: auto;
+    }
+  }
+  textarea {
+    height: 1.21429em;
+    min-height: 1.21429em;
+    overflow: hidden;
+    resize: none;
+    white-space: nowrap;
+    &:not(:read-only):focus {
+      background: @fdSheetBg;
+      box-shadow: 0px 0px 0px 1px rgba(0, 0, 0, 0.1) inset;
+      color: @textColor;
+      position: absolute;
+      right: 0;
+      width: 30vw;
+      height: 20vh;
+      z-index: 1;
+      overflow: auto;
+      padding: 1em;
+      white-space: normal;
     }
   }
 }
