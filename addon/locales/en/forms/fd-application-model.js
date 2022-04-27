@@ -25,5 +25,6 @@ export default {
     'bs-delete': 'BusinessServer is used by other classes:',
   },
   'all-types': 'All types',
+  'only-entity-types': 'Only entity',
   'entity-group': 'Entities'
 };

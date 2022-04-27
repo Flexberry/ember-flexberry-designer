@@ -63,6 +63,7 @@ export default Controller.extend(FdSheetCloseConfirm, FdReadonlyProjectMixin, Fd
   groupArray: computed('i18n.locale', function() {
     return A([
       'forms.fd-application-model.all-types',
+      'forms.fd-application-model.only-entity-types',
       'forms.fd-application-model.entity-group',
       'forms.fd-application-model.enum-caption',
       'forms.fd-application-model.type-content-caption',

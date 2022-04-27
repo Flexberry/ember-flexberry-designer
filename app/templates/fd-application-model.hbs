@@ -36,6 +36,28 @@
       </div>
     </div>
 
+    {{!-- Only classes --}}
+    {{#if (and (not-eq filteredModel.classes.length 0)
+        (compare-t-with-string groupValue 'forms.fd-application-model.only-entity-types')
+      )
+    }}
+    <div class="row">
+      <div class="three wide column light-text">
+        {{t "forms.fd-application-model.entity-caption"}}
+      </div>
+      <div class="thirteen wide column">
+        {{#each filteredModel.classes as |class|}}
+          {{
+            fd-list-item
+            model=class.settings
+            caption=class.settings.data.name
+            sheetComponentName=sheetComponentName
+          }}
+        {{/each}}
+      </div>
+    </div>
+    {{/if}}
+
     {{!-- Classes --}}
     {{#if (or (compare-t-with-string groupValue 'forms.fd-application-model.all-types') (compare-t-with-string groupValue 'forms.fd-application-model.entity-group'))}}
       {{#each filteredModel.classes as |class|}}
