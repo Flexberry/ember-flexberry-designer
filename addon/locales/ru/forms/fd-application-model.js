@@ -25,5 +25,6 @@ export default {
     'bs-delete': 'BusinessServer используется другими классами:',
   },
   'all-types': 'Все типы',
+  'only-entity-types': 'Только сущности',
   'entity-group': 'Сущности'
 };
