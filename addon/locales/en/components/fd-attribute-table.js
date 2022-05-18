@@ -28,7 +28,7 @@ export default {
     'delete-btn': 'Delete selected',
   },
   'methods': {
-    'name': 'Metod name',
+    'name': 'Method name',
     'name-placeholder': 'Enter name',
     'caption': 'Caption',
     'caption-placeholder': 'Enter caption',
@@ -36,7 +36,7 @@ export default {
     'type-placeholder': 'Enter type',
     'description': 'Description',
     'description-placeholder': 'Enter description',
-    'create-btn': 'Create metod',
+    'create-btn': 'Create method',
     'delete-btn': 'Delete selected',
   },
   'storage': {

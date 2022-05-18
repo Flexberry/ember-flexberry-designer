@@ -62,7 +62,7 @@ export default EditFormController.extend({
   }),
 
   /**
-    Overridden metod 'Save'.
+    Overridden method 'Save'.
   */
   save() {
     let _this = this;

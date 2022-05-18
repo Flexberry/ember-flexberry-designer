@@ -21,7 +21,7 @@ export default {
   'pb-aggregation-set-end-caption': 'Скобки программиста после сеттера агрегатора',
   'pb-detail-custom-attributes-caption': 'Скобки программиста для произвольных атрибутов детейла',
   'pb-detail-get-start-caption': 'Скобки программиста перед геттером детейла',
-  'pb-detail-get-end-caption': 'Скобки программиста после геттеа детейла',
+  'pb-detail-get-end-caption': 'Скобки программиста после геттера детейла',
   'pb-detail-set-start-caption': 'Скобки программиста перед сеттером детейла',
   'pb-detail-set-end-caption': 'Скобки программиста после сеттера детейла'
 };
