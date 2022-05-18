@@ -68,7 +68,7 @@ export default EditFormController.extend(FdFormUnsavedData, {
   ]).readOnly(),
 
   /**
-    Overridden metod 'Save'.
+    Overridden method 'Save'.
   */
   save() {
     let _this = this;

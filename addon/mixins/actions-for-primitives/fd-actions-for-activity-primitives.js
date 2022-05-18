@@ -16,7 +16,7 @@ import FdUmlSwimlineSeparator  from 'ember-flexberry-designer/objects/uml-primit
 import { getJsonForElement, getJsonForLink } from '../../utils/get-json-for-diagram';
 
 /**
-  Metods for creating joint js elements on activity diagrams.
+  Methods for creating joint js elements on activity diagrams.
 
   @class FdActionsForActivityPrimitivesMixin
   @extends <a href="http://emberjs.com/api/classes/Ember.Mixin.html">Ember.Mixin</a>
@@ -373,4 +373,3 @@ export default Mixin.create({
     },
   }
 });
-

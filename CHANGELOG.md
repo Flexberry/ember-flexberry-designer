@@ -3,6 +3,13 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+## [0.15.0-beta.19]
+### Added
+* Add only classes filter.
+
+### Fixed
+* Typos in locales.
+
 ## [0.15.0-beta.18]
 ### Added
 * Add message box on gen form.
