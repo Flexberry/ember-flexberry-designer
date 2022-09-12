@@ -2,11 +2,13 @@
   @module ember-flexberry-designer
 */
 
-import Service from '@ember/service';
-import { inject as service } from '@ember/service';
+import Service, { inject as service } from '@ember/service';
 import { assert } from '@ember/debug';
 import { Promise, resolve } from 'rsvp';
+import { isNone } from '@ember/utils';
 
+import moment from 'moment';
+import Evented from '@ember/object/evented';
 import { SimplePredicate, ComplexPredicate } from 'ember-flexberry-data/query/predicate';
 import Builder from 'ember-flexberry-data/query/builder';
 import Condition from 'ember-flexberry-data/query/condition';
@@ -19,7 +21,7 @@ import FdReadonlyProjectMixin from '../mixins/fd-readonly-project';
   @class FdCurrentProjectContextService
   @extends <a href="http://emberjs.com/api/classes/Ember.Service.html">Ember.Service</a>
 */
-export default Service.extend(FdReadonlyProjectMixin, {
+export default Service.extend(FdReadonlyProjectMixin, Evented, {
 
   /**
     Flag indicates single project mode.
@@ -55,6 +57,22 @@ export default Service.extend(FdReadonlyProjectMixin, {
   router: service(),
 
   /**
+    Service for managing the message dialog.
+
+    @property fdDialogService
+    @type fdDialogService
+  */
+  fdDialogService: service('fd-dialog-service'),
+
+  /**
+    Stores version current stage.
+
+    @property versionCurrentStage
+    @type Date
+  */
+  versionCurrentStage: undefined,
+
+  /**
     Set current configuration.
 
     @method setCurrentConfiguration
@@ -71,6 +89,7 @@ export default Service.extend(FdReadonlyProjectMixin, {
     this.set('context.systemPromise', undefined);
     this.set('context.class', undefined);
     this.set('context.classModel', undefined);
+    this.set('versionCurrentStage', undefined);
   },
 
   /**
@@ -116,6 +135,7 @@ export default Service.extend(FdReadonlyProjectMixin, {
     this.set('context.systemPromise', undefined);
     this.set('context.class', undefined);
     this.set('context.classModel', undefined);
+    this.set('versionCurrentStage', undefined);
 
     if (this.get('readonlyModeProject')) {
       return;
@@ -269,13 +289,56 @@ export default Service.extend(FdReadonlyProjectMixin, {
     this.set('context.systemPromise', undefined);
     this.set('context.class', undefined);
     this.set('context.classModel', undefined);
+    this.set('versionCurrentStage', undefined);
     this.get('router').transitionTo('fd-all-projects');
+  },
+
+  /**
+    Set version current stage.
+
+    @method setVersionCurrentStage
+  */
+  setVersionCurrentStage(changeDate) {
+    this.set('versionCurrentStage', changeDate);
+
+    this._checkActualVersionStage();
   },
 
   init() {
     this._super(...arguments);
 
     this.set('context', {});
+  },
+
+  /**
+    Check the current stage version.
+
+    @method _checkActualVersionStage
+  */
+  _checkActualVersionStage() {
+    let versionCurrentStage = this.get('versionCurrentStage');
+    if (!isNone(versionCurrentStage)) {
+      let store = this.get('store');
+      let adapter = store.adapterFor('application');
+      const stage = this.getCurrentStage();
+      const data = { project: stage };
+
+      adapter.callFunction('GetActualVersionStage', data, null, { withCredentials: true }).then((result) => {
+        if (!isNone(result.value)) {
+          let momentDate = moment.utc(result.value, 'DD.MM.YYYY HH:mm');
+          if (momentDate.isAfter(versionCurrentStage)) {
+            this.trigger('NeedSyncStageTriggered');
+          } else {
+            setTimeout(() => {
+              this._checkActualVersionStage();
+            }, 300000);
+          }
+        }
+      }).catch(() => {
+        let message = window.i18n.t('forms.services.sync-error').toString();
+        this.get('fdDialogService').showErrorMessage(message);
+      })
+    }
   },
 
   /**

@@ -65,5 +65,14 @@ export default Route.extend(ModalApplicationRouteMixin, {
     } else if (this.get('router.location.location.href').split('?').length < 2) {
       this.transitionTo('index');
     }
+  },
+
+  actions: {
+    /**
+      @method actions.refreshRoute
+    */
+    refreshRoute() {
+      this.refresh();
+    }
   }
 });

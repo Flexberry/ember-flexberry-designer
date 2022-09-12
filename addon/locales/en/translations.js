@@ -390,10 +390,17 @@ $.extend(true, translations, {
         share: {
           'share-button-data-content': 'Copied!',
           'share-button-title': 'Copy link'
+        },
+        sync: {
+          'sync-button-data-content': 'The project is outdated, you need to take the latest version!',
+          'sync-button-title': 'Update project'
         }
       }
     },
 
+    'services': {
+      'sync-error': 'Stage synchronization error'
+    },
     'edit-form': {
       'save-success-message-caption': 'Save operation succeed',
       'save-success-message': 'Object saved',

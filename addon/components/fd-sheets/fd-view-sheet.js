@@ -66,8 +66,13 @@ export default FdBaseSheet.extend({
     */
     save() {
       let view = this.get('selectedValue');
+      let stage = this.get('currentProjectContext').getCurrentStageModel();
       this.get('appState').loading();
-      view.save()
+      view.save().then(() => {
+        stage.set('changeDate', new Date());
+
+        return stage.save();
+      })
       .catch((error) => {
         this.get('fdDialogService').showErrorMessage(error.message);
       })

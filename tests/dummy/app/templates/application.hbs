@@ -20,6 +20,9 @@
             <button class="ui icon button share" onclick={{action 'share'}} data-content={{t "forms.application.sitemap.share.share-button-data-content"}} title={{t "forms.application.sitemap.share.share-button-title"}}>
               <i class="{{if copied 'check' 'icon-fd-share'}} icon"></i>
             </button>
+            <button class="ui icon button sync fd-sync-stage" onclick={{action 'syncStage'}} data-content={{t "forms.application.sitemap.sync.sync-button-data-content"}} title={{t "forms.application.sitemap.sync.sync-button-title"}}>
+              <i class="sync alternate icon"></i>
+            </button>
           </div>
         </div>
         <div class="item current-project-name">

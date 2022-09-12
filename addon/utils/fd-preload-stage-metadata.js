@@ -1,6 +1,7 @@
-import { Promise } from 'rsvp';
-import { all } from 'rsvp';
+import { Promise, all } from 'rsvp';
 import { getOwner } from '@ember/application';
+import { A } from '@ember/array';
+import moment from 'moment';
 import { SimplePredicate } from 'ember-flexberry-data/query/predicate';
 import Builder from 'ember-flexberry-data/query/builder';
 import FilterOperator from 'ember-flexberry-data/query/filter-operator';
@@ -15,14 +16,6 @@ function getPromise(store, stagePk, modelName, projectionName) {
     .where(stagePkPredicate)
     .build();
   return store.query(modelName, q);
-}
-
-/*
- * Returns true if record is loaded to store and related to specified stage.
- */
-function tryPeekRecord(store, modelName, recordId, stagePk) {
-  let record = store.peekRecord(modelName, recordId);
-  return record !== null && record.get('stage.id') === stagePk;
 }
 
 /**
@@ -65,38 +58,28 @@ export default function fdPreloadStageMetadata(store, stagePk) {
 
     // resolve, reject
     all(promises).then(() => {
-      let readonlyModeService = getOwner(store).lookup('service:fd-readonly-mode-service');
-      if (readonlyModeService.getReadonlyModeProject()) {
-        return resolve();
-      }
+      let currentProjectContext = getOwner(store).lookup('service:fd-current-project-context');
+      let stageObj = store.peekRecord('fd-dev-stage', stagePk);
 
-      let userService = getOwner(store).lookup('service:user');
-      let userName = userService.getCurrentUserName();
-      let lockModelName = 'new-platform-flexberry-services-lock';
+      let allDiagrams = A();
+      let systems = stageObj.get('systems');
+      systems.forEach((system) => {
+        let diagrams = system.get('diagrams').toArray();
+        allDiagrams.pushObjects(diagrams);
+      });
 
-      let lockPredicate = new SimplePredicate('userName', FilterOperator.Eq, userName);
-      let q = new Builder(store, lockModelName)
-        .selectByProjection('LockL')
-        .where(lockPredicate)
-        .build();
+      let changeDateValue = allDiagrams.map((d) => d.get('changeDate'));
+      let currentVersion = moment.utc(stageObj.get('changeDate'), 'DD.MM.YYYY HH:mm');
+      changeDateValue.forEach((changeDate) => {
+        let momentDate = moment.utc(changeDate, 'DD.MM.YYYY HH:mm');
+        if (momentDate.isAfter(currentVersion)) {
+          currentVersion = momentDate;
+        }
+      });
 
-      // delete locks for objects in current stage for current user.
-      store.query(lockModelName, q).then((lockObjects) => {
-        let deleteLocksPromises = [];
-        lockObjects.forEach((item) => {
-          let needToDeleteLock = tryPeekRecord(store, 'fd-dev-class', item.get('id'), stagePk) ||
-            tryPeekRecord(store, 'fd-dev-association', item.get('id'), stagePk) ||
-            tryPeekRecord(store, 'fd-dev-aggregation', item.get('id'), stagePk) ||
-            tryPeekRecord(store, 'fd-dev-inheritance', item.get('id'), stagePk) ||
-            tryPeekRecord(store, 'fd-dev-realization', item.get('id'), stagePk);
+      currentProjectContext.setVersionCurrentStage(currentVersion);
 
-          if (needToDeleteLock) {
-            deleteLocksPromises.push(item.destroyRecord());
-          }
-        });
-
-        all(deleteLocksPromises).then(resolve, reject);
-      }, reject);
+      return resolve();
     }, reject);
   });
 }
