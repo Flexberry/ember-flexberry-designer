@@ -54,11 +54,15 @@ export let Decision = BaseObject.define('flexberry.uml.Decision', {
   // Minimum width
   minWidth: 40,
 }, {
-  markup: [
-      '<g class="rotatable">',
-      '<path class="flexberry-uml-header-rombus-path"/>',
-      '</g>'
-  ].join(''),
+
+  markup: [{
+    tagName: 'g',
+    className: 'rotatable',
+    children: [{
+      tagName: 'path',
+      className: 'flexberry-uml-header-rombus-path'
+    }]
+  }],
 });
 
 joint.shapes.flexberry.uml.DecisionView = joint.shapes.flexberry.uml.PrimitiveElementView.extend({

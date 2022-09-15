@@ -69,17 +69,30 @@ export let MultiObject = BaseObject.define('flexberry.uml.MultiObject', {
   // Minimum height.
   minHeight: 30,
 }, {
-  markup: [
-    '<g class="rotatable">',
-    '<defs>',
-    '<mask id="custom-mask">',
-    '<rect class="view-rect"/>',
-    '<rect class="not-view-rect"/>',
-    '</mask>',
-    '</defs>',
-    '<rect class="back-rect"/><rect class="flexberry-uml-header-rect"/>',
-    '</g>'
-  ].join(''),
+  markup: [{
+    tagName: 'g',
+    className: 'rotatable',
+    children: [{
+      tagName: 'defs',
+      children: [{
+        tagName: 'mask',
+        attributes: {'id': 'custom-mask'},
+        children: [{
+          tagName: 'rect',
+          className: 'view-rect'
+        }, {
+          tagName: 'rect',
+          className: 'not-view-rect'
+        }]
+      }]
+    }, {
+      tagName: 'rect',
+      className: 'back-rect'
+    }, {
+      tagName: 'rect',
+      className: 'flexberry-uml-header-rect'
+    }]
+  }],
 
   getRectangles() {
     return [

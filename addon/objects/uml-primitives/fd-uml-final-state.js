@@ -74,12 +74,17 @@ export let FinalState = StartState.define('flexberry.uml.FinalState', {
     return [];
   },
 }, {
-  markup: [
-    '<g class="scalable">',
-    '<circle class="flexberry-uml-header-circle-outer"/>',
-    '<circle class="flexberry-uml-header-circle"/>',
-    '</g>'
-  ].join(''),
+  markup: [{
+    tagName: 'g',
+    className: 'scalable',
+    children: [{
+      tagName: 'circle',
+      className: 'flexberry-uml-header-circle-outer'
+    }, {
+      tagName: 'circle',
+      className: 'flexberry-uml-header-circle'
+    }]
+  }],
 });
 
 joint.shapes.flexberry.uml.FinalStateView = joint.shapes.flexberry.uml.StartStateView .extend({

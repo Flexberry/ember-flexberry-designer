@@ -60,6 +60,28 @@ export let QualifiedComposition = Link.define('flexberry.uml.QualifiedCompositio
     text: { visibility: 'hidden' },
     rect: { visibility: 'hidden' }
   },
+
+  markup: [{
+    tagName: 'linearGradient',
+    attributes: {'id': 'solids', 'x1': '0%', 'y1': '0%', 'x2': '100%', 'y2': '0%'},
+    children: [{
+      tagName: 'stop',
+      className: 'brush-color',
+      attributes: {'offset': '0%', 'style': 'stop-color:rgb(255,255,255);stop-opacity:1'}
+    }, {
+      tagName: 'stop',
+      className: 'brush-color',
+      attributes: {'offset': '50%', 'style': 'stop-color:rgb(255,255,255);stop-opacity:1'}
+    }, {
+      tagName: 'stop',
+      className: 'text-color',
+      attributes: {'offset': '50%', 'style': 'stop-color:rgb(0,0,0);stop-opacity:1'}
+    }, {
+      tagName: 'stop',
+      className: 'text-color',
+      attributes: {'offset': '100%', 'style': 'stop-color:rgb(0,0,0);stop-opacity:1'}
+    }]
+  }],
 }, {
 
   initialize: function() {
@@ -68,14 +90,6 @@ export let QualifiedComposition = Link.define('flexberry.uml.QualifiedCompositio
 
     // link markup is so complex that we need to fetch its definition
     var markup = (this.markup || this.get('markup'));
-
-    // append <linearGradient> to markup, so that it covers whole path
-    markup += '<linearGradient id="solids" x1="0%" y1="0%" x2="100%" y2="0%">' +
-      '<stop class="brush-color" offset="0%" style="stop-color:rgb(255,255,255);stop-opacity:1" />' +
-      '<stop class="brush-color" offset="50%" style="stop-color:rgb(255,255,255);stop-opacity:1" />' +
-      '<stop class="text-color" offset="50%" style="stop-color:rgb(0,0,0);stop-opacity:1" />' +
-      '<stop class="text-color" offset="100%" style="stop-color:rgb(0,0,0);stop-opacity:1" />' +
-      '</linearGradient>';
     this.set('markup', markup);
   },
   getLabelDistance: function (labelName, isVertical) {

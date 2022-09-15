@@ -67,7 +67,22 @@ export let SequenceActor = joint.shapes.basic.Generic.define('flexberry.uml.Sequ
     }
   }
 }, {
-    markup: '<g class="rotatable"><g class="scalable"><rect/></g><image/><text/></g>',
+    markup: [{
+      tagName: 'g',
+      className: 'rotatable',
+      children: [{
+          tagName: 'g',
+          className: 'scalable',
+          children: [{
+            tagName: 'rect'
+          }]
+      }, {
+        tagName: 'image'
+      }, {
+        tagName: 'text'
+      }]
+    }],
+
     initialize: function () {
       let width = this.attributes.attrs.size.width;
       let height = this.attributes.attrs.size.height;
@@ -92,10 +107,13 @@ export let SequenceActor = joint.shapes.basic.Generic.define('flexberry.uml.Sequ
           id: this.attributes.endLine.cid
         }
       });
-      this.attributes.link.markup = '<path class="connection" stroke="black" ' +
-        'stroke-width="' +
-        this.attributes.attrs.rect['stroke-width'] +
-        '" d="M 0 0 0 0"/>';
+
+      this.attributes.link.markup = [{
+        tagName: 'path',
+        className: 'connection',
+        attributes: {'stroke': 'black', 'stroke-width': this.attributes.attrs.rect['stroke-width'], 'd': 'M 0 0 0 0'}
+      }];
+
       let shift = this.attributes.attrs.rect.width / 2 - 4;
       joint.shapes.basic.Generic.prototype.initialize.apply(this, arguments);
       this.addTo(this.attributes.graph);

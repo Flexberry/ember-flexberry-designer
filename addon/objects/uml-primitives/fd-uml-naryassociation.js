@@ -79,7 +79,7 @@ export let NAryAssociation = BaseObject.define('flexberry.uml.NAryAssociation', 
       '</g>',
       '</g>'
     ].join('');
-
+    
     joint.shapes.flexberry.uml.BaseObject.prototype.initialize.apply(this, arguments);
   },
 

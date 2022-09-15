@@ -496,15 +496,13 @@ joint.shapes.flexberry.uml.PrimitiveElementView = joint.dia.ElementView.extend({
       const rects = this.model.getRectangles();
       rects.forEach(function(rect) {
         const className = 'flexberry-uml-' + rect.type + '-rect';
-        if (this.markup.includes(className)) {
-          if (!isNone(brushColor)) {
-            this.attr(`.${className}/fill-opacity`, 1);
-            this.attr(`.${className}/fill`, brushColor);
-          }
+        if (!isNone(brushColor)) {
+          this.attr(`.${className}/fill-opacity`, 1);
+          this.attr(`.${className}/fill`, brushColor);
+        }
 
-          if (!isNone(textColor)) {
-            this.attr(`.${className}/stroke`, textColor);
-          }
+        if (!isNone(textColor)) {
+          this.attr(`.${className}/stroke`, textColor);
         }
       }, this.model);
     }

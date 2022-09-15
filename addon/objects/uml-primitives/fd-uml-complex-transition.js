@@ -83,11 +83,16 @@ export let ComplexTransitionH = BaseObject.define('flexberry.uml.ComplexTransiti
   // Minimum width
   minWidth: 20,
 }, {
-  markup: [
-    '<g class="rotatable">',
-    '<polyline class = "flexberry-uml-header-poliline"/>',
-    '</g>',
-  ].join('')
+
+  markup: [{
+    tagName: 'g',
+    className: 'rotatable',
+    children: [{
+      tagName: 'polyline',
+      className: 'flexberry-uml-header-poliline'
+    }]
+  }],
+  
 });
 
 joint.shapes.flexberry.uml.ComplexTransitionHView = joint.shapes.flexberry.uml.PrimitiveElementView.extend({

@@ -63,12 +63,18 @@ export let CollMessageBase = joint.shapes.basic.Generic.define('flexberry.uml.Co
     },
   },
 }, {
-  markup: [
-    '<g class="rotatable">',
-      '<path class="line"/>',
-      '<path class="arrow"/>',
-    '</g>'
-  ].join(''),
+
+  markup: [{
+    tagName: 'g',
+    className: 'rotatable',
+    children: [{
+        tagName: 'path',
+        className: 'line'
+    }, {
+        tagName: 'path',
+        className: 'arrow'
+    }]
+  }],
 
   // Minimum height.
   minHeight: 10,

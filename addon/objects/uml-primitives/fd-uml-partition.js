@@ -71,11 +71,15 @@ export let Partition = BaseObject.define('flexberry.uml.Partition', {
 
   heightPadding: 60
 }, {
-  markup: [
-    '<g class="rotatable">',
-    '<rect class="flexberry-uml-header-rect"/>',
-    '</g>',
-  ].join(''),
+
+  markup: [{
+    tagName: 'g',
+    className: 'rotatable',
+    children: [{
+        tagName: 'rect',
+        className: 'flexberry-uml-header-rect'
+    }]
+  }],
 
   initialize: function () {
     BaseObject.prototype.initialize.apply(this, arguments);

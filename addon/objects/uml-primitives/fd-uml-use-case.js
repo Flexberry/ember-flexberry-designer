@@ -65,12 +65,18 @@ export let UseCase = BaseObject.define('flexberry.uml.UseCase', {
   // Minimum height.
   minHeight: 17,
 }, {
-  markup: [
-    '<g class="rotatable">',
-    '<rect class="flexberry-uml-header-rect"/>',
-    '<text class="flexberry-uml-header-text"/>',
-    '</g>'
-  ].join(''),
+
+  markup: [{
+    tagName: 'g',
+    className: 'rotatable',
+    children: [{
+      tagName: 'rect',
+      className: 'flexberry-uml-header-rect'
+    }, {
+      tagName: 'text',
+      className: 'flexberry-uml-header-text'
+    }]
+  }],
 
   initialize: function () {
     BaseObject.prototype.initialize.apply(this, arguments);
