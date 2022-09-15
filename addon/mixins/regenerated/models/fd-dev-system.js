@@ -70,7 +70,7 @@ export let defineProjections = function (modelClass) {
       primitivesStreamString: attr(''),
       caseObjectsString: attr(''),
       name: attr(''),
-      changeDate: attr()
+      changeDate: attr('')
     })
   });
   modelClass.defineProjection('ListFormView', 'fd-dev-system', {
