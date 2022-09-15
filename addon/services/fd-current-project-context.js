@@ -321,11 +321,11 @@ export default Service.extend(FdReadonlyProjectMixin, Evented, {
       let store = this.get('store');
       let adapter = store.adapterFor('application');
       const stage = this.getCurrentStage();
-      const data = { project: stage };
+      const data = { stageId: stage };
 
-      adapter.callFunction('GetActualVersionStage', data, null, { withCredentials: true }).then((result) => {
+      adapter.callFunction('GetStageLastChangeTime', data, null, { withCredentials: true }).then((result) => {
         if (!isNone(result.value)) {
-          let momentDate = moment.utc(result.value, 'DD.MM.YYYY HH:mm');
+          let momentDate = moment(result.value);
           if (momentDate.isAfter(versionCurrentStage)) {
             this.trigger('NeedSyncStageTriggered');
           } else {

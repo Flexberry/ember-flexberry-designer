@@ -30,6 +30,7 @@ moduleFor('service:fd-current-project-context', 'Unit | Service | fd current pro
     'model:fd-diagram-link',
     'model:fd-filelink',
     'service:syncer',
+    'service:fd-dialog-service',
     'service:fd-readonly-mode-service'
   ],
 

@@ -245,18 +245,44 @@ export default Controller.extend(FdShareFunctionMixin, {
 
   sidebarMiniWidth: '60px',
 
+  /**
+    Flag indicates on sync.
+
+    @property needSync
+    @type Bool
+    @default false
+  */
+  needSync: false,
+
+  /**
+    Show sync popup.
+
+    @method _informSyncStage
+  */
   _informSyncStage() {
+    this.set('needSync', true);
     let syncPopup = $('.fd-sync-stage');
     syncPopup.popup({
       on: 'manual',
       inline: true,
-      position: 'bottom center',
+      position: 'bottom center'
     }).popup('show');
+
+    later(this, (function() {
+      let popup = syncPopup.popup('get popup');
+      popup.remove();
+      syncPopup.popup({
+        on: 'hover',
+        inline: true,
+        position: 'bottom center',
+      });
+    }), 5000);
   },
 
   actions: {
     /**
       Select themes.
+
       @method actions.changeTheme
     */
     changeTheme(value) {
@@ -279,6 +305,7 @@ export default Controller.extend(FdShareFunctionMixin, {
 
     /**
       Toggles application sitemap's side bar.
+
       @method actions.toggleSidebar
     */
     toggleSidebar() {
@@ -341,11 +368,10 @@ export default Controller.extend(FdShareFunctionMixin, {
     /**
       @method actions.syncStage
     */
-    syncStage(event) {
+    syncStage() {
       this.get('appState').loading();
-      let syncPopup = $(event.currentTarget);
       FdPreloadStageMetadata.call(this, this.get('store'), this.get('currentContext').getCurrentStage()).then(() => {
-        syncPopup.popup('hide');
+        this.set('needSync', false);
         this.send('refreshRoute');
       }).finally(() => {
         this.get('appState').reset();

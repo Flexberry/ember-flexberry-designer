@@ -69,9 +69,12 @@ export default function fdPreloadStageMetadata(store, stagePk) {
       });
 
       let changeDateValue = allDiagrams.map((d) => d.get('changeDate'));
-      let currentVersion = moment.utc(stageObj.get('changeDate'), 'DD.MM.YYYY HH:mm');
+
+      let changeDateStage = stageObj.get('changeDate');
+      const offset = moment(changeDateStage).utcOffset();
+      let currentVersion = moment(changeDateStage).subtract(offset, 'm');
       changeDateValue.forEach((changeDate) => {
-        let momentDate = moment.utc(changeDate, 'DD.MM.YYYY HH:mm');
+        let momentDate = moment(changeDate).subtract(offset, 'm');
         if (momentDate.isAfter(currentVersion)) {
           currentVersion = momentDate;
         }
