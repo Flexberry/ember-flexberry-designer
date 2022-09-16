@@ -34,7 +34,7 @@ export default Mixin.create({
   },
 
   /**
-    Show sharw popup..
+    Show sharw popup.
 
     @method showSharePopup
   */
@@ -47,7 +47,8 @@ export default Mixin.create({
     }).popup('show');
     this.set('copied', true);
     later(this, (function() {
-      sharePopup.popup('hide');
+      let popup = sharePopup.popup('get popup');
+      popup.remove();
       this.set('copied', false);
     }), 2000);
   }

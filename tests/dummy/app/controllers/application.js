@@ -1,6 +1,7 @@
 import Controller from '@ember/controller';
 import FdShareFunctionMixin from 'ember-flexberry-designer/mixins/fd-share-function';
-import { computed, observer } from '@ember/object';
+import FdPreloadStageMetadata from 'ember-flexberry-designer/utils/fd-preload-stage-metadata';
+import { computed } from '@ember/object';
 import { inject as service } from '@ember/service';
 import { A } from '@ember/array';
 import { isNone } from '@ember/utils';
@@ -196,16 +197,6 @@ export default Controller.extend(FdShareFunctionMixin, {
    themes: undefined,
 
   /**
-    Handles changes in userSettingsService.isUserSettingsServiceEnabled.
-
-    @method _userSettingsServiceChanged
-    @private
-  */
-  _userSettingsServiceChanged: observer('userSettingsService.isUserSettingsServiceEnabled', function() {
-    this.get('target.router').refresh();
-  }),
-
-  /**
     Initializes controller.
   */
   init() {
@@ -232,6 +223,14 @@ export default Controller.extend(FdShareFunctionMixin, {
     } else {
       i18n.set('locale', shortCurrentLocale);
     }
+
+    this.get('currentContext').on('NeedSyncStageTriggered', this, this._informSyncStage);
+  },
+
+  willDestroy() {
+    this._super(...arguments);
+
+    this.get('currentContext').off('NeedSyncStageTriggered', this, this._informSyncStage);
   },
 
   /**
@@ -246,9 +245,44 @@ export default Controller.extend(FdShareFunctionMixin, {
 
   sidebarMiniWidth: '60px',
 
+  /**
+    Flag indicates on sync.
+
+    @property needSync
+    @type Bool
+    @default false
+  */
+  needSync: false,
+
+  /**
+    Show sync popup.
+
+    @method _informSyncStage
+  */
+  _informSyncStage() {
+    this.set('needSync', true);
+    let syncPopup = $('.fd-sync-stage');
+    syncPopup.popup({
+      on: 'manual',
+      inline: true,
+      position: 'bottom center'
+    }).popup('show');
+
+    later(this, (function() {
+      let popup = syncPopup.popup('get popup');
+      popup.remove();
+      syncPopup.popup({
+        on: 'hover',
+        inline: true,
+        position: 'bottom center',
+      });
+    }), 5000);
+  },
+
   actions: {
     /**
       Select themes.
+
       @method actions.changeTheme
     */
     changeTheme(value) {
@@ -271,6 +305,7 @@ export default Controller.extend(FdShareFunctionMixin, {
 
     /**
       Toggles application sitemap's side bar.
+
       @method actions.toggleSidebar
     */
     toggleSidebar() {
@@ -328,6 +363,19 @@ export default Controller.extend(FdShareFunctionMixin, {
       sidebar.sidebar('setting', 'transition', 'overlay')
       .sidebar('attach events', '.ui.sidebar.main.menu a.item')
       .sidebar('toggle');
+    },
+
+    /**
+      @method actions.syncStage
+    */
+    syncStage() {
+      this.get('appState').loading();
+      FdPreloadStageMetadata.call(this, this.get('store'), this.get('currentContext').getCurrentStage()).then(() => {
+        this.set('needSync', false);
+        this.send('refreshRoute');
+      }).finally(() => {
+        this.get('appState').reset();
+      });
     },
 
     /**

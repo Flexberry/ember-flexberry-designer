@@ -389,10 +389,17 @@ $.extend(true, translations, {
         share: {
           'share-button-data-content': 'Скопировано!',
           'share-button-title': 'Копировать ссылку'
+        },
+        sync: {
+          'sync-button-data-content': 'Проект устарел, нужно взять последнюю версию!',
+          'sync-button-title': 'Обновить проект'
         }
       }
     },
 
+    'services': {
+      'sync-error': 'Ошибка синхронизации стадии'
+    },
     'edit-form': {
       'save-success-message-caption': 'Сохранение завершилось успешно',
       'save-success-message': 'Объект сохранен',
