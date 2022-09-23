@@ -241,7 +241,7 @@ export default Controller.extend(FdSheetCloseConfirm, {
         // productName must be capitalized.
         let productNameFull = isBlank(productName) ? transliteration(projectName) : productName;
         let productNameFirst = productNameFull.substring(0, 1).toUpperCase();
-        let productNameLeftovers = productNameFull.substring(1, productNameFull.length)
+        let productNameLeftovers = productNameFull.substring(1, productNameFull.length);
 
         const product = productNameFirst + productNameLeftovers;
         const description = this.get('projectDescription');

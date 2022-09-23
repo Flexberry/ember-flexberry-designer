@@ -27,6 +27,7 @@ export default {
   'audit-actions-caption': 'Audit settings',
   'audit-actions': {
     'audit-all-class-caption': 'Enable auditing in all classes',
+    'audit-enabled-caption': 'Enable auditing in the application',
   },
   'generation-settings-caption': 'Generation settings',
   'generation-settings': {

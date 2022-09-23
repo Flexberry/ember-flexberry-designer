@@ -1,4 +1,5 @@
 import { computed } from '@ember/object';
+import { isBlank } from '@ember/utils';
 import $ from 'jquery';
 
 import { DescriptionView } from './fd-description-view';
@@ -85,7 +86,11 @@ export let RoleView = DescriptionView.extend({
   },
 
   normalizeRoleText(text) {
-    let condition = text[0] === '+' || text[0] === '-' || text[0] === '#';
+    if (text === '+' || text === '-' || text === '#') {
+      return '';
+    }
+
+    let condition = text[0] === '+' || text[0] === '-' || text[0] === '#' || isBlank(text);
 
     return condition ? text : '+' + text;
   }

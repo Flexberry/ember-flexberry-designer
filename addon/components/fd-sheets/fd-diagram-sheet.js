@@ -474,13 +474,25 @@ export default FdBaseSheet.extend(
                   let endRoleTxt = p.getWithDefault('endRoleTxt', '').trim();
                   let startRoleTxt = p.getWithDefault('startRoleTxt', '').trim();
                   let description = p.getWithDefault('description', '').trim();
-                  let currentValues = repObject.getProperties('nameStr', 'startMultiplicity', 'endMultiplicity', 'endRoleStr', 'startRoleStr');
+                  let storage = startRoleTxt;
+
+                  if (isBlank(storage)) {
+                    storage = repObject.get('startClass.name');
+                  } else {
+                    let accessModifier = storage[0];
+                    let condition = accessModifier === '+' || accessModifier === '-' || accessModifier === '#';
+
+                    storage = condition ? storage.substring(1, storage.length) : storage;
+                  }
+
+                  let currentValues = repObject.getProperties('nameStr', 'startMultiplicity', 'endMultiplicity', 'endRoleStr', 'startRoleStr', 'storage');
                   repObject.setProperties({
                     nameStr: getActualValue(description, currentValues.nameStr),
                     startMultiplicity: getActualValue(startMultiplicity, currentValues.startMultiplicity),
                     endMultiplicity: getActualValue(endMultiplicity, currentValues.endMultiplicity),
                     endRoleStr: getActualValue(endRoleTxt, currentValues.endRoleStr),
                     startRoleStr: getActualValue(startRoleTxt, currentValues.startRoleStr),
+                    storage: storage
                   });
                 }
 
