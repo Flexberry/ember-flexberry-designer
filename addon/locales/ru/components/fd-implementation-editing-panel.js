@@ -18,6 +18,7 @@ export default {
   'toggler-authority-caption': 'Полномочия и аудит',
   'accesstype-caption': 'Включить полномочия',
   'audit-enabled-caption': 'Ввести аудит класса',
+  'audit-fields-caption': 'Добавить поля аудита',
   'use-default-view-caption': 'Представление по умолчанию',
   'insert-audit-caption': 'Аудит операции создания',
   'insert-audit-view-name-caption': 'Представления создания',

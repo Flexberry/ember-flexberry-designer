@@ -168,6 +168,18 @@
       </div>
       <div class="row">
         <div class="five wide column">
+          <div>{{t "components.fd-implementation-editing-panel.audit-fields-caption"}}</div>
+        </div>
+        <div class="eleven wide column light-text">
+          {{flexberry-checkbox
+            value=model.addAuditFields
+            class='fluid input'
+            readonly=readonly
+          }}
+        </div>
+      </div>
+      <div class="row">
+        <div class="five wide column">
           <div>{{t "components.fd-implementation-editing-panel.use-default-view-caption"}}</div>
         </div>
         <div class="eleven wide column light-text">

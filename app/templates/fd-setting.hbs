@@ -85,6 +85,18 @@
         {{t "forms.fd-setting.audit-actions.audit-all-class-caption"}}
       </button>
     </div>
+    <div class="row">
+      <div class="four wide column">
+        {{t "forms.fd-setting.audit-actions.audit-enabled-caption"}}
+      </div>
+      <div class="twelve wide column light-text">
+        {{flexberry-checkbox
+          value=model.stage.auditEnabled
+          class='fluid input'
+          readonly=readonlyModeProject
+        }}
+      </div>
+    </div>
   </div>
 
   <h2 class="form-header">{{t "forms.fd-setting.generation-settings-caption"}}</h2>

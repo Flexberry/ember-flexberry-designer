@@ -18,6 +18,7 @@ export default {
   'toggler-authority-caption': 'Credentials and Audit',
   'accesstype-caption': 'Enable credentials',
   'audit-enabled-caption': 'Enter class audit',
+  'audit-fields-caption': 'Add audit fields',
   'use-default-view-caption': 'Default view',
   'insert-audit-caption': 'Audit of create operation',
   'insert-audit-view-name-caption': 'Creation view',

@@ -27,6 +27,7 @@ export default {
   'audit-actions-caption': 'Настройки аудита',
   'audit-actions': {
     'audit-all-class-caption': 'Включить аудит во всех классах',
+    'audit-enabled-caption': 'Включить аудит в приложении',
   },
   'generation-settings-caption': 'Настройки генерации',
   'generation-settings': {

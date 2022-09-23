@@ -260,23 +260,26 @@ export default Controller.extend(FdShareFunctionMixin, {
     @method _informSyncStage
   */
   _informSyncStage() {
-    this.set('needSync', true);
-    let syncPopup = $('.fd-sync-stage');
-    syncPopup.popup({
-      on: 'manual',
-      inline: true,
-      position: 'bottom center'
-    }).popup('show');
-
-    later(this, (function() {
-      let popup = syncPopup.popup('get popup');
-      popup.remove();
+    let needSync = this.get('needSync');
+    if (!needSync) {
+      this.set('needSync', true);
+      let syncPopup = $('.fd-sync-stage');
       syncPopup.popup({
-        on: 'hover',
+        on: 'manual',
         inline: true,
-        position: 'bottom center',
-      });
-    }), 5000);
+        position: 'bottom center'
+      }).popup('show');
+
+      later(this, (function() {
+        let popup = syncPopup.popup('get popup');
+        popup.remove();
+        syncPopup.popup({
+          on: 'hover',
+          inline: true,
+          position: 'bottom center',
+        });
+      }), 5000);
+    }
   },
 
   actions: {
@@ -371,6 +374,10 @@ export default Controller.extend(FdShareFunctionMixin, {
     syncStage() {
       this.get('appState').loading();
       FdPreloadStageMetadata.call(this, this.get('store'), this.get('currentContext').getCurrentStage()).then(() => {
+        let syncPopup = $('.fd-sync-stage');
+        let popup = syncPopup.popup('get popup');
+        popup.remove();
+
         this.set('needSync', false);
         this.send('refreshRoute');
       }).finally(() => {
