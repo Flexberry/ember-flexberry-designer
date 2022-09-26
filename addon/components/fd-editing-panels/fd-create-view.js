@@ -25,6 +25,15 @@ export default Component.extend(FdReadonlyModeMixin, {
   appState: service(),
 
   /**
+    Plugins for view tree.
+
+    @property plugins
+    @type String
+    @default 'wholerow, types, sort, search'
+  */
+  plugins: 'wholerow, types, sort, search',
+
+  /**
     @property store
     @type Service
   */

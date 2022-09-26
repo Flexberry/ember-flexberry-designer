@@ -2,6 +2,9 @@
 All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
+### Changed
+* Add sorting for view fields in fd-create-view.
+
 ## [0.15.0-beta.20]
 ### Added
 * Add sync stage button.
