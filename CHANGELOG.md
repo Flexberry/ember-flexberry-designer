@@ -2,6 +2,10 @@
 All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
+## [0.15.0-beta.20]
+### Added
+* Add sync stage button.
+* Add new audit settings.
 
 ## [0.15.0-beta.19]
 ### Added
