@@ -366,6 +366,9 @@ let parsingPropertyName = function (store, dataObject, propertyName) {
   };
 };
 
+/**
+  Sorting tree ascending order by name field.
+*/
 let sortingByName = function (originArray) {
   let sortData = originArray.sort((a, b) => {
     let fa = a.name.toLowerCase(),
