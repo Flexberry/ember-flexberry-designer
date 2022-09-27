@@ -59,6 +59,8 @@ let getDataForBuildTree = function(store, id) {
   Create tree node by class.
 */
 let getClassTreeNode = function (tree, classData, rootId, addInText) {
+  let classTree = [];
+
   classData.forEach((dClass) => {
     let attributes = dClass.get('attributes');
     let idClass = dClass.get('id');
@@ -82,7 +84,7 @@ let getClassTreeNode = function (tree, classData, rootId, addInText) {
         text += ' (' + attribute.get(`${addInText}`) + ')';
       }
 
-      tree.push(FdAttributesTree.create({
+      classTree.push(FdAttributesTree.create({
         text: text,
         name: attribute.get('name'),
         type: 'property',
@@ -93,13 +95,17 @@ let getClassTreeNode = function (tree, classData, rootId, addInText) {
     });
   });
 
-  return tree;
+  const resultTree = sortingByName(classTree);
+
+  return tree.concat(resultTree);
 };
 
 /**
   Create tree node by association.
 */
 let getAssociationTreeNode = function (tree, associationData, jsTreeId, rootId, addInText) {
+  let associationTree = [];
+
   associationData.forEach((master, index) => {
     let startClass = master.get('startClass');
     let masterName = master.get('startRole') || startClass.get('name');
@@ -114,7 +120,7 @@ let getAssociationTreeNode = function (tree, associationData, jsTreeId, rootId, 
       text += ' (' + startClass.get(`${addInText}`) + ')';
     }
 
-    tree.push(FdAttributesTree.create({
+    associationTree.push(FdAttributesTree.create({
       text: text,
       name: masterName,
       type: 'master',
@@ -128,13 +134,17 @@ let getAssociationTreeNode = function (tree, associationData, jsTreeId, rootId, 
     }));
   });
 
-  return tree;
+  const resultTree = sortingByName(associationTree);
+
+  return tree.concat(resultTree);
 };
 
 /**
   Create tree node by aggregation.
 */
 let getAggregationTreeNode = function (tree, aggregationData, rootId, addInText) {
+  let aggregationTree = [];
+
   aggregationData.forEach((detail) => {
     let endClass = detail.get('endClass');
     let detailName = detail.get('endRole') || endClass.get('name');
@@ -149,7 +159,7 @@ let getAggregationTreeNode = function (tree, aggregationData, rootId, addInText)
       text += ' (' + endClass.get(`${addInText}`) + ')';
     }
 
-    tree.push(FdAttributesTree.create({
+    aggregationTree.push(FdAttributesTree.create({
       text: text,
       name: detailName,
       type: 'detail',
@@ -159,7 +169,9 @@ let getAggregationTreeNode = function (tree, aggregationData, rootId, addInText)
     }));
   });
 
-  return tree;
+  const resultTree = sortingByName(aggregationTree);
+
+  return tree.concat(resultTree);
 };
 
 /**
@@ -352,6 +364,23 @@ let parsingPropertyName = function (store, dataObject, propertyName) {
     classId: endRoleID,
     associations: associationSelectedClass
   };
+};
+
+let sortingByName = function (originArray) {
+  let sortData = originArray.sort((a, b) => {
+    let fa = a.name.toLowerCase(),
+        fb = b.name.toLowerCase();
+
+    if (fa < fb) {
+        return -1;
+    }
+    if (fa > fb) {
+        return 1;
+    }
+    return 0;
+  });
+
+  return sortData;
 };
 
 export {
