@@ -31,9 +31,9 @@ export default {
   },
   'bd-settings-caption': 'Настройки БД',
   'bd-settings': {
-    'conn-str-ms-caption': 'Строка соединения с MS',
+    'conn-str-ms-caption': 'Строка соединения с MSSQL',
     'conn-str-ms-placeholder': 'SERVER=server;Trusted_connection=yes;DATABASE=database;',
-    'conn-str-pg-caption': 'Строка соединения с PG',
+    'conn-str-pg-caption': 'Строка соединения с Postgres',
     'conn-str-pg-placeholder': 'Host=app-postgres-db;Port=5432;Database=appdb;User ID=flexberryuser;Password=jhv;',
     'conn-str-orcl-caption': 'Строка соединения с Oracle',
     'conn-str-orcl-placeholder': 'Data Source=orcl;User ID=userid;Password=12345;',
