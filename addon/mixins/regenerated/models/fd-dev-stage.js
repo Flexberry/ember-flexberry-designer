@@ -29,7 +29,7 @@ export let Model = Mixin.create({
       this.additionalPluginsSettingsCompute() : null;
     this.set('additionalPluginsSettings', result);
   },
-  additionalPluginsSettingsStr: DS.attr('string'),
+  additionalPluginsSettingsStr: DS.attr('fd-additional-plugins-settings-str'),
   auditEnabled: DS.attr('boolean'),
   /**
     Non-stored property.

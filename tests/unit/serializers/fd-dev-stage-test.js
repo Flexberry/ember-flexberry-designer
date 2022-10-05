@@ -8,6 +8,7 @@ moduleForModel('fd-dev-stage', 'Unit | Serializer | fd-dev-stage', {
     'transform:decimal',
     'transform:guid',
 
+    'transform:fd-additional-plugins-settings-str',
     'transform:i-c-s-soft-s-t-o-r-m-n-e-t-access-type',
     'transform:i-c-s-soft-s-t-o-r-m-n-e-t-business-audit-objects-t-write-mode',
     'transform:i-c-s-soft-s-t-o-r-m-n-e-t-business-data-service-object-events',

@@ -29,6 +29,16 @@ export default {
     'audit-all-class-caption': 'Enable audit in all classes',
     'audit-enabled-caption': 'Enable audit in the application',
   },
+  'bd-settings-caption': 'BD settings',
+  'bd-settings': {
+    'conn-str-ms-caption': 'MS connection string',
+    'conn-str-ms-placeholder': 'SERVER=server;Trusted_connection=yes;DATABASE=database;',
+    'conn-str-pg-caption': 'Postgres connection string',
+    'conn-str-pg-placeholder': 'Host=app-postgres-db;Port=5432;Database=appdb;User ID=flexberryuser;Password=jhv;',
+    'conn-str-orcl-caption': 'Oracle connection string',
+    'conn-str-orcl-placeholder': 'Data Source=orcl;User ID=userid;Password=12345;',
+    'dnd-ext-tables-caption': 'Do not delete extra tables',
+  },
   'generation-settings-caption': 'Generation settings',
   'generation-settings': {
     'frontend-caption': 'Client part',
