@@ -99,6 +99,61 @@
     </div>
   </div>
 
+  <h2 class="form-header">{{t "forms.fd-setting.bd-settings-caption"}}</h2>
+  <div class="ui stackable grid fd-list-edited">
+    <div class="row">
+      <div class="five wide column">
+        <div>{{t "forms.fd-setting.bd-settings.conn-str-ms-caption"}}</div>
+      </div>
+      <div class="eleven wide column light-text">
+        {{flexberry-textarea
+          value=model.stage.connectionString
+          class='fluid input'
+          placeholder=(t "forms.fd-setting.bd-settings.conn-str-ms-placeholder")
+          readonly=readonlyModeProject
+        }}
+      </div>
+    </div>
+    <div class="row">
+      <div class="five wide column">
+        <div>{{t "forms.fd-setting.bd-settings.conn-str-pg-caption"}}</div>
+      </div>
+      <div class="eleven wide column light-text">
+        {{flexberry-textarea
+          value=model.stage.postgreConnectionString
+          class='fluid input'
+          placeholder=(t "forms.fd-setting.bd-settings.conn-str-pg-placeholder")
+          readonly=readonlyModeProject
+        }}
+      </div>
+    </div>
+    <div class="row">
+      <div class="five wide column">
+        <div>{{t "forms.fd-setting.bd-settings.conn-str-orcl-caption"}}</div>
+      </div>
+      <div class="eleven wide column light-text">
+        {{flexberry-textarea
+          value=model.stage.oracleConnectionString
+          class='fluid input'
+          placeholder=(t "forms.fd-setting.bd-settings.conn-str-orcl-placeholder")
+          readonly=readonlyModeProject
+        }}
+      </div>
+    </div>
+    <div class="row">
+      <div class="four wide column">
+        {{t "forms.fd-setting.bd-settings.dnd-ext-tables-caption"}}
+      </div>
+      <div class="twelve wide column light-text">
+        {{flexberry-checkbox
+          value=model.stage.additionalPluginsSettingsStr
+          class='fluid input'
+          readonly=readonlyModeProject
+        }}
+      </div>
+    </div>
+  </div>
+
   <h2 class="form-header">{{t "forms.fd-setting.generation-settings-caption"}}</h2>
   <div class="ui stackable grid fd-list-edited">
     <div class="row">
