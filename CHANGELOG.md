@@ -2,6 +2,10 @@
 All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
+## [0.15.0-beta.23]
+### Fixed
+* Fix update attribute table.
+
 ## [0.15.0-beta.22]
 ### Changed
 * Change sorting for view fields in fd-create-view.
