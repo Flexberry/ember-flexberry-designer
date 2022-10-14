@@ -85,8 +85,9 @@ export default Mixin.create({
     return tableViewAttribute;
   }),
 
-  isExpanded: computed('fdSheetService.sheetSettings.expanded.class-sheet', function() {
-    return this.get('fdSheetService.sheetSettings.expanded.class-sheet');
+  isExpanded: computed('fdSheetService.sheetSettings.expanded.{class-sheet,edit-diagram-object-sheet}', function() {
+    let sheetComponentName = this.get('targetObject.sheetComponentName');
+    return this.get(`fdSheetService.sheetSettings.expanded.${sheetComponentName}`);
   }),
 
   /**
