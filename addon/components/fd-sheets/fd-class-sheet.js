@@ -3,7 +3,7 @@ import { computed, set, get } from '@ember/object';
 import { isBlank, isNone } from '@ember/utils';
 import { A } from '@ember/array';
 import { updateStrByObjects } from '../../utils/fd-update-str-value';
-import { resolve, reject } from 'rsvp';
+import { Promise, resolve, reject } from 'rsvp';
 import { createClassPrimitive, deletePrimitives, applyNewClassName } from '../../utils/fd-update-class-diagram';
 import { translationMacro as t } from 'ember-i18n';
 
@@ -339,15 +339,15 @@ export default FdBaseSheet.extend({
 
       let deleteObjectClass;
       let deleteModels = A();
+      let updateModels = A();
       let stereotype = selectedValue.get('stereotype');
       if (stereotype === '«businessserver»') {
         let bsInClass = this.get('model.classes').filterBy('bs.data.id', selectedValue.id);
-        if (bsInClass.length > 0) {
-          this.set('isError', true);
-          this.set('messageText', this.get('i18n').t('forms.fd-application-model.error-message.exist-class').toString() + A(bsInClass).get('firstObject.settings.data.name'));
-          this.set('show', true);
-          return;
-        }
+        bsInClass.forEach((item) => {
+          let setting = item.settings.data;
+          setting.set('businessServerClass', null);
+          updateModels.pushObject(setting);
+        });
       }
 
       if (stereotype === '«implementation»' || isBlank(stereotype)) {
@@ -371,7 +371,20 @@ export default FdBaseSheet.extend({
       let primitivesOnDelete = deletePrimitives(store, this.get('currentProjectContext'), deleteModels.map((a) => a.data));
       A(modelsForBatchUpdate).pushObjects(primitivesOnDelete);
 
-      store.batchUpdate(modelsForBatchUpdate)
+      return new Promise((resolve) => {
+        if (updateModels.length > 0) {
+          return store.batchUpdate(updateModels).then(() => {
+            updateModels.forEach((model) => {
+              this.updateClassModel(model);
+            });
+
+            return resolve();
+          });
+        }
+
+        return resolve();
+      })
+      .then(() => store.batchUpdate(modelsForBatchUpdate))
       .then(() => {
         modelHash.removeObject(deleteObjectClass);
         this.get('updateModel')();
