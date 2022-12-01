@@ -2,6 +2,12 @@
 All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
+
+## [0.15.0-beta.24]
+### Added
+* Add Autoincrement on attribute table.
+* Add connection string on generation form.
+
 ## [0.15.0-beta.23]
 ### Fixed
 * Fix update attribute table.
