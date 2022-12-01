@@ -51,6 +51,7 @@ export default Route.extend(FdShareLoadData, {
         "Mssql": {
           "DiffSql": false,
           "FullSql": true,
+          "LiquibaseSql": false,
           "Security": false,
           "AdminUser": false,
           "ConnectionString": null
@@ -58,6 +59,7 @@ export default Route.extend(FdShareLoadData, {
         "PostgreSql": {
           "DiffSql": false,
           "FullSql": true,
+          "LiquibaseSql": false,
           "Security": false,
           "AdminUser": false,
           "ConnectionString": null

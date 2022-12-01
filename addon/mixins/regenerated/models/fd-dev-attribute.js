@@ -252,7 +252,8 @@ export let defineProjections = function (modelClass) {
     accessModifier: attr(''),
     stored: attr(''),
     caption: attr(''),
-    dataServiceExpression: attr('')
+    dataServiceExpression: attr(''),
+    autoincrement: attr('')
   });
   modelClass.defineProjection('FormDesigner', 'fd-dev-attribute', {
     name: attr(''),

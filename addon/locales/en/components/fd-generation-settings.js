@@ -14,9 +14,11 @@ export default {
   'DockerSwarm': 'Run Swarm-configuration',
   'DiffSql': 'DB as model',
   'FullSql': 'Generate SQL',
+  'LiquibaseSql': 'Generate SQL for liquibase',
   'Security': 'Create security',
   'AdminUser': 'Create default user',
   'Docs': 'Documentation',
   'Csv': 'Save diagrams',
-  'Wmf': 'Generating documentation from diagrams'
+  'Wmf': 'Generating documentation from diagrams',
+  'ConnectionString': 'Connection string'
 };
