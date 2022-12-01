@@ -60,6 +60,7 @@ export default Component.extend({
       'PostgreSql': 'Postgre SQL',
       'DiffSql': i18n.t('components.fd-generation-settings.DiffSql').string,
       'FullSql': i18n.t('components.fd-generation-settings.FullSql').string,
+      'LiquibaseSql': i18n.t('components.fd-generation-settings.LiquibaseSql').string,
       'Security': i18n.t('components.fd-generation-settings.Security').string,
       'AdminUser': i18n.t('components.fd-generation-settings.AdminUser').string,
       'Docs': i18n.t('components.fd-generation-settings.Docs').string,
@@ -182,7 +183,12 @@ export default Component.extend({
       let keyGroup = getKeyInObj(generationItems, get(items, 'className'), true);
       let propName = getKeyInObj(generationItemsTitles, label, false) || label;
       let settings = get(generationItems, keyGroup);
-      set(settings, propName, value.checked);
+
+      if (propName === "ConnectionString") {
+        set(settings, propName, value.target.value);
+      } else {
+        set(settings, propName, value.checked);
+      }
     }
   }
 });

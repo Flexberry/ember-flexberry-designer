@@ -18,6 +18,7 @@ export default {
     'dataServiceExpression-placeholder': 'Enter expression',
     'create-btn': 'Create attribute',
     'delete-btn': 'Delete selected',
+    'autoincrement': 'Autoincrement'
   },
   'view': {
     'name': 'View name',

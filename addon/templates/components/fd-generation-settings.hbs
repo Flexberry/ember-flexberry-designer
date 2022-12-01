@@ -12,7 +12,8 @@
           </div>
           <div class="content">
             {{#each-in items as |label value|}}
-            {{#if (and (not-eq label "className") (not-eq label "caption") (not-eq label "ConnectionString"))}}
+            {{#if (and (not-eq label "className") (not-eq label "caption"))}}
+              {{#if (not-eq label "ConnectionString")}}
               <div class="field">
                 {{flexberry-checkbox
                   value=value
@@ -20,6 +21,13 @@
                   onChange=(action 'selectGenSetting' label items bubbles=false)
                 }}
               </div>
+              {{else}}
+                {{flexberry-field
+                  value=value
+                  label=(t 'components.fd-generation-settings.ConnectionString')
+                  change=(action 'selectGenSetting' label items)
+                }}
+              {{/if}}
             {{/if}}
             {{/each-in}}
           </div>

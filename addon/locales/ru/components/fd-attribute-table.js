@@ -18,6 +18,7 @@ export default {
     'dataServiceExpression-placeholder': 'Введите выражение',
     'create-btn': 'Создать атрибут',
     'delete-btn': 'Удалить выбранные',
+    'autoincrement': 'Автоинкремент'
   },
   'view': {
     'name': 'Имя представления',
