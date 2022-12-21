@@ -4,6 +4,41 @@
 
 import { assert } from '@ember/debug';
 import { getProperties } from '@ember/object';
+import { isEmpty } from '@ember/utils';
+
+/**
+  Сhanges for correct parsing.
+
+  @method correctTypeMap
+  @param {String} serialized Definition the type map in XML format.
+*/
+let correctTypeMap = function(serialized) {
+  serialized = serialized.replace(new RegExp('((?<=value\\=\\"\\S*)|(?<=assemblydll\\=\\"\\S*))\\<', 'g'), '&lt;');
+  serialized = serialized.replace(new RegExp('((?<=value\\=\\"\\S*)|(?<=assemblydll\\=\\"\\S*))\\>', 'g'), '&gt;');
+
+  return serialized;
+};
+
+/**
+  Checks for parsing a type map.
+
+  @method checkCorrectTypeMap
+  @param {String} serialized Definition the type map in XML format.
+*/
+export function checkCorrectTypeMap(serialized) {
+  let isCorrect = false;
+  if (serialized) {
+    serialized = correctTypeMap(serialized);
+    let document = new DOMParser().parseFromString(serialized, 'text/xml');
+    let parsererrorList = document.getElementsByTagName('parsererror');
+    if (parsererrorList.length > 0) {
+      let parsererror = parsererrorList[0].outerText;
+      isCorrect = isEmpty(parsererror);
+    }
+  }
+
+  return isCorrect;
+}
 
 /**
   Returns an array of types contained in the type map.
@@ -20,6 +55,7 @@ import { getProperties } from '@ember/object';
 export function deserialize(serialized) {
   let deserialized = [];
   if (serialized) {
+    serialized = correctTypeMap(serialized);
     let document = new DOMParser().parseFromString(serialized, 'text/xml');
     let typeMaps = document.getElementsByTagName('TypeMap');
     let types = typeMaps[0].getElementsByTagName('*');

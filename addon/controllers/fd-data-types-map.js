@@ -11,7 +11,7 @@ import { A } from '@ember/array';
 import { isNone } from '@ember/utils';
 
 import FdDataType from '../objects/fd-data-type';
-import { deserialize } from '../utils/transforms-utils/fd-type-map-functions';
+import { deserialize, checkCorrectTypeMap } from '../utils/transforms-utils/fd-type-map-functions';
 import FdReadonlyProjectMixin from '../mixins/fd-readonly-project';
 import FdSheetCloseConfirm from '../mixins/fd-sheet-close-confirm';
 
@@ -246,6 +246,21 @@ export default Controller.extend(FdSheetCloseConfirm, FdReadonlyProjectMixin, {
     });
 
     return this.get('stage.hasDirtyAttributes');
+  },
+
+  /**
+    Check correct type maps.
+
+    @property correctTypeMaps
+    @return {Boolean}
+  */
+  correctTypeMaps() {
+    let correctTypeMapCS = checkCorrectTypeMap(this.get('stage.typeMapCSStr'));
+    let correctTypeMapSQL = checkCorrectTypeMap(this.get('stage.typeMapSQLStr'));
+    let correctTypeMapPostgre = checkCorrectTypeMap(this.get('stage.typeMapPostgreStr'));
+    let correctTypeMapOracle = checkCorrectTypeMap(this.get('stage.typeMapOracleStr'));
+
+    return correctTypeMapCS && correctTypeMapSQL && correctTypeMapPostgre && correctTypeMapOracle;
   },
 
   /**
