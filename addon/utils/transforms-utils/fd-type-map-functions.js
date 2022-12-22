@@ -13,8 +13,10 @@ import { isEmpty } from '@ember/utils';
   @param {String} serialized Definition the type map in XML format.
 */
 let correctTypeMap = function(serialized) {
-  serialized = serialized.replace(new RegExp('((?<=value\\=\\"\\S*)|(?<=assemblydll\\=\\"\\S*))\\<', 'g'), '&lt;');
-  serialized = serialized.replace(new RegExp('((?<=value\\=\\"\\S*)|(?<=assemblydll\\=\\"\\S*))\\>', 'g'), '&gt;');
+  /* eslint-disable */
+  serialized = serialized.replace(/((?<=value\=\"\S*)|(?<=assemblydll\=\"\S*))\</g, '&lt;');
+  serialized = serialized.replace(/((?<=value\=\"\S*)|(?<=assemblydll\=\"\S*))\>/g, '&gt;');
+  /* eslint-enable */
 
   return serialized;
 };
