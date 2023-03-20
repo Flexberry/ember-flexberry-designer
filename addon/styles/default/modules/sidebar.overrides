@@ -214,7 +214,7 @@
 
 
   .item.current-project-name-header {
-    color: @lightTextColor;
+    color: @sidebarIconColor;
     padding-bottom: 0;
     padding-top: 0;
     margin-bottom: 0.3rem;
@@ -222,8 +222,8 @@
 
   .current-project-name {
     margin-bottom: 3.4rem;
-    padding-bottom: 0;
-    padding-top: 0;
+    padding: 0 0 0 1.9rem;
+    color: @textColor;
   }
 }
 
@@ -267,4 +267,32 @@
   width: 100%;
   z-index: 2;
   padding: 3.5rem;
+}
+
+.project-name-wrapper {
+  margin: 0.5rem 0 4rem 0;
+}
+
+.sidebar-mini {
+  .sidebar-sync-panel {
+    flex-direction: column;
+  }
+}
+
+.ui.button.sync.fd-sync-stage {
+  background-color: transparent;
+}
+
+.sidebar-sync-panel {
+  display: flex;
+  align-items: center;
+
+  .panel-item {
+    flex: 0 0 auto;
+
+    .text {
+      padding-right: 0.2rem;
+      color: @lightTextColor;
+    }
+  }
 }

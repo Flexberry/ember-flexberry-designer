@@ -1,3 +1,5 @@
+@SyncIcon: "\f2f1";
+
 .ui.button > .icon.icon-fd-cloud-upload-outline {
   opacity: 1;
 
@@ -8,4 +10,8 @@
 
 .fd-sheet-toolbar .magic.icon::before {
   vertical-align: middle;
+}
+
+i.icon.sync.alternate::before {
+  content: @SyncIcon;
 }
