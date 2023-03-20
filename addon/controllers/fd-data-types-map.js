@@ -8,7 +8,7 @@ import { computed } from '@ember/object';
 import { run } from '@ember/runloop';
 import { resolve } from 'rsvp';
 import { A } from '@ember/array';
-import { isNone } from '@ember/utils';
+import { isNone, isEmpty } from '@ember/utils';
 
 import FdDataType from '../objects/fd-data-type';
 import { deserialize, checkCorrectTypeMap } from '../utils/transforms-utils/fd-type-map-functions';
@@ -68,8 +68,11 @@ export default Controller.extend(FdSheetCloseConfirm, FdReadonlyProjectMixin, {
     @property typeMap
     @type Ember.NativeArray
   */
-  typeMap: computed('stage', 'types', 'typedefs', function() {
+  typeMap: computed('stage', 'types', 'typedefs', function () {
     let typeMap = this.createDefaultTypeMap();
+    const hasMapping = (type) => {
+      return !isEmpty(type.cs) && !isEmpty(type.sql) && !isEmpty(type.postgre);
+    }
 
     let typeMapCS = deserialize(this.get('stage.typeMapCSStr'));
     for (let i = 0; i < typeMapCS.length; i++) {
@@ -133,6 +136,8 @@ export default Controller.extend(FdSheetCloseConfirm, FdReadonlyProjectMixin, {
         dataType.set('sqlOnly', true);
       }
     });
+
+    typeMap.map((type) => type.hasMapping = hasMapping(type));
 
     return typeMap.sortBy('name');
   }),

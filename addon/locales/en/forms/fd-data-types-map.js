@@ -4,5 +4,6 @@ export default {
   'save-message': 'Would you like to save your changes?',
   'save-button': 'Save changes',
   'rollback-button': 'Cancel changes',
-  'parser-error': 'Error when generating a type map (failed to parse types without errors)'
+  'parser-error': 'Error when generating a type map (failed to parse types without errors)',
+  'filling-error': 'The card isn`t fully filled in'
 };
