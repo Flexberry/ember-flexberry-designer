@@ -81,6 +81,14 @@ export default Component.extend(FdReadonlyModeMixin, {
   selectedProperty: undefined,
 
   /**
+    All properties of selected master.
+
+    @property masterProperties
+    @type Array
+  */
+  masterProperties: undefined,
+
+  /**
     Type selected attribute for editing.
 
     @property selectedPropertyType

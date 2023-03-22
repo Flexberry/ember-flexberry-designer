@@ -4,10 +4,13 @@ import { computed } from '@ember/object';
 import FdViewAttributesMaster from '../objects/fd-view-attributes-master';
 import FdViewAttributesDetail from '../objects/fd-view-attributes-detail';
 import layout from '../templates/components/fd-view-definition-item';
+import { inject as service } from '@ember/service';
 
 export default Component.extend({
   layout,
   tagName: '',
+
+  store: service(),
 
   /**
     Classes data.
@@ -24,6 +27,14 @@ export default Component.extend({
     @type Object
   */
   selectedProperty: undefined,
+
+  /**
+    All properties of selected master.
+
+    @property masterProperties
+    @type Array
+  */
+  masterProperties: undefined,
 
   /**
     Type selected definition property.
@@ -100,6 +111,26 @@ export default Component.extend({
     return selectedProperty === definition;
   }),
 
+  /**
+    Sets available properties of selected master by its association in `masterPropertyName` dropdown
+    
+    @param {Object} property 
+    @returns 
+   */
+  setMasterProperties(property) {
+    if (isBlank(property)) return;
+
+    let store = this.get('store');
+    let associationName = property.name;
+    let allAssociations = store.peekAll('fd-dev-association').filterBy('realStartRole', associationName);
+
+    if (allAssociations.length <= 0) return;
+
+    let masterProperties = allAssociations.objectAt(0).get('endClass.attributes').mapBy('name');
+
+    if (masterProperties.length >= 1) this.set('masterProperties', masterProperties);
+  },
+
   actions: {
 
     /**
@@ -122,6 +153,7 @@ export default Component.extend({
     */
     selectedProperty(property) {
       let selectedProperty = this.get('selectedProperty');
+
       if (selectedProperty !== property) {
         this.set('selectedProperty', property);
         this.set('selectedPropertyType', this.get('type'));
@@ -129,6 +161,8 @@ export default Component.extend({
         this.set('selectedProperty', undefined);
         this.set('selectedPropertyType', undefined);
       }
+
+      this.setMasterProperties(property);
     },
   }
 });

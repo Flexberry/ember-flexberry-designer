@@ -35,6 +35,7 @@
             selectedProperty=selectedProperty
             selectedPropertyType=selectedPropertyType
             delete=(action 'deleteDefinitionItem')
+            masterProperties=masterProperties
             readonly=readonly
           }}
         {{/each}}
@@ -82,11 +83,10 @@
             {{t "components.fd-create-view.settings-master.master-property"}}
           </div>
           <div class="eleven wide column light-text">
-            {{flexberry-textbox
+            {{flexberry-dropdown
               value=selectedProperty.masterPropertyName
-              class='fluid input'
-              placeholder=(t "components.fd-create-view.settings-master.master-property-placeholder")
               readonly=readonly
+              items=masterProperties
             }}
           </div>
         </div>
