@@ -262,6 +262,30 @@ export default Component.extend(FdReadonlyModeMixin, {
     return propertyName;
   },
 
+  /**
+    Get index of selected property in definitions
+ 
+    @method getIndexOfSelectedProperty
+    @return {Number} index
+  */
+  getIndexOfSelectedProperty: function() {
+    let selectedProperty = this.get('selectedProperty');
+    let definitionArray = this.get('view.definitionArray');
+    let index = -1;
+    let found = false;
+
+    if (isNone(selectedProperty)) return index;
+
+    definitionArray.forEach((definitionProperty, definitionIndex) => {
+      if (definitionProperty.get('name') === selectedProperty.name && !found) {
+        index = definitionIndex;
+        found = true;
+      }
+    });
+
+    return index;
+  },
+
   actions: {
 
     /**
@@ -271,18 +295,18 @@ export default Component.extend(FdReadonlyModeMixin, {
     */
     addNodeInDefinition() {
       let node = this.get('selectedNode');
-      if (isNone(node)) {
-        return;
-      }
+
+      if (isNone(node)) return;
 
       let view = this.get('view.definitionArray');
 
       // Create propertyName
       let propertyName = this.createPropertyName(node, this.get('treeObject').jstree(true));
+      
       if (view.findBy('name', propertyName)) {
         return;
       }
-
+      
       let newDefinition;
       if (get(node, 'parents').length > 1) {
         newDefinition = FdViewAttributesProperty.create({
@@ -308,7 +332,14 @@ export default Component.extend(FdReadonlyModeMixin, {
         }
       }
 
-      view.pushObject(newDefinition);
+      let indexOfSelectedProperty = this.getIndexOfSelectedProperty();
+
+      if (indexOfSelectedProperty >= 0) {
+        view.insertAt(indexOfSelectedProperty, newDefinition);
+      } else {
+        view.pushObject(newDefinition);
+      }
+
     },
 
     /**
