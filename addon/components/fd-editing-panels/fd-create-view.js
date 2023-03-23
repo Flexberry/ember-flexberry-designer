@@ -269,17 +269,17 @@ export default Component.extend(FdReadonlyModeMixin, {
     @return {Number} index
   */
   getIndexOfSelectedProperty: function() {
-    let selectedProperty = this.get('selectedProperty');
-    let definitionArray = this.get('view.definitionArray');
+    const selectedProperty = this.get('selectedProperty');
+    const definitionArray = this.get('view.definitionArray');
     let index = -1;
-    let found = false;
 
-    if (isNone(selectedProperty)) return index;
+    if (isNone(selectedProperty)) {
+      return index;
+    }
 
-    definitionArray.forEach((definitionProperty, definitionIndex) => {
-      if (definitionProperty.get('name') === selectedProperty.name && !found) {
+    definitionArray.find((definitionProperty, definitionIndex) => {
+      if (definitionProperty.get('name') === selectedProperty.name) {
         index = definitionIndex;
-        found = true;
       }
     });
 
@@ -296,7 +296,9 @@ export default Component.extend(FdReadonlyModeMixin, {
     addNodeInDefinition() {
       let node = this.get('selectedNode');
 
-      if (isNone(node)) return;
+      if (isNone(node)) {
+        return;
+      }
 
       let view = this.get('view.definitionArray');
 
@@ -306,7 +308,7 @@ export default Component.extend(FdReadonlyModeMixin, {
       if (view.findBy('name', propertyName)) {
         return;
       }
-      
+
       let newDefinition;
       if (get(node, 'parents').length > 1) {
         newDefinition = FdViewAttributesProperty.create({
