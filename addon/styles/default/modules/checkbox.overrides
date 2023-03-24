@@ -1,3 +1,7 @@
+.ui.checkbox input.hidden {
+  display:block !important;
+}
+
 .ui.checkbox input ~ .box:before,
 .ui.checkbox input ~ label:before {
   content: '\e902';
@@ -16,4 +20,9 @@
 .ui.checkbox input:checked ~ .box:after,
 .ui.checkbox input:checked ~ label:after {
   content: '';
+}
+
+.ui.checkbox label:hover,
+.ui.checkbox input:focus ~ label {
+  opacity: .55;
 }
