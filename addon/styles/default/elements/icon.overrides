@@ -1,9 +1,7 @@
-@SyncIcon: "\f2f1";
-
 .ui.button > .icon.icon-fd-cloud-upload-outline {
   opacity: 1;
 
-  &::before{
+  &::before {
     float: right;
   }
 }
