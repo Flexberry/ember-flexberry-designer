@@ -277,11 +277,7 @@ export default Component.extend(FdReadonlyModeMixin, {
       return index;
     }
 
-    definitionArray.find((definitionProperty, definitionIndex) => {
-      if (definitionProperty.get('name') === selectedProperty.name) {
-        index = definitionIndex;
-      }
-    });
+    index = definitionArray.findIndex((definitionProperty) => definitionProperty.get('name') === selectedProperty.name);
 
     return index;
   },
@@ -337,7 +333,7 @@ export default Component.extend(FdReadonlyModeMixin, {
       let indexOfSelectedProperty = this.getIndexOfSelectedProperty();
 
       if (indexOfSelectedProperty >= 0) {
-        view.insertAt(indexOfSelectedProperty, newDefinition);
+        view.insertAt(indexOfSelectedProperty + 1, newDefinition);
       } else {
         view.pushObject(newDefinition);
       }
