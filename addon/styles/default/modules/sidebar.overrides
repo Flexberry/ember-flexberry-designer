@@ -170,23 +170,6 @@
 
   &.sidebar-mini {
     width: @sidebarMiniWidth;
-    .current-project-name-header,
-    .current-project-name {
-      > div > i.icon {
-        display: none;
-      }
-    }
-
-    .item {
-      font-size: 0;
-      padding-left: 0;
-      padding-right: 0;
-      text-align: center;
-
-      .icon {
-        margin-right: 0;
-      }
-    }
   }
 
   &.visible {
@@ -204,14 +187,6 @@
       opacity: 1;
     }
   }
-
-  .current-project-name-header,
-  .current-project-name {
-    > div > i.icon {
-      visibility: hidden;
-    }
-  }
-
 
   .item.current-project-name-header {
     color: @sidebarIconColor;
@@ -238,12 +213,6 @@
 .ui.left.sidebar ~ .pusher:not(#mobile) {
   -webkit-transform: translate3d(@sidebarMiniWidth, 0, 0);
   transform: translate3d(@sidebarMiniWidth, 0, 0);
-}
-
-.item.current-project-name div {
-  overflow: hidden;
-  text-overflow: ellipsis;
-  margin: 0.5rem 0 4rem 0;
 }
 
 /* Mobile */
