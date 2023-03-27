@@ -1,6 +1,6 @@
 import Component from '@ember/component';
 import { isNone, isBlank } from '@ember/utils';
-import { computed } from '@ember/object';
+import { computed, observer } from '@ember/object';
 import FdViewAttributesMaster from '../objects/fd-view-attributes-master';
 import FdViewAttributesDetail from '../objects/fd-view-attributes-detail';
 import layout from '../templates/components/fd-view-definition-item';
@@ -112,23 +112,40 @@ export default Component.extend({
   }),
 
   /**
+    Fill master properties lookup.
+
+    @method selectedPropertyObserver
+  */
+  selectedPropertyObserver: observer('selectedProperty.lookupType', function() {
+    let selectedProperty = this.get('selectedProperty');
+
+    this.setMasterProperties(selectedProperty);
+  }),
+
+  /**
     Sets available properties of selected master by its association in `masterPropertyName` dropdown
     
     @param {Object} property 
     @returns 
    */
   setMasterProperties(property) {
-    if (isBlank(property)) return;
+    if (isBlank(property)) {
+      return;
+    }
 
     let store = this.get('store');
     let associationName = property.name;
     let allAssociations = store.peekAll('fd-dev-association').filterBy('realStartRole', associationName);
 
-    if (allAssociations.length <= 0) return;
+    if (allAssociations.length <= 0) {
+      return;
+    }
 
     let masterProperties = allAssociations.objectAt(0).get('endClass.attributes').mapBy('name');
 
-    if (masterProperties.length >= 1) this.set('masterProperties', masterProperties);
+    if (masterProperties.length >= 1) {
+      this.set('masterProperties', masterProperties);
+    }
   },
 
   actions: {
@@ -161,8 +178,6 @@ export default Component.extend({
         this.set('selectedProperty', undefined);
         this.set('selectedPropertyType', undefined);
       }
-
-      this.setMasterProperties(property);
     },
   }
 });
