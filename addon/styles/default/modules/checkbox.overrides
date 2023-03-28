@@ -24,5 +24,5 @@
 
 .ui.checkbox:not(.read-only) label:hover:before,
 .ui.checkbox:not(.read-only) input:focus ~ label:before {
-  color: rgba(0, 0, 0, 0.55);
+  color: fadein(@lightTextColor, 20%);
 }
