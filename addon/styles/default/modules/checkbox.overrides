@@ -22,7 +22,7 @@
   content: '';
 }
 
-.ui.checkbox label:hover,
-.ui.checkbox input:focus ~ label {
-  opacity: .55;
+.ui.checkbox:not(.read-only) label:hover:before,
+.ui.checkbox:not(.read-only) input:focus ~ label:before {
+  color: rgba(0, 0, 0, 0.55);
 }
