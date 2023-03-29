@@ -170,6 +170,23 @@
 
   &.sidebar-mini {
     width: @sidebarMiniWidth;
+
+    .item {
+      text-align: center;
+      font-size: 0;
+      width: 18px;
+      padding: 11px;
+      margin: 0.2rem auto;
+      box-sizing: content-box;
+
+      .icon {
+        margin-right: 0;
+      }
+    }
+
+    .panel-item .ui.icon.button {
+      margin-right: 0;
+    }
   }
 
   &.visible {
