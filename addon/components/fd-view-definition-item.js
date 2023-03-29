@@ -10,6 +10,15 @@ export default Component.extend({
   layout,
   tagName: '',
 
+  /**
+   Service that get current project contexts.
+
+   @property currentProjectContext
+   @type {Class}
+   @default Ember.inject.service()
+  */
+  currentProjectContext: service('fd-current-project-context'),
+
   store: service(),
 
   /**
@@ -117,9 +126,13 @@ export default Component.extend({
     @method selectedPropertyObserver
   */
   selectedPropertyObserver: observer('selectedProperty.lookupType', function() {
-    let selectedProperty = this.get('selectedProperty');
+    let selectedPropertyType = this.get('selectedPropertyType');
+    
+    if (selectedPropertyType === 'isMaster') {
+      let selectedProperty = this.get('selectedProperty');
 
-    this.setMasterProperties(selectedProperty);
+      this.setMasterProperties(selectedProperty);
+    }
   }),
 
   /**
@@ -133,19 +146,49 @@ export default Component.extend({
       return;
     }
 
-    let store = this.get('store');
-    let associationName = property.name;
-    let allAssociations = store.peekAll('fd-dev-association').filterBy('realStartRole', associationName);
+    const store = this.get('store');
+    const stageId = this.get('currentProjectContext').getCurrentStageModel().get('id');
+    const associationName = property.name;
+    const currentStageInheritance = store.peekAll('fd-dev-inheritance').filterBy('stage.id', stageId);
+    const currentStageAssociations = store.peekAll('fd-dev-association').filterBy('stage.id', stageId);
+    const currentStageAggregation = store.peekAll('fd-dev-aggregation').filterBy('stage.id', stageId);
+    const masterAssociations = currentStageAssociations.filterBy('realStartRole', associationName);
+    let masterProperties = null;
+    let inheritedProperties = null;
+    let aggregationProperties = null;
+    let parentClasses = currentStageInheritance.map((inheritance) => {
+      if (masterAssociations.length > 0) {
+        if (inheritance.get('child.name') === masterAssociations[0].get('endClass.name') && !isNone(inheritance.get('parent'))) {
+          return inheritance.get('parent');
+        }
+      }
+    })
+    
+    parentClasses = parentClasses.filter(elem => !isNone(elem));
 
-    if (allAssociations.length <= 0) {
-      return;
+    if (parentClasses.length > 0) {
+      inheritedProperties = parentClasses.map((item) => item.get('attributes').mapBy('name'));
     }
 
-    let masterProperties = allAssociations.objectAt(0).get('endClass.attributes').mapBy('name');
-
-    if (masterProperties.length >= 1) {
-      this.set('masterProperties', masterProperties);
+    if (masterAssociations.length > 0) {
+      masterProperties = masterAssociations.map((association) => {
+        return association.get('startClass.attributes').mapBy('name');
+      });
     }
+
+    if (currentStageAggregation.length > 0) {
+      aggregationProperties = currentStageAggregation.map((association) => {
+        return association.get('startClass.attributes').mapBy('name');
+      });
+    }
+
+    const result = [
+      inheritedProperties,
+      masterProperties,
+      aggregationProperties
+    ].flat(2);
+
+    this.set('masterProperties', result);
   },
 
   actions: {
