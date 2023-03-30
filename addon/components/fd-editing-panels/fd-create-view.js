@@ -262,6 +262,26 @@ export default Component.extend(FdReadonlyModeMixin, {
     return propertyName;
   },
 
+  /**
+    Get index of selected property in definitions
+ 
+    @method getIndexOfSelectedProperty
+    @return {Number} index
+  */
+  getIndexOfSelectedProperty: function() {
+    const selectedProperty = this.get('selectedProperty');
+    const definitionArray = this.get('view.definitionArray');
+    let index = -1;
+
+    if (isNone(selectedProperty)) {
+      return index;
+    }
+
+    index = definitionArray.findIndex((definitionProperty) => definitionProperty.get('name') === selectedProperty.name);
+
+    return index;
+  },
+
   actions: {
 
     /**
@@ -271,6 +291,7 @@ export default Component.extend(FdReadonlyModeMixin, {
     */
     addNodeInDefinition() {
       let node = this.get('selectedNode');
+
       if (isNone(node)) {
         return;
       }
@@ -279,6 +300,7 @@ export default Component.extend(FdReadonlyModeMixin, {
 
       // Create propertyName
       let propertyName = this.createPropertyName(node, this.get('treeObject').jstree(true));
+      
       if (view.findBy('name', propertyName)) {
         return;
       }
@@ -308,7 +330,14 @@ export default Component.extend(FdReadonlyModeMixin, {
         }
       }
 
-      view.pushObject(newDefinition);
+      let indexOfSelectedProperty = this.getIndexOfSelectedProperty();
+
+      if (indexOfSelectedProperty >= 0) {
+        view.insertAt(indexOfSelectedProperty + 1, newDefinition);
+      } else {
+        view.pushObject(newDefinition);
+      }
+
     },
 
     /**
