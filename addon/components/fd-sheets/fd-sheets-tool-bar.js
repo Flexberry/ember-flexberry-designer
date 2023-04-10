@@ -201,6 +201,21 @@ export default Component.extend(FdReadonlyProjectMixin, FdShareFunctionMixin, {
   },
 
   actions: {
+    revertChanges() {
+      const unsavedData = this.get('fdSheetService').findUnsavedSheetData(this.get('sheetComponentName'));
+      const revert = () => {
+        this.openSheet(this.get('sheetComponentName'), this.get('selectedValue'))
+      }
+
+      if (unsavedData) {
+        this.get('fdDialogService').showVerificationMessage(
+          this.get('i18n').t('components.fd-modal-message-box.confirmation-revert-text').toString(),
+          revert,
+          this
+        );
+      }
+    },
+
     /**
       Closing sheet.
 

@@ -8,5 +8,6 @@ export default {
   'open-edit-form-title': 'Open edit form',
   'collapse-title': 'Collapse object',
   'uml-validator-title': 'UML validator',
-  'uml-corrector-title': 'UML corrector'
+  'uml-corrector-title': 'UML corrector',
+  'revert-changes-title': 'Revert changes'
 };

@@ -32,6 +32,9 @@
         </button>
       {{/if}}
     {{else}}
+      <button class="ui icon button" {{action 'revertChanges'}} title={{t "components.fd-diagram-editing-panel.revert-changes-title"}}>
+        <i class="reply all icon" ></i>
+      </button>
       {{#if buttonVisible.save}}
         <button class="ui button fd-save" {{action 'save'}}>
           {{t "components.fd-sheets-tool-bar.save-caption"}}

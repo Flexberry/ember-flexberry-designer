@@ -145,12 +145,6 @@ export default FdBaseSheet.extend(
       },
       {
         buttonTitle: i18n.t('components.fd-diagram-editing-panel.uml-corrector-title'),
-        buttonVisible: true,
-        iconClasses: 'reply all icon',
-        buttonAction: this.get('revertChanges').bind(this)
-      },
-      {
-        buttonTitle: i18n.t('components.fd-diagram-editing-panel.uml-corrector-title'),
         buttonVisible: diagramType === 'cad' && !this.get('selectedValue.data.isNew') && !this.get('isAddMode') && this.get('readonlyMode'),
         iconClasses: ' icon-fd-uml-edit icon',
         buttonAction: this.get('umlСorrector').bind(this)

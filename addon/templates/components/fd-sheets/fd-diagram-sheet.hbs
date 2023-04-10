@@ -4,6 +4,11 @@
   </div>
   <div class="fd-sheet-header {{unless isAddMode "fd-sheet-diagram-header"}} {{if _collapseToolbar "fd-toolbar-hidden"}}">
     {{fd-sheets/fd-sheets-tool-bar
+      isDiagramVisible=isDiagramVisible
+      selectedValue=selectedValue
+      emptyReferenceCountItems=emptyReferenceCountItems
+      deactivateListItem=deactivateListItem
+      openSheet=openSheet
       sheetComponentName=sheetComponentName
       readonlyMode=readonlyMode
       isNewModel=selectedValue.data.isNew
