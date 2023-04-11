@@ -4,10 +4,13 @@
   </div>
   <div class="fd-sheet-header">
     {{fd-sheets/fd-sheets-tool-bar
+      openSheet=openSheet
+      deactivateListItem=deactivateListItem
+      selectedValue=selectedValue
       sheetComponentName=sheetComponentName
       readonlyMode=readonlyMode
       isNewModel=selectedValue.data.isNew
-      sheetButtons=(array 'delete' 'save' 'share' 'dependencies')
+      sheetButtons=(array 'delete' 'save' 'share' 'dependencies' 'revert')
       sheetHelper=urlVideoHelp
       toolbarVisible=(not isAddMode)
       saveSheet=(action 'save')

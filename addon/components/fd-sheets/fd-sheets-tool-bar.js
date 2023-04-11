@@ -202,9 +202,11 @@ export default Component.extend(FdReadonlyProjectMixin, FdShareFunctionMixin, {
 
   actions: {
     revertChanges() {
-      const unsavedData = this.get('fdSheetService').findUnsavedSheetData(this.get('sheetComponentName'));
+      const sheetComponentName = this.get('sheetComponentName');
+      const contentSheetValue = this.get('contentSheetValue');
+      const unsavedData = this.get('fdSheetService').findUnsavedSheetData(sheetComponentName);
       const revert = () => {
-        this.openSheet(this.get('sheetComponentName'), this.get('selectedValue'))
+        this.openSheet(sheetComponentName, contentSheetValue)
       }
 
       if (unsavedData) {

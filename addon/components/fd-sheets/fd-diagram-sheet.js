@@ -251,10 +251,6 @@ export default FdBaseSheet.extend(
     this.set('selectedValue', undefined);
   },
 
-  revertChanges() {
-    this.openSheet(this.get('sheetComponentName'), this.get('selectedValue'));
-  },
-
   /**
     Check uml on validate.
 
