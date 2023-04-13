@@ -31,6 +31,15 @@ export default Component.extend(FdReadonlyModeMixin, {
   store: service(),
 
   /**
+   Service that get current project contexts.
+
+   @property currentProjectContext
+   @type {Class}
+   @default Ember.inject.service()
+  */
+  currentProjectContext: service('fd-current-project-context'),
+
+  /**
     Classes data.
 
     @property model
@@ -213,6 +222,19 @@ export default Component.extend(FdReadonlyModeMixin, {
     @method selectedPropertyObserver
   */
   selectedPropertyObserver: observer('selectedProperty', 'selectedProperty.lookupType', function() {
+    const selectedPropertyType = this.get('selectedPropertyType');
+    const lookupType = this.get('selectedProperty.lookupType');
+    const isLookupTypeCurrect = lookupType !== 'default';
+    const selectedProperty = this.get('selectedProperty');
+    const isSelectedPropertyAvailable = isLookupTypeCurrect
+      && selectedPropertyType === 'isMaster'
+      && !isNone(selectedProperty)
+      && !isNone(selectedPropertyType);
+    
+    if (isSelectedPropertyAvailable) {
+      this.setMasterProperties(selectedProperty);
+    }
+
     next(() => {
       let attrProp = $('.fd-attr-prop').outerHeight(true);
       let attrPropHeight = attrProp === undefined ? 0 : attrProp;
@@ -220,6 +242,65 @@ export default Component.extend(FdReadonlyModeMixin, {
       $('.fd-view-table-attr .overflow-panel').css('max-height', `calc( 100vh - ${elementsSheetHeight}px)`);
     });
   }),
+
+  /**
+    Sets available properties of selected master by its association in `masterPropertyName` dropdown
+    
+    @param {Object} property 
+    @returns 
+  */
+  setMasterProperties(property) {
+    if (isNone(property)) {
+      return;
+    }
+
+    const store = this.get('store');
+    const stageId = this.get('currentProjectContext').getCurrentStageModel().get('id');
+    const associationName = property.name;
+    const currentStageInheritance = store.peekAll('fd-dev-inheritance').filterBy('stage.id', stageId);
+    const currentStageAssociations = store.peekAll('fd-dev-association').filterBy('stage.id', stageId);
+    const currentStageAggregation = store.peekAll('fd-dev-aggregation').filterBy('stage.id', stageId);
+    const masterAssociations = currentStageAssociations.filterBy('realStartRole', associationName);
+    const emptyValue = '';
+    let masterProperties = null;
+    let inheritedProperties = null;
+    let aggregationProperties = null;
+    let parentClasses = currentStageInheritance.map((inheritance) => {
+      const hasParent = masterAssociations.length > 0 && inheritance.get('child.name') === masterAssociations[0].get('endClass.name') && !isNone(inheritance.get('parent')); 
+      
+      if (hasParent) {
+        return inheritance.get('parent');
+      }
+    })
+    
+    parentClasses = parentClasses.filter(elem => !isNone(elem));
+
+    if (parentClasses.length > 0) {
+      inheritedProperties = parentClasses.map((item) => item.get('attributes').mapBy('name'));
+    }
+
+    if (masterAssociations.length > 0) {
+      masterProperties = masterAssociations.map((association) => {
+        return association.get('startClass.attributes').mapBy('name');
+      });
+    }
+
+    if (currentStageAggregation.length > 0) {
+      aggregationProperties = currentStageAggregation.map((association) => {
+        return association.get('startClass.attributes').mapBy('name');
+      });
+    }
+
+    let result = [
+      inheritedProperties,
+      masterProperties,
+      aggregationProperties
+    ].flat(2).filter(elem => elem);
+
+    result.unshift(emptyValue);
+
+    this.set('masterProperties', result);
+  },
 
   /**
     Set detailViewArray.
@@ -271,7 +352,6 @@ export default Component.extend(FdReadonlyModeMixin, {
   },
 
   actions: {
-
     /**
       Handle click button add node in definition.
 
