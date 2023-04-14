@@ -113,6 +113,8 @@ export default Component.extend(FdReadonlyModeMixin, {
   */
   detailsViewArray: undefined,
 
+  inputManually: false,
+
   /**
     Array View selectedProperty.
 
@@ -283,9 +285,7 @@ export default Component.extend(FdReadonlyModeMixin, {
       masterProperties = masterAssociations.map((association) => {
         return association.get('startClass.attributes').mapBy('name');
       });
-    }
-
-    if (currentStageAggregation.length > 0) {
+    } else if (currentStageAggregation.length > 0) {
       aggregationProperties = currentStageAggregation.map((association) => {
         return association.get('startClass.attributes').mapBy('name');
       });
@@ -352,6 +352,13 @@ export default Component.extend(FdReadonlyModeMixin, {
   },
 
   actions: {
+    inputManuallyChanged() {
+      if (!this.get('inputManually')) {
+        // this method will clear value for next choosing was correct 
+        this.set('selectedProperty.masterPropertyName', '');
+      }
+    },
+
     /**
       Handle click button add node in definition.
 

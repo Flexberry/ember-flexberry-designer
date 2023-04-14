@@ -82,11 +82,28 @@
           <div class="five wide column">
             {{t "components.fd-create-view.settings-master.master-property"}}
           </div>
-          <div class="eleven wide column light-text">
-            {{flexberry-dropdown
-              value=selectedProperty.masterPropertyName
+          <div class="six wide column light-text">
+            {{#if inputManually}}
+              {{flexberry-textbox
+                value=selectedProperty.masterPropertyName
+                class='fluid input'
+                placeholder=(t "components.fd-create-view.settings-master.master-property-placeholder")
+                readonly=readonly
+              }}
+            {{else}}
+              {{flexberry-dropdown
+                value=selectedProperty.masterPropertyName
+                readonly=readonly
+                items=masterProperties
+              }}
+            {{/if}}
+          </div>
+          <div class="five wide column light-text">
+            {{flexberry-checkbox
+              value=inputManually
               readonly=readonly
-              items=masterProperties
+              label=(t "components.fd-create-view.input-manually")
+              onChange=(action 'inputManuallyChanged')
             }}
           </div>
         </div>

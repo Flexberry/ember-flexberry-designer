@@ -1,5 +1,6 @@
 export default {
   caption: 'Редактировать представление',
+  'input-manually': 'Ввод вручную',
   'view': 'Представление',
   'class': 'Класс',
   'name-caption': 'Название представления',
