@@ -3,6 +3,10 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+## [0.15.0-beta.25]
+### Fixed
+* Fix type map.
+
 ## [0.15.0-beta.24]
 ### Added
 * Add Autoincrement on attribute table.
