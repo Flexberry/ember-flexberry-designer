@@ -315,7 +315,7 @@ joint.shapes.flexberry.uml.ClassView = joint.shapes.flexberry.uml.PrimitiveEleme
     this.$box.find('.class-name-input').on('focus', function(evt) {
       let $textarea = $(evt.currentTarget);
       let objectModel = this.model.get('objectModel');
-      if (objectModel.get('primitive.$type') === 'STORMCASE.STORMNET.Repository.CADClass, STORM.NET Case Tool plugin') {
+      if (objectModel.get('primitive.$type') === 'STORMCASE.STORMNET.Repository.CADClass, STORM.NETCaseToolPlugin') {
         let isCreated = objectModel.get('isCreated');
         $textarea.attr('readonly', !isCreated);
       }

@@ -350,7 +350,7 @@ export default FdBaseSheet.extend(
         let id = primitive.get('repositoryObject').slice(1, -1);
         let modelName;
         switch (primitive.get('primitive.$type')) {
-          case 'STORMCASE.STORMNET.Repository.CADClass, STORM.NET Case Tool plugin':
+          case 'STORMCASE.STORMNET.Repository.CADClass, STORM.NETCaseToolPlugin':
             modelName = 'fd-dev-class';
             break;
           case 'STORMCASE.UML.cad.Inheritance, UMLCAD':
@@ -625,7 +625,7 @@ export default FdBaseSheet.extend(
   */
   validateData(model) {
     let emptyClass = model.get('primitives').find((p) => {
-      return p.get('primitive.$type') === 'STORMCASE.STORMNET.Repository.CADClass, STORM.NET Case Tool plugin' && isBlank(p.get('name'));
+      return p.get('primitive.$type') === 'STORMCASE.STORMNET.Repository.CADClass, STORM.NETCaseToolPlugin' && isBlank(p.get('name'));
     });
 
     if (!isNone(emptyClass)) {
