@@ -3,6 +3,10 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+## [0.15.0-beta.26]
+### Fixed
+* Fix checkCorrectTypeMap bug.
+
 ## [0.15.0-beta.25]
 ### Fixed
 * Fix type map.

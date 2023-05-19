@@ -33,7 +33,8 @@ export function checkCorrectTypeMap(serialized) {
     serialized = correctTypeMap(serialized);
     let document = new DOMParser().parseFromString(serialized, 'text/xml');
     let parsererrorList = document.getElementsByTagName('parsererror');
-    if (parsererrorList.length > 0) {
+    isCorrect = parsererrorList.length === 0;
+    if (!isCorrect) {
       let parsererror = parsererrorList[0].outerText;
       isCorrect = isEmpty(parsererror);
     }
