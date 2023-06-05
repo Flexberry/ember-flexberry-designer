@@ -170,7 +170,7 @@ let getJsonForLink = function(typeName, startPrimitive, startPoint, endPrimitive
 */
 let getJsonForClass = function(devClass, location) {
   // Class properties.
-  let typeName = "STORMCASE.STORMNET.Repository.CADClass, STORM.NET Case Tool plugin"
+  let typeName = "STORMCASE.STORMNET.Repository.CADClass, STORM.NETCaseToolPlugin"
   let className = devClass.get('name') || '';
   let stereotype = devClass.get('stereotype') || '';
   let pk = devClass.get('id');

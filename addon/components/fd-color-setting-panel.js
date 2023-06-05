@@ -37,7 +37,7 @@ export default Component.extend(
     const objectModel = this.value.model.get('objectModel');
     const objectType = objectModel.get('primitive.$type');
 
-    return objectType === 'STORMCASE.STORMNET.Repository.CADClass, STORM.NET Case Tool plugin';
+    return objectType === 'STORMCASE.STORMNET.Repository.CADClass, STORM.NETCaseToolPlugin';
   }),
 
   stereotypeItems: computed('value.model.attributes.objectModel.stereotype', function() {

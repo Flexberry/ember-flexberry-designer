@@ -16,7 +16,7 @@ export default Service.extend({
     if (editedObject) {
       switch (editedObject.primitive ? editedObject.primitive.$type : editedObject.constructor.modelName) {
         case 'fd-dev-class':
-        case 'STORMCASE.STORMNET.Repository.CADClass, STORM.NET Case Tool plugin':
+        case 'STORMCASE.STORMNET.Repository.CADClass, STORM.NETCaseToolPlugin':
           return 'class';
         case 'fd-dev-aggregation':
         case 'STORMCASE.UML.cad.Aggregation, UMLCAD':

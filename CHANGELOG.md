@@ -3,6 +3,14 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+## [1.0.0-beta02]
+### Fixed
+* Merge version.
+
+## [1.0.0-beta01]
+### Fixed
+* Fix namespace class object for net 7.
+
 ## [0.15.0-beta.26]
 ### Fixed
 * Fix checkCorrectTypeMap bug.
