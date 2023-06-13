@@ -266,7 +266,7 @@ export default Controller.extend(FdShareFunctionMixin, {
       let syncPopup = $('.fd-sync-stage');
       syncPopup.popup({
         on: 'manual',
-        inline: true,
+        variation: 'mini',
         position: 'bottom center'
       }).popup('show');
 
@@ -275,7 +275,7 @@ export default Controller.extend(FdShareFunctionMixin, {
         popup.remove();
         syncPopup.popup({
           on: 'hover',
-          inline: true,
+          variation: 'mini',
           position: 'bottom center',
         });
       }), 5000);

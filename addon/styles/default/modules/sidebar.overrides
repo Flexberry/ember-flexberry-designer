@@ -142,10 +142,8 @@
     }
   }
 
-  .ui.sync.button {
-    &.need-sync {
-      border: 4px ridge red;
-    }
+  .need-sync.icon {
+    opacity: 0.6;
   }
 
   .item {

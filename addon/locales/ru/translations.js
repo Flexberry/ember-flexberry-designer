@@ -391,7 +391,7 @@ $.extend(true, translations, {
           'share-button-title': 'Копировать ссылку'
         },
         sync: {
-          'sync-button-data-content': 'Проект устарел, нужно взять последнюю версию!',
+          'sync-button-data-content': 'Есть изменения, нужно взять последнюю версию!',
           'sync-button-title': 'Обновить проект'
         }
       }
