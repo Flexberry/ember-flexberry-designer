@@ -102,6 +102,15 @@ export default Component.extend({
    */
   editButtonInRow: false,
 
+  /**
+    Flag: indicates whether show copy button in row.
+
+    @property copyButtonInRow
+    @type Boolean
+    @default false
+  */
+  copyButtonInRow: false,
+
   init() {
     this._super(...arguments);
 
