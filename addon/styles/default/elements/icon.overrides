@@ -13,3 +13,7 @@
 i.icon.sync.alternate::before {
   content: @SyncIcon;
 }
+
+i.icon.outline {
+  font-family: outline-icons;
+}

@@ -173,6 +173,21 @@ export default Component.extend(
     },
 
     /**
+      Method copy view.
+
+      @method actions.createView
+    */
+    copyView(view) {
+      let store = this.get('store');
+      let model = this.get('model');
+      let newView = store.createRecord('fd-dev-view', {
+        class: model,
+        definition: view.get('definition'),
+      });
+      this.send('openViewSheet', newView);
+    },
+
+    /**
       Method open view sheet.
 
       @method actions.openViewSheet

@@ -180,6 +180,19 @@ export default Component.extend({
       if (!isNone(editAction)) {
         editAction(value);
       }
+    },
+
+    /**
+      Method copy value from table.
+
+      @method createButtonInRowAction
+      @param {Object} value value.
+    */
+    copyButtonInRowAction(value) {
+      let copyAction = this.get('copy');
+      if (!isNone(copyAction)) {
+        copyAction(value);
+      }
     }
   }
 });
