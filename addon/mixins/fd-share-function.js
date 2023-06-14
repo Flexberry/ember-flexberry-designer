@@ -42,7 +42,7 @@ export default Mixin.create({
     let sharePopup = $(event.currentTarget);
     sharePopup.popup({
       on: 'manual',
-      inline: true,
+      variation: 'mini',
       position: 'bottom center',
     }).popup('show');
     this.set('copied', true);
