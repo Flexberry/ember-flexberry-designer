@@ -185,7 +185,7 @@ export default Component.extend({
     /**
       Method copy value from table.
 
-      @method createButtonInRowAction
+      @method copyButtonInRowAction
       @param {Object} value value.
     */
     copyButtonInRowAction(value) {

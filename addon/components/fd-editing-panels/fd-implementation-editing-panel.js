@@ -175,7 +175,7 @@ export default Component.extend(
     /**
       Method copy view.
 
-      @method actions.createView
+      @method actions.copyView
     */
     copyView(view) {
       let store = this.get('store');

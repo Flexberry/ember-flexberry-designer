@@ -49,16 +49,18 @@
           {{/if}}
         </div>
       {{/each}}
-      {{#if editButtonInRow}}
-        <div class="fd-edit-button-in-row display-flex">
+      <div class="fd-edit-button-in-row display-flex">
+        {{#if editButtonInRow}}
           <button class="ui basic button icon circular {{if readonlyButton 'disabled' ''}}" {{action 'editButtonInRowAction' value}}>
             <i class="icon edit outline"></i>
           </button>
-          <button class="ui basic button icon circular {{if readonlyButton 'disabled' ''}}" {{action 'copyButtonInRowAction' value}}>
+        {{/if}}
+        {{#if copyButtonInRow}}
+          <button class="ui basic button icon circular {{if readonlyButton "disabled"}}" {{action "copyButtonInRowAction" value}}>
             <i class="icon clone outline"></i>
           </button>
-        </div>
-      {{/if}}
+        {{/if}}
+      </div>
     </div>
   {{/if}}
 {{/each}}
