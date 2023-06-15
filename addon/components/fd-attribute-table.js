@@ -102,6 +102,15 @@ export default Component.extend({
    */
   editButtonInRow: false,
 
+  /**
+    Flag: indicates whether show copy button in row.
+
+    @property copyButtonInRow
+    @type Boolean
+    @default false
+  */
+  copyButtonInRow: false,
+
   init() {
     this._super(...arguments);
 
@@ -179,6 +188,19 @@ export default Component.extend({
       let editAction = this.get('edit');
       if (!isNone(editAction)) {
         editAction(value);
+      }
+    },
+
+    /**
+      Method copy value from table.
+
+      @method copyButtonInRowAction
+      @param {Object} value value.
+    */
+    copyButtonInRowAction(value) {
+      let copyAction = this.get('copy');
+      if (!isNone(copyAction)) {
+        copyAction(value);
       }
     }
   }

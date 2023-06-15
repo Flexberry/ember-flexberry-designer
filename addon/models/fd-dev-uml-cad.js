@@ -99,10 +99,10 @@ let Model = CADModel.extend(DevUMLCADMixin, {
 
       case 'STORMCASE.UML.cad.Class, UMLCAD': {
         let classObject = FdUmlClass.create({ primitive, isCreated: isBlank(primitive.Name.Text) });
-        classObject.set('primitive.$type', 'STORMCASE.STORMNET.Repository.CADClass, STORM.NET Case Tool plugin');
+        classObject.set('primitive.$type', 'STORMCASE.STORMNET.Repository.CADClass, STORM.NETCaseToolPlugin');
         return classObject;
       }
-      case 'STORMCASE.STORMNET.Repository.CADClass, STORM.NET Case Tool plugin':
+      case 'STORMCASE.STORMNET.Repository.CADClass, STORM.NETCaseToolPlugin':
         return FdUmlClass.create({ primitive, isCreated: isBlank(primitive.Name.Text) });
 
       case 'STORMCASE.UML.Common.NoteConnector, UMLCommon':

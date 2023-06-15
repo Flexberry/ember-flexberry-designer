@@ -904,7 +904,7 @@ export default Component.extend(
     let keyValue = objectModel.get(`${propName}.id`);
     let primitive = this.get('primitives').findBy('id', keyValue);
 
-    if (isNone(primitive) || primitive.get('primitive.$type') !== 'STORMCASE.STORMNET.Repository.CADClass, STORM.NET Case Tool plugin') {
+    if (isNone(primitive) || primitive.get('primitive.$type') !== 'STORMCASE.STORMNET.Repository.CADClass, STORM.NETCaseToolPlugin') {
       return;
     }
 
@@ -940,7 +940,7 @@ export default Component.extend(
     let repositoryObject = objectModel.get('repositoryObject');
     let isEmpty = false;
     if (isNone(repositoryObject)) {
-      if (objectModel.get('primitive.$type') === 'STORMCASE.STORMNET.Repository.CADClass, STORM.NET Case Tool plugin') {
+      if (objectModel.get('primitive.$type') === 'STORMCASE.STORMNET.Repository.CADClass, STORM.NETCaseToolPlugin') {
         isEmpty = true;
       } else {
         return;
@@ -1189,7 +1189,7 @@ export default Component.extend(
   _getModelName(type) {
     let modelName;
     switch (type) {
-      case 'STORMCASE.STORMNET.Repository.CADClass, STORM.NET Case Tool plugin':
+      case 'STORMCASE.STORMNET.Repository.CADClass, STORM.NETCaseToolPlugin':
         modelName = 'fd-dev-class';
         break;
       case 'STORMCASE.UML.cad.Association, UMLCAD':

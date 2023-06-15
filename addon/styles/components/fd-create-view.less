@@ -2,9 +2,24 @@
   margin: 0;
 
   > .row {
+    position: relative;
     margin: 0;
     padding-top: 0.3rem;
     padding-bottom: 0.3rem;
+
+    .property-image-wrapper {
+      position: absolute;
+      height: 20px;
+      top: calc(~'50% - 20px / 2');
+      text-align: center;
+      left: 0.7rem;
+      display: flex;
+      align-items: center;
+
+      .property-image {
+        width: 16px;
+      }
+    }
 
     &:first-child {
       border-top: none;

@@ -13,7 +13,12 @@
       {{#block-slot "content"}}
         {{#each typeMap as |dataType|}}
           <div class="title">
-            <i class="dropdown icon"></i>{{dataType.name}}
+            <i class="dropdown icon"></i>
+            <span>{{dataType.name}}</span>
+            
+            {{#unless dataType.hasMapping}}
+              <i title={{t "forms.fd-data-types-map.filling-error"}} class="exchange red alternate icon"></i>
+            {{/unless}}
           </div>
           <div class="content">
             {{#unless dataType.sqlOnly}}

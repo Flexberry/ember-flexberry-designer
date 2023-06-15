@@ -392,7 +392,7 @@ $.extend(true, translations, {
           'share-button-title': 'Copy link'
         },
         sync: {
-          'sync-button-data-content': 'The project is outdated, you need to take the latest version!',
+          'sync-button-data-content': 'There are changes, you need to take the latest version!',
           'sync-button-title': 'Update project'
         }
       }
