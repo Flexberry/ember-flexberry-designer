@@ -83,7 +83,7 @@
             {{t "components.fd-create-view.settings-master.master-property"}}
           </div>
           <div class="six wide column light-text">
-            {{#if inputManually}}
+            {{#if selectedProperty.inputManually}}
               {{flexberry-textbox
                 value=selectedProperty.masterPropertyName
                 class='fluid input'
@@ -91,16 +91,18 @@
                 readonly=readonly
               }}
             {{else}}
-              {{flexberry-dropdown
-                value=selectedProperty.masterPropertyName
-                readonly=readonly
-                items=masterProperties
-              }}
+              {{#if reInitMasterPropertiesDropdown}}
+                {{flexberry-dropdown
+                  items=masterProperties
+                  value=selectedProperty.masterPropertyName
+                  readonly=readonly
+                }}
+              {{/if}}
             {{/if}}
           </div>
           <div class="five wide column light-text">
             {{flexberry-checkbox
-              value=inputManually
+              value=selectedProperty.inputManually
               readonly=readonly
               label=(t "components.fd-create-view.input-manually")
               onChange=(action 'inputManuallyChanged')

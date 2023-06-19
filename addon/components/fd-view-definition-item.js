@@ -1,10 +1,11 @@
 import Component from '@ember/component';
-import { isNone, isBlank } from '@ember/utils';
+import { isNone, isBlank, isEmpty } from '@ember/utils';
 import { computed } from '@ember/object';
 import FdViewAttributesMaster from '../objects/fd-view-attributes-master';
 import FdViewAttributesDetail from '../objects/fd-view-attributes-detail';
 import layout from '../templates/components/fd-view-definition-item';
 import { inject as service } from '@ember/service';
+import { next } from '@ember/runloop';
 
 export default Component.extend({
   layout,
@@ -111,6 +112,26 @@ export default Component.extend({
     return selectedProperty === definition;
   }),
 
+  /**
+    Get inputManually checkbox value
+ 
+    @method getInputManuallyValue
+    @return {Boolean} If the value masterPropertyName is found in the master property list then `true`, else `false`.
+  */
+  getInputManuallyValue() {
+    const selectedMasterPropertyName = this.get('selectedProperty.masterPropertyName');
+    if (isEmpty(selectedMasterPropertyName)) {
+      return false;
+    }
+
+    const masterProperties = this.get('masterProperties');
+    if (masterProperties) {
+      const selectedMasterPropertyName = this.get('selectedProperty.masterPropertyName');
+      return masterProperties.filter(masterProperty => masterProperty === selectedMasterPropertyName).length === 0;
+    }
+    return false;
+  },
+
   actions: {
 
     /**
@@ -133,15 +154,12 @@ export default Component.extend({
     */
     selectedProperty(property) {
       let selectedProperty = this.get('selectedProperty');
-      const isPropertySelected = !isNone(selectedProperty);
-      const isSelectedPropertyChanged = !isNone(selectedProperty) && !isNone(property) && selectedProperty.get('name') !== property.get('name');
-
-      if (!isPropertySelected || isSelectedPropertyChanged) {
-        property.set('masterPropertyName', '');
-        this.setProperties({
-          selectedPropertyType: this.get('type'),
-          selectedProperty: property
-        });
+      if (selectedProperty !== property) {
+        this.set('selectedProperty', property);
+        this.set('selectedPropertyType', this.get('type'));
+        next(() => {
+          this.set('selectedProperty.inputManually', this.getInputManuallyValue());
+        })
       } else {
         this.set('selectedProperty', undefined);
         this.set('selectedPropertyType', undefined);
