@@ -11,8 +11,6 @@ export default Component.extend({
   layout,
   tagName: '',
 
-  store: service(),
-
   /**
     Classes data.
 

@@ -31,15 +31,6 @@ export default Component.extend(FdReadonlyModeMixin, {
   store: service(),
 
   /**
-   Service that get current project contexts.
-
-   @property currentProjectContext
-   @type {Class}
-   @default Ember.inject.service()
-  */
-  currentProjectContext: service('fd-current-project-context'),
-
-  /**
     Classes data.
 
     @property model
