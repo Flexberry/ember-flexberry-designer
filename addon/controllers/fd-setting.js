@@ -9,6 +9,7 @@ import { isNone, isBlank } from '@ember/utils';
 import { transliteration } from '../utils/fd-transliteration';
 import { set, computed } from '@ember/object';
 import { getOwner } from '@ember/application';
+import { later } from '@ember/runloop';
 
 import { SimplePredicate, ComplexPredicate } from 'ember-flexberry-data/query/predicate';
 import Builder from 'ember-flexberry-data/query/builder';
@@ -48,6 +49,15 @@ export default Controller.extend(FdSheetCloseConfirm, FdReadonlyProjectMixin, {
     @type Bool
   */
   accessIsPublic: true,
+
+  /**
+    Flag indicates icon button.
+
+    @property createBackup
+    @type Bool
+    @default false
+  */
+  createBackup: false,
 
   /**
     Table headers.
@@ -333,7 +343,17 @@ export default Controller.extend(FdSheetCloseConfirm, FdReadonlyProjectMixin, {
       const stage = this.get('currentProjectContext').getCurrentStage();
       const data = { project: stage };
 
-      adapter.callFunction('StageBackup', data, null, { withCredentials: true });
+      this.get('appState').loading();
+      adapter.callFunction('StageBackup', data, null, { withCredentials: true }).then(() => {
+        this.set('createBackup', true);
+        later(this, (function() {
+          this.set('createBackup', false);
+        }), 2000);
+      }).catch((error) => {
+        this.get('fdDialogService').showErrorMessage(error.message);
+      }).finally(() => {
+        this.get('appState').reset();
+      });
     },
 
     /**

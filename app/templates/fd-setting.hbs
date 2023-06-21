@@ -343,7 +343,11 @@
     <div class="row">
       <span>{{t "forms.fd-setting.project-actions.action-stage-caption"}}</span>
       <button class="ui button basic {{if readonlyModeProject 'disabled' ''}}" {{action "backup"}}>
-        {{t "forms.fd-setting.project-actions.backup-stage-button"}}
+        {{#if createBackup}}
+          <i class="check icon"></i>
+        {{else}}
+          {{t "forms.fd-setting.project-actions.backup-stage-button"}}
+        {{/if}}
       </button>
     </div>
     <div class="row">
