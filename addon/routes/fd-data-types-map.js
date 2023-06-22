@@ -111,12 +111,6 @@ export default Route.extend({
     this._super(...arguments);
 
     controller.set('routeName', this.get('routeName'));
-    if (!controller.correctTypeMaps()) {
-      this.get('appState').reset();
-      this.get('fdDialogService').showErrorMessage(this.get('i18n').t('forms.fd-data-types-map.parser-error').toString());
-
-      this.transitionTo('fd-setting');
-    }
   },
 
   /**

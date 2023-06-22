@@ -7,6 +7,7 @@ import { inject as service } from '@ember/service';
 import { resolve, reject } from 'rsvp';
 import { isNone, isBlank } from '@ember/utils';
 import { transliteration } from '../utils/fd-transliteration';
+import { checkCorrectTypeMap } from '../utils/transforms-utils/fd-type-map-functions';
 import { set, computed } from '@ember/object';
 import { getOwner } from '@ember/application';
 
@@ -40,6 +41,14 @@ export default Controller.extend(FdSheetCloseConfirm, FdReadonlyProjectMixin, {
     @type AppStateService
   */
   appState: service(),
+
+  /**
+    The stage for which the type map will be edited.
+
+    @property stage
+    @type FdDevStageModel
+  */
+    stage: computed.alias('model.stage'),
 
   /**
     Access value.
@@ -287,6 +296,26 @@ export default Controller.extend(FdSheetCloseConfirm, FdReadonlyProjectMixin, {
         this.get('appState').reset();
       });
     },
+
+    /**
+      Opens type map.
+
+      @method actions.openTypeMap
+    */
+      openTypeMap() {
+        let correctTypeMapCS = checkCorrectTypeMap(this.get('stage.typeMapCSStr'));
+        let correctTypeMapSQL = checkCorrectTypeMap(this.get('stage.typeMapSQLStr'));
+        let correctTypeMapPostgre = checkCorrectTypeMap(this.get('stage.typeMapPostgreStr'));
+        let correctTypeMapOracle = checkCorrectTypeMap(this.get('stage.typeMapOracleStr'));
+
+        if (correctTypeMapCS && correctTypeMapSQL && correctTypeMapPostgre && correctTypeMapOracle)
+        {
+          this.transitionToRoute('fd-data-types-map');
+        }
+        else {
+          this.get('fdDialogService').showErrorMessage(this.get('i18n').t('forms.fd-data-types-map.parser-error').toString());
+        }
+      },
 
     /**
       Create 'UserAccess'.
