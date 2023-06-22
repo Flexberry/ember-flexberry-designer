@@ -306,28 +306,22 @@ export default Component.extend(FdReadonlyModeMixin, {
       }
 
       let newDefinition;
-      if (get(node, 'parents').length > 1) {
-        newDefinition = FdViewAttributesProperty.create({
-          name: propertyName
-        });
-      } else {
-        switch (get(node, 'type')) {
-          case 'property':
-            newDefinition = FdViewAttributesProperty.create({
-              name: propertyName
-            });
-            break;
-          case 'master':
-            newDefinition = FdViewAttributesMaster.create({
-              name: propertyName
-            });
-            break;
-          case 'detail':
-            newDefinition = FdViewAttributesDetail.create({
-              name: propertyName
-            });
-            break;
-        }
+      switch (get(node, 'type')) {
+        case 'property':
+          newDefinition = FdViewAttributesProperty.create({
+            name: propertyName
+          });
+          break;
+        case 'master':
+          newDefinition = FdViewAttributesMaster.create({
+            name: propertyName
+          });
+          break;
+        case 'detail':
+          newDefinition = FdViewAttributesDetail.create({
+            name: propertyName
+          });
+          break;
       }
 
       let indexOfSelectedProperty = this.getIndexOfSelectedProperty();
