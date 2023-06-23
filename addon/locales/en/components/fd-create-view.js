@@ -1,5 +1,6 @@
 export default {
   caption: 'Edit view',
+  'input-manually': 'Input manually',
   'view': 'View',
   'class': 'Class',
   'name-caption': 'Name view',

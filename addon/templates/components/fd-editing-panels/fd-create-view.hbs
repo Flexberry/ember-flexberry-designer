@@ -35,6 +35,7 @@
             selectedProperty=selectedProperty
             selectedPropertyType=selectedPropertyType
             delete=(action 'deleteDefinitionItem')
+            masterProperties=masterProperties
             readonly=readonly
           }}
         {{/each}}
@@ -81,12 +82,30 @@
           <div class="five wide column">
             {{t "components.fd-create-view.settings-master.master-property"}}
           </div>
-          <div class="eleven wide column light-text">
-            {{flexberry-textbox
-              value=selectedProperty.masterPropertyName
-              class='fluid input'
-              placeholder=(t "components.fd-create-view.settings-master.master-property-placeholder")
+          <div class="six wide column light-text">
+            {{#if selectedProperty.inputManually}}
+              {{flexberry-textbox
+                value=selectedProperty.masterPropertyName
+                class='fluid input'
+                placeholder=(t "components.fd-create-view.settings-master.master-property-placeholder")
+                readonly=readonly
+              }}
+            {{else}}
+              {{#if reInitMasterPropertiesDropdown}}
+                {{flexberry-dropdown
+                  items=masterProperties
+                  value=selectedProperty.masterPropertyName
+                  readonly=readonly
+                }}
+              {{/if}}
+            {{/if}}
+          </div>
+          <div class="five wide column light-text">
+            {{flexberry-checkbox
+              value=selectedProperty.inputManually
               readonly=readonly
+              label=(t "components.fd-create-view.input-manually")
+              onChange=(action 'inputManuallyChanged')
             }}
           </div>
         </div>

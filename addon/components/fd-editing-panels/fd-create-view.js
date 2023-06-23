@@ -81,6 +81,14 @@ export default Component.extend(FdReadonlyModeMixin, {
   selectedProperty: undefined,
 
   /**
+    All properties of selected master.
+
+    @property masterProperties
+    @type Array
+  */
+  masterProperties: undefined,
+
+  /**
     Type selected attribute for editing.
 
     @property selectedPropertyType
@@ -95,6 +103,16 @@ export default Component.extend(FdReadonlyModeMixin, {
     @type Array
   */
   detailsViewArray: undefined,
+
+  /**
+    Need for reinit masterProperties dropdown after chenge masterProperties list values.
+
+    @property reInitMasterPropertiesDropdown
+    @type Boolean
+    @default true
+  */
+
+  reInitMasterPropertiesDropdown: true,
 
   /**
     Array View selectedProperty.
@@ -205,6 +223,10 @@ export default Component.extend(FdReadonlyModeMixin, {
     @method selectedPropertyObserver
   */
   selectedPropertyObserver: observer('selectedProperty', 'selectedProperty.lookupType', function() {
+    if (this.get('selectedProperty.lookupType') === 'standard') {
+      this.setMasterProperties(this.get('selectedProperty'));
+    }
+
     next(() => {
       let attrProp = $('.fd-attr-prop').outerHeight(true);
       let attrPropHeight = attrProp === undefined ? 0 : attrProp;
@@ -212,6 +234,30 @@ export default Component.extend(FdReadonlyModeMixin, {
       $('.fd-view-table-attr .overflow-panel').css('max-height', `calc( 100vh - ${elementsSheetHeight}px)`);
     });
   }),
+
+  /**
+    Sets available properties of selected master by its association in `masterPropertyName` dropdown
+    
+    @param {Object} property 
+    @returns 
+  */
+  setMasterProperties(property) {
+    if (isNone(property)) {
+      return;
+    }
+    const store = this.get('store');
+    const node = this.get('tree').find(node => node.name === property.get('name'));
+    if (node) {
+      let dataForBuildTree = getDataForBuildTree(store, node.idNode);
+      let childrenAttributes = getClassTreeNode(A(), dataForBuildTree.classes);
+
+      this.set('masterProperties', childrenAttributes.map(x => x.name));
+    }
+
+    // Need for reinit masterProperties dropdown after chenge masterProperties list values
+    this.set('reInitMasterPropertiesDropdown', false);
+    next(() => this.set('reInitMasterPropertiesDropdown', true));
+  },
 
   /**
     Set detailViewArray.
@@ -283,6 +329,14 @@ export default Component.extend(FdReadonlyModeMixin, {
   },
 
   actions: {
+    /**
+      Clear value for next choosing was correct.
+
+      @method actions.inputManuallyChanged
+    */
+    inputManuallyChanged() {
+      this.set('selectedProperty.masterPropertyName', '');
+    },
 
     /**
       Handle click button add node in definition.
