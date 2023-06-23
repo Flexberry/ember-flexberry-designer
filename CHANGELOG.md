@@ -3,6 +3,19 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+## [1.0.0-beta03]
+### Added
+* Add copy view button.
+
+### Changed
+* Update backup method.
+* Change master property on view form.
+
+### Fixed
+* Fix open typemap.
+* Fix add node in definition.
+* Fix sync button popup.
+
 ## [1.0.0-beta02]
 ### Fixed
 * Merge version.
