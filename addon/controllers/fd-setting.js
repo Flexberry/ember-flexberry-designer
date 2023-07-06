@@ -49,7 +49,7 @@ export default Controller.extend(FdSheetCloseConfirm, FdReadonlyProjectMixin, {
     @property stage
     @type FdDevStageModel
   */
-    stage: computed.alias('model.stage'),
+  stage: computed.alias('model.stage'),
 
   /**
     Access value.
