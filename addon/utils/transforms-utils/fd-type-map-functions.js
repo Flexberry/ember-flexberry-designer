@@ -38,6 +38,8 @@ export function checkCorrectTypeMap(serialized) {
       let parsererror = parsererrorList[0].outerText;
       isCorrect = isEmpty(parsererror);
     }
+  } else {
+    isCorrect = true;
   }
 
   return isCorrect;

@@ -366,6 +366,7 @@ export default FdBaseSheet.extend(
             modelName = 'fd-dev-realization';
             break;
           case 'STORMCASE.UML.cad.LinkInheritance, UMLCAD':
+          case 'STORMCASE.UML.cad.TemplateClass, UMLCAD':
             break;
           default:
             throw new Error(`Unsupported type: '${primitive.get('primitive.$type')}'.`);
