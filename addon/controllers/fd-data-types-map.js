@@ -47,20 +47,20 @@ export default Controller.extend(FdSheetCloseConfirm, FdReadonlyProjectMixin, {
   stage: computed.alias('model.stage'),
 
   /**
-    All classes with stereotype «type».
+    All classes with stereotype «type» of the current stage.
 
     @property types
     @type Ember.NativeArray
   */
-  types: computed.filterBy('model.classes', 'stereotype', '«type»'),
+  types: computed.filterBy('model.stage.classes', 'stereotype', '«type»'),
 
   /**
-    All classes with stereotype «typedef».
+    All classes with stereotype «typedef» of the current stage.
 
     @property typedefs
     @type Ember.NativeArray
   */
-  typedefs: computed.filterBy('model.classes', 'stereotype', '«typedef»'),
+  typedefs: computed.filterBy('model.stage.classes', 'stereotype', '«typedef»'),
 
   /**
     Combined type map.
