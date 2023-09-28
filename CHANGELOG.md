@@ -3,6 +3,10 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+## [1.0.0-beta05]
+### Fixed
+* Fix typemap after changing stages.
+
 ## [1.0.0-beta04]
 ### Fixed
 * Fix open typemap.
