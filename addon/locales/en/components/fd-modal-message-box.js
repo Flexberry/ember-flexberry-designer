@@ -2,6 +2,7 @@ export default {
   'error-caption': 'Error',
   'confirmation-caption': 'Confirmation form',
   'confirmation-text': 'Unsaved data exist. Save data before closing ?',
+  'confirmation-revert-text': 'Would you like to revert current changes?',
   'confirmation-approve': 'Save and close',
   'confirmation-deny': 'Close without saving',
   'custom-approve': 'Confirm action',
