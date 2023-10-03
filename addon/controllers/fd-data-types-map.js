@@ -11,7 +11,7 @@ import { A } from '@ember/array';
 import { isNone, isEmpty } from '@ember/utils';
 
 import FdDataType from '../objects/fd-data-type';
-import { deserialize, checkCorrectTypeMap } from '../utils/transforms-utils/fd-type-map-functions';
+import { deserialize, correctTypeMap, checkCorrectTypeMap } from '../utils/transforms-utils/fd-type-map-functions';
 import FdReadonlyProjectMixin from '../mixins/fd-readonly-project';
 import FdSheetCloseConfirm from '../mixins/fd-sheet-close-confirm';
 
@@ -243,11 +243,12 @@ export default Controller.extend(FdSheetCloseConfirm, FdReadonlyProjectMixin, {
       }
     });
 
+
     this.get('stage').setProperties({
-      typeMapCSStr: typeMapCS.length > 0 ? `<TypeMap>${typeMapCS.join('')}</TypeMap>` : null,
-      typeMapSQLStr: typeMapSQL.length > 0 ? `<TypeMap>${typeMapSQL.join('')}</TypeMap>` : null,
-      typeMapPostgreStr: typeMapPostgre.length > 0 ? `<TypeMap>${typeMapPostgre.join('')}</TypeMap>` : null,
-      typeMapOracleStr: typeMapOracle.length > 0 ? `<TypeMap>${typeMapOracle.join('')}</TypeMap>` : null,
+      typeMapCSStr: typeMapCS.length > 0 ? correctTypeMap(`<TypeMap>${typeMapCS.join('')}</TypeMap>`) : null,
+      typeMapSQLStr: typeMapSQL.length > 0 ? correctTypeMap(`<TypeMap>${typeMapSQL.join('')}</TypeMap>`) : null,
+      typeMapPostgreStr: typeMapPostgre.length > 0 ? correctTypeMap(`<TypeMap>${typeMapPostgre.join('')}</TypeMap>`) : null,
+      typeMapOracleStr: typeMapOracle.length > 0 ? correctTypeMap(`<TypeMap>${typeMapOracle.join('')}</TypeMap>`) : null,
     });
 
     return this.get('stage.hasDirtyAttributes');

@@ -12,14 +12,14 @@ import { isEmpty } from '@ember/utils';
   @method correctTypeMap
   @param {String} serialized Definition the type map in XML format.
 */
-let correctTypeMap = function(serialized) {
+export function correctTypeMap(serialized) {
   /* eslint-disable */
   serialized = serialized.replace(/((?<=value\=\"\S*)|(?<=assemblydll\=\"\S*))\</g, '&lt;');
   serialized = serialized.replace(/((?<=value\=\"\S*)|(?<=assemblydll\=\"\S*))\>/g, '&gt;');
   /* eslint-enable */
 
   return serialized;
-};
+}
 
 /**
   Checks for parsing a type map.
