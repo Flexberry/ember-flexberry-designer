@@ -11,7 +11,7 @@ import { A } from '@ember/array';
 import { isNone, isEmpty } from '@ember/utils';
 
 import FdDataType from '../objects/fd-data-type';
-import { deserialize, correctTypeMap, checkCorrectTypeMap } from '../utils/transforms-utils/fd-type-map-functions';
+import { deserialize, serialize, checkCorrectTypeMap } from '../utils/transforms-utils/fd-type-map-functions';
 import FdReadonlyProjectMixin from '../mixins/fd-readonly-project';
 import FdSheetCloseConfirm from '../mixins/fd-sheet-close-confirm';
 
@@ -235,20 +235,20 @@ export default Controller.extend(FdSheetCloseConfirm, FdReadonlyProjectMixin, {
     let typeMapOracle = [];
     this.get('typeMap').forEach((type) => {
       let { name, sql, postgre, oracle, sqlOnly } = type.getProperties('name', 'sql', 'postgre', 'oracle', 'sqlOnly');
-      typeMapSQL.push(`<${name} value="${sql || ''}" assemblydll="" />`);
-      typeMapPostgre.push(`<${name} value="${postgre || ''}" assemblydll="" />`);
-      typeMapOracle.push(`<${name} value="${oracle || ''}" assemblydll="" />`);
+      typeMapSQL.push({name: name, value: sql || '', assemblydll: ''});
+      typeMapPostgre.push({name: name, value: postgre || '', assemblydll: ''});
+      typeMapOracle.push({name: name, value: oracle || '', assemblydll: ''});
       if (!sqlOnly) {
-        typeMapCS.push(`<${name} value="${type.get('cs') || ''}" assemblydll="${type.get('assemblyDll') || ''}" />`);
+        typeMapCS.push({name: name, value: type.get('cs') || '', assemblydll: type.get('assemblyDll') || ''});
       }
     });
 
 
     this.get('stage').setProperties({
-      typeMapCSStr: typeMapCS.length > 0 ? correctTypeMap(`<TypeMap>${typeMapCS.join('')}</TypeMap>`) : null,
-      typeMapSQLStr: typeMapSQL.length > 0 ? correctTypeMap(`<TypeMap>${typeMapSQL.join('')}</TypeMap>`) : null,
-      typeMapPostgreStr: typeMapPostgre.length > 0 ? correctTypeMap(`<TypeMap>${typeMapPostgre.join('')}</TypeMap>`) : null,
-      typeMapOracleStr: typeMapOracle.length > 0 ? correctTypeMap(`<TypeMap>${typeMapOracle.join('')}</TypeMap>`) : null,
+      typeMapCSStr: serialize(typeMapCS),
+      typeMapSQLStr: serialize(typeMapSQL),
+      typeMapPostgreStr: serialize(typeMapPostgre),
+      typeMapOracleStr: serialize(typeMapOracle),
     });
 
     return this.get('stage.hasDirtyAttributes');
