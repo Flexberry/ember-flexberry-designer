@@ -3,6 +3,11 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+## [1.0.0-beta06]
+### Fixed
+* Fixed timezone if missing.
+* Fixed unsaved type map bug.
+
 ## [1.0.0-beta05]
 ### Fixed
 * Fix typemap after changing stages.
