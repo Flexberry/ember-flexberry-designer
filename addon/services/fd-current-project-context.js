@@ -338,6 +338,9 @@ export default Service.extend(FdReadonlyProjectMixin, Evented, {
       adapter.callFunction('GetStageLastChangeTime', data, null, { withCredentials: true }).then((result) => {
         if (!isNone(result.value)) {
           let momentDate = moment(result.value);
+          if (momentDate._tzm == 0) {
+            momentDate._tzm = -new Date().getTimezoneOffset();
+          }
           if (momentDate.isAfter(versionCurrentStage)) {
             this.trigger('NeedSyncStageTriggered');
           } else {
