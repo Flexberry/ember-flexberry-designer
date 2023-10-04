@@ -96,5 +96,5 @@ export function serialize(deserialized) {
     serialized.push(`<${type.name} value="${type.value}" assemblydll="${type.assemblyDll || ''}" />`);
   }
 
-  return serialized.length > 0 ? `<TypeMap>${serialized.join('')}</TypeMap>` : null;
+  return serialized.length > 0 ? correctTypeMap(`<TypeMap>${serialized.join('')}</TypeMap>`) : null;
 }
