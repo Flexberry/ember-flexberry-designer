@@ -240,7 +240,8 @@ export default Mixin.create({
           linkProperties.target,
           null,
           A(),
-          { Name: '' }
+          { Name: '' },
+          { NamePos: 0.0 }
         );
 
         let newTransitionObject = Connection.create({ primitive: jsonObject });
