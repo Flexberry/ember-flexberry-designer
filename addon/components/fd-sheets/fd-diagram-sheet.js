@@ -413,8 +413,8 @@ export default FdBaseSheet.extend(
           if (repObject) {
             if (repObject.get('isNew')) {
               repObject.set('nameStr', p.get('name'));
-            } else if (isBlank(repObject.get('name'))) {
-              repObject.set('name', repObject.get('nameStr'))
+            } else if (isBlank(repObject.get('name')) && repObject.updateName instanceof Function) {
+              repObject.updateName();
             }
 
             let stereotype = p.getWithDefault('stereotype', '').trim();
