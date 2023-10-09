@@ -3,6 +3,10 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+## [1.0.0-beta07]
+### Fixed
+* Fixed diagram saving when class name is missing.
+
 ## [1.0.0-beta06]
 ### Fixed
 * Fixed timezone if missing.
