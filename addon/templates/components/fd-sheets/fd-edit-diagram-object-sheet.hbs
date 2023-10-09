@@ -20,7 +20,7 @@
       maxlength=maxlength
     }}
   </div>
-  <div class="fd-sheet-body">
+  <div class="fd-sheet-body {{if readonlyMode "readonly"}}">
     {{#if (known-for-type (concat "fd-editing-panels/fd-" objectEditFormNamePart "-editing-panel" (if isLink '-link' '')))}}
       {{component (concat "fd-editing-panels/fd-" objectEditFormNamePart "-editing-panel" (if isLink '-link' ''))
         model=selectedValue

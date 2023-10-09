@@ -11,15 +11,20 @@
 @import 'components/fd-uml-diagram';
 @import 'components/fd-editform-control';
 
-.pushable,
-.full.height {
-  transition: background-color 1s;
+.full.height,
+.ui.vertical.menu,
+.ui.form .fd-search-input input[type="text"] {
+  transition: background-color 0.3s;
 }
 
-.pushable.fade,
 .pushable.fade .full.height,
 .content-mini.fade {
   background: @overlayColor;
+}
+
+.pushable.fade .ui.form .fd-search-input input[type="text"],
+.pushable.fade .ui.vertical.menu {
+  background: #E1E1ED;
 }
 
 h1 {

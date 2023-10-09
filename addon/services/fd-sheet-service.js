@@ -175,7 +175,7 @@ export default Service.extend(Evented, {
       this.toggleProperty(`sheetSettings.expanded.${sheetName}`);
     });
 
-    this.animatingSheetContent(sheetName, contentWidth, 600);
+    this.animatingSheetContent(sheetName, contentWidth, 300);
   },
 
   /**

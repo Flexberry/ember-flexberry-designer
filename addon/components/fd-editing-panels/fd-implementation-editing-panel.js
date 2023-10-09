@@ -80,6 +80,7 @@ export default Component.extend(
     deleteBtn: 'components.fd-attribute-table.storage.delete-btn',
   })),
 
+  storagesTableCaption: 'components.fd-attribute-table.storage.table-caption',
 
   /**
     Table headers for view.
@@ -112,6 +113,8 @@ export default Component.extend(
     createBtn: 'components.fd-attribute-table.view.create-btn',
     deleteBtn: 'components.fd-attribute-table.view.delete-btn',
   })),
+
+  viewsTableCaption: 'components.fd-attribute-table.view.table-caption',
 
   init() {
     this._super(...arguments);

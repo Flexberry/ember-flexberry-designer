@@ -58,6 +58,8 @@ export default Mixin.create({
     deleteBtn: 'components.fd-attribute-table.methods.delete-btn',
   },
 
+  methodsTableCaption: 'components.fd-attribute-table.methods.table-caption',
+
   actions: {
 
     /**

@@ -1,2 +1,2 @@
-@placeholderFocusColor: transparent;
-@placeholderColor: @lightTextColor;
+@placeholderFocusColor: @inputPlaceholderFocusColor;
+@placeholderColor: @inputPlaceholderColor;

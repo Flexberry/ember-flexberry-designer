@@ -277,14 +277,18 @@
   </div>
 
   {{fd-attribute-table
+    tableCaption=attributeTableCaption
     tableView=tableViewAttribute
     buttonCaption=attributeButton
     model=model.attributes
     create=(action 'createAttribute')
     readonly=readonly
+    edit=(action 'editAttribute')
+    editButtonInRow=true
   }}
 
   {{fd-attribute-table
+    tableCaption=methodsTableCaption
     tableView=tableViewMethods
     buttonCaption=methodsButton
     model=model.methods
@@ -293,6 +297,7 @@
   }}
 
   {{fd-attribute-table
+    tableCaption=viewsTableCaption
     tableView=tableViewForView
     buttonCaption=viewButton
     model=model.views
@@ -306,6 +311,7 @@
   }}
 
   {{fd-attribute-table
+    tableCaption=storagesTableCaption
     tableView=tableClassStorageTypes
     buttonCaption=classStorageTypesButton
     dropdownItemsObject=storagesItems.names

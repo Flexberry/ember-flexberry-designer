@@ -25,16 +25,16 @@
 /*-------------------
         Page
 --------------------*/
-@textColor           : rgba(0, 0, 0, 0.75);
-@lightTextColor      : rgba(0, 0, 0, 0.35);
+@textColor           : #3B4256;
+@lightTextColor      : fade(@textColor, 60%);
 @darkTextColor: @textColor;
 
 /* Input Text Color */
 @inputPlaceholderFocusColor: transparent;
-@inputPlaceholderColor: @lightTextColor;
+@inputPlaceholderColor: fade(@textColor, 35%);
 
 /* Цвет иконок сайдбара */
-@sidebarIconColor    : rgba(0, 0, 0, 0.50);
+@sidebarIconColor    : fade(@textColor, 75%);
 
 @headerHeight : 0px;
 @footerHeight : 40px;
@@ -50,28 +50,30 @@
 /*--------------------------------------
     ember flexberry designer colors
 ---------------------------------------*/
-@fdPrimaryColor: rgb(0, 0, 0);
+@primaryColor: #6355E0;
+@fdPrimaryColor: #E1E1ED;
+@green: #27BF37;
 
 /* Фон основной*/
 @fdSheetBg: @pageBackground;
 
 /* Текст кнопок тулбара */
-@toolbarButtonColor: @white;
+@toolbarButtonColor: fade(#3B4256, 75%);
 
 /* Фон сайдбара */
-@sidebarBg: fade(@fdPrimaryColor, 10%);
+@sidebarBg: fade(@fdPrimaryColor, 50%);
 
 /* Фон затемнение */
-@overlayColor: fade(@fdPrimaryColor, 15%);
+@overlayColor: fade(@fdPrimaryColor, 50%);
 
 @footerBackground: #eee;
 
 /* Фон кнопок тулбара */
-@toolbarButtonBackground: fade(@fdPrimaryColor, 25%);
+@toolbarButtonBackground: fade(@fdPrimaryColor, 50%);
 
 /* Цвет основных кнопок */
-@basicButtonColor: @lightTextColor;
-@basicButtonBoxShadow: @strongTransparentBlack;
+@basicButtonColor: fade(#3B4256, 85%);
+@basicButtonBoxShadow: fade(@textColor, 35%);
 
 @itemActiveBorderRadius: 0.5rem;
 

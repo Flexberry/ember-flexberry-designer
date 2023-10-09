@@ -1,80 +1,88 @@
-<div class="row">
-  {{#each tableView as |tableView|}}
-    <div class="{{if tableView.isCheckBox "one wide"}} column light-text fd-table-header">
-      {{t tableView.columnCaption}}
-    </div>
-  {{/each}}
-</div>
-
-{{#each model as |value|}}
-  {{#if (not value.isDeleted)}}
-    <div class="row">
-      {{#if checkboxInRow}}
-        <div class="column fd-table-checkbox">
-          {{flexberry-checkbox
-            onChange=(action 'selectValue' value)
-            readonly=readonly
-          }}
+{{#flexberry-toggler
+    caption=(t tableCaption)
+    expanded=true
+    class="table-toggler"
+}}
+  <div class="ui equal width grid fd-table">
+    {{#if toolbarVisible}}
+      <div class="row">
+        <div class="sixteen wide column buttons-row">
+          <button class="ui primary basic button table-btn {{if (or readonly readonlyButton) 'disabled' ''}}" {{action 'createValue'}}>
+            {{t buttonCaption.createBtn}}
+          </button>
+          <button class="ui basic button table-btn {{if (or readonly readonlyButton) 'disabled' ''}}" {{action 'deleteValue'}}>
+            <i class="icon icon-fd-checkbox-checked"></i>
+            {{t buttonCaption.deleteBtn}}
+          </button>
         </div>
-      {{/if}}
+      </div>
+    {{/if}}
+
+    <div class="row">
       {{#each tableView as |tableView|}}
-        <div class="{{if tableView.isCheckBox "one wide"}} column light-text">
-          {{#if tableView.isDropDown}}
-            {{flexberry-dropdown
-              items=dropdownItemsObject
-              value=(if (get value tableView.columnProperty) (get value tableView.columnProperty) '')
-              onChange=(action 'dropdownChangeValue' value)
-              class="fluid input"
-              readonly=(or readonly tableTextBoxReadonly)
-            }}
-          {{else if tableView.isCheckBox}}
-            {{flexberry-checkbox
-              readonly=(or readonly tableTextBoxReadonly)
-              value=(mut (get value tableView.columnProperty))
-            }}
-          {{else if tableView.isTextArea}}
-            {{flexberry-textarea
-              value=(mut (get value tableView.columnProperty))
-              class='fluid input'
-              placeholder=(t tableView.attrPlaceholder)
-              readonly=(or readonly tableTextBoxReadonly)
-            }}
-          {{else}}
-            {{flexberry-textbox
-              value=(mut (get value tableView.columnProperty))
-              class='fluid input'
-              placeholder=(t tableView.attrPlaceholder)
-              readonly=(or readonly tableTextBoxReadonly)
-            }}
-          {{/if}}
+        <div class="{{if tableView.isCheckBox "one wide"}} column light-text fd-table-header">
+          {{t tableView.columnCaption}}
         </div>
       {{/each}}
-      <div class="fd-edit-button-in-row display-flex">
-        {{#if editButtonInRow}}
-          <button class="ui basic button icon circular {{if readonlyButton 'disabled' ''}}" {{action 'editButtonInRowAction' value}}>
-            <i class="icon edit outline"></i>
-          </button>
-        {{/if}}
-        {{#if copyButtonInRow}}
-          <button class="ui basic button icon circular {{if readonlyButton "disabled"}}" {{action "copyButtonInRowAction" value}}>
-            <i class="icon clone outline"></i>
-          </button>
-        {{/if}}
-      </div>
     </div>
-  {{/if}}
-{{/each}}
 
-{{#if toolbarVisible}}
-  <div class="row">
-    <div class="sixteen wide column buttons-row">
-      <button class="ui basic button table-btn {{if (or readonly readonlyButton) 'disabled' ''}}" {{action 'createValue'}}>
-        {{t buttonCaption.createBtn}}
-      </button>
-      <button class="ui basic button table-btn {{if (or readonly readonlyButton) 'disabled' ''}}" {{action 'deleteValue'}}>
-        <i class="icon icon-fd-checkbox-checked"></i>
-        {{t buttonCaption.deleteBtn}}
-      </button>
-    </div>
+    {{#each model as |value|}}
+      {{#if (not value.isDeleted)}}
+        <div class="row">
+          {{#if checkboxInRow}}
+            <div class="column fd-table-checkbox">
+              {{flexberry-checkbox
+                onChange=(action 'selectValue' value)
+                readonly=readonly
+              }}
+            </div>
+          {{/if}}
+          {{#each tableView as |tableView|}}
+            <div class="{{if tableView.isCheckBox "one wide"}} column light-text">
+              {{#if tableView.isDropDown}}
+                {{flexberry-dropdown
+                  items=dropdownItemsObject
+                  value=(if (get value tableView.columnProperty) (get value tableView.columnProperty) '')
+                  onChange=(action 'dropdownChangeValue' value)
+                  class="fluid input"
+                  readonly=(or readonly tableTextBoxReadonly)
+                }}
+              {{else if tableView.isCheckBox}}
+                {{flexberry-checkbox
+                  readonly=(or readonly tableTextBoxReadonly)
+                  value=(mut (get value tableView.columnProperty))
+                }}
+              {{else if tableView.isTextArea}}
+                {{flexberry-textarea
+                  value=(mut (get value tableView.columnProperty))
+                  class='fluid input'
+                  placeholder=(t tableView.attrPlaceholder)
+                  readonly=(or readonly tableTextBoxReadonly)
+                }}
+              {{else}}
+                {{flexberry-textbox
+                  value=(mut (get value tableView.columnProperty))
+                  class='fluid input'
+                  placeholder=(t tableView.attrPlaceholder)
+                  readonly=(or readonly tableTextBoxReadonly)
+                }}
+              {{/if}}
+            </div>
+          {{/each}}
+          <div class="fd-edit-button-in-row display-flex">
+            {{#if editButtonInRow}}
+              <button class="ui basic button icon {{if readonlyButton 'disabled' ''}}" {{action 'editButtonInRowAction' value}}>
+                <i class="icon edit outline"></i>
+              </button>
+            {{/if}}
+            {{#if copyButtonInRow}}
+              <button class="ui basic button icon {{if readonlyButton "disabled"}}" {{action "copyButtonInRowAction" value}}>
+                <i class="icon clone outline"></i>
+              </button>
+            {{/if}}
+          </div>
+        </div>
+      {{/if}}
+    {{/each}}
   </div>
-{{/if}}
+{{/flexberry-toggler}}
