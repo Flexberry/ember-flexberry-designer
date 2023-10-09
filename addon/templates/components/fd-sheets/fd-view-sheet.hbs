@@ -21,7 +21,7 @@
       maxlength=maxlength
     }}
   </div>
-  <div class="fd-sheet-body {{if readonlyMode "readonly"}}">
+  <div class="fd-sheet-body {{if (and readonlyMode (not selectedValue.isNew)) "readonly"}}">
     {{fd-editing-panels/fd-create-view
       model=model
       view=selectedValue
