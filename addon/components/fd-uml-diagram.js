@@ -159,12 +159,14 @@ export default Component.extend(
       paper.setInteractivity(false);
       paper.off('element:pointermove', this._ghostElementMove, this);
       paper.off('element:pointerup', this._ghostElementRemove, this);
+      paper.clearGrid();
     } else {
       $(paper.el).find('input,textarea').removeClass('click-disabled');
       paper.setInteractivity({ elementMove: false, vertexAdd: false });
       paper.on('element:pointermove', this._ghostElementMove, this);
       paper.on('element:pointerup', this._ghostElementRemove, this);
       this._highlighted(null);
+      paper.drawGrid()
     }
   }),
 
@@ -732,6 +734,15 @@ export default Component.extend(
         }
 
         data.ghost.position(shiftedPositionX, shiftedPositionY);
+
+        if (data.childGhosts) {
+          data.childGhosts.forEach(childGhost => {
+            const childGhostX = shiftedPositionX + childGhost.highlightedElementShift.x;
+            const childGhostY = shiftedPositionY + childGhost.highlightedElementShift.y;
+
+            childGhost.position(childGhostX, childGhostY);
+          });
+        }
       }
     } else {
       let bbox = view.model.getBBox();
@@ -742,8 +753,9 @@ export default Component.extend(
           bbox.width += paramsWidth - 10;
         }
       }
-      let ghost = new joint.shapes.basic.Rect();
+      
 
+      var ghost = new joint.shapes.basic.Rect();
       ghost.attr({ rect: { 'fill': 'transparent', 'stroke': '#5755a1', 'stroke-dasharray': '4,4', 'stroke-width': 2 }});
       ghost.size({height: bbox.height, width: bbox.width});
       ghost.position(bbox.x, bbox.y);
@@ -755,6 +767,35 @@ export default Component.extend(
       evt.data.heightResize = button.hasClass('right-down-size-button') || button.hasClass('down-size-button');
       evt.data.prop = button.hasClass('prop');
       evt.data.shift = { x: bbox.x - x, y: bbox.y - y};
+
+      let highlightedElements = this.get('highlightedElements');
+      let childGhosts = A();
+
+      highlightedElements.forEach(highlightedElement => {
+        if (!highlightedElement.model.isLink() && view.id != highlightedElement.id) {
+          let childGhostBbox = highlightedElement.model.getBBox();
+          let childGhostRects = highlightedElement.model.getRectangles();
+          if (childGhostRects.length > 0) {
+            let paramsWidth = childGhostRects[0].element.attr('.flexberry-uml-params-rect/width');
+            if (paramsWidth !== undefined) {
+              childGhostBbox.width += paramsWidth - 10;
+            }
+          }
+
+          let ghostChild = new joint.shapes.basic.Rect();
+    
+          ghostChild.attr({ rect: { 'fill': 'transparent', 'stroke': '#5755a1', 'stroke-dasharray': '4,4', 'stroke-width': 2 }});
+          ghostChild.size({height: childGhostBbox.height, width: childGhostBbox.width});
+          ghostChild.position(childGhostBbox.x, childGhostBbox.y);
+          ghostChild.highlightedElementShift = { x: ghostChild.position().x - ghost.position().x, y: ghostChild.position().y - ghost.position().y};
+          ghostChild.mainObjectViewId = highlightedElement.model.id;
+    
+          highlightedElement.model.graph.addCell(ghostChild);
+          childGhosts.pushObject(ghostChild);
+        }
+      });
+
+      evt.data.childGhosts = childGhosts;
     }
   },
 
@@ -791,8 +832,29 @@ export default Component.extend(
 
         this._createHistoryRecord(view.model.get('id'), { field: 'position', oldValue: view.model.position(), newValue: { x: valueX, y: valueY }});
         view.model.position(valueX, valueY);
+
+        // Remove ghosts of annother selected classes.
+        if (data.childGhosts) {
+          data.childGhosts.forEach(childGhost => {
+            const mainObjectViewId = childGhost.mainObjectViewId;
+            let objectView = this.get('paper').model.getCell(mainObjectViewId);
+
+            this._createHistoryRecord(mainObjectViewId, { field: 'position', oldValue: objectView.position(), newValue: { x: valueX, y: valueY }});
+
+            const childGhostX = childGhost.position().x < 0 ? 0 : childGhost.position().x;
+            const childGhostY = childGhost.position().y < 0 ? 0 : childGhost.position().y;
+
+            objectView.position(childGhostX, childGhostY);
+
+            delete childGhost.highlightedElementShift;
+            delete childGhost.mainObjectViewId;
+
+            childGhost.remove();
+          });
+        }
       }
 
+      delete data.childGhosts;
       data.ghost.remove();
 
       let paper = view.paper;
