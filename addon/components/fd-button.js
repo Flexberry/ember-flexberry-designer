@@ -8,7 +8,7 @@ export default FlexberryButtonComponent.extend({
 
   iconClass: 'icon-fd-plus-thin',
 
-  classNames: ['basic circular'],
+  classNames: ['basic'],
 
   buttonType: 'button',
 

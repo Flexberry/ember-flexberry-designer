@@ -27,13 +27,13 @@
   {{#if toolbarVisible}}
     {{#if (and readonlyMode (not isNewModel))}}
       {{#if (not readonlyModeProject)}}
-        <button class="ui button fd-edit" {{action 'edit'}}>
+        <button class="ui positive button fd-edit" {{action 'edit'}}>
           {{t "components.fd-sheets-tool-bar.edit-caption"}}
         </button>
       {{/if}}
     {{else}}
       {{#if buttonVisible.save}}
-        <button class="ui button fd-save" {{action 'save'}}>
+        <button class="ui positive button fd-save" {{action 'save'}}>
           {{t "components.fd-sheets-tool-bar.save-caption"}}
         </button>
       {{/if}}

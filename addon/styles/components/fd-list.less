@@ -53,9 +53,10 @@
 		.title {
 			position: relative;
 			left: -1.6rem;
-			&.active {
-				margin-bottom: 1rem;
-			}
+		}
+
+		&:not(.table-toggler) .title.active {
+			margin-bottom: 1rem;
 		}
 
 		.flexberry-toggler-content {

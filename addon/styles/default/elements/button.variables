@@ -3,8 +3,9 @@
 @downColor: @toolbarButtonColor;
 @focusColor: @toolbarButtonColor;
 @backgroundColor: @toolbarButtonBackground;
-@borderRadius: 2rem;
+@borderRadius: 0.5rem;
 
+@basicFontWeight: 500;
 @basicTextColor: @basicButtonColor;
 @basicHoverTextColor: @basicButtonColor + rgba(0, 0, 0, 0.10);
 @basicDownTextColor: @basicButtonColor + rgba(0, 0, 0, 0.20);
@@ -18,6 +19,6 @@
 
 /* Кнопки тулбара */
 @fontWeight: normal;
-@verticalPadding: 0.5em;
+@verticalPadding: 0.625em;
 @hoverBackgroundColor: fadein(@toolbarButtonBackground, 10%);
 @downBackgroundColor: fadein(@toolbarButtonBackground, 20%);

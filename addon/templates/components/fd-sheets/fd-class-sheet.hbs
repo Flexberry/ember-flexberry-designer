@@ -22,7 +22,7 @@
       maxlength=maxlength
     }}
   </div>
-  <div class="fd-sheet-body">
+  <div class="fd-sheet-body {{if readonlyMode "readonly"}}">
     {{#if isAddMode}}
       {{fd-editing-panels/fd-create-entity
         createClassAction=createClass

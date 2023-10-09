@@ -13,7 +13,7 @@
   top: 0;
   width: 100%;
   .transform(translate3d(100%, 0, 0));
-  .transition(transform 1s ease);
+  .transition(transform 0.3s ease);
 
   &.expand {
     .transform(translate3d(0, 0, 0)) !important;
@@ -25,7 +25,7 @@
     position: relative;
     .display-flex();
     .flex-direction(column);
-    .transition(~'opacity 0.5s ease-in-out, background-color 1s');
+    .transition(~'opacity 0.2s ease-in-out, background-color 1s');
   }
 
   .fd-sheet-header {
@@ -47,6 +47,10 @@
   .ui.grid.fd-list > .row:first-child {
     border-top: @hr;
   }
+}
+
+.fd-sheet-body.readonly {
+  opacity: 0.6;
 }
 
 .fd-sheet-toolbar {

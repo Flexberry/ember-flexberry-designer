@@ -1,5 +1,6 @@
 export default {
   'attribute': {
+    'table-caption': 'Атрибуты',
     'value': 'Возможное значение',
     'value-placeholder': 'Введите возможное значение',
     'default-value': 'Значение по умолчанию',
@@ -21,6 +22,7 @@ export default {
     'autoincrement': 'Автоинкремент'
   },
   'view': {
+    'table-caption': 'Представления',
     'name': 'Имя представления',
     'name-placeholder': 'Введите имя',
     'description': 'Описание',
@@ -29,6 +31,7 @@ export default {
     'delete-btn': 'Удалить выбранные',
   },
   'methods': {
+    'table-caption': 'Методы',
     'name': 'Имя метода',
     'name-placeholder': 'Введите имя',
     'caption': 'Заголовок',
@@ -41,6 +44,7 @@ export default {
     'delete-btn': 'Удалить выбранные',
   },
   'storage': {
+    'table-caption': 'Хранилища',
     'name': 'Имя соединения',
     'name-placeholder': 'Введите имя соединения',
     'string': 'Строка соединения',

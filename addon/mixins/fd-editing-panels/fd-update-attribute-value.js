@@ -106,6 +106,8 @@ export default Mixin.create({
     deleteBtn: 'components.fd-attribute-table.attribute.delete-btn',
   },
 
+  attributeTableCaption: 'components.fd-attribute-table.attribute.table-caption',
+
   actions: {
 
     /**
@@ -121,6 +123,16 @@ export default Mixin.create({
         stored: true,
         accessModifier: RepositoryAccessModifier.Public
       });
-    }
+    },
+
+    /**
+      Method edit view.
+
+      @method actions.createView
+    */
+    editAttribute() {
+      let sheetComponentName = this.get('targetObject.sheetComponentName');
+      this.get('fdSheetService').expand(sheetComponentName);
+    },
   }
 });
