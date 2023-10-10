@@ -779,9 +779,9 @@ export default Component.extend(
 
       highlightedElements.forEach(highlightedElement => {
         const isLink = highlightedElement.model.isLink();
-        const isMainObject = view.id === highlightedElement.id;
+        const isMainObject = view.model.id === highlightedElement.model.id;
         const objectModel = highlightedElement.model.get('objectModel');
-        const isChildOfMainObject = !isNone(objectModel) && !isNone(objectModel.parentPrimitive) && objectModel.parentPrimitive === view.id;
+        const isChildOfMainObject = !isNone(objectModel) && !isNone(objectModel.parentPrimitive) && objectModel.parentPrimitive.id === view.model.id;
 
         if (!isLink && !isMainObject && !isChildOfMainObject) {
           let childGhostBbox = highlightedElement.model.getBBox();
