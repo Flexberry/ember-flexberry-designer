@@ -28,7 +28,9 @@
       </button>
       <div class="row">
         {{component (concat "fd-uml-diagram-toolbars/fd-" diagramType "-toolbar")
-        toolbarButtonClicked=(action "toolbarButtonClicked")}}
+          resetSelectObject=resetSelectObject
+          toolbarButtonClicked=(action "toolbarButtonClicked")
+        }}
       </div>
     </div>
   {{/if}}

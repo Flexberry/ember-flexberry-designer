@@ -4,7 +4,6 @@ import { computed } from '@ember/object';
 import FdViewAttributesMaster from '../objects/fd-view-attributes-master';
 import FdViewAttributesDetail from '../objects/fd-view-attributes-detail';
 import layout from '../templates/components/fd-view-definition-item';
-import { inject as service } from '@ember/service';
 import { next } from '@ember/runloop';
 
 export default Component.extend({
@@ -112,7 +111,7 @@ export default Component.extend({
 
   /**
     Get inputManually checkbox value
- 
+
     @method getInputManuallyValue
     @return {Boolean} If the value masterPropertyName is found in the master property list then `true`, else `false`.
   */

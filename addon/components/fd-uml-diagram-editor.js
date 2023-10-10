@@ -117,6 +117,14 @@ FdPopupActions, {
   isLinkAdding: false,
 
   /**
+    Reset select object from toolbar after add.
+
+    @property resetSelectObject
+    @type Boolean
+  */
+  resetSelectObject: false,
+
+  /**
     Сurrent pressed button.
 
     @property currentTargetElement
@@ -385,18 +393,18 @@ FdPopupActions, {
       if (type === 'Link') {
         let newLink = this.get('newLink');
         if (isNone(newLink)) {
-          this.clearData();
+          this.clearData(true);
         } else if (newLink.vertices().length === 0) {
           let primitives = this.get('model.primitives');
           let linkPrimitive = primitives.findBy('id', newLink.get('id'));
           primitives.removeObject(linkPrimitive);
-          this.clearData();
+          this.clearData(true);
           return true;
         } else {
           newLink.removeVertex(-1);
         }
       } else if (type === 'Object') {
-        this.clearData();
+        this.clearData(true);
       }
 
       return false;
@@ -409,7 +417,7 @@ FdPopupActions, {
      */
     pointerClick() {
       if (!this.get('isLinkAdding')) {
-        this.clearData();
+        this.clearData(true);
       }
     },
 
@@ -512,12 +520,17 @@ FdPopupActions, {
     Resets data for create elements.
 
     @method clearData
+    @param {Boolean} surely necessarily clear data.
   */
-  clearData() {
-    this._clearProperties();
-    this._resetCurrentTargetElement();
-    this.enableEditLinks();
-    this.paper.fDDEditMode = 'pointerClick';
+  clearData(surely) {
+    if (!this.get('resetSelectObject') || surely) {
+      this._clearProperties();
+      this._resetCurrentTargetElement();
+      this.enableEditLinks();
+      this.paper.fDDEditMode = 'pointerClick';
+    } else {
+      this.set('newLink', undefined);
+    }
   },
 
   /**
