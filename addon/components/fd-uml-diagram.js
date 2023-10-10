@@ -724,21 +724,28 @@ export default Component.extend(
       } else {
 
         //get border for embed element move restriction. [minX, maxX, minY, maxY]
-        let ghostMoveBorder = view.model.get('ghostMoveBorder');
+        const ghostMoveBorder = view.model.get('ghostMoveBorder');
 
         if (!isNone(ghostMoveBorder)) {
-          shiftedPositionX = shiftedPositionX < ghostMoveBorder[0] ? ghostMoveBorder[0] : shiftedPositionX;
-          shiftedPositionX = shiftedPositionX > ghostMoveBorder[1] ? ghostMoveBorder[1] : shiftedPositionX;
-          shiftedPositionY = shiftedPositionY < ghostMoveBorder[2] ? ghostMoveBorder[2] : shiftedPositionY;
-          shiftedPositionY = shiftedPositionY > ghostMoveBorder[3] ? ghostMoveBorder[3] : shiftedPositionY;
+          const limitedPosition = this._limitPositionWithBorders({ x: shiftedPositionX, y: shiftedPositionY }, ghostMoveBorder);
+          shiftedPositionX = limitedPosition.x;
+          shiftedPositionY = limitedPosition.y;
         }
 
         data.ghost.position(shiftedPositionX, shiftedPositionY);
 
         if (data.childGhosts) {
           data.childGhosts.forEach(childGhost => {
-            const childGhostX = shiftedPositionX + childGhost.highlightedElementShift.x;
-            const childGhostY = shiftedPositionY + childGhost.highlightedElementShift.y;
+            let childGhostX = shiftedPositionX + childGhost.highlightedElementShift.x;
+            let childGhostY = shiftedPositionY + childGhost.highlightedElementShift.y;
+
+            const childGhostMoveBorder = childGhost.model.get('ghostMoveBorder');
+
+            if (!isNone(childGhostMoveBorder)) {
+              const limitedPosition = this._limitPositionWithBorders({ x: childGhostX, y: childGhostY}, childGhostMoveBorder);
+              childGhostX = limitedPosition.x;
+              childGhostY = limitedPosition.y;
+            }
 
             childGhost.position(childGhostX, childGhostY);
           });
@@ -754,7 +761,6 @@ export default Component.extend(
         }
       }
       
-
       var ghost = new joint.shapes.basic.Rect();
       ghost.attr({ rect: { 'fill': 'transparent', 'stroke': '#5755a1', 'stroke-dasharray': '4,4', 'stroke-width': 2 }});
       ghost.size({height: bbox.height, width: bbox.width});
@@ -772,7 +778,12 @@ export default Component.extend(
       let childGhosts = A();
 
       highlightedElements.forEach(highlightedElement => {
-        if (!highlightedElement.model.isLink() && view.id != highlightedElement.id) {
+        const isLink = highlightedElement.model.isLink();
+        const isMainObject = view.id === highlightedElement.id;
+        const objectModel = highlightedElement.model.get('objectModel');
+        const isChildOfMainObject = !isNone(objectModel) && !isNone(objectModel.parentPrimitive) && objectModel.parentPrimitive === view.id;
+
+        if (!isLink && !isMainObject && !isChildOfMainObject) {
           let childGhostBbox = highlightedElement.model.getBBox();
           let childGhostRects = highlightedElement.model.getRectangles();
           if (childGhostRects.length > 0) {
@@ -788,7 +799,7 @@ export default Component.extend(
           ghostChild.size({height: childGhostBbox.height, width: childGhostBbox.width});
           ghostChild.position(childGhostBbox.x, childGhostBbox.y);
           ghostChild.highlightedElementShift = { x: ghostChild.position().x - ghost.position().x, y: ghostChild.position().y - ghost.position().y};
-          ghostChild.mainObjectViewId = highlightedElement.model.id;
+          ghostChild.model = highlightedElement.model;
     
           highlightedElement.model.graph.addCell(ghostChild);
           childGhosts.pushObject(ghostChild);
@@ -810,6 +821,9 @@ export default Component.extend(
   */
   _ghostElementRemove(view, evt, x, y) {
     let data = evt.data;
+    var links = A();
+    var paper = view.paper;
+
     if (data.ghost) {
       if (data.widthResize || data.heightResize) {
         let newSize = data.ghost.size();
@@ -821,13 +835,12 @@ export default Component.extend(
         let valueY = y + shift.y < 0 ? 0 : y + shift.y;
 
         //get border for embed element move restriction. [minX, maxX, minY, maxY]
-        let ghostMoveBorder = view.model.get('ghostMoveBorder');
+        const ghostMoveBorder = view.model.get('ghostMoveBorder');
 
         if (!isNone(ghostMoveBorder)) {
-          valueX = valueX < ghostMoveBorder[0] ? ghostMoveBorder[0] : valueX;
-          valueX = valueX > ghostMoveBorder[1] ? ghostMoveBorder[1] : valueX;
-          valueY = valueY < ghostMoveBorder[2] ? ghostMoveBorder[2] : valueY;
-          valueY = valueY > ghostMoveBorder[3] ? ghostMoveBorder[3] : valueY;
+          const limitedPosition = this._limitPositionWithBorders({ x: valueX, y: valueY }, ghostMoveBorder);
+          valueX = limitedPosition.x;
+          valueY = limitedPosition.y;
         }
 
         this._createHistoryRecord(view.model.get('id'), { field: 'position', oldValue: view.model.position(), newValue: { x: valueX, y: valueY }});
@@ -836,18 +849,26 @@ export default Component.extend(
         // Remove ghosts of annother selected classes.
         if (data.childGhosts) {
           data.childGhosts.forEach(childGhost => {
-            const mainObjectViewId = childGhost.mainObjectViewId;
-            let objectView = this.get('paper').model.getCell(mainObjectViewId);
+            let objectView = childGhost.model;
 
-            this._createHistoryRecord(mainObjectViewId, { field: 'position', oldValue: objectView.position(), newValue: { x: valueX, y: valueY }});
+            this._createHistoryRecord(objectView.id, { field: 'position', oldValue: objectView.position(), newValue: { x: valueX, y: valueY }});
 
-            const childGhostX = childGhost.position().x < 0 ? 0 : childGhost.position().x;
-            const childGhostY = childGhost.position().y < 0 ? 0 : childGhost.position().y;
+            let childGhostX = childGhost.position().x < 0 ? 0 : childGhost.position().x;
+            let childGhostY = childGhost.position().y < 0 ? 0 : childGhost.position().y;
+
+            const childGhostMoveBorder = objectView.get('ghostMoveBorder');
+
+            if (!isNone(childGhostMoveBorder)) {
+              const limitedPosition = this._limitPositionWithBorders({ x: valueX, y: valueY }, childGhostMoveBorder);
+              valueX = limitedPosition.x;
+              valueY = limitedPosition.y;
+            }
 
             objectView.position(childGhostX, childGhostY);
+            links = links.concat(paper.model.getConnectedLinks(objectView));
 
             delete childGhost.highlightedElementShift;
-            delete childGhost.mainObjectViewId;
+            delete childGhost.model;
 
             childGhost.remove();
           });
@@ -857,15 +878,13 @@ export default Component.extend(
       delete data.childGhosts;
       data.ghost.remove();
 
-      let paper = view.paper;
-      let links = paper.model.getConnectedLinks(view.model);
+      links = links.concat(paper.model.getConnectedLinks(view.model));
       links.forEach((link)=> {
         let linkView = paper.findViewByModel(link);
         linkView.updateBox();
         linkView.update();
       });
 
-      view.highlight();
       paper.$el.focus();
     }
   },
@@ -1459,6 +1478,24 @@ export default Component.extend(
 
     }
     return false;
-  }
+  },
 
+  /**
+    Limit element position in border. For example move swimline separator ghost in parent.
+
+    @method _updateEmptylink
+    @param {Object} currentPosition current x and y.
+    @param {Array} borders borders coordinates.
+   */
+  _limitPositionWithBorders: function(currentPosition, borders) {
+    let x = currentPosition.x;
+    let y = currentPosition.y;
+
+    x = x < borders[0] ? borders[0] : x;
+    x = x > borders[1] ? borders[1] : x;
+    y = y < borders[2] ? borders[2] : y;
+    y = y > borders[3] ? borders[3] : y;
+
+    return { x: x, y: y};
+  }
 });
