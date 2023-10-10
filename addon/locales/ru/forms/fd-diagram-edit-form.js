@@ -7,6 +7,7 @@ export default {
     'diagram-properties-header': 'Свойства диаграммы',
     'primitive-properties-header': 'Свойства примитива',
     'add-primitive-header': 'Добавить примитивы',
+    'reset-select-object': 'Не сбрасывать выбор инструмента',
     'add-primitive': {
       'add-class': 'Класс',
       'add-association': 'Ассоциация',

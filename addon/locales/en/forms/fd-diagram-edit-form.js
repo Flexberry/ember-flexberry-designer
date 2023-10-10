@@ -7,6 +7,7 @@ export default {
     'diagram-properties-header': 'Diagram properties',
     'primitive-properties-header': 'Primitive properties',
     'add-primitive-header': 'Add primitive',
+    'reset-select-object': 'Do not reset tool selection',
     'add-primitive': {
       'add-class': 'Class',
       'add-association': 'Association',
