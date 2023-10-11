@@ -1,6 +1,7 @@
 import { Promise, all } from 'rsvp';
 import { getOwner } from '@ember/application';
 import { A } from '@ember/array';
+import { isNone } from '@ember/utils';
 import moment from 'moment';
 import { SimplePredicate } from 'ember-flexberry-data/query/predicate';
 import Builder from 'ember-flexberry-data/query/builder';
@@ -71,10 +72,9 @@ export default function fdPreloadStageMetadata(store, stagePk) {
       let changeDateValue = allDiagrams.map((d) => d.get('changeDate'));
 
       let changeDateStage = stageObj.get('changeDate');
-      const offset = moment(changeDateStage).utcOffset();
-      let currentVersion = moment(changeDateStage).subtract(offset, 'm');
+      let currentVersion = normalizeChangeDate(changeDateStage);
       changeDateValue.forEach((changeDate) => {
-        let momentDate = moment(changeDate).subtract(offset, 'm');
+        const momentDate = normalizeChangeDate(changeDate);
         if (momentDate.isAfter(currentVersion)) {
           currentVersion = momentDate;
         }
@@ -85,4 +85,17 @@ export default function fdPreloadStageMetadata(store, stagePk) {
       return resolve();
     }, reject);
   });
+}
+
+/**
+  Normalizes timezone of the date and returns moment object.
+ */
+export function normalizeChangeDate(date) {
+  let momentDate = moment(date);
+  if (isNone(momentDate._tzm) || momentDate._tzm === 0) {
+    const offset = momentDate.utcOffset();
+    momentDate = momentDate.subtract(offset, 'm');
+  }
+
+  return momentDate;
 }
