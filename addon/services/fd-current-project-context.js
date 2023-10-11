@@ -7,13 +7,13 @@ import { assert } from '@ember/debug';
 import { Promise, resolve } from 'rsvp';
 import { isNone } from '@ember/utils';
 
-import moment from 'moment';
 import Evented from '@ember/object/evented';
 import { SimplePredicate, ComplexPredicate } from 'ember-flexberry-data/query/predicate';
 import Builder from 'ember-flexberry-data/query/builder';
 import Condition from 'ember-flexberry-data/query/condition';
 import FilterOperator from 'ember-flexberry-data/query/filter-operator';
 import FdReadonlyProjectMixin from '../mixins/fd-readonly-project';
+import { normalizeChangeDate } from '../utils/fd-preload-stage-metadata';
 
 /**
   Service allows to save current application context.
@@ -337,10 +337,8 @@ export default Service.extend(FdReadonlyProjectMixin, Evented, {
 
       adapter.callFunction('GetStageLastChangeTime', data, null, { withCredentials: true }).then((result) => {
         if (!isNone(result.value)) {
-          let momentDate = moment(result.value);
-          if (momentDate._tzm == 0) {
-            momentDate._tzm = -new Date().getTimezoneOffset();
-          }
+          const momentDate = normalizeChangeDate(result.value);
+
           if (momentDate.isAfter(versionCurrentStage)) {
             this.trigger('NeedSyncStageTriggered');
           } else {
