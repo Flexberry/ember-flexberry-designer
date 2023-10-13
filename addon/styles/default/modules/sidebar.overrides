@@ -1,4 +1,3 @@
-@sidebarMiniWidth: 60px;
 @import '../../components/common/toggle-button';
 
 .pushable {
@@ -29,7 +28,7 @@
   border-radius: @itemActiveBorderRadius;
   border-top-left-radius: 0;
   border-bottom-left-radius: 0;
-  left: 60px;
+  left: @sidebarMiniWidth;
   transition: opacity 500ms step-end;
   z-index: 10;
 
@@ -120,16 +119,8 @@
 
   .item .icon {
     color: @sidebarIconColor;
-    font-size: 1rem;
+    font-size: 1.25rem;
     margin: 0em 0.5rem 0em 0em;
-    min-height: 1.125em;
-  }
-
-  .ui.share.button {
-    background-color: transparent;
-    &:hover .icon {
-      color: fadein(@sidebarIconColor, 10%);
-    }
   }
 
   .need-sync.icon {
@@ -164,7 +155,6 @@
       font-size: 0;
       width: 18px;
       padding: 11px;
-      margin: 0.2rem auto;
       box-sizing: content-box;
 
       .icon {
@@ -178,8 +168,6 @@
   }
 
   &.visible {
-    width: @sidebarWdth;
-
     .item {
       font-size: 1rem;
     }
@@ -244,27 +232,23 @@
   padding: 3.5rem;
 }
 
-.sidebar-mini {
-  .sidebar-sync-panel {
-    flex-direction: column;
-  }
-}
-
-.ui.button.sync.fd-sync-stage {
-  background-color: transparent;
+.sidebar-mini .sidebar-sync-panel {
+  flex-direction: column;
 }
 
 .sidebar-sync-panel {
   display: flex;
   align-items: center;
+  margin-bottom: 0.25rem;
+  gap: 0.5rem;
+}
 
-  .panel-item {
-    flex: 0 0 auto;
+.ui.sidebar:not(.sidebar-mini) .sidebar-sync-panel {
+  padding-left: 1.9rem;
+}
 
-    .text {
-      padding-right: 0.2rem;
-      padding-left: 1.9rem;
-      color: @lightTextColor;
-    }
-  }
+.ui.sidebar.main.menu .item .sidebar-sync-panel .ui.button.icon {
+  padding: 0;
+  background-color: transparent;
+  margin: 0;
 }

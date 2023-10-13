@@ -7,12 +7,11 @@
     {{#if toolbarVisible}}
       <div class="row">
         <div class="sixteen wide column buttons-row">
-          <button class="ui primary basic button table-btn {{if (or readonly readonlyButton) 'disabled' ''}}" {{action 'createValue'}}>
-            {{t buttonCaption.createBtn}}
+          <button class="ui primary basic button table-btn {{if (or readonly readonlyButton) "disabled"}}" {{action "createValue"}}>
+            <i class="icon-guideline-plus icon"></i>{{t buttonCaption.createBtn}}
           </button>
-          <button class="ui basic button table-btn {{if (or readonly readonlyButton) 'disabled' ''}}" {{action 'deleteValue'}}>
-            <i class="icon icon-fd-checkbox-checked"></i>
-            {{t buttonCaption.deleteBtn}}
+          <button class="ui icon basic button table-btn {{if (or readonly readonlyButton (eq selectedValues.length 0)) "disabled"}}" {{action "deleteValue"}} title="{{t buttonCaption.deleteBtn}}">
+            <i class="icon-guideline-delete icon"></i>
           </button>
         </div>
       </div>
@@ -72,12 +71,12 @@
           <div class="fd-edit-button-in-row display-flex">
             {{#if editButtonInRow}}
               <button class="ui basic button icon {{if readonlyButton 'disabled' ''}}" {{action 'editButtonInRowAction' value}}>
-                <i class="icon edit outline"></i>
+                <i class="icon icon-guideline-edit"></i>
               </button>
             {{/if}}
             {{#if copyButtonInRow}}
               <button class="ui basic button icon {{if readonlyButton "disabled"}}" {{action "copyButtonInRowAction" value}}>
-                <i class="icon clone outline"></i>
+                <i class="icon icon-guideline-copy"></i>
               </button>
             {{/if}}
           </div>

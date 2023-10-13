@@ -3,7 +3,7 @@
 --------------------*/
 
 @fontName          : 'Roboto';
-@googleFontSizes   : '300,400,700,400italic,700italic';
+@googleFontSizes   : '300,400,500,700,400italic,700italic';
 
 @veryStrongTransparentWhite: rgba(255, 255, 255, 0.65);
 /*-------------------
@@ -22,6 +22,7 @@
 
 /* The size of page text  */
 @fontSize : 16px;
+@iconWidth: 1em;
 
 /*-------------------
         Links
@@ -53,6 +54,8 @@
 /* Кнопки тулбара */
 @toolbarBtnsmargin: unit((5 / 18), em);
 
+@sidebarMiniWidth: 60px;
+
 /*--------------------------------------
     ember flexberry designer colors
 ---------------------------------------*/
@@ -64,7 +67,8 @@
 @fdSheetBg: @pageBackground;
 
 /* Текст кнопок тулбара */
-@toolbarButtonColor: fade(#3B4256, 75%);
+@toolbarButtonColor: fade(@textColor, 75%);
+@hoveredTextColor: @textColor;
 
 /* Фон сайдбара */
 @sidebarBg: fade(@fdPrimaryColor, 50%);
@@ -78,7 +82,7 @@
 @toolbarButtonBackground: fade(@fdPrimaryColor, 50%);
 
 /* Цвет основных кнопок */
-@basicButtonColor: fade(#3B4256, 85%);
+@basicButtonColor: fade(@textColor, 85%);
 @basicButtonBoxShadow: fade(@textColor, 35%);
 
 @itemActiveBorderRadius: 0.5rem;
