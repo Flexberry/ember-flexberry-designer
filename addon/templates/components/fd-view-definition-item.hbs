@@ -17,7 +17,7 @@
         <img class="property-image" alt="attribute" src="assets/images/attribute.bmp">
       </div>
     {{/if}}
-    <div class="thirteen wide column">
+    <div class="twelve wide column">
       {{flexberry-textbox
         value=definition.name
         readonly=true
@@ -25,12 +25,12 @@
         placeholder=(t "components.fd-view-definition-item.name-placeholder")
       }}
     </div>
-    <div class="three wide column right aligned buttons">
-      <button class="super-mini ui basic button icon circular {{if readonly 'disabled' ''}}" {{action 'changeVisible' bubbles=false}}>
-        <i class="{{if definition.visible 'eye' 'icon-fd-eye'}} icon"></i>
+    <div class="four wide column right aligned buttons">
+      <button class="ui basic button icon {{if readonly 'disabled' ''}}" {{action 'changeVisible' bubbles=false}}>
+        <i class="{{if definition.visible 'icon-guideline-show' 'icon-guideline-hide'}} icon"></i>
       </button>
-      <button class="super-mini ui basic button icon circular {{if readonly 'disabled' ''}}" {{action delete definition bubbles=false}}>
-        <i class="icon-fd-x-mark icon"></i>
+      <button class="ui basic button icon {{if readonly 'disabled' ''}}" {{action delete definition bubbles=false}}>
+        <i class="icon-guideline-delete icon"></i>
       </button>
     </div>
     <div class="sixteen wide column">
