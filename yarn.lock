@@ -3727,6 +3727,14 @@ ember-cli-version-checker@^2.0.0, ember-cli-version-checker@^2.1.0, ember-cli-ve
     resolve "^1.3.3"
     semver "^5.3.0"
 
+ember-cli-version-checker@^3.1.2:
+  version "3.1.3"
+  resolved "https://registry.yarnpkg.com/ember-cli-version-checker/-/ember-cli-version-checker-3.1.3.tgz#7c9b4f5ff30fdebcd480b1c06c4de43bb51c522c"
+  integrity sha512-PZNSvpzwWgv68hcXxyjREpj3WWb81A7rtYNQq1lLEgrWIchF8ApKJjWP3NBpHjaatwILkZAV8klair5WFlXAKg==
+  dependencies:
+    resolve-package-path "^1.2.6"
+    semver "^5.6.0"
+
 ember-cli@~3.1.3:
   version "3.1.4"
   resolved "https://registry.yarnpkg.com/ember-cli/-/ember-cli-3.1.4.tgz#95f7ff4302d535619b5d5ff1c7040877a67d4468"
@@ -3902,24 +3910,30 @@ ember-factory-for-polyfill@^1.3.1:
   dependencies:
     ember-cli-version-checker "^2.1.0"
 
-ember-flexberry-data@~3.4.0-beta.0:
-  version "3.4.0"
-  resolved "https://registry.yarnpkg.com/ember-flexberry-data/-/ember-flexberry-data-3.4.0.tgz#2e9f9b6eb92b69f5df59bd21050b22c388fce034"
-  integrity sha512-bGGISMlPKAsT+hd0to7F/dtMIIs8zQSV1007Q/GeqGxRi+TNXK6HoIetroT9DuW0W0qpRM42IcPrwPNXi84pnw==
+ember-flexberry-data@3.10.0:
+  version "3.10.0"
+  resolved "https://registry.yarnpkg.com/ember-flexberry-data/-/ember-flexberry-data-3.10.0.tgz#0a7acc3a19fa5806bfd5f20c0df14cae31875049"
+  integrity sha512-d9OyxHMmTS78/pGSBRZxcI2Q6a1IbJfTD3VfmhHPYMg5GwB/MfqJtGc9kutouWJI8rxjFjj7ZgdRbBR72KjOXg==
   dependencies:
     ember-cli-babel "^6.6.0"
     ember-cli-htmlbars "^2.0.1"
 
-ember-flexberry@3.4.0-beta.0:
-  version "3.4.0-beta.0"
-  resolved "https://registry.yarnpkg.com/ember-flexberry/-/ember-flexberry-3.4.0-beta.0.tgz#1f36da1163a0bc85705d2a6608ee6bbcbd0eee11"
-  integrity sha512-2aAZMG29RvIuLErPTMn4AOEgkD+lxCZwXDKqSOYMRTF3lkeK1JH9+m/NRsl8U1YfUZBAh5ZqwTffQCtdNC1CUQ==
+ember-flexberry-themes@0.3.0-beta.2:
+  version "0.3.0-beta.2"
+  resolved "https://registry.yarnpkg.com/ember-flexberry-themes/-/ember-flexberry-themes-0.3.0-beta.2.tgz#6b0c9d08c4358817139313286420f1bb682717a0"
+  integrity sha512-0fE4L87itnTZ8JYFv5Lgb60QGvi23baymxrzR08xbWUaSOO3mIY3Psvz1Pwhpcy5Yj9C3ClOyie33EeFu/jD/A==
+
+ember-flexberry@3.10.1:
+  version "3.10.1"
+  resolved "https://registry.yarnpkg.com/ember-flexberry/-/ember-flexberry-3.10.1.tgz#b51be44c463ad38198c362b9b6b704c31293b0f0"
+  integrity sha512-YhuQnCKZqrRlhyzQDqM1onuDriDso+WhORKzmPsHHy45pc8+yg+XXAnTCvMUZkFHgnzAdbeBfBMYNA46YHe3kA==
   dependencies:
     ember-cli-babel "^6.6.0"
     ember-cli-htmlbars "^2.0.1"
-    ember-flexberry-data "~3.4.0-beta.0"
+    ember-flexberry-data "3.10.0"
+    ember-flexberry-themes "0.3.0-beta.2"
     ember-i18n "5.2.1"
-    ember-i18n-cp-validations "~3.1.0"
+    ember-test-selectors "2.1.0"
     ember-truth-helpers "2.0.0"
     flatpickr "4.6.1"
     lodash "^4.4.0"
@@ -3938,12 +3952,6 @@ ember-getowner-polyfill@^2.0.1, ember-getowner-polyfill@^2.2.0:
   dependencies:
     ember-cli-version-checker "^2.1.0"
     ember-factory-for-polyfill "^1.3.1"
-
-ember-i18n-cp-validations@~3.1.0:
-  version "3.1.0"
-  resolved "https://registry.yarnpkg.com/ember-i18n-cp-validations/-/ember-i18n-cp-validations-3.1.0.tgz#e66c4b032e6546b3358f4a48690a3e503a411965"
-  dependencies:
-    ember-cli-babel "^6.6.0"
 
 ember-i18n@5.2.1:
   version "5.2.1"
@@ -4124,6 +4132,14 @@ ember-string-ishtmlsafe-polyfill@^2.0.0:
   resolved "https://registry.yarnpkg.com/ember-string-ishtmlsafe-polyfill/-/ember-string-ishtmlsafe-polyfill-2.0.2.tgz#f7c1beb2fcb95599f499af41772477284b16ed74"
   dependencies:
     ember-cli-version-checker "^2.1.0"
+
+ember-test-selectors@2.1.0:
+  version "2.1.0"
+  resolved "https://registry.yarnpkg.com/ember-test-selectors/-/ember-test-selectors-2.1.0.tgz#faebdf06702aaa0bc510d55eb721ce54d2e85793"
+  integrity sha512-c5HmvefmeABH8hg380TSNZiE9VAK1CBeXWrgyXy+IXHtsew4lZHHw7GnqCAqsakxwvmaMARbAKY9KfSAE91s1g==
+  dependencies:
+    ember-cli-babel "^6.8.2"
+    ember-cli-version-checker "^3.1.2"
 
 ember-truth-helpers@2.0.0:
   version "2.0.0"
@@ -7643,6 +7659,14 @@ resolve-package-path@^1.0.11:
     path-root "^0.1.1"
     resolve "^1.10.0"
 
+resolve-package-path@^1.2.6:
+  version "1.2.7"
+  resolved "https://registry.yarnpkg.com/resolve-package-path/-/resolve-package-path-1.2.7.tgz#2a7bc37ad96865e239330e3102c31322847e652e"
+  integrity sha512-fVEKHGeK85bGbVFuwO9o1aU0n3vqQGrezPc51JGu9UTXpFQfWq5qCeKxyaRUSvephs+06c5j5rPq/dzHGEo8+Q==
+  dependencies:
+    path-root "^0.1.1"
+    resolve "^1.10.0"
+
 resolve-url@^0.2.1:
   version "0.2.1"
   resolved "https://registry.yarnpkg.com/resolve-url/-/resolve-url-0.2.1.tgz#2c637fe77c893afd2a663fe21aa9080068e2052a"
@@ -7804,6 +7828,11 @@ semver@^5.5.1:
   version "5.7.1"
   resolved "https://registry.yarnpkg.com/semver/-/semver-5.7.1.tgz#a954f931aeba508d307bbf069eff0c01c96116f7"
   integrity sha512-sauaDf/PZdVgrLTNYHRtpXa1iRiKcaebiKQ1BJdpQlWH2lCvexQdX55snPFyK7QzpudqbCI0qXFfOasHdyNDGQ==
+
+semver@^5.6.0:
+  version "5.7.2"
+  resolved "https://registry.yarnpkg.com/semver/-/semver-5.7.2.tgz#48d55db737c3287cd4835e17fa13feace1c41ef8"
+  integrity sha512-cBznnQ9KjJqU67B52RMC65CMarK2600WFnbkcaiwWq3xy/5haFJlshgnpjovMVJ+Hff49d8GEn0b87C5pDQ10g==
 
 semver@^6.3.0:
   version "6.3.0"
