@@ -143,41 +143,41 @@ export default Component.extend(FdReadonlyModeMixin, {
     @property tree
     @type Object
   */
-    tree: computed('model.name', 'model.attributes.@each.{hasDirtyAttributes,isNew}', function() {
-      let model = this.get('model');
-      if (isNone(model)) {
-        return null;
-      }
-  
-      let store = this.get('store');
-  
-      // Get attributes tree current class.
-      let dataForBuildTree = getDataForBuildTree(store, model.get('id'));
-  
-      // Set attributes tree.
-      let treeEmpty = [
-  
-        // Attribute - choose all.
-        FdAttributesTree.create({
-          text: '*',
-          name: '*',
-          type: 'property',
-        })
-      ];
-  
-      let treeAttributes = getClassTreeNode(treeEmpty, dataForBuildTree.classes);
-      let treeMasters = getAssociationTreeNode(treeAttributes, dataForBuildTree.associations, 'node_');
-      let treeDetails = getAggregationTreeNode(treeMasters, dataForBuildTree.aggregations);
-      this.setDetailView(dataForBuildTree.aggregations);
-  
-      
-      getExternalTreeNode(treeDetails, dataForBuildTree.externalParent, getOwner(this).lookup('adapter:application')).then(treeNodes => {
-        const jstree = this.get('treeObject').jstree(true);
-        jstree.refresh();
-      });
-  
-      return treeDetails;
-    }),
+  tree: computed('model.name', 'model.attributes.@each.{hasDirtyAttributes,isNew}', function() {
+    let model = this.get('model');
+    if (isNone(model)) {
+      return null;
+    }
+
+    let store = this.get('store');
+
+    // Get attributes tree current class.
+    let dataForBuildTree = getDataForBuildTree(store, model.get('id'));
+
+    // Set attributes tree.
+    let treeEmpty = [
+
+      // Attribute - choose all.
+      FdAttributesTree.create({
+        text: '*',
+        name: '*',
+        type: 'property',
+      })
+    ];
+
+    let treeAttributes = getClassTreeNode(treeEmpty, dataForBuildTree.classes);
+    let treeMasters = getAssociationTreeNode(treeAttributes, dataForBuildTree.associations, 'node_');
+    let treeDetails = getAggregationTreeNode(treeMasters, dataForBuildTree.aggregations);
+    this.setDetailView(dataForBuildTree.aggregations);
+
+    
+    getExternalTreeNode(treeDetails, dataForBuildTree.externalParent, getOwner(this).lookup('adapter:application')).then(treeNodes => {
+      const jstree = this.get('treeObject').jstree(true);
+      jstree.refresh();
+    });
+
+    return treeDetails;
+  }),
 
   /**
     Clear propertys.
