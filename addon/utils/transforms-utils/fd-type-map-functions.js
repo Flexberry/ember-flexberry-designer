@@ -92,8 +92,8 @@ export function deserialize(serialized) {
 export function serialize(deserialized) {
   let serialized = [];
   for (let i = 0; i < deserialized.length; i++) {
-    let type = getProperties(deserialized[i], 'name', 'value', 'assemblyDll');
-    serialized.push(`<${type.name} value="${type.value}" assemblydll="${type.assemblyDll || ''}" />`);
+    let type = getProperties(deserialized[i], 'name', 'value', 'assemblydll');
+    serialized.push(`<${type.name} value="${type.value}" assemblydll="${type.assemblydll || ''}" />`);
   }
 
   return serialized.length > 0 ? correctTypeMap(`<TypeMap>${serialized.join('')}</TypeMap>`) : null;
