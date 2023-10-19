@@ -747,7 +747,10 @@ export default FdBaseSheet.extend(
     */
     delete(confirmation) {
       if (isNone(confirmation)) {
-        this.get('fdDialogService').showVerificationMessage(this.get('i18n').t('components.fd-modal-message-box.delete-text').toString(), this.get('actions.delete'), this);
+        let i18n = this.get('i18n');
+        this.get('fdDialogService').showVerificationMessage(
+          i18n.t('components.fd-diagram-editing-panel.delete-confirm-message', { diagramName: this.get('selectedValue.data.name') }),
+          this.get('actions.delete'), this);
         return;
       }
 
