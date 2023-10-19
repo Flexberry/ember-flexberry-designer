@@ -1,5 +1,7 @@
 import { isNone } from '@ember/utils';
 import { A } from '@ember/array';
+import { resolve } from 'rsvp';
+import { get } from '@ember/object';
 
 import FdAttributesTree from '../objects/fd-attributes-tree';
 import FdViewAttributesMaster from '../objects/fd-view-attributes-master';
@@ -27,6 +29,8 @@ let getDataForBuildTree = function(store, id) {
   let recordsInheritance = store.peekAll('fd-dev-inheritance');
   let inheritanceData = recordsInheritance.filterBy('child.id', id);
 
+  let externalParentId;
+
   while (inheritanceData.length > 0) {
     let parentID = null;
     for (let i = 0; i < inheritanceData.length; i++) {
@@ -34,11 +38,13 @@ let getDataForBuildTree = function(store, id) {
       let parentStereotype = inheritance.get('parent.stereotype');
       if (isNone(parentStereotype) || parentStereotype === '«implementation»') {
         parentID = inheritance.get('parent.id');
-        classData.pushObjects(recordsDevClass.filterBy('id', parentID));
+        classData.pushObject(recordsDevClass.findBy('id', parentID));
         associationData.pushObjects(recordsAssociation.filterBy('endClass.id', parentID));
         associationData.pushObjects(recordsAggregation.filterBy('endClass.id', parentID));
         aggregationData.pushObjects(recordsAggregation.filterBy('startClass.id', parentID));
-      } //TODO else if (parentStereotype === '«external»') {}
+      } else if (parentStereotype === '«external»') {
+        externalParentId = inheritance.get('parent.id');
+      }
     }
 
     if (!isNone(parentID)) {
@@ -51,7 +57,8 @@ let getDataForBuildTree = function(store, id) {
   return {
     classes: classData,
     associations: associationData,
-    aggregations: aggregationData
+    aggregations: aggregationData,
+    externalParent: externalParentId
   };
 };
 
@@ -335,6 +342,71 @@ let getTreeNodeByNotUsedAggregation = function (aggregationData, view, addInText
 };
 
 /**
+  Create tree node for external class attributes.
+*/
+let getExternalTreeNode = function (tree, externalId, adapter) {
+  let externalTree = A();
+
+  if (isNone(externalId)) {
+    return resolve(tree);
+  }
+
+  return adapter.callFunction('GetClassAttributesExternal', { classGuid: externalId }, null, { withCredentials: true }).then(({value}) => {
+    const attributes = JSON.parse(value);
+    attributes.forEach((attribute) => {
+      const text = get(attribute, 'name');
+
+      externalTree.push(FdAttributesTree.create({
+        text: text,
+        name: text,
+        type: 'property',
+        typeNode: get(attribute, 'type'),
+        idNode: externalId,
+        own: false,
+        external: true,
+      }));
+    });
+
+    if (externalTree.length > 0) {
+      const resultTree = sortingByName(externalTree);
+
+      tree.push(...resultTree);
+    }
+
+    externalTree = A();
+
+    return adapter.callFunction('GetClassMastersExternal', { classGuid: externalId }, null, { withCredentials: true }).then(({value}) => {
+      const masters = JSON.parse(value);
+      masters.forEach((master) => {
+        const masterName = get(master, 'name');
+        const masterId = get(master, 'id');
+    
+        externalTree.push(FdAttributesTree.create({
+          text: masterName,
+          name: masterName,
+          type: 'master',
+          typeNode: 'master',
+          idNode: masterId,
+          own: false,
+          external: true,
+          state: {
+            loaded: false
+          }
+        }));
+      });
+
+      if (externalTree.length > 0) {
+        const resultTree = sortingByName(externalTree);
+  
+        tree.push(...resultTree);
+      }
+
+      return tree;     
+    });
+  });
+};
+
+/**
   Method for find association and class by propertyName.
 */
 let parsingPropertyName = function (store, dataObject, propertyName) {
@@ -395,5 +467,6 @@ export {
   getTreeNodeByNotUsedAttributes,
   getTreeNodeByNotUsedAssociation,
   getTreeNodeByNotUsedAggregation,
-  parsingPropertyName
+  parsingPropertyName,
+  getExternalTreeNode
 };
