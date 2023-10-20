@@ -3,12 +3,13 @@ import { inject as service } from '@ember/service';
 import { computed, get, observer } from '@ember/object';
 import { isNone } from '@ember/utils';
 import { A } from '@ember/array';
+import { getOwner } from '@ember/application';
 import FdAttributesTree from '../../objects/fd-attributes-tree';
 import FdViewAttributesProperty from '../../objects/fd-view-attributes-property';
 import FdViewAttributesMaster from '../../objects/fd-view-attributes-master';
 import FdViewAttributesDetail from '../../objects/fd-view-attributes-detail';
 import FdReadonlyModeMixin from '../../mixins/fd-editing-panels/fd-readonly-mode';
-import { getDataForBuildTree, getClassTreeNode, getAssociationTreeNode, getAggregationTreeNode, getDetailView } from '../../utils/fd-attributes-for-tree';
+import { getDataForBuildTree, getClassTreeNode, getAssociationTreeNode, getAggregationTreeNode, getDetailView, getExternalTreeNode } from '../../utils/fd-attributes-for-tree';
 import layout from '../../templates/components/fd-editing-panels/fd-create-view';
 import $ from 'jquery';
 import { next } from '@ember/runloop';
@@ -169,6 +170,12 @@ export default Component.extend(FdReadonlyModeMixin, {
     let treeDetails = getAggregationTreeNode(treeMasters, dataForBuildTree.aggregations);
     this.setDetailView(dataForBuildTree.aggregations);
 
+    
+    getExternalTreeNode(treeDetails, dataForBuildTree.externalParent, getOwner(this).lookup('adapter:application')).then(treeNodes => {
+      const jstree = this.get('treeObject').jstree(true);
+      jstree.refresh();
+    });
+
     return treeDetails;
   }),
 
@@ -274,13 +281,21 @@ export default Component.extend(FdReadonlyModeMixin, {
 
     @method loadDataNode
   */
-  loadDataNode: function(node, store) {
+  _loadDataNode: function(node, store) {
+    if (get(node, 'external')) {
+      return getExternalTreeNode(A(), get(node, 'idNode'), getOwner(this).lookup('adapter:application'));
+    }
+
     let dataForBuildTree = getDataForBuildTree(store, get(node, 'idNode'));
     let childrenAttributes = getClassTreeNode(A(), dataForBuildTree.classes);
     let childrenNode = getAssociationTreeNode(childrenAttributes, dataForBuildTree.associations, get(node, 'id'));
 
-    return childrenNode;
+    return getExternalTreeNode(childrenNode, dataForBuildTree.externalParent, getOwner(this).lookup('adapter:application'));
   },
+
+  loadDataNode: computed(function() {
+    return this._loadDataNode.bind(this);
+  }),
 
   /**
     Create propertyName for view.
