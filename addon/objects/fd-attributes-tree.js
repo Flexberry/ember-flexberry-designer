@@ -95,7 +95,7 @@ export default EmberObject.extend({
   /**
     Is this node external.
 
-    @property own
+    @property external
     @type Boolean
   */
   external: false,
