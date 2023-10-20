@@ -90,5 +90,13 @@ export default EmberObject.extend({
     @property state
     @type Object
   */
-  state: undefined
+  state: undefined,
+
+  /**
+    Is this node external.
+
+    @property own
+    @type Boolean
+  */
+  external: false,
 });

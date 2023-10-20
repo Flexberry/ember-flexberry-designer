@@ -352,7 +352,7 @@ let getExternalTreeNode = function (tree, externalId, adapter) {
   }
 
   return adapter.callFunction('GetClassAttributesExternal', { classGuid: externalId }, null, { withCredentials: true }).then(({value}) => {
-    const attributes = JSON.parse(value);
+    const {attributes, masters} = JSON.parse(value);
     attributes.forEach((attribute) => {
       const text = get(attribute, 'name');
 
@@ -375,34 +375,31 @@ let getExternalTreeNode = function (tree, externalId, adapter) {
 
     externalTree = A();
 
-    return adapter.callFunction('GetClassMastersExternal', { classGuid: externalId }, null, { withCredentials: true }).then(({value}) => {
-      const masters = JSON.parse(value);
-      masters.forEach((master) => {
-        const masterName = get(master, 'name');
-        const masterId = get(master, 'id');
-    
-        externalTree.push(FdAttributesTree.create({
-          text: masterName,
-          name: masterName,
-          type: 'master',
-          typeNode: 'master',
-          idNode: masterId,
-          own: false,
-          external: true,
-          state: {
-            loaded: false
-          }
-        }));
-      });
-
-      if (externalTree.length > 0) {
-        const resultTree = sortingByName(externalTree);
+    masters.forEach((master) => {
+      const masterName = get(master, 'name');
+      const masterId = get(master, 'id');
   
-        tree.push(...resultTree);
-      }
-
-      return tree;     
+      externalTree.push(FdAttributesTree.create({
+        text: masterName,
+        name: masterName,
+        type: 'master',
+        typeNode: 'master',
+        idNode: masterId,
+        own: false,
+        external: true,
+        state: {
+          loaded: false
+        }
+      }));
     });
+
+    if (externalTree.length > 0) {
+      const resultTree = sortingByName(externalTree);
+
+      tree.push(...resultTree);
+    }
+
+    return tree;
   });
 };
 
