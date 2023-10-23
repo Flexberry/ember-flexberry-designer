@@ -190,7 +190,9 @@ let updateAttributesStr = function(classObject) {
     }
   });
 
-  classObject.set('attributesStr', newAttributesStr);
+  if (!isBlank(newAttributesStr)) {
+    classObject.set('attributesStr', newAttributesStr);
+  }
 };
 
 /**
