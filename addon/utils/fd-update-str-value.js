@@ -190,7 +190,9 @@ let updateAttributesStr = function(classObject) {
     }
   });
 
-  if (!isBlank(newAttributesStr) || classObject.get('attributes').length > 0) {
+  let changedAttributes = classObject.get('attributes').filterBy('hasDirtyAttributes');
+
+  if (!isBlank(newAttributesStr) || changedAttributes.length > 0) {
     classObject.set('attributesStr', newAttributesStr);
   }
 };
