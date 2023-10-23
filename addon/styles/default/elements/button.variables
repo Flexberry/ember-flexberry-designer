@@ -6,7 +6,7 @@
 
 @downColor: @toolbarButtonColor;
 @focusColor: @toolbarButtonColor;
-@backgroundColor: @toolbarButtonBackground;
+@backgroundColor: @fdToolbarButtonBackground;
 @hoverBackgroundColor: fadein(@backgroundColor, 30%);
 @downBackgroundColor: fadein(@backgroundColor, 30%);
 @borderRadius: 0.5rem;
