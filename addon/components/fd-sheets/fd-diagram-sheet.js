@@ -372,7 +372,14 @@ export default FdBaseSheet.extend(
             throw new Error(`Unsupported type: '${primitive.get('primitive.$type')}'.`);
         }
 
-        store.peekRecord(modelName, id).rollbackAll();
+        let record = store.peekRecord(modelName, id);
+        if (!isNone(record)) {
+          if (record.get('isNew')) {
+            record.unloadRecord();
+          } else {
+            record.rollbackAll();
+          }
+        }
       });
 
       model.rollbackAll();
