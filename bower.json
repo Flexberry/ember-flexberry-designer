@@ -8,7 +8,6 @@
     "js-beautify": "1.6.4",
     "seiyria-bootstrap-slider": "6.0.6",
     "semantic-ui": "2.2.14",
-    "semantic-ui-daterangepicker": "5d46ed2e6e5a0bf398bb6a5df82e06036dfc46be",
     "moment": "~2.22.0"
   },
   "resolutions": {
