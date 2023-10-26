@@ -190,7 +190,11 @@ let updateAttributesStr = function(classObject) {
     }
   });
 
-  classObject.set('attributesStr', newAttributesStr);
+  let changedAttributes = classObject.get('attributes').filterBy('hasDirtyAttributes');
+
+  if (!isBlank(newAttributesStr) || changedAttributes.length > 0) {
+    classObject.set('attributesStr', newAttributesStr);
+  }
 };
 
 /**
@@ -227,7 +231,11 @@ let updateMethodsStr = function(classObject) {
     }
   });
 
-  classObject.set('methodsStr', newMethodsStr);
+  let changedMethods= classObject.get('methods').filterBy('hasDirtyAttributes');
+
+  if (!isBlank(newMethodsStr) || changedMethods.length > 0) {
+    classObject.set('methodsStr', newMethodsStr);
+  }
 };
 
 /**
