@@ -276,49 +276,68 @@
     {{/flexberry-toggler}}
   </div>
 
-  {{fd-attribute-table
-    tableCaption=attributeTableCaption
-    tableView=tableViewAttribute
-    buttonCaption=attributeButton
-    model=model.attributes
-    create=(action 'createAttribute')
-    readonly=readonly
-    edit=(action 'editAttribute')
-    editButtonInRow=(not isExpanded)
+  {{#flexberry-toggler
+      caption=(t attributeTableCaption)
+      expanded=true
+      class="table-toggler"
   }}
+    {{fd-attribute-table
+      tableView=tableViewAttribute
+      buttonCaption=attributeButton
+      model=model.attributes
+      create=(action 'createAttribute')
+      readonly=readonly
+      edit=(action 'editAttribute')
+      editButtonInRow=(not isExpanded)
+    }}
+  {{/flexberry-toggler}}
 
-  {{fd-attribute-table
-    tableCaption=methodsTableCaption
-    tableView=tableViewMethods
-    buttonCaption=methodsButton
-    model=model.methods
-    create=(action 'createMethod')
-    readonly=readonly
+  {{#flexberry-toggler
+      caption=(t methodsTableCaption)
+      expanded=true
+      class="table-toggler"
   }}
+    {{fd-attribute-table
+      tableView=tableViewMethods
+      buttonCaption=methodsButton
+      model=model.methods
+      create=(action 'createMethod')
+      readonly=readonly
+    }}
+  {{/flexberry-toggler}}
 
-  {{fd-attribute-table
-    tableCaption=viewsTableCaption
-    tableView=tableViewForView
-    buttonCaption=viewButton
-    model=model.views
-    create=(action 'createView')
-    edit=(action 'editView')
-    copy=(action 'copyView')
-    editButtonInRow=true
-    copyButtonInRow=true
-    readonlyButton=model.isNew
-    readonly=readonly
+  {{#flexberry-toggler
+      caption=(t viewsTableCaption)
+      expanded=true
+      class="table-toggler"
   }}
+    {{fd-attribute-table
+      tableView=tableViewForView
+      buttonCaption=viewButton
+      model=model.views
+      create=(action 'createView')
+      edit=(action 'editView')
+      copy=(action 'copyView')
+      editButtonInRow=true
+      copyButtonInRow=true
+      readonlyButton=model.isNew
+      readonly=readonly
+    }}
+  {{/flexberry-toggler}}
 
-  {{fd-attribute-table
-    tableCaption=storagesTableCaption
-    tableView=tableClassStorageTypes
-    buttonCaption=classStorageTypesButton
-    dropdownItemsObject=storagesItems.names
-    model=model.classStorageTypes
-    create=(action 'createStorage')
-    dropdownChange=(action 'dropdownChangeStorage')
-    readonly=readonly
+  {{#flexberry-toggler
+      caption=(t storagesTableCaption)
+      expanded=true
+      class="table-toggler"
   }}
-
+    {{fd-attribute-table
+      tableView=tableClassStorageTypes
+      buttonCaption=classStorageTypesButton
+      dropdownItemsObject=storagesItems.names
+      model=model.classStorageTypes
+      create=(action 'createStorage')
+      dropdownChange=(action 'dropdownChangeStorage')
+      readonly=readonly
+    }}
+  {{/flexberry-toggler}}
 </div>
