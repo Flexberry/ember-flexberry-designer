@@ -196,6 +196,8 @@ FdPopupActions, {
   */
   readonlyMode: false,
 
+  isDiagramChanged: false,
+
   /**
     Object with flags indicates whether diagram is readonly.
 

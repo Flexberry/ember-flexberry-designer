@@ -169,6 +169,8 @@ export default Component.extend(FdReadonlyProjectMixin, FdShareFunctionMixin, {
   */
   classDiagrams: null,
 
+  saveButtonEnabled: true,
+
   /**
     Update locks.
 

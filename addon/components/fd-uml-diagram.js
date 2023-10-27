@@ -148,6 +148,30 @@ export default Component.extend(
   */
   readonly: false,
 
+  isDiagramChanged: false,
+
+  primitivesObserver: observer(
+    'primitives.@each.attributes',
+    'primitives.@each.collapsed',
+    'primitives.@each.methods',
+    'primitives.@each.name',
+    'primitives.@each.position',
+    'primitives.@each.repositoryObject',
+    'primitives.@each.size',
+    'primitives.@each.stereotype',
+    'primitives.@each.endPointRef',
+    'primitives.@each.startPointRef',
+    'primitives.@each.description',
+    'primitives.@each.endMultiplicity',
+    'primitives.@each.startMultiplicity',
+    'primitives.@each.endPercent',
+    'primitives.@each.startPercent',
+    'primitives.@each.labels',
+    'primitives.@each.vertices',
+    function() {
+      this.trigger('updateDiagramTriggered');
+  }),
+
   readonlyObserver: observer('readonly', function() {
     let paper = this.get('paper');
     if (isNone(paper)) {
@@ -322,6 +346,7 @@ export default Component.extend(
     fitPaperToContent();
 
     this.get('fdDiagramService').on('updateJointObjectViewTriggered', this, this._updateJointObjectView);
+    this.on('updateDiagramTriggered', this._handleDiagramChanges);
     this.get('readonlyObserver').apply(this);
   },
 
@@ -329,6 +354,7 @@ export default Component.extend(
     this._super(...arguments);
 
     this.get('fdDiagramService').off('updateJointObjectViewTriggered', this, this._updateJointObjectView);
+    this.off('updateDiagramTriggered', this._handleDiagramChanges);
   },
 
   /**
@@ -1357,6 +1383,10 @@ export default Component.extend(
 
     let view = paper.findViewByModel(model);
     view.updateInputValue();
+  },
+
+  _handleDiagramChanges() {
+    this.set('isDiagramChanged', true);
   },
 
   /**

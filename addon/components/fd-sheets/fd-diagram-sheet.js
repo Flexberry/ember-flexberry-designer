@@ -110,6 +110,8 @@ export default FdBaseSheet.extend(
   */
   showSettins: false,
 
+  isDiagramChanged: false,
+
   /**
     Flag: indicates whether to not show gen button.
 

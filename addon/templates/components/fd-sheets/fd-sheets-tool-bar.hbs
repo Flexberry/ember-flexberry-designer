@@ -33,7 +33,7 @@
       {{/if}}
     {{else}}
       {{#if buttonVisible.save}}
-        <button class="ui positive button fd-save" {{action 'save'}}>
+        <button class="ui positive button fd-save {{if (not saveButtonEnabled) 'disabled' ''}}" {{action 'save'}}>
           {{t "components.fd-sheets-tool-bar.save-caption"}}
         </button>
       {{/if}}
