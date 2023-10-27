@@ -170,8 +170,7 @@ export default Component.extend(FdReadonlyModeMixin, {
     let treeDetails = getAggregationTreeNode(treeMasters, dataForBuildTree.aggregations);
     this.setDetailView(dataForBuildTree.aggregations);
 
-    
-    getExternalTreeNode(treeDetails, dataForBuildTree.externalParent, getOwner(this).lookup('adapter:application')).then(treeNodes => {
+    getExternalTreeNode(treeDetails, dataForBuildTree.externalParent, getOwner(this).lookup('adapter:application')).then(() => {
       const jstree = this.get('treeObject').jstree(true);
       jstree.refresh();
     });
@@ -244,9 +243,9 @@ export default Component.extend(FdReadonlyModeMixin, {
 
   /**
     Sets available properties of selected master by its association in `masterPropertyName` dropdown
-    
-    @param {Object} property 
-    @returns 
+
+    @param {Object} property
+    @returns
   */
   setMasterProperties(property) {
     if (isNone(property)) {
@@ -325,7 +324,7 @@ export default Component.extend(FdReadonlyModeMixin, {
 
   /**
     Get index of selected property in definitions
- 
+
     @method getIndexOfSelectedProperty
     @return {Number} index
   */
@@ -369,7 +368,7 @@ export default Component.extend(FdReadonlyModeMixin, {
 
       // Create propertyName
       let propertyName = this.createPropertyName(node, this.get('treeObject').jstree(true));
-      
+
       if (view.findBy('name', propertyName)) {
         return;
       }
