@@ -8,5 +8,6 @@ export default {
   'open-edit-form-title': 'Открыть форму редактирования свойств',
   'collapse-title': 'Свернуть объект',
   'uml-validator-title': 'UML валидатор',
-  'uml-corrector-title': 'UML корректор'
+  'uml-corrector-title': 'UML корректор',
+  'delete-confirm-message': 'Диаграмма {{diagramName}} будет удалена безвозвратно!',
 };

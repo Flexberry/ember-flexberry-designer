@@ -793,39 +793,42 @@ export default Component.extend(
       evt.data.prop = button.hasClass('prop');
       evt.data.shift = { x: bbox.x - x, y: bbox.y - y};
 
-      let highlightedElements = this.get('highlightedElements');
-      let childGhosts = A();
+      // if object highlighted move another all highlighted objects.
+      if (view.model.get('highlighted')) {
+        let highlightedElements = this.get('highlightedElements');
+        let childGhosts = A();
 
-      highlightedElements.forEach(highlightedElement => {
-        const isLink = highlightedElement.model.isLink();
-        const isMainObject = view.model.id === highlightedElement.model.id;
-        const objectModel = highlightedElement.model.get('objectModel');
-        const isChildOfMainObject = !isNone(objectModel) && !isNone(objectModel.parentPrimitive) && objectModel.parentPrimitive.id === view.model.id;
+        highlightedElements.forEach(highlightedElement => {
+          const isLink = highlightedElement.model.isLink();
+          const isMainObject = view.model.id === highlightedElement.model.id;
+          const objectModel = highlightedElement.model.get('objectModel');
+          const isChildOfMainObject = !isNone(objectModel) && !isNone(objectModel.parentPrimitive) && objectModel.parentPrimitive.id === view.model.id;
 
-        if (!isLink && !isMainObject && !isChildOfMainObject) {
-          let childGhostBbox = highlightedElement.model.getBBox();
-          let childGhostRects = highlightedElement.model.getRectangles();
-          if (childGhostRects.length > 0) {
-            let paramsWidth = childGhostRects[0].element.attr('.flexberry-uml-params-rect/width');
-            if (paramsWidth !== undefined) {
-              childGhostBbox.width += paramsWidth - 10;
+          if (!isLink && !isMainObject && !isChildOfMainObject) {
+            let childGhostBbox = highlightedElement.model.getBBox();
+            let childGhostRects = highlightedElement.model.getRectangles();
+            if (childGhostRects.length > 0) {
+              let paramsWidth = childGhostRects[0].element.attr('.flexberry-uml-params-rect/width');
+              if (paramsWidth !== undefined) {
+                childGhostBbox.width += paramsWidth - 10;
+              }
             }
+
+            let ghostChild = new joint.shapes.basic.Rect();
+
+            ghostChild.attr({ rect: { 'fill': 'transparent', 'stroke': '#5755a1', 'stroke-dasharray': '4,4', 'stroke-width': 2 }});
+            ghostChild.size({height: childGhostBbox.height, width: childGhostBbox.width});
+            ghostChild.position(childGhostBbox.x, childGhostBbox.y);
+            ghostChild.highlightedElementShift = { x: ghostChild.position().x - ghost.position().x, y: ghostChild.position().y - ghost.position().y};
+            ghostChild.model = highlightedElement.model;
+
+            highlightedElement.model.graph.addCell(ghostChild);
+            childGhosts.pushObject(ghostChild);
           }
+        });
 
-          let ghostChild = new joint.shapes.basic.Rect();
-
-          ghostChild.attr({ rect: { 'fill': 'transparent', 'stroke': '#5755a1', 'stroke-dasharray': '4,4', 'stroke-width': 2 }});
-          ghostChild.size({height: childGhostBbox.height, width: childGhostBbox.width});
-          ghostChild.position(childGhostBbox.x, childGhostBbox.y);
-          ghostChild.highlightedElementShift = { x: ghostChild.position().x - ghost.position().x, y: ghostChild.position().y - ghost.position().y};
-          ghostChild.model = highlightedElement.model;
-
-          highlightedElement.model.graph.addCell(ghostChild);
-          childGhosts.pushObject(ghostChild);
-        }
-      });
-
-      evt.data.childGhosts = childGhosts;
+        evt.data.childGhosts = childGhosts;
+      }
     }
   },
 
