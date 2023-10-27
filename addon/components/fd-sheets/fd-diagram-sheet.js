@@ -110,6 +110,12 @@ export default FdBaseSheet.extend(
   */
   showSettins: false,
 
+  /**
+    Flags indicates any changes on diagram.
+
+    @property isDiagramChanged
+    @type Boolean
+  */
   isDiagramChanged: false,
 
   /**

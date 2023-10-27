@@ -148,9 +148,26 @@ export default Component.extend(
   */
   readonly: false,
 
+  /**
+    Flags indicates any changes on diagram.
+
+    @property isDiagramChanged
+    @type Boolean
+  */
   isDiagramChanged: false,
 
+  /**
+    Observing changes in all primitives on diagram.
+
+    @method pointerEvents
+  */
   primitivesObserver: observer(
+    'primitives.@each.primitive.DrawStyle.DrawBrush.Color.A',
+    'primitives.@each.primitive.DrawStyle.DrawBrush.Color.B',
+    'primitives.@each.primitive.DrawStyle.DrawBrush.Color.G',
+    'primitives.@each.primitive.DrawStyle.TextColor.A',
+    'primitives.@each.primitive.DrawStyle.TextColor.B',
+    'primitives.@each.primitive.DrawStyle.TextColor.G',
     'primitives.@each.attributes',
     'primitives.@each.collapsed',
     'primitives.@each.methods',
@@ -184,6 +201,7 @@ export default Component.extend(
       paper.off('element:pointermove', this._ghostElementMove, this);
       paper.off('element:pointerup', this._ghostElementRemove, this);
       paper.clearGrid();
+      this.set('isDiagramChanged', false);
     } else {
       $(paper.el).find('input,textarea').removeClass('click-disabled');
       paper.setInteractivity({ elementMove: false, vertexAdd: false });
@@ -346,7 +364,7 @@ export default Component.extend(
     fitPaperToContent();
 
     this.get('fdDiagramService').on('updateJointObjectViewTriggered', this, this._updateJointObjectView);
-    this.on('updateDiagramTriggered', this._handleDiagramChanges);
+    this.on('updateDiagramTriggered', this._handleDiagramChangesEvent);
     this.get('readonlyObserver').apply(this);
   },
 
@@ -354,7 +372,7 @@ export default Component.extend(
     this._super(...arguments);
 
     this.get('fdDiagramService').off('updateJointObjectViewTriggered', this, this._updateJointObjectView);
-    this.off('updateDiagramTriggered', this._handleDiagramChanges);
+    this.off('updateDiagramTriggered', this._handleDiagramChangesEvent);
   },
 
   /**
@@ -1385,7 +1403,12 @@ export default Component.extend(
     view.updateInputValue();
   },
 
-  _handleDiagramChanges() {
+  /**
+    Handle event on any changes on diagram.
+
+    @method _handleDiagramChangesEvent
+   */
+  _handleDiagramChangesEvent() {
     this.set('isDiagramChanged', true);
   },
 

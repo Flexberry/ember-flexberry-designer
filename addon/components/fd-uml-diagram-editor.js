@@ -196,6 +196,12 @@ FdPopupActions, {
   */
   readonlyMode: false,
 
+  /**
+    Flags indicates any changes on diagram.
+
+    @property isDiagramChanged
+    @type Boolean
+  */
   isDiagramChanged: false,
 
   /**
