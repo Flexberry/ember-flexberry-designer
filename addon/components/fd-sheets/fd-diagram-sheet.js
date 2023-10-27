@@ -377,9 +377,10 @@ export default FdBaseSheet.extend(
 
       model.rollbackAll();
       this.get('emptyReferenceCountItems').clear();
-      this.set('isDiagramVisible', false);
       set(selectedValue, 'active', false);
     }
+
+    this.set('isDiagramVisible', false);
   },
 
   /**
