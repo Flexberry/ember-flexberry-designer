@@ -192,7 +192,7 @@ let updateAttributesStr = function(classObject) {
 
   let changedAttributes = classObject.get('attributes').filterBy('hasDirtyAttributes');
 
-  if (!isBlank(newAttributesStr) || changedAttributes.length > 0) {
+  if (!isBlank(newAttributesStr) || changedAttributes.length > 0 || isNone(classObject.get('attributesStr'))) {
     classObject.set('attributesStr', newAttributesStr);
   }
 };
@@ -233,7 +233,7 @@ let updateMethodsStr = function(classObject) {
 
   let changedMethods= classObject.get('methods').filterBy('hasDirtyAttributes');
 
-  if (!isBlank(newMethodsStr) || changedMethods.length > 0) {
+  if (!isBlank(newMethodsStr) || changedMethods.length > 0 || isNone(classObject.get('methodsStr'))) {
     classObject.set('methodsStr', newMethodsStr);
   }
 };
