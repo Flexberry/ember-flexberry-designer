@@ -60,12 +60,28 @@ export default Component.extend(
   fdDiagramService: service('fd-diagram-service'),
 
   /**
+    Service for managing the message dialog.
+
+    @property fdDialogService
+    @type fdDialogService
+  */
+  fdDialogService: service('fd-dialog-service'),
+
+  /**
    Array items with empty reference count.
 
    @property emptyReferenceCountItems
    @type {Array}
    */
   emptyReferenceCountItems: A(),
+
+  /**
+   Array broken objects on diagram.
+
+   @property brokenDiagramObjects
+   @type {Array}
+   */
+  brokenDiagramObjects: A(),
 
   /**
     Current paper
@@ -161,6 +177,7 @@ export default Component.extend(
       paper.off('element:pointerup', this._ghostElementRemove, this);
       paper.clearGrid();
     } else {
+      this._fixBrokenDiagramObjects();
       $(paper.el).find('input,textarea').removeClass('click-disabled');
       paper.setInteractivity({ elementMove: false, vertexAdd: false });
       paper.on('element:pointermove', this._ghostElementMove, this);
@@ -272,6 +289,8 @@ export default Component.extend(
     paper.on('element:openpopup', this._elementOpenPopup, this);
 
     this.subscriptionToKeyPress(paper);
+
+    this.get('brokenDiagramObjects').clear();
 
     let elements = this.get('elements');
 
@@ -760,7 +779,7 @@ export default Component.extend(
           bbox.width += paramsWidth - 10;
         }
       }
-      
+
       var ghost = new joint.shapes.basic.Rect();
       ghost.attr({ rect: { 'fill': 'transparent', 'stroke': '#5755a1', 'stroke-dasharray': '4,4', 'stroke-width': 2 }});
       ghost.size({height: bbox.height, width: bbox.width});
@@ -778,13 +797,13 @@ export default Component.extend(
       if (view.model.get('highlighted')) {
         let highlightedElements = this.get('highlightedElements');
         let childGhosts = A();
-  
+
         highlightedElements.forEach(highlightedElement => {
           const isLink = highlightedElement.model.isLink();
           const isMainObject = view.model.id === highlightedElement.model.id;
           const objectModel = highlightedElement.model.get('objectModel');
           const isChildOfMainObject = !isNone(objectModel) && !isNone(objectModel.parentPrimitive) && objectModel.parentPrimitive.id === view.model.id;
-  
+
           if (!isLink && !isMainObject && !isChildOfMainObject) {
             let childGhostBbox = highlightedElement.model.getBBox();
             let childGhostRects = highlightedElement.model.getRectangles();
@@ -794,15 +813,15 @@ export default Component.extend(
                 childGhostBbox.width += paramsWidth - 10;
               }
             }
-  
+
             let ghostChild = new joint.shapes.basic.Rect();
-      
+
             ghostChild.attr({ rect: { 'fill': 'transparent', 'stroke': '#5755a1', 'stroke-dasharray': '4,4', 'stroke-width': 2 }});
             ghostChild.size({height: childGhostBbox.height, width: childGhostBbox.width});
             ghostChild.position(childGhostBbox.x, childGhostBbox.y);
             ghostChild.highlightedElementShift = { x: ghostChild.position().x - ghost.position().x, y: ghostChild.position().y - ghost.position().y};
             ghostChild.model = highlightedElement.model;
-      
+
             highlightedElement.model.graph.addCell(ghostChild);
             childGhosts.pushObject(ghostChild);
           }
@@ -934,6 +953,12 @@ export default Component.extend(
     const store = this.get('store');
     const repositoryObjectId = repositoryObject.slice(1, -1);
     const currentRepObj = store.peekRecord(modelName, repositoryObjectId);
+
+    // Collecting broken diagram objects.
+    if (isNone(currentRepObj)) {
+      this.get('brokenDiagramObjects').pushObject(objectModel);
+      return;
+    }
 
     if (modelName === 'fd-dev-class') {
       const name = currentRepObj.get('nameStr') || '';
@@ -1068,52 +1093,28 @@ export default Component.extend(
       }
       case 'fd-dev-association':
       case 'fd-dev-aggregation': {
-        let sRole = objectModel.get('startRoleTxt');
-        let eRole = objectModel.get('endRoleTxt');
         let sClass = currentRepObj.get('startClass.id');
         let eClass = currentRepObj.get('endClass.id');
-        objectModelName = objectModel.get('description');
         if (isSourse && !isNone(newConnectedClass)) {
           sClass = newConnectedClass.get('id');
         } else if (!isSourse && !isNone(newConnectedClass)) {
           eClass = newConnectedClass.get('id');
         }
 
-        newRepObj = modelsCurrentStage.find(function(item) {
-          let name = isNone(item.get('name')) ? '' : item.get('name');
-          let startRole = item.get('startRoleStr');
-          let endRole = item.get('endRoleStr');
-          if (
-            item.get('startClass.id') === sClass && item.get('endClass.id') === eClass && item.get('id') !== repositoryObjectId &&
-            !isNone(sRole) && !isNone(startRole) && startRole.trim().toLocaleLowerCase() === sRole.trim().toLocaleLowerCase() &&
-            !isNone(eRole) && !isNone(endRole) && endRole.trim().toLocaleLowerCase() === eRole.trim().toLocaleLowerCase() &&
-            !isNone(objectModelName) && !isNone(name) && name.trim().toLocaleLowerCase() === objectModelName.trim().toLocaleLowerCase()
-          ) {
-            return item;
-          }
-        });
+        newRepObj = this._findBaseAssociationByObjectModel(objectModel, modelsCurrentStage, sClass, eClass);
         break;
       }
       case 'fd-dev-realization':
       case 'fd-dev-inheritance': {
         let parentId = currentRepObj.get('parent.id');
         let childId = currentRepObj.get('child.id');
-        objectModelName = objectModel.get('description');
         if (isSourse && !isNone(newConnectedClass)) {
           parentId = newConnectedClass.get('id');
         } else if (!isSourse && !isNone(newConnectedClass)) {
           childId = newConnectedClass.get('id');
         }
 
-        newRepObj = modelsCurrentStage.find(function(item) {
-          let name = isNone(item.get('name')) ? '' : item.get('name');
-          if (
-            item.get('parent.id') === parentId && item.get('child.id') === childId && item.get('id') !== repositoryObjectId &&
-            !isNone(objectModelName) && !isNone(name) && name.trim().toLocaleLowerCase() === objectModelName.trim().toLocaleLowerCase()
-          ) {
-            return item;
-          }
-        });
+        newRepObj = this._findInheritanceConnByObjectModel(objectModel, modelsCurrentStage, parentId, childId);
         break;
       }
     }
@@ -1346,6 +1347,125 @@ export default Component.extend(
   },
 
   /**
+    Fix broken objects on diagram.
+
+    @method _fixBrokenDiagramObjects
+   */
+  _fixBrokenDiagramObjects() {
+    let brokenDiagramObjects = this.get('brokenDiagramObjects');
+    if (brokenDiagramObjects.length > 0) {
+      const store = this.get('store');
+      const stage = this.get('currentProjectContext').getCurrentStageModel();
+
+      let allClass = store.peekAll('fd-dev-class');
+      let classesCurrentStage = allClass.filterBy('stage.id', stage.get('id'));
+
+      brokenDiagramObjects.forEach((objectModel) => {
+        let modelName = this._getModelName(objectModel.get('primitive.$type'));
+        let createObject = function(store, modelName, stage, id) {
+          return store.createRecord(`${modelName}`, {
+            id: id,
+            stage: stage,
+            referenceCount: 1
+          });
+        };
+
+        if (modelName === 'fd-dev-class') {
+          let name = objectModel.get('name');
+          let cls = classesCurrentStage.findBy('name', name);
+          if (isNone(cls)) {
+            const repositoryObject = objectModel.get('repositoryObject').slice(1, -1);
+            let newObj = createObject(store, modelName, stage, repositoryObject);
+            newObj.set('name', name);
+            newObj.set('nameStr', name);
+            newObj.set('stereotype', objectModel.get('stereotype'));
+            newObj.set('attributesStr', objectModel.get('attributes').join('\n'));
+            newObj.set('methodsStr', objectModel.get('methods').join('\n'));
+          } else {
+            this._incrementPropertyReferenceCount(cls);
+            objectModel.set('repositoryObject', `{${cls.get('id')}}`)
+          }
+        } else {
+          let endPrimitiveId = objectModel.get('target.id');
+          let startPrimitiveId = objectModel.get('source.id');
+
+          let endPrimitive = this.graph.getCell(endPrimitiveId);
+          let startPrimitive = this.graph.getCell(startPrimitiveId);
+
+          let endPrimitiveRepObjId = endPrimitive.get('objectModel').repositoryObject;
+          let startPrimitiveRepObjId = startPrimitive.get('objectModel').repositoryObject;
+
+          if (isBlank(endPrimitiveRepObjId) || isBlank(startPrimitiveRepObjId)) {
+            let errorMessage = this.get('i18n').t('components.fd-uml-diagram.error-can-not-fix', {
+              modelName: modelName,
+              startClassName: startPrimitive.get('objectModel.name'),
+              endClassName: endPrimitive.get('objectModel.name')
+            });
+
+            this.get('fdDialogService').showErrorMessage(errorMessage);
+            throw new Error(errorMessage);
+          }
+
+          let endRepObjId = endPrimitiveRepObjId.slice(1, -1);
+          let startRepObjId = startPrimitiveRepObjId.slice(1, -1);
+          let endPrimitiveRepObj = classesCurrentStage.findBy('id', endRepObjId);
+          let startPrimitiveRepObj = classesCurrentStage.findBy('id', startRepObjId);
+
+          let allModels = store.peekAll(`${modelName}`);
+          let modelsCurrentStage = allModels.filterBy('stage.id', stage.get('id'));
+
+          if (modelName === 'fd-dev-aggregation' || modelName === 'fd-dev-association') {
+            let link = this._findBaseAssociationByObjectModel(objectModel, modelsCurrentStage, startRepObjId, endRepObjId);
+
+            if (isNone(link)) {
+              const repositoryObject = objectModel.get('repositoryObject').slice(1, -1);
+              let newObj = createObject(store, modelName, stage, repositoryObject);
+              newObj.set('endClass', endPrimitiveRepObj);
+              newObj.set('startClass', startPrimitiveRepObj);
+              newObj.set('endMultiplicity', '*');
+              newObj.set('startMultiplicity', '1');
+              newObj.set('name', objectModel.get('description'));
+              newObj.set('startRoleStr', objectModel.get('startRoleTxt'));
+              newObj.set('endRoleStr', objectModel.get('endRoleTxt'));
+            } else {
+              this._incrementPropertyReferenceCount(link);
+              objectModel.set('repositoryObject', `{${link.get('id')}}`)
+            }
+          } else if (modelName === 'fd-dev-inheritance' || modelName === 'fd-dev-realization') {
+            let inhLink = this._findInheritanceConnByObjectModel(objectModel, modelsCurrentStage, startRepObjId, endRepObjId);
+
+            if (isNone(inhLink)) {
+              const repositoryObject = objectModel.get('repositoryObject').slice(1, -1);
+              let newObj = createObject(store, modelName, stage, repositoryObject);
+              newObj.set('child', endPrimitiveRepObj);
+              newObj.set('parent', startPrimitiveRepObj);
+              newObj.set('name', objectModel.get('description'));
+            } else {
+              this._incrementPropertyReferenceCount(inhLink);
+              objectModel.set('repositoryObject', `{${inhLink.get('id')}}`)
+            }
+          } else {
+            let errorMessage = this.get('i18n').t('components.fd-uml-diagram.error-not-found-model', {
+              modelName: modelName
+            });
+
+            this.get('fdDialogService').showErrorMessage(errorMessage);
+            throw new Error(errorMessage);
+          }
+        }
+      });
+
+      brokenDiagramObjects.clear();
+
+      this.get('fdDialogService').showCustomMessage(
+        this.get('i18n').t('components.fd-uml-diagram.message-fix-diagram'),
+        this.get('i18n').t('components.fd-uml-diagram.message-fix-diagram-header'),
+        false
+      );
+    }
+  },
+
+  /**
     find and update view joint object.
 
     @method _updateJointObjectView
@@ -1394,8 +1514,10 @@ export default Component.extend(
 
     let allClasses = store.peekAll('fd-dev-class');
     let classesCurrentStage = allClasses.filterBy('stage.id', stage.get('id'));
-    let endPrimitiveRepObj = classesCurrentStage.findBy('id', endPrimitiveRepObjId.slice(1, -1));
-    let startPrimitiveRepObj = classesCurrentStage.findBy('id', startPrimitiveRepObjId.slice(1, -1));
+    let endRepObjId = endPrimitiveRepObjId.slice(1, -1);
+    let startRepObjId = startPrimitiveRepObjId.slice(1, -1);
+    let endPrimitiveRepObj = classesCurrentStage.findBy('id', endRepObjId);
+    let startPrimitiveRepObj = classesCurrentStage.findBy('id', startRepObjId);
 
     let modelName = this._getModelName(type);
     let allModels = store.peekAll(`${modelName}`);
@@ -1403,37 +1525,9 @@ export default Component.extend(
 
     let newElement;
     if (modelName === 'fd-dev-inheritance' || modelName === 'fd-dev-realization') {
-      let objectModelName = objectModel.get('description');
-
-      newElement = modelsCurrentStage.find(function(item) {
-        let name = isNone(item.get('name')) ? '' : item.get('name');
-        if (
-          item.get('parent.id') === startPrimitiveRepObj.get('id') && item.get('child.id') === endPrimitiveRepObj.get('id') &&
-          !isNone(objectModelName) && !isNone(name) && name.trim().toLocaleLowerCase() === objectModelName.trim().toLocaleLowerCase()
-        ) {
-          return item;
-        }
-      });
+      newElement = this._findInheritanceConnByObjectModel(objectModel, modelsCurrentStage, startRepObjId, endRepObjId);
     } else {
-      let sRole = objectModel.getWithDefault('startRoleTxt', '').trim();
-      sRole = !isBlank(sRole) && sRole[0] !== '+' ? '+' + sRole : sRole;
-      let eRole = objectModel.getWithDefault('endRoleTxt', '').trim();
-      eRole = !isBlank(eRole) && eRole[0] !== '+' ? '+' + eRole : eRole;
-      let objectModelName = objectModel.get('description');
-
-      newElement = modelsCurrentStage.find(function(item) {
-        let name = isNone(item.get('name')) ? '' : item.get('name');
-        let startRole = item.get('startRoleStr');
-        let endRole = item.get('endRoleStr');
-        if (
-          item.get('startClass.id') === startPrimitiveRepObj.get('id') && item.get('endClass.id') === endPrimitiveRepObj.get('id') &&
-          !isNone(sRole) && !isNone(startRole) && startRole.trim().toLocaleLowerCase() === sRole.trim().toLocaleLowerCase() &&
-          !isNone(eRole) && !isNone(endRole) && endRole.trim().toLocaleLowerCase() === eRole.trim().toLocaleLowerCase() &&
-          !isNone(objectModelName) && !isNone(name) && name.trim().toLocaleLowerCase() === objectModelName.trim().toLocaleLowerCase()
-        ) {
-          return item;
-        }
-      });
+      newElement = this._findBaseAssociationByObjectModel(objectModel, modelsCurrentStage, startRepObjId, endRepObjId);
     }
 
     if (isNone(newElement)) {
@@ -1468,6 +1562,64 @@ export default Component.extend(
 
     objectModel.set('repositoryObject', `{${newElement.get('id')}}`);
     this._incrementPropertyReferenceCount(newElement);
+  },
+
+  /**
+    Find association or aggregation in store by property.
+
+    @method _findBaseAssociationByObjectModel
+    @param {Object} objectModel joint object.
+    @param {Array} modelsCurrentStage array models in store.
+    @param {String} startPrimitiveRepObjId id startClass.
+    @param {String} endPrimitiveRepObjId id endClass.
+   */
+  _findBaseAssociationByObjectModel(objectModel, modelsCurrentStage, startPrimitiveRepObjId, endPrimitiveRepObjId) {
+    let sRole = objectModel.getWithDefault('startRoleTxt', '').trim();
+    sRole = !isBlank(sRole) && sRole[0] !== '+' ? '+' + sRole : sRole;
+    let eRole = objectModel.getWithDefault('endRoleTxt', '').trim();
+    eRole = !isBlank(eRole) && eRole[0] !== '+' ? '+' + eRole : eRole;
+    let objectModelName = objectModel.get('description');
+
+    let link = modelsCurrentStage.find(function(item) {
+      let name = isNone(item.get('name')) ? '' : item.get('name');
+      let startRole = item.get('startRoleStr');
+      let endRole = item.get('endRoleStr');
+      if (
+        item.get('startClass.id') === startPrimitiveRepObjId && item.get('endClass.id') === endPrimitiveRepObjId &&
+        !isNone(sRole) && !isNone(startRole) && startRole.trim().toLocaleLowerCase() === sRole.trim().toLocaleLowerCase() &&
+        !isNone(eRole) && !isNone(endRole) && endRole.trim().toLocaleLowerCase() === eRole.trim().toLocaleLowerCase() &&
+        !isNone(objectModelName) && !isNone(name) && name.trim().toLocaleLowerCase() === objectModelName.trim().toLocaleLowerCase()
+      ) {
+        return item;
+      }
+    });
+
+    return link;
+  },
+
+  /**
+    Find inheritance or realization in store by property.
+
+    @method _findInheritanceConnByObjectModel
+    @param {Object} objectModel joint object.
+    @param {Array} modelsCurrentStage array models in store.
+    @param {String} parentPrimitiveRepObjId id parentClass.
+    @param {String} childPrimitiveRepObjId id childClass.
+   */
+  _findInheritanceConnByObjectModel(objectModel, modelsCurrentStage, parentPrimitiveRepObjId, childPrimitiveRepObjId) {
+    let objectModelName = objectModel.get('description');
+
+    let inhLink = modelsCurrentStage.find(function(item) {
+      let name = isNone(item.get('name')) ? '' : item.get('name');
+      if (
+        item.get('parent.id') === parentPrimitiveRepObjId && item.get('child.id') === childPrimitiveRepObjId &&
+        !isNone(objectModelName) && !isNone(name) && name.trim().toLocaleLowerCase() === objectModelName.trim().toLocaleLowerCase()
+      ) {
+        return item;
+      }
+    });
+
+    return inhLink;
   },
 
   _haveNote: function() {
