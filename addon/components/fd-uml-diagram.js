@@ -6,6 +6,7 @@ import Component from '@ember/component';
 import { computed, observer } from '@ember/object';
 import { isNone, isBlank } from '@ember/utils';
 import { inject as service } from '@ember/service';
+import { once } from '@ember/runloop';
 import { A } from '@ember/array';
 
 import $ from 'jquery';
@@ -156,44 +157,32 @@ export default Component.extend(
   */
   isDiagramChanged: false,
 
-  /**
-    Observing changes in all primitives on diagram.
-
-    @method pointerEvents
-  */
-  primitivesObserver: observer(
-    'primitives.@each.primitive.DrawStyle.DrawBrush.Color.A',
-    'primitives.@each.primitive.DrawStyle.DrawBrush.Color.B',
-    'primitives.@each.primitive.DrawStyle.DrawBrush.Color.G',
-    'primitives.@each.primitive.DrawStyle.TextColor.A',
-    'primitives.@each.primitive.DrawStyle.TextColor.B',
-    'primitives.@each.primitive.DrawStyle.TextColor.G',
-    'primitives.@each.attributes',
-    'primitives.@each.collapsed',
-    'primitives.@each.methods',
-    'primitives.@each.name',
-    'primitives.@each.position',
-    'primitives.@each.repositoryObject',
-    'primitives.@each.size',
-    'primitives.@each.stereotype',
-    'primitives.@each.endPointRef',
-    'primitives.@each.startPointRef',
-    'primitives.@each.description',
-    'primitives.@each.endMultiplicity',
-    'primitives.@each.startMultiplicity',
-    'primitives.@each.endPercent',
-    'primitives.@each.startPercent',
-    'primitives.@each.labels',
-    'primitives.@each.vertices',
-    function() {
-      this.trigger('updateDiagramTriggered');
-  }),
-
   readonlyObserver: observer('readonly', function() {
     let paper = this.get('paper');
     if (isNone(paper)) {
       return;
     }
+
+    const primitivesObservableProperties = [
+      'primitives.@each.attributes',
+      'primitives.@each.collapsed',
+      'primitives.@each.methods',
+      'primitives.@each.name',
+      'primitives.@each.position',
+      'primitives.@each.repositoryObject',
+      'primitives.@each.size',
+      'primitives.@each.stereotype',
+      'primitives.@each.endPointRef',
+      'primitives.@each.startPointRef',
+      'primitives.@each.description',
+      'primitives.@each.endMultiplicity',
+      'primitives.@each.startMultiplicity',
+      'primitives.@each.endPercent',
+      'primitives.@each.startPercent',
+      'primitives.@each.labels',
+      'primitives.@each.vertices',
+      'primitives.@each.primitive'
+    ];
 
     if (this.get('readonly')) {
       $(paper.el).find('input,textarea').addClass('click-disabled');
@@ -201,14 +190,24 @@ export default Component.extend(
       paper.off('element:pointermove', this._ghostElementMove, this);
       paper.off('element:pointerup', this._ghostElementRemove, this);
       paper.clearGrid();
+
       this.set('isDiagramChanged', false);
+      primitivesObservableProperties.forEach((property) => {
+        this.removeObserver(property, this, this._diagramChangesObserverFunction);
+      });
     } else {
       $(paper.el).find('input,textarea').removeClass('click-disabled');
       paper.setInteractivity({ elementMove: false, vertexAdd: false });
       paper.on('element:pointermove', this._ghostElementMove, this);
       paper.on('element:pointerup', this._ghostElementRemove, this);
       this._highlighted(null);
-      paper.drawGrid()
+      paper.drawGrid();
+
+      primitivesObservableProperties.forEach((property) => {
+        this.addObserver(property, () => {
+          once(this, this._diagramChangesObserverFunction);
+        });
+      });
     }
   }),
 
@@ -364,7 +363,6 @@ export default Component.extend(
     fitPaperToContent();
 
     this.get('fdDiagramService').on('updateJointObjectViewTriggered', this, this._updateJointObjectView);
-    this.on('updateDiagramTriggered', this._handleDiagramChangesEvent);
     this.get('readonlyObserver').apply(this);
   },
 
@@ -372,7 +370,15 @@ export default Component.extend(
     this._super(...arguments);
 
     this.get('fdDiagramService').off('updateJointObjectViewTriggered', this, this._updateJointObjectView);
-    this.off('updateDiagramTriggered', this._handleDiagramChangesEvent);
+  },
+
+  /**
+    Function for process detected primitives changes.
+
+    @method _diagramChangesObserverFunction
+   */
+  _diagramChangesObserverFunction() {
+    this.set('isDiagramChanged', true);
   },
 
   /**
@@ -1401,15 +1407,6 @@ export default Component.extend(
 
     let view = paper.findViewByModel(model);
     view.updateInputValue();
-  },
-
-  /**
-    Handle event on any changes on diagram.
-
-    @method _handleDiagramChangesEvent
-   */
-  _handleDiagramChangesEvent() {
-    this.set('isDiagramChanged', true);
   },
 
   /**
