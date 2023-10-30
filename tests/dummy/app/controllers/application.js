@@ -386,6 +386,13 @@ export default Controller.extend(FdShareFunctionMixin, {
     },
 
     /**
+      @method actions.exitProject
+    */
+    exitProject() {
+      this.send('_exitProject');
+    },
+
+    /**
       @method actions.share
     */
     share(event) {

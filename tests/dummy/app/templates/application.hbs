@@ -24,6 +24,9 @@
               <button class="ui icon button sync fd-sync-stage" onclick={{action 'syncStage'}} data-content={{t "forms.application.sitemap.sync.sync-button-data-content"}} title={{t "forms.application.sitemap.sync.sync-button-title"}}>
                 <i class="{{if needSync 'red need-sync'}} icon-guideline-update icon"></i>
               </button>
+              <button class="ui icon button close-button" {{action 'exitProject'}}>
+                <i class="icon-guideline-cross-r"></i>
+              </button>
             </div>
             <div class="current-project-name">
               <div>{{currentProjectName}}</div>
