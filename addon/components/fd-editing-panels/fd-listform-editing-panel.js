@@ -61,8 +61,18 @@ export default Component.extend(FdUpdateFormviewValueMixin, FdConstructorValue, 
 
     @method _editFormsObserver
   */
-  /* eslint-disable ember/no-on-calls-in-components */
-  _editFormsObserver: on('didInsertElement', observer('model.name', function() {
+  _editFormsObserver: observer('model.name', function() {
+    this.setItems();
+    this.setForms();
+  }),
+
+  setForms() {
+    const dataobject = this.get('dataobject');
+
+    if (isBlank(dataobject)) {
+      return;
+    }
+
     let store = this.get('store');
     let stage = this.get('currentProjectContext').getCurrentStageModel();
 
@@ -70,10 +80,6 @@ export default Component.extend(FdUpdateFormviewValueMixin, FdConstructorValue, 
     let allClasses = store.peekAll('fd-dev-class');
     let classesCurrentStage = allClasses.filterBy('stage.id', stage.get('id'));
 
-    let dataobject = this.get('dataobject');
-    if (isNone(dataobject)) {
-      dataobject = this.get('model.formViews.firstObject.view.class');
-    }
 
     // «editform»
     let forms = classesCurrentStage.filter(function(item) {
@@ -95,7 +101,7 @@ export default Component.extend(FdUpdateFormviewValueMixin, FdConstructorValue, 
     let newContainerName = this.get('model.formViews.firstObject.dataObjectTypes.newContainerName');
     let newContainerNameValue = formsNames.includes(newContainerName) ? newContainerName : '';
     this.set('model.formViews.firstObject.dataObjectTypes.newContainerName', newContainerNameValue);
-  })),
+  },
 
   /**
     Get model for constructor.
@@ -118,5 +124,39 @@ export default Component.extend(FdUpdateFormviewValueMixin, FdConstructorValue, 
     modelHash.dataobject = allClassesInStore.findBy('id', modelHash.view.get('class.id'));
 
     return modelHash;
+  },
+
+  /**
+   * See [EmberJS API](https://emberjs.com/).
+   *
+   * @method didInsertElement
+   */
+  didInsertElement() {
+    this._super(...arguments);
+    this.setItems();
+    this.setForms();
+  },
+
+  actions: {
+    /**
+      Changes the dataobject value and set view items.
+
+      @method actions.changeDataObject
+      @param {Object} value An object with a new value in the `value` property.
+    */
+    changeDataObject(value) {
+      if (!isBlank(value)) {
+        this.set('viewValue');
+        const dataObjectTypes = this.get('model.formViews.firstObject.dataObjectTypes');
+        if (dataObjectTypes) {
+          dataObjectTypes.set('editContainerName');
+          dataObjectTypes.set('newContainerName');
+        }
+        const dataObject = this.get('dataObjectItems').objects.findBy('name', value);
+        this.set('dataobject', dataObject)
+        this._setViewItems(dataObject);
+        this.setForms();
+      }
+    },
   }
 });

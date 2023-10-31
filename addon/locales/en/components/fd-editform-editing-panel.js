@@ -10,6 +10,7 @@ export default {
   'packet-placeholder': 'Packet name',
   'namespace-postfix-caption': 'Namespace postfix',
   'namespace-postfix-placeholder': 'Postfix name',
+  'dataobject-caption': 'Data object class',
   'formview-caption': 'View for form',
   'switch-button-constructor': 'Constructor for customizing the appearance of the editing form',
   'switch-button-setting': 'Edit form settings'
