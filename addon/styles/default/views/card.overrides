@@ -5,7 +5,7 @@
 
 .ui.cards > .card > .content > .description,
 .ui.card > .content > .description {
-  margin-bottom: 0.9em; 
+  margin-bottom: 0.9em;
 }
 
 .ui.cards > .card > .content > i.icon {
@@ -143,11 +143,11 @@
     .ui.selection.dropdown {
       font-weight: bold;
       padding: 0 1.975em 0 0;
-    
+
       .menu {
         width: auto;
       }
-    
+
       > .dropdown.icon {
         padding: 0 0.91666667em;
       }
@@ -169,7 +169,7 @@
     padding: 1em;
     padding-bottom: 2em;
     transition: background 0.3s;
-  
+
     > div:first-child {
       height: 100%;
     }
@@ -183,6 +183,7 @@
 @EmberJsColor: #DE492E;
 @ApacheCordovaColor: #3B3B3B;
 @BackendColor: #007AFF;
+@CiCdColor: #6666c4;
 @DockerColor: #24B8EB;
 @MssqlColor: #3B3B3B;
 @PostgreSqlColor: #356792;
@@ -192,7 +193,7 @@
 @DocsColor: #531192;
 @MetadataColor:#007AFF;
 
-@iterations: EmberJs, ApacheCordova, Backend, Docker, Mssql, PostgreSql, ClickHouse, Oracle, Access, Docs, Metadata;
+@iterations: EmberJs, ApacheCordova, Backend, Docker, CiCd, Mssql, PostgreSql, ClickHouse, Oracle, Access, Docs, Metadata;
 .span-loop (@i) when (@i > 0) {
     @className: extract(@iterations, @i);
     @colorName: ~"@{className}Color";
