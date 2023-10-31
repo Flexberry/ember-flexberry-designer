@@ -77,7 +77,7 @@ export default Mixin.create({
 
     if (this.get('isDiagramEditingPanel')) {
       this._setDataObjectItems();
-      this.set('dataObjectValue', dataobject.get('name')) || '';
+      this.set('dataObjectValue', dataobject ? dataobject.get('name') : '');
     }
 
     this._setViewItems(dataobject);
