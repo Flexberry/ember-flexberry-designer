@@ -108,4 +108,4 @@
     THEME
 ----------------*/
 
-@import (optional) '@{Theme}';
+@import (optional) '@{Theme}.variables';
