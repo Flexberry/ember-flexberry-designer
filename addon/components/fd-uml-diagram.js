@@ -338,6 +338,8 @@ export default Component.extend(
     graph.on('remove', this._removeElements, this);
     graph.on('history:add', this._createHistoryRecord, this);
 
+    this.$().on('mousedown', this._clearBrowserSelected);
+
     fitPaperToContent();
 
     this.get('fdDiagramService').on('updateJointObjectViewTriggered', this, this._updateJointObjectView);
@@ -347,6 +349,7 @@ export default Component.extend(
   willDestroyElement() {
     this._super(...arguments);
 
+    this.$().off('mousedown', this._clearBrowserSelected);
     this.get('fdDiagramService').off('updateJointObjectViewTriggered', this, this._updateJointObjectView);
   },
 
@@ -1633,6 +1636,18 @@ export default Component.extend(
 
     }
     return false;
+  },
+
+  /**
+    Clear browser selected text.
+
+    @method _clearBrowserSelected
+    @param {Event} e event.
+   */
+  _clearBrowserSelected(e) {
+    if (e.button === 0) {
+      window.getSelection().empty();
+    }
   },
 
   /**

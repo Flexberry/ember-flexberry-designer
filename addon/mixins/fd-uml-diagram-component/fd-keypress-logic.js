@@ -7,7 +7,7 @@ import FdUmlLink from '../../objects/uml-primitives/fd-uml-link';
 import { inject as service } from '@ember/service';
 import { get } from '@ember/object';
 import { A, isArray } from '@ember/array';
-import { isNone } from '@ember/utils';
+import { isNone, isBlank } from '@ember/utils';
 import uuid from 'npm:node-uuid';
 import { updateObjectByStr } from '../../utils/fd-update-str-value';
 import { getDataForBuildTree } from '../../utils/fd-attributes-for-tree';
@@ -68,7 +68,8 @@ export default Mixin.create({
     @param {Event} e event.
   */
   _keydownHandler(e) {
-    if ($(e.target).is('textarea,input')) {
+    let selectedText = window.getSelection().toString();
+    if ($(e.target).is('textarea,input') || !isBlank(selectedText)) {
       return;
     }
 
