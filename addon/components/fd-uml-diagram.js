@@ -6,6 +6,7 @@ import Component from '@ember/component';
 import { computed, observer } from '@ember/object';
 import { isNone, isBlank } from '@ember/utils';
 import { inject as service } from '@ember/service';
+import { once } from '@ember/runloop';
 import { A } from '@ember/array';
 
 import $ from 'jquery';
@@ -164,11 +165,40 @@ export default Component.extend(
   */
   readonly: false,
 
+  /**
+    Flags indicates any changes on diagram.
+
+    @property isDiagramChanged
+    @type Boolean
+  */
+  isDiagramChanged: false,
+
   readonlyObserver: observer('readonly', function() {
     let paper = this.get('paper');
     if (isNone(paper)) {
       return;
     }
+
+    const primitivesObservableProperties = [
+      'primitives.@each.attributes',
+      'primitives.@each.collapsed',
+      'primitives.@each.methods',
+      'primitives.@each.name',
+      'primitives.@each.position',
+      'primitives.@each.repositoryObject',
+      'primitives.@each.size',
+      'primitives.@each.stereotype',
+      'primitives.@each.endPointRef',
+      'primitives.@each.startPointRef',
+      'primitives.@each.description',
+      'primitives.@each.endMultiplicity',
+      'primitives.@each.startMultiplicity',
+      'primitives.@each.endPercent',
+      'primitives.@each.startPercent',
+      'primitives.@each.labels',
+      'primitives.@each.vertices',
+      'primitives.@each.primitive'
+    ];
 
     if (this.get('readonly')) {
       $(paper.el).find('input,textarea').addClass('click-disabled');
@@ -176,6 +206,11 @@ export default Component.extend(
       paper.off('element:pointermove', this._ghostElementMove, this);
       paper.off('element:pointerup', this._ghostElementRemove, this);
       paper.clearGrid();
+
+      this.set('isDiagramChanged', false);
+      primitivesObservableProperties.forEach((property) => {
+        this.removeObserver(property, this, this._diagramChangesObserverFunction);
+      });
     } else {
       this._fixBrokenDiagramObjects();
       $(paper.el).find('input,textarea').removeClass('click-disabled');
@@ -183,7 +218,13 @@ export default Component.extend(
       paper.on('element:pointermove', this._ghostElementMove, this);
       paper.on('element:pointerup', this._ghostElementRemove, this);
       this._highlighted(null);
-      paper.drawGrid()
+      paper.drawGrid();
+
+      primitivesObservableProperties.forEach((property) => {
+        this.addObserver(property, () => {
+          once(this, this._diagramChangesObserverFunction);
+        });
+      });
     }
   }),
 
@@ -348,6 +389,15 @@ export default Component.extend(
     this._super(...arguments);
 
     this.get('fdDiagramService').off('updateJointObjectViewTriggered', this, this._updateJointObjectView);
+  },
+
+  /**
+    Function for process detected primitives changes.
+
+    @method _diagramChangesObserverFunction
+   */
+  _diagramChangesObserverFunction() {
+    this.set('isDiagramChanged', true);
   },
 
   /**

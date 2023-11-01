@@ -15,6 +15,7 @@
       contentSheetValue=selectedValue.data
       customButtons=customButtons
       genToolbarVisible=genToolbarVisible
+      saveButtonEnabled=isDiagramChanged
     }}
     {{flexberry-textbox
       value=computedTitle
@@ -80,6 +81,7 @@
           diagramType=diagramType
           readonlyMode=readonlyMode
           openEditFormAction=(action "openNestedSheet")
+          isDiagramChanged=isDiagramChanged
         }}
       {{/if}}
     {{/if}}
