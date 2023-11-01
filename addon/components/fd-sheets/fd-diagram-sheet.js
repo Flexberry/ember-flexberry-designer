@@ -111,6 +111,14 @@ export default FdBaseSheet.extend(
   showSettins: false,
 
   /**
+    Flags indicates any changes on diagram.
+
+    @property isDiagramChanged
+    @type Boolean
+  */
+  isDiagramChanged: false,
+
+  /**
     Flag: indicates whether to not show gen button.
 
     @property GenToolbarVisible

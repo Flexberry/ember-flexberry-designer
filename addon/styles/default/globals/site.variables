@@ -84,6 +84,8 @@
 /* Цвет основных кнопок */
 @basicButtonColor: fade(@textColor, 85%);
 @basicButtonBoxShadow: fade(@textColor, 35%);
+@basicButtonSelectedBorderColor: fade(@textColor, 70%);
+@basicButtonHoverTextColor: @textColor;
 
 @itemActiveBorderRadius: 0.5rem;
 
@@ -106,4 +108,4 @@
     THEME
 ----------------*/
 
-@import (optional) '@{Theme}';
+@import (optional) '@{Theme}.variables';

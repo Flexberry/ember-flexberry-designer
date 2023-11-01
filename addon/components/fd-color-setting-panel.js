@@ -130,7 +130,11 @@ export default Component.extend(
         objectView.updateRectangles();
       }
 
-      this._createHistoryStep(oldTextValue, rgbaTextValue, oldBrushValue, rgbabackgroundValue, oldStereotype, newStereotype);
+      if (!this._compareColorArrays(oldTextValue, rgbaTextValue) || !this._compareColorArrays(oldBrushValue, rgbabackgroundValue) || oldStereotype !== newStereotype) {
+        this._createHistoryStep(oldTextValue, rgbaTextValue, oldBrushValue, rgbabackgroundValue, oldStereotype, newStereotype);
+        objectModel.notifyPropertyChange('primitive');
+      }
+
       this.closePopup(e, true);
       objectView.paper.$el.focus();
     }
@@ -164,5 +168,23 @@ export default Component.extend(
     }
 
     graph.trigger('history:add', this.get('value.model').get('id'), changes);
+  },
+
+  /**
+    Compare colors values of two colors arrays.
+
+    @method _compareColorArrays
+   */
+  _compareColorArrays(colors1, colors2) {
+    if (colors1.length !== colors2.length) {
+      return false;
+    }
+
+    const identR = colors1[0] === colors2[0];
+    const identG = colors1[1] === colors2[1];
+    const identB = colors1[2] === colors2[2];
+    const identA = colors1[3] === colors2[3];
+
+    return identR && identG && identB && identA;
   }
 });
