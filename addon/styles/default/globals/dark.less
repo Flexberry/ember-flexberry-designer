@@ -12,7 +12,10 @@
 
 @loaderDimmerColorGlobal: rgba(74, 74, 74, 0.78);
 
+@basicButtonColor: @lightTextColor;
 @basicButtonBoxShadow: @lightTextColor;
+@basicButtonSelectedBorderColor: @veryStrongTransparentWhite;
+@basicButtonHoverTextColor: @veryStrongTransparentWhite;
 
 @toolbarButtonColor: @veryStrongTransparentWhite;
 @toolbarButtonBackground: @sidebarBg;
@@ -105,13 +108,12 @@
   background-color: transparent !important;
 }
 
-.ui.basic.button {
-  color: @lightTextColor !important;
+.ui.button {
+  color: #777;
 }
 
-.ui.basic.button:hover {
-  color: @textColor !important;
-  box-shadow: 0px 0px 0px 1px @textColor inset;
+.ui.button:hover {
+  color: #777;
 }
 
 .fd-logo {

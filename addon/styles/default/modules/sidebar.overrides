@@ -261,6 +261,12 @@
   height: 2.8125rem;
 }
 
+@media (max-width: 1200px) {
+  .fd-logo {
+    height: 3.2143rem;
+  }
+}
+
 .sidebar-mini .fd-logo {
   background-image: url(images/fd-logo-mini.svg);
 }
