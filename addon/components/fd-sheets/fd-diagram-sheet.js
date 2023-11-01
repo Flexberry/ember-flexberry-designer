@@ -153,7 +153,7 @@ export default FdBaseSheet.extend(
       {
         buttonTitle: i18n.t('components.fd-diagram-editing-panel.toggler-caption'),
         buttonVisible: this.get('selectedValue.data.isNew') || (!this.get('isAddMode') && !this.get('readonlyMode')),
-        iconClasses: 'icon-fd-gear icon',
+        iconClasses: 'icon-guideline-setting icon',
         buttonAction: () => this.toggleProperty('showSettins'),
       }];
   }),

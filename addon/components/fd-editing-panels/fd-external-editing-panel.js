@@ -7,7 +7,8 @@ import { A } from '@ember/array';
 import FdUpdateStoreInstancesValueMixin from '../../mixins/fd-editing-panels/fd-update-store-instances-value';
 import FdReadonlyModeMixin from '../../mixins/fd-editing-panels/fd-readonly-mode';
 import layout from '../../templates/components/fd-editing-panels/fd-external-editing-panel';
-import { SimplePredicate } from 'ember-flexberry-data/query/predicate';
+import Condition from 'ember-flexberry-data/query/condition';
+import { SimplePredicate, ComplexPredicate } from 'ember-flexberry-data/query/predicate';
 import Builder from 'ember-flexberry-data/query/builder';
 import FilterOperator from 'ember-flexberry-data/query/filter-operator';
 
@@ -37,6 +38,14 @@ export default Component.extend(FdUpdateStoreInstancesValueMixin, FdReadonlyMode
     @type Object
   */
   stageValue: undefined,
+
+  /**
+    Stage names.
+
+    @property stageNames
+    @type Array
+  */
+  stageNames: undefined,
 
   /**
     All stages.
@@ -71,6 +80,14 @@ export default Component.extend(FdUpdateStoreInstancesValueMixin, FdReadonlyMode
   deactivateActions: false,
 
   /**
+    Stage projection name.
+
+    @property stageProjection
+    @type string
+  */
+  stageProjection: 'ListFormView',
+
+  /**
     Ember.observer, watching string `model.name` and update value property.
 
     @method _modelObserver
@@ -95,14 +112,15 @@ export default Component.extend(FdUpdateStoreInstancesValueMixin, FdReadonlyMode
     let promises = [];
     let templateClassId = model.get('description');
     let store = this.get('store');
+    let stageProjection = this.get('stageProjection');
 
     let builderStage = new Builder(store)
       .from('fd-dev-stage')
-      .selectByProjection('ListFormView');
+      .selectByProjection(stageProjection);
 
     promises.push(store.query('fd-dev-stage', builderStage.build()));
 
-    if (!isNone(templateClassId)) {
+    if (!isBlank(templateClassId)) {
       let id = templateClassId.substring(1, templateClassId.length - 1);
 
       let builderClass = new Builder(store)
@@ -132,15 +150,22 @@ export default Component.extend(FdUpdateStoreInstancesValueMixin, FdReadonlyMode
 
     all(promises).then((allThen) => {
       let stageArray = A(allThen[0]);
-      let stageNames = stageArray.mapBy('name');
-      stageNames.unshift('');
-      _this.set('stageItems', {
-        names: stageNames,
-        objects: stageArray,
+      let stageItems = stageArray.map(x => {
+        let stageName = this.getStageName(x);
+        return {
+          name: stageName,
+          stage: x
+        };
       });
 
+      let stageNames = stageItems.mapBy('name');
+      stageNames.unshift('');
+
+      _this.set('stageItems', stageItems);
+      _this.set('stageNames', stageNames);
+
       if (promises.length === 2) {
-        _this.set('stageValue', allThen[1].get('name'));
+        _this.set('stageValue', this.getStageName(allThen[1]));
       } else {
         _this.set('stageValue', '');
         _this.set('classValue', '');
@@ -156,6 +181,16 @@ export default Component.extend(FdUpdateStoreInstancesValueMixin, FdReadonlyMode
   },
 
   /**
+    Create stage name.
+
+    @method getStageName
+    @param {Array} stage stage.
+  */
+  getStageName(stage) {
+    return stage.get('name');
+  },
+
+  /**
     Method for get all classes for current stage.
 
     @method getClassesForStage
@@ -163,7 +198,14 @@ export default Component.extend(FdUpdateStoreInstancesValueMixin, FdReadonlyMode
     @param {Object} stage Current stage.
   */
   getClassesForStage(store, stage) {
-    let predicate = new SimplePredicate('stage', FilterOperator.Eq, stage.get('id'));
+    let predicate = new ComplexPredicate(Condition.And,
+      new SimplePredicate('stage', FilterOperator.Eq, stage.get('id')),
+      new ComplexPredicate(Condition.Or,
+        new SimplePredicate('stereotype', FilterOperator.Eq, ''),
+        new SimplePredicate('stereotype', FilterOperator.Eq, '«implementation»'),
+        new SimplePredicate('stereotype', FilterOperator.Eq, '«enumeration»'),
+        new SimplePredicate('stereotype', FilterOperator.Eq, '«typedef»')
+      ));
 
     let builderClasses = new Builder(store)
       .from('fd-dev-class')
@@ -185,11 +227,12 @@ export default Component.extend(FdUpdateStoreInstancesValueMixin, FdReadonlyMode
       if (isBlank(value)) {
         this.set('stageValue', '');
         this.set('classValue', '');
+        this.set('model.description', null);
       } else {
         let _this = this;
         let store = this.get('store');
-        let stageObject = this.get('stageItems').objects.findBy('name', value);
-        this.getClassesForStage(store, stageObject).then((classes) => {
+        let stageObject = this.get('stageItems').findBy('name', value);
+        this.getClassesForStage(store, stageObject.stage).then((classes) => {
           let classArray = A(classes);
           let classNames = classArray.mapBy('name');
           classNames.unshift('');

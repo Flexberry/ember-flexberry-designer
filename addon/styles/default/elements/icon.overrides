@@ -17,3 +17,8 @@ i.icon.sync.alternate::before {
 i.icon.outline {
   font-family: outline-icons;
 }
+
+[class^="icon-guideline-"], [class*=" icon-guideline-"] {
+  vertical-align: bottom;
+  line-height: inherit;
+}

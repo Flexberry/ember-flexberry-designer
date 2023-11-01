@@ -102,37 +102,37 @@ export default Controller.extend(FdShareFunctionMixin, {
         link: 'fd-diagrams',
         caption: i18n.t('forms.application.sitemap.root.fd-diagrams.caption'),
         title: i18n.t('forms.application.sitemap.root.fd-diagrams.title'),
-        icon: 'icon-fd-diagram'
+        icon: 'icon-guideline-hierarchical-list'
       },
       {
         link: 'fd-application-model',
         caption: i18n.t('forms.application.sitemap.root.fd-application-model.caption'),
         title: i18n.t('forms.application.sitemap.root.fd-application-model.title'),
-        icon: 'icon-fd-menu'
+        icon: 'icon-guideline-marker-list'
       },
       {
         link: 'fd-navigation',
         caption: i18n.t('forms.application.sitemap.root.fd-navigation.caption'),
         title: i18n.t('forms.application.sitemap.root.fd-navigation.title'),
-        icon: 'icon-fd-sitemap'
+        icon: 'icon-guideline-book'
       },
       {
         link: 'fd-generation-settings',
         caption: i18n.t('forms.application.sitemap.root.fd-generation.caption'),
         title: i18n.t('forms.application.sitemap.root.fd-generation.title'),
-        icon: 'icon-fd-shipping-box'
+        icon: 'icon-guideline-download-layer'
       },
       {
         link: 'fd-setting',
         caption: i18n.t('forms.application.sitemap.root.fd-setting.caption'),
         title: i18n.t('forms.application.sitemap.root.fd-setting.title'),
-        icon: 'icon-fd-gear'
+        icon: 'icon-guideline-setting'
       },
       {
         link: 'fd-architecture',
         caption: i18n.t('forms.application.sitemap.root.fd-architecture.caption'),
         title: i18n.t('forms.application.sitemap.root.fd-architecture.title'),
-        icon: 'icon-fd-diagram'
+        icon: 'icon-guideline-layers'
       });
     }
 
@@ -153,19 +153,19 @@ export default Controller.extend(FdShareFunctionMixin, {
         link: 'fd-all-projects',
         caption: i18n.t('forms.application.sitemap.root.fd-all-projects.caption'),
         title: i18n.t('forms.application.sitemap.root.fd-all-projects.title'),
-        icon: 'icon-fd-view'
+        icon: 'icon-guideline-grid'
       },
       {
         link: 'i-i-s-caseberry-logging-objects-application-log-l',
         caption: i18n.t('forms.application.sitemap.root.i-i-s-caseberry-logging-objects-application-log-l.caption'),
         title: i18n.t('forms.application.sitemap.root.i-i-s-caseberry-logging-objects-application-log-l.title'),
-        icon: 'bug'
+        icon: 'icon-guideline-table'
       },
       {
         link: 'https://flexberry.github.io',
         caption: i18n.t('forms.application.sitemap.root.fd-docs.caption'),
         title: i18n.t('forms.application.sitemap.root.fd-docs.title'),
-        icon: 'icon-fd-book'
+        icon: 'icon-guideline-book'
       },
       {
         link: 'https://gitter.im/Flexberry',

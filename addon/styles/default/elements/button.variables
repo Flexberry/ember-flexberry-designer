@@ -1,24 +1,30 @@
-@textColor: @toolbarButtonColor;
-@hoverColor: @toolbarButtonColor;
+/* Button */
+@verticalPadding: 0.75em;
+@horizontalPadding: 1.25em;
+@textColor: #3B4256;
+@fontWeight: 500;
+
 @downColor: @toolbarButtonColor;
 @focusColor: @toolbarButtonColor;
-@backgroundColor: @toolbarButtonBackground;
+@backgroundColor: @fdToolbarButtonBackground;
+@hoverBackgroundColor: fadein(@backgroundColor, 30%);
+@downBackgroundColor: fadein(@backgroundColor, 30%);
 @borderRadius: 0.5rem;
 
+@selectedBorderColor: fade(@textColor, 70%);
 @basicFontWeight: 500;
 @basicTextColor: @basicButtonColor;
-@basicHoverTextColor: @basicButtonColor + rgba(0, 0, 0, 0.10);
-@basicDownTextColor: @basicButtonColor + rgba(0, 0, 0, 0.20);
+@basicHoverTextColor: @textColor;
+@basicDownTextColor: @textColor;
 
 @basicHoverBackground: transparent;
 @basicDownBackground: transparent;
 
-@basicBoxShadow: 0px 0px 0px 1px @basicButtonBoxShadow;
-@basicHoverBoxShadow: 0px 0px 0px 1px @basicButtonBoxShadow + rgba(0, 0, 0, 0.10);
-@basicDownBoxShadow: 0px 0px 0px 1px @basicButtonBoxShadow + rgba(0, 0, 0, 0.20);
+@borderColor: @basicButtonBoxShadow;
 
-/* Кнопки тулбара */
-@fontWeight: normal;
-@verticalPadding: 0.625em;
-@hoverBackgroundColor: fadein(@toolbarButtonBackground, 10%);
-@downBackgroundColor: fadein(@toolbarButtonBackground, 20%);
+/* Icon */
+@iconHeight: 0.8em;
+@iconOpacity: 0.75;
+@iconDistance: 0.2em;
+@iconMargin: 0em @iconDistance 0em -(@iconDistance * 2);
+@iconButtonOpacity: 0.75;

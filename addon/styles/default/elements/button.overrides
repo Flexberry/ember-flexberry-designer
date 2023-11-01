@@ -1,41 +1,63 @@
 
-// .ui.basic.button:not(.icon) {
-//   padding: 0.5em 1.2em;
-// }
-
-.ui.icon.buttons .button,
-.ui.icon.button {
-  padding: unit((7 / 18), em);
-  font-size: 18px;
-
-  > .icon:not(.button) {
-    width: 1em;
-    height: 1em;
-  }
+.ui.icon.button:hover > .icon {
+  opacity: 1;
 }
+
 .fd-sheet-toolbar {
-  font-size: 0;
+  display: flex;
+  gap: 0.25em;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-end;
+  height: 5rem;
+  line-height: 5rem;
+
   .transition(all 0.5s);
 
-  .ui.buttons {
-    vertical-align: middle;
-  }
   .ui.button {
-    margin-right: @toolbarBtnsmargin;
-    vertical-align: middle;
+    margin-right: 0;
     .transition(all 0.5s);
   }
 
   .ui.buttons .ui.button:first-child {
     margin-right: unit((3 / 18), em);
   }
+
+  .ui.button.fd-edit,
+  .ui.button.fd-save {
+    padding: 0.5em 1.5em;
+  }
 }
 
+.view-definition .ui.button,
+.fd-sheet-toolbar .ui.button,
+.fd-edit-button-in-row .ui.button {
+  padding: 0.5em 0.375em;
+}
 
 .basic.button.table-btn:not(.icon) {
   border-radius: @itemActiveBorderRadius;
   white-space: nowrap;
   min-height: 34px;
+}
+
+/* Basic */
+.ui.basic.primary.buttons .button,
+.ui.basic.primary.button {
+  box-shadow: 0px 0px 0px @basicBorderSize fade(@primaryColor, 50%) inset !important;
+}
+
+/*-------------------
+      Disabled
+--------------------*/
+
+.ui.buttons .disabled.button,
+.ui.disabled.button,
+.ui.button:disabled,
+.ui.disabled.button:hover,
+.ui.disabled.active.button {
+  // opacity: @disabledOpacity !important;
+  box-shadow: @basicBoxShadow !important;
 }
 
 #mobile {

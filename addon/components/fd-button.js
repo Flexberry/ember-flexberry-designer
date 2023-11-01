@@ -6,7 +6,7 @@ export default FlexberryButtonComponent.extend({
 
   tagName: 'button',
 
-  iconClass: 'icon-fd-plus-thin',
+  iconClass: 'icon-guideline-plus',
 
   classNames: ['basic'],
 
