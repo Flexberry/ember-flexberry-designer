@@ -389,7 +389,18 @@ export default Controller.extend(FdShareFunctionMixin, {
       @method actions.exitProject
     */
     exitProject() {
-      this.send('_exitProject');
+      let sheetNames = ["diagram-sheet", "class-sheet", "navigation-sheet", "view-sheet", "edit-diagram-object-sheet", "generation-sheet"];
+      let hasDirtyAttrs = false;
+      sheetNames.forEach((name) => {
+        let isDirty = this.get('fdSheetService').findUnsavedSheetData(name);
+        if (isDirty) {
+          hasDirtyAttrs = isDirty;
+          this.get('fdSheetService').closeSheet(name);
+        }
+      });
+      if (!hasDirtyAttrs) {
+        this.send('_exitProject');
+      }
     },
 
     /**

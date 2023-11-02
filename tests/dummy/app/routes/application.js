@@ -86,7 +86,7 @@ export default Route.extend(ModalApplicationRouteMixin, {
       let currentProjectContext = this.get('currentProjectContext');
       currentProjectContext.resetCurrentStage();
       const userService = getOwner(this).lookup('service:user');
-      let store = this.get('store');
+      const store = this.get('store');
 
       let name = userService.getCurrentUserName();
       if (!isEmpty(name)) {

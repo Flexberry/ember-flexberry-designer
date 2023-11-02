@@ -4,7 +4,6 @@
 
 import { SimplePredicate } from 'ember-flexberry-data/query/predicate';
 import Builder from 'ember-flexberry-data/query/builder';
-import { isArray } from '@ember/array';
 
 /**
   Looks for already created user settings record.
@@ -13,17 +12,17 @@ import { isArray } from '@ember/array';
   or `undefined` if there is no such setting.
 */
 let getExistingRecord = function(store, userName) {
-  let cp = new SimplePredicate('userName', 'eq', userName);
-  let modelName = 'new-platform-flexberry-flexberry-user-setting';
-  let builder = new Builder(store)
+  let predicate = new SimplePredicate('userName', 'eq', userName);
+  const modelName = 'new-platform-flexberry-flexberry-user-setting';
+  const builder = new Builder(store)
     .from(modelName)
     .selectByProjection('FlexberryUserSettingE')
     .orderBy('settLastAccessTime desc')
-    .where(cp);
+    .where(predicate);
   return store.query(modelName, builder.build()).then((result) => {
     if (result) {
       let foundRecords = result.toArray();
-      if (isArray(foundRecords) && foundRecords.length > 0) {
+      if (foundRecords && foundRecords.length > 0) {
         for (let i = 1; i < foundRecords.length; i++) {
           foundRecords[i].destroyRecord();
         }
