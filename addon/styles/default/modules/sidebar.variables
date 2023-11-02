@@ -3,4 +3,4 @@
 @horizontalBoxShadow: none;
 @itemTransition: none;
 
-@sidebarBackground: @sidebarBg;
+@darkenedSidebarBackground: @fdPrimaryColor;

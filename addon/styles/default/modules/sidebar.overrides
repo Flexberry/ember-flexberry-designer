@@ -197,7 +197,7 @@
 
 .pushable.fade .ui.form .fd-search-input input[type="text"],
 .pushable.fade .ui.vertical.menu {
-  background: @sidebarBackground;
+  background: @darkenedSidebarBackground;
 }
 
 // Костыль для семантика
