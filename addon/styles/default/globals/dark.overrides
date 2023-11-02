@@ -97,3 +97,8 @@
 .fd-logo {
   background-image: url(images/fd-logo-light.svg);
 }
+
+.pushable.fade .ui.form .fd-search-input input[type="text"],
+.pushable.fade .ui.vertical.menu {
+  background: @sidebarBg;
+}
