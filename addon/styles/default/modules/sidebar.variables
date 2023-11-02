@@ -2,3 +2,5 @@
 
 @horizontalBoxShadow: none;
 @itemTransition: none;
+
+@darkenedSidebarBackground: @fdPrimaryColor;

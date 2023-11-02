@@ -2,7 +2,7 @@
 @lightTextColor: rgba(255, 255, 255, 0.25);
 @pageBackground: #3e3e3e;
 
-@sidebarBg: rgba(0, 0, 0, 0.14);
+@fdPrimaryColor: #2b2a2a;
 
 @sidebarIconColor: rgba(255, 255, 255, 0.50);
 
