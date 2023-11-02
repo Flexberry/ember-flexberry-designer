@@ -5,6 +5,9 @@ import FdPreloadStageMetadata from 'ember-flexberry-designer/utils/fd-preload-st
 import { SimplePredicate } from 'ember-flexberry-data/query/predicate';
 import Builder from 'ember-flexberry-data/query/builder';
 import FilterOperator from 'ember-flexberry-data/query/filter-operator';
+import { getOwner } from '@ember/application';
+import { isNone, isEmpty } from '@ember/utils';
+import { getExistingRecord } from 'ember-flexberry-designer/utils/get-user-setting';
 
 export default Route.extend(ModalApplicationRouteMixin, {
 
@@ -73,6 +76,26 @@ export default Route.extend(ModalApplicationRouteMixin, {
     */
     refreshRoute() {
       this.refresh();
+    },
+
+    /**
+      @method actions._exitProject
+    */
+    _exitProject() {
+      this.transitionTo('fd-all-projects');
+      let currentProjectContext = this.get('currentProjectContext');
+      currentProjectContext.resetCurrentStage();
+      const userService = getOwner(this).lookup('service:user');
+      const store = this.get('store');
+
+      let name = userService.getCurrentUserName();
+      if (!isEmpty(name)) {
+        return getExistingRecord(store, name).then(foundRecord => {              
+          if (!isNone(foundRecord)) {                
+            foundRecord.destroyRecord();
+          }
+        });
+      }
     }
   }
 });
