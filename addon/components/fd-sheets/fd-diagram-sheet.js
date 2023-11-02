@@ -849,6 +849,18 @@ export default FdBaseSheet.extend(
       let systemsItems = this.get('systemsItems');
       let systemsObject = systemsItems.objects.findBy('name', value);
       set(model, 'subsystem', systemsObject);
+    },
+
+    /**
+      Update 'isDiagramChanged'.
+
+      @method actions.changeDiagramPrimitives
+      @param {Bool} value
+    */
+    changeDiagramPrimitives(value) {
+      schedule('afterRender', this, function() {
+        this.set('isDiagramChanged', value);
+      });
     }
   }
 });
