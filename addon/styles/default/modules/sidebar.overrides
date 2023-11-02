@@ -195,6 +195,11 @@
   }
 }
 
+.pushable.fade .ui.form .fd-search-input input[type="text"],
+.pushable.fade .ui.vertical.menu {
+  background: @sidebarBackground;
+}
+
 // Костыль для семантика
 .ui.visible.left.sidebar ~ .pusher {
   -webkit-transform: translate3d(@sidebarWdth, 0, 0) !important;
