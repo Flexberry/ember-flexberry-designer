@@ -716,7 +716,7 @@ export default FdBaseSheet.extend(
           }
         });
 
-        return this.get('store').batchUpdate(updateModels);
+        return this.get('store').batchUpdate(updateModels, { 'fd-dev-uml-cad': 'FdPreloadMetadata', 'fd-dev-class': 'FdPreloadMetadata' });
       })
       .then(() => {
         if (isNew) {
