@@ -214,7 +214,7 @@ export default Component.extend(
         this.removeObserver(property, this, this._diagramChangesObserverFunction);
       });
     } else {
-      let isFix = this._fixBrokenDiagramObjects();
+      const isFix = this._fixBrokenDiagramObjects();
       $(paper.el).find('input,textarea').removeClass('click-disabled');
       paper.setInteractivity({ elementMove: false, vertexAdd: false });
       paper.on('element:pointermove', this._ghostElementMove, this);
