@@ -47,6 +47,11 @@ export default Route.extend(FdShareLoadData, {
         "DockerBuildShellScript": false,
         "DockerSwarm": false
       },
+      "CiCd": {
+        "AzureDevOps": false,
+        "GitHubActions": false,
+        "GitLab": false
+      },
       "Storage": {
         "Mssql": {
           "DiffSql": false,

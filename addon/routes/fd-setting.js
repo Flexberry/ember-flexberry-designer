@@ -2,6 +2,7 @@ import Route from '@ember/routing/route';
 import { A } from '@ember/array';
 import { inject as service } from '@ember/service';
 import { isBlank } from '@ember/utils';
+import { all } from 'rsvp';
 
 export default Route.extend({
 
@@ -35,16 +36,21 @@ export default Route.extend({
     const adapter = store.adapterFor('application');
     const data = { 'project': modelHash.stage.get('id'), 'moduleSettingTypes': this.get('generationSettings') };
 
-    return adapter.callAction('GetCurrentModuleSettings', data, null, { withCredentials: true }).then((generationSettings) => {
+    const promises = [
+      adapter.callAction('GetCurrentModuleSettings', data, null, { withCredentials: true }),
+      adapter.callFunction('GetUsersAccessForStage', { project: modelHash.stage.get('id').toString() }, null, { withCredentials: true })
+    ];
+
+    return all(promises).then((result) => {
+      const generationSettings = result[0];
+      const usersAccess = result[1];
+
       modelHash.settings = JSON.parse(generationSettings.value);
+      if (!isBlank(usersAccess.value)) {
+        modelHash.usersAccess = A(JSON.parse(usersAccess.value));
+      }
 
-      return adapter.callFunction('GetUsersAccessForStage', { project: modelHash.stage.get('id').toString() }, null, { withCredentials: true }).then((usersAccess) => {
-        if (!isBlank(usersAccess.value)) {
-          modelHash.usersAccess = A(JSON.parse(usersAccess.value));
-        }
-
-        return modelHash;
-      });
+      return modelHash;
     });
   },
 

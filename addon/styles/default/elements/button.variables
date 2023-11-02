@@ -11,10 +11,10 @@
 @downBackgroundColor: fadein(@backgroundColor, 30%);
 @borderRadius: 0.5rem;
 
-@selectedBorderColor: fade(@textColor, 70%);
+@selectedBorderColor: @basicButtonSelectedBorderColor;
 @basicFontWeight: 500;
 @basicTextColor: @basicButtonColor;
-@basicHoverTextColor: @textColor;
+@basicHoverTextColor: @basicButtonHoverTextColor;
 @basicDownTextColor: @textColor;
 
 @basicHoverBackground: transparent;

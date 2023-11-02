@@ -170,6 +170,14 @@ export default Component.extend(FdReadonlyProjectMixin, FdShareFunctionMixin, {
   classDiagrams: null,
 
   /**
+    Flag: indicates whether save button enabled.
+
+    @property saveButtonEnabled
+    @type Boolean
+  */
+  saveButtonEnabled: true,
+
+  /**
     Update locks.
 
     @method readonlyModeObserver

@@ -30,6 +30,7 @@ export let RoleView = DescriptionView.extend({
 
     this.$box.find('.end-role-input').on('input', function() {
       this.updateInputWidth('.end-role-input');
+      this.updateInputPosition(2, '.end-role-input');
     }.bind(this));
 
     this.$box.find('.start-role-input').on('change', function(evt) {

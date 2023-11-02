@@ -112,6 +112,14 @@ export default FdBaseSheet.extend(
   showSettins: false,
 
   /**
+    Flags indicates any changes on diagram.
+
+    @property isDiagramChanged
+    @type Boolean
+  */
+  isDiagramChanged: false,
+
+  /**
     Flag: indicates whether to not show gen button.
 
     @property GenToolbarVisible
@@ -373,14 +381,22 @@ export default FdBaseSheet.extend(
             throw new Error(`Unsupported type: '${primitive.get('primitive.$type')}'.`);
         }
 
-        store.peekRecord(modelName, id).rollbackAll();
+        let record = store.peekRecord(modelName, id);
+        if (!isNone(record)) {
+          if (record.get('isNew')) {
+            record.unloadRecord();
+          } else {
+            record.rollbackAll();
+          }
+        }
       });
 
       model.rollbackAll();
       this.get('emptyReferenceCountItems').clear();
-      this.set('isDiagramVisible', false);
       set(selectedValue, 'active', false);
     }
+
+    this.set('isDiagramVisible', false);
   },
 
   /**
@@ -750,7 +766,10 @@ export default FdBaseSheet.extend(
     */
     delete(confirmation) {
       if (isNone(confirmation)) {
-        this.get('fdDialogService').showVerificationMessage(this.get('i18n').t('components.fd-modal-message-box.delete-text').toString(), this.get('actions.delete'), this);
+        const i18n = this.get('i18n');
+        this.get('fdDialogService').showVerificationMessage(
+          i18n.t('components.fd-diagram-editing-panel.delete-confirm-message', { diagramName: this.get('selectedValue.data.name') }),
+          this.get('actions.delete'), this);
         return;
       }
 

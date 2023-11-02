@@ -1,22 +1,3 @@
-@textColor: @veryStrongTransparentWhite;
-@lightTextColor: rgba(255, 255, 255, 0.25);
-@pageBackground: #3e3e3e;
-
-@sidebarBg: rgba(0, 0, 0, 0.14);
-
-@sidebarIconColor: rgba(255, 255, 255, 0.50);
-
-@overlayColor: rgba(1, 1, 1, 0.15);
-
-@footerBackground: #383838;
-
-@loaderDimmerColorGlobal: rgba(74, 74, 74, 0.78);
-
-@basicButtonBoxShadow: @lightTextColor;
-
-@toolbarButtonColor: @veryStrongTransparentWhite;
-@fdToolbarButtonBackground: @sidebarBg;
-
 
 // For olv
 
@@ -109,6 +90,7 @@
   color: #777;
 }
 
-.ui.button:hover {
-  color: #777;
+
+.fd-logo {
+  background-image: url(images/fd-logo-light.svg);
 }

@@ -197,6 +197,14 @@ FdPopupActions, {
   readonlyMode: false,
 
   /**
+    Flags indicates any changes on diagram.
+
+    @property isDiagramChanged
+    @type Boolean
+  */
+  isDiagramChanged: false,
+
+  /**
     Object with flags indicates whether diagram is readonly.
 
     @property readonly

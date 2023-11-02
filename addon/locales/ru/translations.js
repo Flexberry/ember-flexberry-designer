@@ -156,6 +156,7 @@ import FdGisSubsystem from './components/fd-gis-subsystem';
 import FdColorSettingPanel from './components/fd-color-setting-panel';
 import FdViewHelperPanel from './components/fd-view-helper';
 import FdGenerationSettings from './components/fd-generation-settings';
+import FdUmlDiagram from './components/fd-uml-diagram';
 
 const translations = {};
 $.extend(true, translations, EmberFlexberryTranslations);
@@ -492,6 +493,7 @@ $.extend(true, translations, {
     'fd-color-setting-panel': FdColorSettingPanel,
     'fd-view-helper': FdViewHelperPanel,
     'fd-generation-settings': FdGenerationSettings,
+    'fd-uml-diagram': FdUmlDiagram
   }
 
 });
