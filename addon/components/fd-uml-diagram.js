@@ -125,6 +125,35 @@ export default Component.extend(
   primitives: computed.alias('model.primitives'),
 
   /**
+    List primitives name for observer.
+
+    @property primitivesObservableProperties
+    @type Ember.Array
+  */
+  primitivesObservableProperties: computed(() => {
+    return [
+      'primitives.@each.attributes',
+      'primitives.@each.collapsed',
+      'primitives.@each.methods',
+      'primitives.@each.name',
+      'primitives.@each.position',
+      'primitives.@each.repositoryObject',
+      'primitives.@each.size',
+      'primitives.@each.stereotype',
+      'primitives.@each.endPointRef',
+      'primitives.@each.startPointRef',
+      'primitives.@each.description',
+      'primitives.@each.endMultiplicity',
+      'primitives.@each.startMultiplicity',
+      'primitives.@each.endPercent',
+      'primitives.@each.startPercent',
+      'primitives.@each.labels',
+      'primitives.@each.vertices',
+      'primitives.@each.primitive'
+    ];
+  }),
+
+  /**
     True when link adding in process.
 
     @property isLinkAdding
@@ -165,40 +194,13 @@ export default Component.extend(
   */
   readonly: false,
 
-  /**
-    Flags indicates any changes on diagram.
-
-    @property isDiagramChanged
-    @type Boolean
-  */
-  isDiagramChanged: false,
-
   readonlyObserver: observer('readonly', function() {
     let paper = this.get('paper');
     if (isNone(paper)) {
       return;
     }
 
-    const primitivesObservableProperties = [
-      'primitives.@each.attributes',
-      'primitives.@each.collapsed',
-      'primitives.@each.methods',
-      'primitives.@each.name',
-      'primitives.@each.position',
-      'primitives.@each.repositoryObject',
-      'primitives.@each.size',
-      'primitives.@each.stereotype',
-      'primitives.@each.endPointRef',
-      'primitives.@each.startPointRef',
-      'primitives.@each.description',
-      'primitives.@each.endMultiplicity',
-      'primitives.@each.startMultiplicity',
-      'primitives.@each.endPercent',
-      'primitives.@each.startPercent',
-      'primitives.@each.labels',
-      'primitives.@each.vertices',
-      'primitives.@each.primitive'
-    ];
+    const primitivesObservableProperties = this.get('primitivesObservableProperties');
 
     if (this.get('readonly')) {
       $(paper.el).find('input,textarea').addClass('click-disabled');
@@ -207,12 +209,12 @@ export default Component.extend(
       paper.off('element:pointerup', this._ghostElementRemove, this);
       paper.clearGrid();
 
-      this.set('isDiagramChanged', false);
+      this.get('changeDiagramAction')(false);
       primitivesObservableProperties.forEach((property) => {
         this.removeObserver(property, this, this._diagramChangesObserverFunction);
       });
     } else {
-      this._fixBrokenDiagramObjects();
+      let isFix = this._fixBrokenDiagramObjects();
       $(paper.el).find('input,textarea').removeClass('click-disabled');
       paper.setInteractivity({ elementMove: false, vertexAdd: false });
       paper.on('element:pointermove', this._ghostElementMove, this);
@@ -220,11 +222,13 @@ export default Component.extend(
       this._highlighted(null);
       paper.drawGrid();
 
-      primitivesObservableProperties.forEach((property) => {
-        this.addObserver(property, () => {
-          once(this, this._diagramChangesObserverFunction);
+      if (isFix) {
+        this.get('changeDiagramAction')(true);
+      } else {
+        primitivesObservableProperties.forEach((property) => {
+          this.addObserver(property, this, this._diagramChangesObserverFunction);
         });
-      });
+      }
     }
   }),
 
@@ -397,7 +401,15 @@ export default Component.extend(
     @method _diagramChangesObserverFunction
    */
   _diagramChangesObserverFunction() {
-    this.set('isDiagramChanged', true);
+    once(this, () => {
+      const changeDiagramAction = this.get('changeDiagramAction');
+      const primitivesObservableProperties = this.get('primitivesObservableProperties');
+      changeDiagramAction(true);
+
+      primitivesObservableProperties.forEach((property) => {
+        this.removeObserver(property, this, this._diagramChangesObserverFunction);
+      });
+    });
   },
 
   /**
@@ -1512,7 +1524,11 @@ export default Component.extend(
         this.get('i18n').t('components.fd-uml-diagram.message-fix-diagram-header'),
         false
       );
+
+      return true;
     }
+
+    return false;
   },
 
   /**
