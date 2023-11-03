@@ -128,6 +128,7 @@ export default Component.extend(
         objectModel.set('stereotype', newStereotype);
         objectView.setInputValues();
         objectView.updateRectangles();
+        objectView.paper.trigger('updaterepobj', objectModel, 'stereotype', newStereotype);
       }
 
       this._createHistoryStep(oldTextValue, rgbaTextValue, oldBrushValue, rgbabackgroundValue, oldStereotype, newStereotype);

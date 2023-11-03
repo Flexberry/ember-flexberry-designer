@@ -90,16 +90,19 @@ export default Component.extend(FdUpdateFormviewValueMixin, FdConstructorValue, 
     formsNames.unshift('');
     this.set('editFormsItems', formsNames);
 
-    let className = dataobject.get('name') || dataobject.get('nameStr');
-    this.set('model.formViews.firstObject.dataObjectTypes.className', className);
+    const dataObjectTypes = this.get('model.formViews.firstObject.dataObjectTypes');
+    if (!isBlank(dataObjectTypes) ) {
+      let className = dataobject.get('name') || dataobject.get('nameStr');
+      dataObjectTypes.set('className', className);
 
-    let editContainerName = this.get('model.formViews.firstObject.dataObjectTypes.editContainerName');
-    let editContainerNameValue = formsNames.includes(editContainerName) ? editContainerName : '';
-    this.set('model.formViews.firstObject.dataObjectTypes.editContainerName', editContainerNameValue);
+      let editContainerName = dataObjectTypes.get('editContainerName');
+      let editContainerNameValue = formsNames.includes(editContainerName) ? editContainerName : '';
+      dataObjectTypes.set('editContainerName', editContainerNameValue);
 
-    let newContainerName = this.get('model.formViews.firstObject.dataObjectTypes.newContainerName');
-    let newContainerNameValue = formsNames.includes(newContainerName) ? newContainerName : '';
-    this.set('model.formViews.firstObject.dataObjectTypes.newContainerName', newContainerNameValue);
+      let newContainerName = dataObjectTypes.get('newContainerName');
+      let newContainerNameValue = formsNames.includes(newContainerName) ? newContainerName : '';
+      dataObjectTypes.set('newContainerName', newContainerNameValue);
+    }
   },
 
   /**
