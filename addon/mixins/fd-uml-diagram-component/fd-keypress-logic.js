@@ -68,7 +68,7 @@ export default Mixin.create({
     @param {Event} e event.
   */
   _keydownHandler(e) {
-    let selectedText = window.getSelection().toString();
+    const selectedText = window.getSelection().toString();
     if ($(e.target).is('textarea,input') || !isBlank(selectedText)) {
       return;
     }
