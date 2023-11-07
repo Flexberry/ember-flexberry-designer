@@ -4,11 +4,12 @@ import FdUmlLink from '../../objects/uml-primitives/fd-uml-link';
 
 import { isNone, isBlank } from '@ember/utils';
 import { translationMacro as t } from 'ember-i18n';
-import { all, resolve, reject } from 'rsvp';
+import { resolve, reject } from 'rsvp';
 import { inject as service } from '@ember/service';
 import { schedule } from '@ember/runloop';
 import { A } from '@ember/array';
 import { computed, observer, set, get } from '@ember/object';
+import uuid from 'npm:node-uuid';
 
 import hasChanges from '../../utils/model-has-changes';
 import { getUpdatedViews } from '../../utils/fd-update-class-diagram';
@@ -405,7 +406,7 @@ export default FdBaseSheet.extend(
     @param {Object} model Diagram model.
   */
   savePrimitives(model) {
-    let promises = A();
+    let updateModels = A();
     let primitives = model.get('primitives');
 
     // Sort elements. Partition primitive to first.
@@ -422,7 +423,7 @@ export default FdBaseSheet.extend(
       let store = this.get('store');
       let elements = repositoryObjects.filter(p => p instanceof FdUmlElement);
       if (elements.length > 0) {
-        promises.pushObjects(elements.map(p => {
+        elements.forEach((p) => {
           let repId = p.get('repositoryObject').slice(1, -1);
           let allRepObjects = store.peekAll('fd-dev-class');
           let repObject = allRepObjects.findBy('id', repId);
@@ -446,128 +447,122 @@ export default FdBaseSheet.extend(
             updateObjectByStr(repObject, store);
           }
 
-          return hasChanges(repObject) ? repObject.save().then(() => this.saveHasManyRelationships(repObject)) : resolve();
-        }));
+          if (hasChanges(repObject)) {
+            updateModels.pushObject(repObject);
+
+            let hasManyModels = this.getHasManyRelationships(repObject);
+            updateModels.pushObjects(hasManyModels);
+          }
+        });
       }
 
-      return all(promises).then(() => {
-        promises.clear();
+      let links = repositoryObjects.filter(p => p instanceof FdUmlLink);
+      if (links.length > 0) {
+        links.forEach((p) => {
+          let repId = p.get('repositoryObject').slice(1, -1);
+          let type = p.get('primitive.$type');
+          let repObject;
+          let allRepObjects;
 
-        let links = repositoryObjects.filter(p => p instanceof FdUmlLink);
-        if (links.length > 0) {
-          promises.pushObjects(links.map(p => {
-            let repId = p.get('repositoryObject').slice(1, -1);
-            let type = p.get('primitive.$type');
-            let repObject;
-            let allRepObjects;
+          switch (type) {
+            case 'STORMCASE.UML.cad.Realization, UMLCAD':
+              allRepObjects = store.peekAll('fd-dev-realization');
+            // eslint-disable-next-line no-fallthrough
+            case 'STORMCASE.UML.cad.Inheritance, UMLCAD':
+              if (isNone(allRepObjects)) {
+                allRepObjects = store.peekAll('fd-dev-inheritance');
+              }
 
-            switch (type) {
-              case 'STORMCASE.UML.cad.Realization, UMLCAD':
-                allRepObjects = store.peekAll('fd-dev-realization');
-              // eslint-disable-next-line no-fallthrough
-              case 'STORMCASE.UML.cad.Inheritance, UMLCAD':
-                if (isNone(allRepObjects)) {
-                  allRepObjects = store.peekAll('fd-dev-inheritance');
+              repObject = allRepObjects.findBy('id', repId);
+              if (repObject) {
+                let description = p.getWithDefault('description', '').trim();
+                repObject.set('nameStr', getActualValue(description, repObject.get('nameStr')));
+              }
+
+              break;
+            case 'STORMCASE.UML.cad.Composition, UMLCAD':
+              allRepObjects = store.peekAll('fd-dev-aggregation');
+            // eslint-disable-next-line no-fallthrough
+            case 'STORMCASE.UML.cad.Association, UMLCAD':
+              if (isNone(allRepObjects)) {
+                allRepObjects = store.peekAll('fd-dev-association');
+              }
+
+              repObject = allRepObjects.findBy('id', repId);
+
+              if (repObject) {
+                let startMultiplicity = p.getWithDefault('startMultiplicity', '').trim();
+                let endMultiplicity = p.getWithDefault('endMultiplicity', '').trim();
+                let endRoleTxt = p.getWithDefault('endRoleTxt', '').trim();
+                let startRoleTxt = p.getWithDefault('startRoleTxt', '').trim();
+                let description = p.getWithDefault('description', '').trim();
+                let storage = startRoleTxt;
+
+                if (isBlank(storage)) {
+                  storage = repObject.get('startClass.name');
+                } else {
+                  let accessModifier = storage[0];
+                  let condition = accessModifier === '+' || accessModifier === '-' || accessModifier === '#';
+
+                  storage = condition ? storage.substring(1, storage.length) : storage;
                 }
 
-                repObject = allRepObjects.findBy('id', repId);
-                if (repObject) {
-                  let description = p.getWithDefault('description', '').trim();
-                  repObject.set('nameStr', getActualValue(description, repObject.get('nameStr')));
-                }
+                let currentValues = repObject.getProperties('nameStr', 'startMultiplicity', 'endMultiplicity', 'endRoleStr', 'startRoleStr', 'storage');
+                repObject.setProperties({
+                  nameStr: getActualValue(description, currentValues.nameStr),
+                  startMultiplicity: getActualValue(startMultiplicity, currentValues.startMultiplicity),
+                  endMultiplicity: getActualValue(endMultiplicity, currentValues.endMultiplicity),
+                  endRoleStr: getActualValue(endRoleTxt, currentValues.endRoleStr),
+                  startRoleStr: getActualValue(startRoleTxt, currentValues.startRoleStr),
+                  storage: storage
+                });
+              }
 
-                break;
-              case 'STORMCASE.UML.cad.Composition, UMLCAD':
-                allRepObjects = store.peekAll('fd-dev-aggregation');
-              // eslint-disable-next-line no-fallthrough
-              case 'STORMCASE.UML.cad.Association, UMLCAD':
-                if (isNone(allRepObjects)) {
-                  allRepObjects = store.peekAll('fd-dev-association');
-                }
-
-                repObject = allRepObjects.findBy('id', repId);
-
-                if (repObject) {
-                  let startMultiplicity = p.getWithDefault('startMultiplicity', '').trim();
-                  let endMultiplicity = p.getWithDefault('endMultiplicity', '').trim();
-                  let endRoleTxt = p.getWithDefault('endRoleTxt', '').trim();
-                  let startRoleTxt = p.getWithDefault('startRoleTxt', '').trim();
-                  let description = p.getWithDefault('description', '').trim();
-                  let storage = startRoleTxt;
-
-                  if (isBlank(storage)) {
-                    storage = repObject.get('startClass.name');
-                  } else {
-                    let accessModifier = storage[0];
-                    let condition = accessModifier === '+' || accessModifier === '-' || accessModifier === '#';
-
-                    storage = condition ? storage.substring(1, storage.length) : storage;
-                  }
-
-                  let currentValues = repObject.getProperties('nameStr', 'startMultiplicity', 'endMultiplicity', 'endRoleStr', 'startRoleStr', 'storage');
-                  repObject.setProperties({
-                    nameStr: getActualValue(description, currentValues.nameStr),
-                    startMultiplicity: getActualValue(startMultiplicity, currentValues.startMultiplicity),
-                    endMultiplicity: getActualValue(endMultiplicity, currentValues.endMultiplicity),
-                    endRoleStr: getActualValue(endRoleTxt, currentValues.endRoleStr),
-                    startRoleStr: getActualValue(startRoleTxt, currentValues.startRoleStr),
-                    storage: storage
-                  });
-                }
-
-                break;
-            }
-
-            return hasChanges(repObject) ? repObject.save() : resolve();
-          }));
-        }
-
-        return all(promises).then(() => {
-          promises.clear();
-
-          let emptyReferenceCountItems = this.get('emptyReferenceCountItems');
-          let removeClasses = emptyReferenceCountItems.filterBy('constructor.modelName', 'fd-dev-class');
-          emptyReferenceCountItems.removeObjects(removeClasses);
-
-          let mapFunction = function(item) {
-            if (item.get('isNew')) {
-              return item.rollbackAttributes();
-            } else {
-              return item.destroyRecord();
-            }
-          };
-
-          if (emptyReferenceCountItems.length > 0) {
-            promises.pushObjects(emptyReferenceCountItems.map(mapFunction));
+              break;
           }
 
-          return all(promises).then(() => {
-            promises.clear();
-
-            if (removeClasses.length > 0) {
-              promises.pushObjects(removeClasses.map(mapFunction));
-
-              let updatedViews = A();
-              removeClasses.forEach(removeClasse => {
-                updatedViews.pushObjects(getUpdatedViews(store, primitives, removeClasse.get('name'), null));
-              });
-
-              promises.pushObjects(updatedViews.map(a => a.save()));
-            }
-
-            emptyReferenceCountItems.clear();
-
-            model.set('primitivesJsonString', JSON.stringify(primitives));
-            model.set('caseObjectsString', elements.map(p => `Class:(${p.get('name')})`).join(';'));
-            return all(promises);
-          });
+          if (hasChanges(repObject)) {
+            updateModels.pushObject(repObject);
+          }
         });
-      });
+      }
+
+      let emptyReferenceCountItems = this.get('emptyReferenceCountItems');
+      let removeClasses = emptyReferenceCountItems.filterBy('constructor.modelName', 'fd-dev-class');
+      emptyReferenceCountItems.removeObjects(removeClasses);
+
+      let mapFunction = function(item) {
+        if (item.get('isNew')) {
+          item.rollbackAttributes();
+        } else {
+          item.deleteRecord();
+          updateModels.pushObject(item);
+        }
+      };
+
+      if (emptyReferenceCountItems.length > 0) {
+        emptyReferenceCountItems.forEach(mapFunction);
+      }
+
+      if (removeClasses.length > 0) {
+        removeClasses.forEach(mapFunction);
+        removeClasses.forEach(removeClasse => {
+          updateModels.pushObjects(getUpdatedViews(store, primitives, removeClasse.get('name'), null));
+        });
+      }
+
+      emptyReferenceCountItems.clear();
+
+      model.set('primitivesJsonString', JSON.stringify(primitives));
+      model.set('caseObjectsString', elements.map(p => `Class:(${p.get('name')})`).join(';'));
     } else {
       model.set('primitivesJsonString', JSON.stringify(primitives));
       model.set('caseObjectsString', null);
-      return resolve();
     }
+
+    updateModels.pushObject(model);
+
+    return updateModels;
   },
 
   /**
@@ -729,8 +724,16 @@ export default FdBaseSheet.extend(
       this.get('appState').loading();
 
       this.validateData(model)
-      .then(() => this.savePrimitives(model))
-      .then(() => model.save())
+      .then(() => {
+        let updateModels = this.savePrimitives(model);
+        updateModels.forEach((updateModel) => {
+          if (updateModel.get('isNew') && isNone(updateModel.get('id'))) {
+            updateModel.set('id', uuid.v4());
+          }
+        });
+
+        return this.get('store').batchUpdate(updateModels, { 'fd-dev-uml-cad': 'FdPreloadMetadata', 'fd-dev-class': 'FdPreloadMetadata' });
+      })
       .then(() => {
         if (isNew) {
           this.addNewDiagramInModel();
