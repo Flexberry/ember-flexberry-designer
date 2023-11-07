@@ -1,6 +1,5 @@
 import Mixin from '@ember/object/mixin';
-import { on } from '@ember/object/evented';
-import { observer, set } from '@ember/object';
+import { set } from '@ember/object';
 import { isNone, isBlank } from '@ember/utils';
 import { A } from '@ember/array';
 
@@ -31,28 +30,96 @@ export default Mixin.create({
   viewValue: undefined,
 
   /**
-    Ember.observer, watching string `model.name` and update 'viewValue' property.
+    Data Object arrays.
 
-    @method _viewObserver
+    @property dataObjectItems
+    @type Object
+    @default undefined
   */
-  _viewObserver: on('didInsertElement', observer('model.name', function() {
+  dataObjectItems: undefined,
+
+  /**
+    Data object value.
+
+    @property dataObjectValue
+    @type string
+    @default undefined
+  */
+  dataObjectValue: undefined,
+
+  /**
+    Flag: indicates the editing panel is open from the diagram.
+
+    @property isDiagramEditingPanel
+    @type Bool
+    @default false
+  */
+  isDiagramEditingPanel: false,
+
+  /**
+    Set values.
+
+    @method setItems
+  */
+  setItems() {
+    const formView = this.get('model.formViews.firstObject.view');
     let dataobject = this.get('dataobject');
-    if (isNone(dataobject)) {
-      dataobject = this.get('model.formViews.firstObject.view.class');
+
+    if (isNone(dataobject) && isBlank(formView)) {
+      this._setDataObjectItems();
+      return;
     }
 
-    let views = dataobject.get('views');
-    let viewsEmberA = A(views);
-    let viewsMapNames = viewsEmberA.mapBy('name');
-    let viewsNames = A(viewsMapNames).filter((a) => !isBlank(a));
+    if (isNone(dataobject)) {
+      dataobject = formView.get('class');
+      this.set('dataobject', dataobject);
+    }
+
+    if (this.get('isDiagramEditingPanel')) {
+      this._setDataObjectItems();
+      this.set('dataObjectValue', dataobject ? dataobject.get('name') : '');
+    }
+
+    this._setViewItems(dataobject);
+    const viewName = formView ? formView.get('name') : '';
+    this.set('viewValue', viewName);
+  },
+
+
+  /**
+    Fill the dropdown with all classes of the stage.
+
+    @method _setDataObjectItems
+  */
+  _setDataObjectItems() {
+    const store = this.get('store');
+    const stage = this.get('currentProjectContext').getCurrentStageModel();
+    const allClassesInStore = store.peekAll('fd-dev-class');
+    const dataObjects = allClassesInStore.filter(function(item) {
+      return isBlank(item.get('stereotype')) && item.get('stage.id') === stage.get('id');
+    });
+
+    this.set('dataObjectItems', {
+      names: A(dataObjects).mapBy('name'),
+      objects: A(dataObjects),
+    });
+  },
+
+  /**
+    Fill the dropdown with all class views.
+
+    @method _setViewItems
+  */
+  _setViewItems(dataobject) {
+    const views = dataobject.get('views');
+    const viewsEmberA = A(views);
+    const viewsMapNames = viewsEmberA.mapBy('name');
+    const viewsNames = A(viewsMapNames).filter((a) => !isBlank(a));
     this.set('viewItems', {
       names: viewsNames,
       objects: viewsEmberA,
     });
-
-    let viewName = this.get('model.formViews.firstObject.view.name') || '';
-    this.set('viewValue', viewName);
-  })),
+  },
 
   actions: {
 
@@ -63,13 +130,25 @@ export default Mixin.create({
       @param {Object} value An object with a new value in the `value` property.
     */
     changeViewValue(value) {
-      let model = this.get('model');
+      const model = this.get('model');
+      const formViews = model.get('formViews');
+
+      if (isBlank(formViews)) {
+        const store = this.get('store');
+        const formView = store.createRecord('fd-dev-form-view', {
+          view: null,
+          orderNum: 1
+        });
+        set(model, 'formViews', [formView]);
+      }
+
       if (isBlank(value)) {
         set(model, 'formViews.firstObject.view', null);
-      } else {
-        let viewObject = this.get('viewItems').objects.findBy('name', value);
-        set(model, 'formViews.firstObject.view', viewObject);
+        return;
       }
+
+      const viewObject = this.get('viewItems').objects.findBy('name', value);
+      set(model, 'formViews.firstObject.view', viewObject);
     }
   }
 });

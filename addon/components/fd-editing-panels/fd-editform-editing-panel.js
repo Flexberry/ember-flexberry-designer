@@ -3,7 +3,8 @@ import FdUpdateFormviewValueMixin from '../../mixins/fd-editing-panels/fd-update
 import FdReadonlyModeMixin from '../../mixins/fd-editing-panels/fd-readonly-mode';
 import FdConstructorValue from '../../mixins/fd-editing-panels/fd-constructor-value';
 import layout from '../../templates/components/fd-editing-panels/fd-editform-editing-panel';
-import { isNone } from '@ember/utils';
+import { isNone, isBlank } from '@ember/utils';
+import { observer } from '@ember/object';
 
 export default Component.extend(FdUpdateFormviewValueMixin, FdConstructorValue, FdReadonlyModeMixin, {
   layout,
@@ -25,6 +26,25 @@ export default Component.extend(FdUpdateFormviewValueMixin, FdConstructorValue, 
     @default undefined
   */
   dataobject: undefined,
+
+  /**
+    Ember.observer, watching string `model.name` and update 'viewValue' property.
+
+    @method _viewObserver
+  */
+  _viewObserver: observer('model.name', function() {
+    this.setItems();
+  }),
+
+  /**
+   * See [EmberJS API](https://emberjs.com/).
+   *
+   * @method didInsertElement
+   */
+  didInsertElement() {
+    this._super(...arguments);
+    this.setItems();
+  },
 
   /**
     Get model for constructor.
@@ -67,5 +87,22 @@ export default Component.extend(FdUpdateFormviewValueMixin, FdConstructorValue, 
     modelHash.dataobject = store.peekRecord('fd-dev-class', dataobjectId);
 
     return modelHash;
+  },
+
+  actions: {
+    /**
+      Changes the dataobject value and set view items.
+
+      @method actions.changeDataObject
+      @param {Object} value An object with a new value in the `value` property.
+    */
+    changeDataObject(value) {
+      this.set('viewValue');
+      if (!isBlank(value)) {
+        const dataObject = this.get('dataObjectItems').objects.findBy('name', value);
+        this.set('dataobject', dataObject)
+        this._setViewItems(dataObject);
+      }
+    },
   }
 });

@@ -10,6 +10,7 @@ export default {
   'packet-placeholder': 'Наименование пакета',
   'namespace-postfix-caption': 'Постфикс пространства имен',
   'namespace-postfix-placeholder': 'Наименование постфикса',
+  'dataobject-caption': 'Класс объекта данных',
   'formview-caption': 'Составное представление',
   'editform-caption': 'Форма редактирования',
   'newform-caption': 'Форма создания',
