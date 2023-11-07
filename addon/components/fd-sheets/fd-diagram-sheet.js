@@ -137,6 +137,17 @@ export default FdBaseSheet.extend(
   }),
 
   /**
+    Ember.observer, watching model changes.
+
+    @method modelChangesObserver
+  */
+  modelChangesObserver: observer('selectedValue.data.hasDirtyAttributes', function() {
+    if (this.get('selectedValue.data.hasDirtyAttributes')) {
+      this.set('isDiagramChanged', true);
+    }
+  }),
+
+  /**
     Custom buttons for `fd-sheets-tool-bar` on `fd-diagram-sheet` route.
 
     @property customButtons
