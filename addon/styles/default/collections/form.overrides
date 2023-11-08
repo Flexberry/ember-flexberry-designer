@@ -7,3 +7,12 @@
 .ui.form :read-only:focus::-moz-placeholder {
   color: @lightTextColor;
 }
+
+.ui.loading.form:not(.content-opened)::after {
+  left: calc(~'50% - @{sidebarWdth}');
+  transition: left 300ms ease;
+}
+
+.ui.loading.form.content-opened::after {
+  left: calc(~'50% - @{sidebarMiniWidth}');
+}
