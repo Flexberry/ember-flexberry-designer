@@ -192,6 +192,8 @@
   .current-project-name {
     padding: 0 0 0 1.9rem;
     color: @textColor;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 }
 
