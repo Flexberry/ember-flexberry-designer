@@ -10,7 +10,7 @@
 
 .ui.loading.form::after {
   left: calc(~'50% - @{sidebarWdth}');
-  transition: left 250ms ease;
+  transition: left 300ms ease;
 }
 
 .ui.loading.form.content-opened::after {
