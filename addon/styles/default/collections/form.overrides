@@ -9,10 +9,11 @@
 }
 
 .ui.loading.form:not(.content-opened)::after {
-  left: calc(~'50% - @{sidebarWdth}');
+  left: calc(~'50% - @{sidebarWdth}/2');
   transition: left 300ms ease;
 }
 
 .ui.loading.form.content-opened::after {
-  left: calc(~'50% - @{sidebarMiniWidth}');
+  left: calc(~'50% - @{sidebarMiniWidth}/2');
+  transition: left 300ms ease;
 }
