@@ -45,7 +45,7 @@
   {{/unless}}
 
   <div id="example" class="pusher">
-    <div class="ui form {{appState.state}}">
+    <div class="ui form {{appState.state}} {{if (not _sidebarVisible) 'content-opened'}}">
       <div class="full height">
         <div class="flexberry-content">
           <div class="ui main container fluid">
