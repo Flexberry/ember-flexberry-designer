@@ -8,7 +8,7 @@
   color: @lightTextColor;
 }
 
-.ui.loading.form::after {
+.ui.loading.form:not(.content-opened)::after {
   left: calc(~'50% - @{sidebarWdth}');
   transition: left 300ms ease;
 }
