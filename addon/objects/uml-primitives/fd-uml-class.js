@@ -475,7 +475,7 @@ joint.shapes.flexberry.uml.ClassView = joint.shapes.flexberry.uml.PrimitiveEleme
       }
     });
 
-    if (!isNone(objectModel.get('repositoryObject'))) {
+    if (!objectModel.get('isCreated') && !isNone(objectModel.get('repositoryObject'))) {
       buttons.pushObject({
         name: 'open-edit-form-button',
         text: '&#xf013',
