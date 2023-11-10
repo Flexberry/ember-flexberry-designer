@@ -8,6 +8,13 @@ export let Model = Mixin.create({
   /**
     Non-stored property.
 
+    @property primitivesStream
+  */
+  primitivesStream: DS.attr('string'),
+  primitivesStreamString: DS.attr('string', { defaultValue: 'Empty' }),
+  /**
+    Non-stored property.
+
     @property primitivesJsonString
   */
   primitivesJsonString: DS.attr('string', { defaultValue: 'Empty' }),
