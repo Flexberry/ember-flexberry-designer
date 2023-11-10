@@ -272,6 +272,7 @@
   background-image: url(images/fd-logo-mini.svg);
 }
 
-.text {
+.text-app-version {
   white-space: pre-wrap;
+  color: @lightTextColor;
 }
