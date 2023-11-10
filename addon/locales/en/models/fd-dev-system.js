@@ -24,9 +24,6 @@ export default {
       },
       diagrams: {
         __caption__: 'diagrams',
-        primitivesStreamString: {
-          __caption__: 'primitivesStreamString'
-        },
         caseObjectsString: {
           __caption__: 'caseObjectsString'
         },
@@ -79,9 +76,6 @@ export default {
         caseObjectsString: {
           __caption__: 'caseObjectsString'
         },
-        primitivesStreamString: {
-          __caption__: 'primitivesStreamString'
-        },
         primitivesJsonString: {
           __caption__: 'primitivesJsonString'
         }
@@ -98,9 +92,6 @@ export default {
         __caption__: 'diagrams',
         primitivesJsonString: {
           __caption__: 'primitivesJsonString'
-        },
-        primitivesStreamString: {
-          __caption__: 'primitivesStreamString'
         },
         caseObjectsString: {
           __caption__: 'caseObjectsString'

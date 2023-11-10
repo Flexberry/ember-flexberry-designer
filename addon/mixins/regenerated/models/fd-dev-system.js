@@ -31,7 +31,6 @@ export let defineProjections = function (modelClass) {
     description: attr('Description', { hidden: true }),
     nameStr: attr('NameStr', { hidden: true }),
     diagrams: hasMany('fd-diagram', '', {
-      primitivesStreamString: attr(''),
       caseObjectsString: attr(''),
       name: attr(''),
       createDate: attr(''),
@@ -56,7 +55,6 @@ export let defineProjections = function (modelClass) {
     diagrams: hasMany('fd-diagram', '', {
       name: attr(''),
       caseObjectsString: attr(''),
-      primitivesStreamString: attr(''),
       primitivesJsonString: attr('')
     })
   });
@@ -67,7 +65,6 @@ export let defineProjections = function (modelClass) {
     }),
     diagrams: hasMany('fd-diagram', '', {
       primitivesJsonString: attr(''),
-      primitivesStreamString: attr(''),
       caseObjectsString: attr(''),
       name: attr(''),
       changeDate: attr('')

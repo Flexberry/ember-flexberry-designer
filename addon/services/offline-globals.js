@@ -52,7 +52,7 @@ export default OfflineGlobals.reopen({
 			'fd-dev-uml-ucd': 'id,name,primitiveTypes,primitives,helpKeyword',
 			'fd-dev-view': 'id,definition,properties,class',
 			'fd-diagram-link': 'id,diagramPrimaryKey,diagramType,subsystem',
-			'fd-diagram': 'id,caseObjectsString,primitivesStream,primitivesStreamString,primitivesJsonString,elements,subsystem',
+			'fd-diagram': 'id,caseObjectsString,primitivesJsonString,elements,subsystem',
 			'fd-dpd': 'id,helpKeyword,name,primitives,primitiveTypes',
 			'fd-filelink': 'id,fileName,subsystem',
 			'fd-following': 'id,follow,follower',

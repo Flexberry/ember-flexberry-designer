@@ -1,9 +1,6 @@
 export default {
   projections: {
     Diagram: {
-      primitivesStreamString: {
-        __caption__: ''
-      },
       caseObjectsString: {
         __caption__: ''
       },
@@ -24,9 +21,6 @@ export default {
       }
     },
     DiagramWithStage: {
-      primitivesStreamString: {
-        __caption__: ''
-      },
       caseObjectsString: {
         __caption__: ''
       },
@@ -53,9 +47,6 @@ export default {
       }
     },
     DiagramWithSystem: {
-      primitivesStreamString: {
-        __caption__: ''
-      },
       caseObjectsString: {
         __caption__: ''
       },
@@ -91,9 +82,6 @@ export default {
         __caption__: ''
       },
       caseObjectsString: {
-        __caption__: ''
-      },
-      primitivesStreamString: {
         __caption__: ''
       },
       primitivesJsonString: {
@@ -136,9 +124,6 @@ export default {
     },
     FdPreloadMetadata: {
       primitivesJsonString: {
-        __caption__: ''
-      },
-      primitivesStreamString: {
         __caption__: ''
       },
       caseObjectsString: {

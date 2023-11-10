@@ -35,9 +35,6 @@ export default {
         },
         diagrams: {
           __caption__: 'diagrams',
-          primitivesStreamString: {
-          __caption__: 'primitivesStreamString'
-        },
           caseObjectsString: {
           __caption__: 'caseObjectsString'
         },

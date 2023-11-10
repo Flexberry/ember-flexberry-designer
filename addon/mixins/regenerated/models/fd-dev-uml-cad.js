@@ -123,7 +123,6 @@ export let defineProjections = function (modelClass) {
     name: attr(''),
     primitivesJsonString: attr(''),
     caseObjectsString: attr(''),
-    primitivesStreamString: attr(''),
     subsystem: belongsTo('fd-subsystem', '', {
 
     })
