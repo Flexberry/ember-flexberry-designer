@@ -1446,6 +1446,7 @@ export default Component.extend(
             newObj.set('stereotype', objectModel.get('stereotype'));
             newObj.set('attributesStr', objectModel.get('attributes').join('\n'));
             newObj.set('methodsStr', objectModel.get('methods').join('\n'));
+            classesCurrentStage.push(newObj);
           } else {
             this._incrementPropertyReferenceCount(cls);
             objectModel.set('repositoryObject', `{${cls.get('id')}}`)
@@ -1470,8 +1471,6 @@ export default Component.extend(
             this.get('fdDialogService').showErrorMessage(errorMessage);
             throw new Error(errorMessage);
           }
-
-          classesCurrentStage = allClass.filterBy('stage.id', stage.get('id'));
 
           let endRepObjId = endPrimitiveRepObjId.slice(1, -1);
           let startRepObjId = startPrimitiveRepObjId.slice(1, -1);
