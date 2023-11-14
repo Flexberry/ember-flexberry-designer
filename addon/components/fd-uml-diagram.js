@@ -1471,6 +1471,8 @@ export default Component.extend(
             throw new Error(errorMessage);
           }
 
+          classesCurrentStage = allClass.filterBy('stage.id', stage.get('id'));
+
           let endRepObjId = endPrimitiveRepObjId.slice(1, -1);
           let startRepObjId = startPrimitiveRepObjId.slice(1, -1);
           let endPrimitiveRepObj = classesCurrentStage.findBy('id', endRepObjId);
