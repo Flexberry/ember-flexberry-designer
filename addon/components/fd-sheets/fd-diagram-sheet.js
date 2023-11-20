@@ -743,7 +743,20 @@ export default FdBaseSheet.extend(
           }
         });
 
-        return this.get('store').batchUpdate(updateModels, { 'fd-dev-uml-cad': 'FdPreloadMetadata', 'fd-dev-class': 'FdPreloadMetadata' });
+        if (updateModels.length === 1) {
+          return updateModels[0].save();
+        }
+
+        return this.get('store').batchUpdate(updateModels, {
+          'fd-dev-uml-cad': 'FdPreloadMetadata',
+          'fd-dev-class': 'FdPreloadMetadata',
+          'fd-dev-aggregation': 'FdPreloadMetadata',
+          'fd-dev-association': 'FdPreloadMetadata',
+          'fd-dev-inheritance': 'FdPreloadMetadata',
+          'fd-dev-realization': 'FdPreloadMetadata',
+          'fd-dev-attribute': 'FdPreloadMetadata',
+          'fd-dev-method': 'FdPreloadMetadata'
+        });
       })
       .then(() => {
         if (isNew) {
