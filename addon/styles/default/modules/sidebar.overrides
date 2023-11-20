@@ -99,7 +99,7 @@
 .ui.sidebar.main.menu {
   height: calc(~"100vh - @{headerHeight} - @{footerHeight}") !important;
   overflow-x: hidden!important;
-  padding: 3.5rem 0;
+  padding: 3.5rem 0 0.5rem;
   top: @headerHeight;
   transform: translate3d(0, 0, 0);
   -webkit-transition: width 0.3s, background-color 0.3s;
@@ -270,4 +270,9 @@
 
 .sidebar-mini .fd-logo {
   background-image: url(images/fd-logo-mini.svg);
+}
+
+.text-app-version {
+  white-space: pre-wrap;
+  color: @lightTextColor;
 }
