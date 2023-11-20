@@ -80,5 +80,8 @@ export default {
     'empty-name': 'Имя стадии не может быть пустое',
     'exist-stage': 'Стадия с таким именем уже существует',
     'empty-username': 'В системе отсутствуют пользователи с логинами: '
+  },
+  'custom-message': {
+    'validate-ok-header': 'No correction required'
   }
 };
