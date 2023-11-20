@@ -80,5 +80,8 @@ export default {
     'empty-name': 'Stage name cannot be empty',
     'exist-stage': 'Stage with the same name already exists',
     'empty-username': 'There are no users in the system with logins: '
+  },
+  'custom-message': {
+    'validate-ok-header': 'Коррекция не требуется'
   }
 };

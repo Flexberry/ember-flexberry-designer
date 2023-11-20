@@ -17,8 +17,9 @@ import Builder from 'ember-flexberry-data/query/builder';
 import FilterOperator from 'ember-flexberry-data/query/filter-operator';
 import Condition from 'ember-flexberry-data/query/condition';
 import FdPreloadStageMetadata from 'ember-flexberry-designer/utils/fd-preload-stage-metadata';
+import FdStageUmlCorrect from '../mixins/fd-stage-uml-correct';
 
-export default Controller.extend(FdSheetCloseConfirm, FdReadonlyProjectMixin, {
+export default Controller.extend(FdSheetCloseConfirm, FdReadonlyProjectMixin, FdStageUmlCorrect, {
   /**
    Service that get current project contexts.
 
@@ -426,6 +427,34 @@ export default Controller.extend(FdSheetCloseConfirm, FdReadonlyProjectMixin, {
       let stage = this.get('model.stage');
 
       adapter.callAction('ClearModuleSettings', { projectString: stage.get('id') });
+    },
+
+    umlStageСorrect() {
+      const i18n = this.get('i18n');
+      const stage = this.get('currentProjectContext').getCurrentStageModel();
+      const data = { stageId: stage.get('id') };
+      const adapter = getOwner(this).lookup('adapter:application');
+
+      this.get('appState').loading();
+      adapter.callFunction('ValidateStage', data, null, { withCredentials: true }).then((result) => {
+        if (isBlank(result.value)) {
+          const validateOkHeader = i18n.t('forms.fd-setting.custom-message.validate-ok-header');
+          this.get('fdDialogService').showCustomMessage('', validateOkHeader, false);
+        } else {
+          this.get('fdDialogService').showCustomMessage(
+            result.value,
+            i18n.t('forms.fd-navigation.custom-message.validate-header').toString(),
+            true,
+            i18n.t('forms.fd-navigation.custom-message.validate-approve').toString(),
+            i18n.t('forms.fd-navigation.custom-message.validate-deny').toString(),
+            this.get('_umlСorrector'),
+            () => this.set('show', false),
+            this
+          );
+        }
+      }).catch(() => {
+        this.get('fdDialogService').showErrorMessage({ message: this.get('i18n').t('forms.fd-navigation.create-prototype-error') });
+      }).finally(()=> this.get('appState').reset());
     }
   }
 });

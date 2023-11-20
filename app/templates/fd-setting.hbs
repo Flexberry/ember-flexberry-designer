@@ -1,11 +1,14 @@
 <form class="ui form flexberry-vertical-form settings-form">
   <div class="fd-sheet-toolbar">
     {{fd-view-helper
-      url='https://www.youtube.com/embed/ycw9i0-1fBM'
-      position='right'
+      url="https://www.youtube.com/embed/ycw9i0-1fBM"
+      position="right"
     }}
-    <button class="ui button {{if readonlyModeProject 'disabled' ''}}" {{action "save"}}>
+    <button class="ui button {{if readonlyModeProject "disabled"}}" {{action "save"}}>
       {{t "forms.fd-setting.save-button"}}
+    </button>
+    <button class="ui icon button {{if readonlyModeProject "disabled"}}" {{action "umlStageСorrector"}}>
+      <i class="icon-fd-uml-edit icon"></i>
     </button>
   </div>
   <h2 class="form-header">{{t "forms.fd-setting.project-settings-caption"}}</h2>
@@ -45,14 +48,14 @@
         <div class="field">
           <div class="flexberry-checkbox ui checkbox">
             <input type="radio" name="access" class="flexberry-checkbox-input"
-              onchange={{action set 'accessIsPublic' false}} disabled={{if readonlyModeProject 'disabled' ''}}>
+              onchange={{action set "accessIsPublic" false}} disabled={{if readonlyModeProject "disabled" ""}}>
             <label class="flexberry-checkbox-label">{{t "forms.fd-setting.project-settings.access-private"}}</label>
           </div>
         </div>
         <div class="field">
           <div class="flexberry-checkbox ui checkbox">
             <input type="radio" name="access" class="flexberry-checkbox-input" checked
-              onchange={{action set 'accessIsPublic' true}} disabled={{if readonlyModeProject 'disabled' ''}}>
+              onchange={{action set "accessIsPublic" true}} disabled={{if readonlyModeProject "disabled" ""}}>
             <label class="flexberry-checkbox-label">{{t "forms.fd-setting.project-settings.access-public"}}</label>
           </div>
         </div>
@@ -72,7 +75,7 @@
       </div>
     </div>
     <div class="row">
-      <button class='ui flexberry-button basic button icon' type='button' {{action "openTypeMap" on="click"}}>
+      <button class="ui flexberry-button basic button icon" type="button" {{action "openTypeMap" on="click"}}>
         {{t "forms.fd-setting.project-settings.data-types-map"}}
       </button>
     </div>
@@ -81,7 +84,7 @@
   <h2 class="form-header">{{t "forms.fd-setting.audit-actions-caption"}}</h2>
   <div class="ui stackable grid fd-list-edited">
     <div class="row">
-      <button class='ui flexberry-button basic button icon' type='button' {{action "addAuditInAllClass" on="click"}}>
+      <button class="ui flexberry-button basic button icon" type="button" {{action "addAuditInAllClass" on="click"}}>
         {{t "forms.fd-setting.audit-actions.audit-all-class-caption"}}
       </button>
     </div>
@@ -92,7 +95,7 @@
       <div class="twelve wide column light-text">
         {{flexberry-checkbox
           value=model.stage.auditEnabled
-          class='fluid input'
+          class="fluid input"
           readonly=readonlyModeProject
         }}
       </div>
@@ -108,7 +111,7 @@
       <div class="twelve wide column light-text">
         {{flexberry-checkbox
           value=model.stage.additionalPluginsSettingsStr
-          class='fluid input'
+          class="fluid input"
           readonly=readonlyModeProject
         }}
       </div>
@@ -119,7 +122,7 @@
   <div class="ui stackable grid fd-list-edited">
     <div class="row">
       {{#flexberry-toggler
-          caption=(t 'forms.fd-setting.generation-settings.frontend-caption')
+          caption=(t "forms.fd-setting.generation-settings.frontend-caption")
           expanded=false
       }}
       <div class="ui stackable grid fd-list">
@@ -130,7 +133,7 @@
           <div class="eleven wide column light-text">
             {{flexberry-textbox
               value=model.settings.FrontendGitRepoUrl
-              class='fluid input'
+              class="fluid input"
               placeholder=(t "forms.fd-setting.generation-settings.repo-url-placeholder")
               readonly=readonlyModeProject
             }}
@@ -143,7 +146,7 @@
           <div class="eleven wide column light-text">
             {{flexberry-textbox
               value=model.settings.FrontendLogin
-              class='fluid input'
+              class="fluid input"
               placeholder=(t "forms.fd-setting.generation-settings.login-placeholder")
               readonly=readonlyModeProject
             }}
@@ -156,7 +159,7 @@
           <div class="eleven wide column light-text">
             {{flexberry-textbox
               value=model.settings.FrontendPassword
-              class='fluid input'
+              class="fluid input"
               placeholder=(t "forms.fd-setting.generation-settings.password-placeholder")
               readonly=readonlyModeProject
             }}
@@ -169,7 +172,7 @@
           <div class="eleven wide column light-text">
             {{flexberry-textbox
               value=model.settings.FrontendBranch
-              class='fluid input'
+              class="fluid input"
               placeholder=(t "forms.fd-setting.generation-settings.branch-placeholder")
               readonly=readonlyModeProject
             }}
@@ -182,7 +185,7 @@
           <div class="eleven wide column light-text">
             {{flexberry-textarea
               value=model.settings.FrontendPublicKey
-              class='fluid input'
+              class="fluid input"
               placeholder=(t "forms.fd-setting.generation-settings.pub-key-placeholder")
               readonly=readonlyModeProject
             }}
@@ -195,7 +198,7 @@
           <div class="eleven wide column light-text">
             {{flexberry-textarea
               value=model.settings.FrontendPrivateKey
-              class='fluid input'
+              class="fluid input"
               placeholder=(t "forms.fd-setting.generation-settings.pri-key-placeholder")
               readonly=readonlyModeProject
             }}
@@ -207,7 +210,7 @@
 
     <div class="row">
       {{#flexberry-toggler
-          caption=(t 'forms.fd-setting.generation-settings.backend-caption')
+          caption=(t "forms.fd-setting.generation-settings.backend-caption")
           expanded=false
       }}
       <div class="ui stackable grid fd-list">
@@ -218,7 +221,7 @@
           <div class="eleven wide column light-text">
             {{flexberry-textbox
               value=model.settings.BackendGitRepoUrl
-              class='fluid input'
+              class="fluid input"
               placeholder=(t "forms.fd-setting.generation-settings.repo-url-placeholder")
               readonly=readonlyModeProject
             }}
@@ -231,7 +234,7 @@
           <div class="eleven wide column light-text">
             {{flexberry-textbox
               value=model.settings.BackendLogin
-              class='fluid input'
+              class="fluid input"
               placeholder=(t "forms.fd-setting.generation-settings.login-placeholder")
               readonly=readonlyModeProject
             }}
@@ -244,7 +247,7 @@
           <div class="eleven wide column light-text">
             {{flexberry-textbox
               value=model.settings.BackendPassword
-              class='fluid input'
+              class="fluid input"
               placeholder=(t "forms.fd-setting.generation-settings.password-placeholder")
               readonly=readonlyModeProject
             }}
@@ -257,7 +260,7 @@
           <div class="eleven wide column light-text">
             {{flexberry-textbox
               value=model.settings.BackendBranch
-              class='fluid input'
+              class="fluid input"
               placeholder=(t "forms.fd-setting.generation-settings.branch-placeholder")
               readonly=readonlyModeProject
             }}
@@ -270,7 +273,7 @@
           <div class="eleven wide column light-text">
             {{flexberry-textarea
               value=model.settings.BackendPublicKey
-              class='fluid input'
+              class="fluid input"
               placeholder=(t "forms.fd-setting.generation-settings.pub-key-placeholder")
               readonly=readonlyModeProject
             }}
@@ -283,7 +286,7 @@
           <div class="eleven wide column light-text">
             {{flexberry-textarea
               value=model.settings.BackendPrivateKey
-              class='fluid input'
+              class="fluid input"
               placeholder=(t "forms.fd-setting.generation-settings.pri-key-placeholder")
               readonly=readonlyModeProject
             }}
@@ -300,13 +303,13 @@
       <div class="twelve wide column light-text">
         {{flexberry-checkbox
           value=model.settings.FrontendPublishGh
-          class='fluid input'
+          class="fluid input"
           readonly=readonlyModeProject
         }}
       </div>
     </div>
     <div class="row">
-      <button class='ui flexberry-button basic button icon' type='button' {{action "clearModuleSettings" on="click"}}>
+      <button class="ui flexberry-button basic button icon" type="button" {{action "clearModuleSettings" on="click"}}>
         {{t "forms.fd-setting.generation-settings.clear-module-settings"}}
       </button>
     </div>
@@ -320,11 +323,11 @@
           {{fd-attribute-table
             tableView=tableUsersAccess
             buttonCaption=usersAccessButton
-            dropdownItemsObject=(flexberry-enum 'new-platform-flexberry-web-designer-access-mode')
+            dropdownItemsObject=(flexberry-enum "new-platform-flexberry-web-designer-access-mode")
             model=model.usersAccess
-            create=(action 'createUserAccess')
-            delete=(action 'deleteUserAccess')
-            dropdownChange=(action 'dropdownChangeAccess')
+            create=(action "createUserAccess")
+            delete=(action "deleteUserAccess")
+            dropdownChange=(action "dropdownChangeAccess")
             readonly=readonlyModeProject
           }}
         </div>
@@ -336,13 +339,13 @@
   <div class="ui stackable grid">
     <div class="row">
       <span>{{t "forms.fd-setting.project-actions.rename-stage-caption"}}</span>
-      <button class="ui button basic {{if readonlyModeProject 'disabled' ''}}" {{action "renameStage"}}>
+      <button class="ui button basic {{if readonlyModeProject "disabled" ""}}" {{action "renameStage"}}>
         {{t "forms.fd-setting.project-actions.rename-stage-button"}}
       </button>
     </div>
     <div class="row">
       <span>{{t "forms.fd-setting.project-actions.action-stage-caption"}}</span>
-      <button class="ui button basic {{if readonlyModeProject 'disabled' ''}}" {{action "backup"}}>
+      <button class="ui button basic {{if readonlyModeProject "disabled" ""}}" {{action "backup"}}>
         {{#if createBackup}}
           <i class="check icon"></i>
         {{else}}
@@ -352,13 +355,13 @@
     </div>
     <div class="row">
       <span>{{t "forms.fd-setting.project-actions.action-stage-caption"}}</span>
-      <button class="ui button basic {{if readonlyModeProject 'disabled' ''}}" {{action "export"}}>
+      <button class="ui button basic {{if readonlyModeProject "disabled" ""}}" {{action "export"}}>
         {{t "forms.fd-setting.project-actions.export-stage-button"}}
       </button>
     </div>
     <div class="row">
       <span>{{t "forms.fd-setting.project-actions.delete-stage-caption"}}</span>
-      <button class="ui button basic {{if readonlyModeProject 'disabled' ''}}" {{action "delete"}}>
+      <button class="ui button basic {{if readonlyModeProject "disabled" ""}}" {{action "delete"}}>
         {{t "forms.fd-setting.project-actions.delete-stage-button"}}
       </button>
     </div>
