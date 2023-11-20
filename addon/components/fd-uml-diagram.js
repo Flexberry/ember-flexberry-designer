@@ -1446,6 +1446,7 @@ export default Component.extend(
             newObj.set('stereotype', objectModel.get('stereotype'));
             newObj.set('attributesStr', objectModel.get('attributes').join('\n'));
             newObj.set('methodsStr', objectModel.get('methods').join('\n'));
+            classesCurrentStage.push(newObj);
           } else {
             this._incrementPropertyReferenceCount(cls);
             objectModel.set('repositoryObject', `{${cls.get('id')}}`)
