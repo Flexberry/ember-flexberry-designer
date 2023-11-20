@@ -10,9 +10,6 @@ export default {
       caseObjectsString: {
         __caption__: 'caseObjectsString'
       },
-      primitivesStreamString: {
-        __caption__: 'primitivesStreamString'
-      },
       subsystem: {
         __caption__: 'subsystem'
       }

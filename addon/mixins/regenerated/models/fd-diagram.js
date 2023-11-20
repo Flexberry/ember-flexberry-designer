@@ -11,24 +11,6 @@ export let Model = Mixin.create({
     @property primitivesStream
   */
   primitivesStream: DS.attr('string'),
-  /**
-    Method to set non-stored property.
-    Please, use code below in model class (outside of this mixin) otherwise it will be replaced during regeneration of models.
-    Please, implement 'primitivesStreamCompute' method in model class (outside of this mixin) if you want to compute value of 'primitivesStream' property.
-
-    @method _primitivesStreamCompute
-    @private
-    @example
-      ```javascript
-      _primitivesStreamChanged: Ember.on('init', Ember.observer('primitivesStream', function() {
-        Ember.run.once(this, '_primitivesStreamCompute');
-      }))
-      ```
-  */
-  _primitivesStreamCompute: function() {
-    let result = (this.primitivesStreamCompute && typeof this.primitivesStreamCompute === 'function') ? this.primitivesStreamCompute() : null;
-    this.set('primitivesStream', result);
-  },
   primitivesStreamString: DS.attr('string', { defaultValue: 'Empty' }),
   /**
     Non-stored property.
@@ -77,7 +59,6 @@ export let defineBaseModel = function (modelClass) {
 
 export let defineProjections = function (modelClass) {
   modelClass.defineProjection('Diagram', 'fd-diagram', {
-    primitivesStreamString: attr(''),
     caseObjectsString: attr(''),
     name: attr(''),
     createDate: attr(''),
@@ -86,7 +67,6 @@ export let defineProjections = function (modelClass) {
     changeUser: attr('')
   });
   modelClass.defineProjection('DiagramWithStage', 'fd-diagram', {
-    primitivesStreamString: attr(''),
     caseObjectsString: attr(''),
     name: attr(''),
     createDate: attr(''),
@@ -100,7 +80,6 @@ export let defineProjections = function (modelClass) {
     }, { hidden: true })
   });
   modelClass.defineProjection('PrintDiagram', 'fd-diagram', {
-    primitivesStreamString: attr(''),
     caseObjectsString: attr(''),
     name: attr(''),    
     subsystem: belongsTo('fd-subsystem', '', {
@@ -110,7 +89,6 @@ export let defineProjections = function (modelClass) {
     }, { hidden: true })
   });
   modelClass.defineProjection('DiagramWithSystem', 'fd-diagram', {
-    primitivesStreamString: attr(''),
     caseObjectsString: attr(''),
     name: attr(''),
     createDate: attr(''),
@@ -128,7 +106,6 @@ export let defineProjections = function (modelClass) {
   modelClass.defineProjection('FdDiagram', 'fd-diagram', {
     name: attr(''),
     caseObjectsString: attr(''),
-    primitivesStreamString: attr(''),
     primitivesJsonString: attr('')
   });
   modelClass.defineProjection('FdDiagramE', 'fd-diagram', {
@@ -150,7 +127,6 @@ export let defineProjections = function (modelClass) {
   });
   modelClass.defineProjection('FdPreloadMetadata', 'fd-diagram', {
     primitivesJsonString: attr(''),
-    primitivesStreamString: attr(''),
     caseObjectsString: attr(''),
     name: attr('')
   });
