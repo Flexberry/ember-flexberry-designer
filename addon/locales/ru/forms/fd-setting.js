@@ -82,6 +82,6 @@ export default {
     'empty-username': 'В системе отсутствуют пользователи с логинами: '
   },
   'custom-message': {
-    'validate-ok-header': 'No correction required'
+    'validate-ok-header': 'Коррекция не требуется',
   }
 };
