@@ -14,6 +14,7 @@ moduleFor('controller:fd-list-form-edit-form', 'Unit | Controller | fd list form
     'service:appState',
     'service:detail-interaction',
     'service:adv-limit',
+    'service:lookup-events'
   ]
 });
 

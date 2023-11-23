@@ -15,6 +15,7 @@ moduleFor('controller:fd-appstruct-form', 'Unit | Controller | new platform flex
     'service:user-settings',
     'service:detail-interaction',
     'service:adv-limit',
+    'service:lookup-events'
   ]
 });
 

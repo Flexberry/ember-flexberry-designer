@@ -376,11 +376,7 @@ export default FdBaseSheet.extend({
         });
       })
       .then(() => this.saveHasManyRelationships(selectedValue))
-      .catch((error) => {
-        this.get('fdDialogService').showErrorMessage(error.message);
-      })
-      .finally(() => {
-        this.get('appState').reset();
+      .then(() => {
         if (isLink) {
           this.set('_endRoleStr', selectedValue.get('endRoleStr'));
           this.set('_startRoleStr', selectedValue.get('startRoleStr'));
@@ -390,6 +386,14 @@ export default FdBaseSheet.extend({
           this.set('_attributesStr', selectedValue.get('attributesStr'));
           this.set('_methodsStr', selectedValue.get('methodsStr'));
         }
+
+        this.get('fdSheetService').successSaveModel(this.get('sheetComponentName'));
+      })
+      .catch((error) => {
+        this.get('fdDialogService').showErrorMessage(error.message);
+      })
+      .finally(() => {
+        this.get('appState').reset();
       });
     }
   }

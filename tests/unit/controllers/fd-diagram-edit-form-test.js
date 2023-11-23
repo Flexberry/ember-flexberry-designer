@@ -15,6 +15,7 @@ moduleFor('controller:fd-diagram-edit-form', 'Unit | Controller | fd diagram edi
     'service:appState',
     'service:detail-interaction',
     'service:adv-limit',
+    'service:lookup-events'
   ]
 });
 

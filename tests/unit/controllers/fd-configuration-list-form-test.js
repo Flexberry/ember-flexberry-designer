@@ -10,6 +10,7 @@ moduleFor('controller:fd-configuration-list-form', 'Unit | Controller | fd confi
     'service:objectlistview-events',
     'controller:colsconfig-dialog',
     'service:adv-limit',
+    'service:lookup-events'
   ]
 });
 

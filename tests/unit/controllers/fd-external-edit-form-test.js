@@ -14,7 +14,7 @@ moduleFor('controller:fd-external-edit-form', 'Unit | Controller | fd external e
     'service:appState',
     'service:detail-interaction',
     'service:adv-limit',
-
+    'service:lookup-events'
   ]
 });
 
