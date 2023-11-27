@@ -14,6 +14,7 @@ moduleFor('controller:fd-system-edit-form', 'Unit | Controller | fd system edit 
     'service:appState',
     'service:detail-interaction',
     'service:adv-limit',
+    'service:lookup-events'
   ]
 });
 

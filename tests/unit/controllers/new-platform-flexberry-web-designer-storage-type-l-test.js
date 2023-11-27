@@ -10,6 +10,7 @@ moduleFor('controller:new-platform-flexberry-web-designer-storage-type-l', 'Unit
     'service:objectlistview-events',
     'controller:colsconfig-dialog',
     'service:adv-limit',
+    'service:lookup-events'
   ]
 });
 

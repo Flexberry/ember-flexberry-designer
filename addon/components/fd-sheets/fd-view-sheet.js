@@ -73,6 +73,9 @@ export default FdBaseSheet.extend({
 
         return stage.save();
       })
+      .then(() => {
+        this.get('fdSheetService').successSaveModel(this.get('sheetComponentName'));
+      })
       .catch((error) => {
         this.get('fdDialogService').showErrorMessage(error.message);
       })

@@ -14,6 +14,7 @@ moduleFor('controller:fd-enum-edit-form', 'Unit | Controller | fd enum edit form
     'service:appState',
     'service:detail-interaction',
     'service:adv-limit',
+    'service:lookup-events'
   ]
 });
 

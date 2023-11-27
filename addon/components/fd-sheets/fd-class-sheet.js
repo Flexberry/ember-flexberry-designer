@@ -309,6 +309,7 @@ export default FdBaseSheet.extend({
       })
       .then(() => {
         this.updateClassModel(model);
+        this.get('fdSheetService').successSaveModel(this.get('sheetComponentName'));
         if (closeAfter) {
           this.get('targetObject').confirmClose(this.get('sheetComponentName'));
         }

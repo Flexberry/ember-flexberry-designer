@@ -96,7 +96,8 @@ export default Mixin.create({
     const stage = this.get('currentProjectContext').getCurrentStageModel();
     const allClassesInStore = store.peekAll('fd-dev-class');
     const dataObjects = allClassesInStore.filter(function(item) {
-      return isBlank(item.get('stereotype')) && item.get('stage.id') === stage.get('id');
+      let stereotype = item.get('stereotype');
+      return (isBlank(stereotype) || stereotype == '«implementation»') && item.get('stage.id') === stage.get('id');
     });
 
     this.set('dataObjectItems', {

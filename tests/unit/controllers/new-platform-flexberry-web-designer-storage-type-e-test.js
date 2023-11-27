@@ -14,6 +14,7 @@ moduleFor('controller:new-platform-flexberry-web-designer-storage-type-e', 'Unit
     'service:appState',
     'service:detail-interaction',
     'service:adv-limit',
+    'service:lookup-events'
   ]
 });
 

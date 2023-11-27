@@ -302,5 +302,15 @@ export default Service.extend(Evented, {
   */
   saveCurrentItem(sheetName, closeAfter) {
     this.trigger('saveCurrentItemTrigger', sheetName, closeAfter);
+  },
+
+  /**
+    Callback save currentItem.
+
+     @method successSaveModel
+     @param {String} sheetName Sheet's component name
+  */
+  successSaveModel(sheetName) {
+    this.trigger('successSaveModelTrigger', sheetName);
   }
 });

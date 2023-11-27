@@ -130,7 +130,7 @@ export default Controller.extend(FdSheetCloseConfirm, FdReadonlyProjectMixin, Fd
        @method actions.save
     */
     save() {
-      this._saveTree();
+      this._saveTree(true);
     },
 
     /**
@@ -275,8 +275,9 @@ export default Controller.extend(FdSheetCloseConfirm, FdReadonlyProjectMixin, Fd
     Save navigation tree.
 
      @method _saveTree
+     @param {Boolean} offEdit off edit mode after save.
   */
-  _saveTree() {
+  _saveTree(offEdit) {
     let app = this.get('model.app');
     if (isNone(app.get('caption'))) {
       app.set('caption', app.get('name'));
@@ -294,6 +295,10 @@ export default Controller.extend(FdSheetCloseConfirm, FdReadonlyProjectMixin, Fd
     this.get('appState').loading();
     app.save().then((newApp) => {
       _this.set('model.tree', deserialize(newApp.get('containersStr')));
+
+      if (offEdit) {
+      _this.get('fdSheetService').successSaveModel(_this.get('sheetComponentName'));
+      }
     }).catch((error) => {
       _this.get('fdDialogService').showErrorMessage(error.message);
     }).finally(() => {

@@ -6,7 +6,8 @@ moduleFor('controller:fd-generation-process-form', 'Unit | Controller | fd gener
   needs: [
     'service:appState',
     'service:fd-current-project-context',
-    'service:fd-generation'
+    'service:fd-generation',
+    'service:lookup-events'
   ]
 });
 
