@@ -770,6 +770,7 @@ export default FdBaseSheet.extend(
           this.set('isDiagramVisible', true);
         });
       }).then(() => {
+        this.get('fdSheetService').successSaveModel(this.get('sheetComponentName'));
         if (closeAfter) {
           this.get('targetObject').confirmClose(this.get('sheetComponentName'));
         }

@@ -10,6 +10,7 @@ moduleFor('controller:fd-association-list-form', 'Unit | Controller | fd associa
     'service:objectlistview-events',
     'controller:colsconfig-dialog',
     'service:adv-limit',
+    'service:lookup-events'
   ]
 });
 

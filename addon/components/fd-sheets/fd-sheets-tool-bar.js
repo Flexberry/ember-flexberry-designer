@@ -262,12 +262,33 @@ export default Component.extend(FdReadonlyProjectMixin, FdShareFunctionMixin, {
     }
   },
 
+  /**
+    Callback success save item.
+
+     @method successSaveModel
+     @param {String} sheetName Sheet's name.
+  */
+  successSaveModel(sheetName) {
+    let sheetComponentName = this.get('sheetComponentName');
+    if (sheetComponentName === sheetName) {
+      this.set('readonlyMode', true);
+      this.get('fdLockService').deleteLock(this.get('contentSheetValue'), sheetComponentName);
+    }
+  },
+
+  init() {
+    this._super(...arguments);
+
+    this.get('fdSheetService').on('successSaveModelTrigger', this, this.successSaveModel);
+  },
+
   willDestroyElement() {
     this._super(...arguments);
     this.set('readonlyMode', true);
     const sheetComponentName = this.get('sheetComponentName');
     const contentSheetValue = this.get('contentSheetValue');
     this.get('fdLockService').deleteLock(contentSheetValue, sheetComponentName);
+    this.get('fdSheetService').off('successSaveModelTrigger', this, this.successSaveModel);
   },
 
   actions: {
@@ -301,9 +322,6 @@ export default Component.extend(FdReadonlyProjectMixin, FdShareFunctionMixin, {
     */
     save() {
       this.get('saveSheet')();
-      this.set('readonlyMode', true);
-      let sheetComponentName = this.get('sheetComponentName');
-      this.get('fdLockService').deleteLock(this.get('contentSheetValue'), sheetComponentName);
     },
 
     /**

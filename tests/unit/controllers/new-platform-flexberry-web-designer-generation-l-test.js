@@ -11,6 +11,7 @@ moduleFor('controller:new-platform-flexberry-web-designer-generation-l', 'Unit |
     'controller:colsconfig-dialog',
     'service:objectlistviewEvents',
     'service:adv-limit',
+    'service:lookup-events'
   ]
 });
 

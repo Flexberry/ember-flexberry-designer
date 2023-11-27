@@ -8,7 +8,8 @@ moduleFor('controller:fd-data-types-map', 'Unit | Controller | fd data types map
     'service:fd-dialog-service',
     'service:fdSheetService',
     'service:fdLockService',
-    'service:fd-readonly-mode-service'
+    'service:fd-readonly-mode-service',
+    'service:lookup-events'
   ]
 });
 

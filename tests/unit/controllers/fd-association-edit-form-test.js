@@ -14,6 +14,7 @@ moduleFor('controller:fd-association-edit-form', 'Unit | Controller | fd associa
     'service:appState',
     'service:detail-interaction',
     'service:adv-limit',
+    'service:lookup-events'
   ]
 });
 

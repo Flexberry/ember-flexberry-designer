@@ -10,6 +10,7 @@ moduleFor('controller:fd-stage-list-form', 'Unit | Controller | fd stage list fo
     'service:objectlistview-events',
     'controller:colsconfig-dialog',
     'service:adv-limit',
+    'service:lookup-events'
   ]
 });
 
