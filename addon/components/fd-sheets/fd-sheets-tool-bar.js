@@ -6,6 +6,7 @@ import { A } from '@ember/array';
 import { computed, observer } from '@ember/object';
 import { isNone } from '@ember/utils';
 import layout from '../../templates/components/fd-sheets/fd-sheets-tool-bar';
+import $ from 'jquery';
 
 export default Component.extend(FdReadonlyProjectMixin, FdShareFunctionMixin, {
   layout,
@@ -18,6 +19,42 @@ export default Component.extend(FdReadonlyProjectMixin, FdShareFunctionMixin, {
     @default ''
   */
   sheetComponentName: '',
+
+  /**
+    Expand button title.
+
+    @property expandButtonTitle
+    @type String
+    @default ''
+  */
+  expandButtonTitle: '',
+
+  /**
+    Expand icon.
+
+    @property expandIcon
+    @type String
+    @default 'icon-guideline-arrows-resize'
+  */
+  expandIcon: 'icon-guideline-arrows-resize',
+
+  /**
+    Collapse icon.
+
+    @property collapseIcon
+    @type String
+    @default 'icon-guideline-arrows-resize-minus'
+  */
+  collapseIcon: 'icon-guideline-arrows-resize-minus',
+
+  /**
+    Expand button icon.
+
+    @property expandButtonIcon
+    @type String
+    @default ''
+  */
+  expandButtonIcon: '',
 
   /**
    Service that get current project contexts.
@@ -126,6 +163,15 @@ export default Component.extend(FdReadonlyProjectMixin, FdShareFunctionMixin, {
   readonlyMode: false,
 
   /**
+    Flag: indicates whether sheet is expanded.
+
+    @property isExpanded
+    @type Boolean
+    @default undefined
+   */
+  isExpanded: undefined,
+
+  /**
     Flag: indicates whether to not show button for new model.
 
     @property isNewModel
@@ -200,6 +246,22 @@ export default Component.extend(FdReadonlyProjectMixin, FdShareFunctionMixin, {
     }
   }),
 
+  willUpdate() {
+    this._super(...arguments);
+    let sheetComponentName = this.get('sheetComponentName');
+    let isExpanded = this.get('isExpanded');
+    if (isExpanded == undefined) {
+      isExpanded = $(`.fd-sheet.${sheetComponentName}`)[0].className.includes('expand');
+    }
+    if (isExpanded) {
+      this.set('expandButtonTitle', this.get('i18n').t('components.fd-sheets-tool-bar.collapse-button-title').string)
+      this.set('expandButtonIcon', this.get('collapseIcon'));
+    } else {
+      this.set('expandButtonTitle', this.get('i18n').t('components.fd-sheets-tool-bar.expand-button-title').string)
+      this.set('expandButtonIcon', this.get('expandIcon'));
+    }
+  },
+
   willDestroyElement() {
     this._super(...arguments);
     this.set('readonlyMode', true);
@@ -227,6 +289,9 @@ export default Component.extend(FdReadonlyProjectMixin, FdShareFunctionMixin, {
     expand() {
       let sheetComponentName = this.get('sheetComponentName');
       this.get('fdSheetService').expand(sheetComponentName);
+      let isExpanded = $(`.fd-sheet.${sheetComponentName}`)[0].className.includes('expand');
+      this.set('isExpanded', !isExpanded);
+      this.willUpdate();
     },
 
     /**
