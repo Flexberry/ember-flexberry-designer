@@ -9,3 +9,7 @@
   overflow: auto;
   max-height: 80vh;
 }
+
+.flexberry-dialog.corrector-message .flexberry-dialog-content {
+  white-space: pre-line;
+}
