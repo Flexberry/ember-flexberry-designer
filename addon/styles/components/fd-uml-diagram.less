@@ -274,6 +274,13 @@
       line-height: 3.3rem;
       height: 0;
 
+      .ui.button.fd-edit,
+      .ui.button.fd-expand,
+      .ui.button.fd-close {
+        position: relative;
+        bottom: -@bottonWidthSize;
+      }
+
       .ui.button:not(.fd-expand):not(.fd-close):not(.fd-save):not(.fd-edit) {
         opacity: 0;
         font-size: 0;
