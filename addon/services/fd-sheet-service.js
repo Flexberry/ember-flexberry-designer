@@ -312,5 +312,16 @@ export default Service.extend(Evented, {
   */
   successSaveModel(sheetName) {
     this.trigger('successSaveModelTrigger', sheetName);
+  },
+
+  /**
+    Trigger generation ai attributes for class logic.
+
+     @method aiGenAttributesLogic
+     @param {String} sheetName Sheet's component name
+     @param {Object} currentItem Current list item
+  */
+  aiGenAttributesLogic(sheetName, currentItem) {
+    this.trigger('aiGenAttributesLogicTrigger', sheetName, currentItem);
   }
 });

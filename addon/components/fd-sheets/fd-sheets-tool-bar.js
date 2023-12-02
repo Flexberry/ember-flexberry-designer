@@ -142,6 +142,14 @@ export default Component.extend(FdReadonlyProjectMixin, FdShareFunctionMixin, {
   genToolbarVisible: false,
 
   /**
+    Flag: indicates whether to not show ai button.
+
+    @property aiToolbarVisible
+    @type Bool
+  */
+  aiToolbarVisible: false,
+
+  /**
     Current sheet content value.
     @property contentSheetValue
     @type Object
@@ -384,6 +392,18 @@ export default Component.extend(FdReadonlyProjectMixin, FdShareFunctionMixin, {
     */
     generationForSelectedClass() {
       this.get('fdDiagramService').triggerGenForSelectedClassLogic();
+    },
+
+    /**
+      Trigger generation ai class attributes logic.
+
+      @method actions.aiGenAttributes
+    */
+    aiGenAttributes() {
+      let sheetComponentName = this.get('sheetComponentName');
+      let contentSheetValue = this.get('contentSheetValue');
+
+      this.get('fdSheetService').aiGenAttributesLogic(sheetComponentName, contentSheetValue);
     },
 
     /**

@@ -52,6 +52,11 @@
           </button>
         </div>
       {{/if}}
+      {{#if aiToolbarVisible}}
+        <button class="ui icon button" {{action 'aiGenAttributes'}} title={{t "components.fd-sheets-tool-bar.ai-button-title"}}>
+          <i class="user secret icon" ></i>
+        </button>
+      {{/if}}
     {{/if}}
     {{#if buttonVisible.copy}}
       <div class="ui buttons">
