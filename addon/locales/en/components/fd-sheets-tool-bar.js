@@ -18,4 +18,5 @@ export default {
   'copy-button-title': 'Copy selected elements',
   'code-caption': 'Code',
   'code-button-title': 'Generate code for selected classes',
+  'ai-button-title': 'Create attributes using AI'
 };

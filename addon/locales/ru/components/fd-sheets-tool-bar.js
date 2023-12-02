@@ -17,4 +17,5 @@ export default {
   'cut-button-title': 'Вырезать выделенные элементы',
   'copy-button-title': 'Копировать выделенные элементы',
   'code-button-title': 'Генерировать код для выбранных классов',
+  'ai-button-title': 'Создать атрибуты с помощью ИИ'
 };
