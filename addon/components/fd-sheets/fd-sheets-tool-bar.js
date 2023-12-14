@@ -330,12 +330,14 @@ export default Component.extend(FdReadonlyProjectMixin, FdShareFunctionMixin, {
       const allCadDiagrams = store.peekAll('fd-dev-uml-cad');
       const cadDiagramsCurrentStage = allCadDiagrams.filterBy('subsystem.stage.id', stage.get('id'));
       const currentClassName = this.get('contentSheetValue.name');
+      const currentClassNameStr = this.get('contentSheetValue.nameStr');
 
       let classDiagrams = A();
 
       classDiagrams.pushObjects(cadDiagramsCurrentStage.filter(function (diagram) {
         if (!isNone(diagram.caseObjectsString)) {
-          return diagram.caseObjectsString.includes("Class:(" + currentClassName + ")");
+          return diagram.caseObjectsString.includes("Class:(" + currentClassName + ")") || 
+                 diagram.caseObjectsString.includes("Class:(" + currentClassNameStr + ")");
         }
       }));
 
