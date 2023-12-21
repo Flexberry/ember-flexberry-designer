@@ -21,15 +21,6 @@ export default Component.extend(FdReadonlyProjectMixin, FdShareFunctionMixin, {
   sheetComponentName: '',
 
   /**
-    Expand button title.
-
-    @property expandButtonTitle
-    @type String
-    @default ''
-  */
-  expandButtonTitle: '',
-
-  /**
     Expand icon.
 
     @property expandIcon
@@ -46,15 +37,6 @@ export default Component.extend(FdReadonlyProjectMixin, FdShareFunctionMixin, {
     @default 'icon-guideline-arrows-resize-minus'
   */
   collapseIcon: 'icon-guideline-arrows-resize-minus',
-
-  /**
-    Expand button icon.
-
-    @property expandButtonIcon
-    @type String
-    @default ''
-  */
-  expandButtonIcon: '',
 
   /**
    Service that get current project contexts.
@@ -252,13 +234,6 @@ export default Component.extend(FdReadonlyProjectMixin, FdShareFunctionMixin, {
     let isExpanded = this.get('isExpanded');
     if (isExpanded == undefined) {
       isExpanded = $(`.fd-sheet.${sheetComponentName}`)[0].className.includes('expand');
-    }
-    if (isExpanded) {
-      this.set('expandButtonTitle', this.get('i18n').t('components.fd-sheets-tool-bar.collapse-button-title').string)
-      this.set('expandButtonIcon', this.get('collapseIcon'));
-    } else {
-      this.set('expandButtonTitle', this.get('i18n').t('components.fd-sheets-tool-bar.expand-button-title').string)
-      this.set('expandButtonIcon', this.get('expandIcon'));
     }
   },
 

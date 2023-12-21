@@ -97,9 +97,15 @@
       </div>
     {{/if}}
   {{/if}}
-  <button class="ui icon button fd-expand" {{action 'expand'}} title={{expandButtonTitle}}>
-    <i class="{{expandButtonIcon}} icon" ></i>
-  </button>
+  {{#if isExpanded}}
+    <button class="ui icon button fd-expand" {{action 'expand'}} title={{t "components.fd-sheets-tool-bar.collapse-button-title"}}>
+      <i class="{{collapseIcon}} icon" ></i>
+    </button>
+  {{else}}
+    <button class="ui icon button fd-expand" {{action 'expand'}} title={{t "components.fd-sheets-tool-bar.expand-button-title"}}>
+      <i class="{{expandIcon}} icon" ></i>
+    </button>
+  {{/if}}
   <button class="ui icon button fd-close" {{action 'closeSheet'}} title={{t "components.fd-sheets-tool-bar.close-button-title"}}>
     <i class="icon-guideline-cross-r icon" ></i>
   </button>
