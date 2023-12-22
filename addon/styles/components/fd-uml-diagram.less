@@ -263,7 +263,7 @@
   }
 
   &.fd-toolbar-hidden {
-    .transform(translate(0, calc(~'29px + 24px - 100%')));
+    .transform(@expandedToolbarHeight);
 
     .ui.form & .form-header {
       margin: 0.5em 0;
@@ -273,7 +273,7 @@
     .fd-sheet-toolbar {
       line-height: 3.3rem;
       float: right;
-      height: 53px;
+      height: @expandedToolbarHeight;
 
       .ui.button:not(.fd-expand):not(.fd-close):not(.fd-save):not(.fd-edit) {
         opacity: 0;
