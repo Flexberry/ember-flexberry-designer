@@ -149,9 +149,11 @@ export default Component.extend(FdReadonlyProjectMixin, FdShareFunctionMixin, {
 
     @property isExpanded
     @type Boolean
-    @default undefined
    */
-  isExpanded: undefined,
+  isExpanded: computed('fdSheetService.sheetSettings.expanded.{class-sheet,diagram-sheet,edit-diagram-object-sheet}', function() {
+    let sheetComponentName = this.get('sheetComponentName');
+    return this.get(`fdSheetService.sheetSettings.expanded.${sheetComponentName}`);
+  }),
 
   /**
     Flag: indicates whether to not show button for new model.
@@ -285,8 +287,6 @@ export default Component.extend(FdReadonlyProjectMixin, FdShareFunctionMixin, {
     expand() {
       let sheetComponentName = this.get('sheetComponentName');
       this.get('fdSheetService').expand(sheetComponentName);
-      let isExpanded = this.get('fdSheetService').sheetSettings.expanded[sheetComponentName];
-      this.set('isExpanded', !isExpanded);
       this.willUpdate();
     },
 
