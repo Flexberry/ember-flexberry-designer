@@ -256,24 +256,26 @@
 .fd-sheet-diagram-header {
   position: relative;
   box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.1);
-  .transition(transform 0.5s);
+  .transition(height 0.3s);
 
   .form-header {
-    .transition(margin 0.5s);
+    .transition(margin 0.3s);
   }
 
   &.fd-toolbar-hidden {
-    .transform(translate(0, calc(~'@{expandedToolbarHeight} - 100%')));
-
     .ui.form & .form-header {
       margin: 0.5em 0;
       max-width: calc(~'100% - 200px');
     }
 
     .fd-sheet-toolbar {
-      line-height: 3.3rem;
-      float: right;
-      height: @expandedToolbarHeight;
+      align-items: flex-start;
+      height: 0;
+
+      .ui.button {
+        position: relative;
+        top: calc(~'(@{expandedToolbarHeight} - 2em)/2');
+      }
 
       .ui.button:not(.fd-expand):not(.fd-close):not(.fd-save):not(.fd-edit) {
         opacity: 0;
