@@ -285,7 +285,7 @@ export default Component.extend(FdReadonlyProjectMixin, FdShareFunctionMixin, {
     expand() {
       let sheetComponentName = this.get('sheetComponentName');
       this.get('fdSheetService').expand(sheetComponentName);
-      let isExpanded = $(`.fd-sheet.${sheetComponentName}`)[0].className.includes('expand');
+      let isExpanded = this.get('fdSheetService').sheetSettings.expanded[sheetComponentName];
       this.set('isExpanded', !isExpanded);
       this.willUpdate();
     },
