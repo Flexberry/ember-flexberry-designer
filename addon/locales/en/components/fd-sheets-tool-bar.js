@@ -4,6 +4,7 @@ export default {
   'edit-caption': 'Edit',
   'close-button-title': 'Close',
   'expand-button-title': 'Expand',
+  'collapse-button-title': 'Collapse',
   'delete-button-title': 'Delete',
   'share-button-title': 'Copy link',
   'dependencies-button-title': 'Exists diagrams',

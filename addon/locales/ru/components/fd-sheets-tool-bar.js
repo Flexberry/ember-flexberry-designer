@@ -4,6 +4,7 @@ export default {
   'edit-caption': 'Правка',
   'close-button-title': 'Закрыть',
   'expand-button-title': 'Развернуть',
+  'collapse-button-title': 'Свернуть',
   'delete-button-title': 'Удалить',
   'share-button-title': 'Копировать ссылку',
   'dependencies-button-title': 'Существующие диаграммы',

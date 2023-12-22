@@ -20,6 +20,24 @@ export default Component.extend(FdReadonlyProjectMixin, FdShareFunctionMixin, {
   sheetComponentName: '',
 
   /**
+    Expand icon.
+
+    @property expandIcon
+    @type String
+    @default 'icon-guideline-arrows-resize'
+  */
+  expandIcon: 'icon-guideline-arrows-resize',
+
+  /**
+    Collapse icon.
+
+    @property collapseIcon
+    @type String
+    @default 'icon-guideline-arrows-resize-minus'
+  */
+  collapseIcon: 'icon-guideline-arrows-resize-minus',
+
+  /**
    Service that get current project contexts.
 
    @property currentProjectContext
@@ -124,6 +142,17 @@ export default Component.extend(FdReadonlyProjectMixin, FdShareFunctionMixin, {
     @default false
    */
   readonlyMode: false,
+
+  /**
+    Flag: indicates whether sheet is expanded.
+
+    @property isExpanded
+    @type Boolean
+   */
+  isExpanded: computed('fdSheetService.sheetSettings.expanded.{class-sheet,diagram-sheet,edit-diagram-object-sheet}', function() {
+    let sheetComponentName = this.get('sheetComponentName');
+    return this.get(`fdSheetService.sheetSettings.expanded.${sheetComponentName}`);
+  }),
 
   /**
     Flag: indicates whether to not show button for new model.
