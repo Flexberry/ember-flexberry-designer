@@ -6,7 +6,6 @@ import { A } from '@ember/array';
 import { computed, observer } from '@ember/object';
 import { isNone } from '@ember/utils';
 import layout from '../../templates/components/fd-sheets/fd-sheets-tool-bar';
-import $ from 'jquery';
 
 export default Component.extend(FdReadonlyProjectMixin, FdShareFunctionMixin, {
   layout,
@@ -230,15 +229,6 @@ export default Component.extend(FdReadonlyProjectMixin, FdShareFunctionMixin, {
     }
   }),
 
-  willUpdate() {
-    this._super(...arguments);
-    let sheetComponentName = this.get('sheetComponentName');
-    let isExpanded = this.get('isExpanded');
-    if (isExpanded == undefined) {
-      isExpanded = $(`.fd-sheet.${sheetComponentName}`)[0].className.includes('expand');
-    }
-  },
-
   /**
     Callback success save item.
 
@@ -287,7 +277,6 @@ export default Component.extend(FdReadonlyProjectMixin, FdShareFunctionMixin, {
     expand() {
       let sheetComponentName = this.get('sheetComponentName');
       this.get('fdSheetService').expand(sheetComponentName);
-      this.willUpdate();
     },
 
     /**
