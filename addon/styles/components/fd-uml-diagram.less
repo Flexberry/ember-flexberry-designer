@@ -263,7 +263,7 @@
   }
 
   &.fd-toolbar-hidden {
-    .transform(@expandedToolbarHeight);
+    .transform(translate(0, calc(~'@{expandedToolbarHeight} - 100%')));
 
     .ui.form & .form-header {
       margin: 0.5em 0;
