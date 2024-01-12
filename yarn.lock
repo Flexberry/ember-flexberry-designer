@@ -5245,10 +5245,10 @@ ember-factory-for-polyfill@^1.3.1:
   dependencies:
     ember-cli-version-checker "^2.1.0"
 
-ember-flexberry-data@3.11.1-beta.1:
-  version "3.11.1-beta.1"
-  resolved "https://registry.yarnpkg.com/ember-flexberry-data/-/ember-flexberry-data-3.11.1-beta.1.tgz#01f9728190b90edf140fbe5e4637c40b1d349e17"
-  integrity sha512-K31IyyjBIdaB+RdGMdeL8QdWRC5qwgbmSd8F0Fip/xngfm1JC/+gCKHnfaHMK+A1usD49Fjx7VJapYBvZqLIKg==
+ember-flexberry-data@3.11.1-beta.2:
+  version "3.11.1-beta.2"
+  resolved "https://registry.yarnpkg.com/ember-flexberry-data/-/ember-flexberry-data-3.11.1-beta.2.tgz#f0bbc98cb7ffab797900ff22395344fe4a37864b"
+  integrity sha512-w1NtdDJE54OyeicIL6WY8Z4APvVBxb6Aq9E6jUOHvvvL8FsRw5DXK4l8a+Rqhwzw8baPKTB59yhGBfOzGjwHoA==
   dependencies:
     ember-cli-babel "^6.6.0"
     ember-cli-htmlbars "^2.0.1"
@@ -5258,14 +5258,14 @@ ember-flexberry-themes@0.3.0-beta.2:
   resolved "https://registry.yarnpkg.com/ember-flexberry-themes/-/ember-flexberry-themes-0.3.0-beta.2.tgz#6b0c9d08c4358817139313286420f1bb682717a0"
   integrity sha512-0fE4L87itnTZ8JYFv5Lgb60QGvi23baymxrzR08xbWUaSOO3mIY3Psvz1Pwhpcy5Yj9C3ClOyie33EeFu/jD/A==
 
-ember-flexberry@3.11.1-beta.2:
-  version "3.11.1-beta.2"
-  resolved "https://registry.yarnpkg.com/ember-flexberry/-/ember-flexberry-3.11.1-beta.2.tgz#bb611caf563505b8eb4a3972c39113beee85618d"
-  integrity sha512-jvW++n9gLTXDihV6HMnzolEeLB0H9/TNnRt4AqAcGi+e5S1Z0JeghrF4KEPY/VuhMmVyE1gDlMWEim0D3EcfdA==
+ember-flexberry@3.11.1-beta.3:
+  version "3.11.1-beta.3"
+  resolved "https://registry.yarnpkg.com/ember-flexberry/-/ember-flexberry-3.11.1-beta.3.tgz#82205ae21580ac621916c790f66d6abcd84ea8a3"
+  integrity sha512-VDZju7vTKemfVoGjHGBuoxinPC4uosiT90qoe5ZQyw2BXazEH9pIWgygfZLIDNgkDPy9i3NIRrBEwlybhu43Xw==
   dependencies:
     ember-cli-babel "^6.6.0"
     ember-cli-htmlbars "^2.0.1"
-    ember-flexberry-data "3.11.1-beta.1"
+    ember-flexberry-data "3.11.1-beta.2"
     ember-flexberry-themes "0.3.0-beta.2"
     ember-i18n "5.2.1"
     ember-test-selectors "2.1.0"
