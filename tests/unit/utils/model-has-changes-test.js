@@ -57,8 +57,8 @@ skip('it works', function(assert) {
 
     // Act & Assert.
     let testCallback = function(assert, arrayTestData) {
-      let testMainClass = arrayTestData.findBy('name', 'TestMainClass');
-      let testBSClass = arrayTestData.findBy('name', 'TestBSClass');
+      let testMainClass = A(arrayTestData).findBy('name', 'TestMainClass');
+      let testBSClass = A(arrayTestData).findBy('name', 'TestBSClass');
 
       assert.notOk(modelHasChanges(testMainClass));
 
