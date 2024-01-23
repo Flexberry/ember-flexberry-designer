@@ -8,9 +8,8 @@ import uuid from 'npm:node-uuid';
 import { getJsonForClass } from 'ember-flexberry-designer/utils/get-json-for-diagram';
 import { A } from '@ember/array';
 import Builder from 'ember-flexberry-data/query/builder';
-import { SimplePredicate, ComplexPredicate } from 'ember-flexberry-data/query/predicate';
+import { SimplePredicate } from 'ember-flexberry-data/query/predicate';
 import FilterOperator from 'ember-flexberry-data/query/filter-operator';
-import Condition from 'ember-flexberry-data/query/condition';
 
 let app;
 let store;
@@ -33,7 +32,7 @@ module('Acceptance | fd-diagram-sheet | rename class', {
 
 test('rename new empty class on diagram', (assert) => {
   let done = assert.async();
-  assert.expect(9);
+  assert.expect(11);
 
   // Arrange.
   let systemName = 'TestSystem';
@@ -78,8 +77,8 @@ test('rename new empty class on diagram', (assert) => {
     // Act & Assert.
     let testCallback = function(assert, arrayTestData) {
       return new Promise(function(resolve, reject) {
-        let system = arrayTestData.filter(x => x.name == systemName);
-        let stage = system[0].stage;
+        let system = arrayTestData.find(x => x.name == systemName);
+        let stage = system.stage;
 
         visit(`fd-diagrams?gotostage=${stage.get('id')}`);
         andThen(() => {
@@ -98,12 +97,11 @@ test('rename new empty class on diagram', (assert) => {
             let $diagramNameDiv = $sheetHeader.children('div.form-header.fluid.flexberry-textbox');
             let $diagramNameInput = $diagramNameDiv.children('input.ember-text-field');
 
-            assert.equal($diagramNameInput[0].value, diagramName);
+            assert.equal($diagramNameInput.val(), diagramName);
 
-            let $umlClassInputs = $('.uml-class-inputs');
-            let $umlClassNameInput = $umlClassInputs.children('.class-name-input.header-input');
+            let $umlClassNameInput = $('.uml-class-inputs .class-name-input.header-input');
 
-            assert.equal($umlClassNameInput[0].value, className);
+            assert.equal($umlClassNameInput.val(), className);
             assert.equal($umlClassNameInput.hasClass('click-disabled'), true);
 
             let $editButton = $('.fd-edit', $sheetHeader);
@@ -116,19 +114,17 @@ test('rename new empty class on diagram', (assert) => {
                 let $saveButton = $('.fd-save', $sheetHeader);
                 click($saveButton);
                 andThen(() => {
-                  $umlClassInputs = $('.uml-class-inputs');
-                  $umlClassNameInput = $umlClassInputs.children('.class-name-input.header-input');
+                  $umlClassNameInput = $('.uml-class-inputs .class-name-input.header-input');
 
-                  assert.equal($umlClassNameInput[0].value, classNameNew);
+                  assert.equal($umlClassNameInput.val(), classNameNew);
                   assert.equal($umlClassNameInput.hasClass('click-disabled'), true);
 
-                  let limitPredicate = new ComplexPredicate(Condition.And,
-                    new SimplePredicate('name', FilterOperator.Eq, classNameNew),
-                    new SimplePredicate('stage', FilterOperator.Eq, stage.get('id')));
-
-                  let builder = new Builder(store, 'fd-dev-class').where(limitPredicate).count();
+                  let limitPredicate = new SimplePredicate('stage', FilterOperator.Eq, stage.get('id'));
+                  let builder = new Builder(store, 'fd-dev-class').where(limitPredicate);
                   store.query('fd-dev-class', builder.build()).then((result) => {
-                    assert.equal(result.meta.count, 1, 'Class \'' + classNameNew + '\'not found in store');
+                    assert.equal(result.length, 1, 'Class \'' + classNameNew + '\'not found in store');
+                    assert.equal(result.get('firstObject.name'), classNameNew);
+                    assert.equal(result.get('firstObject.nameStr'), classNameNew);
                   }).finally(() => {
                     resolve();
                   });
@@ -146,7 +142,7 @@ test('rename new empty class on diagram', (assert) => {
 
 test('rename new empty class on edit form', (assert) => {
   let done = assert.async();
-  assert.expect(13);
+  assert.expect(15);
 
   // Arrange.
   let systemName = 'TestSystem';
@@ -191,8 +187,8 @@ test('rename new empty class on edit form', (assert) => {
     // Act & Assert.
     let testCallback = function(assert, arrayTestData) {
       return new Promise(function(resolve, reject) {
-        let system = arrayTestData.filter(x => x.name == systemName);
-        let stage = system[0].stage;
+        let system = arrayTestData.find(x => x.name == systemName);
+        let stage = system.stage;
 
         visit(`fd-diagrams?gotostage=${stage.get('id')}`);
         andThen(() => {
@@ -211,12 +207,11 @@ test('rename new empty class on edit form', (assert) => {
             let $diagramNameDiv = $sheetHeader.children('div.form-header.fluid.flexberry-textbox');
             let $diagramNameInput = $diagramNameDiv.children('input.ember-text-field');
 
-            assert.equal($diagramNameInput[0].value, diagramName);
+            assert.equal($diagramNameInput.val(), diagramName);
 
-            let $umlClassInputs = $('.uml-class-inputs');
-            let $umlClassNameInput = $umlClassInputs.children('.class-name-input.header-input');
+            let $umlClassNameInput = $('.uml-class-inputs .class-name-input.header-input');
 
-            assert.equal($umlClassNameInput[0].value, className);
+            assert.equal($umlClassNameInput.val(), className);
             assert.equal($umlClassNameInput.hasClass('click-disabled'), true);
 
             let $editButton = $('.fd-edit', $sheetHeader);
@@ -224,49 +219,45 @@ test('rename new empty class on edit form', (assert) => {
             andThen(() => {
               assert.equal($umlClassNameInput.hasClass('click-disabled'), false);
 
-              let $svg = $('svg');
-              let $umlTestClass = $svg[0].querySelectorAll('.joint-type-flexberry.joint-type-flexberry-uml.joint-type-flexberry-uml-class');
-
+              let $umlTestClass = $('svg .joint-type-flexberry.joint-type-flexberry-uml.joint-type-flexberry-uml-class');
               click($umlTestClass);
               andThen(() => {
-                let $openEditFormButton = $umlTestClass[0].querySelectorAll('.open-edit-form-button');
+                let $openEditFormButton = $('.open-edit-form-button', $umlTestClass);
                 click($openEditFormButton);
                 andThen(() => {
                   let $editDiagramObjectSheet = $('.fd-sheet.edit-diagram-object-sheet');
 
                   assert.equal($editDiagramObjectSheet.hasClass('visible'), true);
 
-                  let $editDiagramSheetHeader = $($editDiagramObjectSheet[0].querySelectorAll('.fd-sheet-header'));
-                  let $classNameDiv = $editDiagramSheetHeader.children('div.form-header.fluid.flexberry-textbox');
-                  let $classNameInput = $classNameDiv.children('input.ember-text-field');
+                  let $editDiagramSheetHeader = $editDiagramObjectSheet.find('.fd-sheet-header');
+                  let $classNameInput = $editDiagramSheetHeader.find('input.ember-text-field');
 
-                  assert.equal($classNameInput[0].value, className);
-                  assert.equal($classNameInput[0].readOnly, true);
+                  assert.equal($classNameInput.val(), className);
+                  assert.equal($classNameInput.prop('readOnly'), true);
 
                   let $editButtonDiagramSheetHeader = $('.fd-edit', $editDiagramObjectSheet);
                   click($editButtonDiagramSheetHeader);
                   andThen(() => {
-                    $classNameInput = $classNameDiv.children('input.ember-text-field');
+                    $classNameInput = $editDiagramSheetHeader.find('input.ember-text-field');
   
-                    assert.equal($classNameInput[0].readOnly, false);
+                    assert.equal($classNameInput.prop('readOnly'), false);
 
                     fillIn($classNameInput, classNameNew);
                     andThen(() => {
                       let $saveButton = $('.fd-save', $editDiagramObjectSheet);
                       click($saveButton);
                       andThen(() => {
-                        $classNameInput = $classNameDiv.children('input.ember-text-field');
+                        $classNameInput = $editDiagramSheetHeader.find('input.ember-text-field');
 
-                        assert.equal($classNameInput[0].value, classNameNew);
-                        assert.equal($classNameInput[0].readOnly, true);
+                        assert.equal($classNameInput.val(), classNameNew);
+                        assert.equal($classNameInput.prop('readOnly'), true);
 
-                        let limitPredicate = new ComplexPredicate(Condition.And,
-                          new SimplePredicate('name', FilterOperator.Eq, classNameNew),
-                          new SimplePredicate('stage', FilterOperator.Eq, stage.get('id')));
-      
-                        let builder = new Builder(store, 'fd-dev-class').where(limitPredicate).count();
+                        let limitPredicate = new SimplePredicate('stage', FilterOperator.Eq, stage.get('id'));
+                        let builder = new Builder(store, 'fd-dev-class').where(limitPredicate);
                         store.query('fd-dev-class', builder.build()).then((result) => {
-                          assert.equal(result.meta.count, 1, 'Class \'' + classNameNew + '\'not found in store');
+                          assert.equal(result.length, 1, 'Class \'' + classNameNew + '\'not found in store');
+                          assert.equal(result.get('firstObject.name'), classNameNew);
+                          assert.equal(result.get('firstObject.nameStr'), classNameNew);
                         }).finally(() => {
                           resolve();
                         });
