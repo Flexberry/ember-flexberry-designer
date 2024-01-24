@@ -129,20 +129,22 @@ export default Component.extend(FdUpdateStoreInstancesValueMixin, FdReadonlyMode
         .byId(id);
 
       let selectClassPromise = store.queryRecord('fd-dev-class', builderClass.build()).then((selectClass) => {
-        let stage = selectClass.get('stage');
-        _this.getClassesForStage(store, stage).then((classes) => {
-          let classArray = A(classes);
-          let classNames = classArray.mapBy('name');
-          classNames.unshift('');
-          _this.set('classItems', {
-            names: classNames,
-            objects: classArray,
+        if (!isBlank(selectClass)) {
+          let stage = selectClass.get('stage');
+          _this.getClassesForStage(store, stage).then((classes) => {
+            let classArray = A(classes);
+            let classNames = classArray.mapBy('name');
+            classNames.unshift('');
+            _this.set('classItems', {
+              names: classNames,
+              objects: classArray,
+            });
+
+            _this.set('classValue', selectClass.get('name'));
           });
 
-          _this.set('classValue', selectClass.get('name'));
-        });
-
-        return stage;
+          return stage;
+        }
       });
 
       promises.push(selectClassPromise);
@@ -164,7 +166,7 @@ export default Component.extend(FdUpdateStoreInstancesValueMixin, FdReadonlyMode
       _this.set('stageItems', stageItems);
       _this.set('stageNames', stageNames);
 
-      if (promises.length === 2) {
+      if (promises.length === 2 && !isBlank(allThen[1])) {
         _this.set('stageValue', this.getStageName(allThen[1]));
       } else {
         _this.set('stageValue', '');
@@ -210,6 +212,7 @@ export default Component.extend(FdUpdateStoreInstancesValueMixin, FdReadonlyMode
     let builderClasses = new Builder(store)
       .from('fd-dev-class')
       .selectByProjection('ListFormView')
+      .orderBy('name asc')
       .where(predicate);
 
     return store.query('fd-dev-class', builderClasses.build());
