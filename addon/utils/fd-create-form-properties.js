@@ -51,7 +51,7 @@ let getNewFormDescription = function(caption) {
 
   tempArray.push(temp);
   for (let i = 0; i < tempArray.length; i++) {
-    if (i > 0 && i < tempArray.length - 1) {
+    if (i > 0 && i < tempArray.length) {
       tempArray[i] = tempArray[i].toLowerCase();
     }
   }

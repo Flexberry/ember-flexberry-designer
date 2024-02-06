@@ -25,32 +25,36 @@ let getDataForBuildTree = function(store, id) {
   let aggregationData = recordsAggregation.filterBy('startClass.id', id);
   associationData.pushObjects(recordsAggregation.filterBy('endClass.id', id));
 
-  // Get aggregation array for parent current class.
-  let recordsInheritance = store.peekAll('fd-dev-inheritance');
-  let inheritanceData = recordsInheritance.filterBy('child.id', id);
-
   let externalParentId;
 
-  while (inheritanceData.length > 0) {
-    let parentID = null;
-    for (let i = 0; i < inheritanceData.length; i++) {
-      let inheritance = inheritanceData[i];
-      let parentStereotype = inheritance.get('parent.stereotype');
-      if (isNone(parentStereotype) || parentStereotype === '«implementation»') {
-        parentID = inheritance.get('parent.id');
-        classData.pushObject(recordsDevClass.findBy('id', parentID));
-        associationData.pushObjects(recordsAssociation.filterBy('endClass.id', parentID));
-        associationData.pushObjects(recordsAggregation.filterBy('endClass.id', parentID));
-        aggregationData.pushObjects(recordsAggregation.filterBy('startClass.id', parentID));
-      } else if (parentStereotype === '«external»') {
-        externalParentId = inheritance.get('parent.id');
-      }
-    }
+  if (classData.firstObject.get('stereotype') === '«external»') {
+    externalParentId = id;
+  } else {
+    // Get aggregation array for parent current class.
+    let recordsInheritance = store.peekAll('fd-dev-inheritance');
+    let inheritanceData = recordsInheritance.filterBy('child.id', id);
 
-    if (!isNone(parentID)) {
-      inheritanceData = recordsInheritance.filterBy('child.id', parentID);
-    } else {
-      inheritanceData = A();
+    while (inheritanceData.length > 0) {
+      let parentID = null;
+      for (let i = 0; i < inheritanceData.length; i++) {
+        let inheritance = inheritanceData[i];
+        let parentStereotype = inheritance.get('parent.stereotype');
+        if (isNone(parentStereotype) || parentStereotype === '«implementation»') {
+          parentID = inheritance.get('parent.id');
+          classData.pushObject(recordsDevClass.findBy('id', parentID));
+          associationData.pushObjects(recordsAssociation.filterBy('endClass.id', parentID));
+          associationData.pushObjects(recordsAggregation.filterBy('endClass.id', parentID));
+          aggregationData.pushObjects(recordsAggregation.filterBy('startClass.id', parentID));
+        } else if (parentStereotype === '«external»') {
+          externalParentId = inheritance.get('parent.id');
+        }
+      }
+
+      if (!isNone(parentID)) {
+        inheritanceData = recordsInheritance.filterBy('child.id', parentID);
+      } else {
+        inheritanceData = A();
+      }
     }
   }
 

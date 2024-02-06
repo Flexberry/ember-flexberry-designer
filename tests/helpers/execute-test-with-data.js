@@ -1,15 +1,20 @@
 import { A } from '@ember/array';
 import uuid from 'npm:node-uuid';
+import { resolve } from 'rsvp';
 
 export default function executeTestWithData(store, assert, done, callbackGetTestData, callbackTest) {
   let repository;
   return createTestStage(store).then((stage) => {
     repository = stage.get('configuration.project.repository');
+    if (callbackGetTestData == null) {
+      return resolve(stage);
+    }
+
     let arrayTestData = callbackGetTestData(stage);
 
     return store.batchUpdate(arrayTestData);
   }).then((arrayTestData) => {
-    return callbackTest(assert, A(arrayTestData));
+    return callbackTest(assert, arrayTestData);
   })
   // eslint-disable-next-line no-console
   .catch((e) => console.log(e, e.message))
