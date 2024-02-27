@@ -99,7 +99,7 @@ export default Mixin.create({
       let stereotype = item.get('stereotype');
       return (isBlank(stereotype) || stereotype == '«implementation»') && item.get('stage.id') === stage.get('id');
     });
-
+    dataObjects.sort((a, b) => a.get('name').localeCompare(b.get('name')));
     this.set('dataObjectItems', {
       names: A(dataObjects).mapBy('name'),
       objects: A(dataObjects),
@@ -112,7 +112,7 @@ export default Mixin.create({
     @method _setViewItems
   */
   _setViewItems(dataobject) {
-    const views = dataobject.get('views');
+    const views = dataobject.get('views').sortBy('name');
     const viewsEmberA = A(views);
     const viewsMapNames = viewsEmberA.mapBy('name');
     const viewsNames = A(viewsMapNames).filter((a) => !isBlank(a));
