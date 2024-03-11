@@ -91,6 +91,11 @@ let getClassTreeNode = function (tree, classData, rootId, addInText) {
         text = changedName[0];
       }
 
+      let attrIsExist = A(classTree).findBy('name', text);
+      if (!isNone(attrIsExist)) {
+        return;
+      }
+
       if (!isNone(addInText)) {
         text += ' (' + attribute.get(`${addInText}`) + ')';
       }
@@ -382,7 +387,7 @@ let getExternalTreeNode = function (tree, externalId, adapter) {
     masters.forEach((master) => {
       const masterName = get(master, 'name');
       const masterId = get(master, 'id');
-  
+
       externalTree.push(FdAttributesTree.create({
         text: masterName,
         name: masterName,
