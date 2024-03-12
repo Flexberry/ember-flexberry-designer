@@ -57,7 +57,7 @@ let removeAuditAttributes = function(cls) {
 /**
   Update audit attributes in class.
 */
-let updateAuditAttributes = function(cls, store) {
+const updateAuditAttributes = function(cls, store) {
   let changedAttributes = Object.keys(cls.changedAttributes());
   let addAuditFieldsIsChanged = changedAttributes.indexOf('addAuditFields') !== -1;
   if (addAuditFieldsIsChanged) {
