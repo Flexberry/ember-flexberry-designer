@@ -1,6 +1,62 @@
 # Ember Flexberry Designer Changelog
 All notable changes to this project will be documented in this file.
 
+## [1.1.0-beta.11]
+### Added
+* Added component for dse.
+* Added sorting of data object and views for forms
+
+### Changed
+* Updated create auditfields logic.
+
+## [1.1.0-beta.10]
+### Fixed
+* Fixed external master attributes in view
+
+## [1.1.0-beta.9]
+### Fixed
+* Fixed form errors for external class
+
+## [1.1.0-beta.8]
+### Changed
+* Update ember-flexberry to 3.11.1-beta.3.
+
+## [1.1.0-beta.7]
+### Fixed
+* Fixed styles for collapsed toolbar buttons
+* Fixed icon and title for expand sheet button
+
+## [1.1.0-beta.6]
+### Fixed
+Fixed finding class with non stored classes
+
+## [1.1.0-beta.5]
+### Fixed
+* Fixed button for ai-assistant
+
+## [1.1.0-beta.4]
+### Added
+* Added button for ai-assistant
+
+## [1.1.0-beta.3]
+### Fixed
+* Fixed save logic
+
+## [1.1.0-beta.2]
+### Fixed
+* Fixed headers
+
+## [1.1.0-beta.1]
+### Added
+Added uml-correct button for stage.
+
+### Fixed
+* Fixed batch projections when saving diagram.
+* Fixed broken objects on diagram for inheritance.
+
+### Changed
+* Saving optimization, views cleaned.
+
 ## [1.0.0]
 ### Added
 * Added exit project button.
