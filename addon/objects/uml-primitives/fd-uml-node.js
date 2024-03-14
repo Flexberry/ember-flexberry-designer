@@ -176,17 +176,14 @@ joint.shapes.flexberry.uml.UmlNodeView = joint.shapes.flexberry.uml.BaseObjectVi
   },
 
   setColors() {
-    joint.shapes.flexberry.uml.BaseObjectView.prototype.setColors.apply(this, arguments);
+    joint.shapes.flexberry.uml.BaseObjectView.prototype.setColors.apply(this, [0.2]);
 
-    const brushColor = this.getBrushColor();
     const textColor = this.getTextColor();
 
     if (!isNone(textColor)) {
       this.model.attr('.back-path/stroke', textColor);
     }
 
-    if (!isNone(brushColor)) {
-      this.model.attr('.back-path/fill', brushColor);
-    }
+    this.model.attr('.back-path/fill-opacity', 0);
   }
 });
