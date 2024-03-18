@@ -492,9 +492,10 @@ joint.shapes.flexberry.uml.PrimitiveElementView = joint.dia.ElementView.extend({
     return;
   },
 
-  setColors() {
+  setColors(customOpacity) {
     const textColor = this.getTextColor();
     const brushColor = this.getBrushColor();
+    const opacity = isNone(customOpacity) ? 1 : customOpacity;
 
     if (this.model.getRectangles instanceof Function && (!isNone(brushColor) || !isNone(textColor))) {
       const rects = this.model.getRectangles();
@@ -502,7 +503,7 @@ joint.shapes.flexberry.uml.PrimitiveElementView = joint.dia.ElementView.extend({
         const className = 'flexberry-uml-' + rect.type + '-rect';
         if (this.markup.includes(className)) {
           if (!isNone(brushColor)) {
-            this.attr(`.${className}/fill-opacity`, 1);
+            this.attr(`.${className}/fill-opacity`, opacity);
             this.attr(`.${className}/fill`, brushColor);
           }
 
