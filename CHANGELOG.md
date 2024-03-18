@@ -1,6 +1,11 @@
 # Ember Flexberry Designer Changelog
 All notable changes to this project will be documented in this file.
 
+## [1.1.0-beta.12]
+### Fixed
+* Fixed dpd diagram objects.
+* Fixed notStored class.
+
 ## [1.1.0-beta.11]
 ### Added
 * Added component for dse.
