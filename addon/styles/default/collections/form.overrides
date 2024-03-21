@@ -17,3 +17,9 @@
   left: calc(~'50% - @{sidebarMiniWidth}/2');
   transition: left 300ms ease;
 }
+
+.fd-form-toolbar {
+  display: flex;
+  margin-bottom: 3rem;
+  margin-top: -1rem;
+}

@@ -1,6 +1,11 @@
 # Ember Flexberry Designer Changelog
 All notable changes to this project will be documented in this file.
 
+## [1.1.0-beta.13]
+### Fixed
+* Fixed styles.
+* Fixed sitemap.
+
 ## [1.1.0-beta.12]
 ### Fixed
 * Fixed dpd diagram objects.
