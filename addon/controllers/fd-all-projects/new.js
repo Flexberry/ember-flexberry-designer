@@ -181,7 +181,7 @@ export default Controller.extend(FdSheetCloseConfirm, {
       })
       .then(function(response) {
         if (response.ok) {
-          return response.json();
+          return response.text();
         } else {
           _this.get('appState').reset();
           _this.get('fdDialogService').showErrorMessage(response);
