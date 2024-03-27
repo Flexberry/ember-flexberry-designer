@@ -1,10 +1,13 @@
 # Ember Flexberry Designer Changelog
 All notable changes to this project will be documented in this file.
 
+## [Unreleased]
+### Fixed
+* Fixed error when importing stage.
+
 ## [1.1.0-beta.14]
 ### Changed
 * Update default fdg settings.
-* Fixed error when importing stage.
 
 ## [1.1.0-beta.13]
 ### Fixed
