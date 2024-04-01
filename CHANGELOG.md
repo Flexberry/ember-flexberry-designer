@@ -1,79 +1,35 @@
 # Ember Flexberry Designer Changelog
 All notable changes to this project will be documented in this file.
 
-## [Unreleased]
-### Fixed
-* Fixed error when importing stage.
+## [1.1.0] - 2024-03-25
+### Added
+* Added component for DSE.
+* Added sorting of data object and views for forms.
+* Added button for ai-assistant.
+* Added uml-correct button for stage.
 
-## [1.1.0-beta.14]
 ### Changed
 * Update default fdg settings.
+* Updated create auditfields logic.
+* Update ember-flexberry to 3.11.1-beta.3.
+* Saving optimization, views cleaned.
 
-## [1.1.0-beta.13]
 ### Fixed
 * Fixed styles.
 * Fixed sitemap.
-
-## [1.1.0-beta.12]
-### Fixed
 * Fixed dpd diagram objects.
 * Fixed notStored class.
-
-## [1.1.0-beta.11]
-### Added
-* Added component for dse.
-* Added sorting of data object and views for forms
-
-### Changed
-* Updated create auditfields logic.
-
-## [1.1.0-beta.10]
-### Fixed
-* Fixed external master attributes in view
-
-## [1.1.0-beta.9]
-### Fixed
-* Fixed form errors for external class
-
-## [1.1.0-beta.8]
-### Changed
-* Update ember-flexberry to 3.11.1-beta.3.
-
-## [1.1.0-beta.7]
-### Fixed
-* Fixed styles for collapsed toolbar buttons
-* Fixed icon and title for expand sheet button
-
-## [1.1.0-beta.6]
-### Fixed
-Fixed finding class with non stored classes
-
-## [1.1.0-beta.5]
-### Fixed
-* Fixed button for ai-assistant
-
-## [1.1.0-beta.4]
-### Added
-* Added button for ai-assistant
-
-## [1.1.0-beta.3]
-### Fixed
-* Fixed save logic
-
-## [1.1.0-beta.2]
-### Fixed
-* Fixed headers
-
-## [1.1.0-beta.1]
-### Added
-Added uml-correct button for stage.
-
-### Fixed
+* Fixed external master attributes in view.
+* Fixed form errors for external class.
+* Fixed styles for collapsed toolbar buttons.
+* Fixed icon and title for expand sheet button.
+* Fixed finding class with non stored classes.
+* Fixed button for ai-assistant.
+* Fixed save logic.
+* Fixed headers.
 * Fixed batch projections when saving diagram.
 * Fixed broken objects on diagram for inheritance.
-
-### Changed
-* Saving optimization, views cleaned.
+* Fixed error when importing stage.
 
 ## [1.0.0]
 ### Added
@@ -84,13 +40,13 @@ Added uml-correct button for stage.
 * Added cicd in fdg.
 * Disabled save button on diagram.
 * Added external classes in view.
-* Added select template for external class
+* Added select template for external class.
 * Added reset or no selected object.
 * Moving a group of objects on a diagram.
 * Added copy view button.
 
 ### Changed
-* Hide class edit form button when class is new
+* Hide class edit form button when class is new.
 * Сhanged icons and buttons style.
 * Сhange the theme.
 * Update backup method.
