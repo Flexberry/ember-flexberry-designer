@@ -29,6 +29,7 @@ All notable changes to this project will be documented in this file.
 * Fixed headers.
 * Fixed batch projections when saving diagram.
 * Fixed broken objects on diagram for inheritance.
+* Fixed error when importing stage.
 
 ## [1.0.0]
 ### Added
