@@ -1,7 +1,7 @@
 'use strict';
 
 module.exports = function (environment) {
-  let backendUrl = 'http://localhost:6500';
+  let backendUrl = 'https://designer-dummy.flexberry.net';
 
   if (environment === 'development-loc' || environment === 'test') {
     // Use `ember s -e development-loc` command for local backend usage.
