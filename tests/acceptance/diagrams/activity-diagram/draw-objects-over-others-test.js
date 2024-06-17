@@ -27,16 +27,8 @@ module('Acceptance | fd-diagram-sheet | draw objects over others', {
   }
 });
 
-test('drawing active state object on a active state object', (assert) => {
-  let done = assert.async();
-  assert.expect(4);
-
-  // Arrange.
-  const systemName = 'TestSystem';
-  const activeStateName = 'TestActiveState';
-  const diagramName = 'TestDiagram';
-
-  const createTestData = function(stage) {
+function createData(systemName, diagramName, elementType, elementAttributes) {
+  return function(stage) {
     const testSystem = store.createRecord('fd-dev-system', {
       name: systemName,
       stage: stage,
@@ -47,24 +39,34 @@ test('drawing active state object on a active state object', (assert) => {
       name: diagramName,
       primitivesJsonString: JSON.stringify([
         getJsonForElement(
-          'STORMCASE.UML.ad.State, UMLAD',
+          elementType,
           { x: 300, y: 300 },
           { width: 40, height: 40 },
-          { Name: activeStateName, Text: '' },
+          elementAttributes,
         )
       ]),
       subsystem: testSystem,
       id: uuid.v4()
     });
 
-    return A([
-      testSystem,
-      testDiagram
-    ]);
+    return A([testSystem, testDiagram]);
   };
+}
 
+test('drawing active state object on a active state object', (assert) => {
+  let done = assert.async();
+  assert.expect(4);
+
+  // Arrange.
+  const systemName = 'TestSystem';
+  const diagramName = 'TestDiagram';
+  const activeStateName = 'TestActiveState';
+  const objectType = 'STORMCASE.UML.ad.State, UMLAD';
+  const objectAttributes = { Name: activeStateName, Text: '' };
+  const createTestData = createData(systemName, diagramName, objectType, objectAttributes);
+
+  // Act & Assert.
   run(() => {
-    // Act & Assert.
     const testCallback = function(assert, arrayTestData) {
       return new Promise(function(resolve, reject) {
         const system = arrayTestData.find(x => x.name == systemName);
@@ -117,38 +119,14 @@ test('drawing active state object on a partition object', (assert) => {
 
   // Arrange.
   const systemName = 'TestSystem';
-  const partitionName = 'TestPartition';
   const diagramName = 'TestDiagram';
+  const partitionName = 'TestPartition';
+  const objectType = 'STORMCASE.UML.ad.Partition, UMLAD';
+  const objectAttributes = { Name: partitionName };
+  const createTestData = createData(systemName, diagramName, objectType, objectAttributes);
 
-  const createTestData = function(stage) {
-    const testSystem = store.createRecord('fd-dev-system', {
-      name: systemName,
-      stage: stage,
-      id: uuid.v4()
-    });
-
-    const testDiagram = store.createRecord('fd-dev-uml-ad', {
-      name: diagramName,
-      primitivesJsonString: JSON.stringify([
-        getJsonForElement(
-          'STORMCASE.UML.ad.Partition, UMLAD',
-          { x: 300, y: 300 },
-          { width: 40, height: 40 },
-          { Name: partitionName },
-        )
-      ]),
-      subsystem: testSystem,
-      id: uuid.v4()
-    });
-
-    return A([
-      testSystem,
-      testDiagram
-    ]);
-  };
-
+  // Act & Assert.
   run(() => {
-    // Act & Assert.
     const testCallback = function(assert, arrayTestData) {
       return new Promise(function(resolve, reject) {
         const system = arrayTestData.find(x => x.name == systemName);
