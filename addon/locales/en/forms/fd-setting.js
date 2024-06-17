@@ -11,6 +11,8 @@ export default {
     description: 'Description',
     'description-placeholder': 'Enter description',
     'data-types-map': 'Data types map',
+    company: 'Prefix',
+    'company-placeholder': 'Enter prefix',
   },
   'project-actions-caption': 'Project Actions',
   'project-actions': {

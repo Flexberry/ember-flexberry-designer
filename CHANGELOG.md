@@ -1,6 +1,14 @@
 # Ember Flexberry Designer Changelog
 All notable changes to this project will be documented in this file.
 
+## [Unreleased]
+
+### Added
+* Company stage setting.
+
+### Fixed
+* Fix dse transforms.
+
 ## [1.1.0] - 2024-03-25
 ### Added
 * Added component for DSE.
