@@ -61,7 +61,8 @@ export function serialize(deserialized) {
     let d = deserialized[i];
     if (d instanceof FdClassExternalStoreInstancesInType) {
       let dataService = `DataService="${d.dataService}"`;
-      let data = `data="${d.data}"`;
+      let correctData = d.data.replaceAll('"', '&quot;');
+      let data = `data="${correctData}"`;
       storeInstancesInTypeItemList += `<Item ${dataService} ${data} />`;
     }
   }
