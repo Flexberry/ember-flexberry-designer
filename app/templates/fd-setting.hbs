@@ -40,6 +40,19 @@
     </div>
     <div class="row">
       <div class="four wide column">
+        {{t "forms.fd-setting.project-settings.company"}}
+      </div>
+      <div class="twelve wide column light-text">
+        {{flexberry-textbox
+          class="fluid input"
+          value=model.stage.company
+          placeholder=(t "forms.fd-setting.project-settings.company-placeholder")
+          readonly=readonlyModeProject
+        }}
+      </div>
+    </div>
+    <div class="row">
+      <div class="four wide column">
         <div>{{t "forms.fd-setting.project-settings.access"}}</div>
       </div>
       <div class="twelve wide column light-text">
