@@ -136,7 +136,7 @@ FdPopupActions, {
     Сurrent pressed button is pointer.
 
     @property currentTargetElementIsPointer
-    @type Bool
+    @type Boolean
   */
   currentTargetElementIsPointer: computed('currentTargetElement', function() {
     let currentTargetElement = this.get('currentTargetElement');
@@ -148,10 +148,20 @@ FdPopupActions, {
   }),
 
   /**
+    Flag indicating whether the current element is a link.
+
+    @property isCurrentElementLink
+    @type Boolean
+  */
+  isCurrentElementLink: computed('type', function() {
+    return this.get('type') === 'Link';
+  }),
+
+  /**
     Flag indicates when on primitive panel choosen child type object.
 
     @property isCreatedObjectChild
-    @type Bool
+    @type Boolean
   */
   isCreatedObjectChild: computed('type', 'parentElements', function() {
     let isObject = (this.get('type') === 'Object');
