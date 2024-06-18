@@ -76,7 +76,6 @@ export default FdUmlElement.extend({
 */
 export let ObjectInState = BaseObject.define('flexberry.uml.ObjectInState', {
   minHeight: 40,
-
   minWidth: 40,
 }, {
   getRectangles() {
