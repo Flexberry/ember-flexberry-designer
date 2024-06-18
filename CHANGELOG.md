@@ -9,6 +9,7 @@ All notable changes to this project will be documented in this file.
 
 ### Fixed
 * Fix dse transforms.
+* Fix save empty multiplicity.
 
 ## [1.1.0] - 2024-03-25
 ### Added
