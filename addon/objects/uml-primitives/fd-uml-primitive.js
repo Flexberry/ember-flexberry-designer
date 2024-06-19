@@ -204,7 +204,7 @@ joint.highlighters.strokeAndButtons = {
     }
 
     if (cellView.getSizeChangers instanceof Function) {
-      if (cellView.el.dataset.type != "flexberry.uml.Partition") {
+      if (cellView.el.dataset.type !== "flexberry.uml.Partition") {
         const parentGroup = document.querySelector('g[joint-selector="cells"]');
         const selectedСlass = parentGroup.querySelector(`#${cellView.id}`);
         parentGroup.appendChild(selectedСlass);
