@@ -32,3 +32,21 @@ test('it exists', function(assert) {
   assert.deepEqual(deserialize(xml), objectModel, `The 'deserialize' function is OK.`);
   assert.equal(serialize(objectModel), xml, `The 'serialize' function is OK.`);
 });
+
+test('special symbols', function(assert) {
+
+  let objectModel = A([
+    FdClassExternalStoreInstancesInType.create({
+      dataService: 'dataService1',
+      data: '<>\'"&',
+    }),
+  ]);
+
+  let xml = '' +
+  '<DataSourceCustomizerList>' +
+  '<Item DataService="dataService1" data="&lt;&gt;&apos;&quot;&amp;" />' +
+  '</DataSourceCustomizerList>';
+
+  assert.deepEqual(deserialize(xml), objectModel, `The 'deserialize' function is OK.`);
+  assert.equal(serialize(objectModel), xml, `The 'serialize' function is OK.`);
+});
