@@ -10,6 +10,7 @@ All notable changes to this project will be documented in this file.
 ### Fixed
 * Fixed dse transforms.
 * Fixed shape of active state object on activity diagram.
+* Fixed highlighting of background element `flexberry.uml.Partition`.
 
 ## [1.1.0] - 2024-03-25
 ### Added
