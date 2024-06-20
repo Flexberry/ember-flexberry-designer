@@ -8,7 +8,7 @@ import { computed } from '@ember/object';
 import { isArray } from '@ember/array';
 import { isBlank } from '@ember/utils';
 
-import { BaseObject } from './fd-uml-baseobject';
+import { ActiveState } from './fd-uml-active-state';
 import FdUmlElement from './fd-uml-element';
 
 /**
@@ -70,18 +70,16 @@ export default FdUmlElement.extend({
 
   @for FdUmlObjectInState
   @class ObjectInState
-  @extends flexberry.uml.BaseObject
+  @extends flexberry.uml.ActiveState
   @namespace flexberry.uml
   @constructor
 */
-export let ObjectInState = BaseObject.define('flexberry.uml.ObjectInState', {
-  minHeight: 40,
-  minWidth: 40,
-}, {
-  getRectangles() {
-    return [
-      { type: 'header', element: this },
-    ];
+export let ObjectInState = ActiveState.define('flexberry.uml.ObjectInState', {
+  attrs: {
+    '.flexberry-uml-header-rect': { 
+      'rx': 0,
+      'ry': 0
+    }
   },
 });
 
