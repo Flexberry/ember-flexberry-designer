@@ -8,8 +8,10 @@ All notable changes to this project will be documented in this file.
 * Added drawing objects over of other objects.
 
 ### Fixed
-* Fix dse transforms.
+* Fixed dse transforms.
+* Fixed shape of active state object on activity diagram.
 * Fix save empty multiplicity.
+
 
 ## [1.1.0] - 2024-03-25
 ### Added
