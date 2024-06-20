@@ -13,7 +13,8 @@ export default {
     'loop-inheritance': 'Loop found in inheritance links',
     'two-childs': 'Cannot be multiple childs',
     'empty-diagram': 'Diagram name cannot be empty',
-    'exist-diagram': 'Diagram with the same name already exists.',
+    'exist-diagram': 'Diagram with the same name already exists',
+    'empty-multiplicity': 'There are associations in the diagram without starting multiplicity',
   },
   'custom-message': {
     'validate-header': 'Diagram check result',
