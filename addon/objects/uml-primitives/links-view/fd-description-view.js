@@ -60,6 +60,7 @@ export let DescriptionView = EmptyView.extend({
   },
 
   render: function() {
+    joint.shapes.flexberry.uml.PrimitiveElementView.prototype.disableTextEditing.apply(this, arguments);
     joint.dia.LinkView.prototype.render.apply(this, arguments);
     this.paper.$el.prepend(this.$box);
     this.paper.on('blank:pointerdown link:pointerdown element:pointerdown', function() {

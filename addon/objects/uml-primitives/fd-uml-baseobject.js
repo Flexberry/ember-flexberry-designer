@@ -2,12 +2,12 @@
   @module ember-flexberry-designer
 */
 
+import $ from 'jquery';
+import joint from 'npm:jointjs';
+
 import { computed } from '@ember/object';
 import { isArray } from '@ember/array';
-import $ from 'jquery';
 import { isPresent } from '@ember/utils';
-
-import joint from 'npm:jointjs';
 
 import FdUmlElement from './fd-uml-element';
 
@@ -77,12 +77,15 @@ export default FdUmlElement.extend({
   @constructor
 */
 export let BaseObject = joint.shapes.basic.Generic.define('flexberry.uml.BaseObject', {
-
   objectModel: null,
 
   attrs: {
-    '.flexberry-uml-header-rect': { 'stroke': 'black', 'stroke-width': 1, 'fill': '#ffffff', 'fill-opacity': 0 },
-
+    '.flexberry-uml-header-rect': {
+      'stroke': 'black',
+      'stroke-width': 1,
+      'fill': '#ffffff',
+      'fill-opacity': 0
+    },
     '.flexberry-uml-header-text': {
       'ref': '.flexberry-uml-header-rect',
       'ref-y': 0.5,
@@ -155,7 +158,6 @@ export let BaseObject = joint.shapes.basic.Generic.define('flexberry.uml.BaseObj
 });
 joint.util.setByPath(joint.shapes, 'flexberry.uml.BaseObject', BaseObject, '.');
 
-
 joint.shapes.flexberry.uml.BaseObjectView = joint.shapes.flexberry.uml.PrimitiveElementView.extend({
   template: [
     '<div class="uml-class-inputs">',
@@ -227,10 +229,11 @@ joint.shapes.flexberry.uml.BaseObjectView = joint.shapes.flexberry.uml.Primitive
   },
 
   render: function () {
+    joint.shapes.flexberry.uml.PrimitiveElementView.prototype.disableTextEditing.apply(this, arguments);
     joint.dia.ElementView.prototype.render.apply(this, arguments);
     this.paper.$el.prepend(this.$box);
     this.paper.on('blank:pointerdown link:pointerdown element:pointerdown', function () {
-      this.$box.find('input:focus, textarea:focus').blur();
+      joint.shapes.flexberry.uml.PrimitiveElementView.prototype.disableTextEditing.apply(this, arguments);
     }, this);
     this.updateBox();
     this.updateRectangles();
@@ -330,5 +333,4 @@ joint.shapes.flexberry.uml.BaseObjectView = joint.shapes.flexberry.uml.Primitive
       this.highlight();
     }
   }
-
 });

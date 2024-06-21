@@ -148,12 +148,12 @@ FdPopupActions, {
   }),
 
   /**
-    Flag indicating whether the current element is a link.
+    Flag indicates when a link element is selected on the primitives panel.
 
-    @property isCurrentElementLink
+    @property isCurrentTargetElementLink
     @type Boolean
   */
-  isCurrentElementLink: computed('type', function() {
+  isCurrentTargetElementLink: computed('type', function() {
     return this.get('type') === 'Link';
   }),
 
@@ -230,11 +230,11 @@ FdPopupActions, {
    Called when the element of the view is going to be destroyed.
    For more information see [willDestroyElement](http://emberjs.com/api/classes/Ember.Component.html#event_willDestroyElement) event of [Ember.Component](http://emberjs.com/api/classes/Ember.Component.html).
  */
- willDestroyElement() {
-   this._super(...arguments);
+  willDestroyElement() {
+    this._super(...arguments);
 
-   this.get('fdSheetService').off('diagramResizeTriggered', this, this._fitToContent);
- },
+    this.get('fdSheetService').off('diagramResizeTriggered', this, this._fitToContent);
+  },
 
   actions: {
     /**

@@ -203,7 +203,6 @@ export default Component.extend(
     const primitivesObservableProperties = this.get('primitivesObservableProperties');
 
     if (this.get('readonly')) {
-      $(paper.el).find('input,textarea').addClass('click-disabled');
       paper.setInteractivity(false);
       paper.off('element:pointermove', this._ghostElementMove, this);
       paper.off('element:pointerup', this._ghostElementRemove, this);
@@ -213,9 +212,10 @@ export default Component.extend(
       primitivesObservableProperties.forEach((property) => {
         this.removeObserver(property, this, this._diagramChangesObserverFunction);
       });
+
+      this._hideEmptyFieldsLinks();
     } else {
       const isFix = this._fixBrokenDiagramObjects();
-      $(paper.el).find('input,textarea').removeClass('click-disabled');
       paper.setInteractivity({ elementMove: false, vertexAdd: false });
       paper.on('element:pointermove', this._ghostElementMove, this);
       paper.on('element:pointerup', this._ghostElementRemove, this);
@@ -229,6 +229,8 @@ export default Component.extend(
           this.addObserver(property, this, this._diagramChangesObserverFunction);
         });
       }
+
+      this._showHiddenFieldsLinks();
     }
   }),
 
@@ -252,8 +254,6 @@ export default Component.extend(
       graph.getLinks().map(link => {
         link.findView(paper).$el.removeClass('edit-disabled');
       }, this);
-
-      $(paper.el).find('input,textarea').removeClass('click-disabled');
     } else {
       paper.off('element:pointermove', this._ghostElementMove, this);
       paper.off('element:pointerup', this._ghostElementRemove, this);
@@ -269,7 +269,6 @@ export default Component.extend(
           this.disableEditLinks();
       }
 
-      $(paper.el).find('input,textarea').addClass('click-disabled');
       this._highlighted(null);
     }
   }),
@@ -473,7 +472,6 @@ export default Component.extend(
             let  link = links[i];
             let view = link.findView(paper);
             view.$el.addClass('edit-disabled');
-            $(paper.el).find('input,textarea').addClass('click-disabled');
           }
           $(document).on({
             'mousemove.link': this._onDrag.bind(this)
@@ -507,7 +505,7 @@ export default Component.extend(
     @param {Number} y coordinate y.
   */
   _elementPointerClick(element, e, x, y) {
-    if (this.get('currentTargetElementIsPointer') || this.get('isCurrentElementLink')) {
+    if (this.get('currentTargetElementIsPointer') || this.get('isCurrentTargetElementLink')) {
       let coordinates = forLinkAndElementPointerClickEvent(e, x, y);
       x = coordinates.x;
       y = coordinates.y;
@@ -657,8 +655,6 @@ export default Component.extend(
           }
         }
 
-        $(paper.el).find('input,textarea').addClass('click-disabled');
-
         $(document).on({
           'mousemove.example': this._onDrag.bind(this)
         }, {
@@ -754,7 +750,6 @@ export default Component.extend(
       view.$el.removeClass('edit-disabled');
     }, this);
 
-    $(paper.el).find('input,textarea').removeClass('click-disabled');
     if (removeFromGraph) {
       this.get('draggedLink').remove();
     }
@@ -1740,5 +1735,35 @@ export default Component.extend(
     y = y > borders[3] ? borders[3] : y;
 
     return { x: x, y: y};
+  },
+
+  /**
+    Hides empty input fields for links on the paper.
+
+    @method _hideEmptyFieldsLinks
+  */
+  _hideEmptyFieldsLinks() {
+    const paperElement = this.get('paper.$el');
+    const umlLinkDivElements = paperElement.find('div.uml-link-inputs');
+    const umlLinkInputElements = umlLinkDivElements.find('input,textarea');
+
+    umlLinkInputElements.each((index, element) => {
+      if (!element.value.trim()) {
+        $(element).addClass('hidden');
+      }
+    });
+  },
+
+  /**
+    Shows hidden input fields for links on the paper.
+
+    @method _showHiddenFieldsLinks
+   */
+  _showHiddenFieldsLinks() {
+    const paperElement = this.get('paper.$el');
+    const umlLinkDivElements = paperElement.find('div.uml-link-inputs');
+    const umlLinkInputElements = umlLinkDivElements.find('input.hidden,textarea.hidden');
+
+    umlLinkInputElements.removeClass('hidden');
   }
 });
