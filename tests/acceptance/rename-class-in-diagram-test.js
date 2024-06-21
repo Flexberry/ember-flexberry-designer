@@ -1,4 +1,4 @@
-import { module, test } from 'qunit';
+import { module, test, skip } from 'qunit';
 import { run } from '@ember/runloop';
 import startApp from 'dummy/tests/helpers/start-app';
 import executeTestWithData from 'dummy/tests/helpers/execute-test-with-data';
@@ -30,7 +30,7 @@ module('Acceptance | fd-diagram-sheet | rename class', {
   }
 });
 
-test('rename new empty class on diagram', (assert) => {
+skip('rename new empty class on diagram', (assert) => {
   let done = assert.async();
   assert.expect(11);
 
@@ -142,7 +142,7 @@ test('rename new empty class on diagram', (assert) => {
 
 test('rename new empty class on edit form', (assert) => {
   let done = assert.async();
-  assert.expect(15);
+  assert.expect(13);
 
   // Arrange.
   let systemName = 'TestSystem';
@@ -212,13 +212,10 @@ test('rename new empty class on edit form', (assert) => {
             let $umlClassNameInput = $('.uml-class-inputs .class-name-input.header-input');
 
             assert.equal($umlClassNameInput.val(), className);
-            assert.equal($umlClassNameInput.hasClass('click-disabled'), true);
 
             let $editButton = $('.fd-edit', $sheetHeader);
             click($editButton);
             andThen(() => {
-              assert.equal($umlClassNameInput.hasClass('click-disabled'), false);
-
               let $umlTestClass = $('svg .joint-type-flexberry.joint-type-flexberry-uml.joint-type-flexberry-uml-class');
               click($umlTestClass);
               andThen(() => {

@@ -148,12 +148,12 @@ FdPopupActions, {
   }),
 
   /**
-    Flag indicating whether the current element is a link.
+    Flag indicating whether the current target element is a link.
 
-    @property isCurrentElementLink
+    @property isCurrentTargetElementLink
     @type Boolean
   */
-  isCurrentElementLink: computed('type', function() {
+  isCurrentTargetElementLink: computed('type', function() {
     return this.get('type') === 'Link';
   }),
 

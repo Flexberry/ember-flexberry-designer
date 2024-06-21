@@ -7,6 +7,8 @@ All notable changes to this project will be documented in this file.
 * Company stage setting.
 * Added drawing objects over of other objects.
 * Added UML diagram draw field autoresizing.
+* Added double-click object editing.
+* Added hiding of empty text input fields for links in readonly diagram mode.
 
 ### Fixed
 * Fixed dse transforms.
