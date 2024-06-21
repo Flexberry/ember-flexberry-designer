@@ -148,7 +148,7 @@ FdPopupActions, {
   }),
 
   /**
-    Flag indicates when a link element is selected on the primitives panel.
+    Flag indicating whether the current target element is a link.
 
     @property isCurrentTargetElementLink
     @type Boolean
@@ -233,8 +233,6 @@ FdPopupActions, {
   willDestroyElement() {
     this._super(...arguments);
 
-    this.get('fdSheetService').off('diagramResizeTriggered', this, this._fitToContent);
-  },
     this.get('fdSheetService').off('diagramResizeTriggered', this, this._fitToContent);
   },
 
