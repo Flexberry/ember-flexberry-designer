@@ -6,6 +6,24 @@ import { A } from '@ember/array';
 import FdClassExternalStoreInstancesInType from '../../objects/fd-storeinstancesintype';
 
 /**
+  Сhanges for correct parsing.
+
+  @method correctData
+  @param {String} data
+*/
+let correctData = function(data) {
+  /* eslint-disable */
+  data = data.replaceAll('&', '&amp;');
+  data = data.replaceAll('"', '&quot;');
+  data = data.replaceAll('\'', '&apos;');
+  data = data.replaceAll('<', '&lt;');
+  data = data.replaceAll('>', '&gt;');
+  /* eslint-enable */
+
+  return data;
+};
+
+/**
   Returns an array of storeInstancesInType.
 
   @method deserialize
@@ -61,7 +79,8 @@ export function serialize(deserialized) {
     let d = deserialized[i];
     if (d instanceof FdClassExternalStoreInstancesInType) {
       let dataService = `DataService="${d.dataService}"`;
-      let data = `data="${d.data}"`;
+      let correctDataValue = correctData(d.data);
+      let data = `data="${correctDataValue}"`;
       storeInstancesInTypeItemList += `<Item ${dataService} ${data} />`;
     }
   }

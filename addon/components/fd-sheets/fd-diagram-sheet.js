@@ -660,6 +660,14 @@ export default FdBaseSheet.extend(
       return reject({ message: this.get('i18n').t('forms.fd-diagrams.error-message.empty-diagram').toString() });
     }
 
+    let emptyMultiplicity = model.get('primitives').find((p) => {
+      return p.get('primitive.$type') === 'STORMCASE.UML.cad.Association, UMLCAD' && isBlank(p.get('startMultiplicity'));
+    });
+
+    if (!isNone(emptyMultiplicity)) {
+      return reject({ message: this.get('i18n').t('forms.fd-diagrams.error-message.empty-multiplicity').toString() });
+    }
+
     if (model.get('isNew')) {
       // Get current diagrams.
       let allDiagrams = this.get('store').peekAll(`${model.constructor.modelName}`);

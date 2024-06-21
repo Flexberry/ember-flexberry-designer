@@ -1,5 +1,6 @@
 export default {
   'attribute': {
+    'table-caption': 'Attributes',
     'value': 'Possible value',
     'value-placeholder': 'Enter a possible value',
     'default-value': 'Default value',
@@ -21,6 +22,7 @@ export default {
     'autoincrement': 'Autoincrement'
   },
   'view': {
+    'table-caption': 'Views',
     'name': 'View name',
     'name-placeholder': 'Enter name',
     'description': 'Description',
@@ -29,6 +31,7 @@ export default {
     'delete-btn': 'Delete selected',
   },
   'methods': {
+    'table-caption': 'Methods',
     'name': 'Method name',
     'name-placeholder': 'Enter name',
     'caption': 'Caption',
@@ -41,6 +44,7 @@ export default {
     'delete-btn': 'Delete selected',
   },
   'storage': {
+    'table-caption': 'Storages',
     'name': 'Connection name',
     'name-placeholder': 'Enter connection name',
     'string': 'Connection string',

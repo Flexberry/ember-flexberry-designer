@@ -1,6 +1,18 @@
 # Ember Flexberry Designer Changelog
 All notable changes to this project will be documented in this file.
 
+## [Unreleased]
+
+### Added
+* Company stage setting.
+* Added drawing objects over of other objects.
+
+### Fixed
+* Fixed dse transforms.
+* Fixed shape of active state object on activity diagram.
+* Fixed save empty multiplicity.
+* Fixed highlighting of background element `flexberry.uml.Partition`.
+
 ## [1.1.0] - 2024-03-25
 ### Added
 * Added component for DSE.

@@ -2,12 +2,14 @@
   @module ember-flexberry-designer
 */
 
+import joint from 'npm:jointjs';
+
 import { computed } from '@ember/object';
 import { isArray } from '@ember/array';
-import { ActiveState } from './fd-uml-active-state';
 import { isBlank } from '@ember/utils';
+
+import { ActiveState } from './fd-uml-active-state';
 import FdUmlElement from './fd-uml-element';
-import joint from 'npm:jointjs';
 
 /**
   An object that describes an `Object in state` element on the UML diagram.
@@ -73,6 +75,12 @@ export default FdUmlElement.extend({
   @constructor
 */
 export let ObjectInState = ActiveState.define('flexberry.uml.ObjectInState', {
+  attrs: {
+    '.flexberry-uml-header-rect': { 
+      'rx': 0,
+      'ry': 0
+    }
+  },
 });
 
 joint.shapes.flexberry.uml.ObjectInStateView = joint.shapes.flexberry.uml.ActiveStateView.extend({
