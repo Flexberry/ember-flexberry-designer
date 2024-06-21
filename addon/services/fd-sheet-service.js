@@ -302,5 +302,26 @@ export default Service.extend(Evented, {
   */
   saveCurrentItem(sheetName, closeAfter) {
     this.trigger('saveCurrentItemTrigger', sheetName, closeAfter);
+  },
+
+  /**
+    Callback save currentItem.
+
+     @method successSaveModel
+     @param {String} sheetName Sheet's component name
+  */
+  successSaveModel(sheetName) {
+    this.trigger('successSaveModelTrigger', sheetName);
+  },
+
+  /**
+    Trigger generation ai attributes for class logic.
+
+     @method aiGenAttributesLogic
+     @param {String} sheetName Sheet's component name
+     @param {Object} currentItem Current list item
+  */
+  aiGenAttributesLogic(sheetName, currentItem) {
+    this.trigger('aiGenAttributesLogicTrigger', sheetName, currentItem);
   }
 });

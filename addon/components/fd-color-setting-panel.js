@@ -128,6 +128,7 @@ export default Component.extend(
         objectModel.set('stereotype', newStereotype);
         objectView.setInputValues();
         objectView.updateRectangles();
+        objectView.paper.trigger('updaterepobj', objectModel, 'stereotype', newStereotype);
       }
 
       if (!this._compareColorArrays(oldTextValue, rgbaTextValue) || !this._compareColorArrays(oldBrushValue, rgbabackgroundValue) || oldStereotype !== newStereotype) {

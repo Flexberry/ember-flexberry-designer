@@ -79,7 +79,7 @@
 @footerBackground: #eee;
 
 /* Фон кнопок тулбара */
-@toolbarButtonBackground: fade(@fdPrimaryColor, 50%);
+@fdToolbarButtonBackground: fade(@fdPrimaryColor, 50%);
 
 /* Цвет основных кнопок */
 @basicButtonColor: fade(@textColor, 85%);

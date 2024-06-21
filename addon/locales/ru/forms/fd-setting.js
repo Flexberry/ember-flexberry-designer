@@ -11,6 +11,8 @@ export default {
     description: 'Описание',
     'description-placeholder': 'Введите описание',
     'data-types-map': 'Карта типов',
+    company: 'Префикс',
+    'company-placeholder': 'Введите префикс',
   },
   'project-actions-caption': 'Действия с проектом',
   'project-actions': {
@@ -80,5 +82,8 @@ export default {
     'empty-name': 'Имя стадии не может быть пустое',
     'exist-stage': 'Стадия с таким именем уже существует',
     'empty-username': 'В системе отсутствуют пользователи с логинами: '
+  },
+  'custom-message': {
+    'validate-ok-header': 'Коррекция не требуется',
   }
 };

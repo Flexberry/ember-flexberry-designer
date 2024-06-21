@@ -12,8 +12,8 @@
         onHidden=(action "updateWidth")
       )
     }}
+    <div class="fd-logo"></div>
       {{#animated-if currentProjectIsSelected use=transition}}
-        <div class="fd-logo"></div>
         <div class="item current-project-name-header">
           <div>
             <div class="sidebar-sync-panel">
@@ -28,9 +28,7 @@
                 <i class="icon-guideline-cross-r"></i>
               </button>
             </div>
-            <div class="current-project-name">
-              <div>{{currentProjectName}}</div>
-            </div>
+            <div class="current-project-name">{{currentProjectName}}</div>
           </div>
         </div>
         {{fd-flexberry-sitemap sitemap=sitemap class="flexberry-sitemap-top"}}
@@ -45,7 +43,7 @@
   {{/unless}}
 
   <div id="example" class="pusher">
-    <div class="ui form {{appState.state}}">
+    <div class="ui form {{appState.state}} {{if (not _sidebarVisible) "content-opened"}}">
       <div class="full height">
         <div class="flexberry-content">
           <div class="ui main container fluid">

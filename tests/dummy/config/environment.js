@@ -3,9 +3,9 @@
 module.exports = function (environment) {
   let backendUrl = 'https://designer-dummy.flexberry.net';
 
-  if (environment === 'development-loc') {
+  if (environment === 'development-loc' || environment === 'test') {
     // Use `ember s -e development-loc` command for local backend usage.
-    backendUrl = 'http://localhost:8600';
+    backendUrl = 'http://localhost:6500';
   }
 
   let ENV = {
@@ -53,6 +53,7 @@ module.exports = function (environment) {
         storeDeprecationMessages: false,
         storePromiseErrors: true,
         showPromiseErrors: true,
+        errorMessageFilterActive: false,
       },
 
       // Options for Perforator service that can be used to calculate performance of components rendering.
@@ -107,6 +108,26 @@ module.exports = function (environment) {
 
           // Flag: indicates whether to show modal dialog on download errors or not.
           showModalDialogOnDownloadError: true,
+        },
+        // Settings for `flexberryObjectlistview` component.
+        flexberryObjectlistview: {
+          // Default number of records on the list page.
+          defaultPerPage: 5,
+          // Flag indicates whether to use side page or usual mode.
+          useSidePageMode: true,
+        },
+        // Settings for flexberry-lookup component.
+        flexberryLookup: {
+          // Flag: indicates whether to use side page or usual mode.
+          useSidePageMode: true,
+        },
+        flexberryGroupedit: {
+          // Flag: indicates whether to use side page or usual mode.
+          useSidePageMode: true,
+        },
+        flexberrySimpledatetime: {
+          // The selector to get the element (using `jQuery`) for the `appendTo` flatpickr option, see https://flatpickr.js.org/options/.
+          calendarContext: undefined,
         }
       },
 

@@ -2,6 +2,20 @@ import { isBlank, isNone } from '@ember/utils';
 import RepositoryAccessModifier  from '../enums/s-t-o-r-m-c-a-s-e-repository-access-modifier';
 
 /**
+  Update Name.
+*/
+let updateName = function(classObject) {
+  let nameStr = classObject.get('nameStr') || '';
+  nameStr = nameStr.trim();
+
+  if (nameStr.length > 0) {
+    const stored = nameStr[0] != '/';
+    classObject.set('stored', stored);
+    classObject.set('name', stored ? nameStr : nameStr.substring(1));
+  }
+};
+
+/**
   Update Attributes.
 */
 let updateAttributes = function(classObject, store) {
@@ -138,6 +152,7 @@ let updateMethods = function(classObject, store) {
   Update repositoryObjects by str properties.
 */
 let updateObjectByStr = function(classObject, store) {
+  updateName(classObject);
   updateAttributes(classObject, store);
   updateMethods(classObject, store);
 };
@@ -146,7 +161,15 @@ let updateObjectByStr = function(classObject, store) {
   Update NameStr.
 */
 let updateNameStr = function(classObject) {
-  const name = classObject.get('name');
+  let name = classObject.get('name');
+  const stored = classObject.get('stored');
+
+  if (!isNone(stored) && !stored && name[0] != '/') {
+    name = `/${name}`;
+  } else if (!isNone(stored) && stored && name[0] === '/') {
+    name.substring(1);
+  }
+
   classObject.set('nameStr', name);
 };
 

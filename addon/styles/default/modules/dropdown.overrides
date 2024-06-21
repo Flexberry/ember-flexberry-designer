@@ -1,0 +1,4 @@
+.row .ui.search.selection.dropdown > input.search {
+  top: -2px;
+  padding: 0;
+}

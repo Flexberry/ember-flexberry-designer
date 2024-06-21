@@ -40,7 +40,6 @@ export let defineProjections = function (modelClass) {
       description: attr('Описание')
     }),
     diagrams: hasMany('fd-diagram', '', {
-      primitivesStreamString: attr(''),
       caseObjectsString: attr(''),
       name: attr(''),
       createDate: attr(''),

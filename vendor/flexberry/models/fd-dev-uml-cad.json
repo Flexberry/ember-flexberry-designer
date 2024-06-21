@@ -63,12 +63,6 @@
           "caption": "",
           "hidden": false,
           "index": 2
-        },
-        {
-          "name": "primitivesStreamString",
-          "caption": "",
-          "hidden": false,
-          "index": 3
         }
       ],
       "belongsTo": [
@@ -79,7 +73,7 @@
           "belongsTo": [],
           "hidden": false,
           "attrs": [],
-          "index": 4,
+          "index": 3,
           "caption": "",
           "name": "subsystem",
           "relatedTo": "fd-subsystem",

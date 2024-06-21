@@ -20,6 +20,24 @@ export default Component.extend(FdReadonlyProjectMixin, FdShareFunctionMixin, {
   sheetComponentName: '',
 
   /**
+    Expand icon.
+
+    @property expandIcon
+    @type String
+    @default 'icon-guideline-arrows-resize'
+  */
+  expandIcon: 'icon-guideline-arrows-resize',
+
+  /**
+    Collapse icon.
+
+    @property collapseIcon
+    @type String
+    @default 'icon-guideline-arrows-resize-minus'
+  */
+  collapseIcon: 'icon-guideline-arrows-resize-minus',
+
+  /**
    Service that get current project contexts.
 
    @property currentProjectContext
@@ -126,6 +144,17 @@ export default Component.extend(FdReadonlyProjectMixin, FdShareFunctionMixin, {
   readonlyMode: false,
 
   /**
+    Flag: indicates whether sheet is expanded.
+
+    @property isExpanded
+    @type Boolean
+   */
+  isExpanded: computed('fdSheetService.sheetSettings.expanded.{class-sheet,diagram-sheet,edit-diagram-object-sheet}', function() {
+    let sheetComponentName = this.get('sheetComponentName');
+    return this.get(`fdSheetService.sheetSettings.expanded.${sheetComponentName}`);
+  }),
+
+  /**
     Flag: indicates whether to not show button for new model.
 
     @property isNewModel
@@ -140,6 +169,14 @@ export default Component.extend(FdReadonlyProjectMixin, FdShareFunctionMixin, {
     @type Bool
   */
   genToolbarVisible: false,
+
+  /**
+    Flag: indicates whether to not show ai button.
+
+    @property aiToolbarVisible
+    @type Bool
+  */
+  aiToolbarVisible: false,
 
   /**
     Current sheet content value.
@@ -200,12 +237,33 @@ export default Component.extend(FdReadonlyProjectMixin, FdShareFunctionMixin, {
     }
   }),
 
+  /**
+    Callback success save item.
+
+     @method successSaveModel
+     @param {String} sheetName Sheet's name.
+  */
+  successSaveModel(sheetName) {
+    let sheetComponentName = this.get('sheetComponentName');
+    if (sheetComponentName === sheetName) {
+      this.set('readonlyMode', true);
+      this.get('fdLockService').deleteLock(this.get('contentSheetValue'), sheetComponentName);
+    }
+  },
+
+  init() {
+    this._super(...arguments);
+
+    this.get('fdSheetService').on('successSaveModelTrigger', this, this.successSaveModel);
+  },
+
   willDestroyElement() {
     this._super(...arguments);
     this.set('readonlyMode', true);
     const sheetComponentName = this.get('sheetComponentName');
     const contentSheetValue = this.get('contentSheetValue');
     this.get('fdLockService').deleteLock(contentSheetValue, sheetComponentName);
+    this.get('fdSheetService').off('successSaveModelTrigger', this, this.successSaveModel);
   },
 
   actions: {
@@ -236,9 +294,6 @@ export default Component.extend(FdReadonlyProjectMixin, FdShareFunctionMixin, {
     */
     save() {
       this.get('saveSheet')();
-      this.set('readonlyMode', true);
-      let sheetComponentName = this.get('sheetComponentName');
-      this.get('fdLockService').deleteLock(this.get('contentSheetValue'), sheetComponentName);
     },
 
     /**
@@ -312,12 +367,14 @@ export default Component.extend(FdReadonlyProjectMixin, FdShareFunctionMixin, {
       const allCadDiagrams = store.peekAll('fd-dev-uml-cad');
       const cadDiagramsCurrentStage = allCadDiagrams.filterBy('subsystem.stage.id', stage.get('id'));
       const currentClassName = this.get('contentSheetValue.name');
+      const currentClassNameStr = this.get('contentSheetValue.nameStr');
 
       let classDiagrams = A();
 
       classDiagrams.pushObjects(cadDiagramsCurrentStage.filter(function (diagram) {
         if (!isNone(diagram.caseObjectsString)) {
-          return diagram.caseObjectsString.includes("Class:(" + currentClassName + ")");
+          return diagram.caseObjectsString.includes("Class:(" + currentClassName + ")") || 
+                 diagram.caseObjectsString.includes("Class:(" + currentClassNameStr + ")");
         }
       }));
 
@@ -366,6 +423,18 @@ export default Component.extend(FdReadonlyProjectMixin, FdShareFunctionMixin, {
     */
     generationForSelectedClass() {
       this.get('fdDiagramService').triggerGenForSelectedClassLogic();
+    },
+
+    /**
+      Trigger generation ai class attributes logic.
+
+      @method actions.aiGenAttributes
+    */
+    aiGenAttributes() {
+      let sheetComponentName = this.get('sheetComponentName');
+      let contentSheetValue = this.get('contentSheetValue');
+
+      this.get('fdSheetService').aiGenAttributesLogic(sheetComponentName, contentSheetValue);
     },
 
     /**

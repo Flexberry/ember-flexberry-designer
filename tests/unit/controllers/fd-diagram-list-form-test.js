@@ -10,6 +10,7 @@ moduleFor('controller:fd-diagram-list-form', 'Unit | Controller | fd diagram lis
     'service:objectlistview-events',
     'controller:colsconfig-dialog',
     'service:adv-limit',
+    'service:lookup-events'
   ]
 });
 

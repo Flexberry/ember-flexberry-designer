@@ -53,6 +53,12 @@
                 placeholder=(t tableView.attrPlaceholder)
                 readonly=(or readonly tableTextBoxReadonly)
               }}
+            {{else if tableView.isDataServiceExpression}}
+              {{fd-data-source-customizer-list
+                stringDse=(mut (get value tableView.columnProperty))
+                placeholder=(t tableView.attrPlaceholder)
+                readonly=(or readonly tableTextBoxReadonly)
+              }}
             {{else}}
               {{flexberry-textbox
                 value=(mut (get value tableView.columnProperty))

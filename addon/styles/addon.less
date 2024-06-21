@@ -5,11 +5,17 @@
 @import 'components/fd-create-view.less';
 @import 'components/fd-ember-jstree';
 @import 'components/fd-list';
-@import 'components/fd-listform';
 @import 'components/fd-round-button.less';
 @import 'components/fd-sheet';
 @import 'components/fd-uml-diagram';
 @import 'components/fd-editform-control';
+
+@import 'node_modules/ember-flexberry-themes/src/themes/ghost/globals/site.variables';
+@import 'node_modules/ember-flexberry-themes/src/themes/ghost/components/flexberry-objectlistview.variables';
+@olvContainerBoxShadow: none;
+@import 'node_modules/ember-flexberry-themes/src/definitions/components/flexberry-objectlistview';
+@import 'node_modules/ember-flexberry-themes/src/themes/ghost/components/flexberry-objectlistview.overrides';
+
 
 .full.height,
 .ui.vertical.menu,
@@ -46,7 +52,6 @@ h1 {
 .ui.main.container.fluid {
   padding: @mainCintainerPaddingTop 4em 3em;
 
-  .settings-form,
   .generation-list {
     margin-top: -@mainCintainerPaddingTop;
   }
@@ -437,4 +442,13 @@ i.icon.chevron.down:before {
       margin-left: 1rem;
     }
   }
+}
+
+.ui.card.custom.table.dse {
+  position: absolute;
+  width: 600px;
+  background: #fff;
+  right: 0;
+  z-index: 1;
+  max-width: none;
 }

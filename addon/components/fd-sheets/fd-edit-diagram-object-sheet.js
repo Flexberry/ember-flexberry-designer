@@ -1,5 +1,6 @@
 import FdBaseSheet from './fd-base-sheet';
 import { updateObjectByStr, updateStrByObjects, updateLinkByStr, updateStrByLink } from '../../utils/fd-update-str-value';
+import { updateAuditAttributes } from '../../utils/fd-attributes-for-audit';
 import { applyNewClassName } from '../../utils/fd-update-class-diagram';
 import { A } from '@ember/array';
 import { inject as service } from '@ember/service';
@@ -7,6 +8,8 @@ import { isBlank, isNone } from '@ember/utils';
 import { resolve, reject } from 'rsvp';
 import { translationMacro as t } from 'ember-i18n';
 import { computed } from '@ember/object';
+import { SimplePredicate } from 'ember-flexberry-data/query/predicate';
+import Builder from 'ember-flexberry-data/query/builder';
 
 import layout from '../../templates/components/fd-sheets/fd-edit-diagram-object-sheet';
 
@@ -300,6 +303,40 @@ export default FdBaseSheet.extend({
     return resolve();
   },
 
+  /**
+    Uploading audit fields.
+
+    @method uploadingAuditFields
+    @param {Object} selectedValue Class model.
+    @param {Object} objectModel Value selected object.
+  */
+  uploadingAuditFields(selectedValue, objectModel) {
+    const attributes = selectedValue.get('attributes');
+
+    let auditFields = attributes.filter(attribute => {
+      if ((attribute.get('name') == 'CreateTime' && attribute.get('type') == 'AuditNullableDateTime') ||
+          (attribute.get('name') == 'Creator' && attribute.get('type') == 'string') ||
+          (attribute.get('name') == 'EditTime' && attribute.get('type') == 'AuditNullableDateTime') ||
+          (attribute.get('name') == 'Editor' && attribute.get('type') == 'string')
+      ) {
+        return attribute;
+      }
+     });
+
+    if (auditFields.length == 0) {
+      const predicate = new SimplePredicate('id', 'eq', selectedValue.get('id'));
+      const modelName = 'fd-dev-class';
+      const builder = new Builder(this.get('store'))
+        .from(modelName)
+        .selectByProjection('AttributesView')
+        .where(predicate);
+      this.get('store').query(modelName, builder.build()).then(() => {
+        objectModel.set('attributes', selectedValue.get('attributesStr').split('\n'));
+        this.get('fdDiagramService').updateJointObjectOnDiagram(objectModel.get('id'));
+      });
+    }
+  },
+
   actions: {
 
     /**
@@ -314,6 +351,7 @@ export default FdBaseSheet.extend({
       if (isLink) {
         updateStrByLink(selectedValue);
       } else {
+        updateAuditAttributes(selectedValue, this.get('store'));
         updateStrByObjects(selectedValue);
       }
 
@@ -333,14 +371,14 @@ export default FdBaseSheet.extend({
         }
 
         this.get('fdDiagramService').updateJointObjectOnDiagram(objectModel.get('id'));
-        selectedValue.save()
+        selectedValue.save().then(() => {
+          if (selectedValue.get('addAuditFields') && !isLink) {
+            this.uploadingAuditFields(selectedValue, objectModel);
+          }
+        });
       })
       .then(() => this.saveHasManyRelationships(selectedValue))
-      .catch((error) => {
-        this.get('fdDialogService').showErrorMessage(error.message);
-      })
-      .finally(() => {
-        this.get('appState').reset();
+      .then(() => {
         if (isLink) {
           this.set('_endRoleStr', selectedValue.get('endRoleStr'));
           this.set('_startRoleStr', selectedValue.get('startRoleStr'));
@@ -350,6 +388,14 @@ export default FdBaseSheet.extend({
           this.set('_attributesStr', selectedValue.get('attributesStr'));
           this.set('_methodsStr', selectedValue.get('methodsStr'));
         }
+
+        this.get('fdSheetService').successSaveModel(this.get('sheetComponentName'));
+      })
+      .catch((error) => {
+        this.get('fdDialogService').showErrorMessage(error.message);
+      })
+      .finally(() => {
+        this.get('appState').reset();
       });
     }
   }

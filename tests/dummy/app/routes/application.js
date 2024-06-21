@@ -65,7 +65,7 @@ export default Route.extend(ModalApplicationRouteMixin, {
             });
         }
       });
-    } else if (this.get('router.location.location.href').split('?').length < 2) {
+    } else if (this.get('router.location.location.href') != null && this.get('router.location.location.href').split('?').length < 2) {
       this.transitionTo('index');
     }
   },
@@ -90,8 +90,8 @@ export default Route.extend(ModalApplicationRouteMixin, {
 
       let name = userService.getCurrentUserName();
       if (!isEmpty(name)) {
-        return getExistingRecord(store, name).then(foundRecord => {              
-          if (!isNone(foundRecord)) {                
+        return getExistingRecord(store, name).then(foundRecord => {
+          if (!isNone(foundRecord)) {
             foundRecord.destroyRecord();
           }
         });

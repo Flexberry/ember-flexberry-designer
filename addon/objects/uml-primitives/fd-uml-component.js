@@ -96,19 +96,13 @@ joint.shapes.flexberry.uml.ComponentView = joint.shapes.flexberry.uml.BaseObject
   ].join(''),
 
   setColors() {
-    joint.shapes.flexberry.uml.BaseObjectView.prototype.setColors.apply(this, arguments);
-  
-    const brushColor = this.getBrushColor();
+    joint.shapes.flexberry.uml.BaseObjectView.prototype.setColors.apply(this, [0.2]);
+
     const textColor = this.getTextColor();
 
     if (!isNone(textColor)) {
       this.model.attr('.firstRect/stroke', textColor);
       this.model.attr('.secondRect/stroke', textColor);
-    }
-  
-    if (!isNone(brushColor)) {
-      this.model.attr('.firstRect/fill', brushColor);
-      this.model.attr('.secondRect/fill', brushColor);
     }
   }
 });

@@ -14,6 +14,7 @@ moduleFor('controller:fd-stage-edit-form', 'Unit | Controller | fd stage edit fo
     'service:appState',
     'service:detail-interaction',
     'service:adv-limit',
+    'service:lookup-events'
   ]
 });
 

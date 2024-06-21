@@ -507,14 +507,20 @@ export default Component.extend(
     @param {Number} y coordinate y.
   */
   _elementPointerClick(element, e, x, y) {
-    let coordinates = forLinkAndElementPointerClickEvent(e, x, y);
-    x = coordinates.x;
-    y = coordinates.y;
-    let options = { element: element, e: e, x: x, y: y };
-    if (this.get('isCreatedObjectChild')) {
-      this._addChildPrimitiveForClickedElement(options);
+    if (this.get('currentTargetElementIsPointer') || this.get('isCurrentElementLink')) {
+      let coordinates = forLinkAndElementPointerClickEvent(e, x, y);
+      x = coordinates.x;
+      y = coordinates.y;
+
+      let options = { element: element, e: e, x: x, y: y };
+
+      if (this.get('isCreatedObjectChild')) {
+        this._addChildPrimitiveForClickedElement(options);
+      } else {
+        this._addLinkForClickedElement(options);
+      }
     } else {
-      this._addLinkForClickedElement(options);
+      this._blankPointerClick(e);
     }
   },
 
@@ -1446,6 +1452,7 @@ export default Component.extend(
             newObj.set('stereotype', objectModel.get('stereotype'));
             newObj.set('attributesStr', objectModel.get('attributes').join('\n'));
             newObj.set('methodsStr', objectModel.get('methods').join('\n'));
+            classesCurrentStage.push(newObj);
           } else {
             this._incrementPropertyReferenceCount(cls);
             objectModel.set('repositoryObject', `{${cls.get('id')}}`)

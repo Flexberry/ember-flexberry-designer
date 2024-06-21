@@ -1,5 +1,4 @@
 <div class="ui stackable grid fd-list">
-
   {{#if (not isConstructor)}}
     <div class="row">
       <div class="five wide column">
@@ -8,16 +7,15 @@
       <div class="eleven wide column light-text">
         {{flexberry-textbox
           value=model.caption
-          class='fluid input'
+          class="fluid input"
           placeholder=(t "components.fd-editform-editing-panel.caption-placeholder")
           readonly=readonly
         }}
       </div>
     </div>
-
     <div class="row">
       {{#flexberry-toggler
-          caption=(t 'components.fd-editform-editing-panel.toggler-caption')
+          caption=(t "components.fd-editform-editing-panel.toggler-caption")
           expanded=false
       }}
       <div class="ui stackable grid fd-list">
@@ -28,13 +26,12 @@
           <div class="eleven wide column light-text">
             {{flexberry-textarea
               value=model.description
-              class='fluid input'
+              class="fluid input"
               placeholder=(t "components.fd-editform-editing-panel.description-placeholder")
               readonly=readonly
             }}
           </div>
         </div>
-
         <div class="row">
           <div class="five wide column">
             {{t "components.fd-editform-editing-panel.publish-name-caption"}}
@@ -42,13 +39,12 @@
           <div class="eleven wide column light-text">
             {{flexberry-textbox
               value=model.publishName
-              class='fluid input'
+              class="fluid input"
               placeholder=(t "components.fd-editform-editing-panel.publish-name-placeholder")
               readonly=readonly
             }}
           </div>
         </div>
-
         <div class="row">
           <div class="five wide column">
             {{t "components.fd-editform-editing-panel.packet-caption"}}
@@ -56,13 +52,12 @@
           <div class="eleven wide column light-text">
             {{flexberry-textbox
               value=model.packet
-              class='fluid input'
+              class="fluid input"
               placeholder=(t "components.fd-editform-editing-panel.packet-placeholder")
               readonly=readonly
             }}
           </div>
         </div>
-
         <div class="row">
           <div class="five wide column">
             {{t "components.fd-editform-editing-panel.namespace-postfix-placeholder"}}
@@ -70,7 +65,7 @@
           <div class="eleven wide column light-text">
             {{flexberry-textbox
               value=model.namespacePostfix
-              class='fluid input'
+              class="fluid input"
               placeholder=(t "components.fd-editform-editing-panel.namespace-postfix-placeholder")
               readonly=readonly
             }}
@@ -79,7 +74,22 @@
       </div>
       {{/flexberry-toggler}}
     </div>
-
+    {{#if isDiagramEditingPanel}}
+      <div class="row">
+        <div class="five wide column">
+          <div>{{t "components.fd-editform-editing-panel.dataobject-caption"}}</div>
+        </div>
+        <div class="eleven wide column light-text">
+          {{flexberry-dropdown
+            items=dataObjectItems.names
+            value=dataObjectValue
+            class="compact search"
+            onChange=(action "changeDataObject")
+            readonly=readonly
+          }}
+        </div>
+      </div>
+    {{/if}}
     <div class="row">
       <div class="five wide column">
         <div>{{t "components.fd-editform-editing-panel.formview-caption"}}</div>
@@ -88,18 +98,17 @@
         {{flexberry-dropdown
           items=viewItems.names
           value=viewValue
-          class='compact input'
+          class="compact input"
           onChange=(action "changeViewValue")
-          readonly=readonly
+          readonly=(or readonly false)
         }}
       </div>
-    </div>  
+    </div>
   {{else}}
     {{fd-editform-constructor
       model=constructorModel
     }}
   {{/if}}
-
   <div class="row">
     <div class="right floated thirteen wide column">
       <button class="ui button basic circular" {{action "switchBetweenSettings"}}>

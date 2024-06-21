@@ -10,6 +10,7 @@ moduleFor('controller:fd-inheritance-list-form', 'Unit | Controller | fd inherit
     'service:objectlistview-events',
     'controller:colsconfig-dialog',
     'service:adv-limit',
+    'service:lookup-events'
   ]
 });
 

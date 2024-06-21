@@ -9,7 +9,7 @@ export let Model = Mixin.create({
 
     @property nameStr
   */
-  nameStr: DS.attr('string', { defaultValue: 'Empty' }),
+  nameStr: DS.attr('string', { defaultValue: '' }),
   /**
     Method to set non-stored property.
     Please, use code below in model class (outside of this mixin) otherwise it will be replaced during regeneration of models.
@@ -28,8 +28,8 @@ export let Model = Mixin.create({
     let result = (this.nameStrCompute && typeof this.nameStrCompute === 'function') ? this.nameStrCompute() : null;
     this.set('nameStr', result);
   },
-  attributesStr: DS.attr('string', { defaultValue: 'Empty' }),
-  methodsStr: DS.attr('string', { defaultValue: 'Empty' }),
+  attributesStr: DS.attr('string', { defaultValue: '' }),
+  methodsStr: DS.attr('string', { defaultValue: '' }),
   stored: DS.attr('boolean', { defaultValue: true }),
   stereotype: DS.attr('string'),
   stage: DS.belongsTo('fd-stage', { inverse: 'classes', async: false, polymorphic: true }),

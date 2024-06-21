@@ -4,8 +4,8 @@ import DS from 'ember-data';
 import { attr, belongsTo } from 'ember-flexberry-data/utils/attributes';
 import AccessModifierEnum from '../../../enums/s-t-o-r-m-c-a-s-e-repository-access-modifier';
 export let Model = Mixin.create({
-  endMultiplicity: DS.attr('string', { defaultValue: 'Empty' }),
-  endRole: DS.attr('string', { defaultValue: 'Empty' }),
+  endMultiplicity: DS.attr('string', { defaultValue: '' }),
+  endRole: DS.attr('string', { defaultValue: '' }),
   endRoleAccessModifier: DS.attr('s-t-o-r-m-c-a-s-e-repository-access-modifier', { defaultValue: AccessModifierEnum.Public }),
   endRoleStored: DS.attr('boolean', { defaultValue: true }),
   /**
@@ -56,8 +56,8 @@ export let Model = Mixin.create({
     let result = (this.notNullStartCompute && typeof this.notNullStartCompute === 'function') ? this.notNullStartCompute() : null;
     this.set('notNullStart', result);
   },
-  startMultiplicity: DS.attr('string', { defaultValue: 'Empty' }),
-  startRole: DS.attr('string', { defaultValue: 'Empty' }),
+  startMultiplicity: DS.attr('string', { defaultValue: '' }),
+  startRole: DS.attr('string', { defaultValue: '' }),
   startRoleAccessModifier: DS.attr('s-t-o-r-m-c-a-s-e-repository-access-modifier', { defaultValue: AccessModifierEnum.Public }),
   startRoleStored: DS.attr('boolean', { defaultValue: true }),
   /**

@@ -14,6 +14,7 @@ moduleFor('controller:fd-business-server-edit-form', 'Unit | Controller | fd bus
     'service:appState',
     'service:detail-interaction',
     'service:adv-limit',
+    'service:lookup-events'
   ]
 });
 

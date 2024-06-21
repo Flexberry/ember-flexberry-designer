@@ -4,6 +4,7 @@ export default {
   'edit-caption': 'Правка',
   'close-button-title': 'Закрыть',
   'expand-button-title': 'Развернуть',
+  'collapse-button-title': 'Свернуть',
   'delete-button-title': 'Удалить',
   'share-button-title': 'Копировать ссылку',
   'dependencies-button-title': 'Существующие диаграммы',
@@ -17,4 +18,5 @@ export default {
   'cut-button-title': 'Вырезать выделенные элементы',
   'copy-button-title': 'Копировать выделенные элементы',
   'code-button-title': 'Генерировать код для выбранных классов',
+  'ai-button-title': 'Создать атрибуты с помощью ИИ'
 };

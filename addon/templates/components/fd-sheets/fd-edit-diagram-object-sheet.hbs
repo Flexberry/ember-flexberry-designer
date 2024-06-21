@@ -10,7 +10,9 @@
       sheetButtons=(array 'save' 'share' (if (not isLink) 'dependencies'))
       sheetHelper=urlVideoHelp
       saveSheet=(action 'save')
+      aiToolbarVisible=aiToolbarVisible
       contentSheetValue=selectedValue
+      customButtons=customButtons
     }}
     {{flexberry-textbox
       value=computedTitle
@@ -26,6 +28,7 @@
         model=selectedValue
         readonlyMode=readonlyMode
         openViewSheetController=(action 'openNestedSheet')
+        isDiagramEditingPanel=true
       }}
     {{else}}
       {{fd-editing-panels/fd-custom-editing-panel

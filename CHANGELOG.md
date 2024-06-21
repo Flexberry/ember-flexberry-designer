@@ -3,43 +3,89 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
-## [1.0.0-beta07]
-### Fixed
-* Fixed diagram saving when class name is missing.
-
-## [1.0.0-beta06]
-### Fixed
-* Fixed timezone if missing.
-* Fixed unsaved type map bug.
-
-## [1.0.0-beta05]
-### Fixed
-* Fix typemap after changing stages.
-
-## [1.0.0-beta04]
-### Fixed
-* Fix open typemap.
-
-## [1.0.0-beta03]
 ### Added
-* Add copy view button.
+* Company stage setting.
+* Added drawing objects over of other objects.
+* Added UML diagram draw field autoresizing.
+
+### Fixed
+* Fixed dse transforms.
+* Fixed shape of active state object on activity diagram.
+* Fixed save empty multiplicity.
+* Fixed highlighting of background element `flexberry.uml.Partition`.
+
+## [1.1.0] - 2024-03-25
+### Added
+* Added component for DSE.
+* Added sorting of data object and views for forms.
+* Added button for ai-assistant.
+* Added uml-correct button for stage.
 
 ### Changed
+* Update default fdg settings.
+* Updated create auditfields logic.
+* Update ember-flexberry to 3.11.1-beta.3.
+* Saving optimization, views cleaned.
+
+### Fixed
+* Fixed styles.
+* Fixed sitemap.
+* Fixed dpd diagram objects.
+* Fixed notStored class.
+* Fixed external master attributes in view.
+* Fixed form errors for external class.
+* Fixed styles for collapsed toolbar buttons.
+* Fixed icon and title for expand sheet button.
+* Fixed finding class with non stored classes.
+* Fixed button for ai-assistant.
+* Fixed save logic.
+* Fixed headers.
+* Fixed batch projections when saving diagram.
+* Fixed broken objects on diagram for inheritance.
+* Fixed error when importing stage.
+
+## [1.0.0]
+### Added
+* Added exit project button.
+* Added the ability to create editform/listform via diagram.
+* Added batch.
+* Added logic for fix broken diagrams.
+* Added cicd in fdg.
+* Disabled save button on diagram.
+* Added external classes in view.
+* Added select template for external class.
+* Added reset or no selected object.
+* Moving a group of objects on a diagram.
+* Added copy view button.
+
+### Changed
+* Hide class edit form button when class is new.
+* Сhanged icons and buttons style.
+* Сhange the theme.
 * Update backup method.
-* Change master property on view form.
+* Changed master property on view form.
 
 ### Fixed
-* Fix open typemap.
-* Fix add node in definition.
-* Fix sync button popup.
-
-## [1.0.0-beta02]
-### Fixed
-* Merge version.
-
-## [1.0.0-beta01]
-### Fixed
-* Fix namespace class object for net 7.
+* Fixed selected text on diagram.
+* Fixed error with brocken diagrams.
+* Fixed an error when renaming a class.
+* Unselected object move alone.
+* Fixed open new diagram.
+* Fixed duplicate styles.
+* Fixed display of text of link.
+* Moved resize buttons to top of connection.
+* Fixed diagram deletion confirmation message.
+* Fixed stage relevance check.
+* Fixed font error.
+* Fixed diagram saving when class name is missing.
+* Fixed saving of state diagrams.
+* Fixed timezone if missing.
+* Fixed unsaved type map bug.
+* Fixed typemap after changing stages.
+* Fixed open typemap.
+* Fixed add node in definition.
+* Fixed sync button popup.
+* Fixed namespace class object for net 7.
 
 ## [0.15.0-beta.26]
 ### Fixed

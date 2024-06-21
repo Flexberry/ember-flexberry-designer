@@ -15,6 +15,7 @@ moduleFor('controller:fd-inheritance-edit-form', 'Unit | Controller | fd inherit
     'service:appState',
     'service:detail-interaction',
     'service:adv-limit',
+    'service:lookup-events'
   ]
 });
 

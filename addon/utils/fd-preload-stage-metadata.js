@@ -1,4 +1,4 @@
-import { Promise, all } from 'rsvp';
+import { Promise } from 'rsvp';
 import { getOwner } from '@ember/application';
 import { A } from '@ember/array';
 import { isNone } from '@ember/utils';
@@ -8,15 +8,15 @@ import Builder from 'ember-flexberry-data/query/builder';
 import FilterOperator from 'ember-flexberry-data/query/filter-operator';
 
 /*
- * Returns promise to load model specified by modelName and projectionName in the context of store and stagePk.
+ * Returns query to load model specified by modelName and projectionName in the context of store and stagePk.
  */
-function getPromise(store, stagePk, modelName, projectionName) {
+function getBuild(store, stagePk, modelName, projectionName) {
   let stagePkPredicate = new SimplePredicate('stage.id', FilterOperator.Eq, stagePk);
   let q = new Builder(store, modelName)
     .selectByProjection(projectionName)
     .where(stagePkPredicate)
     .build();
-  return store.query(modelName, q);
+  return q;
 }
 
 /**
@@ -27,7 +27,7 @@ function getPromise(store, stagePk, modelName, projectionName) {
  */
 export default function fdPreloadStageMetadata(store, stagePk) {
   return new Promise(function(resolve, reject) {
-    let promises = [];
+    let builders = [];
 
     const projectionName = 'FdPreloadMetadata';
 
@@ -37,28 +37,28 @@ export default function fdPreloadStageMetadata(store, stagePk) {
       .selectByProjection(projectionName)
       .byId(stagePk)
       .build();
-    promises.push(store.query(modelName, q));
+    builders.push(q);
 
     // classes promise
-    promises.push(getPromise(store, stagePk, 'fd-dev-class', projectionName));
+    builders.push(getBuild(store, stagePk, 'fd-dev-class', projectionName));
 
     // associations promise
-    promises.push(getPromise(store, stagePk, 'fd-dev-association', projectionName));
+    builders.push(getBuild(store, stagePk, 'fd-dev-association', projectionName));
 
     // agregations promise
-    promises.push(getPromise(store, stagePk, 'fd-dev-aggregation', projectionName));
+    builders.push(getBuild(store, stagePk, 'fd-dev-aggregation', projectionName));
 
     // inheritances promise
-    promises.push(getPromise(store, stagePk, 'fd-dev-inheritance', projectionName));
+    builders.push(getBuild(store, stagePk, 'fd-dev-inheritance', projectionName));
 
     // realizations promise
-    promises.push(getPromise(store, stagePk, 'fd-dev-realization', projectionName));
+    builders.push(getBuild(store, stagePk, 'fd-dev-realization', projectionName));
 
     // system and diagrams promise
-    promises.push(getPromise(store, stagePk, 'fd-dev-system', projectionName));
+    builders.push(getBuild(store, stagePk, 'fd-dev-system', projectionName));
 
     // resolve, reject
-    all(promises).then(() => {
+    store.batchSelect(builders).then(() => {
       let currentProjectContext = getOwner(store).lookup('service:fd-current-project-context');
       let stageObj = store.peekRecord('fd-dev-stage', stagePk);
 
