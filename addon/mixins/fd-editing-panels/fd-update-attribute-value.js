@@ -77,7 +77,7 @@ export default Mixin.create({
           columnCaption: 'components.fd-attribute-table.attribute.dataServiceExpression',
           columnProperty: 'dataServiceExpression',
           attrPlaceholder: 'components.fd-attribute-table.attribute.dataServiceExpression-placeholder',
-          isTextArea: true,
+          isDataServiceExpression: true,
         },
         {
           columnCaption: 'components.fd-attribute-table.attribute.autoincrement',

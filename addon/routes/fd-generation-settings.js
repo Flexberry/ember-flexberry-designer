@@ -37,8 +37,8 @@ export default Route.extend(FdShareLoadData, {
         }
       },
       "Backend": {
-        "AspNet": true,
-        "AspNetCore": false,
+        "AspNet": false,
+        "AspNetCore": true,
         "Java": false
       },
       "Docker": {

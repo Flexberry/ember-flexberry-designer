@@ -343,7 +343,7 @@ export default Controller.extend(FdSheetCloseConfirm, FdReadonlyProjectMixin, Fd
     },
 
     /**
-      Method remove 'store instances in type' from table.
+      Method remove 'UserAccess' from table.
 
       @method actions.deleteUserAccess
     */

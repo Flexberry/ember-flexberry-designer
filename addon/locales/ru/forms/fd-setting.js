@@ -11,6 +11,8 @@ export default {
     description: 'Описание',
     'description-placeholder': 'Введите описание',
     'data-types-map': 'Карта типов',
+    company: 'Префикс',
+    'company-placeholder': 'Введите префикс',
   },
   'project-actions-caption': 'Действия с проектом',
   'project-actions': {

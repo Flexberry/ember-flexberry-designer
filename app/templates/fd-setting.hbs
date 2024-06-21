@@ -1,17 +1,15 @@
 <form class="ui form flexberry-vertical-form settings-form">
-  <div class="fd-sheet-toolbar">
+  <h2 class="form-header">{{t "forms.fd-setting.project-settings-caption"}}</h2>
+  <div class="fd-form-toolbar">
+    <button class="ui green button {{if readonlyModeProject "disabled"}}" {{action "save"}}>{{t "forms.fd-setting.save-button"}}</button>
+    <button class="ui icon button {{if readonlyModeProject "disabled"}}" {{action "umlStageСorrect"}} title={{t "components.fd-diagram-editing-panel.uml-validator-title"}}>
+      <i class="icon-fd-uml-valid"></i>
+    </button>
     {{fd-view-helper
       url="https://www.youtube.com/embed/ycw9i0-1fBM"
       position="right"
     }}
-    <button class="ui button {{if readonlyModeProject "disabled"}}" {{action "save"}}>
-      {{t "forms.fd-setting.save-button"}}
-    </button>
-    <button class="ui icon button {{if readonlyModeProject "disabled"}}" {{action "umlStageСorrector"}}>
-      <i class="icon-fd-uml-edit icon"></i>
-    </button>
   </div>
-  <h2 class="form-header">{{t "forms.fd-setting.project-settings-caption"}}</h2>
   <div class="ui stackable grid fd-list-edited">
     <div class="row">
       <div class="four wide column">
@@ -37,6 +35,19 @@
           placeholder=(t "forms.fd-setting.project-settings.product-placeholder")
           readonly=readonlyModeProject
           keyPress=keyPressPattern
+        }}
+      </div>
+    </div>
+    <div class="row">
+      <div class="four wide column">
+        {{t "forms.fd-setting.project-settings.company"}}
+      </div>
+      <div class="twelve wide column light-text">
+        {{flexberry-textbox
+          class="fluid input"
+          value=model.stage.company
+          placeholder=(t "forms.fd-setting.project-settings.company-placeholder")
+          readonly=readonlyModeProject
         }}
       </div>
     </div>

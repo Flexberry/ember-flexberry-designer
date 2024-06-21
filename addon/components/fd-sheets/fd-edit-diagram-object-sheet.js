@@ -1,5 +1,6 @@
 import FdBaseSheet from './fd-base-sheet';
 import { updateObjectByStr, updateStrByObjects, updateLinkByStr, updateStrByLink } from '../../utils/fd-update-str-value';
+import { updateAuditAttributes } from '../../utils/fd-attributes-for-audit';
 import { applyNewClassName } from '../../utils/fd-update-class-diagram';
 import { A } from '@ember/array';
 import { inject as service } from '@ember/service';
@@ -350,6 +351,7 @@ export default FdBaseSheet.extend({
       if (isLink) {
         updateStrByLink(selectedValue);
       } else {
+        updateAuditAttributes(selectedValue, this.get('store'));
         updateStrByObjects(selectedValue);
       }
 

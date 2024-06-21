@@ -20,10 +20,10 @@ let findClassImputsByName = function(name) {
   let $parentNode = $(parentNode);
 
   return {
-    name: $('.class-name-input', parentNode),
-    stereotype: $('.class-stereotype-input', parentNode),
-    attributes: $('.attributes-input', parentNode),
-    methods: $('.methods-input', parentNode)
+    name: $('.class-name-input', $parentNode),
+    stereotype: $('.class-stereotype-input', $parentNode),
+    attributes: $('.attributes-input', $parentNode),
+    methods: $('.methods-input', $parentNode)
   }
 };
 

@@ -1,6 +1,49 @@
 # Ember Flexberry Designer Changelog
 All notable changes to this project will be documented in this file.
 
+## [Unreleased]
+
+### Added
+* Company stage setting.
+* Added drawing objects over of other objects.
+* Added UML diagram draw field autoresizing.
+
+### Fixed
+* Fixed dse transforms.
+* Fixed shape of active state object on activity diagram.
+* Fixed save empty multiplicity.
+* Fixed highlighting of background element `flexberry.uml.Partition`.
+
+## [1.1.0] - 2024-03-25
+### Added
+* Added component for DSE.
+* Added sorting of data object and views for forms.
+* Added button for ai-assistant.
+* Added uml-correct button for stage.
+
+### Changed
+* Update default fdg settings.
+* Updated create auditfields logic.
+* Update ember-flexberry to 3.11.1-beta.3.
+* Saving optimization, views cleaned.
+
+### Fixed
+* Fixed styles.
+* Fixed sitemap.
+* Fixed dpd diagram objects.
+* Fixed notStored class.
+* Fixed external master attributes in view.
+* Fixed form errors for external class.
+* Fixed styles for collapsed toolbar buttons.
+* Fixed icon and title for expand sheet button.
+* Fixed finding class with non stored classes.
+* Fixed button for ai-assistant.
+* Fixed save logic.
+* Fixed headers.
+* Fixed batch projections when saving diagram.
+* Fixed broken objects on diagram for inheritance.
+* Fixed error when importing stage.
+
 ## [1.0.0]
 ### Added
 * Added exit project button.
@@ -10,13 +53,13 @@ All notable changes to this project will be documented in this file.
 * Added cicd in fdg.
 * Disabled save button on diagram.
 * Added external classes in view.
-* Added select template for external class
+* Added select template for external class.
 * Added reset or no selected object.
 * Moving a group of objects on a diagram.
 * Added copy view button.
 
 ### Changed
-* Hide class edit form button when class is new
+* Hide class edit form button when class is new.
 * Сhanged icons and buttons style.
 * Сhange the theme.
 * Update backup method.

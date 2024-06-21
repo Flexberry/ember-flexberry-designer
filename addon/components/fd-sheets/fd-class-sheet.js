@@ -5,6 +5,7 @@ import { A } from '@ember/array';
 import { updateStrByObjects } from '../../utils/fd-update-str-value';
 import { Promise, resolve, reject } from 'rsvp';
 import { createClassPrimitive, deletePrimitives, applyNewClassName } from '../../utils/fd-update-class-diagram';
+import { updateAuditAttributes } from '../../utils/fd-attributes-for-audit';
 import { translationMacro as t } from 'ember-i18n';
 
 import layout from '../../templates/components/fd-sheets/fd-class-sheet';
@@ -291,6 +292,7 @@ export default FdBaseSheet.extend({
       const selectedValue = this.get('selectedValue');
       let model = get(selectedValue, 'data');
       this.get('appState').loading();
+      updateAuditAttributes(model, this.get('store'));
       updateStrByObjects(model);
 
       let isNew = model.get('isNew');
