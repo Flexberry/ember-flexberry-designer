@@ -6,9 +6,13 @@ All notable changes to this project will be documented in this file.
 ### Added
 * Company stage setting.
 * Added drawing objects over of other objects.
+* Added UML diagram draw field autoresizing.
 
 ### Fixed
-* Fix dse transforms.
+* Fixed dse transforms.
+* Fixed shape of active state object on activity diagram.
+* Fixed save empty multiplicity.
+* Fixed highlighting of background element `flexberry.uml.Partition`.
 
 ## [1.1.0] - 2024-03-25
 ### Added

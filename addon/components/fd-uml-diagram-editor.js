@@ -229,11 +229,62 @@ FdPopupActions, {
   /**
    Called when the element of the view is going to be destroyed.
    For more information see [willDestroyElement](http://emberjs.com/api/classes/Ember.Component.html#event_willDestroyElement) event of [Ember.Component](http://emberjs.com/api/classes/Ember.Component.html).
- */
+  */
   willDestroyElement() {
     this._super(...arguments);
 
     this.get('fdSheetService').off('diagramResizeTriggered', this, this._fitToContent);
+  },
+    this.get('fdSheetService').off('diagramResizeTriggered', this, this._fitToContent);
+  },
+
+  /**
+   * Calculated minimal width and height of paper.
+   *
+   * @param {*} paper
+   * @returns Minimal width and height of paper.
+   */
+  getPaperWidthAndHeigth(paper)  {
+    const umlDiagram = paper.$el[0];
+    const { clientWidth: parentWidth, clientHeight: parentHeight } = umlDiagram.parentNode;
+
+    let minWidth = this.$().width() + 0.5 * parentWidth;
+    let minHeight = this.$().height() + 0.5 * parentHeight;
+
+    const umlDiagramChilds = umlDiagram.childNodes;
+    let svgElement;
+    umlDiagramChilds.forEach((child) => {
+      if (child.nodeName === 'svg') {
+        svgElement = child;
+      }
+    });
+
+    if (isNone(svgElement))  {
+      return [minWidth, minHeight];
+    }
+
+    const layers = svgElement.getElementsByClassName('joint-layers')[0];
+    const umlDiagramElements = layers.getElementsByClassName('joint-viewport')[0].childNodes;
+
+    umlDiagramElements.forEach((element) => {
+      const baseValConsolidate = element.transform.baseVal.consolidate();
+
+      if (isNone(baseValConsolidate))  {
+        return;
+      }
+
+      const { e: left, f: top } = baseValConsolidate.matrix;
+      const { width, height } = element.getBoundingClientRect();      
+
+      if (left + width  >  minWidth - 0.5 * parentWidth)  {
+        minWidth = left + width + 0.5 * parentWidth;
+      }
+      if (top + height  >  minHeight - 0.5 * parentHeight)  {
+        minHeight = top + height + 0.5 * parentHeight;
+      }
+    });
+
+    return [minWidth, minHeight];
   },
 
   actions: {
@@ -248,8 +299,8 @@ FdPopupActions, {
         return;
       }
 
-      let minWidth = this.$().width();
-      let minHeight = this.$().height();
+      const [minWidth, minHeight] = this.getPaperWidthAndHeigth(paper);
+
       paper.fitToContent({ minWidth, minHeight, padding: 10 });
     },
 
