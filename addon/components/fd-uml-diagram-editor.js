@@ -245,7 +245,7 @@ FdPopupActions, {
     let svgElement;
     umlDiagramChilds.forEach((child) => {
       if (child.nodeName === 'svg') {
-        svgElement  = child;
+        svgElement = child;
       }
     });
 
