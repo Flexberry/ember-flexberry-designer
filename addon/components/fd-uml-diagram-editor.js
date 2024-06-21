@@ -264,9 +264,7 @@ FdPopupActions, {
       }
 
       const { e: left, f: top } = baseValConsolidate.matrix;
-      const clientRect = element.getBoundingClientRect();
-      const width = clientRect.width;
-      const height = clientRect.height;
+      const { width, height } = element.getBoundingClientRect();      
 
       if (left + width  >  minWidth - 0.5 * parentWidth)  {
         minWidth = left + width + 0.5 * parentWidth;
