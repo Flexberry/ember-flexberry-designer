@@ -263,9 +263,7 @@ FdPopupActions, {
         return;
       }
 
-      const matrix = baseValConsolidate.matrix;
-      const left = matrix.e;
-      const top = matrix.f;
+      const { e: left, f: top } = baseValConsolidate.matrix;
       const clientRect = element.getBoundingClientRect();
       const width = clientRect.width;
       const height = clientRect.height;
