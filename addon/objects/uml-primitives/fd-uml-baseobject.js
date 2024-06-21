@@ -84,7 +84,7 @@ export let BaseObject = joint.shapes.basic.Generic.define('flexberry.uml.BaseObj
       'stroke': 'black',
       'stroke-width': 1,
       'fill': '#ffffff',
-      'fill-opacity': 0
+      'fill-opacity': 0,
     },
     '.flexberry-uml-header-text': {
       'ref': '.flexberry-uml-header-rect',
@@ -94,8 +94,8 @@ export let BaseObject = joint.shapes.basic.Generic.define('flexberry.uml.BaseObj
       'y-alignment': 'middle',
       'fill': 'black',
       'fontSize': 12,
-      'font-family': 'Arial'
-    }
+      'font-family': 'Arial',
+    },
   },
 
   heightPadding: 10,

@@ -32,7 +32,7 @@ function createData(systemName, diagramName, elementType, elementAttributes) {
     const testSystem = store.createRecord('fd-dev-system', {
       name: systemName,
       stage: stage,
-      id: uuid.v4()
+      id: uuid.v4(),
     });
 
     const testDiagram = store.createRecord('fd-dev-uml-ad', {
@@ -42,11 +42,11 @@ function createData(systemName, diagramName, elementType, elementAttributes) {
           elementType,
           { x: 300, y: 300 },
           { width: 40, height: 40 },
-          elementAttributes
-        )
+          elementAttributes,
+        ),
       ]),
       subsystem: testSystem,
-      id: uuid.v4()
+      id: uuid.v4(),
     });
 
     return A([testSystem, testDiagram]);
