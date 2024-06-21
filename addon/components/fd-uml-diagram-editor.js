@@ -270,7 +270,6 @@ FdPopupActions, {
       if (top + height  >  minHeight - 0.5 * parentHeight)  {
         minHeight = top + height + 0.5 * parentHeight;
       }
-
     });
 
     return [minWidth, minHeight];
