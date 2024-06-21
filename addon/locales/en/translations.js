@@ -152,6 +152,7 @@ import FdAssociationEditingPanelLink from './components/fd-association-editing-p
 import FdCompositionEditingPanelLink from './components/fd-composition-editing-panel-link';
 import FdViewDefinitionItem from './components/fd-view-definition-item';
 import FdfModalMessageBox from './components/fd-modal-message-box';
+import FdfModalInputMessageBox from './components/fd-modal-input-message-box';
 import FdApplicationModelForm from './forms/fd-application-model';
 import FdArchitectureForm from './forms/fd-architecture';
 import FdGisSubsystem from './components/fd-gis-subsystem';
@@ -492,6 +493,7 @@ $.extend(true, translations, {
     'fd-create-diagrams': FdCreateDiagrams,
     'fd-view-definition-item': FdViewDefinitionItem,
     'fd-modal-message-box': FdfModalMessageBox,
+    'fd-modal-input-message-box': FdfModalInputMessageBox,
     'fd-gis-subsystem': FdGisSubsystem,
     'fd-color-setting-panel': FdColorSettingPanel,
     'fd-view-helper': FdViewHelperPanel,

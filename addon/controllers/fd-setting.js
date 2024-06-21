@@ -70,6 +70,23 @@ export default Controller.extend(FdSheetCloseConfirm, FdReadonlyProjectMixin, Fd
   createBackup: false,
 
   /**
+    Flag indicates when call stage delete.
+
+    @property stageInDelete
+    @type Bool
+    @default false
+  */
+  stageInDelete: false,
+
+  /**
+    User must enter stage name to confirm delete.
+
+    @property confirmDeleteStageName
+    @type String
+  */
+  confirmDeleteStageName: undefined,
+
+  /**
     Table headers.
 
     @property tableUsersAccess
@@ -211,22 +228,34 @@ export default Controller.extend(FdSheetCloseConfirm, FdReadonlyProjectMixin, Fd
     */
     delete(confirmation) {
       if (isNone(confirmation)) {
-        this.get('fdDialogService').showVerificationMessage(this.get('i18n').t('components.fd-modal-message-box.delete-text').toString(), this.get('actions.delete'), this);
+        this.set('stageInDelete', true);
+        this.get('fdDialogService').showVerificationMessage(this.get('i18n').t('components.fd-modal-input-message-box.delete-stage-text').toString(), this.get('actions.delete'), this);
+
         return;
       }
 
       let stage = this.get('model.stage');
-      this.get('appState').loading();
-      stage.destroyRecord()
-      .then(() => {
-        this.get('currentProjectContext').resetCurrentStage();
-      })
-      .catch((error) => {
-        this.get('fdDialogService').showErrorMessage(error.message);
-      })
-      .finally(() => {
-        this.get('appState').reset();
-      });
+      const stageName = stage.get('name');
+      const confirmedName = this.get('confirmDeleteStageName');
+
+      if (stageName === confirmedName) {
+        this.get('appState').loading();
+
+        stage.destroyRecord()
+        .then(() => {
+          this.get('currentProjectContext').resetCurrentStage();
+        })
+        .catch((error) => {
+          this.get('fdDialogService').showErrorMessage(error.message);
+        })
+        .finally(() => {
+          this.set('stageInDelete', false);
+          this.get('appState').reset();
+        });
+      } else {
+        this.set('stageInDelete', false);
+        this.get('fdDialogService').showErrorMessage(this.get('i18n').t('components.fd-modal-input-message-box.delete-stage-not-confirmed').toString());
+      }
     },
 
     /**

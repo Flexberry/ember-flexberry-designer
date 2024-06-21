@@ -6,6 +6,7 @@ All notable changes to this project will be documented in this file.
 ### Added
 * Company stage setting.
 * Added drawing objects over of other objects.
+* Confirm delete stage dialog with stage name check.
 
 ### Fixed
 * Fixed dse transforms.
