@@ -234,9 +234,7 @@ FdPopupActions, {
    */
   getPaperWidthAndHeigth(paper)  {
     const umlDiagram = paper.$el[0];
-    const umlDiagramParent = umlDiagram.parentNode;
-    const parentWidth = umlDiagramParent.clientWidth;
-    const parentHeight = umlDiagramParent.clientHeight;
+    const { clientWidth: parentWidth, clientHeight: parentHeight } = umlDiagram.parentNode;
 
     let minWidth = this.$().width() + 0.5 * parentWidth;
     let minHeight = this.$().height() + 0.5 * parentHeight;
