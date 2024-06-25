@@ -1,9 +1,11 @@
-import { isNone } from '@ember/utils';
-import { computed, get } from '@ember/object';
-import { A, isArray } from '@ember/array';
-import { schedule } from '@ember/runloop';
-import joint from 'npm:jointjs';
 import $ from 'jquery';
+import joint from 'npm:jointjs';
+
+import { A, isArray } from '@ember/array';
+import { computed, get } from '@ember/object';
+import { schedule } from '@ember/runloop';
+import { isNone } from '@ember/utils';
+
 import { forPointerMethodOverrideResizeAndDnd } from '../../../utils/fd-update-coordinate-for-firefox';
 
 export let EmptyView = joint.dia.LinkView.extend({
@@ -94,6 +96,7 @@ export let EmptyView = joint.dia.LinkView.extend({
     this.model.on('change:vertices', function() {
       if (!this.verticesChanging) {
         this.verticesChanging = true;
+        this._checkVerticesChanges();
         this.$box.css('visibility', 'hidden');
         this.unhighlight();
         if (!this.$el.hasClass('edit-disabled')) {
@@ -190,7 +193,6 @@ export let EmptyView = joint.dia.LinkView.extend({
       this.addVertex(x, y);
       this.paper.off('link:pointerup', this._verticesChanged, this);
       this._verticesChanged();
-      this._checkVerticesChanges();
     }
   },
 
@@ -273,6 +275,30 @@ export let EmptyView = joint.dia.LinkView.extend({
     const objectModel = this.model.get('objectModel');
     changes.addObject({ field: propName, oldValue: oldValue || objectModel.get(propName), newValue: newValue });
     this.model.graph.trigger('history:add', this.model.get('id'), changes);
+  },
+
+  /**
+    Updates the coordinates of all vertices by adding the specified shift values.
+
+    @param {number} shiftX the amount to shift the x-coordinate of each vertex.
+    @param {number} shiftY the amount to shift the y-coordinate of each vertex.
+  */
+  updateVertexCoordinates(shiftX, shiftY) {
+    this._setVerticesValue();
+
+    const vertices = this.model.get('vertices');
+    const updatedVertices = [];
+
+    vertices.forEach((vertex) => {
+      const updatedX = vertex.x + shiftX;
+      const updatedY = vertex.y + shiftY;
+
+      updatedVertices.push({x: updatedX, y: updatedY});
+    });
+
+    this.model.set('vertices', updatedVertices);
+
+    this._verticesChanged();
   },
 
   _setVerticesValue() {
