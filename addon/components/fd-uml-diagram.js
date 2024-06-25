@@ -922,6 +922,10 @@ export default Component.extend(
         let valueX = x + shift.x < 0 ? 0 : x + shift.x;
         let valueY = y + shift.y < 0 ? 0 : y + shift.y;
 
+        const shiftedPositionX = valueX - view.model.position().x;
+        const shiftedPositionY = valueY - view.model.position().y;
+        this._updateHighlightedLinksVerticesCoordinates(shiftedPositionX, shiftedPositionY);
+
         //get border for embed element move restriction. [minX, maxX, minY, maxY]
         const ghostMoveBorder = view.model.get('ghostMoveBorder');
 
@@ -975,6 +979,22 @@ export default Component.extend(
 
       paper.$el.focus();
     }
+  },
+
+  /**
+    Updates the coordinates of the vertices for all highlighted links by adding the specified shift values.
+
+    @method _updateHighlightedLinksVerticesCoordinates
+    @param {number} shiftX the amount to shift the x-coordinate of each vertex.
+    @param {number} shiftY the amount to shift the y-coordinate of each vertex.
+  */
+  _updateHighlightedLinksVerticesCoordinates(shiftX, shiftY) {
+    const highlightedElements = this.get('highlightedElements');
+    highlightedElements.forEach(element => {
+      if (element.model.isLink()) {
+        element.updateVertexCoordinates(shiftX, shiftY);
+      }
+    });
   },
 
   /**
