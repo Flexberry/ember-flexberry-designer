@@ -717,7 +717,7 @@ export default Component.extend(
             highlightedElement.$el.addClass('linktools-disabled');
           }
 
-        highlightedElement.unhighlight();
+          highlightedElement.unhighlight();
         }
       });
 
@@ -728,8 +728,8 @@ export default Component.extend(
           cellView.updateArrowheadMarkers();
         }
 
-      highlightedElements.addObject(cellView);
-    }
+        highlightedElements.addObject(cellView);
+      }
     }
   },
 
