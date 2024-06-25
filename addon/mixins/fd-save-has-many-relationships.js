@@ -54,7 +54,7 @@ export default Mixin.create({
       }
     }
 
-    if (record.constructor.modelName == 'fd-dev-attribute' && record.type == undefined) {
+    if (record.constructor.modelName == 'fd-dev-attribute' && (record.type == undefined || record.type == '')) {
       record.set('type', null);
     }
     return record.save();

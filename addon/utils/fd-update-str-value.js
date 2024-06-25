@@ -45,7 +45,6 @@ let updateAttributes = function(classObject, store) {
       const stored = result[1];
       const modifier = result[2];
       const attrName = result[3];
-      const attrType = result[4];
       const defaultVal = result[6];
 
       let attribute = attributes.findBy('name', attrName);
@@ -59,7 +58,7 @@ let updateAttributes = function(classObject, store) {
       }
 
       attribute.set('stored', stored === '');
-      attribute.set('type', attrType);
+      attribute.set('type', null);
       attribute.set('defaultValue', defaultVal || null);
 
       switch (modifier) {
