@@ -924,7 +924,7 @@ export default Component.extend(
 
         const shiftedPositionX = valueX - view.model.position().x;
         const shiftedPositionY = valueY - view.model.position().y;
-        this._updateHighlightedLinksVerticesCoordinates(shiftedPositionX, shiftedPositionY)
+        this._updateHighlightedLinksVerticesCoordinates(shiftedPositionX, shiftedPositionY);
 
         //get border for embed element move restriction. [minX, maxX, minY, maxY]
         const ghostMoveBorder = view.model.get('ghostMoveBorder');
