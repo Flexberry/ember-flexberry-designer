@@ -218,6 +218,18 @@ export default Service.extend(FdReadonlyProjectMixin, Evented, {
 
     return stageModel;
   },
+  
+  /**
+    Get current stage model without redirect to project when model is null.
+
+    @method getCurrentStageModelWithoutRedirect
+    @return {DS.Model} Current stage model.
+  */
+  getCurrentStageModelWithoutRedirect() {
+    const stageModel = this.get('context.stageModel');
+
+    return stageModel;
+  },
 
   /**
     Get current stage model.
