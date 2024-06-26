@@ -45,7 +45,7 @@ let updateAttributes = function(classObject, store) {
       const stored = result[1];
       const modifier = result[2];
       const attrName = result[3];
-      const attrType = isEmpty(result[4])? null : result[4];
+      const attrType = isEmpty(result[4]) ? null : result[4];
       const defaultVal = result[6];
 
       let attribute = attributes.findBy('name', attrName);
