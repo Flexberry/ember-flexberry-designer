@@ -1,13 +1,13 @@
 /**
   @module ember-flexberry-designer
 */
+import $ from 'jquery';
+import joint from 'npm:jointjs';
 
 import EmberObject from '@ember/object';
 import { computed, get } from '@ember/object';
 import { A, isArray } from '@ember/array';
 import { isNone } from '@ember/utils';
-import joint from 'npm:jointjs';
-import $ from 'jquery';
 
 /**
   An object that defines any primitive on the UML diagram.
@@ -359,7 +359,6 @@ joint.highlighters.strokeAndButtons = {
   }
 };
 
-
 export let primitiveElementViewCell = joint.shapes.basic.Generic.define('flexberry.uml.PrimitiveElementView');
 joint.util.setByPath(joint.shapes, 'flexberry.uml.PrimitiveElementView', primitiveElementViewCell, '.');
 
@@ -576,5 +575,41 @@ joint.shapes.flexberry.uml.PrimitiveElementView = joint.dia.ElementView.extend({
     const objectModel = this.model.get('objectModel');
     changes.addObject({ field: propName, oldValue: oldValue || objectModel.get(propName), newValue: newValue });
     this.model.graph.trigger('history:add', this.model.get('id'), changes);
+  },
+
+  /**
+    Handler for the dblclick event.
+  */
+  pointerdblclick: function() {
+    this.enableTextEditing();
+  },
+
+  /**
+    Enables text editing in the element.
+  */
+  enableTextEditing() {
+    const readonly = !this.paper.options.interactive;
+    const boxElement = this.$box;
+    const inputFields = boxElement.find('input,textarea');
+
+    if (!isNone(readonly) && !readonly &&
+        inputFields.length > 0 && inputFields.hasClass('click-disabled')) {
+      inputFields.removeClass('click-disabled');
+      inputFields.first().focus();
+    }
+  },
+
+  /**
+    Disables text editing in the element.
+  */
+  disableTextEditing() {
+    const boxElement = this.$box;
+    const inputFields = boxElement.find('input,textarea');
+
+    if (inputFields.length > 0 && inputFields.hasClass('click-disabled')) {
+      return;
+    }
+
+    inputFields.addClass('click-disabled');
   }
 });

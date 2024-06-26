@@ -79,8 +79,8 @@ export let ActiveState = BaseObject.define('flexberry.uml.ActiveState', {
   attrs: {
     '.flexberry-uml-header-rect': { 
       'rx': 7,
-      'ry': 7
-    }
+      'ry': 7,
+    },
   },
 
   minHeight: 40,

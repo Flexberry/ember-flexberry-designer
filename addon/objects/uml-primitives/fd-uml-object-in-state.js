@@ -78,8 +78,8 @@ export let ObjectInState = ActiveState.define('flexberry.uml.ObjectInState', {
   attrs: {
     '.flexberry-uml-header-rect': { 
       'rx': 0,
-      'ry': 0
-    }
+      'ry': 0,
+    },
   },
 });
 

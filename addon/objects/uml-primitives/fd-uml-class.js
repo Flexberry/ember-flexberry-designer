@@ -2,12 +2,12 @@
   @module ember-flexberry-designer
 */
 
-import { computed } from '@ember/object';
 import $ from 'jquery';
+import joint from 'npm:jointjs';
+
+import { computed } from '@ember/object';
 import { isBlank, isNone } from '@ember/utils';
 import { isArray } from '@ember/array';
-
-import joint from 'npm:jointjs';
 
 import FdUmlElement from './fd-uml-element';
 
@@ -348,10 +348,11 @@ joint.shapes.flexberry.uml.ClassView = joint.shapes.flexberry.uml.PrimitiveEleme
   },
 
   render: function() {
+    joint.shapes.flexberry.uml.PrimitiveElementView.prototype.disableTextEditing.apply(this, arguments);
     joint.dia.ElementView.prototype.render.apply(this, arguments);
     this.paper.$el.prepend(this.$box);
     this.paper.on('blank:pointerdown link:pointerdown element:pointerdown', function() {
-      this.$box.find('input:focus, textarea:focus').blur();
+      joint.shapes.flexberry.uml.PrimitiveElementView.prototype.disableTextEditing.apply(this, arguments);
     }, this);
 
     this.updateBox();

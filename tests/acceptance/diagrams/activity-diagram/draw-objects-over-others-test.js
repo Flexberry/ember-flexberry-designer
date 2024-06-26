@@ -1,7 +1,7 @@
 import $ from 'jquery';
 import { Promise } from 'rsvp';
-import { module, test } from 'qunit';
 import uuid from 'npm:node-uuid';
+import { module, test } from 'qunit';
 import { A } from '@ember/array';
 import { run } from '@ember/runloop';
 import { getJsonForElement } from 'ember-flexberry-designer/utils/get-json-for-diagram';
@@ -32,7 +32,7 @@ function createData(systemName, diagramName, elementType, elementAttributes) {
     const testSystem = store.createRecord('fd-dev-system', {
       name: systemName,
       stage: stage,
-      id: uuid.v4()
+      id: uuid.v4(),
     });
 
     const testDiagram = store.createRecord('fd-dev-uml-ad', {
@@ -43,10 +43,10 @@ function createData(systemName, diagramName, elementType, elementAttributes) {
           { x: 300, y: 300 },
           { width: 40, height: 40 },
           elementAttributes,
-        )
+        ),
       ]),
       subsystem: testSystem,
-      id: uuid.v4()
+      id: uuid.v4(),
     });
 
     return A([testSystem, testDiagram]);
@@ -54,7 +54,7 @@ function createData(systemName, diagramName, elementType, elementAttributes) {
 }
 
 test('drawing active state object on a active state object', (assert) => {
-  let done = assert.async();
+  const done = assert.async();
   assert.expect(4);
 
   // Arrange.
@@ -89,9 +89,8 @@ test('drawing active state object on a active state object', (assert) => {
 
               click($activeStateButton);
               andThen(() => {
-                assert.equal($activeStateButton.hasClass('active'), true);
+                assert.ok($activeStateButton.hasClass('active'));
 
-                // const $activeStateOject = $('rect.flexberry-uml-header-rect');
                 const $activeStateObject = $('g[data-type="flexberry.uml.ActiveState"]');
                 assert.equal($activeStateObject.length, 1);
 
@@ -114,7 +113,7 @@ test('drawing active state object on a active state object', (assert) => {
 });
 
 test('drawing active state object on a partition object', (assert) => {
-  let done = assert.async();
+  const done = assert.async();
   assert.expect(5);
 
   // Arrange.
@@ -149,7 +148,7 @@ test('drawing active state object on a partition object', (assert) => {
 
               click($activeStateButton);
               andThen(() => {
-                assert.equal($activeStateButton.hasClass('active'), true);
+                assert.ok($activeStateButton.hasClass('active'));
 
                 const $partitionObject = $('g[data-type="flexberry.uml.Partition"]');
                 assert.equal($partitionObject.length, 1);

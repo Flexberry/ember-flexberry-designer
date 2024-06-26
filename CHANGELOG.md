@@ -7,6 +7,8 @@ All notable changes to this project will be documented in this file.
 * Company stage setting.
 * Added drawing objects over of other objects.
 * Added UML diagram draw field autoresizing.
+* Added double-click object editing.
+* Added hiding of empty text input fields for links in readonly diagram mode.
 
 ### Fixed
 * Fixed dse transforms.
@@ -14,6 +16,7 @@ All notable changes to this project will be documented in this file.
 * Fixed save empty multiplicity.
 * Fixed highlighting of background element `flexberry.uml.Partition`.
 * Fixed enum attributes types to be null.
+* Fixed vertex transposition in links.
 
 ## [1.1.0] - 2024-03-25
 ### Added
