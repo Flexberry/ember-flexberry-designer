@@ -15,6 +15,7 @@ All notable changes to this project will be documented in this file.
 * Fixed shape of active state object on activity diagram.
 * Fixed save empty multiplicity.
 * Fixed highlighting of background element `flexberry.uml.Partition`.
+* Fixed enum attributes types to be null.
 * Fixed vertex transposition in links.
 
 ## [1.1.0] - 2024-03-25

@@ -4,7 +4,7 @@
 
 import Mixin from '@ember/object/mixin';
 import { all } from 'rsvp';
-import { isBlank } from '@ember/utils';
+import { isBlank, isEmpty } from '@ember/utils';
 
 /**
   @class FdSaveHasManyRelationshipsMixin
@@ -54,6 +54,9 @@ export default Mixin.create({
       }
     }
 
+    if (record.constructor.modelName === 'fd-dev-attribute' && isEmpty(record.type)) {
+      record.set('type', null);
+    }
     return record.save();
   },
 
