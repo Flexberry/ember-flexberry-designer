@@ -1,4 +1,4 @@
-import { isBlank, isNone } from '@ember/utils';
+import { isBlank, isNone, isEmpty } from '@ember/utils';
 import RepositoryAccessModifier  from '../enums/s-t-o-r-m-c-a-s-e-repository-access-modifier';
 
 /**
@@ -45,6 +45,7 @@ let updateAttributes = function(classObject, store) {
       const stored = result[1];
       const modifier = result[2];
       const attrName = result[3];
+      const attrType = isEmpty(result[4])? null : result[4];
       const defaultVal = result[6];
 
       let attribute = attributes.findBy('name', attrName);
@@ -58,7 +59,7 @@ let updateAttributes = function(classObject, store) {
       }
 
       attribute.set('stored', stored === '');
-      attribute.set('type', null);
+      attribute.set('type', attrType);
       attribute.set('defaultValue', defaultVal || null);
 
       switch (modifier) {
