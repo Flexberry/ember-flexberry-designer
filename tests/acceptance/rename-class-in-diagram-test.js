@@ -30,6 +30,7 @@ module('Acceptance | fd-diagram-sheet | rename class', {
   }
 });
 
+// Test is not actal, in new version remove update class name on diagrams.
 skip('rename new empty class on diagram', (assert) => {
   let done = assert.async();
   assert.expect(11);
@@ -107,27 +108,33 @@ skip('rename new empty class on diagram', (assert) => {
             let $editButton = $('.fd-edit', $sheetHeader);
             click($editButton);
             andThen(() => {
-              assert.equal($umlClassNameInput.hasClass('click-disabled'), false);
+              assert.equal($umlClassNameInput.hasClass('click-disabled'), true);
 
-              fillIn($umlClassNameInput, classNameNew);
+              let $svg = $('.flexberry-uml-header-rect');
+              keyEvent($svg, 'dblclick');
               andThen(() => {
-                let $saveButton = $('.fd-save', $sheetHeader);
-                click($saveButton);
+                assert.equal($umlClassNameInput.hasClass('click-disabled'), false);
+
+                fillIn($umlClassNameInput, classNameNew);
                 andThen(() => {
-                  $umlClassNameInput = $('.uml-class-inputs .class-name-input.header-input');
+                  let $saveButton = $('.fd-save', $sheetHeader);
+                  click($saveButton);
+                  andThen(() => {
+                    $umlClassNameInput = $('.uml-class-inputs .class-name-input.header-input');
 
-                  assert.equal($umlClassNameInput.val(), classNameNew);
-                  assert.equal($umlClassNameInput.hasClass('click-disabled'), true);
+                    assert.equal($umlClassNameInput.val(), classNameNew);
+                    assert.equal($umlClassNameInput.hasClass('click-disabled'), true);
 
-                  let limitPredicate = new SimplePredicate('stage', FilterOperator.Eq, stage.get('id'));
-                  let builder = new Builder(store, 'fd-dev-class').where(limitPredicate);
-                  store.query('fd-dev-class', builder.build()).then((result) => {
-                    assert.equal(result.length, 1, 'Class \'' + classNameNew + '\'not found in store');
-                    assert.equal(result.get('firstObject.name'), classNameNew);
-                    assert.equal(result.get('firstObject.nameStr'), classNameNew);
-                  }).finally(() => {
-                    resolve();
-                  });
+                    let limitPredicate = new SimplePredicate('stage', FilterOperator.Eq, stage.get('id'));
+                    let builder = new Builder(store, 'fd-dev-class').where(limitPredicate);
+                    store.query('fd-dev-class', builder.build()).then((result) => {
+                      assert.equal(result.length, 1, 'Class \'' + classNameNew + '\'not found in store');
+                      assert.equal(result.get('firstObject.name'), classNameNew);
+                      assert.equal(result.get('firstObject.nameStr'), classNameNew);
+                    }).finally(() => {
+                      resolve();
+                    });
+                  }).catch((e) => reject(e));
                 }).catch((e) => reject(e));
               }).catch((e) => reject(e));
             }).catch((e) => reject(e));
@@ -236,7 +243,7 @@ test('rename new empty class on edit form', (assert) => {
                   click($editButtonDiagramSheetHeader);
                   andThen(() => {
                     $classNameInput = $editDiagramSheetHeader.find('input.ember-text-field');
-  
+
                     assert.equal($classNameInput.prop('readOnly'), false);
 
                     fillIn($classNameInput, classNameNew);
