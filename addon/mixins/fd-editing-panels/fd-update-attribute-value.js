@@ -74,6 +74,11 @@ export default Mixin.create({
           isCheckBox: true,
         },
         {
+          columnCaption: 'components.fd-attribute-table.attribute.storage',
+          columnProperty: 'storage',
+          attrPlaceholder: 'components.fd-attribute-table.attribute.storage-placeholder',
+        },
+        {
           columnCaption: 'components.fd-attribute-table.attribute.dataServiceExpression',
           columnProperty: 'dataServiceExpression',
           attrPlaceholder: 'components.fd-attribute-table.attribute.dataServiceExpression-placeholder',
