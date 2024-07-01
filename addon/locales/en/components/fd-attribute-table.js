@@ -15,6 +15,8 @@ export default {
     'description': 'Description',
     'description-placeholder': 'Enter description',
     'stored': 'Stored',
+    'storage': 'Storage',
+    'storage-placeholder': 'Storage name',
     'dataServiceExpression': 'DataServiceExpression',
     'dataServiceExpression-placeholder': 'Enter expression',
     'create-btn': 'Create attribute',

@@ -15,6 +15,8 @@ export default {
     'description-placeholder': 'Введите описание',
     'not-null': 'Не пустое',
     'stored': 'Хранимый',
+    'storage': 'Хранилище',
+    'storage-placeholder': 'Наименование хранилища',
     'dataServiceExpression': 'DataServiceExpression',
     'dataServiceExpression-placeholder': 'Введите выражение',
     'create-btn': 'Создать атрибут',

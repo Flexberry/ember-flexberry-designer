@@ -3,12 +3,14 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+## [1.1.1] - 2024-07-01
 ### Added
 * Company stage setting.
 * Added drawing objects over of other objects.
 * Added UML diagram draw field autoresizing.
 * Added double-click object editing.
 * Added hiding of empty text input fields for links in readonly diagram mode.
+* Added attribute property storage on table.
 
 ### Fixed
 * Fixed dse transforms.
