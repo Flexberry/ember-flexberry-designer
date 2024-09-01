@@ -1426,6 +1426,9 @@ export default Component.extend(
       let currentRepObj = store.peekRecord(modelName, repositoryObject.slice(1, -1));
       if (!isNone(currentRepObj)) {
         this._decrementPropertyReferenceCount(currentRepObj);
+        currentRepObj.save().catch((error) => {
+          this.get('fdDialogService').showErrorMessage(error);
+        });
       }
     }
 
