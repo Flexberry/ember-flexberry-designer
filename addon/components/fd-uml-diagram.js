@@ -69,12 +69,12 @@ export default Component.extend(
   fdDialogService: service('fd-dialog-service'),
 
   /**
-   Array items with empty reference count.
+   Array items with empty and decremented reference count.
 
-   @property emptyReferenceCountItems
+   @property decrementedReferenceCountItems
    @type {Array}
    */
-  emptyReferenceCountItems: A(),
+   decrementedReferenceCountItems: A(),
 
   /**
    Array broken objects on diagram.
@@ -1387,10 +1387,8 @@ export default Component.extend(
     @param {Object} item model class object.
    */
   _decrementPropertyReferenceCount(item) {
-    let newValue = item.decrementProperty('referenceCount');
-    if (newValue === 0) {
-      this.get('emptyReferenceCountItems').pushObject(item);
-    }
+    item.decrementProperty('referenceCount');
+    this.get('decrementedReferenceCountItems').pushObject(item);
   },
 
   /**
@@ -1402,7 +1400,7 @@ export default Component.extend(
   _incrementPropertyReferenceCount(item) {
     let newValue = item.incrementProperty('referenceCount');
     if (newValue === 1) {
-      this.get('emptyReferenceCountItems').removeObject(item);
+      this.get('decrementedReferenceCountItems').removeObject(item);
     }
   },
 
@@ -1426,9 +1424,6 @@ export default Component.extend(
       let currentRepObj = store.peekRecord(modelName, repositoryObject.slice(1, -1));
       if (!isNone(currentRepObj)) {
         this._decrementPropertyReferenceCount(currentRepObj);
-        currentRepObj.save().catch((error) => {
-          this.get('fdDialogService').showErrorMessage(error);
-        });
       }
     }
 

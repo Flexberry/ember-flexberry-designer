@@ -69,12 +69,12 @@ FdPopupActions, {
   parentElements: A(),
 
   /**
-   Array items with empty reference count.
+   Array items with empty and decremented reference count.
 
-   @property emptyReferenceCountItems
+   @property decrementedReferenceCountItems
    @type {Array}
    */
-  emptyReferenceCountItems: A(),
+   decrementedReferenceCountItems: A(),
 
   /**
     Function for create element.
