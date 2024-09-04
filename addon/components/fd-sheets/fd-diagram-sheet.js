@@ -70,12 +70,12 @@ export default FdBaseSheet.extend(
   selectedValue: undefined,
 
   /**
-   Array items with empty reference count.
+   Array items with empty and decremented reference count.
 
-   @property emptyReferenceCountItems
+   @property decrementedReferenceCountItems
    @type {Array}
    */
-  emptyReferenceCountItems: A(),
+   decrementedReferenceCountItems: A(),
 
   /**
     Flag: indicates whether to show create editing panel.
@@ -403,7 +403,7 @@ export default FdBaseSheet.extend(
       });
 
       model.rollbackAll();
-      this.get('emptyReferenceCountItems').clear();
+      this.get('decrementedReferenceCountItems').clear();
       set(selectedValue, 'active', false);
     }
 
@@ -428,6 +428,18 @@ export default FdBaseSheet.extend(
         primitive.set('isCreated', false);
       }
     });
+
+    let decrementedReferenceCountItems = this.get('decrementedReferenceCountItems');
+
+    const filteredItems = decrementedReferenceCountItems.filter(obj => {
+      if (obj.referenceCount > 0) {
+        updateModels.pushObject(obj);
+        return false; // Don't add object to new filtered array
+      }
+      return true; // Add object to new filtered array
+    });
+
+    decrementedReferenceCountItems = A(filteredItems);
 
     let repositoryObjects = primitives.uniqBy('repositoryObject').filter(p => p.get('repositoryObject'));
     if (repositoryObjects.length > 0) {
@@ -536,9 +548,8 @@ export default FdBaseSheet.extend(
         });
       }
 
-      let emptyReferenceCountItems = this.get('emptyReferenceCountItems');
-      let removeClasses = emptyReferenceCountItems.filterBy('constructor.modelName', 'fd-dev-class');
-      emptyReferenceCountItems.removeObjects(removeClasses);
+      let removeClasses = decrementedReferenceCountItems.filterBy('constructor.modelName', 'fd-dev-class');
+      decrementedReferenceCountItems.removeObjects(removeClasses);
 
       let mapFunction = function(item) {
         if (item.get('isNew')) {
@@ -549,8 +560,8 @@ export default FdBaseSheet.extend(
         }
       };
 
-      if (emptyReferenceCountItems.length > 0) {
-        emptyReferenceCountItems.forEach(mapFunction);
+      if (decrementedReferenceCountItems.length > 0) {
+        decrementedReferenceCountItems.forEach(mapFunction);
       }
 
       if (removeClasses.length > 0) {
@@ -560,7 +571,7 @@ export default FdBaseSheet.extend(
         });
       }
 
-      emptyReferenceCountItems.clear();
+      decrementedReferenceCountItems.clear();
 
       model.set('primitivesJsonString', JSON.stringify(primitives));
       model.set('caseObjectsString', elements.map(p => `Class:(${p.get('name')})`).join(';'));
