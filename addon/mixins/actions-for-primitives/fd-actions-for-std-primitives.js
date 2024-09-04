@@ -142,17 +142,18 @@ export default Mixin.create({
     },
 
     /**
-      Handler for click on addStartState button.
+      Handler for click on addStartStateStd button.
 
-      @method actions.addStartState
+      @method actions.addStartStateStd
       @param {jQuery.Event} e event.
      */
-    addStartState(e) {
+    addStartStateStd(e) {
       this.createObjectData((function(x, y) {
         let jsonObject = getJsonForElement(
-          'STORMCASE.UML.std.DeepHistory, UMLSTD',
+          'STORMCASE.UML.std.StartState, UMLSTD',
           { x, y },
           { width: 20, height: 20 },
+          { Name: '' },
         );
         let newStartStateObject = StartState.create({ primitive: jsonObject });
 
@@ -163,17 +164,18 @@ export default Mixin.create({
     },
 
     /**
-      Handler for click on addFinalState button.
+      Handler for click on addFinalStateStd button.
 
-      @method actions.addFinalState
+      @method actions.addFinalStateStd
       @param {jQuery.Event} e event.
      */
-    addFinalState(e) {
+    addFinalStateStd(e) {
       this.createObjectData((function(x, y) {
         let jsonObject = getJsonForElement(
-          'STORMCASE.UML.std.DeepHistory, UMLSTD',
+          'STORMCASE.UML.std.FinalState, UMLSTD',
           { x, y },
           { width: 20, height: 20 },
+          { Name: '' },
         );
         let newFinalStateObject = FinalState.create({ primitive: jsonObject });
 
@@ -184,17 +186,18 @@ export default Mixin.create({
     },
 
     /**
-      Handler for click on addComplexTransitionH button.
+      Handler for click on addComplexTransitionHStd button.
 
-      @method actions.addComplexTransitionH
+      @method actions.addComplexTransitionHStd
       @param {jQuery.Event} e event.
      */
-    addComplexTransitionH(e) {
+    addComplexTransitionHStd(e) {
       this.createObjectData((function(x, y) {
         let jsonObject = getJsonForElement(
           'STORMCASE.UML.std.ComplexTransitionH, UMLSTD',
           { x, y },
-          { width: 2, height: 20 },
+          { width: 40, height: 10 },
+          { Name: '' },
         );
         let newComplexTransitionHObject = ComplexTransitionH.create({ primitive: jsonObject });
 
@@ -205,17 +208,18 @@ export default Mixin.create({
     },
 
     /**
-      Handler for click on addComplexTransitionV button.
+      Handler for click on addComplexTransitionVStd button.
 
-      @method actions.addComplexTransitionV
+      @method actions.addComplexTransitionVStd
       @param {jQuery.Event} e event.
      */
-    addComplexTransitionV(e) {
+    addComplexTransitionVStd(e) {
       this.createObjectData((function(x, y) {
         let jsonObject = getJsonForElement(
           'STORMCASE.UML.std.ComplexTransitionV, UMLSTD',
           { x, y },
-          { width: 20, height: 2 },
+          { width: 10, height: 40 },
+          { Name: '' },
         );
         let newComplexTransitionVObject = ComplexTransitionV.create({ primitive: jsonObject });
 
