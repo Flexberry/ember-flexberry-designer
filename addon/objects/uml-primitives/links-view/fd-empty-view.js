@@ -189,11 +189,18 @@ export let EmptyView = joint.dia.LinkView.extend({
   pointerdblclick: function(evt, x, y) {
     let readonly = this.paper.options.interactive;
     if (!isNone(readonly) && typeof readonly === 'object') {
-      this._setVerticesValue();
-      this.addVertex(x, y);
+      this.addVertices(x, y);
       this.paper.off('link:pointerup', this._verticesChanged, this);
-      this._verticesChanged();
+      schedule('afterRender', this, function() {
+        this.highlight();
+      });
     }
+  },
+
+  addVertices: function(x, y) {
+    this._setVerticesValue();
+    this.addVertex(x, y);
+    this._verticesChanged();
   },
 
   getButtons() {
@@ -347,7 +354,6 @@ export let EmptyView = joint.dia.LinkView.extend({
     this.$box.css('visibility', 'visible');
     schedule('afterRender', this, function() {
       this.updateBox();
-      this.highlight();
     });
   }
 });
