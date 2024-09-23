@@ -1,14 +1,17 @@
 # Ember Flexberry Designer Changelog
 All notable changes to this project will be documented in this file.
 
-## [1.1.2-beta.2] - 2024-09-04
-## Fixed
-  * Fixed the swimlane separator on the activity diagram.
+
+## [Unreleased]
+### Fixed
+ * Fixed referenceCount decrement when deleting all primitives from diagram.
+ * Fixed the swimlane separator on the activity diagram.
+
 
 ## [1.1.2-beta.1] - 2024-09-04
-## Fix
- * Fix referenceCount decrement on diagrams
- * Fix std primitives
+### Fixed
+ * Fixed referenceCount decrement on diagrams
+ * Fixed std primitives
 
 ## [1.1.1] - 2024-07-01
 ### Added
