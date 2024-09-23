@@ -3,10 +3,12 @@ All notable changes to this project will be documented in this file.
 
 
 ## [Unreleased]
+### Added
+* Added set vertices when link drawing.
+
 ### Fixed
  * Fixed referenceCount decrement when deleting all primitives from diagram.
  * Fixed the swimlane separator on the activity diagram.
-
 
 ## [1.1.2-beta.1] - 2024-09-04
 ### Fixed

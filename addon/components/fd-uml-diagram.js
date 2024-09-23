@@ -425,8 +425,12 @@ export default Component.extend(
     let options = { e: e, x: coordinates.x, y: coordinates.y };
     this._highlighted(null);
 
-    let newElement = this.get('blankPointerClick')(options);
-    this._addNewElement(newElement);
+    if (!isNone(this.get('draggedLink'))) {
+      this.get('draggedLinkView').addVertices(options.x, options.y);
+    } else {
+      let newElement = this.get('blankPointerClick')(options);
+      this._addNewElement(newElement);
+    }
   },
 
   /**
