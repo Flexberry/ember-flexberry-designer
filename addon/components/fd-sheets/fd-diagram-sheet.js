@@ -579,7 +579,7 @@ export default FdBaseSheet.extend(
     }
 
     decrementedReferenceCountItems.clear();
-	this.set('decrementedReferenceCountItems', decrementedReferenceCountItems);
+    this.set('decrementedReferenceCountItems', decrementedReferenceCountItems);
 
     updateModels.pushObject(model);
 
