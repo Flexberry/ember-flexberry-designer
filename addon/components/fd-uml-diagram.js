@@ -1394,7 +1394,7 @@ export default Component.extend(
    */
   _decrementPropertyReferenceCount(item) {
     item.decrementProperty('referenceCount');
-    this.get('decrementedReferenceCountItems').pushObject(item);
+    this.get('decrementedReferenceCountItems').addObject(item);
   },
 
   /**
