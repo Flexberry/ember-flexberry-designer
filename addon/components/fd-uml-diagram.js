@@ -425,8 +425,12 @@ export default Component.extend(
     let options = { e: e, x: coordinates.x, y: coordinates.y };
     this._highlighted(null);
 
-    let newElement = this.get('blankPointerClick')(options);
-    this._addNewElement(newElement);
+    if (!isNone(this.get('draggedLink'))) {
+      this.get('draggedLinkView').addVertices(options.x, options.y);
+    } else {
+      let newElement = this.get('blankPointerClick')(options);
+      this._addNewElement(newElement);
+    }
   },
 
   /**
@@ -505,21 +509,23 @@ export default Component.extend(
     @param {Number} y coordinate y.
   */
   _elementPointerClick(element, e, x, y) {
+    let coordinates = forLinkAndElementPointerClickEvent(e, x, y);
+    x = coordinates.x;
+    y = coordinates.y;
+
+    let options = { element: element, e: e, x: x, y: y };
+
+    if (this.get('isCreatedObjectChild')) {
+      this._addChildPrimitiveForClickedElement(options);
+      return;
+    };
+
     if (this.get('currentTargetElementIsPointer') || this.get('isCurrentTargetElementLink')) {
-      let coordinates = forLinkAndElementPointerClickEvent(e, x, y);
-      x = coordinates.x;
-      y = coordinates.y;
-
-      let options = { element: element, e: e, x: x, y: y };
-
-      if (this.get('isCreatedObjectChild')) {
-        this._addChildPrimitiveForClickedElement(options);
-      } else {
-        this._addLinkForClickedElement(options);
-      }
-    } else {
-      this._blankPointerClick(e);
+      this._addLinkForClickedElement(options);
+      return;
     }
+
+    this._blankPointerClick(e);
   },
 
   /**

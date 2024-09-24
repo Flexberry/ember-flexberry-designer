@@ -419,6 +419,7 @@ export default FdBaseSheet.extend(
   savePrimitives(model) {
     let updateModels = A();
     let primitives = model.get('primitives');
+    let store = this.get('store');
 
     // Sort elements. Partition primitive to first.
     primitives = this.sortingByTypePartition(primitives);
@@ -443,7 +444,6 @@ export default FdBaseSheet.extend(
 
     let repositoryObjects = primitives.uniqBy('repositoryObject').filter(p => p.get('repositoryObject'));
     if (repositoryObjects.length > 0) {
-      let store = this.get('store');
       let elements = repositoryObjects.filter(p => p instanceof FdUmlElement);
       if (elements.length > 0) {
         elements.forEach((p) => {
@@ -548,38 +548,38 @@ export default FdBaseSheet.extend(
         });
       }
 
-      let removeClasses = decrementedReferenceCountItems.filterBy('constructor.modelName', 'fd-dev-class');
-      decrementedReferenceCountItems.removeObjects(removeClasses);
-
-      let mapFunction = function(item) {
-        if (item.get('isNew')) {
-          item.rollbackAttributes();
-        } else {
-          item.deleteRecord();
-          updateModels.pushObject(item);
-        }
-      };
-
-      if (decrementedReferenceCountItems.length > 0) {
-        decrementedReferenceCountItems.forEach(mapFunction);
-      }
-
-      if (removeClasses.length > 0) {
-        removeClasses.forEach(mapFunction);
-        removeClasses.forEach(removeClasse => {
-          updateModels.pushObjects(getUpdatedViews(store, primitives, removeClasse.get('name'), null));
-        });
-      }
-
-      decrementedReferenceCountItems.clear();
-      this.set('decrementedReferenceCountItems', decrementedReferenceCountItems);
-
       model.set('primitivesJsonString', JSON.stringify(primitives));
       model.set('caseObjectsString', elements.map(p => `Class:(${p.get('name')})`).join(';'));
     } else {
       model.set('primitivesJsonString', JSON.stringify(primitives));
       model.set('caseObjectsString', null);
     }
+
+    let removeClasses = decrementedReferenceCountItems.filterBy('constructor.modelName', 'fd-dev-class');
+    decrementedReferenceCountItems.removeObjects(removeClasses);
+
+    let mapFunction = function(item) {
+      if (item.get('isNew')) {
+        item.rollbackAttributes();
+      } else {
+        item.deleteRecord();
+        updateModels.pushObject(item);
+      }
+    };
+
+    if (decrementedReferenceCountItems.length > 0) {
+      decrementedReferenceCountItems.forEach(mapFunction);
+    }
+
+    if (removeClasses.length > 0) {
+      removeClasses.forEach(mapFunction);
+      removeClasses.forEach(removeClasse => {
+        updateModels.pushObjects(getUpdatedViews(store, primitives, removeClasse.get('name'), null));
+      });
+    }
+
+    decrementedReferenceCountItems.clear();
+	this.set('decrementedReferenceCountItems', decrementedReferenceCountItems);
 
     updateModels.pushObject(model);
 
