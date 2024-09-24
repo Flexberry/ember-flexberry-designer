@@ -572,6 +572,7 @@ export default FdBaseSheet.extend(
       }
 
       decrementedReferenceCountItems.clear();
+      this.set('decrementedReferenceCountItems', decrementedReferenceCountItems);
 
       model.set('primitivesJsonString', JSON.stringify(primitives));
       model.set('caseObjectsString', elements.map(p => `Class:(${p.get('name')})`).join(';'));

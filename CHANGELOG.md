@@ -1,6 +1,10 @@
 # Ember Flexberry Designer Changelog
 All notable changes to this project will be documented in this file.
 
+## Unreleased
+## Fix
+ * Fix diagram edit after class delete.
+
 ## [1.1.2-beta.1] - 2024-09-04
 ## Fix
  * Fix referenceCount decrement on diagrams
