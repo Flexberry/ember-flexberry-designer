@@ -1,5 +1,5 @@
 import modelHasChanges from 'dummy/utils/model-has-changes';
-import { module, test, skip } from 'qunit';
+import { module, test } from 'qunit';
 import { run } from '@ember/runloop';
 import startApp from 'dummy/tests/helpers/start-app';
 import executeTestWithData from 'dummy/tests/helpers/execute-test-with-data';
@@ -23,7 +23,7 @@ test('it works undefined value', function(assert) {
 });
 
 // TODO delete stage.
-skip('it works', function(assert) {
+test('it works', function(assert) {
   let done = assert.async();
 
   run(() => {
