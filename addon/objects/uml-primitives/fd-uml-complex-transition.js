@@ -83,7 +83,6 @@ export let ComplexTransitionH = BaseObject.define('flexberry.uml.ComplexTransiti
   // Minimum width
   minWidth: 20,
 }, {
-
   markup: [{
     tagName: 'g',
     className: 'rotatable',
