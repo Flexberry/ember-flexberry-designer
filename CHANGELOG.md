@@ -3,6 +3,8 @@ All notable changes to this project will be documented in this file.
 
 
 ## [Unreleased]
+### Fixed
+ * Removed underlining of text in the state element
 
 ## [1.1.2-beta.2] - 2024-09-26
 ### Added
