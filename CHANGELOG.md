@@ -5,6 +5,7 @@ All notable changes to this project will be documented in this file.
 ## [Unreleased]
 ### Fixed
  * Removed underlining of text in the state element
+ * Changed loading detail with head flag to true at view editing.
 
 ## [1.1.2-beta.2] - 2024-09-26
 ### Added
