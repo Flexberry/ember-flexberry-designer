@@ -43,6 +43,54 @@ export let Connection = Dependency.define('flexberry.uml.Connection', {
 });
 
 joint.shapes.flexberry.uml.ConnectionView = DescriptionView.extend({
+  template: [
+    '<div class="uml-link-inputs">',
+    '<textarea class="description-input" rows="1"></textarea>',
+    '<div class="input-buffer"></div>',
+    '</div>'
+  ].join(''),
+
+  initialize: function() {
+    DescriptionView.prototype.initialize.apply(this, arguments);
+
+    // Prevent paper from handling pointerdown.
+    this.$box.find('textarea').on('mousedown click', function(evt) {
+      evt.stopPropagation();
+    });
+
+    this.$box.find('.description-input').on('keydown', function(evt) {
+      if (evt.key === 'Enter') {
+        this.updateInputHeight('.description-input');
+      }
+    }.bind(this));
+  },
+
+  updateInputWidth(selector) {
+    const textarea = this.$box.find(selector)[0];
+    textarea.style.width = '100px';
+    textarea.style.width = textarea.scrollWidth + 'px';
+    textarea.style.height = 'auto';
+    textarea.style.height = textarea.scrollHeight + 'px';
+  },
+
+  updateInputHeight(selector) {
+    const textarea = this.$box.find(selector)[0];
+    textarea.style.height = 'auto';
+    textarea.style.height = textarea.scrollHeight + 'px';
+  },
+
+  updateInputPosition(index, selector) {
+    let position = this.getLabelCoordinates(this.model.label(index).position);
+    let textarea = this.$box.find(selector)[0];
+    let textWidth = textarea.scrollWidth;
+
+    $(this.$box.find(selector)).css({
+      left: position.x - textWidth / 2,
+      top: position.y - textarea.scrollHeight / 2,
+      transform: 'rotate(' + (this.model.get('angle') || 0) + 'deg)'
+    });
+  },
+
   setColors() {
     DescriptionView.prototype.setColors.apply(this, arguments);
 

@@ -7,7 +7,7 @@ import { EmptyView } from './fd-empty-view';
 export let DescriptionView = EmptyView.extend({
   template: [
     '<div class="uml-link-inputs">',
-    '<textarea class="description-input" rows="1"></textarea>',
+    '<input type="text" class="description-input" value="" />',
     '<div class="input-buffer"></div>',
     '</div>'
   ].join(''),
@@ -15,28 +15,28 @@ export let DescriptionView = EmptyView.extend({
   updateInputsArray: computed(() => [
     '.description-input'
   ]).readOnly(),
-  
+
   /**
     Link's source element.
 
     @property sourceElement
     @type Object
   */
-    sourceElement: undefined,
+  sourceElement: undefined,
 
-    /**
-      Link's target element.
-  
-      @property targetElement
-      @type Object
-    */
-    targetElement: undefined,
+  /**
+    Link's target element.
 
-    initialize: function() {
+    @property targetElement
+    @type Object
+  */
+  targetElement: undefined,
+
+  initialize: function() {
     EmptyView.prototype.initialize.apply(this, arguments);
 
     // Prevent paper from handling pointerdown.
-    this.$box.find('textarea').on('mousedown click', function(evt) {
+    this.$box.find('input').on('mousedown click', function(evt) {
       evt.stopPropagation();
     });
 
@@ -64,7 +64,7 @@ export let DescriptionView = EmptyView.extend({
     joint.dia.LinkView.prototype.render.apply(this, arguments);
     this.paper.$el.prepend(this.$box);
     this.paper.on('blank:pointerdown link:pointerdown element:pointerdown', function() {
-      this.$box.find('textarea:focus').blur();
+      this.$box.find('input:focus, textarea:focus').blur();
     }, this);
     this.updateBox();
     const objectModel = this.model.get('objectModel');
@@ -90,24 +90,17 @@ export let DescriptionView = EmptyView.extend({
 
   updateInputPosition(index, selector, positionCoefficient = 1) {
     let position = this.getLabelCoordinates(this.model.label(index).position);
-    let textarea = this.$box.find(selector)[0];
-    let textWidth = textarea.scrollWidth;
-
+    let delta = this.model.label(index).inverseTextDirection ? this.$box.find(selector).width() : 0;
     $(this.$box.find(selector)).css({
-      left: position.x - textWidth / 2, // Центрирование по горизонтали
-      top: position.y - textarea.scrollHeight / 2, // Центрирование по вертикали
+      left: position.x - delta * positionCoefficient,
+      top: position.y - 7,
       transform: 'rotate(' + (this.model.get('angle') || 0) + 'deg)'
     });
-
-    this.updateInputWidth(selector);
   },
 
-  updateInputWidth(selector) {
-    const textarea = this.$box.find(selector)[0];
-    textarea.style.width = 'auto'; // Сброс ширины
-    textarea.style.width = textarea.scrollWidth + 'px'; // Установка ширины на основе содержимого
-    textarea.style.height = 'auto';
-    textarea.style.height = textarea.scrollHeight + 'px';
+  updateInputValue() {
+    this.setInputValues();
+    this.updateInputWidth('.description-input');
   },
 
   setInputValues() {
