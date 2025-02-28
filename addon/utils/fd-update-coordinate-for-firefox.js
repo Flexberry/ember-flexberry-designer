@@ -24,11 +24,9 @@ let getFireFoxMajorVersion = function() {
   Update coordinates in pointer method and dnd.
 */
 let forPointerMethodOverrideResizeAndDnd = function(e, x, y) {
-  if (isFireFox()) {
-    if (getFireFoxMajorVersion() < 39) {
-      x = e.originalEvent.layerX;
-      y = e.originalEvent.layerY;
-    }
+  if (isFireFox() && getFireFoxMajorVersion() < 39) {
+    x = e.originalEvent.layerX;
+    y = e.originalEvent.layerY;
   }
 
   return {
@@ -41,11 +39,9 @@ let forPointerMethodOverrideResizeAndDnd = function(e, x, y) {
   Update coordinates in event 'PointerClick' for links and elements.
 */
 let forLinkAndElementPointerClickEvent = function(e, x, y) {
-  if (isFireFox()) {
-    if (getFireFoxMajorVersion() < 39) {
-      x = e.originalEvent.originalEvent.layerX;
-      y = e.originalEvent.originalEvent.layerY;
-    }
+  if (isFireFox() && getFireFoxMajorVersion() < 39) {
+    x = e.originalEvent.originalEvent.layerX;
+    y = e.originalEvent.originalEvent.layerY;
   }
 
   return {
