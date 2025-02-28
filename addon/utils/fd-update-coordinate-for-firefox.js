@@ -11,12 +11,24 @@ let isFireFox = function() {
 };
 
 /**
+  Get FireFox major version
+*/
+let getFireFoxMajorVersion = function() {
+  const version = ua.match(/Firefox\/([0-9\.]+)/)[1];
+  const dotIndex = version.indexOf('.');
+
+  return version.substring(0, dotIndex);
+};
+
+/**
   Update coordinates in pointer method and dnd.
 */
 let forPointerMethodOverrideResizeAndDnd = function(e, x, y) {
   if (isFireFox()) {
-    x = e.originalEvent.layerX;
-    y = e.originalEvent.layerY;
+    if (getFireFoxMajorVersion() < 39) {
+      x = e.originalEvent.layerX;
+      y = e.originalEvent.layerY;
+    }
   }
 
   return {
@@ -30,8 +42,10 @@ let forPointerMethodOverrideResizeAndDnd = function(e, x, y) {
 */
 let forLinkAndElementPointerClickEvent = function(e, x, y) {
   if (isFireFox()) {
-    x = e.originalEvent.originalEvent.layerX;
-    y = e.originalEvent.originalEvent.layerY;
+    if (getFireFoxMajorVersion() < 39) {
+      x = e.originalEvent.originalEvent.layerX;
+      y = e.originalEvent.originalEvent.layerY;
+    }
   }
 
   return {

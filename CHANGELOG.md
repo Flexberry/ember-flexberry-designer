@@ -7,6 +7,7 @@ All notable changes to this project will be documented in this file.
  * Removed underlining of text in the state element
  * Changed loading detail with head flag to true at view editing.
  * Fixed selecting the same stereotype twice
+ * Fixed drawing of links in Firefox
 
 ## [1.1.2-beta.2] - 2024-09-26
 ### Added
