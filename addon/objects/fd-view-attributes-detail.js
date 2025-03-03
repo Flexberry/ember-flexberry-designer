@@ -26,5 +26,5 @@ export default FdViewAttributesProperty.extend({
     @property loadOnLoadAgregator
     @type Boolean
   */
-  loadOnLoadAgregator: false,
+  loadOnLoadAgregator: true,
 });

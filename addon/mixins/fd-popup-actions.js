@@ -82,7 +82,8 @@ export default Mixin.create({
       popup.removeClass('visible');
       popup.addClass('hidden');
 
-      this.set('popupValue', undefined);
+      let selectedValue = $(popup).find('.flexberry-dropdown.selection');
+      selectedValue.dropdown('clear');
 
       $(document).off(`mousedown.${popupNamespace}`);
       $('.fd-sheet-body').off(`scroll.${popupNamespace}`);
