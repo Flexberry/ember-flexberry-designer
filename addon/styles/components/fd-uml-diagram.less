@@ -44,27 +44,9 @@
   }
 }
 
-.ui.form .uml-link-inputs {
-  textarea {
-    position: absolute;
-    pointer-events: auto;
-    padding: 0px;
-    box-sizing: border-box;
-    z-index: 2;
-    border: none;
-    color: @textColor;
-    font-size: 12px;
-    font-family: Arial;
-    background-color: transparent;
-    resize: none;
-    overflow: hidden;
-    width: auto;
-    text-align: center;
-  }
-}
-
 .ui.form .uml-class-inputs input[type="text"],
 .ui.form .uml-link-inputs input[type="text"],
+.ui.form .uml-link-inputs textarea,
 .ui.form .uml-class-inputs textarea {
   border: none;
   padding: 0px;
@@ -75,7 +57,11 @@
   display: block;
   margin: 0 auto;
   background-color: transparent;
-  width: 0;
+  width: auto;
+  pointer-events: auto;
+  text-align: center;
+  resize: none;
+  overflow-y: hidden;
   &.class-name-input {
     font-weight: bold;
     text-align: center;

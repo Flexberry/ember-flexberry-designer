@@ -57,26 +57,28 @@ joint.shapes.flexberry.uml.ConnectionView = DescriptionView.extend({
     this.$box.find('textarea').on('mousedown click', function(evt) {
       evt.stopPropagation();
     });
+    
+    this.$box.find('.description-input').on('input', function() {
+      this.updateInputHeight('.description-input');
+    }.bind(this));
 
     this.$box.find('.description-input').on('keydown', function(evt) {
       if (evt.key === 'Enter') {
-        this.updateInputHeight('.description-input');
+        setTimeout(() => {
+          this.updateInputHeight('.description-input');
+        }, 0);
       }
     }.bind(this));
-  },
-
-  updateInputWidth(selector) {
-    const textarea = this.$box.find(selector)[0];
-    textarea.style.width = '100px';
-    textarea.style.width = textarea.scrollWidth + 'px';
-    textarea.style.height = 'auto';
-    textarea.style.height = textarea.scrollHeight + 'px';
   },
 
   updateInputHeight(selector) {
     const textarea = this.$box.find(selector)[0];
     textarea.style.height = 'auto';
     textarea.style.height = textarea.scrollHeight + 'px';
+  
+    if (textarea.value.trim() === '') {
+      textarea.rows = 1;
+    }
   },
 
   updateInputPosition(index, selector) {
