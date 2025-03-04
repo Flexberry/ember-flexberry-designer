@@ -8,6 +8,7 @@ All notable changes to this project will be documented in this file.
  * Changed loading detail with head flag to true at view editing.
  * Fixed selecting the same stereotype twice
  * Fixed drawing of links in Firefox
+ * Fixed pointer down on usecase actor.
 
 ## [1.1.2-beta.2] - 2024-09-26
 ### Added
