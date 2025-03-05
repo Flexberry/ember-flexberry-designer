@@ -84,6 +84,7 @@ export let UsecaseActor = BaseObject.define('flexberry.uml.UsecaseActor', {
     '<g class="flexberry-uml-header-rect">',
     '<circle cx="15" cy="15" r="15"/>',
     '<path  d="M 15 30 15 45 30 45 0 45 15 45 15 60 0 80 15 60 30 80 15 60" />',
+    '<rect x="0" y="0" width="30" height="80" fill="transparent" stroke="transparent"/>',
     '</g>',
     '</g>',
     '</g>'
