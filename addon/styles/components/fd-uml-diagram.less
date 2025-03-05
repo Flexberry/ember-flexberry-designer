@@ -46,6 +46,7 @@
 
 .ui.form .uml-class-inputs input[type="text"],
 .ui.form .uml-link-inputs input[type="text"],
+.ui.form .uml-link-inputs textarea,
 .ui.form .uml-class-inputs textarea {
   border: none;
   padding: 0px;
@@ -56,7 +57,11 @@
   display: block;
   margin: 0 auto;
   background-color: transparent;
-  width: 0;
+  width: auto;
+  pointer-events: auto;
+  text-align: center;
+  resize: none;
+  overflow-y: hidden;
   &.class-name-input {
     font-weight: bold;
     text-align: center;
