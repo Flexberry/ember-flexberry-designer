@@ -57,14 +57,6 @@ joint.shapes.flexberry.uml.ConnectionView = DescriptionView.extend({
     this.$box.find('textarea').on('mousedown click', function(evt) {
       evt.stopPropagation();
     });
-
-    this.$box.find('.description-input').on('keydown', function(evt) {
-      if (evt.key === 'Enter') {
-        setTimeout(() => {
-          this.updateInputHeight('.description-input');
-        }, 0);
-      }
-    }.bind(this));
   },
 
   updateInputPosition(index, selector) {
