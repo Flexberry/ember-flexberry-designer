@@ -3,12 +3,11 @@
 */
 
 import { computed } from '@ember/object';
-import { isArray } from '@ember/array';
-import { isEmpty } from '@ember/utils';
 import joint from 'npm:jointjs';
+import $ from 'jquery';
 
 import FdUmlElement from './fd-uml-element';
-import { SequenceActor } from './fd-uml-sequence-actor';
+import { BaseObject } from './fd-uml-baseobject';
 
 /**
   An object that describes a Sequence Object element on the UML diagram.
@@ -32,9 +31,10 @@ export default FdUmlElement.extend({
     @method JointJS
   */
   JointJS() {
-    let properties = this.getProperties('id', 'name', 'size', 'position');
+    let properties = this.getProperties('id', 'size', 'position');
+    properties.objectModel = this;
+    
     return new SequenceDiagramObject(properties);
-
   },
 });
 
@@ -47,58 +47,91 @@ export default FdUmlElement.extend({
   @namespace flexberry.uml
   @constructor
 */
-export let SequenceDiagramObject = SequenceActor.define('flexberry.uml.sequencediagramObject', {
+export let SequenceDiagramObject = BaseObject.define('flexberry.uml.sequencediagramObject', {
   attrs: {
-    size: { 'width': 40, 'height': 40 },
-    rect: { width: 40, height: 40, fill: '#FFFFFF', stroke: 'black' },
-    text: {
-      'ref': 'rect',
-      'ref-y': 0.5,
-      'ref-x': 0.5,
-      'text-anchor': 'middle',
-      'y-alignment': 'middle',
+    rect: { 'width': 40, 'height': 40 },
+    '.flexberry-uml-header-rect': { 'stroke': 'black', 'strokeWidth': '1', 'fill': '#ffffff' },
+
+    '.flexberry-uml-header-text': {
+      'ref': '.flexberry-uml-header-rect',
+      'textAnchor': 'middle',
+      'yAlignment': 'middle',
+      'fontWeight': 'bold',
+      'refY': 0.5,
+      'refX': 0.5,
+      'fill': 'black',
+      'fontSize': 12,
+      'fontFamily': 'Arial'
     }
   },
-  heightPadding: 20,
+
+  // Minimum height.
+  minHeight: 17,
 }, {
+  markup: [
+    '<g class="rotatable">',
+    '<g class="scalable">',
+
+    '<rect class="flexberry-uml-header-rect"/>',
+    '<text class="flexberry-uml-header-text"/>',
+
+    '</g>',
+    '</g>'
+  ].join(''),
+
   initialize: function () {
-    this.on('change', function () {
+    BaseObject.prototype.initialize.apply(this, arguments);
+    this.on('change:name', function() {
       this.updateRectangles();
-      this.trigger('uml-update');
     }, this);
-    joint.shapes.basic.Generic.prototype.initialize.apply(this, arguments);
   },
 
-  getObjName: function () {
-    let ret = this.get('name');
-    if (isEmpty(ret)) {
-      return '';
-    } else {
-      return ret;
-    }
+  getRectangles() {
+    return [
+      { type: 'header', element: this }
+    ];
   },
+});
 
-  updateRectangles: function () {
-    let attrs = this.get('attrs');
-    let objName = this.getObjName();
-    let lines = isArray(objName) ? objName : [objName];
+joint.shapes.flexberry.uml.sequencediagramObjectView = joint.shapes.flexberry.uml.BaseObjectView.extend({
+  template: [
+    '<div class="uml-class-inputs">',
+    '<textarea class="class-name-input header-input" value="" rows="1" wrap="off"></textarea>',
+    '<div class="input-buffer"></div>',
+    '</div>'
+  ].join(''),
 
-    let maxStringChars = 8;
-    lines.forEach(function (line) {
-      if (line.length > maxStringChars) {
-        maxStringChars = line.length;
-      }
+  updateRectangles: function (resizedWidth, resizedHeight) {
+    const minWidth = this.model.attributes.minWidth;
+    const minHeight = this.model.attributes.minHeight;
+    const oldSize = this.model.size();
+
+    let newHeight = Math.max( resizedHeight || oldSize.height, minHeight)
+    let newWidth = Math.max( resizedWidth || oldSize.width, minWidth)
+
+    let $box = this.$box;
+    let inputs =  $box.find('.class-name-input');
+    let $buffer = $box.find('.input-buffer');
+
+    inputs.each(function() {
+      let $input = $(this);
+      $buffer.css('font-weight', $input.css('font-weight'));
+      $buffer.text($input.val());
+      $input.width($buffer.width() + 1);
+      $input[0].style.marginLeft = -$input.width()/2 + 'px';
     });
 
-    let hightStep = attrs.text['font-size'];
-    let rectHeight = lines.length * hightStep + this.get('heightPadding');
+    this.model.resize(newWidth, newHeight);
+    if (this.model.get('highlighted')) {
+      this.unhighlight();
+      this.highlight();
+    }
 
-    let widthStep = attrs.text['font-size'] / 1.5;
-    let rectWidth = maxStringChars * widthStep + 10;
-
-    attrs.text.text = lines.join('\n');
-    attrs.rect.height = rectHeight;
-    attrs.rect.width = rectWidth;
-    this.resize(rectWidth, rectHeight);
-  }
+    let paramsBox = this.$box.find('.params-input');
+    paramsBox.css({
+      left: newWidth/2,
+      top: newHeight + 10,
+      position: 'absolute'
+    });
+  },
 });
