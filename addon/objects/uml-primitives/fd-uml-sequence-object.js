@@ -53,38 +53,8 @@ export let SequenceDiagramObject = BaseObject.define('flexberry.uml.sequencediag
   // Minimum height.
   minHeight: 40,
 
-  attrs: {
-    '.flexberry-uml-header-rect': { 'stroke': 'black', 'strokeWidth': '1', 'fill': '#ffffff' },
-
-    '.flexberry-uml-header-text': {
-      'ref': '.flexberry-uml-header-rect',
-      'textAnchor': 'middle',
-      'yAlignment': 'middle',
-      'fontWeight': 'bold',
-      'refY': 0.5,
-      'refX': 0.5,
-      'fill': 'black',
-      'fontSize': 12,
-      'fontFamily': 'Arial'
-    }
-  },
-
   heightPadding: 20,
 }, {
-  markup: [
-    '<g class="rotatable">',
-    '<rect class="flexberry-uml-header-rect"/>',
-    '<text class="flexberry-uml-header-text"/>',
-    '</g>'
-  ].join(''),
-
-  initialize: function () {
-    BaseObject.prototype.initialize.apply(this, arguments);
-    this.on('change:name', function() {
-      this.updateRectangles();
-    }, this);
-  },
-
   getRectangles() {
     return [
       { type: 'header', element: this }
