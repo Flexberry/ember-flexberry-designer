@@ -9,6 +9,7 @@ All notable changes to this project will be documented in this file.
  * Fixed selecting the same stereotype twice
  * Fixed drawing of links in Firefox
  * Fixed pointer down on usecase actor.
+ * Added Time Constraint element to Sequence Diagram.
 
 ## [1.1.2-beta.2] - 2024-09-26
 ### Added
