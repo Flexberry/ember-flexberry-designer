@@ -73,21 +73,12 @@ joint.shapes.flexberry.uml.ConnectionView = DescriptionView.extend({
 
   updateInputWidth(selector) {
     const textarea = this.$box.find(selector)[0];
-  
-    // Create a temporary span to change the width of the text
-    let buffer = document.createElement('span');
-    buffer.style.visibility = 'hidden';
-    buffer.style.whiteSpace = 'pre';
-    buffer.style.position = 'absolute';
-    buffer.style.font = window.getComputedStyle(textarea).font;
-    buffer.textContent = textarea.value || ' ';
-  
-    document.body.appendChild(buffer);
-    const newWidth = Math.max(buffer.offsetWidth + 1, 1);
-    document.body.removeChild(buffer);
-  
+    const buffer = this.$box.find('.input-buffer');
+    
+    buffer.text(textarea.value || ' ');
+    const newWidth = Math.max(buffer[0].offsetWidth + 1, 1);
+    
     textarea.style.width = newWidth + 'px';
-  
     textarea.style.height = 'auto';
     textarea.style.height = textarea.scrollHeight + 'px';
   },
