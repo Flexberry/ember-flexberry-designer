@@ -10,6 +10,8 @@ All notable changes to this project will be documented in this file.
  * Fixed drawing of links in Firefox
  * Fixed pointer down on usecase actor.
  * Removed underline from labels in deployment diagram
+ * Fixed Actor and Object on sequence diagram
+ * Added Time Constraint element to Sequence Diagram.
 
 ## [1.1.2-beta.2] - 2024-09-26
 ### Added
