@@ -8,7 +8,8 @@ import { ProcedureCall } from '../../objects/uml-primitives/fd-uml-procedure-cal
 import { FlatMessage } from '../../objects/uml-primitives/fd-uml-flat-message';
 import { AsyncMessage } from '../../objects/uml-primitives/fd-uml-async-message';
 import { ReturnMessage } from '../../objects/uml-primitives/fd-uml-return-message';
-import { getJsonForElement, getJsonForLink } from '../../utils/get-json-for-diagram';
+import TimeConstraint from '../../objects/uml-primitives/fd-uml-time-constraint';
+import { getJsonForElement } from '../../utils/get-json-for-diagram';
 
 /**
   Actions for creating joint js elements on cad diagrams.
@@ -194,8 +195,20 @@ export default Mixin.create({
       @method actions.addTimeConstraint
       @param {jQuery.Event} e event.
      */
-    addTimeConstraint() {
-      // TODO need create object.
+    addTimeConstraint(e) {
+      this.createObjectData((function(x, y) {
+        let jsonObject = getJsonForElement(
+          'STORMCASE.UML.sd.TimeConstraint, UMLSD',
+          { x, y },
+          { width: 80, height: 40 },
+          { Name: '' }
+        );
+        let timeConstraintObject = TimeConstraint.create({ primitive: jsonObject });
+
+        this._addToPrimitives(timeConstraintObject);
+
+        return timeConstraintObject.JointJS();
+      }).bind(this), e);
     }
   }
 });

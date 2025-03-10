@@ -17,6 +17,7 @@ import FdUmlProcedureCall from '../objects/uml-primitives/fd-uml-procedure-call'
 import FdUmlFlatMsg from '../objects/uml-primitives/fd-uml-flat-message';
 import FdUmlAsyncMsg from '../objects/uml-primitives/fd-uml-async-message';
 import FdUmlReturnMsg from '../objects/uml-primitives/fd-uml-return-message';
+import FdUmlTimeConstraint from '../objects/uml-primitives/fd-uml-time-constraint';
 
 let Model = SDModel.extend(DevUMLSDMixin, {
   /**
@@ -77,6 +78,9 @@ let Model = SDModel.extend(DevUMLSDMixin, {
 
       case 'STORMCASE.UML.sd.ReturnMessage, UMLSD':
         return FdUmlReturnMsg.create({ primitive });
+
+      case 'STORMCASE.UML.sd.TimeConstraint, UMLSD':
+        return FdUmlTimeConstraint.create({ primitive });
 
       default:
         //throw new Error(`Unknown primitive type: '${primitive.$type}'.`);
