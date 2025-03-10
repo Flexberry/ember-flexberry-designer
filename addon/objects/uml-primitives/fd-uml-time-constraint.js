@@ -17,7 +17,7 @@ import { BaseObject } from './fd-uml-baseobject';
 */
 export default FdUmlElement.extend({
   /**
-    The name of the note, actually its content.
+    The name of the time constraint, actually its content.
 
     @property name
     @type String
