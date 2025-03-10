@@ -27,8 +27,9 @@ export default FdUmlElement.extend({
       return this.get('primitive.Name.Text');
     },
     set(key, value) {
-      let nameTxt = (isArray(value)) ? value.join('\n') : value;
+      const nameTxt = (isArray(value)) ? value.join('\n') : value;
       this.set('primitive.Name.Text', nameTxt);
+
       return value;
     },
   }),
@@ -41,6 +42,7 @@ export default FdUmlElement.extend({
   JointJS() {
     let properties = this.getProperties('id', 'size', 'position');
     properties.objectModel = this;
+    
     return new TimeConstraint(properties);
   },
 });
