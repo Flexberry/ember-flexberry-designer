@@ -17,7 +17,7 @@ import { BaseObject } from './fd-uml-baseobject';
 */
 export default FdUmlElement.extend({
   /**
-    The name of the time constraint, actually its content.
+    The content of the time constraint that will be displayed in the diagram.
 
     @property name
     @type String
@@ -85,7 +85,7 @@ joint.util.setByPath(joint.shapes, 'flexberry.uml.TimeConstraint', TimeConstrain
 
 joint.shapes.flexberry.uml.TimeConstraintView = joint.shapes.flexberry.uml.BaseObjectView.extend({
   template: [
-    '<div class="uml-class-inputs">',
+    '<div class="uml-class-inputs time-constraint-inputs">',
     '<textarea class="class-name-input header-input" value="" rows="1" wrap="off" style="text-align: left;"></textarea>',
     '<div class="input-buffer"></div>',
     '</div>'
