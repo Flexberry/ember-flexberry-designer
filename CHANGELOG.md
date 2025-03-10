@@ -3,6 +3,8 @@ All notable changes to this project will be documented in this file.
 
 
 ## [Unreleased]
+
+## [1.1.2-beta.3] - 2025-03-10
 ### Fixed
  * Removed underlining of text in the state element
  * Changed loading detail with head flag to true at view editing.
