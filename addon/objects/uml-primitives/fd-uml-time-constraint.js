@@ -10,7 +10,7 @@ import FdUmlElement from './fd-uml-element';
 import { BaseObject } from './fd-uml-baseobject';
 
 /**
-  An object that describes a note on the UML diagram.
+  An object that describes a time constraint on the UML diagram.
 
   @class FdUmlTimeConstraint
   @extends FdUmlElement
