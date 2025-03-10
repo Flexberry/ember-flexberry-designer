@@ -3,6 +3,8 @@ All notable changes to this project will be documented in this file.
 
 
 ## [Unreleased]
+### Fixed
+ * Fix for saving error in collaboration diagram
 
 ## [1.1.2-beta.3] - 2025-03-10
 ### Fixed
