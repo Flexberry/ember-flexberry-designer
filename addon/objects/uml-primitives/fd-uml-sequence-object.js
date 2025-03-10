@@ -3,12 +3,10 @@
 */
 
 import { computed } from '@ember/object';
-import { isArray } from '@ember/array';
-import { isEmpty } from '@ember/utils';
 import joint from 'npm:jointjs';
 
 import FdUmlElement from './fd-uml-element';
-import { SequenceActor } from './fd-uml-sequence-actor';
+import { BaseObject } from './fd-uml-baseobject';
 
 /**
   An object that describes a Sequence Object element on the UML diagram.
@@ -32,9 +30,10 @@ export default FdUmlElement.extend({
     @method JointJS
   */
   JointJS() {
-    let properties = this.getProperties('id', 'name', 'size', 'position');
+    let properties = this.getProperties('id', 'size', 'position');
+    properties.objectModel = this;
+    
     return new SequenceDiagramObject(properties);
-
   },
 });
 
@@ -47,58 +46,44 @@ export default FdUmlElement.extend({
   @namespace flexberry.uml
   @constructor
 */
-export let SequenceDiagramObject = SequenceActor.define('flexberry.uml.sequencediagramObject', {
-  attrs: {
-    size: { 'width': 40, 'height': 40 },
-    rect: { width: 40, height: 40, fill: '#FFFFFF', stroke: 'black' },
-    text: {
-      'ref': 'rect',
-      'ref-y': 0.5,
-      'ref-x': 0.5,
-      'text-anchor': 'middle',
-      'y-alignment': 'middle',
-    }
-  },
+export let SequenceDiagramObject = BaseObject.define('flexberry.uml.sequencediagramObject', {
+  // Minimum width.
+  minWidth: 40,
+
+  // Minimum height.
+  minHeight: 40,
+
   heightPadding: 20,
 }, {
-  initialize: function () {
-    this.on('change', function () {
-      this.updateRectangles();
-      this.trigger('uml-update');
-    }, this);
-    joint.shapes.basic.Generic.prototype.initialize.apply(this, arguments);
+  getRectangles() {
+    return [
+      { type: 'header', element: this }
+    ];
   },
+});
 
-  getObjName: function () {
-    let ret = this.get('name');
-    if (isEmpty(ret)) {
-      return '';
-    } else {
-      return ret;
-    }
+joint.shapes.flexberry.uml.sequencediagramObjectView = joint.shapes.flexberry.uml.BaseObjectView.extend({
+  template: [
+    '<div class="uml-class-inputs">',
+    '<textarea class="class-name-input header-input" value="" rows="1" wrap="off"></textarea>',
+    '<div class="input-buffer"></div>',
+    '</div>'
+  ].join(''),
+
+  initialize: function () {
+    joint.shapes.flexberry.uml.BaseObjectView.prototype.initialize.apply(this, arguments);
+    this.updateRectangles();
   },
 
   updateRectangles: function () {
-    let attrs = this.get('attrs');
-    let objName = this.getObjName();
-    let lines = isArray(objName) ? objName : [objName];
-
-    let maxStringChars = 8;
-    lines.forEach(function (line) {
-      if (line.length > maxStringChars) {
-        maxStringChars = line.length;
-      }
+    joint.shapes.flexberry.uml.BaseObjectView.prototype.updateRectangles.apply(this, arguments);
+    let paramsBox = this.$box.find('.header-input');
+    let bbox = this.model.getBBox();
+    
+    paramsBox.css({
+      top: (bbox.height - paramsBox[0].offsetHeight)/2,
+      left: (bbox.width - paramsBox[0].offsetWidth)/2,
+      position: 'absolute'
     });
-
-    let hightStep = attrs.text['font-size'];
-    let rectHeight = lines.length * hightStep + this.get('heightPadding');
-
-    let widthStep = attrs.text['font-size'] / 1.5;
-    let rectWidth = maxStringChars * widthStep + 10;
-
-    attrs.text.text = lines.join('\n');
-    attrs.rect.height = rectHeight;
-    attrs.rect.width = rectWidth;
-    this.resize(rectWidth, rectHeight);
-  }
+  },
 });
