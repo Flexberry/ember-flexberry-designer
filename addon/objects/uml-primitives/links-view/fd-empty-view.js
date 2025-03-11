@@ -266,6 +266,7 @@ export let EmptyView = joint.dia.LinkView.extend({
   },
 
   pointerup(evt, x, y) {
+    this._setVerticesValue();
     this._checkVerticesChanges();
     let readonly = this.paper.options.interactive;
     if (readonly && typeof readonly === 'object') {
