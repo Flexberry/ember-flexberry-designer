@@ -14,6 +14,7 @@ All notable changes to this project will be documented in this file.
  * Removed underline from labels in deployment diagram
  * Fixed Actor and Object on sequence diagram
  * Added Time Constraint element to Sequence Diagram.
+ * Fixed Active Object on sequence diagram
 
 ## [1.1.2-beta.2] - 2024-09-26
 ### Added

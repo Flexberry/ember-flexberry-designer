@@ -3,6 +3,7 @@
 */
 
 import { computed } from '@ember/object';
+import $ from 'jquery';
 import joint from 'npm:jointjs';
 
 import FdUmlElement from './fd-uml-element';
@@ -53,8 +54,24 @@ export let SequenceDiagramObject = BaseObject.define('flexberry.uml.sequencediag
   // Minimum height.
   minHeight: 40,
 
-  heightPadding: 20,
+  // Inputs padding by Y.
+  heightPadding: 10,
+
+  // Minimum line lenght.
+  minLineLength: 10,
 }, {
+  markup: [
+    '<g class="rotatable">',
+    '<g class="scalable">',
+    '<g class="flexberry-uml-header-rect">',
+    '<rect width="40" height="40" />',
+    '<path d="M 20 40 20 50" />',
+    '<rect x="0" y="0" width="40" height="50" fill="transparent" stroke="transparent"/>',
+    '</g>',
+    '</g>',
+    '</g>'
+  ].join(''),
+
   getRectangles() {
     return [
       { type: 'header', element: this }
@@ -62,7 +79,7 @@ export let SequenceDiagramObject = BaseObject.define('flexberry.uml.sequencediag
   },
 });
 
-joint.shapes.flexberry.uml.sequencediagramObjectView = joint.shapes.flexberry.uml.BaseObjectView.extend({
+export let SequencediagramObjectView = joint.shapes.flexberry.uml.BaseObjectView.extend({
   template: [
     '<div class="uml-class-inputs">',
     '<textarea class="class-name-input header-input" value="" rows="1" wrap="off"></textarea>',
@@ -70,20 +87,72 @@ joint.shapes.flexberry.uml.sequencediagramObjectView = joint.shapes.flexberry.um
     '</div>'
   ].join(''),
 
-  initialize: function () {
-    joint.shapes.flexberry.uml.BaseObjectView.prototype.initialize.apply(this, arguments);
-    this.updateRectangles();
-  },
+  updateRectangles: function (resizedWidth, resizedHeight) {
+    const minWidth = this.model.attributes.minWidth;
+    const minHeight = this.model.attributes.minHeight;
+    const widthPadding = this.model.attributes.widthPadding;
+    const heightPadding = this.model.attributes.heightPadding;
+    const minLineLength = this.model.attributes.minLineLength;
+    const oldSize = this.model.size();
 
-  updateRectangles: function () {
-    joint.shapes.flexberry.uml.BaseObjectView.prototype.updateRectangles.apply(this, arguments);
-    let paramsBox = this.$box.find('.header-input');
-    let bbox = this.model.getBBox();
-    
-    paramsBox.css({
-      top: (bbox.height - paramsBox[0].offsetHeight)/2,
-      left: (bbox.width - paramsBox[0].offsetWidth)/2,
+    let newHeight = Math.max( resizedHeight || oldSize.height, minHeight)
+    let newWidth = Math.max( resizedWidth || oldSize.width, minWidth)
+
+    let inputs =  this.$box.find('.class-name-input');
+    let $buffer = this.$box.find('.input-buffer');
+
+    inputs.each(function() {
+      let $input = $(this);
+      $buffer.css('font-weight', $input.css('font-weight'));
+      $buffer.text($input.val());
+      $input.width($buffer.width() + widthPadding);
+      
+      if ($input.width() > newWidth) {
+        newWidth = $input.width();
+      }
+    });
+
+    const rect = this.$el.find('.flexberry-uml-header-rect rect')[0];
+    const path = this.$el.find('.flexberry-uml-header-rect path')[0];
+
+    if (!rect || !path) {
+      this.model.resize(newWidth, newHeight);
+      if (this.model.get('highlighted')) {
+        this.unhighlight();
+        this.highlight();
+      }
+      return;
+    }
+
+    const pathBBox = path.getBBox();
+    const rectBBox = rect.getBBox();
+
+    const rectHeight = inputs[0].offsetHeight + 2 * heightPadding;
+    newHeight = Math.max(newHeight, rectHeight + minLineLength);
+    const transformX = newWidth / rectBBox.width;
+    const transformY = newHeight / (rectBBox.height + pathBBox.height);
+    rect.setAttribute('height', rectHeight / transformY);
+
+    const scalable = this.$el.find('.scalable')[0];
+    const transform = scalable.transform.baseVal.consolidate().matrix;
+    transform.a = transformX;
+    transform.d = transformY;
+
+    inputs.css({
+      top: (rectHeight - inputs[0].offsetHeight) / 2,
+      left: (newWidth - inputs[0].offsetWidth) / 2,
       position: 'absolute'
     });
+
+    const d = path.getAttribute('d');
+    path.setAttribute('d', d.replace(/(M)\s(-?\d+\.?\d*)\s(-?\d+\.?\d*)/, (_, command, x) => `${command} ${x} ${rectHeight / transformY}`));
+ 
+    this.model.resize(newWidth, newHeight);
+    if (this.model.get('highlighted')) {
+      this.unhighlight();
+      this.highlight();
+    }
   },
 });
+
+joint.shapes.flexberry.uml.sequencediagramObjectView = SequencediagramObjectView;
