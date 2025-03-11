@@ -2,8 +2,12 @@
   @module ember-flexberry-designer
 */
 
+import { A } from '@ember/array';
+
 import joint from 'npm:jointjs';
+
 import FdUmlElement from './fd-uml-element';
+import { BaseObject } from './fd-uml-baseobject';
 
 /**
   An object that describes a Terminator on the UML sequence diagram.
@@ -12,14 +16,15 @@ import FdUmlElement from './fd-uml-element';
   @extends FdUmlElement
 */
 export default FdUmlElement.extend({
-
   /**
     See {{#crossLink "FdUmlPrimitive/JointJS:method"}}here{{/crossLink}}.
 
     @method JointJS
   */
   JointJS() {
-    let properties = this.getProperties('id', 'size', 'position');
+    const properties = this.getProperties('id', 'position');
+    properties.objectModel = this;
+
     return new Terminator(properties);
   },
 });
@@ -29,13 +34,47 @@ export default FdUmlElement.extend({
 
   @for FdUmlTerminator
   @class Terminator
-  @extends basic.Path
+  @extends BaseObject
   @namespace flexberry.uml
   @constructor
 */
-export let Terminator = joint.shapes.basic.Path.define('flexberry.uml.sequencediagramTerminator', {
+export let Terminator = BaseObject.define('flexberry.uml.sequencediagramTerminator', {
+  size: { width: 40, height: 40 },
   attrs: {
-    size: { 'width': 40, 'height': 40 },
-    path: { 'stroke-width':2, d: 'M0,0 40,40 M0,40 40,0z' }
+    '.flexberry-uml-header-cross': { 'stroke-width':2, d: 'M0,0 40,40 M0,40 40,0z' }
   }
+}, {
+  markup: [
+    '<g class="scalable">',
+    '<g class="flexberry-uml-header-rect">',
+    '<path class="flexberry-uml-header-cross"/>',
+    '<rect x="0" y="0" width="40" height="40" fill="transparent" stroke="transparent"/>',
+    '</g>',
+    '</g>'
+  ].join(''),
+
+  // Minimum height.
+  minHeight: 40,
+
+  // Minimum width
+  minWidth: 40,
+  
+  getRectangles() {
+    return [];
+  },
+});
+
+joint.util.setByPath(joint.shapes, 'flexberry.uml.sequencediagramTerminator', Terminator, '.');
+
+joint.shapes.flexberry.uml.TerminatorView = joint.shapes.flexberry.uml.BaseObjectView.extend({
+  template: [
+    '<div class="uml-class-inputs">',
+    '<textarea class="class-name-input terminator-input" value="" rows="1" wrap="off"></textarea>',
+    '<div class="input-buffer"></div>',
+    '</div>'
+  ].join(''),
+
+  getSizeChangers() {
+    return A();
+  },
 });

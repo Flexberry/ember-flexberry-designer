@@ -3,7 +3,7 @@ import { A } from '@ember/array';
 import fdSequenceActor from 'ember-flexberry-designer/objects/uml-primitives/fd-uml-sequence-actor';
 import fdSequenceDiagramObject from 'ember-flexberry-designer/objects/uml-primitives/fd-uml-sequence-object';
 import { SequenceDiagramActiveObject } from '../../objects/uml-primitives/fd-uml-sequence-active-object';
-import { Terminator } from '../../objects/uml-primitives/fd-uml-terminator';
+import Terminator from '../../objects/uml-primitives/fd-uml-terminator';
 import { ProcedureCall } from '../../objects/uml-primitives/fd-uml-procedure-call';
 import { FlatMessage } from '../../objects/uml-primitives/fd-uml-flat-message';
 import { AsyncMessage } from '../../objects/uml-primitives/fd-uml-async-message';
@@ -83,11 +83,15 @@ export default Mixin.create({
      */
     addTerminator(e) {
       this.createObjectData((function(x, y) {
-        let newTerminatorObject = new Terminator({
-          position: { x: x, y: y }
-        });
+        let jsonObject = getJsonForElement(
+          'STORMCASE.UML.sd.Terminator, UMLSD',
+          { x, y },
+        );
+        let terminatorObject = Terminator.create({ primitive: jsonObject });
 
-        return newTerminatorObject;
+        this._addToPrimitives(terminatorObject);
+
+        return terminatorObject.JointJS();
       }).bind(this), e);
     },
 
