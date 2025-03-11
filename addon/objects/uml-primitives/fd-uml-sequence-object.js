@@ -145,7 +145,7 @@ export let SequencediagramObjectView = joint.shapes.flexberry.uml.BaseObjectView
     });
 
     const d = path.getAttribute('d');
-    path.setAttribute('d', d.replace(/(M)\s(-?\d+\.?\d*)\s(-?\d+\.?\d*)/, (_, command, x) => `${command} ${x} ${rectHeight / transformY}`));
+    path.setAttribute('d', d.replace(/(M)\s(-?\d+(?:\.\d+)?)\s(-?\d+(?:\.\d+)?)/, (_, command, x) => `${command} ${x} ${rectHeight / transformY}`));
  
     this.model.resize(newWidth, newHeight);
     if (this.model.get('highlighted')) {
