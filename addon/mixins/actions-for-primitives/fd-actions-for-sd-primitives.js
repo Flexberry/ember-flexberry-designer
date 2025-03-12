@@ -2,7 +2,7 @@ import Mixin from '@ember/object/mixin';
 import { A } from '@ember/array';
 import fdSequenceActor from 'ember-flexberry-designer/objects/uml-primitives/fd-uml-sequence-actor';
 import fdSequenceDiagramObject from 'ember-flexberry-designer/objects/uml-primitives/fd-uml-sequence-object';
-import { SequenceDiagramActiveObject } from '../../objects/uml-primitives/fd-uml-sequence-active-object';
+import fdSequenceDiagramActiveObject from 'ember-flexberry-designer/objects/uml-primitives/fd-uml-sequence-active-object';
 import { Terminator } from '../../objects/uml-primitives/fd-uml-terminator';
 import { ProcedureCall } from '../../objects/uml-primitives/fd-uml-procedure-call';
 import { FlatMessage } from '../../objects/uml-primitives/fd-uml-flat-message';
@@ -67,11 +67,15 @@ export default Mixin.create({
      */
     addSequenceDiagramActiveObject(e) {
       this.createObjectData((function(x, y) {
-        let newSequenceDiagramActiveObject = new SequenceDiagramActiveObject({
-          position: { x: x, y: y }
-        });
-
-        return newSequenceDiagramActiveObject;
+        let jsonObject = getJsonForElement(
+          'STORMCASE.UML.sd.ActiveObject, UMLSD',
+          { x, y },
+          { width: 40, height: 40 },
+          { Name: '' }
+        );
+        let sequenceDiagramActiveObject = fdSequenceDiagramActiveObject.create({ primitive: jsonObject });
+        this._addToPrimitives(sequenceDiagramActiveObject);
+        return sequenceDiagramActiveObject.JointJS();
       }).bind(this), e);
     },
 
