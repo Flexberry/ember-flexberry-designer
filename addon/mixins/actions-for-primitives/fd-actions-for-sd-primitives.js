@@ -86,17 +86,21 @@ export default Mixin.create({
       @param {jQuery.Event} e event.
      */
     addTerminator(e) {
-      this.createObjectData((function(x, y) {
+      this.createObjectData((function(x, y, parentPrimitive) {
         let jsonObject = getJsonForElement(
           'STORMCASE.UML.sd.Terminator, UMLSD',
           { x, y },
+          { width: 20, height: 20 },
+          { Name: '' },
+          { ConnectedPrimitive : { $ref: parentPrimitive } }
         );
+
         let terminatorObject = Terminator.create({ primitive: jsonObject });
 
         this._addToPrimitives(terminatorObject);
 
         return terminatorObject.JointJS();
-      }).bind(this), e);
+      }).bind(this), e, A(['flexberry.uml.sequencediagramActiveObject', 'flexberry.uml.sequencediagramObject']));
     },
 
     /**
