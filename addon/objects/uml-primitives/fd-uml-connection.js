@@ -64,11 +64,12 @@ joint.shapes.flexberry.uml.ConnectionView = DescriptionView.extend({
     let textarea = this.$box.find(selector)[0];
     let textWidth = textarea.scrollWidth;
 
-    $(this.$box.find(selector)).css({
-      left: position.x - textWidth / 2,
-      top: position.y - textarea.scrollHeight / 2,
-      transform: 'rotate(' + (this.model.get('angle') || 0) + 'deg)'
-    });
+    let element = this.$box.find(selector)[0];
+    if (element) {
+      element.style.left = `${position.x - textWidth / 2}px`;
+      element.style.top = `${position.y - textarea.scrollHeight / 2}px`;
+      element.style.transform = `rotate(${this.model.get('angle') || 0}deg)`;
+    }
   },
 
   updateInputWidth(selector) {
