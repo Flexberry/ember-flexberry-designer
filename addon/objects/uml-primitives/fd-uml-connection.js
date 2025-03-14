@@ -43,6 +43,47 @@ export let Connection = Dependency.define('flexberry.uml.Connection', {
 });
 
 joint.shapes.flexberry.uml.ConnectionView = DescriptionView.extend({
+  template: [
+    '<div class="uml-link-inputs">',
+    '<textarea class="description-input" rows="1"></textarea>',
+    '<div class="input-buffer"></div>',
+    '</div>'
+  ].join(''),
+
+  initialize: function() {
+    DescriptionView.prototype.initialize.apply(this, arguments);
+
+    // Prevent paper from handling pointerdown.
+    this.$box.find('textarea').on('mousedown click', function(evt) {
+      evt.stopPropagation();
+    });
+  },
+
+  updateInputPosition(index, selector) {
+    let position = this.getLabelCoordinates(this.model.label(index).position);
+    let textarea = this.$box.find(selector)[0];
+    let textWidth = textarea.scrollWidth;
+
+    let element = this.$box.find(selector)[0];
+    if (element) {
+      element.style.left = `${position.x - textWidth / 2}px`;
+      element.style.top = `${position.y - textarea.scrollHeight / 2}px`;
+      element.style.transform = `rotate(${this.model.get('angle') || 0}deg)`;
+    }
+  },
+
+  updateInputWidth(selector) {
+    const textarea = this.$box.find(selector)[0];
+    const buffer = this.$box.find('.input-buffer');
+    
+    buffer.text(textarea.value || ' ');
+    const newWidth = Math.max(buffer[0].offsetWidth + 1, 1);
+    
+    textarea.style.width = newWidth + 'px';
+    textarea.style.height = 'auto';
+    textarea.style.height = textarea.scrollHeight + 'px';
+  },
+  
   setColors() {
     DescriptionView.prototype.setColors.apply(this, arguments);
 
