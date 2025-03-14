@@ -51,6 +51,10 @@ export default FdUmlBaseLink.extend({
   @constructor
 */
 export let Transition = Connection.define('flexberry.uml.Transition', {
+  attrs: {
+    text: { 'visibility': 'visible' },
+  }
+}, {
   initialize: function () {
     Dependency.prototype.initialize.apply(this, arguments);
   }
