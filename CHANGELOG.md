@@ -5,6 +5,9 @@ All notable changes to this project will be documented in this file.
 ## [Unreleased]
 ### Fixed
  * Fix for saving error in collaboration diagram
+ * Fixed default size for Object and Active Object on sequence diagram 
+ * Fixed In Scope on sequence diagram
+ * Fixed UML Primitive behavior when resizing
 
 ## [1.1.2-beta.3] - 2025-03-10
 ### Fixed
@@ -17,7 +20,6 @@ All notable changes to this project will be documented in this file.
  * Fixed Actor and Object on sequence diagram
  * Added Time Constraint element to Sequence Diagram.
  * Fixed Active Object on sequence diagram
- * Fixed In Scope on sequence diagram
 
 ## [1.1.2-beta.2] - 2024-09-26
 ### Added
