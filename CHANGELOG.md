@@ -17,6 +17,7 @@ All notable changes to this project will be documented in this file.
  * Fixed Actor and Object on sequence diagram
  * Added Time Constraint element to Sequence Diagram.
  * Fixed Active Object on sequence diagram
+ * Fixed In Scope on sequence diagram
 
 ## [1.1.2-beta.2] - 2024-09-26
 ### Added
