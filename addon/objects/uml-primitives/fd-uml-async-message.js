@@ -5,7 +5,7 @@ import { computed } from '@ember/object'
 import joint from 'npm:jointjs';
 
 import FdUmlLink from './fd-uml-link';
-import { FlatMessage } from './fd-uml-flat-message';
+import { Link } from './fd-uml-link';
 import { EmptyView } from './links-view/fd-empty-view';
 
 /**
@@ -39,7 +39,7 @@ export default FdUmlLink.extend({
     @method JointJS
   */
   JointJS() {
-    let properties = this.getProperties('id', 'source', 'target', 'labels');
+    let properties = this.getProperties('id', 'source', 'target', 'vertices','labels');
     properties.objectModel = this;
     return new AsyncMessage(properties);
   },
@@ -54,7 +54,7 @@ export default FdUmlLink.extend({
   @namespace flexberry.uml
   @constructor
 */
-export let AsyncMessage = FlatMessage.define('flexberry.uml.sequencediagramAsyncMessage', {
+export let AsyncMessage = Link.define('flexberry.uml.sequencediagramAsyncMessage', {
   attrs: {
     '.marker-source': { d: 'M 0 10 L 13 17 L 0 10 L 13 3 z', fill: 'black' },
     '.connection': { stroke: 'black', 'stroke-width': 1 }
@@ -98,4 +98,4 @@ export let AsyncMessage = FlatMessage.define('flexberry.uml.sequencediagramAsync
   }
 });
 
-joint.shapes.flexberry.uml.AsyncMessageView = EmptyView;
+joint.shapes.flexberry.uml.sequencediagramAsyncMessageView = EmptyView;

@@ -6,10 +6,10 @@ import fdSequenceDiagramActiveObject from 'ember-flexberry-designer/objects/uml-
 import { Terminator } from '../../objects/uml-primitives/fd-uml-terminator';
 import { ProcedureCall } from '../../objects/uml-primitives/fd-uml-procedure-call';
 import { FlatMessage } from '../../objects/uml-primitives/fd-uml-flat-message';
-import { AsyncMessage } from '../../objects/uml-primitives/fd-uml-async-message';
+import AsyncMessage from '../../objects/uml-primitives/fd-uml-async-message';
 import { ReturnMessage } from '../../objects/uml-primitives/fd-uml-return-message';
 import TimeConstraint from '../../objects/uml-primitives/fd-uml-time-constraint';
-import { getJsonForElement } from '../../utils/get-json-for-diagram';
+import { getJsonForElement, getJsonForLink } from '../../utils/get-json-for-diagram';
 
 /**
   Actions for creating joint js elements on cad diagrams.
@@ -147,15 +147,23 @@ export default Mixin.create({
      */
     addAsyncMessage(e) {
       this.createLinkData((function(linkProperties) {
-        let newAsyncMessageObject = new AsyncMessage({
-          source: {
-            id: linkProperties.source
-          },
-          target: {
-            id: linkProperties.target
-          },
-          vertices: linkProperties.points || A()
-        });
+        let jsonObject = getJsonForLink(
+          'STORMCASE.UML.sd.AsyncMessage, UMLSD',
+          linkProperties.source,
+          null,
+          linkProperties.target,
+          null,
+          A(),
+          { Name: '', LeftText: '', RightText: '' },
+          { NamePos: 0.0, InitialMultiplicity: 1.0 }
+        );
+
+        let asyncMessageObject = AsyncMessage.create({ primitive: jsonObject });
+
+        asyncMessageObject.set('vertices', linkProperties.points || A());
+        this._addToPrimitives(asyncMessageObject);
+
+        let newAsyncMessageObject = asyncMessageObject.JointJS();
 
         return newAsyncMessageObject;
       }).bind(this), e, A(['flexberry.uml.sequencediagramActiveObject', 'flexberry.uml.sequencediagramObject', 'flexberry.uml.SequenceDiagramActor']));
