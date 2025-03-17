@@ -56,7 +56,7 @@ export default FdUmlLink.extend({
 */
 export let AsyncMessage = Link.define('flexberry.uml.sequencediagramAsyncMessage', {
   attrs: {
-    '.marker-source': { d: 'M 0 10 L 13 17 L 0 10 L 13 3 z', fill: 'black' },
+    '.marker-source': { d: 'M 0 10 L 13 17 M 13 3', fill: 'black' },
     '.connection': { stroke: 'black', 'stroke-width': 1 }
   },
   labels: [{
