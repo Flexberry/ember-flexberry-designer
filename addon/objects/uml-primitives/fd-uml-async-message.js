@@ -6,7 +6,7 @@ import joint from 'npm:jointjs';
 
 import FdUmlLink from './fd-uml-link';
 import { Link } from './fd-uml-link';
-import { EmptyView } from './links-view/fd-empty-view';
+import { RoleView } from './links-view/fd-role-view';
 
 /**
   An object that describes a Async Message on the UML diagram.
@@ -15,7 +15,6 @@ import { EmptyView } from './links-view/fd-empty-view';
   @extends FdUmlLink
 */
 export default FdUmlLink.extend({
-
   /**
     End role text.
 
@@ -41,6 +40,7 @@ export default FdUmlLink.extend({
   JointJS() {
     let properties = this.getProperties('id', 'source', 'target', 'vertices','labels');
     properties.objectModel = this;
+    properties.centredAnchor = true;
     return new AsyncMessage(properties);
   },
 });
@@ -56,7 +56,7 @@ export default FdUmlLink.extend({
 */
 export let AsyncMessage = Link.define('flexberry.uml.sequencediagramAsyncMessage', {
   attrs: {
-    '.marker-source': { d: 'M 0 10 L 13 17 M 13 3', fill: 'black' },
+    '.marker-target': { d: 'M 0 10 L 13 17 M 13 3', fill: 'black' },
     '.connection': { stroke: 'black', 'stroke-width': 1 }
   },
   labels: [{
@@ -98,4 +98,4 @@ export let AsyncMessage = Link.define('flexberry.uml.sequencediagramAsyncMessage
   }
 });
 
-joint.shapes.flexberry.uml.sequencediagramAsyncMessageView = EmptyView;
+joint.shapes.flexberry.uml.sequencediagramAsyncMessageView = RoleView;
