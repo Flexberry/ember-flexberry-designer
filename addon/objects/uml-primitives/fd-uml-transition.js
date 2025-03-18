@@ -77,10 +77,6 @@ joint.shapes.flexberry.uml.TransitionView = NormalizedDescriptionView.extend({
       evt.stopPropagation();
     });
 
-    this.$box.find('.description-input').on('blur', function(evt) {
-      this.addSquareBracketsToDescription($(evt.target));
-    }.bind(this));
-
     this.$box.find('.description-input').on('input', function (evt) {
       this.setRows(evt);
     }.bind(this));
@@ -90,17 +86,6 @@ joint.shapes.flexberry.uml.TransitionView = NormalizedDescriptionView.extend({
     }.bind(this));
 
     this.setInputValues();
-  },
-
-  addSquareBracketsToDescription($input) {
-    const description = $input.val();
-    const lines = description.split('\n');
-    const updatedDescription = lines
-      .map(line => line.startsWith('[')?`${line}]`:line.endsWith(']')?`[${line}`:`[${line}]`)
-      .join('\n');
-
-    $input.val(updatedDescription);
-    this.updateInputWidth('.description-input');
   },
 
   setRows: function(evt) {
