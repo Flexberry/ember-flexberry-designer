@@ -7,6 +7,7 @@ import { DescriptionView } from './links-view/fd-description-view';
 
 import { isNone } from '@ember/utils';
 
+import $ from 'jquery';
 import joint from 'npm:jointjs';
 
 /**
@@ -57,6 +58,29 @@ joint.shapes.flexberry.uml.ConnectionView = DescriptionView.extend({
     this.$box.find('textarea').on('mousedown click', function(evt) {
       evt.stopPropagation();
     });
+
+    this.$box.find('.description-input').on('input', function (evt) {
+      this.setRows(evt);
+    }.bind(this));
+
+    this.$box.find('.description-input').on('change', function (evt) {
+      this.setRows(evt);
+    }.bind(this));
+
+    this.setInputValues();
+  },
+
+  setRows: function(evt) {
+    let $textarea = $(evt.currentTarget);
+    let textareaText = $textarea.val();
+    let rows = textareaText.split(/[\n\r|\r|\n]/);
+    $textarea.prop('rows', rows.length);
+  },
+
+  setInputValues: function() {
+    const objectModel = this.model.get('objectModel');
+    const classNameInput = this.$box.find('.description-input');
+    classNameInput.prop('rows', objectModel.get('description').split(/[\n\r|\r|\n]/).length || 1);
   },
 
   updateInputPosition(index, selector) {
@@ -64,24 +88,11 @@ joint.shapes.flexberry.uml.ConnectionView = DescriptionView.extend({
     let textarea = this.$box.find(selector)[0];
     let textWidth = textarea.scrollWidth;
 
-    let element = this.$box.find(selector)[0];
-    if (element) {
-      element.style.left = `${position.x - textWidth / 2}px`;
-      element.style.top = `${position.y - textarea.scrollHeight / 2}px`;
-      element.style.transform = `rotate(${this.model.get('angle') || 0}deg)`;
-    }
-  },
-
-  updateInputWidth(selector) {
-    const textarea = this.$box.find(selector)[0];
-    const buffer = this.$box.find('.input-buffer');
-    
-    buffer.text(textarea.value || ' ');
-    const newWidth = Math.max(buffer[0].offsetWidth + 1, 1);
-    
-    textarea.style.width = newWidth + 'px';
-    textarea.style.height = 'auto';
-    textarea.style.height = textarea.scrollHeight + 'px';
+    $(this.$box.find(selector)).css({
+      left: position.x - textWidth / 2,
+      top: position.y - textarea.scrollHeight / 2,
+      transform: 'rotate(' + (this.model.get('angle') || 0) + 'deg)'
+    });
   },
   
   setColors() {
