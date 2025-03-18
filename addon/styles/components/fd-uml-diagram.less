@@ -44,6 +44,13 @@
   }
 }
 
+.ui.form .uml-link-inputs textarea {
+  pointer-events: auto;
+  text-align: center;
+  resize: none;
+  overflow-y: hidden;
+}
+
 .ui.form .uml-class-inputs input[type="text"],
 .ui.form .uml-link-inputs input[type="text"],
 .ui.form .uml-link-inputs textarea,
@@ -57,11 +64,7 @@
   display: block;
   margin: 0 auto;
   background-color: transparent;
-  width: auto;
-  pointer-events: auto;
-  text-align: center;
-  resize: none;
-  overflow-y: hidden;
+  width: 0;
   &.class-name-input {
     font-weight: bold;
     text-align: center;
