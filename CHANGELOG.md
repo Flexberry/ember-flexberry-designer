@@ -6,6 +6,9 @@ All notable changes to this project will be documented in this file.
 ### Fixed
  * Fix for error in activity diagram when editing links
  * Fix for saving error in collaboration diagram
+ * Fixed default size for Object and Active Object on sequence diagram 
+ * Fixed In Scope on sequence diagram
+ * Fixed UML Primitive behavior when resizing
 
 ## [1.1.2-beta.3] - 2025-03-10
 ### Fixed

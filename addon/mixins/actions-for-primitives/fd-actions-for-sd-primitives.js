@@ -3,6 +3,7 @@ import { A } from '@ember/array';
 import fdSequenceActor from 'ember-flexberry-designer/objects/uml-primitives/fd-uml-sequence-actor';
 import fdSequenceDiagramObject from 'ember-flexberry-designer/objects/uml-primitives/fd-uml-sequence-object';
 import fdSequenceDiagramActiveObject from 'ember-flexberry-designer/objects/uml-primitives/fd-uml-sequence-active-object';
+import fdInScope from 'ember-flexberry-designer/objects/uml-primitives/fd-uml-sequence-in-scope';
 import { Terminator } from '../../objects/uml-primitives/fd-uml-terminator';
 import { ProcedureCall } from '../../objects/uml-primitives/fd-uml-procedure-call';
 import { FlatMessage } from '../../objects/uml-primitives/fd-uml-flat-message';
@@ -50,7 +51,7 @@ export default Mixin.create({
         let jsonObject = getJsonForElement(
           'STORMCASE.UML.sd.InactiveObject, UMLSD',
           { x, y },
-          { width: 40, height: 40 },
+          { width: 125, height: 110 },
           { Name: '' }
         );
         let sequenceDiagramObject = fdSequenceDiagramObject.create({ primitive: jsonObject });
@@ -70,7 +71,7 @@ export default Mixin.create({
         let jsonObject = getJsonForElement(
           'STORMCASE.UML.sd.ActiveObject, UMLSD',
           { x, y },
-          { width: 40, height: 40 },
+          { width: 125, height: 110 },
           { Name: '' }
         );
         let sequenceDiagramActiveObject = fdSequenceDiagramActiveObject.create({ primitive: jsonObject });
@@ -189,8 +190,20 @@ export default Mixin.create({
       @method actions.addInScope
       @param {jQuery.Event} e event.
      */
-    addInScope() {
-      // TODO need create object.
+    addInScope(e) {
+      this.createObjectData((function(x, y, parentPrimitive) {
+        let jsonObject = getJsonForElement(
+          'STORMCASE.UML.sd.InScope, UMLSD',
+          { x, y },
+          { width: 13, height: 36 },
+          { Name: '' },
+          { ConnectedPrimitive : { $ref: parentPrimitive } }
+        );
+        let inScope = fdInScope.create({ primitive: jsonObject });
+        this._addToPrimitives(inScope);
+        
+        return inScope.JointJS();
+      }).bind(this), e, A(['flexberry.uml.sequencediagramActiveObject', 'flexberry.uml.sequencediagramObject']));
     },
 
     /**
