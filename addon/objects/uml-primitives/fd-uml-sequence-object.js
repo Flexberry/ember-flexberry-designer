@@ -65,9 +65,9 @@ export let SequenceDiagramObject = BaseObject.define('flexberry.uml.sequencediag
     '<g class="rotatable">',
     '<g class="scalable">',
     '<g class="flexberry-uml-header-rect">',
-    '<rect class="transparent" x="0" y="0" width="40" height="50" fill="transparent" stroke="transparent"/>',
-    '<rect class="header" width="40" height="40" />',
-    '<path class="line" d="M 20 40 20 50" />',
+    '<rect class="transparent" x="0" y="0" width="125" height="110" fill="transparent" stroke="transparent"/>',
+    '<rect class="header" width="125" height="40" />',
+    '<path class="line" d="M 63 40 63 110" />',
     '</g>',
     '</g>',
     '</g>'
