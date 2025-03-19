@@ -89,9 +89,9 @@ joint.shapes.flexberry.uml.TransitionView = NormalizedDescriptionView.extend({
   },
 
   setRows: function(evt) {
-    let $textarea = $(evt.currentTarget);
-    let textareaText = $textarea.val();
-    let rows = textareaText.split(/[\n\r|\r|\n]/);
+    const $textarea = $(evt.currentTarget);
+    const textareaText = $textarea.val();
+    const rows = textareaText.split(/[\n\r|\r|\n]/);
     $textarea.prop('rows', rows.length);
   },
 
@@ -102,9 +102,9 @@ joint.shapes.flexberry.uml.TransitionView = NormalizedDescriptionView.extend({
   },
 
   updateInputPosition(index, selector) {
-    let position = this.getLabelCoordinates(this.model.label(index).position);
-    let textarea = this.$box.find(selector)[0];
-    let textWidth = textarea.scrollWidth;
+    const position = this.getLabelCoordinates(this.model.label(index).position);
+    const textarea = this.$box.find(selector)[0];
+    const textWidth = textarea.scrollWidth;
 
     $(this.$box.find(selector)).css({
       left: position.x - textWidth / 2,
