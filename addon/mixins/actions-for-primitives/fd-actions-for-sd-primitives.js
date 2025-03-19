@@ -1,13 +1,16 @@
 import Mixin from '@ember/object/mixin';
 import { A } from '@ember/array';
-import { SequenceDiagramActor } from '../../objects/uml-primitives/fd-uml-sequence-actor';
-import { SequenceDiagramObject } from '../../objects/uml-primitives/fd-uml-sequence-object';
-import { SequenceDiagramActiveObject } from '../../objects/uml-primitives/fd-uml-sequence-active-object';
+import fdSequenceActor from 'ember-flexberry-designer/objects/uml-primitives/fd-uml-sequence-actor';
+import fdSequenceDiagramObject from 'ember-flexberry-designer/objects/uml-primitives/fd-uml-sequence-object';
+import fdSequenceDiagramActiveObject from 'ember-flexberry-designer/objects/uml-primitives/fd-uml-sequence-active-object';
+import fdInScope from 'ember-flexberry-designer/objects/uml-primitives/fd-uml-sequence-in-scope';
 import { Terminator } from '../../objects/uml-primitives/fd-uml-terminator';
 import { ProcedureCall } from '../../objects/uml-primitives/fd-uml-procedure-call';
 import { FlatMessage } from '../../objects/uml-primitives/fd-uml-flat-message';
 import { AsyncMessage } from '../../objects/uml-primitives/fd-uml-async-message';
 import { ReturnMessage } from '../../objects/uml-primitives/fd-uml-return-message';
+import TimeConstraint from '../../objects/uml-primitives/fd-uml-time-constraint';
+import { getJsonForElement } from '../../utils/get-json-for-diagram';
 
 /**
   Actions for creating joint js elements on cad diagrams.
@@ -25,11 +28,15 @@ export default Mixin.create({
      */
     addSequenceDiagramActor(e) {
       this.createObjectData((function(x, y) {
-        let newSequenceDiagramActorObject = new SequenceDiagramActor({
-          position: { x: x, y: y }
-        });
-
-        return newSequenceDiagramActorObject;
+        let jsonObject = getJsonForElement(
+          'STORMCASE.UML.sd.Actor, UMLSD',
+          { x, y },
+          { width: 5, height: 60 },
+          { Name: '' }
+        );
+        let sequenceActorObject = fdSequenceActor.create({ primitive: jsonObject });
+        this._addToPrimitives(sequenceActorObject);
+        return sequenceActorObject.JointJS();
       }).bind(this), e);
     },
 
@@ -41,11 +48,15 @@ export default Mixin.create({
      */
     addSequenceDiagramObject(e) {
       this.createObjectData((function(x, y) {
-        let newSequenceDiagramObjectObject = new SequenceDiagramObject({
-          position: { x: x, y: y }
-        });
-
-        return newSequenceDiagramObjectObject;
+        let jsonObject = getJsonForElement(
+          'STORMCASE.UML.sd.InactiveObject, UMLSD',
+          { x, y },
+          { width: 125, height: 110 },
+          { Name: '' }
+        );
+        let sequenceDiagramObject = fdSequenceDiagramObject.create({ primitive: jsonObject });
+        this._addToPrimitives(sequenceDiagramObject);
+        return sequenceDiagramObject.JointJS();
       }).bind(this), e);
     },
 
@@ -57,11 +68,15 @@ export default Mixin.create({
      */
     addSequenceDiagramActiveObject(e) {
       this.createObjectData((function(x, y) {
-        let newSequenceDiagramActiveObject = new SequenceDiagramActiveObject({
-          position: { x: x, y: y }
-        });
-
-        return newSequenceDiagramActiveObject;
+        let jsonObject = getJsonForElement(
+          'STORMCASE.UML.sd.ActiveObject, UMLSD',
+          { x, y },
+          { width: 125, height: 110 },
+          { Name: '' }
+        );
+        let sequenceDiagramActiveObject = fdSequenceDiagramActiveObject.create({ primitive: jsonObject });
+        this._addToPrimitives(sequenceDiagramActiveObject);
+        return sequenceDiagramActiveObject.JointJS();
       }).bind(this), e);
     },
 
@@ -175,8 +190,20 @@ export default Mixin.create({
       @method actions.addInScope
       @param {jQuery.Event} e event.
      */
-    addInScope() {
-      // TODO need create object.
+    addInScope(e) {
+      this.createObjectData((function(x, y, parentPrimitive) {
+        let jsonObject = getJsonForElement(
+          'STORMCASE.UML.sd.InScope, UMLSD',
+          { x, y },
+          { width: 13, height: 36 },
+          { Name: '' },
+          { ConnectedPrimitive : { $ref: parentPrimitive } }
+        );
+        let inScope = fdInScope.create({ primitive: jsonObject });
+        this._addToPrimitives(inScope);
+        
+        return inScope.JointJS();
+      }).bind(this), e, A(['flexberry.uml.sequencediagramActiveObject', 'flexberry.uml.sequencediagramObject']));
     },
 
     /**
@@ -185,8 +212,20 @@ export default Mixin.create({
       @method actions.addTimeConstraint
       @param {jQuery.Event} e event.
      */
-    addTimeConstraint() {
-      // TODO need create object.
+    addTimeConstraint(e) {
+      this.createObjectData((function(x, y) {
+        let jsonObject = getJsonForElement(
+          'STORMCASE.UML.sd.TimeConstraint, UMLSD',
+          { x, y },
+          { width: 80, height: 40 },
+          { Name: '' }
+        );
+        let timeConstraintObject = TimeConstraint.create({ primitive: jsonObject });
+
+        this._addToPrimitives(timeConstraintObject);
+
+        return timeConstraintObject.JointJS();
+      }).bind(this), e);
     }
   }
 });

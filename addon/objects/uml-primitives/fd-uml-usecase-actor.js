@@ -1,6 +1,7 @@
 /**
   @module ember-flexberry-designer
 */
+
 import { computed } from '@ember/object';
 import { isArray } from '@ember/array';
 import $ from 'jquery';
@@ -102,7 +103,7 @@ export let UsecaseActor = BaseObject.define('flexberry.uml.UsecaseActor', {
 
 });
 
-joint.shapes.flexberry.uml.UsecaseActorView = joint.shapes.flexberry.uml.BaseObjectView.extend({
+export let UsecaseActorView = joint.shapes.flexberry.uml.BaseObjectView.extend({
   template: [
     '<div class="uml-class-inputs">',
     '<textarea under-class-name-input class="class-name-input params-input" value="" rows="1" wrap="off"></textarea>',
@@ -179,3 +180,5 @@ joint.shapes.flexberry.uml.UsecaseActorView = joint.shapes.flexberry.uml.BaseObj
     });
   },
 });
+
+joint.shapes.flexberry.uml.UsecaseActorView = UsecaseActorView;

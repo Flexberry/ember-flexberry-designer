@@ -3,13 +3,27 @@ All notable changes to this project will be documented in this file.
 
 
 ## [Unreleased]
+### Added
+ * Added text wrapping to the next line when entering text into a transition element in a activity diagram
+ 
+### Fixed
+ * Fix for error in activity diagram when editing links
+ * Fix for saving error in collaboration diagram
+ * Fixed default size for Object and Active Object on sequence diagram 
+ * Fixed In Scope on sequence diagram
+ * Fixed UML Primitive behavior when resizing
+
+## [1.1.2-beta.3] - 2025-03-10
 ### Fixed
  * Removed underlining of text in the state element
  * Changed loading detail with head flag to true at view editing.
  * Fixed selecting the same stereotype twice
  * Fixed drawing of links in Firefox
  * Fixed pointer down on usecase actor.
- * Added text wrapping to the next line when entering text into a transition element in a activity diagram
+ * Removed underline from labels in deployment diagram
+ * Fixed Actor and Object on sequence diagram
+ * Added Time Constraint element to Sequence Diagram.
+ * Fixed Active Object on sequence diagram
 
 ## [1.1.2-beta.2] - 2024-09-26
 ### Added
