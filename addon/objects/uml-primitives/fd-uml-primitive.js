@@ -77,6 +77,7 @@ joint.connectionPoints.toPointConnection = function(endPathSegmentLine, endView)
   let sourceId = get(this, 'sourceView.model.id');
   let targetId = get(this, 'targetView.model.id');
   let startPoint, endPoint;
+  let centredAnchor = this.model.get('centredAnchor');
 
   let isNoneTargetId = isNone(targetId);
   let isNoneSourceId = isNone(sourceId);
@@ -144,7 +145,29 @@ joint.connectionPoints.toPointConnection = function(endPathSegmentLine, endView)
   endPathSegmentLine.end.y = endPoint.y;
 
   let intersections = bbox.intersectionWithLine(endPathSegmentLine);
-  return isArray(intersections) ? intersections[0] : bbox.pointNearestToPoint(endPoint);
+  let nestedPoint = isArray(intersections) ? intersections[0] : bbox.pointNearestToPoint(endPoint);
+
+  if (centredAnchor) {
+    let header = endView.$el.find('rect.header');
+    let headerClientRects = header.length > 0 ? header[0].getClientRects() : A();
+    let headerHeight = headerClientRects.length > 0 ? headerClientRects[0].height : 0;
+    let objectBox = null;
+
+    if (sourceId === endView.model.id) {
+      objectBox = this.sourceView.getBBox();
+    }
+    else if (targetId === endView.model.id) {
+      objectBox = this.targetView.getBBox();
+    }
+
+    if (objectBox) {
+      if (nestedPoint.y > objectBox.y + headerHeight) {
+        nestedPoint.x = objectBox.x + objectBox.width / 2;
+      }
+    }
+  }
+
+  return nestedPoint;
 };
 
 
