@@ -38,10 +38,6 @@ export default FdUmlBaseLink.extend({
   @constructor
 */
 export let ObjectFlow = Dependency.define('flexberry.uml.ObjectFlow', {
-  attrs: {
-    rect: { 'visibility': 'visible' },
-  }
-}, {
   initialize: function () {
     Dependency.prototype.initialize.apply(this, arguments);
   },
