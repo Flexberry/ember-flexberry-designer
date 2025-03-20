@@ -6,9 +6,9 @@ import fdSequenceDiagramActiveObject from 'ember-flexberry-designer/objects/uml-
 import fdInScope from 'ember-flexberry-designer/objects/uml-primitives/fd-uml-sequence-in-scope';
 import { Terminator } from '../../objects/uml-primitives/fd-uml-terminator';
 import { ProcedureCall } from '../../objects/uml-primitives/fd-uml-procedure-call';
-import { FlatMessage } from '../../objects/uml-primitives/fd-uml-flat-message';
+import FlatMessage from '../../objects/uml-primitives/fd-uml-flat-message';
 import AsyncMessage from '../../objects/uml-primitives/fd-uml-async-message';
-import { ReturnMessage } from '../../objects/uml-primitives/fd-uml-return-message';
+import ReturnMessage from '../../objects/uml-primitives/fd-uml-return-message';
 import TimeConstraint from '../../objects/uml-primitives/fd-uml-time-constraint';
 import { getJsonForElement, getJsonForLink } from '../../utils/get-json-for-diagram';
 
@@ -126,15 +126,23 @@ export default Mixin.create({
      */
     addFlatMessage(e) {
       this.createLinkData((function(linkProperties) {
-        let newFlatMessageObject = new FlatMessage({
-          source: {
-            id: linkProperties.source
-          },
-          target: {
-            id: linkProperties.target
-          },
-          vertices: linkProperties.points || A()
-        });
+        let jsonObject = getJsonForLink(
+          'STORMCASE.UML.sd.FlatMessage, UMLSD',
+          linkProperties.source,
+          null,
+          linkProperties.target,
+          null,
+          A(),
+          { Name: '', LeftText: '', RightText: '' },
+          { NamePos: 0.0, InitialMultiplicity: 1.0 }
+        );
+
+        let flatMessageObject = FlatMessage.create({ primitive: jsonObject });
+
+        flatMessageObject.set('vertices', linkProperties.points || A());
+        this._addToPrimitives(flatMessageObject);
+
+        let newFlatMessageObject = flatMessageObject.JointJS();
 
         return newFlatMessageObject;
       }).bind(this), e, A(['flexberry.uml.sequencediagramActiveObject', 'flexberry.uml.sequencediagramObject', 'flexberry.uml.SequenceDiagramActor']));
@@ -178,15 +186,23 @@ export default Mixin.create({
      */
     addReturnMessage(e) {
       this.createLinkData((function(linkProperties) {
-        let newReturnMessageObject = new ReturnMessage({
-          source: {
-            id: linkProperties.source
-          },
-          target: {
-            id: linkProperties.target
-          },
-          vertices: linkProperties.points || A()
-        });
+        let jsonObject = getJsonForLink(
+          'STORMCASE.UML.sd.ReturnMessage, UMLSD',
+          linkProperties.source,
+          null,
+          linkProperties.target,
+          null,
+          A(),
+          { Name: '', LeftText: '', RightText: '' },
+          { NamePos: 0.0, InitialMultiplicity: 1.0 }
+        );
+
+        let returnMessageObject = ReturnMessage.create({ primitive: jsonObject });
+
+        returnMessageObject.set('vertices', linkProperties.points || A());
+        this._addToPrimitives(returnMessageObject);
+
+        let newReturnMessageObject = returnMessageObject.JointJS();
 
         return newReturnMessageObject;
       }).bind(this), e, A(['flexberry.uml.sequencediagramActiveObject', 'flexberry.uml.sequencediagramObject', 'flexberry.uml.SequenceDiagramActor']));
