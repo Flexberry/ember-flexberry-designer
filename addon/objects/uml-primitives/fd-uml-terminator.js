@@ -60,6 +60,7 @@ export default FdUmlElement.extend({
   JointJS() {
     const properties = this.getProperties('id', 'size', 'position');
     properties.objectModel = this;
+    properties.maxWidth = 20;
 
     return new Terminator(properties);
   },
@@ -89,7 +90,7 @@ export let Terminator = BaseObject.define('flexberry.uml.sequencediagramTerminat
   // Minimum height.
   minHeight: 20,
 
-  // Minimum width
+  // Minimum width.
   minWidth: 20,
   
   getRectangles() {
@@ -120,8 +121,8 @@ export let Terminator = BaseObject.define('flexberry.uml.sequencediagramTerminat
   },
 
   calculatePosition: function (position, size) {
-    let parentObject = this.get('parentObject');
-    let width = 20; //this.get('size').width;
+    const parentObject = this.get('parentObject');
+    const width = this.get('maxWidth');
 
     position = position || parentObject.get('position');
     size = size || parentObject.get('size');
@@ -147,9 +148,9 @@ joint.shapes.flexberry.uml.sequencediagramTerminatorView = joint.shapes.flexberr
   ].join(''),
 
   initialize: function () {
-    let objectModel = this.model.get('objectModel');
-    let parentPrimitiveId = objectModel.parentPrimitive.id;
-    let parentPrimitive = this.options.model.graph.getCell(parentPrimitiveId);
+    const objectModel = this.model.get('objectModel');
+    const parentPrimitiveId = objectModel.parentPrimitive.id;
+    const parentPrimitive = this.options.model.graph.getCell(parentPrimitiveId);
 
     if (!isNone(parentPrimitive)) {
       this.model.setParent(parentPrimitive);
@@ -169,9 +170,9 @@ joint.shapes.flexberry.uml.sequencediagramTerminatorView = joint.shapes.flexberr
   },
 
   checkParentExist(element) {
-    let objectModel = this.model.get('objectModel');
-    let parentPrimitiveId = objectModel.get('parentPrimitive.id');
-    let deletedElementId = element.get('id');
+    const objectModel = this.model.get('objectModel');
+    const parentPrimitiveId = objectModel.get('parentPrimitive.id');
+    const deletedElementId = element.get('id');
 
     if (parentPrimitiveId === deletedElementId) {
       this.model.remove();
