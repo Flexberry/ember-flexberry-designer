@@ -29,7 +29,7 @@ export default FdUmlElement.extend({
       return this.get('primitive.Name.Text');
     },
     set(key, value) {
-      let nameTxt = (isArray(value)) ? value.join('\n') : value;
+      const nameTxt = (isArray(value)) ? value.join('\n') : value;
       this.set('primitive.Name.Text', nameTxt);
       return value;
     },
@@ -43,8 +43,7 @@ export default FdUmlElement.extend({
   */
   parentPrimitive: computed('primitive.ConnectedPrimitive.$ref', {
     get() {
-      let ret = { id: this.get('primitive.ConnectedPrimitive.$ref') };
-      return ret;
+      return { id: this.get('primitive.ConnectedPrimitive.$ref') };
     },
     set(key, value) {
       this.set('primitive.ConnectedPrimitive.$ref', value.id);
