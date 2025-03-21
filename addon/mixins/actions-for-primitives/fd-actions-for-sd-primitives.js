@@ -4,7 +4,7 @@ import fdSequenceActor from 'ember-flexberry-designer/objects/uml-primitives/fd-
 import fdSequenceDiagramObject from 'ember-flexberry-designer/objects/uml-primitives/fd-uml-sequence-object';
 import fdSequenceDiagramActiveObject from 'ember-flexberry-designer/objects/uml-primitives/fd-uml-sequence-active-object';
 import fdInScope from 'ember-flexberry-designer/objects/uml-primitives/fd-uml-sequence-in-scope';
-import { Terminator } from '../../objects/uml-primitives/fd-uml-terminator';
+import Terminator from '../../objects/uml-primitives/fd-uml-terminator';
 import { ProcedureCall } from '../../objects/uml-primitives/fd-uml-procedure-call';
 import { FlatMessage } from '../../objects/uml-primitives/fd-uml-flat-message';
 import { AsyncMessage } from '../../objects/uml-primitives/fd-uml-async-message';
@@ -87,13 +87,21 @@ export default Mixin.create({
       @param {jQuery.Event} e event.
      */
     addTerminator(e) {
-      this.createObjectData((function(x, y) {
-        let newTerminatorObject = new Terminator({
-          position: { x: x, y: y }
-        });
+      this.createObjectData((function(x, y, parentPrimitive) {
+        let jsonObject = getJsonForElement(
+          'STORMCASE.UML.sd.Terminator, UMLSD',
+          { x, y },
+          { width: 20, height: 20 },
+          { Name: '' },
+          { ConnectedPrimitive : { $ref: parentPrimitive } }
+        );
 
-        return newTerminatorObject;
-      }).bind(this), e);
+        let terminatorObject = Terminator.create({ primitive: jsonObject });
+
+        this._addToPrimitives(terminatorObject);
+
+        return terminatorObject.JointJS();
+      }).bind(this), e, A(['flexberry.uml.sequencediagramActiveObject', 'flexberry.uml.sequencediagramObject']));
     },
 
     /**
