@@ -943,7 +943,7 @@ export default Component.extend(
 
         this._createHistoryRecord(view.model.get('id'), { field: 'position', oldValue: view.model.position(), newValue: { x: valueX, y: valueY }});
         view.model.position(valueX, valueY);
-        links._highlighted(); // работает, но выделение снимается везде
+        this._highlighted(); // работает, но выделение снимается везде
 
         // Remove ghosts of annother selected classes.
         if (data.childGhosts) {
