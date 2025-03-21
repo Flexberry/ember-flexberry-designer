@@ -16,6 +16,7 @@ All notable changes to this project will be documented in this file.
  * Changed loading detail with head flag to true at view editing.
  * Fixed selecting the same stereotype twice
  * Fixed drawing of links in Firefox
+ * Added text wrapping to the next line when entering text into a transition element in a state diagram and a connection element in a deployment diagram
  * Fixed pointer down on usecase actor.
  * Removed underline from labels in deployment diagram
  * Fixed Actor and Object on sequence diagram
