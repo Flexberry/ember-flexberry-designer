@@ -5,7 +5,7 @@ import fdSequenceDiagramObject from 'ember-flexberry-designer/objects/uml-primit
 import fdSequenceDiagramActiveObject from 'ember-flexberry-designer/objects/uml-primitives/fd-uml-sequence-active-object';
 import fdInScope from 'ember-flexberry-designer/objects/uml-primitives/fd-uml-sequence-in-scope';
 import Terminator from '../../objects/uml-primitives/fd-uml-terminator';
-import { ProcedureCall } from '../../objects/uml-primitives/fd-uml-procedure-call';
+import ProcedureCall from '../../objects/uml-primitives/fd-uml-procedure-call';
 import FlatMessage from '../../objects/uml-primitives/fd-uml-flat-message';
 import AsyncMessage from '../../objects/uml-primitives/fd-uml-async-message';
 import ReturnMessage from '../../objects/uml-primitives/fd-uml-return-message';
@@ -112,17 +112,20 @@ export default Mixin.create({
      */
     addProcedureCall(e) {
       this.createLinkData((function(linkProperties) {
-        let newProcedureCallObject = new ProcedureCall({
-          source: {
-            id: linkProperties.source
-          },
-          target: {
-            id: linkProperties.target
-          },
-          vertices: linkProperties.points || A()
-        });
-
-        return newProcedureCallObject;
+        let jsonObject = getJsonForLink(
+          'STORMCASE.UML.sd.ProcedureCall, UMLSD',
+          linkProperties.source,
+          null,
+          linkProperties.target,
+          null,
+          A(),
+          { Name: '', LeftText: '', RightText: '' },
+          { NamePos: 0.0, InitialMultiplicity: 1.0 }
+        );
+        let newProcedureCallObject = ProcedureCall.create({ primitive: jsonObject });
+        newProcedureCallObject.set('vertices', linkProperties.points || A());
+        this._addToPrimitives(newProcedureCallObject);
+        return newProcedureCallObject.JointJS();
       }).bind(this), e, A(['flexberry.uml.sequencediagramActiveObject', 'flexberry.uml.sequencediagramObject', 'flexberry.uml.SequenceDiagramActor']));
     },
 

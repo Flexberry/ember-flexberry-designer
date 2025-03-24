@@ -3,6 +3,9 @@ All notable changes to this project will be documented in this file.
 
 
 ## [Unreleased]
+### Added
+* Added a procedure call link to a sequence diagram
+
 ### Fixed
  * Fix for error in activity diagram when editing links
  * Fix for saving error in collaboration diagram
