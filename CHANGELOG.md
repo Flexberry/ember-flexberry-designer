@@ -10,6 +10,7 @@ All notable changes to this project will be documented in this file.
  * Fixed In Scope on sequence diagram
  * Fixed UML Primitive behavior when resizing
  * Added Terminator element to Sequence Diagram.
+ * Added Async Message link element to Sequence Diagram
 
 ## [1.1.2-beta.3] - 2025-03-10
 ### Fixed

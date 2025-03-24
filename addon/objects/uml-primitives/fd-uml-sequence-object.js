@@ -48,6 +48,7 @@ export default FdUmlElement.extend({
   @constructor
 */
 export let SequenceDiagramObject = BaseObject.define('flexberry.uml.sequencediagramObject', {
+
   // Minimum width.
   minWidth: 40,
 
@@ -64,9 +65,9 @@ export let SequenceDiagramObject = BaseObject.define('flexberry.uml.sequencediag
     '<g class="rotatable">',
     '<g class="scalable">',
     '<g class="flexberry-uml-header-rect">',
-    '<rect width="125" height="40" />',
-    '<path d="M 63 40 63 110" />',
-    '<rect x="0" y="0" width="125" height="110" fill="transparent" stroke="transparent"/>',
+    '<rect class="transparent" x="0" y="0" width="125" height="110" fill="transparent" stroke="transparent"/>',
+    '<rect class="header" width="125" height="40" />',
+    '<path class="line" d="M 63 40 63 110" />',
     '</g>',
     '</g>',
     '</g>'
@@ -112,8 +113,8 @@ export let SequencediagramObjectView = joint.shapes.flexberry.uml.BaseObjectView
       }
     });
 
-    const rect = this.$el.find('.flexberry-uml-header-rect rect')[0];
-    const path = this.$el.find('.flexberry-uml-header-rect path')[0];
+    const rect = this.$el.find('.flexberry-uml-header-rect rect.header')[0];
+    const path = this.$el.find('.flexberry-uml-header-rect path.line')[0];
 
     if (!rect || !path) {
       this.model.resize(newWidth, newHeight);
