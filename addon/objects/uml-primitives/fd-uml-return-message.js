@@ -5,8 +5,8 @@ import { computed } from '@ember/object';
 import joint from 'npm:jointjs';
 
 import FdUmlLink from './fd-uml-link';
-import { FlatMessage } from './fd-uml-flat-message';
-import { EmptyView } from './links-view/fd-empty-view';
+import { Link } from './fd-uml-link';
+import { RoleView } from './links-view/fd-role-view';
 
 /**
   An object that describes a Return Message on the UML diagram.
@@ -39,9 +39,19 @@ export default FdUmlLink.extend({
     @method JointJS
   */
   JointJS() {
-    let properties = this.getProperties('id', 'source', 'target', 'labels');
+    let properties = this.getProperties('id', 'source', 'target', 'vertices', 'labels');
     properties.objectModel = this;
+    properties.centredAnchor = true;
     return new ReturnMessage(properties);
+  },
+}, {
+  getLabelDistance: function (labelName) {
+    switch (labelName) {
+      case 'endRole':
+        return -30;
+      case 'description':
+        return 0.5;
+    }
   },
 });
 
@@ -50,16 +60,17 @@ export default FdUmlLink.extend({
 
   @for FdUmlReturnMsg
   @class AsyncMessage
-  @extends flexberry.uml.FlatMessage
+  @extends flexberry.uml.Link
   @namespace flexberry.uml
   @constructor
 */
-export let ReturnMessage = FlatMessage.define('flexberry.uml.sequencediagramReturnMessage', {
+export let ReturnMessage = Link.define('flexberry.uml.sequencediagramReturnMessage', {
   attrs: {
     '.marker-target': { d: 'M 0 10 L 13 17 L 0 10 L 13 3 z', fill: 'black' },
-    '.marker-source': null,
-    '.connection': { stroke: 'black', 'stroke-width': 1, 'stroke-dasharray': '7 2' }
+    '.connection': { stroke: 'black', 'stroke-width': 1, 'stroke-dasharray': '7 2' },
+    text: { visibility: 'hidden' },
+    rect: { visibility: 'hidden' }
   }
 });
 
-joint.shapes.flexberry.uml.ReturnMessageView = EmptyView;
+joint.shapes.flexberry.uml.sequencediagramReturnMessageView = RoleView;

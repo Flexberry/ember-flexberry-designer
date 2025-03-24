@@ -38,10 +38,19 @@ export default FdUmlLink.extend({
     @method JointJS
   */
   JointJS() {
-    let properties = this.getProperties('id', 'source', 'target', 'vertices','labels');
+    let properties = this.getProperties('id', 'source', 'target', 'vertices', 'labels');
     properties.objectModel = this;
     properties.centredAnchor = true;
     return new AsyncMessage(properties);
+  },
+}, {
+  getLabelDistance: function (labelName) {
+    switch (labelName) {
+      case 'endRole':
+        return -30;
+      case 'description':
+        return 0.5;
+    }
   },
 });
 
@@ -50,7 +59,7 @@ export default FdUmlLink.extend({
 
   @for FdUmlAsyncMsg
   @class AsyncMessage
-  @extends flexberry.uml.FlatMessage
+  @extends flexberry.uml.Link
   @namespace flexberry.uml
   @constructor
 */
