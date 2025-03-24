@@ -6,7 +6,7 @@ import joint from 'npm:jointjs';
 
 import FdUmlLink from './fd-uml-link';
 import { Link } from './fd-uml-link';
-import { EmptyView } from './links-view/fd-empty-view';
+import { RoleView } from './links-view/fd-role-view';
 
 /**
   An object that describes an aggregation link on the UML diagram.
@@ -39,8 +39,9 @@ export default FdUmlLink.extend({
     @method JointJS
   */
   JointJS() {
-    let properties = this.getProperties('id', 'source', 'target', 'labels');
+    let properties = this.getProperties('id', 'source', 'target', 'vertices', 'labels');
     properties.objectModel = this;
+    properties.centredAnchor = true;
     return new ProcedureCall(properties);
   },
 });
@@ -56,47 +57,19 @@ export default FdUmlLink.extend({
 */
 export let ProcedureCall = Link.define('flexberry.uml.sequencediagramProcedureCall', {
   attrs: {
-    '.marker-source': { d: 'M 20 0 L 0 10 L 20 20 z', fill: 'black' }
-  },
-  labels: [{
-    position: { distance: 0.05, offset: -12 }, attrs: { text: { text: '' } } //endMultiplicity
-  }, {
-    position: { distance: 0.95, offset: -12 }, attrs: { text: { text: '' } } //startMultiplicity
-  }, {
-    textAnchor: 'middle', attrs: { text: { text: '' } } //description
-  }, {
-    position: { distance: 0.05, offset: 12 }, attrs: { text: { text: '' } } //endRoleTxt
-  }, {
-    position: { distance: 0.95, offset: 12 }, attrs: { text: { text: '' } } //startRoleTxt
-  }]
-}, {
-  setLabelText: function (label, text) {
-    // eslint-disable-next-line no-console
-    console.log(`label: ${label}; text: ${text}`);
-    switch (label) {
-      case 'startMultiplicity':
-        this.label(0, { attrs: { text: { text: text } } });
-        break;
-      case 'startRole':
-        this.label(1, { attrs: { text: { text: text } } });
-        break;
-      case 'description':
-        this.label(2, { attrs: { text: { text: text } } });
-        break;
-      case 'endRole':
-        this.label(3, { attrs: { text: { text: text } } });
-        break;
-      case 'endMultiplicity':
-        this.label(4, { attrs: { text: { text: text } } });
-        break;
-      default:
-        // eslint-disable-next-line no-console
-        console.log('ERROR - choose correct label name');
-        break;
-    }
-
-    return;
+    '.marker-target': { d: 'M 20 0 L 0 10 L 20 20 z', fill: 'black' },
+    text: { visibility: 'hidden' },
+    rect: { visibility: 'hidden' }
   }
+}, {
+  getLabelDistance: function (labelName) {
+    switch (labelName) {
+      case 'endRole':
+        return -30;
+      case 'description':
+        return 0.5;
+    }
+  },
 });
 
-joint.shapes.flexberry.uml.ProcedureCallView = EmptyView;
+joint.shapes.flexberry.uml.sequencediagramProcedureCallView = RoleView;
