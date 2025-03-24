@@ -324,8 +324,10 @@ export let EmptyView = joint.dia.LinkView.extend({
     const objectModel = this.model.get('objectModel');
     const oldObjectModel = this.oldVerticesValue;
     const vertices = objectModel.get('vertices');
-    if (JSON.stringify(oldObjectModel.vertices) !== JSON.stringify(vertices)) {
-      this.triggerHistoryStep('vertices', vertices, oldObjectModel.vertices);
+    const oldVertices = oldObjectModel ? oldObjectModel.vertices : A();
+
+    if (JSON.stringify(oldVertices) !== JSON.stringify(vertices)) {
+      this.triggerHistoryStep('vertices', vertices, oldVertices);
     }
 
     /*if (JSON.stringify(oldObjectModel.source) !== JSON.stringify(objectModel.get('source')) ||

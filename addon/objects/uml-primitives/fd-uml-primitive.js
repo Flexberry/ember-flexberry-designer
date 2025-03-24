@@ -82,6 +82,7 @@ joint.connectionPoints.toPointConnection = function(endPathSegmentLine, endView)
   let isNoneTargetId = isNone(targetId);
   let isNoneSourceId = isNone(sourceId);
   let verticesLength = objectModel.get('vertices.length');
+
   if (sourceId === targetId) {
     if (verticesLength > 1) {
       let points = objectModel.get('vertices');

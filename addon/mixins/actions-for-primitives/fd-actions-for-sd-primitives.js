@@ -4,10 +4,10 @@ import fdSequenceActor from 'ember-flexberry-designer/objects/uml-primitives/fd-
 import fdSequenceDiagramObject from 'ember-flexberry-designer/objects/uml-primitives/fd-uml-sequence-object';
 import fdSequenceDiagramActiveObject from 'ember-flexberry-designer/objects/uml-primitives/fd-uml-sequence-active-object';
 import fdInScope from 'ember-flexberry-designer/objects/uml-primitives/fd-uml-sequence-in-scope';
-import { Terminator } from '../../objects/uml-primitives/fd-uml-terminator';
+import Terminator from '../../objects/uml-primitives/fd-uml-terminator';
 import ProcedureCall from '../../objects/uml-primitives/fd-uml-procedure-call';
 import { FlatMessage } from '../../objects/uml-primitives/fd-uml-flat-message';
-import { AsyncMessage } from '../../objects/uml-primitives/fd-uml-async-message';
+import AsyncMessage from '../../objects/uml-primitives/fd-uml-async-message';
 import { ReturnMessage } from '../../objects/uml-primitives/fd-uml-return-message';
 import TimeConstraint from '../../objects/uml-primitives/fd-uml-time-constraint';
 import { getJsonForElement, getJsonForLink } from '../../utils/get-json-for-diagram';
@@ -87,13 +87,21 @@ export default Mixin.create({
       @param {jQuery.Event} e event.
      */
     addTerminator(e) {
-      this.createObjectData((function(x, y) {
-        let newTerminatorObject = new Terminator({
-          position: { x: x, y: y }
-        });
+      this.createObjectData((function(x, y, parentPrimitive) {
+        let jsonObject = getJsonForElement(
+          'STORMCASE.UML.sd.Terminator, UMLSD',
+          { x, y },
+          { width: 20, height: 20 },
+          { Name: '' },
+          { ConnectedPrimitive : { $ref: parentPrimitive } }
+        );
 
-        return newTerminatorObject;
-      }).bind(this), e);
+        let terminatorObject = Terminator.create({ primitive: jsonObject });
+
+        this._addToPrimitives(terminatorObject);
+
+        return terminatorObject.JointJS();
+      }).bind(this), e, A(['flexberry.uml.sequencediagramActiveObject', 'flexberry.uml.sequencediagramObject']));
     },
 
     /**
@@ -151,15 +159,23 @@ export default Mixin.create({
      */
     addAsyncMessage(e) {
       this.createLinkData((function(linkProperties) {
-        let newAsyncMessageObject = new AsyncMessage({
-          source: {
-            id: linkProperties.source
-          },
-          target: {
-            id: linkProperties.target
-          },
-          vertices: linkProperties.points || A()
-        });
+        let jsonObject = getJsonForLink(
+          'STORMCASE.UML.sd.AsyncMessage, UMLSD',
+          linkProperties.source,
+          null,
+          linkProperties.target,
+          null,
+          A(),
+          { Name: '', LeftText: '', RightText: '' },
+          { NamePos: 0.0, InitialMultiplicity: 1.0 }
+        );
+
+        let asyncMessageObject = AsyncMessage.create({ primitive: jsonObject });
+
+        asyncMessageObject.set('vertices', linkProperties.points || A());
+        this._addToPrimitives(asyncMessageObject);
+
+        let newAsyncMessageObject = asyncMessageObject.JointJS();
 
         return newAsyncMessageObject;
       }).bind(this), e, A(['flexberry.uml.sequencediagramActiveObject', 'flexberry.uml.sequencediagramObject', 'flexberry.uml.SequenceDiagramActor']));
