@@ -7,6 +7,7 @@ import { DescriptionView } from './links-view/fd-description-view';
 
 import { isNone } from '@ember/utils';
 
+import $ from 'jquery';
 import joint from 'npm:jointjs';
 
 /**
@@ -43,6 +44,57 @@ export let Connection = Dependency.define('flexberry.uml.Connection', {
 });
 
 joint.shapes.flexberry.uml.ConnectionView = DescriptionView.extend({
+  template: [
+    '<div class="uml-link-inputs">',
+    '<textarea class="description-input" rows="1"></textarea>',
+    '<div class="input-buffer"></div>',
+    '</div>'
+  ].join(''),
+
+  initialize: function() {
+    DescriptionView.prototype.initialize.apply(this, arguments);
+
+    // Prevent paper from handling pointerdown.
+    this.$box.find('textarea').on('mousedown click', function(evt) {
+      evt.stopPropagation();
+    });
+
+    this.$box.find('.description-input').on('input', function (evt) {
+      this.setRows(evt);
+    }.bind(this));
+
+    this.$box.find('.description-input').on('change', function (evt) {
+      this.setRows(evt);
+    }.bind(this));
+
+    this.setInputValues();
+  },
+
+  setRows: function(evt) {
+    const $textarea = $(evt.currentTarget);
+    const textareaText = $textarea.val();
+    const rows = textareaText.split(/[\n\r|\r|\n]/);
+    $textarea.prop('rows', rows.length);
+  },
+
+  setInputValues: function() {
+    const objectModel = this.model.get('objectModel');
+    const classNameInput = this.$box.find('.description-input');
+    classNameInput.prop('rows', objectModel.get('description').split(/[\n\r|\r|\n]/).length || 1);
+  },
+
+  updateInputPosition(index, selector) {
+    const position = this.getLabelCoordinates(this.model.label(index).position);
+    const textarea = this.$box.find(selector)[0];
+    const textWidth = textarea.scrollWidth;
+
+    $(this.$box.find(selector)).css({
+      left: position.x - textWidth / 2,
+      top: position.y - textarea.scrollHeight / 2,
+      transform: 'rotate(' + (this.model.get('angle') || 0) + 'deg)'
+    });
+  },
+  
   setColors() {
     DescriptionView.prototype.setColors.apply(this, arguments);
 

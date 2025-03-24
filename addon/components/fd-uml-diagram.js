@@ -518,7 +518,7 @@ export default Component.extend(
     if (this.get('isCreatedObjectChild')) {
       this._addChildPrimitiveForClickedElement(options);
       return;
-    };
+    }
 
     if (this.get('currentTargetElementIsPointer') || this.get('isCurrentTargetElementLink')) {
       this._addLinkForClickedElement(options);
