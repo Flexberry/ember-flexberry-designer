@@ -4,6 +4,7 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 ### Added
+* Added text wrapping to the next line when entering text into a transition element in a activity diagram
 * Added a procedure call link to a sequence diagram
 
 ### Fixed
