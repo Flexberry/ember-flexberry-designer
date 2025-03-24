@@ -2,49 +2,49 @@
 All notable changes to this project will be documented in this file.
 
 
-## [Unreleased]
+## [1.1.2-beta.4] - 2025-03-24
 ### Added
 * Added text wrapping to the next line when entering text into a transition element in a activity diagram
 * Added a procedure call link to a sequence diagram
 
 ### Fixed
- * Fix for error in activity diagram when editing links
- * Fix for saving error in collaboration diagram
- * Fixed default size for Object and Active Object on sequence diagram 
- * Fixed In Scope on sequence diagram
- * Fixed UML Primitive behavior when resizing
- * Added Terminator element to Sequence Diagram.
- * Added Async Message link element to Sequence Diagram
- * Added Flat Message link element to Sequence Diagram
- * Added Return Message link element to Sequence Diagram
+* Fix for error in activity diagram when editing links
+* Fix for saving error in collaboration diagram
+* Fixed default size for Object and Active Object on sequence diagram 
+* Fixed In Scope on sequence diagram
+* Fixed UML Primitive behavior when resizing
+* Added Terminator element to Sequence Diagram.
+* Added Async Message link element to Sequence Diagram
+* Added Flat Message link element to Sequence Diagram
+* Added Return Message link element to Sequence Diagram
 
 ## [1.1.2-beta.3] - 2025-03-10
 ### Fixed
- * Removed underlining of text in the state element
- * Changed loading detail with head flag to true at view editing.
- * Fixed selecting the same stereotype twice
- * Fixed drawing of links in Firefox
- * Added text wrapping to the next line when entering text into a transition element in a state diagram and a connection element in a deployment diagram
- * Fixed pointer down on usecase actor.
- * Removed underline from labels in deployment diagram
- * Fixed Actor and Object on sequence diagram
- * Added Time Constraint element to Sequence Diagram.
- * Fixed Active Object on sequence diagram
+* Removed underlining of text in the state element
+* Changed loading detail with head flag to true at view editing.
+* Fixed selecting the same stereotype twice
+* Fixed drawing of links in Firefox
+* Added text wrapping to the next line when entering text into a transition element in a state diagram and a connection element in a deployment diagram
+* Fixed pointer down on usecase actor.
+* Removed underline from labels in deployment diagram
+* Fixed Actor and Object on sequence diagram
+* Added Time Constraint element to Sequence Diagram.
+* Fixed Active Object on sequence diagram
 
 ## [1.1.2-beta.2] - 2024-09-26
 ### Added
 * Added set vertices when link drawing.
 
 ### Fixed
- * Fixed referenceCount decrement when deleting all primitives from diagram.
- * Fixed the swimlane separator on the activity diagram.
- * Fixed diagram edit after class delete.
- * Fixed class sorting when name is empty.
+* Fixed referenceCount decrement when deleting all primitives from diagram.
+* Fixed the swimlane separator on the activity diagram.
+* Fixed diagram edit after class delete.
+* Fixed class sorting when name is empty.
 
 ## [1.1.2-beta.1] - 2024-09-04
 ### Fixed
- * Fixed referenceCount decrement on diagrams
- * Fixed std primitives
+* Fixed referenceCount decrement on diagrams
+* Fixed std primitives
 
 ## [1.1.1] - 2024-07-01
 ### Added
