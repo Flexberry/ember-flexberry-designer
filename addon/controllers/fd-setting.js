@@ -437,12 +437,16 @@ export default Controller.extend(FdSheetCloseConfirm, FdReadonlyProjectMixin, Fd
 
       this.get('appState').loading();
       adapter.callFunction('ValidateStage', data, null, { withCredentials: true }).then((result) => {
-        if (isBlank(result.value)) {
+        const { validationMessages, isEmptyProject } = JSON.parse(result.value);
+        if(isEmptyProject) {
+          const validateEmptyHeader = i18n.t('forms.fd-setting.custom-message.validate-empty-header');
+          this.get('fdDialogService').showCustomMessage('', validateEmptyHeader, false);
+        } else if (isBlank(validationMessages)) {
           const validateOkHeader = i18n.t('forms.fd-setting.custom-message.validate-ok-header');
           this.get('fdDialogService').showCustomMessage('', validateOkHeader, false);
         } else {
           this.get('fdDialogService').showCustomMessage(
-            result.value,
+            validationMessages,
             i18n.t('forms.fd-navigation.custom-message.validate-header').toString(),
             true,
             i18n.t('forms.fd-navigation.custom-message.validate-approve').toString(),
@@ -454,7 +458,7 @@ export default Controller.extend(FdSheetCloseConfirm, FdReadonlyProjectMixin, Fd
         }
       }).catch(() => {
         this.get('fdDialogService').showErrorMessage({ message: this.get('i18n').t('forms.fd-navigation.create-prototype-error') });
-      }).finally(()=> this.get('appState').reset());
+      }).finally(() => this.get('appState').reset());
     }
   }
 });

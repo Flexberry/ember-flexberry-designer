@@ -85,5 +85,6 @@ export default {
   },
   'custom-message': {
     'validate-ok-header': 'No correction required',
+    'validate-empty-header': 'Project is empty'
   }
 };
