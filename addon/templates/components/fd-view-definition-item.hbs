@@ -5,13 +5,13 @@
         <img class="property-image" alt="master" src="assets/images/master.bmp">
       </div>
     {{/if}}
-    
+
     {{#if (eq type 'isDetail')}}
       <div class="property-image-wrapper">
         <img class="property-image" alt="detail" src="assets/images/datail.png">
       </div>
     {{/if}}
-    
+
     {{#if (eq type 'isProperty')}}
       <div class="property-image-wrapper">
         <img class="property-image" alt="attribute" src="assets/images/attribute.bmp">
@@ -19,7 +19,7 @@
     {{/if}}
     <div class="twelve wide column">
       {{flexberry-textbox
-        value=definition.name
+        value=text
         readonly=true
         class='fluid'
         placeholder=(t "components.fd-view-definition-item.name-placeholder")

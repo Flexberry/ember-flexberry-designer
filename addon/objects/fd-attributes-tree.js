@@ -99,4 +99,12 @@ export default EmberObject.extend({
     @type Boolean
   */
   external: false,
+
+  /**
+    Stored property.
+
+    @property stored
+    @type Boolean
+  */
+  stored: true
 });

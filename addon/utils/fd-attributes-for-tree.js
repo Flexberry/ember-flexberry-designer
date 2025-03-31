@@ -107,6 +107,7 @@ let getClassTreeNode = function (tree, classData, rootId, addInText) {
         typeNode: attribute.get('type'),
         idNode: idClass,
         own: own,
+        stored: attribute.get('stored')
       }));
     });
   });
@@ -144,6 +145,7 @@ let getAssociationTreeNode = function (tree, associationData, jsTreeId, rootId, 
       id: jsTreeId + index,
       idNode: idMaster,
       own: own,
+      stored: startClass.get('stored'),
       state: {
         loaded: false
       }
@@ -182,6 +184,7 @@ let getAggregationTreeNode = function (tree, aggregationData, rootId, addInText)
       typeNode: 'detail',
       idNode: idDetail,
       own: own,
+      stored: endClass.get('stored')
     }));
   });
 

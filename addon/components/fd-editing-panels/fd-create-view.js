@@ -138,6 +138,45 @@ export default Component.extend(FdReadonlyModeMixin, {
   }),
 
   /**
+    Definition Array for view.
+
+    @property definitionArray
+    @type Array
+  */
+  definitionArray: computed('view.definitionArray', function() {
+    let model = this.get('model');
+    let definitionArray = this.get('view.definitionArray');
+    if (isNone(model) || isNone(definitionArray)) {
+      return null;
+    }
+
+    let store = this.get('store');
+    let recordsDevClass = store.peekAll('fd-dev-class');
+
+    definitionArray.forEach(definition => {
+      let definitionPath = get(definition, 'name')
+      let definitionName = definitionPath.split('.').at(-1);
+      let definitionParentName = definitionPath.split('.').at(-2);
+      let definitionParent = recordsDevClass.filterBy('name', definitionParentName).at(0) || this.get('model');
+
+      let dataForBuildTree = getDataForBuildTree(store, definitionParent.get('id'));
+      let attributes = getClassTreeNode(A(), dataForBuildTree.classes);
+
+      let attribute = attributes.find((attr) => get(attr, 'name') === definitionName);
+      if(!isNone(attribute)) {
+        definition.set('stored', get(attribute, 'stored'));
+      } else {
+        let attributeClass = recordsDevClass.filterBy('name', definitionName).at(0);
+        if(!isNone(attributeClass)) {
+          definition.set('stored', get(attributeClass, 'stored'));
+        }
+      }
+    });
+
+    return definitionArray;
+  }),
+
+  /**
     tree data.
 
     @property tree
@@ -169,6 +208,7 @@ export default Component.extend(FdReadonlyModeMixin, {
     let treeMasters = getAssociationTreeNode(treeAttributes, dataForBuildTree.associations, 'node_');
     let treeDetails = getAggregationTreeNode(treeMasters, dataForBuildTree.aggregations);
     this.setDetailView(dataForBuildTree.aggregations);
+    this.formatNodeNamesByStorageFlag(treeDetails);
 
     getExternalTreeNode(treeDetails, dataForBuildTree.externalParent, getOwner(this).lookup('adapter:application')).then(() => {
       const jstree = this.get('treeObject').jstree(true);
@@ -288,6 +328,7 @@ export default Component.extend(FdReadonlyModeMixin, {
     let dataForBuildTree = getDataForBuildTree(store, get(node, 'idNode'));
     let childrenAttributes = getClassTreeNode(A(), dataForBuildTree.classes);
     let childrenNode = getAssociationTreeNode(childrenAttributes, dataForBuildTree.associations, get(node, 'id'));
+    this.formatNodeNamesByStorageFlag(childrenNode);
 
     return getExternalTreeNode(childrenNode, dataForBuildTree.externalParent, getOwner(this).lookup('adapter:application'));
   },
@@ -295,6 +336,19 @@ export default Component.extend(FdReadonlyModeMixin, {
   loadDataNode: computed(function() {
     return this._loadDataNode.bind(this);
   }),
+
+  /**
+    Formats names with '/' prefix for non stored properties.
+
+    @method setUnstoredPropertyName
+  */
+  formatNodeNamesByStorageFlag: function(tree) {
+    tree.forEach((node) => {
+      const propertyName = node.get('name');
+      const propertyText = (get(node, 'stored') ? '' : '/') + propertyName;
+      node.set('text', propertyText);
+    })
+  },
 
   /**
     Create propertyName for view.

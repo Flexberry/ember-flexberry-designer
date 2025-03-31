@@ -78,6 +78,19 @@ export default Component.extend({
   }),
 
   /**
+    Text definition property.
+
+    @property text
+    @type String
+  */
+  text: computed('definition.name', function() {
+    const definitionName = this.get('definition.name');
+    const isStored = this.get('definition.stored');
+
+    return (isStored ? '' : '/') + definitionName;
+  }),
+
+  /**
     Сhecks for matching the desired string
 
     @method visible
