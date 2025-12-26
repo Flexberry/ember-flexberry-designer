@@ -21,7 +21,7 @@ export default {
   'Csv': 'Save diagrams',
   'Wmf': 'Generating documentation from diagrams',
   'ConnectionString': 'Connection string',
-  'Scaffolding ': 'Generating a basic project',
+  'Scaffolding': 'Generating a basic project',
   'InitFromTemplate': 'Creating project on Template',
   'TemplateDirectoryPath': 'Path to the template folder'
 };
