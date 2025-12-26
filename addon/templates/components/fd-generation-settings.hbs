@@ -13,7 +13,7 @@
           <div class="content">
             {{#each-in items as |label value|}}
             {{#if (and (not-eq label "className") (not-eq label "caption"))}}
-              {{#if (not-eq label "ConnectionString")}}
+              {{#if (and (not-eq label "ConnectionString") (not-eq label "TemplateDirectoryPath"))}}
               <div class="field">
                 {{flexberry-checkbox
                   value=value
@@ -24,7 +24,7 @@
               {{else}}
                 {{flexberry-field
                   value=value
-                  label=(t 'components.fd-generation-settings.ConnectionString')
+                  label=(t (concat "components.fd-generation-settings." label))
                   change=(action 'selectGenSetting' label items)
                 }}
               {{/if}}

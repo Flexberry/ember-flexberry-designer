@@ -23,7 +23,7 @@ export default Route.extend(FdShareLoadData, {
       "Validate": false,
       "Frontend": {
         "EmberJs": {
-          "EmberApp": true,
+          "EmberApp": false,
           "EmberAddon": false,
           "Build": false,
           "GitClone": false,
@@ -38,11 +38,11 @@ export default Route.extend(FdShareLoadData, {
       },
       "Backend": {
         "AspNet": false,
-        "AspNetCore": true,
+        "AspNetCore": false,
         "Java": false
       },
       "Docker": {
-        "Dockerfile": true,
+        "Dockerfile": false,
         "DockerfileAutobuild": false,
         "DockerBuildShellScript": false,
         "DockerSwarm": false
@@ -55,7 +55,7 @@ export default Route.extend(FdShareLoadData, {
       "Storage": {
         "Mssql": {
           "DiffSql": false,
-          "FullSql": true,
+          "FullSql": false,
           "LiquibaseSql": false,
           "Security": false,
           "AdminUser": false,
@@ -76,7 +76,7 @@ export default Route.extend(FdShareLoadData, {
         },
         "Oracle": {
           "DiffSql": false,
-          "FullSql": true,
+          "FullSql": false,
           "ConnectionString": null
         },
         "Access": {
@@ -94,6 +94,10 @@ export default Route.extend(FdShareLoadData, {
         "Json": false,
         "Jdl": false,
         "PlantUML": false
+      },
+      "AppScaffolding": {
+        "InitFromTemplate": true,
+        "TemplateDirectoryPath": ".\\tmp"
       }
     }
   }),
