@@ -28,7 +28,7 @@ export default Route.extend(FdShareLoadData, {
           "Build": false,
           "GitClone": false,
           "GitPush": false,
-          "GhPagesPush": true,
+          "GhPagesPush": false,
           "EmberMetadata": false
         },
         "ApacheCordova": {
