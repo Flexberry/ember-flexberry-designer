@@ -1,6 +1,9 @@
 # Ember Flexberry Designer Changelog
 All notable changes to this project will be documented in this file.
 
+## [1.1.2-beta.5] - 2025-12-27
+### Added
+* Update fdg template
 
 ## [1.1.2-beta.4] - 2025-03-24
 ### Added
