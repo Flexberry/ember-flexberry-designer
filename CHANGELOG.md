@@ -1,6 +1,9 @@
 # Ember Flexberry Designer Changelog
 All notable changes to this project will be documented in this file.
 
+## [Unreleased]
+### Added
+* Added the stage ID to queryParams when navigating between sitemap items.
 
 ## [1.1.2-beta.4] - 2025-03-24
 ### Added
