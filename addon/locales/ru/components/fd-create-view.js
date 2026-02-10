@@ -23,4 +23,7 @@ export default {
     'load-on-load-agregator': 'Загрузить вместе с шапкой',
     load: 'Загрузка'
   },
+  'arrow-right': 'Добавить в представление',
+  'arrow-up': 'Переместить выше',
+  'arrow-down': 'Переместить ниже'
 };

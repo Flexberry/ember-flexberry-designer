@@ -10,13 +10,13 @@
   </div>
   <div class="fd-view-buttons">
     <div class="ui vertical buttons">
-      <button class="ui button icon {{if (and (not readonly) selectedNode) '' 'disabled'}}" {{action 'addNodeInDefinition'}}>
+      <button class="ui button icon {{if (and (not readonly) selectedNode) '' 'disabled'}}" {{action 'addNodeInDefinition'}} title="{{t 'components.fd-create-view.arrow-right'}}">
         <i class="arrow right icon"></i>
       </button>
-      <button class="ui button icon {{if (and (not readonly) selectedProperty) '' 'disabled'}}" {{action 'changeOrderDefinition' true}}>
+      <button class="ui button icon {{if (and (not readonly) selectedProperty) '' 'disabled'}}" {{action 'changeOrderDefinition' true}} title="{{t 'components.fd-create-view.arrow-up'}}">
         <i class="arrow up icon"></i>
       </button>
-      <button class="ui button icon {{if (and (not readonly) selectedProperty) '' 'disabled'}}" {{action 'changeOrderDefinition' false}}>
+      <button class="ui button icon {{if (and (not readonly) selectedProperty) '' 'disabled'}}" {{action 'changeOrderDefinition' false}} title="{{t 'components.fd-create-view.arrow-down'}}">
         <i class="arrow down icon"></i>
       </button>
     </div>
