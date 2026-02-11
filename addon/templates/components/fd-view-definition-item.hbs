@@ -25,8 +25,8 @@
     </div>
     <div class="four wide column right aligned buttons">
       <button class="ui basic button icon {{if readonly 'disabled' ''}}" {{action 'changeVisible' bubbles=false}} title="{{if definition.visible
-          (t 'components.fd-view-definition-item.guideline-hide')
-          (t 'components.fd-view-definition-item.guideline-show') }}">
+          (t 'components.fd-view-definition-item.guideline-show')
+          (t 'components.fd-view-definition-item.guideline-hide') }}">
         <i class="{{if definition.visible 'icon-guideline-show' 'icon-guideline-hide'}} icon"></i>
       </button>
       <button class="ui basic button icon {{if readonly 'disabled' ''}}" {{action delete definition bubbles=false}} title="{{t 'components.fd-view-definition-item.guideline-delete'}}">

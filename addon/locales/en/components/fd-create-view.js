@@ -23,4 +23,7 @@ export default {
     'load-on-load-agregator': 'Load on load agregator',
     load: 'Loading'
   },
+  'add-to-view': 'Add to view',
+  'move-up': 'Move up',
+  'move-down': 'Move down'
 };
