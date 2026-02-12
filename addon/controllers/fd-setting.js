@@ -439,8 +439,10 @@ export default Controller.extend(FdSheetCloseConfirm, FdReadonlyProjectMixin, Fd
       adapter.callFunction('ValidateStage', data, null, { withCredentials: true }).then((result) => {
         const { validationMessages, isEmptyProject } = JSON.parse(result.value);
         if(isEmptyProject) {
-          const validateEmptyHeader = i18n.t('forms.fd-setting.custom-message.validate-empty-header');
-          this.get('fdDialogService').showCustomMessage('', validateEmptyHeader, false);
+          this.get('fdDialogService').showCustomMessage(
+            i18n.t('forms.fd-navigation.custom-message.validate-empty-message'),
+            i18n.t('forms.fd-navigation.custom-message.validate-empty-header'),
+            false);
         } else if (isBlank(validationMessages)) {
           const validateOkHeader = i18n.t('forms.fd-setting.custom-message.validate-ok-header');
           this.get('fdDialogService').showCustomMessage('', validateOkHeader, false);

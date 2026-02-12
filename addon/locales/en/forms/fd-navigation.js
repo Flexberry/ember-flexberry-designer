@@ -14,6 +14,7 @@ export default {
     'lock-stage': 'One or more project objects are locked, it is not possible to start the corrector',
     'corrector-header': 'Project corrected',
     'corrector-message': 'Need to reload the project to load the changes:',
-    'validate-empty-header': 'Project is empty'
+    'validate-empty-header': 'Project is empty',
+    'validate-empty-message': 'To automatically create projections, forms and application, add classes via «Application model» or «Diagrams»',
   },
 };

@@ -248,8 +248,10 @@ export default Controller.extend(FdSheetCloseConfirm, FdReadonlyProjectMixin, Fd
         if (isEmptyProject) {
           this.get('appState').reset();
 
-          const validateEmptyHeader = i18n.t('forms.fd-navigation.custom-message.validate-empty-header');
-          this.get('fdDialogService').showCustomMessage('', validateEmptyHeader, false);
+          this.get('fdDialogService').showCustomMessage(
+            i18n.t('forms.fd-navigation.custom-message.validate-empty-message'),
+            i18n.t('forms.fd-navigation.custom-message.validate-empty-header'),
+            false);
         } else if (isBlank(validationMessages)) {
           FdPreloadStageMetadata.call(this, this.get('store'), this.get('currentProjectContext').getCurrentStage()).then(() => {
             this.set('model', this.get('modelFunction')());

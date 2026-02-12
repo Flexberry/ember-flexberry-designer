@@ -85,6 +85,7 @@ export default {
   },
   'custom-message': {
     'validate-ok-header': 'No correction required',
-    'validate-empty-header': 'Project is empty'
+    'validate-empty-header': 'Project is empty',
+    'validate-empty-message': 'To automatically create projections, forms and application, add classes via «Application model» or «Diagrams»',
   }
 };
