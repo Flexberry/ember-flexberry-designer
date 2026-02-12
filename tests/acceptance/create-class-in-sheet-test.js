@@ -1,4 +1,4 @@
-import { module, skip } from 'qunit';
+import { module, test } from 'qunit';
 import { run } from '@ember/runloop';
 import startApp from 'dummy/tests/helpers/start-app';
 import executeTestWithData from 'dummy/tests/helpers/execute-test-with-data';
@@ -28,7 +28,7 @@ module('Acceptance | fd-class-sheet | create class', {
   }
 });
 
-skip('create new empty class', (assert) => {
+test('create new empty class', (assert) => {
   let done = assert.async();
   assert.expect(5);
 
