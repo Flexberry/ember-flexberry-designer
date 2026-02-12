@@ -5,6 +5,10 @@ All notable changes to this project will be documented in this file.
 ### Added
 * Added multiple inheritance from externalinterface
 
+### Changed
+* Added message for view delete
+* Added titles for buttons in view.
+
 ## [1.1.2-beta.6] - 2025-02-04
 ### Changed
 * Update ember-flexberry to 3.13.1.
