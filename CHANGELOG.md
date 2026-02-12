@@ -1,6 +1,21 @@
 # Ember Flexberry Designer Changelog
 All notable changes to this project will be documented in this file.
 
+## [Unreleased]
+### Added
+* Added multiple inheritance from externalinterface
+
+### Changed
+* Added message for view delete
+* Added titles for buttons in view.
+
+## [1.1.2-beta.6] - 2025-02-04
+### Changed
+* Update ember-flexberry to 3.13.1.
+
+## [1.1.2-beta.5] - 2025-12-27
+### Added
+* Update fdg template
 
 ## [1.1.2-beta.4] - 2025-03-24
 ### Added
@@ -10,7 +25,7 @@ All notable changes to this project will be documented in this file.
 ### Fixed
 * Fix for error in activity diagram when editing links
 * Fix for saving error in collaboration diagram
-* Fixed default size for Object and Active Object on sequence diagram 
+* Fixed default size for Object and Active Object on sequence diagram
 * Fixed In Scope on sequence diagram
 * Fixed UML Primitive behavior when resizing
 * Added Terminator element to Sequence Diagram.

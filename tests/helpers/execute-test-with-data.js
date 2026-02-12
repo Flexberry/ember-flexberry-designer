@@ -3,9 +3,9 @@ import uuid from 'npm:node-uuid';
 import { resolve } from 'rsvp';
 
 export default function executeTestWithData(store, assert, done, callbackGetTestData, callbackTest) {
-  let repository;
+  let testStage;
   return createTestStage(store).then((stage) => {
-    repository = stage.get('configuration.project.repository');
+    testStage = stage;
     if (callbackGetTestData == null) {
       return resolve(stage);
     }
@@ -19,7 +19,18 @@ export default function executeTestWithData(store, assert, done, callbackGetTest
   // eslint-disable-next-line no-console
   .catch((e) => console.log(e, e.message))
   .finally(() => {
-    return repository.destroyRecord().finally(() => {
+    let modelsForBatchUpdate = A([
+      testStage,
+      testStage.get('configuration'),
+      testStage.get('configuration.project'),
+      testStage.get('configuration.project.repository')
+    ]).map((a) => {
+      a.deleteRecord();
+
+      return a;
+    });
+
+    return store.batchUpdate(modelsForBatchUpdate).finally(() => {
       done();
     });
   });

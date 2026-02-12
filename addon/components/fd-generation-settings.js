@@ -66,6 +66,7 @@ export default Component.extend({
       'Docs': i18n.t('components.fd-generation-settings.Docs').string,
       'Csv': i18n.t('components.fd-generation-settings.Csv').string,
       'Wmf': i18n.t('components.fd-generation-settings.Wmf').string,
+      'InitFromTemplate': i18n.t('components.fd-generation-settings.InitFromTemplate').string,
     }
   }),
 
@@ -113,6 +114,10 @@ export default Component.extend({
       }
       case 'Docs': {
         set(items, 'caption', i18n.t('components.fd-generation-settings.Docs').string);
+        break;
+      }
+      case 'AppScaffolding': {
+        set(items, 'caption', i18n.t('components.fd-generation-settings.Scaffolding').string);
         break;
       }
     }
@@ -184,7 +189,7 @@ export default Component.extend({
       let propName = getKeyInObj(generationItemsTitles, label, false) || label;
       let settings = get(generationItems, keyGroup);
 
-      if (propName === "ConnectionString") {
+      if (propName === "ConnectionString" || propName === "TemplateDirectoryPath") {
         set(settings, propName, value.target.value);
       } else {
         set(settings, propName, value.checked);
