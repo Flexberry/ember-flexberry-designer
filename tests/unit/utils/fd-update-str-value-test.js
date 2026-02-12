@@ -37,6 +37,7 @@ test('updateStrByObjects implementation attributes', function(assert) {
   run(() => {
     let store = App.__container__.lookup('service:store');
     let cls = store.createRecord('fd-dev-class', {
+      name: 'test',
       stereotype: '«implementation»'
     });
 
@@ -70,6 +71,7 @@ test('updateStrByObjects implementation methods', function(assert) {
   run(() => {
     let store = App.__container__.lookup('service:store');
     let cls = store.createRecord('fd-dev-class', {
+      name: 'test',
       stereotype: '«implementation»'
     });
 
@@ -105,6 +107,7 @@ test('updateStrByObjects enumeration', function(assert) {
   run(() => {
     let store = App.__container__.lookup('service:store');
     let cls = store.createRecord('fd-dev-class', {
+      name: 'test',
       stereotype: '«enumeration»'
     });
 
