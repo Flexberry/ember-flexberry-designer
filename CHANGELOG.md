@@ -4,6 +4,7 @@ All notable changes to this project will be documented in this file.
 ## [Unreleased]
 ### Added
 * Added multiple inheritance from externalinterface
+* Added empty project check for 'Create projections, forms and application' and 'UML validator'
 
 ### Changed
 * Added message for view delete
