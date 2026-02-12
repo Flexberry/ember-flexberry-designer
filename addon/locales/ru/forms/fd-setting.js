@@ -85,7 +85,7 @@ export default {
   },
   'custom-message': {
     'validate-ok-header': 'Коррекция не требуется',
-    'validate-empty-header': 'Проект пустой',
-    'validate-empty-message': 'Для автоматического создания представлений форм и приложения добавьте классы через «Модель приложения» или «Диаграммы»',
+    'validate-empty-header': 'Проект пуст',
+    'validate-empty-message': 'Добавьте классы через «Модель приложения» или «Диаграммы»',
   }
 };
