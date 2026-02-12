@@ -1,7 +1,10 @@
 # Ember Flexberry Designer Changelog
 All notable changes to this project will be documented in this file.
 
-## [1.1.2-beta.7] - 2026-02-10
+## [Unreleased]
+### Added
+* Added multiple inheritance from externalinterface
+
 ### Changed
 * Added message for view delete
 * Added titles for buttons in view.
