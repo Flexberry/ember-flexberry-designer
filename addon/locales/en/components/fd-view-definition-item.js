@@ -3,5 +3,5 @@ export default {
   'caption-placeholder': 'Attribute caption',
   'attribute-show': 'Show',
   'attribute-hide': 'Hide',
-  'attribute-delete': 'Delete'
+  'attribute-delete': 'Delete',
 };

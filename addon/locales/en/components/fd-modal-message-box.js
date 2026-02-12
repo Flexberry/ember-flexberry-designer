@@ -7,5 +7,5 @@ export default {
   'custom-approve': 'Confirm action',
   'custom-deny': 'Undo action',
   'delete-text': 'Data will be deleted permanently. Are you sure ?',
-  'view-delete-text': 'View will be deleted permanently. Are you sure?'
+  'view-delete-text': 'View will be deleted permanently. Are you sure?',
 };

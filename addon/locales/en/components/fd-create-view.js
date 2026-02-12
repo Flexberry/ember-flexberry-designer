@@ -25,5 +25,5 @@ export default {
   },
   'add-to-view': 'Add to view',
   'move-up': 'Move up',
-  'move-down': 'Move down'
+  'move-down': 'Move down',
 };
