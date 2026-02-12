@@ -1,6 +1,10 @@
 # Ember Flexberry Designer Changelog
 All notable changes to this project will be documented in this file.
 
+## [Unreleased]
+### Added
+* Added multiple inheritance from externalinterface
+
 ## [1.1.2-beta.6] - 2025-02-04
 ### Changed
 * Update ember-flexberry to 3.13.1.
