@@ -1,4 +1,4 @@
-<div class="ui stackable grid fd-list">
+<div class="ui stackable grid fd-list absolute-dropdown">
 
   <div class="row">
     <div class="five wide column">
@@ -8,7 +8,7 @@
       {{flexberry-dropdown
         items=stageNames
         value=stageValue
-        class='compact'
+        class='compact search'
         onChange=(if deactivateActions '' (action "changeStageValue"))
         readonly=readonly
       }}
