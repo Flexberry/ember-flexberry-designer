@@ -110,6 +110,17 @@ export let EmptyView = joint.dia.LinkView.extend({
 
   updateBox() {
     this.updateInputsWidth(get(this, 'updateInputsArray'));
+
+    if (this.model.get('highlighted')) {
+      const id = this.model.get('highlightId');
+      if (!isNone(id)) {
+        const highlightView = joint.highlighters.stroke._views[id];
+
+        if (!isNone(highlightView) && !isNone(highlightView.el)) {
+        joint.Vectorizer(highlightView.el).attr('d', this.metrics.data);
+      }
+      }
+    }
   },
 
   updateInputsWidth(inputSelectors) {
