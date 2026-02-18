@@ -619,7 +619,9 @@ export default FdBaseSheet.extend(
           isExist = A(mapPrimitives).findBy('RepositoryObject', `{${r.get('id')}}`) ? true : false;
         }
 
-        return isExist && r.get('child.id') === rep.get('parent.id') && store.peekRecord('fd-dev-class', r.get('parent.id')).get('stereotype') !== '«interface»';
+        const rParentStereotype = store.peekRecord('fd-dev-class', r.get('parent.id')).get('stereotype');
+
+        return isExist && r.get('child.id') === rep.get('parent.id') && rParentStereotype !== '«interface»' && rParentStereotype !== '«externalinterface»';
       });
 
       if (newReps.length > 1) {

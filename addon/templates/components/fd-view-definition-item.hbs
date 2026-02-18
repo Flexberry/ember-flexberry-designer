@@ -5,13 +5,11 @@
         <img class="property-image" alt="master" src="assets/images/master.bmp">
       </div>
     {{/if}}
-
     {{#if (eq type 'isDetail')}}
       <div class="property-image-wrapper">
         <img class="property-image" alt="detail" src="assets/images/datail.png">
       </div>
     {{/if}}
-
     {{#if (eq type 'isProperty')}}
       <div class="property-image-wrapper">
         <img class="property-image" alt="attribute" src="assets/images/attribute.bmp">
@@ -26,10 +24,12 @@
       }}
     </div>
     <div class="four wide column right aligned buttons">
-      <button class="ui basic button icon {{if readonly 'disabled' ''}}" {{action 'changeVisible' bubbles=false}}>
+      <button class="ui basic button icon {{if readonly 'disabled' ''}}" {{action 'changeVisible' bubbles=false}} title="{{if definition.visible
+          (t 'components.fd-view-definition-item.attribute-hide')
+          (t 'components.fd-view-definition-item.attribute-show') }}">
         <i class="{{if definition.visible 'icon-guideline-show' 'icon-guideline-hide'}} icon"></i>
       </button>
-      <button class="ui basic button icon {{if readonly 'disabled' ''}}" {{action delete definition bubbles=false}}>
+      <button class="ui basic button icon {{if readonly 'disabled' ''}}" {{action delete definition bubbles=false}} title="{{t 'components.fd-view-definition-item.attribute-delete'}}">
         <i class="icon-guideline-delete icon"></i>
       </button>
     </div>
