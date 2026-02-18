@@ -117,8 +117,8 @@ export let EmptyView = joint.dia.LinkView.extend({
         const highlightView = joint.highlighters.stroke._views[id];
 
         if (!isNone(highlightView) && !isNone(highlightView.el)) {
-        joint.Vectorizer(highlightView.el).attr('d', this.metrics.data);
-      }
+          joint.Vectorizer(highlightView.el).attr('d', this.metrics.data);
+        }
       }
     }
   },
