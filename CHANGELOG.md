@@ -2,6 +2,9 @@
 All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
+### Fixed
+* Fixed "Element is no longer attached to DOM" error
+
 ### Added
 * Added the stage ID to queryParams when navigating between sitemap items.
 * Added multiple inheritance from externalinterface
