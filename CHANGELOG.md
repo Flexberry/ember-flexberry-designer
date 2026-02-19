@@ -1,6 +1,9 @@
 # Ember Flexberry Designer Changelog
 All notable changes to this project will be documented in this file.
 
+### Added
+* Add order in attribute. 
+
 ## [1.1.2-beta.6] - 2025-02-04
 ### Changed
 * Update ember-flexberry to 3.13.1.
