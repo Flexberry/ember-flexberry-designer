@@ -237,13 +237,22 @@ export default Controller.extend(FdSheetCloseConfirm, FdReadonlyProjectMixin, Fd
        @method actions.createPrototype
     */
     createPrototype() {
+      const i18n = this.get('i18n');
       const stage = this.get('currentProjectContext').getCurrentStageModel();
       const adapter = getOwner(this).lookup('adapter:application');
       const data = { project: stage.get('id') };
 
       this.get('appState').loading();
       adapter.callFunction('Prototype', data, null, { withCredentials: true }).then((result) => {
-        if (isBlank(result.value)) {
+        const { validationMessages, isEmptyProject } = JSON.parse(result.value);
+        if (isEmptyProject) {
+          this.get('appState').reset();
+
+          this.get('fdDialogService').showCustomMessage(
+            i18n.t('forms.fd-navigation.custom-message.validate-empty-message'),
+            i18n.t('forms.fd-navigation.custom-message.validate-empty-header'),
+            false);
+        } else if (isBlank(validationMessages)) {
           FdPreloadStageMetadata.call(this, this.get('store'), this.get('currentProjectContext').getCurrentStage()).then(() => {
             this.set('model', this.get('modelFunction')());
           }).finally(() => {
@@ -252,9 +261,8 @@ export default Controller.extend(FdSheetCloseConfirm, FdReadonlyProjectMixin, Fd
         } else {
           this.get('appState').reset();
 
-          const i18n = this.get('i18n');
           this.get('fdDialogService').showCustomMessage(
-            result.value,
+            validationMessages,
             i18n.t('forms.fd-navigation.custom-message.validate-header').toString(),
             true,
             i18n.t('forms.fd-navigation.custom-message.validate-approve').toString(),
