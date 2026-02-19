@@ -1,4 +1,4 @@
-import { module, skip } from 'qunit';
+import { module, test } from 'qunit';
 import { run } from '@ember/runloop';
 import startApp from 'dummy/tests/helpers/start-app';
 import executeTestWithData from 'dummy/tests/helpers/execute-test-with-data';
@@ -29,7 +29,7 @@ module('Acceptance | fd-diagram-sheet | create diagram', {
   }
 });
 
-skip('create new empty diagram', (assert) => {
+test('create new empty diagram', (assert) => {
   let done = assert.async();
   assert.expect(5);
 
@@ -94,7 +94,7 @@ skip('create new empty diagram', (assert) => {
   });
 });
 
-skip('create new diagram with class', (assert) => {
+test('create new diagram with class', (assert) => {
   let done = assert.async();
   assert.expect(11);
 
@@ -184,7 +184,7 @@ skip('create new diagram with class', (assert) => {
   });
 });
 
-skip('create new diagram with association', (assert) => {
+test('create new diagram with association', (assert) => {
   let done = assert.async();
   assert.expect(11);
 
@@ -293,7 +293,7 @@ skip('create new diagram with association', (assert) => {
   });
 });
 
-skip('create new diagram with aggregation', (assert) => {
+test('create new diagram with aggregation', (assert) => {
   let done = assert.async();
   assert.expect(11);
 
@@ -402,7 +402,7 @@ skip('create new diagram with aggregation', (assert) => {
   });
 });
 
-skip('create new diagram with inheritance', (assert) => {
+test('create new diagram with inheritance', (assert) => {
   let done = assert.async();
   assert.expect(7);
 
@@ -501,7 +501,7 @@ skip('create new diagram with inheritance', (assert) => {
   });
 });
 
-skip('create new diagram with realization', (assert) => {
+test('create new diagram with realization', (assert) => {
   let done = assert.async();
   assert.expect(7);
 
