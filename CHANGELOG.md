@@ -1,7 +1,7 @@
 # Ember Flexberry Designer Changelog
 All notable changes to this project will be documented in this file.
 
-## [1.1.2-beta.7] - 2026-02-19
+## [Unreleased]
 ### Changed
 * Fixed "Element is no longer attached to DOM" error
 
