@@ -15,6 +15,9 @@ All notable changes to this project will be documented in this file.
 * Added message for view delete
 * Added titles for buttons in view.
 
+### Fixed
+* Fixed link highlight not following during drag in diagrams.
+
 ## [1.1.2-beta.6] - 2025-02-04
 ### Changed
 * Update ember-flexberry to 3.13.1.
