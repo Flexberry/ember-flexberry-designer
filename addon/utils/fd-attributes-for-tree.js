@@ -100,6 +100,9 @@ let getClassTreeNode = function (tree, classData, rootId, addInText) {
         text += ' (' + attribute.get(`${addInText}`) + ')';
       }
 
+      const stored = attribute.get('stored');
+      text = stored ? text : '/' + text;
+
       classTree.push(FdAttributesTree.create({
         text: text,
         name: attribute.get('name'),
@@ -107,7 +110,7 @@ let getClassTreeNode = function (tree, classData, rootId, addInText) {
         typeNode: attribute.get('type'),
         idNode: idClass,
         own: own,
-        stored: attribute.get('stored')
+        stored: stored,
       }));
     });
   });
@@ -137,6 +140,9 @@ let getAssociationTreeNode = function (tree, associationData, jsTreeId, rootId, 
       text += ' (' + startClass.get(`${addInText}`) + ')';
     }
 
+    const stored = startClass.get('stored');
+    text = stored ? text : '/' + text;
+
     associationTree.push(FdAttributesTree.create({
       text: text,
       name: masterName,
@@ -145,7 +151,7 @@ let getAssociationTreeNode = function (tree, associationData, jsTreeId, rootId, 
       id: jsTreeId + index,
       idNode: idMaster,
       own: own,
-      stored: startClass.get('stored'),
+      stored: stored,
       state: {
         loaded: false
       }
@@ -177,6 +183,9 @@ let getAggregationTreeNode = function (tree, aggregationData, rootId, addInText)
       text += ' (' + endClass.get(`${addInText}`) + ')';
     }
 
+    const stored = endClass.get('stored');
+    text = stored ? text : '/' + text;
+
     aggregationTree.push(FdAttributesTree.create({
       text: text,
       name: detailName,
@@ -184,7 +193,7 @@ let getAggregationTreeNode = function (tree, aggregationData, rootId, addInText)
       typeNode: 'detail',
       idNode: idDetail,
       own: own,
-      stored: endClass.get('stored')
+      stored: stored,
     }));
   });
 
@@ -366,16 +375,20 @@ let getExternalTreeNode = function (tree, externalId, adapter) {
   return adapter.callFunction('GetClassAttributesExternal', { classGuid: externalId }, null, { withCredentials: true }).then(({value}) => {
     const {attributes, masters} = JSON.parse(value);
     attributes.forEach((attribute) => {
-      const text = get(attribute, 'name');
+      const stored = get(attribute, 'stored');
+      const name = get(attribute, 'name');
+
+      const text = stored ? name : '/' + name;
 
       externalTree.push(FdAttributesTree.create({
         text: text,
-        name: text,
+        name: name,
         type: 'property',
         typeNode: get(attribute, 'type'),
         idNode: externalId,
         own: false,
         external: true,
+        stored: stored,
       }));
     });
 
@@ -388,17 +401,21 @@ let getExternalTreeNode = function (tree, externalId, adapter) {
     externalTree = A();
 
     masters.forEach((master) => {
+      const stored = get(master, 'stored');
       const masterName = get(master, 'name');
       const masterId = get(master, 'id');
 
+      const masterText = stored ? masterName : '/' + masterName;
+
       externalTree.push(FdAttributesTree.create({
-        text: masterName,
+        text: masterText,
         name: masterName,
         type: 'master',
         typeNode: 'master',
         idNode: masterId,
         own: false,
         external: true,
+        stored: stored,
         state: {
           loaded: false
         }
