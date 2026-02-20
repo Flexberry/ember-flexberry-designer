@@ -2,11 +2,15 @@
 All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
+### Fixed
+* Fixed "Element is no longer attached to DOM" error
+
 ### Added
 * Added the stage ID to queryParams when navigating between sitemap items.
 * Added multiple inheritance from externalinterface
 * Added empty project check for 'Create projections, forms and application' and 'UML validator'
 * Added highlight '/' prefix for non-stored properties.
+* Add order in attribute. 
 
 ### Changed
 * Added message for view delete

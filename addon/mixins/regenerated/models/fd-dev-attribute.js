@@ -247,6 +247,7 @@ export let defineProjections = function (modelClass) {
     name: attr(''),
     type: attr(''),
     notNull: attr(''),
+    order: attr(''),
     defaultValue: attr(''),
     description: attr(''),
     accessModifier: attr(''),

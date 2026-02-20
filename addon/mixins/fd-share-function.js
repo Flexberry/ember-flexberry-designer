@@ -46,10 +46,9 @@ export default Mixin.create({
       position: 'bottom center',
     }).popup('show');
     this.set('copied', true);
-    later(this, (function() {
-      let popup = sharePopup.popup('get popup');
-      popup.remove();
+    later(this, function() {
+      sharePopup.popup('hide');
       this.set('copied', false);
-    }), 2000);
+    }, 2000);
   }
 });
