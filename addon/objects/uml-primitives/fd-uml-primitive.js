@@ -233,7 +233,7 @@ joint.highlighters.strokeAndButtons = {
 
     cellView.update();
 
-    cellView.model.set('highlightId', id);
+    cellView.model.set('highlightVel', highlightVel);
     cellView.model.set('highlighted', true);
   },
 
@@ -243,7 +243,7 @@ joint.highlighters.strokeAndButtons = {
     let id = stroke.getHighlighterId(magnetEl, opt);
     this.removeButtons(id);
 
-    cellView.model.set('highlightId', null);
+    cellView.model.set('highlightVel', null);
     cellView.model.set('highlighted', false);
   },
 
