@@ -161,7 +161,7 @@ export default Component.extend({
         if (selectedProperties.length === 1) {
           this.set('selectedPropertyType', this.get('type'));
           next(() => {
-            this.set('selectedProperty.firstObject.inputManually', this.getInputManuallyValue());
+            this.set('selectedProperties.firstObject.inputManually', this.getInputManuallyValue());
           })
         }
       }
