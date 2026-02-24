@@ -6,11 +6,12 @@
       loadDataNode=loadDataNode
       searchTerm=searchTerm
       treeObject=treeObject
+      multiple=true
     }}
   </div>
   <div class="fd-view-buttons">
     <div class="ui vertical buttons">
-      <button class="ui button icon {{if (and (not readonly) selectedNode) '' 'disabled'}}" {{action 'addNodeInDefinition'}} title="{{t 'components.fd-create-view.add-to-view'}}">
+      <button class="ui button icon {{if (and (not readonly) selectedNodesArray) '' 'disabled'}}" {{action 'addNodeInDefinition'}} title="{{t 'components.fd-create-view.add-to-view'}}">
         <i class="arrow right icon"></i>
       </button>
       <button class="ui button icon {{if (and (not readonly) selectedProperty) '' 'disabled'}}" {{action 'changeOrderDefinition' true}} title="{{t 'components.fd-create-view.move-up'}}">

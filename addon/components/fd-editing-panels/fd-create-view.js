@@ -66,12 +66,12 @@ export default Component.extend(FdReadonlyModeMixin, {
   searchTerm: '',
 
   /**
-    Value selected node.
+    Value selected nodes.
 
-    @property selectedNode
+    @property selectedNodesArray
     @type Object
   */
-  selectedNode: computed.alias('selectedNodes.firstObject'),
+  selectedNodesArray: computed.alias('selectedNodes'),
 
   /**
     Selected definition property.
@@ -358,48 +358,52 @@ export default Component.extend(FdReadonlyModeMixin, {
       @method actions.addNodeInDefinition
     */
     addNodeInDefinition() {
-      let node = this.get('selectedNode');
+      let nodes = this.get('selectedNodesArray');
 
-      if (isNone(node)) {
+      if (isNone(nodes) || nodes.length === 0) {
         return;
       }
 
       let view = this.get('view.definitionArray');
 
-      // Create propertyName
-      let propertyName = this.createPropertyName(node, this.get('treeObject').jstree(true));
+      let newDefinitions = A();
+      nodes.forEach((node) => {
+        // Create propertyName
+        let propertyName = this.createPropertyName(node, this.get('treeObject').jstree(true));
 
-      if (view.findBy('name', propertyName)) {
-        return;
-      }
+        if (view.findBy('name', propertyName)) {
+          return;
+        }
 
-      let newDefinition;
-      switch (get(node, 'type')) {
-        case 'property':
-          newDefinition = FdViewAttributesProperty.create({
-            name: propertyName
-          });
-          break;
-        case 'master':
-          newDefinition = FdViewAttributesMaster.create({
-            name: propertyName
-          });
-          break;
-        case 'detail':
-          newDefinition = FdViewAttributesDetail.create({
-            name: propertyName
-          });
-          break;
-      }
+        let newDefinition;
+        switch (get(node, 'type')) {
+          case 'property':
+            newDefinition = FdViewAttributesProperty.create({
+              name: propertyName
+            });
+            break;
+          case 'master':
+            newDefinition = FdViewAttributesMaster.create({
+              name: propertyName
+            });
+            break;
+          case 'detail':
+            newDefinition = FdViewAttributesDetail.create({
+              name: propertyName
+            });
+            break;
+        }
+
+        newDefinitions.pushObject(newDefinition);
+      });
 
       let indexOfSelectedProperty = this.getIndexOfSelectedProperty();
 
       if (indexOfSelectedProperty >= 0) {
-        view.insertAt(indexOfSelectedProperty + 1, newDefinition);
+        view.replace(indexOfSelectedProperty + 1, 0, newDefinitions);
       } else {
-        view.pushObject(newDefinition);
+        view.pushObjects(newDefinitions);
       }
-
     },
 
     /**

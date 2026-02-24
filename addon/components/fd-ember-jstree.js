@@ -65,6 +65,15 @@ export default Component.extend({
   })),
 
   /**
+    Multi select.
+
+    @property reloadDataAtClose
+    @type Bool
+    @default false
+  */
+  multiple: false,
+
+  /**
     Data for search tree nodes.
 
     @property searchTerm
