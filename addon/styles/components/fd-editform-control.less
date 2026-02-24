@@ -186,6 +186,12 @@
   }
 }
 
+.ui.secondary.menu.no-margin.flexberry-olv-toolbar .flexberry-menuitem.item .ui.button.icon:not(.dropdown) {
+  flex-grow: 0;
+  background-color: transparent;
+  padding: 0;
+}
+
 /* Filecontrol */
 .fd-editform-control {
   .flexberry-file .ui.action.input:not([class*="left action"]) > .button {
@@ -199,7 +205,7 @@
   .flexberry-file .ui.action.input:not([class*="left action"]) > .button:last-child {
     border-radius: @borderRadius;
   }
-  
+
   .flexberry-file .ui.action.input:not([class*="left action"]) > .button.flexberry-file-remove-button {
     border-radius: 0 @borderRadius @borderRadius 0;
   }
