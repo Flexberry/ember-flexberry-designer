@@ -74,12 +74,12 @@ export default Component.extend(FdReadonlyModeMixin, {
   selectedNodesArray: computed.alias('selectedNodes'),
 
   /**
-    Selected definition property.
+    Selected definition properties.
 
-    @property selectedProperty
+    @property selectedProperties
     @type Object
   */
-  selectedProperty: A(),
+  selectedProperties: A(),
 
   /**
     All properties of selected master.
@@ -116,17 +116,17 @@ export default Component.extend(FdReadonlyModeMixin, {
   reInitMasterPropertiesDropdown: true,
 
   /**
-    Array View selectedProperty.
+    Array View selectedProperties.
 
     @property detailView
     @type Array
   */
-  detailView: computed('selectedProperty', function() {
-    let selectedProperty = this.get('selectedProperty');
-    if (selectedProperty.length === 1 && this.get('selectedPropertyType') === 'isDetail') {
+  detailView: computed('selectedProperties', function() {
+    let selectedProperties = this.get('selectedProperties');
+    if (selectedProperties.length === 1 && this.get('selectedPropertyType') === 'isDetail') {
       let detailsViewArray = this.get('detailsViewArray');
-      let detailViewByName = detailsViewArray.findBy('detailName', selectedProperty.firstObject.name);
-      let detailViewByRole = detailsViewArray.findBy('detailRole', selectedProperty.firstObject.name);
+      let detailViewByName = detailsViewArray.findBy('detailName', selectedProperties.firstObject.name);
+      let detailViewByRole = detailsViewArray.findBy('detailRole', selectedProperties.firstObject.name);
       if (detailViewByName) {
         return  detailViewByName.detailViewNameItems;
       } else if (detailViewByRole) {
@@ -184,7 +184,7 @@ export default Component.extend(FdReadonlyModeMixin, {
     @method viewObserver
   */
   viewObserver: observer('view', function() {
-    this.set('selectedProperty', A());
+    this.set('selectedProperties', A());
     this.set('searchTerm', '');
     this.set('searchValue', '');
     let treeObject = this.get('treeObject');
@@ -226,11 +226,11 @@ export default Component.extend(FdReadonlyModeMixin, {
   /**
     Set overflow-panels height.
 
-    @method selectedPropertyObserver
+    @method selectedPropertiesObserver
   */
-  selectedPropertyObserver: observer('selectedProperty.length', 'selectedProperty.firstObject.lookupType', function() {
-    if (this.get('selectedProperty.firstObject.lookupType') === 'standard') {
-      this.setMasterProperties(this.get('selectedProperty'));
+  selectedPropertiesObserver: observer('selectedProperties.length', 'selectedProperties.firstObject.lookupType', function() {
+    if (this.get('selectedProperties.firstObject.lookupType') === 'standard') {
+      this.setMasterProperties(this.get('selectedProperties'));
     }
 
     next(() => {
@@ -329,15 +329,15 @@ export default Component.extend(FdReadonlyModeMixin, {
     @return {Number} index
   */
   getIndexOfSelectedProperty: function() {
-    const selectedProperty = this.get('selectedProperty');
+    const selectedProperties = this.get('selectedProperties');
     const definitionArray = this.get('view.definitionArray');
     let index = -1;
 
-    if (selectedProperty.length !== 1) {
+    if (selectedProperties.length !== 1) {
       return index;
     }
 
-    index = definitionArray.findIndex((definitionProperty) => definitionProperty.get('name') === selectedProperty.name);
+    index = definitionArray.findIndex((definitionProperty) => definitionProperty.get('name') === selectedProperties.firstObject.name);
 
     return index;
   },
@@ -349,7 +349,7 @@ export default Component.extend(FdReadonlyModeMixin, {
       @method actions.inputManuallyChanged
     */
     inputManuallyChanged() {
-      this.set('selectedProperty.firstObject.masterPropertyName', '');
+      this.set('selectedProperties.firstObject.masterPropertyName', '');
     },
 
     /**
@@ -414,7 +414,7 @@ export default Component.extend(FdReadonlyModeMixin, {
     */
     changeLookupType(value) {
       if (value === 'default') {
-        let selectedProperty = this.get('selectedProperty.firstObject');
+        let selectedProperty = this.get('selectedProperties.firstObject');
         selectedProperty.set('masterPropertyName', '');
         selectedProperty.set('masterCustomizationString', '');
       }
@@ -428,9 +428,9 @@ export default Component.extend(FdReadonlyModeMixin, {
     */
     deleteDefinitionItem(item) {
       this.get('view.definitionArray').removeObject(item);
-      let selectedProperty = this.get('selectedProperty');
-      if (selectedProperty.includes(item)) {
-        selectedProperty.remuveObject(item);
+      let selectedProperties = this.get('selectedProperties');
+      if (selectedProperties.includes(item)) {
+        selectedProperties.remuveObject(item);
       }
     },
 
@@ -441,7 +441,7 @@ export default Component.extend(FdReadonlyModeMixin, {
       @param {Bool} up in up = true or is down = false.
     */
     changeOrderDefinition(up) {
-      let selectedProperties = this.get('selectedProperty');
+      let selectedProperties = this.get('selectedProperties');
       if (!selectedProperties || selectedProperties.length === 0) {
         return;
       }

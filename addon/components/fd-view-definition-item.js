@@ -20,12 +20,12 @@ export default Component.extend({
   definition: undefined,
 
   /**
-    Selected definition property.
+    Selected definition properties.
 
-    @property selectedProperty
+    @property selectedProperties
     @type Object
   */
-  selectedProperty: A(),
+  selectedProperties: A(),
 
   /**
     All properties of selected master.
@@ -103,11 +103,11 @@ export default Component.extend({
 
     @method isActive
   */
-  isActive: computed('selectedProperty.length', function() {
-    let selectedProperty = this.get('selectedProperty');
+  isActive: computed('selectedProperties.length', function() {
+    let selectedProperties = this.get('selectedProperties');
     let definition = this.get('definition');
 
-    return selectedProperty.includes(definition);
+    return selectedProperties.includes(definition);
   }),
 
   /**
@@ -117,14 +117,14 @@ export default Component.extend({
     @return {Boolean} If the value masterPropertyName is found in the master property list then `true`, else `false`.
   */
   getInputManuallyValue() {
-    const selectedMasterPropertyName = this.get('selectedProperty.firstObject.masterPropertyName');
+    const selectedMasterPropertyName = this.get('selectedProperties.firstObject.masterPropertyName');
     if (isEmpty(selectedMasterPropertyName)) {
       return false;
     }
 
     const masterProperties = this.get('masterProperties');
     if (masterProperties) {
-      const selectedMasterPropertyName = this.get('selectedProperty.firstObject.masterPropertyName');
+      const selectedMasterPropertyName = this.get('selectedProperties.firstObject.masterPropertyName');
       return masterProperties.filter(masterProperty => masterProperty === selectedMasterPropertyName).length === 0;
     }
     return false;
@@ -151,14 +151,14 @@ export default Component.extend({
        @param {Object} property definition property.
     */
     selectedProperty(property, e) {
-      let selectedProperty = this.get('selectedProperty');
-      if (!selectedProperty.includes(property)) {
+      let selectedProperties = this.get('selectedProperties');
+      if (!selectedProperties.includes(property)) {
         if (!e.shiftKey) {
-          selectedProperty.clear();
+          selectedProperties.clear();
         }
 
-        selectedProperty.pushObject(property);
-        if (selectedProperty.length === 1) {
+        selectedProperties.pushObject(property);
+        if (selectedProperties.length === 1) {
           this.set('selectedPropertyType', this.get('type'));
           next(() => {
             this.set('selectedProperty.firstObject.inputManually', this.getInputManuallyValue());
@@ -166,7 +166,7 @@ export default Component.extend({
         }
       }
       else {
-        this.set('selectedProperty', A());
+        this.set('selectedProperties', A());
         this.set('selectedPropertyType', undefined);
       }
     },
