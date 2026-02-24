@@ -45,7 +45,7 @@
   </div>
 </div>
 
-{{#if selectedProperty}}
+{{#if (eq selectedProperty.length 1)}}
   <div class="ui stackable grid fd-list fd-attr-prop">
 
     <div class="row">
@@ -54,7 +54,7 @@
       </div>
       <div class="eleven wide column light-text">
         {{flexberry-textbox
-          value=selectedProperty.path
+          value=selectedProperty.firstObject.path
           class='fluid input'
           placeholder=(t "components.fd-create-view.settings-view.path-placeholder")
           readonly=readonly
@@ -71,22 +71,22 @@
           {{flexberry-dropdown
             onChange=(action "changeLookupType")
             items=(array 'default' 'standard' 'combo')
-            value=selectedProperty.lookupType
+            value=selectedProperty.firstObject.lookupType
             readonly=readonly
             settings=(hash direction="upward")
           }}
         </div>
       </div>
 
-      {{#if (not-eq selectedProperty.lookupType 'default')}}
+      {{#if (not-eq selectedProperty.firstObject.lookupType 'default')}}
         <div class="row">
           <div class="five wide column">
             {{t "components.fd-create-view.settings-master.master-property"}}
           </div>
           <div class="six wide column light-text">
-            {{#if selectedProperty.inputManually}}
+            {{#if selectedProperty.firstObject.inputManually}}
               {{flexberry-textbox
-                value=selectedProperty.masterPropertyName
+                value=selectedProperty.firstObject.masterPropertyName
                 class='fluid input'
                 placeholder=(t "components.fd-create-view.settings-master.master-property-placeholder")
                 readonly=readonly
@@ -95,7 +95,7 @@
               {{#if reInitMasterPropertiesDropdown}}
                 {{flexberry-dropdown
                   items=masterProperties
-                  value=selectedProperty.masterPropertyName
+                  value=selectedProperty.firstObject.masterPropertyName
                   readonly=readonly
                 }}
               {{/if}}
@@ -103,7 +103,7 @@
           </div>
           <div class="five wide column light-text">
             {{flexberry-checkbox
-              value=selectedProperty.inputManually
+              value=selectedProperty.firstObject.inputManually
               readonly=readonly
               label=(t "components.fd-create-view.input-manually")
               onChange=(action 'inputManuallyChanged')
@@ -117,7 +117,7 @@
           </div>
           <div class="eleven wide column light-text">
             {{flexberry-textbox
-              value=selectedProperty.masterCustomizationString
+              value=selectedProperty.firstObject.masterCustomizationString
               class='fluid input'
               placeholder=(t "components.fd-create-view.settings-master.sample-setting-placeholder")
               readonly=readonly
@@ -136,7 +136,7 @@
           {{flexberry-dropdown
             items=detailView
             needChecksOnValue=false
-            value=selectedProperty.detailViewName
+            value=selectedProperty.firstObject.detailViewName
             readonly=readonly
           }}
         </div>
@@ -148,7 +148,7 @@
         </div>
         <div class="eleven wide column light-text">
           {{flexberry-checkbox
-            value=selectedProperty.loadOnLoadAgregator
+            value=selectedProperty.firstObject.loadOnLoadAgregator
             readonly=readonly
           }}
         </div>
