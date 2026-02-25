@@ -4,6 +4,7 @@ All notable changes to this project will be documented in this file.
 ## [Unreleased]
 ### Fixed
 * Fixed "Element is no longer attached to DOM" error
+* Fixed diagram saving where primitive references could remain in `root.empty` state
 
 ### Added
 * Added the stage ID to queryParams when navigating between sitemap items.
