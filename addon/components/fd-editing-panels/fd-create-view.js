@@ -122,11 +122,11 @@ export default Component.extend(FdReadonlyModeMixin, {
     @type Array
   */
   detailView: computed('selectedProperties', function() {
-    let selectedProperties = this.get('selectedProperties');
+    const selectedProperties = this.get('selectedProperties');
     if (selectedProperties.length === 1 && this.get('selectedPropertyType') === 'isDetail') {
-      let detailsViewArray = this.get('detailsViewArray');
-      let detailViewByName = detailsViewArray.findBy('detailName', selectedProperties.firstObject.name);
-      let detailViewByRole = detailsViewArray.findBy('detailRole', selectedProperties.firstObject.name);
+      const detailsViewArray = this.get('detailsViewArray');
+      const detailViewByName = detailsViewArray.findBy('detailName', selectedProperties.firstObject.name);
+      const detailViewByRole = detailsViewArray.findBy('detailRole', selectedProperties.firstObject.name);
       if (detailViewByName) {
         return  detailViewByName.detailViewNameItems;
       } else if (detailViewByRole) {
@@ -430,7 +430,7 @@ export default Component.extend(FdReadonlyModeMixin, {
       this.get('view.definitionArray').removeObject(item);
       let selectedProperties = this.get('selectedProperties');
       if (selectedProperties.includes(item)) {
-        selectedProperties.remuveObject(item);
+        selectedProperties.removeObject(item);
       }
     },
 

@@ -67,7 +67,7 @@ export default Component.extend({
   /**
     Multi select.
 
-    @property reloadDataAtClose
+    @property multiple
     @type Bool
     @default false
   */
