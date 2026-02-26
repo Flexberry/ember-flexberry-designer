@@ -2,6 +2,10 @@
 All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
+### Changed 
+* Changed setting button styles
+* Changed ember-flexberry version to 3.13.2-beta.1
+
 ### Fixed
 * Fixed "Element is no longer attached to DOM" error
 * Fixed diagram saving where primitive references could remain in `root.empty` state
