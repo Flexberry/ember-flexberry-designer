@@ -4,7 +4,7 @@
       <div class="title-item-menu"><i class="icon {{sitemap.icon}}"></i>{{sitemap.caption}}</div>
     </a>
   {{else}}
-    {{#link-to sitemap.link class="item" title=sitemap.title}}
+    {{#link-to sitemap.link (query-params gotostage=sitemap.queryParams.gotostage) class="item" title=sitemap.title}}
       <div class="title-item-menu"><i class="icon {{sitemap.icon}}"></i>{{sitemap.caption}}</div>
     {{/link-to}}
   {{/if}}

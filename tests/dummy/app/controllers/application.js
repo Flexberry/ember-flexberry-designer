@@ -91,6 +91,7 @@ export default Controller.extend(FdShareFunctionMixin, {
   sitemap: computed('i18n.locale', 'currentContext.context.{configuration,stage}', function() {
     let i18n = this.get('i18n');
     let singleStageMode = this.get('currentContext.singleStageMode');
+    const stageId = this.get('currentContext').getCurrentStage();
 
     let sitemap = {
       nodes: [
@@ -100,36 +101,42 @@ export default Controller.extend(FdShareFunctionMixin, {
     if (!singleStageMode) {
       sitemap.nodes.push({
         link: 'fd-diagrams',
+        queryParams: { gotostage: stageId },
         caption: i18n.t('forms.application.sitemap.root.fd-diagrams.caption'),
         title: i18n.t('forms.application.sitemap.root.fd-diagrams.title'),
         icon: 'icon-guideline-hierarchical-list'
       },
       {
         link: 'fd-application-model',
+        queryParams: { gotostage: stageId },
         caption: i18n.t('forms.application.sitemap.root.fd-application-model.caption'),
         title: i18n.t('forms.application.sitemap.root.fd-application-model.title'),
         icon: 'icon-guideline-marker-list'
       },
       {
         link: 'fd-navigation',
+        queryParams: { gotostage: stageId },
         caption: i18n.t('forms.application.sitemap.root.fd-navigation.caption'),
         title: i18n.t('forms.application.sitemap.root.fd-navigation.title'),
         icon: 'icon-guideline-book'
       },
       {
         link: 'fd-generation-settings',
+        queryParams: { gotostage: stageId },
         caption: i18n.t('forms.application.sitemap.root.fd-generation.caption'),
         title: i18n.t('forms.application.sitemap.root.fd-generation.title'),
         icon: 'icon-guideline-download-layer'
       },
       {
         link: 'fd-setting',
+        queryParams: { gotostage: stageId },
         caption: i18n.t('forms.application.sitemap.root.fd-setting.caption'),
         title: i18n.t('forms.application.sitemap.root.fd-setting.title'),
         icon: 'icon-guideline-setting'
       },
       {
         link: 'fd-architecture',
+        queryParams: { gotostage: stageId },
         caption: i18n.t('forms.application.sitemap.root.fd-architecture.caption'),
         title: i18n.t('forms.application.sitemap.root.fd-architecture.title'),
         icon: 'icon-guideline-layers'
