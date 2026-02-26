@@ -367,7 +367,7 @@ export default Component.extend(FdReadonlyModeMixin, {
       let view = this.get('view.definitionArray');
 
       // Create propertyName
-      let propertyName = this.createPropertyName(node, this.get('treeObject').jstree(true));
+      const propertyName = this.createPropertyName(node, this.get('treeObject').jstree(true));
 
       if (view.findBy('name', propertyName)) {
         return;

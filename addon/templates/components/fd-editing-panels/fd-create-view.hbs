@@ -30,6 +30,7 @@
       <div class="ui grid fd-list view-definition">
         {{#each view.definitionArray as |definition|}}
           {{fd-view-definition-item
+            model=model
             definition=definition
             filterValue=searchValue
             selectedProperty=selectedProperty
