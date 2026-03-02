@@ -1,10 +1,11 @@
 import Route from '@ember/routing/route';
+import FdShareLoadData from '../mixins/fd-share-load-data';
 import { A } from '@ember/array';
 import { inject as service } from '@ember/service';
 import { isBlank } from '@ember/utils';
 import { all } from 'rsvp';
 
-export default Route.extend({
+export default Route.extend(FdShareLoadData, {
 
   /**
    Service that get current project contexts.

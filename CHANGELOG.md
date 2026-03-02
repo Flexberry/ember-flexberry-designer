@@ -1,9 +1,24 @@
 # Ember Flexberry Designer Changelog
 All notable changes to this project will be documented in this file.
 
-## [Unrealesed] - 2026-02-26
+## [Unreleased]
 ### Fixed
 * Fixed diagram class edit
+* Fixed "Element is no longer attached to DOM" error
+* Fixed diagram saving where primitive references could remain in `root.empty` state
+
+### Added
+* Added the stage ID to queryParams when navigating between sitemap items.
+* Added multiple inheritance from externalinterface
+* Added empty project check for 'Create projections, forms and application' and 'UML validator'
+* Add order in attribute. 
+
+### Changed
+* Added message for view delete
+* Added titles for buttons in view.
+
+### Fixed
+* Fixed link highlight not following during drag in diagrams.
 
 ## [1.1.2-beta.6] - 2025-02-04
 ### Changed
