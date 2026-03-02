@@ -109,6 +109,30 @@ export default Component.extend(
   draggedLinkView: undefined,
 
   /**
+    Selection rectangle for visual feedback during marquee selection
+
+    @property selectionRect
+    @default undefined
+  */
+  selectionRect: undefined,
+
+  /**
+    Flag indicating whether marquee selection is in progress
+
+    @property isSelecting
+    @default false
+  */
+  isSelecting: false,
+
+  /**
+    Starting point coordinates of the selection rectangle
+
+    @property selectionStartPoint
+    @default undefined
+  */
+  selectionStartPoint: undefined,
+
+  /**
     model of the UML diagram.
 
     @property model
@@ -319,6 +343,17 @@ export default Component.extend(
       cellViewNamespace: namespace
     }));
 
+    this.selectionRect = joint.V('rect', {
+       fill: 'rgba(65, 105, 225, 0.2)',
+       stroke: '#4169e1',
+       'stroke-width': 1,
+       'stroke-dasharray': '5,5',
+       pointerEvents: 'none',
+       display: 'none'
+     }).node;
+
+    paper.svg.appendChild(this.selectionRect);
+
     paper.on('blank:pointerclick', this._blankPointerClick, this);
     paper.on('element:pointerclick', this._elementPointerClick, this);
     paper.on('link:pointerclick', this._linkPointerClick, this);
@@ -331,6 +366,12 @@ export default Component.extend(
     paper.on('cell:highlight', this._highlighted, this);
     paper.on('element:openeditform', this._elementOpenEditForm, this);
     paper.on('element:openpopup', this._elementOpenPopup, this);
+
+    paper.on('blank:pointerdown', this._handleSelectionStart, this);
+    paper.on('cell:pointermove', this._handleSelectionMove, this);
+    paper.on('blank:pointermove', this._handleSelectionMove, this);
+    paper.on('cell:pointerup', this._handleSelectionEnd, this);
+    paper.on('blank:pointerup', this._handleSelectionEnd, this);
 
     this.subscriptionToKeyPress(paper);
 
@@ -395,6 +436,139 @@ export default Component.extend(
 
     this.$().off('mousedown', this._clearBrowserSelected);
     this.get('fdDiagramService').off('updateJointObjectViewTriggered', this, this._updateJointObjectView);
+
+    if (this.selectionRect && this.selectionRect.parentNode) {
+      this.selectionRect.parentNode.removeChild(this.selectionRect);
+    }
+  },
+
+  /**
+    Handles the start of marquee selection when clicking on blank area.
+    Initializes selection rectangle and clears previous selections.
+
+    @method _handleSelectionStart
+   */
+  _handleSelectionStart(evt, x, y) {
+    // Игнорируем если зажаты модификаторы
+    if (evt.ctrlKey || evt.metaKey || evt.shiftKey) return;
+
+    this.isSelecting = true;
+    this.selectionStartPoint = { x, y };
+
+    const highlightedElements = this.get('highlightedElements');
+    highlightedElements.forEach((highlightedElement) => {
+      highlightedElement.unhighlight();
+    });
+    highlightedElements.clear();
+
+    joint.V(this.selectionRect).attr({
+      x: x,
+      y: y,
+      width: 0,
+      height: 0,
+      display: 'block'
+    });
+  },
+
+  /**
+    Handles mouse movement during marquee selection.
+    Updates selection rectangle size and checks for overlapping elements.
+
+    @method _handleSelectionMove
+   */
+  _handleSelectionMove(evt, x, y) {
+    if (!this.isSelecting || !this.selectionStartPoint) return;
+
+    const width = x - this.selectionStartPoint.x;
+    const height = y - this.selectionStartPoint.y;
+
+    joint.V(this.selectionRect).attr({
+      x: Math.min(this.selectionStartPoint.x, x),
+      y: Math.min(this.selectionStartPoint.y, y),
+      width: Math.abs(width),
+      height: Math.abs(height)
+    });
+
+    this._checkSelectionOverlap();
+  },
+
+  /**
+    Handles the end of marquee selection.
+    Hides selection rectangle and finalizes the selection.
+
+    @method _handleSelectionEnd
+   */
+  _handleSelectionEnd() {
+    if (this.isSelecting) {
+      this.isSelecting = false;
+      joint.V(this.selectionRect).attr({ display: 'none' });
+    }
+  },
+
+  /**
+    Checks for overlapping between selection rectangle and diagram elements.
+    Highlights elements that intersect with the selection rectangle.
+
+    @method _checkSelectionOverlap
+   */
+  _checkSelectionOverlap() {
+    if (!this.selectionRect) return;
+
+    const rect = {
+      x: parseFloat(this.selectionRect.getAttribute('x')),
+      y: parseFloat(this.selectionRect.getAttribute('y')),
+      width: parseFloat(this.selectionRect.getAttribute('width')),
+      height: parseFloat(this.selectionRect.getAttribute('height'))
+    };
+
+    const graph = this.get('graph');
+    const elements = graph.getElements();
+    const links = graph.getLinks();
+    const highlightedElements = this.get('highlightedElements');
+
+    elements.forEach(element => {
+      const bbox = element.getBBox();
+
+      const overlaps = !(
+        rect.x > bbox.x + bbox.width ||
+        rect.x + rect.width < bbox.x ||
+        rect.y > bbox.y + bbox.height ||
+        rect.y + rect.height < bbox.y
+      );
+
+      const elementView = element.findView(this.get('paper'));
+      const isSelected = highlightedElements.includes(elementView);
+
+      if (overlaps && !isSelected) {
+        elementView.highlight(null, { highlightAll: true });
+        highlightedElements.addObject(elementView);
+      } else if (!overlaps && isSelected) {
+        elementView.unhighlight();
+        highlightedElements.removeObject(elementView);
+      }
+    });
+
+    links.forEach(link => {
+      const bbox = link.getBBox();
+
+      const overlaps = !(
+        rect.x > bbox.x + bbox.width ||
+        rect.x + rect.width < bbox.x ||
+        rect.y > bbox.y + bbox.height ||
+        rect.y + rect.height < bbox.y
+      );
+
+      const linkView = link.findView(this.get('paper'));
+      const isSelected = highlightedElements.includes(linkView);
+
+      if (overlaps && !isSelected) {
+        linkView.highlight(null, { highlightAll: true });
+        highlightedElements.addObject(linkView);
+      } else if (!overlaps && isSelected) {
+        linkView.unhighlight();
+        highlightedElements.removeObject(linkView);
+      }
+    });
   },
 
   /**

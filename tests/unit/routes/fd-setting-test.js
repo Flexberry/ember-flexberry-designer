@@ -5,6 +5,7 @@ moduleFor('route:fd-setting', 'Unit | Route | fd setting', {
   // needs: ['controller:foo']
   needs: [
     'service:fd-current-project-context',
+    'service:appState'
   ]
 });
 
