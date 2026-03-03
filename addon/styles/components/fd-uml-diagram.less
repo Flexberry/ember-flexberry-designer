@@ -36,7 +36,11 @@
   input,
   textarea {
     /* Enable interacting with inputs only. */
-    pointer-events: auto;
+    pointer-events: none;
+
+    &.click-enabled {
+      pointer-events: auto;
+    }
 
     &.click-disabled {
       pointer-events: none;

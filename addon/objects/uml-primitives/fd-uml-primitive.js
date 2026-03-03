@@ -615,9 +615,11 @@ joint.shapes.flexberry.uml.PrimitiveElementView = joint.dia.ElementView.extend({
 
     if (!isNone(readonly) && !readonly &&
         inputFields.length > 0 && inputFields.hasClass('click-disabled')) {
-      inputFields.removeClass('click-disabled');
-      inputFields.css('pointer-events', 'auto');
-      inputFields.first().focus();
+
+    inputFields
+      .removeClass('click-disabled')
+      .addClass('click-enabled');
+    inputFields.first().focus();
     }
   },
 
@@ -628,9 +630,12 @@ joint.shapes.flexberry.uml.PrimitiveElementView = joint.dia.ElementView.extend({
     const boxElement = this.$box;
     const inputFields = boxElement.find('input,textarea');
 
-    if (!inputFields.hasClass('click-disabled')) {
-      inputFields.addClass('click-disabled');
-      inputFields.css('pointer-events', 'none');
+    if (inputFields.length > 0 && inputFields.hasClass('click-disabled')) {
+      return;
     }
+
+    inputFields
+      .removeClass('click-enabled')
+      .addClass('click-disabled');
   }
 });
