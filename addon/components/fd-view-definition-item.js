@@ -152,22 +152,25 @@ export default Component.extend({
     */
     selectedProperty(property, e) {
       let selectedProperties = this.get('selectedProperties');
-      if (!selectedProperties.includes(property)) {
-        if (!e.shiftKey) {
-          selectedProperties.clear();
+      if (selectedProperties.includes(property)) {
+        selectedProperties.removeObject(property);
+        if (selectedProperties.length === 0) {
+          this.set('selectedPropertyType', undefined);
         }
-
-        selectedProperties.pushObject(property);
-        if (selectedProperties.length === 1) {
-          this.set('selectedPropertyType', this.get('type'));
-          next(() => {
-            this.set('selectedProperties.firstObject.inputManually', this.getInputManuallyValue());
-          })
-        }
+        return;
       }
-      else {
-        this.set('selectedProperties', A());
-        this.set('selectedPropertyType', undefined);
+
+      if (!e.shiftKey) {
+        selectedProperties.clear();
+      }
+
+      selectedProperties.pushObject(property);
+
+      if (selectedProperties.length === 1) {
+        this.set('selectedPropertyType', this.get('type'));
+        next(() => {
+          this.set('selectedProperties.firstObject.inputManually', this.getInputManuallyValue());
+        });
       }
     },
   }
