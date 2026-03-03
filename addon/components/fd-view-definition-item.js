@@ -166,10 +166,13 @@ export default Component.extend({
 
       selectedProperties.pushObject(property);
 
+      // Если это первое выделение, устанавливаем тип и inputManually
       if (selectedProperties.length === 1) {
         this.set('selectedPropertyType', this.get('type'));
         next(() => {
-          this.set('selectedProperties.firstObject.inputManually', this.getInputManuallyValue());
+          if (selectedProperties.includes(property)) {
+            this.set('selectedProperties.firstObject.inputManually', this.getInputManuallyValue());
+          }
         });
       }
     },
