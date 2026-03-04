@@ -427,6 +427,10 @@ export default Mixin.create({
         let deleteDefinition = A();
         definitionArray.forEach((definition) => {
           let defName = definition.get('name');
+          if (defName === '*') {
+            return;
+          }
+
           let defNamePart = defName.split('.');
           let currentClass = clsObj;
           for (var i = 0; i < defNamePart.length; i++) {
@@ -599,10 +603,9 @@ export default Mixin.create({
   _checkExistProp(cls, name, isAttr) {
     let dataForClass = getDataForBuildTree(this.get('store'), cls.get('id'));
 
-    let findFunction = function(item) {
-      let isAgg = item.get('constructor.modelName') === 'fd-dev-aggregation';
-      let cls = item.get(`${(isAgg ? 'endClass' : 'startClass')}`);
-      let value = item.get(`${(isAgg ? 'endRole' : 'startRole')}`) || cls.get('name');
+    let findAssociations = function(item) {
+      let cls = item.get('startClass');
+      let value = item.get('startRole') || cls.get('name');
 
       return value === name;
     }
@@ -615,13 +618,18 @@ export default Mixin.create({
         return !isNone(clsIsExist);
       });
       if (isNone(isExist)) {
-        isExist = dataForClass.aggregations.find(findFunction);
+        isExist = dataForClass.aggregations.find((item) => {
+          let cls = item.get('endClass');
+          let value = item.get('endRole') || cls.get('name');
+
+          return value === name;
+        });
       }
       if (isNone(isExist)) {
-        isExist = dataForClass.associations.find(findFunction);
+        isExist = dataForClass.associations.find(findAssociations);
       }
     } else {
-      const a = dataForClass.associations.find(findFunction);
+      const a = dataForClass.associations.find(findAssociations);
       isExist = isNone(a) ? null : a.startClass;
     }
 
