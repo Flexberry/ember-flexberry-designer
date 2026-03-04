@@ -415,7 +415,7 @@ export default Mixin.create({
     addClasses.forEach((classObj) => {
       // Add attributes and methods.
       const clsId = this._findNewObjectId(classObj.data.__PrimaryKey, dictionaryRepObjId);
-      let clsObj = store.peekRecord('fd-dev-class', clsId);
+      const clsObj = store.peekRecord('fd-dev-class', clsId);
 
       // Add views.
       let views = classObj.views;
