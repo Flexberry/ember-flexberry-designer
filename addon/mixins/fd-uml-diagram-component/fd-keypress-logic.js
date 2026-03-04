@@ -414,8 +414,8 @@ export default Mixin.create({
 
     addClasses.forEach((classObj) => {
       // Add attributes and methods.
-      let clsId = this._findNewObjectId(classObj.data.__PrimaryKey, dictionaryRepObjId);
-      let clsObj = store.peekRecord('fd-dev-class', clsId);
+      const clsId = this._findNewObjectId(classObj.data.__PrimaryKey, dictionaryRepObjId);
+      const clsObj = store.peekRecord('fd-dev-class', clsId);
 
       // Add views.
       let views = classObj.views;
@@ -629,8 +629,8 @@ export default Mixin.create({
         isExist = dataForClass.associations.find(findAssociations);
       }
     } else {
-      const a = dataForClass.associations.find(findAssociations);
-      isExist = isNone(a) ? null : a.startClass;
+      const association = dataForClass.associations.find(findAssociations);
+      isExist = isNone(a) ? null : association.startClass;
     }
 
     return isExist;
