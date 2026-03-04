@@ -368,7 +368,6 @@ export default Component.extend(
     paper.on('element:openpopup', this._elementOpenPopup, this);
 
     paper.on('blank:pointerdown', this._handleSelectionStart, this);
-    paper.on('cell:pointermove', this._handleSelectionMove, this);
     paper.on('blank:pointermove', this._handleSelectionMove, this);
     paper.on('cell:pointerup', this._handleSelectionEnd, this);
     paper.on('blank:pointerup', this._handleSelectionEnd, this);
@@ -526,8 +525,18 @@ export default Component.extend(
     const links = graph.getLinks();
     const highlightedElements = this.get('highlightedElements');
 
-    elements.forEach(element => {
-      const bbox = element.getBBox();
+    this._updateSelectionHighlight(elements, rect, highlightedElements);
+    this._updateSelectionHighlight(links, rect, highlightedElements);
+  },
+
+  /**
+    Updates selection highlight for diagram elements/links.
+
+    @method _updateSelectionHighlight
+  */
+  _updateSelectionHighlight(collection, rect, highlightedElements) {
+    collection.forEach(item => {
+      const bbox = item.getBBox();
 
       const overlaps = !(
         rect.x > bbox.x + bbox.width ||
@@ -536,37 +545,15 @@ export default Component.extend(
         rect.y + rect.height < bbox.y
       );
 
-      const elementView = element.findView(this.get('paper'));
-      const isSelected = highlightedElements.includes(elementView);
+      const itemView = item.findView(this.get('paper'));
+      const isSelected = highlightedElements.includes(itemView);
 
       if (overlaps && !isSelected) {
-        elementView.highlight(null, { highlightAll: true });
-        highlightedElements.addObject(elementView);
+        itemView.highlight(null, { highlightAll: true });
+        highlightedElements.addObject(itemView);
       } else if (!overlaps && isSelected) {
-        elementView.unhighlight();
-        highlightedElements.removeObject(elementView);
-      }
-    });
-
-    links.forEach(link => {
-      const bbox = link.getBBox();
-
-      const overlaps = !(
-        rect.x > bbox.x + bbox.width ||
-        rect.x + rect.width < bbox.x ||
-        rect.y > bbox.y + bbox.height ||
-        rect.y + rect.height < bbox.y
-      );
-
-      const linkView = link.findView(this.get('paper'));
-      const isSelected = highlightedElements.includes(linkView);
-
-      if (overlaps && !isSelected) {
-        linkView.highlight(null, { highlightAll: true });
-        highlightedElements.addObject(linkView);
-      } else if (!overlaps && isSelected) {
-        linkView.unhighlight();
-        highlightedElements.removeObject(linkView);
+        itemView.unhighlight();
+        highlightedElements.removeObject(itemView);
       }
     });
   },
