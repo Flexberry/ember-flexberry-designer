@@ -410,6 +410,12 @@ export default Mixin.create({
           clsObj.set('businessServerClass', bsObj);
         }
       }
+    });
+
+    addClasses.forEach((classObj) => {
+      // Add attributes and methods.
+      let clsId = this._findNewObjectId(classObj.data.__PrimaryKey, dictionaryRepObjId);
+      let clsObj = store.peekRecord('fd-dev-class', clsId);
 
       // Add views.
       let views = classObj.views;
@@ -594,7 +600,7 @@ export default Mixin.create({
     let dataForClass = getDataForBuildTree(this.get('store'), cls.get('id'));
 
     let findFunction = function(item) {
-      let isAgg = item.get('constructor.modelName');
+      let isAgg = item.get('constructor.modelName') === 'fd-dev-aggregation';
       let cls = item.get(`${(isAgg ? 'endClass' : 'startClass')}`);
       let value = item.get(`${(isAgg ? 'endRole' : 'startRole')}`) || cls.get('name');
 
@@ -615,7 +621,8 @@ export default Mixin.create({
         isExist = dataForClass.associations.find(findFunction);
       }
     } else {
-      isExist = dataForClass.associations.find(findFunction);
+      const a = dataForClass.associations.find(findFunction);
+      isExist = isNone(a) ? null : a.startClass;
     }
 
     return isExist;
