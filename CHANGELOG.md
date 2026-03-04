@@ -2,14 +2,6 @@
 All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
-### Changed 
-* Changed setting button styles
-* Changed ember-flexberry version to 3.13.2-beta.1
-
-### Fixed
-* Fixed "Element is no longer attached to DOM" error
-* Fixed diagram saving where primitive references could remain in `root.empty` state
-
 ### Added
 * Added the stage ID to queryParams when navigating between sitemap items.
 * Added multiple inheritance from externalinterface
@@ -17,10 +9,14 @@ All notable changes to this project will be documented in this file.
 * Add order in attribute. 
 
 ### Changed
+* Changed setting button styles
+* Changed ember-flexberry version to 3.13.2-beta.1
 * Added message for view delete
 * Added titles for buttons in view.
 
 ### Fixed
+* Fixed "Element is no longer attached to DOM" error
+* Fixed diagram saving where primitive references could remain in `root.empty` state
 * Fixed link highlight not following during drag in diagrams.
 
 ## [1.1.2-beta.6] - 2025-02-04
