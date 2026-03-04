@@ -278,8 +278,12 @@ export let EmptyView = joint.dia.LinkView.extend({
   pointerup(evt, x, y) {
     this._checkVerticesChanges();
     let readonly = this.paper.options.interactive;
+
     if (readonly && typeof readonly === 'object') {
-      $(this.paper.el).find('input,textarea').removeClass('click-disabled');
+      $(this.paper.el)
+        .find('input.click-disabled-temp')
+        .removeClass('click-disabled click-disabled-temp')
+        .addClass('click-disabled');
     }
 
     let coordinates = forPointerMethodOverrideResizeAndDnd(evt, x, y);

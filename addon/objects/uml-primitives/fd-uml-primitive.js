@@ -233,7 +233,6 @@ joint.highlighters.strokeAndButtons = {
 
     cellView.update();
 
-    cellView.model.set('highlightVel', highlightVel);
     cellView.model.set('highlighted', true);
   },
 
@@ -243,7 +242,6 @@ joint.highlighters.strokeAndButtons = {
     let id = stroke.getHighlighterId(magnetEl, opt);
     this.removeButtons(id);
 
-    cellView.model.set('highlightVel', null);
     cellView.model.set('highlighted', false);
   },
 
@@ -615,11 +613,8 @@ joint.shapes.flexberry.uml.PrimitiveElementView = joint.dia.ElementView.extend({
 
     if (!isNone(readonly) && !readonly &&
         inputFields.length > 0 && inputFields.hasClass('click-disabled')) {
-
-    inputFields
-      .removeClass('click-disabled')
-      .addClass('click-enabled');
-    inputFields.first().focus();
+      inputFields.removeClass('click-disabled');
+      inputFields.first().focus();
     }
   },
 
@@ -634,8 +629,6 @@ joint.shapes.flexberry.uml.PrimitiveElementView = joint.dia.ElementView.extend({
       return;
     }
 
-    inputFields
-      .removeClass('click-enabled')
-      .addClass('click-disabled');
+    inputFields.addClass('click-disabled');
   }
 });
