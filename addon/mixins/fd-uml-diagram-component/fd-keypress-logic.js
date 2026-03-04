@@ -621,7 +621,7 @@ export default Mixin.create({
         isExist = dataForClass.associations.find(findFunction);
       }
     } else {
-      const a = dataForClass.associations.find(findFunction);
+      const association = dataForClass.associations.find(findFunction);
       isExist = isNone(a) ? null : a.startClass;
     }
 
