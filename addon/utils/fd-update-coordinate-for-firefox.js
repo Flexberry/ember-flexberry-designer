@@ -14,7 +14,7 @@ let isFireFox = function() {
   Get FireFox major version
 */
 let getFireFoxMajorVersion = function() {
-  const version = ua.match(/Firefox\/([0-9\.]+)/)[1];
+  const version = ua.match(/Firefox\/([0-9.]+)/)[1];
   const dotIndex = version.indexOf('.');
 
   return version.substring(0, dotIndex);

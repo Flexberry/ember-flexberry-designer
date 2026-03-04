@@ -10,7 +10,8 @@ All notable changes to this project will be documented in this file.
 * Added the stage ID to queryParams when navigating between sitemap items.
 * Added multiple inheritance from externalinterface
 * Added empty project check for 'Create projections, forms and application' and 'UML validator'
-* Add order in attribute. 
+* Add order in attribute.
+* Add selecting multiple objects using drag and drop on diagrams.
 
 ### Changed
 * Added message for view delete

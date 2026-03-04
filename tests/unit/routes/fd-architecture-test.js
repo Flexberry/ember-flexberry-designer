@@ -4,6 +4,7 @@ moduleFor('route:fd-architecture', 'Unit | Route | fd architecture', {
   // Specify the other units that are required for this test.
   // needs: ['controller:foo']
   needs: [
+    'service:appState',
     'service:fd-current-project-context'
   ]
 });
