@@ -7,6 +7,7 @@ All notable changes to this project will be documented in this file.
 * Added multiple inheritance from externalinterface
 * Added empty project check for 'Create projections, forms and application' and 'UML validator'
 * Add order in attribute.
+* Add multiple view.
 * Add selecting multiple objects using drag and drop on diagrams.
 
 ### Changed

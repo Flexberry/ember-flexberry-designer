@@ -1,5 +1,5 @@
 {{#if visible}}
-  <div class="row {{if isActive 'active' ''}}" {{action 'selectedProperty' definition}}>
+  <div class="row {{if isActive 'active' ''}}" onclick={{action 'selectedProperty' definition}}>
     {{#if (eq type 'isMaster')}}
       <div class="property-image-wrapper">
         <img class="property-image" alt="master" src="assets/images/master.bmp">
