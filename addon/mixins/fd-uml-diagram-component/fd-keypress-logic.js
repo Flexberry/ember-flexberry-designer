@@ -619,7 +619,7 @@ export default Mixin.create({
       });
       if (isNone(isExist)) {
         isExist = dataForClass.aggregations.find((item) => {
-          let cls = item.get('endClass');
+          const cls = item.get('endClass');
           let value = item.get('endRole') || cls.get('name');
 
           return value === name;
