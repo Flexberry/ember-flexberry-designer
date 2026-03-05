@@ -281,7 +281,6 @@ export let EmptyView = joint.dia.LinkView.extend({
 
     if (readonly && typeof readonly === 'object') {
       $(this.paper.el)
-        .removeClass('click-disabled')
         .addClass('click-disabled');
     }
 
