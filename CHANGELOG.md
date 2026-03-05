@@ -19,6 +19,7 @@ All notable changes to this project will be documented in this file.
 * Fixed "Element is no longer attached to DOM" error
 * Fixed diagram saving where primitive references could remain in `root.empty` state
 * Fixed link highlight not following during drag in diagrams.
+* Add interface attr in view.
 
 ## [1.1.2-beta.6] - 2025-02-04
 ### Changed
