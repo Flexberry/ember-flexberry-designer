@@ -605,7 +605,7 @@ export default Mixin.create({
 
     let findAssociations = function(item) {
       let cls = item.get('startClass');
-      let value = item.get('startRole') || cls.get('name');
+      const value = item.get('startRole') || cls.get('name');
 
       return value === name;
     }
