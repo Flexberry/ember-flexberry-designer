@@ -630,7 +630,7 @@ export default Mixin.create({
       }
     } else {
       const association = dataForClass.associations.find(findAssociations);
-      isExist = isNone(a) ? null : association.startClass;
+      isExist = isNone(association) ? null : association.startClass;
     }
 
     return isExist;
