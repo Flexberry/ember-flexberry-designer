@@ -5,6 +5,7 @@ moduleFor('route:fd-navigation', 'Unit | Route | fd navigation', {
   // needs: ['controller:foo']
   needs: [
     'service:fd-current-project-context',
+    'service:appState',
     'service:fdSheetService'
   ]
 });

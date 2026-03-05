@@ -2,22 +2,23 @@
 All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
-
-### Fixed
-* Fixed "Element is no longer attached to DOM" error
-
 ### Added
 * Added the stage ID to queryParams when navigating between sitemap items.
 * Added multiple inheritance from externalinterface
 * Added empty project check for 'Create projections, forms and application' and 'UML validator'
 * Add order in attribute.
 * Add multiple view.
+* Add selecting multiple objects using drag and drop on diagrams.
 
 ### Changed
+* Changed setting button styles
+* Changed ember-flexberry version to 3.13.2-beta.1
 * Added message for view delete
 * Added titles for buttons in view.
 
 ### Fixed
+* Fixed "Element is no longer attached to DOM" error
+* Fixed diagram saving where primitive references could remain in `root.empty` state
 * Fixed link highlight not following during drag in diagrams.
 
 ## [1.1.2-beta.6] - 2025-02-04

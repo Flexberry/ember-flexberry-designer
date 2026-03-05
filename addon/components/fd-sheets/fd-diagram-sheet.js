@@ -403,10 +403,10 @@ export default FdBaseSheet.extend(
       });
 
       model.rollbackAll();
-      this.get('decrementedReferenceCountItems').clear();
       set(selectedValue, 'active', false);
     }
 
+    this.get('decrementedReferenceCountItems').clear();
     this.set('isDiagramVisible', false);
   },
 
