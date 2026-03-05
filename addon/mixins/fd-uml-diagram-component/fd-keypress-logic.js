@@ -410,6 +410,12 @@ export default Mixin.create({
           clsObj.set('businessServerClass', bsObj);
         }
       }
+    });
+
+    addClasses.forEach((classObj) => {
+      // Add attributes and methods.
+      const clsId = this._findNewObjectId(classObj.data.__PrimaryKey, dictionaryRepObjId);
+      const clsObj = store.peekRecord('fd-dev-class', clsId);
 
       // Add views.
       let views = classObj.views;
@@ -421,6 +427,10 @@ export default Mixin.create({
         let deleteDefinition = A();
         definitionArray.forEach((definition) => {
           let defName = definition.get('name');
+          if (defName === '*') {
+            return;
+          }
+
           let defNamePart = defName.split('.');
           let currentClass = clsObj;
           for (var i = 0; i < defNamePart.length; i++) {
@@ -593,10 +603,9 @@ export default Mixin.create({
   _checkExistProp(cls, name, isAttr) {
     let dataForClass = getDataForBuildTree(this.get('store'), cls.get('id'));
 
-    let findFunction = function(item) {
-      let isAgg = item.get('constructor.modelName');
-      let cls = item.get(`${(isAgg ? 'endClass' : 'startClass')}`);
-      let value = item.get(`${(isAgg ? 'endRole' : 'startRole')}`) || cls.get('name');
+    let findAssociations = function(item) {
+      const cls = item.get('startClass');
+      const value = item.get('startRole') || cls.get('name');
 
       return value === name;
     }
@@ -609,13 +618,19 @@ export default Mixin.create({
         return !isNone(clsIsExist);
       });
       if (isNone(isExist)) {
-        isExist = dataForClass.aggregations.find(findFunction);
+        isExist = dataForClass.aggregations.find((item) => {
+          const cls = item.get('endClass');
+          const value = item.get('endRole') || cls.get('name');
+
+          return value === name;
+        });
       }
       if (isNone(isExist)) {
-        isExist = dataForClass.associations.find(findFunction);
+        isExist = dataForClass.associations.find(findAssociations);
       }
     } else {
-      isExist = dataForClass.associations.find(findFunction);
+      const association = dataForClass.associations.find(findAssociations);
+      isExist = isNone(association) ? null : association.startClass;
     }
 
     return isExist;
