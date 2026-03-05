@@ -229,8 +229,8 @@ export default Component.extend(FdReadonlyModeMixin, {
     @method selectedPropertiesObserver
   */
   selectedPropertiesObserver: observer('selectedProperties.length', 'selectedProperties.firstObject.lookupType', function() {
-    if (this.get('selectedProperties.firstObject.lookupType') === 'standard') {
-      this.setMasterProperties(this.get('selectedProperties'));
+    if (this.get('selectedProperties.length') === 1 && this.get('selectedProperties.firstObject.lookupType') === 'standard') {
+      this.setMasterProperties(this.get('selectedProperties.firstObject'));
     }
 
     next(() => {
