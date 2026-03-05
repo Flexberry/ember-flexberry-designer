@@ -604,7 +604,7 @@ export default Mixin.create({
     let dataForClass = getDataForBuildTree(this.get('store'), cls.get('id'));
 
     let findAssociations = function(item) {
-      let cls = item.get('startClass');
+      const cls = item.get('startClass');
       const value = item.get('startRole') || cls.get('name');
 
       return value === name;
