@@ -66,20 +66,20 @@ export default Component.extend(FdReadonlyModeMixin, {
   searchTerm: '',
 
   /**
-    Value selected node.
+    Value selected nodes.
 
-    @property selectedNode
+    @property selectedNodesArray
     @type Object
   */
-  selectedNode: computed.alias('selectedNodes.firstObject'),
+  selectedNodesArray: computed.alias('selectedNodes'),
 
   /**
-    Selected definition property.
+    Selected definition properties.
 
-    @property selectedProperty
+    @property selectedProperties
     @type Object
   */
-  selectedProperty: undefined,
+  selectedProperties: A(),
 
   /**
     All properties of selected master.
@@ -116,17 +116,17 @@ export default Component.extend(FdReadonlyModeMixin, {
   reInitMasterPropertiesDropdown: true,
 
   /**
-    Array View selectedProperty.
+    Array View selectedProperties.
 
     @property detailView
     @type Array
   */
-  detailView: computed('selectedProperty', function() {
-    let selectedProperty = this.get('selectedProperty');
-    if (!isNone(selectedProperty) && this.get('selectedPropertyType') === 'isDetail') {
-      let detailsViewArray = this.get('detailsViewArray');
-      let detailViewByName = detailsViewArray.findBy('detailName', selectedProperty.name);
-      let detailViewByRole = detailsViewArray.findBy('detailRole', selectedProperty.name);
+  detailView: computed('selectedProperties', function() {
+    const selectedProperties = this.get('selectedProperties');
+    if (selectedProperties.length === 1 && this.get('selectedPropertyType') === 'isDetail') {
+      const detailsViewArray = this.get('detailsViewArray');
+      const detailViewByName = detailsViewArray.findBy('detailName', selectedProperties.firstObject.name);
+      const detailViewByRole = detailsViewArray.findBy('detailRole', selectedProperties.firstObject.name);
       if (detailViewByName) {
         return  detailViewByName.detailViewNameItems;
       } else if (detailViewByRole) {
@@ -184,7 +184,7 @@ export default Component.extend(FdReadonlyModeMixin, {
     @method viewObserver
   */
   viewObserver: observer('view', function() {
-    this.set('selectedProperty', undefined);
+    this.set('selectedProperties', A());
     this.set('searchTerm', '');
     this.set('searchValue', '');
     let treeObject = this.get('treeObject');
@@ -226,11 +226,11 @@ export default Component.extend(FdReadonlyModeMixin, {
   /**
     Set overflow-panels height.
 
-    @method selectedPropertyObserver
+    @method selectedPropertiesObserver
   */
-  selectedPropertyObserver: observer('selectedProperty', 'selectedProperty.lookupType', function() {
-    if (this.get('selectedProperty.lookupType') === 'standard') {
-      this.setMasterProperties(this.get('selectedProperty'));
+  selectedPropertiesObserver: observer('selectedProperties.length', 'selectedProperties.firstObject.lookupType', function() {
+    if (this.get('selectedProperties.length') === 1 && this.get('selectedProperties.firstObject.lookupType') === 'standard') {
+      this.setMasterProperties(this.get('selectedProperties.firstObject'));
     }
 
     next(() => {
@@ -329,15 +329,15 @@ export default Component.extend(FdReadonlyModeMixin, {
     @return {Number} index
   */
   getIndexOfSelectedProperty: function() {
-    const selectedProperty = this.get('selectedProperty');
+    const selectedProperties = this.get('selectedProperties');
     const definitionArray = this.get('view.definitionArray');
     let index = -1;
 
-    if (isNone(selectedProperty)) {
+    if (selectedProperties.length !== 1) {
       return index;
     }
 
-    index = definitionArray.findIndex((definitionProperty) => definitionProperty.get('name') === selectedProperty.name);
+    index = definitionArray.findIndex((definitionProperty) => definitionProperty.get('name') === selectedProperties.firstObject.name);
 
     return index;
   },
@@ -349,7 +349,7 @@ export default Component.extend(FdReadonlyModeMixin, {
       @method actions.inputManuallyChanged
     */
     inputManuallyChanged() {
-      this.set('selectedProperty.masterPropertyName', '');
+      this.set('selectedProperties.firstObject.masterPropertyName', '');
     },
 
     /**
@@ -358,48 +358,52 @@ export default Component.extend(FdReadonlyModeMixin, {
       @method actions.addNodeInDefinition
     */
     addNodeInDefinition() {
-      let node = this.get('selectedNode');
+      let nodes = this.get('selectedNodesArray');
 
-      if (isNone(node)) {
+      if (isNone(nodes) || nodes.length === 0) {
         return;
       }
 
       let view = this.get('view.definitionArray');
 
-      // Create propertyName
-      let propertyName = this.createPropertyName(node, this.get('treeObject').jstree(true));
+      let newDefinitions = A();
+      nodes.forEach((node) => {
+        // Create propertyName
+        let propertyName = this.createPropertyName(node, this.get('treeObject').jstree(true));
 
-      if (view.findBy('name', propertyName)) {
-        return;
-      }
+        if (view.findBy('name', propertyName)) {
+          return;
+        }
 
-      let newDefinition;
-      switch (get(node, 'type')) {
-        case 'property':
-          newDefinition = FdViewAttributesProperty.create({
-            name: propertyName
-          });
-          break;
-        case 'master':
-          newDefinition = FdViewAttributesMaster.create({
-            name: propertyName
-          });
-          break;
-        case 'detail':
-          newDefinition = FdViewAttributesDetail.create({
-            name: propertyName
-          });
-          break;
-      }
+        let newDefinition;
+        switch (get(node, 'type')) {
+          case 'property':
+            newDefinition = FdViewAttributesProperty.create({
+              name: propertyName
+            });
+            break;
+          case 'master':
+            newDefinition = FdViewAttributesMaster.create({
+              name: propertyName
+            });
+            break;
+          case 'detail':
+            newDefinition = FdViewAttributesDetail.create({
+              name: propertyName
+            });
+            break;
+        }
+
+        newDefinitions.pushObject(newDefinition);
+      });
 
       let indexOfSelectedProperty = this.getIndexOfSelectedProperty();
 
       if (indexOfSelectedProperty >= 0) {
-        view.insertAt(indexOfSelectedProperty + 1, newDefinition);
+        view.replace(indexOfSelectedProperty + 1, 0, newDefinitions);
       } else {
-        view.pushObject(newDefinition);
+        view.pushObjects(newDefinitions);
       }
-
     },
 
     /**
@@ -410,7 +414,7 @@ export default Component.extend(FdReadonlyModeMixin, {
     */
     changeLookupType(value) {
       if (value === 'default') {
-        let selectedProperty = this.get('selectedProperty');
+        let selectedProperty = this.get('selectedProperties.firstObject');
         selectedProperty.set('masterPropertyName', '');
         selectedProperty.set('masterCustomizationString', '');
       }
@@ -424,8 +428,9 @@ export default Component.extend(FdReadonlyModeMixin, {
     */
     deleteDefinitionItem(item) {
       this.get('view.definitionArray').removeObject(item);
-      if (this.get('selectedProperty') === item) {
-        this.set('selectedProperty', undefined);
+      let selectedProperties = this.get('selectedProperties');
+      if (selectedProperties.includes(item)) {
+        selectedProperties.removeObject(item);
       }
     },
 
@@ -436,27 +441,50 @@ export default Component.extend(FdReadonlyModeMixin, {
       @param {Bool} up in up = true or is down = false.
     */
     changeOrderDefinition(up) {
-      let selectedProperty = this.get('selectedProperty');
-      if (isNone(selectedProperty)) {
+      let selectedProperties = this.get('selectedProperties');
+      if (!selectedProperties || selectedProperties.length === 0) {
         return;
       }
 
       let definitionArray = this.get('view.definitionArray');
-      let currentIndex = definitionArray.indexOf(selectedProperty);
-      let newIndex;
-      if (up) {
-        newIndex = currentIndex !== 0 ? currentIndex - 1 : null;
-      } else {
-        newIndex = currentIndex !== definitionArray.length - 1 ? currentIndex + 1 : null;
-      }
+      let selectedIndices = selectedProperties.map(prop =>
+        definitionArray.indexOf(prop)
+      ).filter(index => index !== -1).sort((a, b) => a - b);
 
-      if (isNone(newIndex)) {
+      if (selectedIndices.length === 0) {
         return;
       }
 
-      let newIndexNode = definitionArray[newIndex];
-      definitionArray.replace(currentIndex, 1, A([newIndexNode]));
-      definitionArray.replace(newIndex, 1, A([selectedProperty]));
-    },
+      if (up && selectedIndices[0] === 0) {
+        return;
+      }
+      if (!up && selectedIndices[selectedIndices.length - 1] === definitionArray.length - 1) {
+        return;
+      }
+
+      let newArray = definitionArray.slice();
+
+      if (up) {
+        // Двигаем вверх: обрабатываем от первого к последнему
+        for (let i = 0; i < selectedIndices.length; i++) {
+          let currentIndex = selectedIndices[i];
+          let element = newArray[currentIndex];
+
+          newArray.splice(currentIndex, 1);
+          newArray.splice(currentIndex - 1, 0, element);
+        }
+      } else {
+        // Двигаем вниз: обрабатываем от последнего к первому
+        for (let i = selectedIndices.length - 1; i >= 0; i--) {
+          let currentIndex = selectedIndices[i];
+          let element = newArray[currentIndex];
+
+          newArray.splice(currentIndex, 1);
+          newArray.splice(currentIndex + 1, 0, element);
+        }
+      }
+
+      this.set('view.definitionArray', A(newArray));
+    }
   }
 });
