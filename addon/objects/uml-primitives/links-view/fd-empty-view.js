@@ -110,6 +110,16 @@ export let EmptyView = joint.dia.LinkView.extend({
 
   updateBox() {
     this.updateInputsWidth(get(this, 'updateInputsArray'));
+
+    if (this.model.get('highlighted')) {
+      const highlightVel = this.model.get('highlightVel');
+
+      if (isNone(highlightVel)) {
+        return;
+      }
+
+      highlightVel.attr('d', this.metrics.data);
+    }
   },
 
   updateInputsWidth(inputSelectors) {

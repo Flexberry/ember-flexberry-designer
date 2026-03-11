@@ -92,7 +92,7 @@ export default FdBaseSheet.extend({
     */
     delete(confirmation) {
       if (isNone(confirmation)) {
-        this.get('fdDialogService').showVerificationMessage(this.get('i18n').t('components.fd-modal-message-box.delete-text').toString(), this.get('actions.delete'), this);
+        this.get('fdDialogService').showVerificationMessage(this.get('i18n').t('components.fd-modal-message-box.view-delete-text').toString(), this.get('actions.delete'), this);
         return;
       }
 
