@@ -3,7 +3,8 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 ### Fixed
-* Fixed fd-logo shrink
+* Fixed diagram class edit
+* Fixed logo shrink
 
 ## [1.1.2-beta.7] - 2026-03-05
 ### Added
