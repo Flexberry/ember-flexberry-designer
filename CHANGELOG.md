@@ -1,6 +1,31 @@
 # Ember Flexberry Designer Changelog
 All notable changes to this project will be documented in this file.
 
+## [Unreleased] - 2026-03-11
+### Fixed
+* Fixed fd-logo shrink
+
+## [1.1.2-beta.7] - 2026-03-05
+### Added
+* Added the stage ID to queryParams when navigating between sitemap items.
+* Added multiple inheritance from externalinterface
+* Added empty project check for 'Create projections, forms and application' and 'UML validator'
+* Added order in attribute.
+* Added multiple view.
+* Added selecting multiple objects using drag and drop on diagrams.
+* Added titles for buttons in view.
+
+### Changed
+* Changed setting button styles
+* Changed ember-flexberry version to 3.13.2-beta.1
+* Changed message for view delete
+
+### Fixed
+* Fixed "Element is no longer attached to DOM" error
+* Fixed diagram saving where primitive references could remain in `root.empty` state
+* Fixed link highlight not following during drag in diagrams.
+* Added interface attr in view.
+
 ## [1.1.2-beta.6] - 2025-02-04
 ### Changed
 * Update ember-flexberry to 3.13.1.
