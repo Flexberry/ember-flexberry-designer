@@ -1,7 +1,7 @@
 # Ember Flexberry Designer Changelog
 All notable changes to this project will be documented in this file.
 
-## [Unreleased] - 2026-03-11
+## [Unreleased]
 ### Fixed
 * Fixed fd-logo shrink
 
