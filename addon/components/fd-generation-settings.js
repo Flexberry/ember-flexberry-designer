@@ -67,6 +67,7 @@ export default Component.extend({
       'Csv': i18n.t('components.fd-generation-settings.Csv').string,
       'Wmf': i18n.t('components.fd-generation-settings.Wmf').string,
       'InitFromTemplate': i18n.t('components.fd-generation-settings.InitFromTemplate').string,
+      'FlexberryNext': 'Flexberry Next',
     }
   }),
 
@@ -104,7 +105,7 @@ export default Component.extend({
     }
     set(items, 'className', genItem);
     switch (genItem) {
-      case 'EmberJs': {
+      case 'FlexberryNext': {
         set(items, 'caption', i18n.t('components.fd-generation-settings.generationSettings').string);
         break;
       }
@@ -114,10 +115,6 @@ export default Component.extend({
       }
       case 'Docs': {
         set(items, 'caption', i18n.t('components.fd-generation-settings.Docs').string);
-        break;
-      }
-      case 'AppScaffolding': {
-        set(items, 'caption', i18n.t('components.fd-generation-settings.Scaffolding').string);
         break;
       }
     }

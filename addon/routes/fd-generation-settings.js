@@ -22,6 +22,10 @@ export default Route.extend(FdShareLoadData, {
     return {
       "Validate": false,
       "Frontend": {
+        "FlexberryNext": {
+          "InitFromTemplate": true,
+          "TemplateDirectoryPath": ".\\tmp"
+        },
         "EmberJs": {
           "EmberApp": false,
           "EmberAddon": false,
@@ -95,10 +99,6 @@ export default Route.extend(FdShareLoadData, {
         "Jdl": false,
         "PlantUML": false
       },
-      "AppScaffolding": {
-        "InitFromTemplate": true,
-        "TemplateDirectoryPath": ".\\tmp"
-      }
     }
   }),
 
