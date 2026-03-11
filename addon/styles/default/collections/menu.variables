@@ -26,3 +26,4 @@
 @tabularActiveBackground: @pageBackground;
 @tabularActiveColor: @textColor;
 @tabularBorderColor: @sidebarBg;
+@dropdownItemIconMargin: 0 0 0 0.2em;
