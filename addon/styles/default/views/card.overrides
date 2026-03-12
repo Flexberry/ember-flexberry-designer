@@ -184,7 +184,7 @@
 @ApacheCordovaColor: #3B3B3B;
 @BackendColor: #007AFF;
 @CiCdColor: #6666c4;
-@FlexberryNextColor:rgb(163, 163, 163);
+@AppScaffoldingColor:rgb(163, 163, 163);
 @DockerColor: #24B8EB;
 @MssqlColor: #3B3B3B;
 @PostgreSqlColor: #356792;
@@ -194,7 +194,7 @@
 @DocsColor: #531192;
 @MetadataColor:#007AFF;
 
-@iterations: FlexberryNext, EmberJs, ApacheCordova, Backend, Docker, CiCd, Mssql, PostgreSql, ClickHouse, Oracle, Access, Docs, Metadata ;
+@iterations: AppScaffolding, EmberJs, ApacheCordova, Backend, Docker, CiCd, Mssql, PostgreSql, ClickHouse, Oracle, Access, Docs, Metadata ;
 .span-loop (@i) when (@i > 0) {
     @className: extract(@iterations, @i);
     @colorName: ~"@{className}Color";

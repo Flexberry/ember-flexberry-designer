@@ -21,11 +21,11 @@ export default Route.extend(FdShareLoadData, {
   genSettingsFile: computed(function() {
     return {
       "Validate": false,
+      "AppScaffolding": {
+        "InitFromTemplate": true,
+        "TemplateDirectoryPath": ".\\tmp"
+      },
       "Frontend": {
-        "FlexberryNext": {
-          "InitFromTemplate": true,
-          "TemplateDirectoryPath": ".\\tmp"
-        },
         "EmberJs": {
           "EmberApp": false,
           "EmberAddon": false,
