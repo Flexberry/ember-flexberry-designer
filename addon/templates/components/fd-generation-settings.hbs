@@ -12,27 +12,33 @@
           </div>
           <div class="content">
             {{#each-in items as |label value|}}
-            {{#if (and (not-eq label "className") (not-eq label "caption"))}}
-              {{#if (and (not-eq label "ConnectionString") (not-eq label "TemplateDirectoryPath"))}}
-              <div class="field">
-                {{flexberry-checkbox
-                  value=value
-                  label=label
-                  onChange=(action 'selectGenSetting' label items bubbles=false)
-                }}
-              </div>
-              {{else}}
-                {{flexberry-field
-                  value=value
-                  label=(t (concat "components.fd-generation-settings." label))
-                  change=(action 'selectGenSetting' label items)
-                }}
+              {{#if (and (not-eq label "className") (not-eq label "caption"))}}
+                {{#if (and (not-eq label "ConnectionString") (not-eq label "TemplateDirectoryPath"))}}
+                  <div class="field">
+                    {{flexberry-checkbox
+                      value=value
+                      label=label
+                      onChange=(action 'selectGenSetting' label items bubbles=false)
+                    }}
+                  </div>
+                {{else}}
+                  {{flexberry-field
+                    value=value
+                    label=(t (concat "components.fd-generation-settings." label))
+                    change=(action 'selectGenSetting' label items)
+                  }}
+                {{/if}}
               {{/if}}
-            {{/if}}
             {{/each-in}}
           </div>
         </div>
       </div>
+
+      {{#if (eq title "Flexberry Next")}}
+        <div class="eight wide large screen eight wide widescreen column only large screen widescreen">
+        </div>
+      {{/if}}
+
     {{/each-in}}
   </div>
 </div>
