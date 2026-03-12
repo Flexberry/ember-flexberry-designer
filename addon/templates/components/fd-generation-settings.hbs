@@ -1,80 +1,38 @@
 <div class="ui stackable grid">
   <div class="row">
     {{#each-in newGenerationItems as |title items|}}
-      {{#if (eq title "Flexberry Next")}}
-        {{#if items.caption}}
-          <h2 class="form-header">{{items.caption}}</h2>
-        {{/if}}
-        <div class="eight wide computer eight wide large screen centered column">
-          <div class="fd-card horizontal expanded {{items.className}}">
-            <div class="image text-align-center">
-              <h4 class="header">{{title}}</h4>
-              {{fd-generation-settings/products-logo className=items.className}}
-            </div>
-            <div class="content">
-              {{#each-in items as |label value|}}
-                {{#if (and (not-eq label "className") (not-eq label "caption"))}}
-                  {{#if (and (not-eq label "ConnectionString") (not-eq label "TemplateDirectoryPath"))}}
-                    <div class="field">
-                      {{flexberry-checkbox
-                        value=value
-                        label=label
-                        onChange=(action 'selectGenSetting' label items bubbles=false)
-                      }}
-                    </div>
-                  {{else}}
-                    {{flexberry-field
-                      value=value
-                      label=(t (concat "components.fd-generation-settings." label))
-                      change=(action 'selectGenSetting' label items)
-                    }}
-                  {{/if}}
-                {{/if}}
-              {{/each-in}}
-            </div>
-          </div>
-        </div>
+      {{#if items.caption}}
+        <h2 class="form-header">{{items.caption}}</h2>
       {{/if}}
-    {{/each-in}}
-  </div>
-
-  <div class="row">
-    {{#each-in newGenerationItems as |title items|}}
-      {{#unless (eq title "Flexberry Next")}}
-        {{#if items.caption}}
-          <h2 class="form-header">{{items.caption}}</h2>
-        {{/if}}
-        <div class="eight wide computer eight wide large screen sixteen wide tablet sixteen wide mobile column">
-          <div class="fd-card horizontal expanded {{items.className}}">
-            <div class="image text-align-center">
-              <h4 class="header">{{title}}</h4>
-              {{fd-generation-settings/products-logo className=items.className}}
-            </div>
-            <div class="content">
-              {{#each-in items as |label value|}}
-                {{#if (and (not-eq label "className") (not-eq label "caption"))}}
-
-                  {{#if (and (not-eq label "ConnectionString") (not-eq label "TemplateDirectoryPath"))}}
-                    <div class="field">
-                      {{flexberry-checkbox
-                        value=value
-                        label=label
-                        onChange=(action 'selectGenSetting' label items bubbles=false)
-                      }}
-                    </div>
-                  {{else}}
-                    {{flexberry-field
-                      value=value
-                      label=(t (concat "components.fd-generation-settings." label))
-                      change=(action 'selectGenSetting' label items)
-                    }}
-                  {{/if}}
-                {{/if}}
-              {{/each-in}}
-            </div>
+      <div class="sixteen wide mobile sixteen wide tablet sixteen wide computer eight wide large screen eight wide widescreen column">
+        <div class="fd-card horizontal expanded {{items.className}}">
+          <div class="image text-align-center">
+            <h4 class="header">{{title}}</h4>
+            {{fd-generation-settings/products-logo className=items.className}}
+          </div>
+          <div class="content">
+            {{#each-in items as |label value|}}
+            {{#if (and (not-eq label "className") (not-eq label "caption"))}}
+              {{#if (and (not-eq label "ConnectionString") (not-eq label "TemplateDirectoryPath"))}}
+              <div class="field">
+                {{flexberry-checkbox
+                  value=value
+                  label=label
+                  onChange=(action 'selectGenSetting' label items bubbles=false)
+                }}
+              </div>
+              {{else}}
+                {{flexberry-field
+                  value=value
+                  label=(t (concat "components.fd-generation-settings." label))
+                  change=(action 'selectGenSetting' label items)
+                }}
+              {{/if}}
+            {{/if}}
+            {{/each-in}}
           </div>
         </div>
-      {{/unless}}
+      </div>
     {{/each-in}}
   </div>
 </div>
