@@ -106,6 +106,10 @@ export default Component.extend({
     set(items, 'className', genItem);
     switch (genItem) {
       case 'AppScaffolding': {
+        set(items, 'caption', i18n.t('components.fd-generation-settings.Scaffolding').string);
+        break;
+      }
+      case 'EmberJs': {
         set(items, 'caption', i18n.t('components.fd-generation-settings.generationSettings').string);
         break;
       }

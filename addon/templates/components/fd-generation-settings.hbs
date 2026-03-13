@@ -4,7 +4,7 @@
       {{#if items.caption}}
         <h2 class="form-header">{{items.caption}}</h2>
       {{/if}}
-      <div class="sixteen wide mobile sixteen wide tablet sixteen wide computer eight wide large screen eight wide widescreen column">
+      <div class="sixteen wide eight wide large screen eight wide widescreen column">
         <div class="fd-card horizontal expanded {{items.className}}">
           <div class="image text-align-center">
             <h4 class="header">{{title}}</h4>
@@ -33,12 +33,6 @@
           </div>
         </div>
       </div>
-
-      {{#if (eq title "Flexberry Next")}}
-        <div class="eight wide large screen eight wide widescreen column only large screen widescreen">
-        </div>
-      {{/if}}
-
     {{/each-in}}
   </div>
 </div>
