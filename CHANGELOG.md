@@ -5,6 +5,7 @@ All notable changes to this project will be documented in this file.
 ### Fixed
 * Fixed diagram class edit
 * Fixed logo shrink
+* Changed card on generation page
 
 ## [1.1.2-beta.7] - 2026-03-05
 ### Added

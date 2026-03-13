@@ -184,7 +184,7 @@
 @ApacheCordovaColor: #3B3B3B;
 @BackendColor: #007AFF;
 @CiCdColor: #6666c4;
-@AppScaffoldingColor: #2A9D8F;
+@AppScaffoldingColor:#a3a3a3;
 @DockerColor: #24B8EB;
 @MssqlColor: #3B3B3B;
 @PostgreSqlColor: #356792;
