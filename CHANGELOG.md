@@ -1,7 +1,7 @@
 # Ember Flexberry Designer Changelog
 All notable changes to this project will be documented in this file.
 
-## [Unreleased]
+## [1.1.2-beta.8] - 2026-03-17
 ### Fixed
 * Fixed diagram class edit
 * Fixed logo shrink
