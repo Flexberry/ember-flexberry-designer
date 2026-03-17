@@ -159,8 +159,10 @@ export default Component.extend(FdUpdateStoreInstancesValueMixin, FdReadonlyMode
           stage: x
         };
       });
-
-      let stageNames = stageItems.mapBy('name');
+      let stageNames = stageItems
+        .mapBy('name')
+        .filter(name => !isBlank(name))
+        .sort((a, b) => a.localeCompare(b));
       stageNames.unshift('');
 
       _this.set('stageItems', stageItems);
