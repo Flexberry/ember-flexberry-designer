@@ -28,8 +28,9 @@
     "build": "ember build",
     "lint:js": "eslint ./*.js addon addon-test-support app config lib server test-support tests",
     "start": "ember serve",
-    "start:local": "ember serve -e development-loc",
-    "start:docker": "ember serve -e development-docker",
+    "dev": "ember serve",
+    "docker": "ember serve -e development-docker",
+    "local": "ember serve -e development-loc",
     "test": "ember try:each"
   },
   "dependencies": {
