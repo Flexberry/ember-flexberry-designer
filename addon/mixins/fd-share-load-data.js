@@ -72,7 +72,6 @@ export default Mixin.create({
     let gotoobj = get(queryParams, 'gotoobj');
     let gototype = get(queryParams, 'gototype');
 
-    // Если стадия совпадает с текущей, пропускаем загрузку стадии
     if (gotostage === get(currentProjectContext, 'context.stage')) {
       return this._processGotoObj(gotoobj, gototype);
     }
