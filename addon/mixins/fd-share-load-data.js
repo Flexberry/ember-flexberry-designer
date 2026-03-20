@@ -69,6 +69,10 @@ export default Mixin.create({
     }
 
     let currentProjectContext = this.get('currentProjectContext');
+    if (gotostage === get(currentProjectContext, 'context.stage')) {
+      return resolve();
+    }
+
     let store = this.get('store');
 
     let modelName = 'fd-dev-stage';
