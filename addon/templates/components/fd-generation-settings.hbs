@@ -4,7 +4,7 @@
       {{#if items.caption}}
         <h2 class="form-header">{{items.caption}}</h2>
       {{/if}}
-      <div class="eight wide large screen sixteen wide computer column">
+      <div class="sixteen wide eight wide large screen eight wide widescreen column">
         <div class="fd-card horizontal expanded {{items.className}}">
           <div class="image text-align-center">
             <h4 class="header">{{title}}</h4>
@@ -12,23 +12,23 @@
           </div>
           <div class="content">
             {{#each-in items as |label value|}}
-            {{#if (and (not-eq label "className") (not-eq label "caption"))}}
-              {{#if (and (not-eq label "ConnectionString") (not-eq label "TemplateDirectoryPath"))}}
-              <div class="field">
-                {{flexberry-checkbox
-                  value=value
-                  label=label
-                  onChange=(action 'selectGenSetting' label items bubbles=false)
-                }}
-              </div>
-              {{else}}
-                {{flexberry-field
-                  value=value
-                  label=(t (concat "components.fd-generation-settings." label))
-                  change=(action 'selectGenSetting' label items)
-                }}
+              {{#if (and (not-eq label "className") (not-eq label "caption"))}}
+                {{#if (and (not-eq label "ConnectionString") (not-eq label "TemplateDirectoryPath"))}}
+                  <div class="field">
+                    {{flexberry-checkbox
+                      value=value
+                      label=label
+                      onChange=(action 'selectGenSetting' label items bubbles=false)
+                    }}
+                  </div>
+                {{else}}
+                  {{flexberry-field
+                    value=value
+                    label=(t (concat "components.fd-generation-settings." label))
+                    change=(action 'selectGenSetting' label items)
+                  }}
+                {{/if}}
               {{/if}}
-            {{/if}}
             {{/each-in}}
           </div>
         </div>

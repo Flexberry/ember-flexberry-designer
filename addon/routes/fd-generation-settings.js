@@ -21,6 +21,10 @@ export default Route.extend(FdShareLoadData, {
   genSettingsFile: computed(function() {
     return {
       "Validate": false,
+      "AppScaffolding": {
+        "InitFromTemplate": true,
+        "TemplateDirectoryPath": ".\\tmp"
+      },
       "Frontend": {
         "EmberJs": {
           "EmberApp": false,
@@ -95,10 +99,6 @@ export default Route.extend(FdShareLoadData, {
         "Jdl": false,
         "PlantUML": false
       },
-      "AppScaffolding": {
-        "InitFromTemplate": true,
-        "TemplateDirectoryPath": ".\\tmp"
-      }
     }
   }),
 

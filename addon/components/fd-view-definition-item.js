@@ -1,4 +1,5 @@
 import Component from '@ember/component';
+import { A } from '@ember/array';
 import { isNone, isBlank, isEmpty } from '@ember/utils';
 import { computed } from '@ember/object';
 import FdViewAttributesMaster from '../objects/fd-view-attributes-master';
@@ -19,12 +20,12 @@ export default Component.extend({
   definition: undefined,
 
   /**
-    Selected definition property.
+    Selected definition properties.
 
-    @property selectedProperty
+    @property selectedProperties
     @type Object
   */
-  selectedProperty: undefined,
+  selectedProperties: A(),
 
   /**
     All properties of selected master.
@@ -102,11 +103,11 @@ export default Component.extend({
 
     @method isActive
   */
-  isActive: computed('selectedProperty', function() {
-    let selectedProperty = this.get('selectedProperty');
+  isActive: computed('selectedProperties.length', function() {
+    let selectedProperties = this.get('selectedProperties');
     let definition = this.get('definition');
 
-    return selectedProperty === definition;
+    return selectedProperties.includes(definition);
   }),
 
   /**
@@ -116,14 +117,14 @@ export default Component.extend({
     @return {Boolean} If the value masterPropertyName is found in the master property list then `true`, else `false`.
   */
   getInputManuallyValue() {
-    const selectedMasterPropertyName = this.get('selectedProperty.masterPropertyName');
+    const selectedMasterPropertyName = this.get('selectedProperties.firstObject.masterPropertyName');
     if (isEmpty(selectedMasterPropertyName)) {
       return false;
     }
 
     const masterProperties = this.get('masterProperties');
     if (masterProperties) {
-      const selectedMasterPropertyName = this.get('selectedProperty.masterPropertyName');
+      const selectedMasterPropertyName = this.get('selectedProperties.firstObject.masterPropertyName');
       return masterProperties.filter(masterProperty => masterProperty === selectedMasterPropertyName).length === 0;
     }
     return false;
@@ -149,17 +150,30 @@ export default Component.extend({
        @method actions.selectedProperty
        @param {Object} property definition property.
     */
-    selectedProperty(property) {
-      let selectedProperty = this.get('selectedProperty');
-      if (selectedProperty !== property) {
-        this.set('selectedProperty', property);
+    selectedProperty(property, e) {
+      let selectedProperties = this.get('selectedProperties');
+      if (selectedProperties.includes(property)) {
+        selectedProperties.removeObject(property);
+        if (selectedProperties.length === 0) {
+          this.set('selectedPropertyType', undefined);
+        }
+        return;
+      }
+
+      if (!e.shiftKey) {
+        selectedProperties.clear();
+      }
+
+      selectedProperties.pushObject(property);
+
+      // Если это первое выделение, устанавливаем тип и inputManually
+      if (selectedProperties.length === 1) {
         this.set('selectedPropertyType', this.get('type'));
         next(() => {
-          this.set('selectedProperty.inputManually', this.getInputManuallyValue());
-        })
-      } else {
-        this.set('selectedProperty', undefined);
-        this.set('selectedPropertyType', undefined);
+          if (selectedProperties.includes(property)) {
+            this.set('selectedProperties.firstObject.inputManually', this.getInputManuallyValue());
+          }
+        });
       }
     },
   }

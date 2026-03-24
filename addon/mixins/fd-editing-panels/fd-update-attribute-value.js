@@ -85,6 +85,11 @@ export default Mixin.create({
           isDataServiceExpression: true,
         },
         {
+          columnCaption: 'components.fd-attribute-table.attribute.order',
+          columnProperty: 'order',
+          isCheckBox: true,
+        },
+        {
           columnCaption: 'components.fd-attribute-table.attribute.autoincrement',
           columnProperty: 'autoincrement',
           isCheckBox: true,

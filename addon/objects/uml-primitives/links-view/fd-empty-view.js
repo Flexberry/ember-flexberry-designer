@@ -110,6 +110,16 @@ export let EmptyView = joint.dia.LinkView.extend({
 
   updateBox() {
     this.updateInputsWidth(get(this, 'updateInputsArray'));
+
+    if (this.model.get('highlighted')) {
+      const highlightVel = this.model.get('highlightVel');
+
+      if (isNone(highlightVel)) {
+        return;
+      }
+
+      highlightVel.attr('d', this.metrics.data);
+    }
   },
 
   updateInputsWidth(inputSelectors) {
@@ -253,7 +263,7 @@ export let EmptyView = joint.dia.LinkView.extend({
     this._setVerticesValue();
     let readonly = this.paper.options.interactive;
     if (readonly && typeof readonly === 'object') {
-      $(this.paper.el).find('input,textarea').addClass('click-disabled');
+      this.$box.find('input,textarea').addClass('click-disabled');
     }
 
     let coordinates = forPointerMethodOverrideResizeAndDnd(evt, x, y);
@@ -268,8 +278,9 @@ export let EmptyView = joint.dia.LinkView.extend({
   pointerup(evt, x, y) {
     this._checkVerticesChanges();
     let readonly = this.paper.options.interactive;
+
     if (readonly && typeof readonly === 'object') {
-      $(this.paper.el).find('input,textarea').removeClass('click-disabled');
+      this.$box.find('input,textarea').removeClass('click-disabled');
     }
 
     let coordinates = forPointerMethodOverrideResizeAndDnd(evt, x, y);

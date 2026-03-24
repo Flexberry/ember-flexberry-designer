@@ -8,6 +8,11 @@ module.exports = function (environment) {
     backendUrl = 'http://localhost:6500';
   }
 
+  if (environment === 'development-docker') {
+    // Use `ember s -e development-docker` command for Docker backend usage.
+    backendUrl = 'http://localhost:6080';
+  }
+
   let ENV = {
     repositoryName: 'ember-flexberry-designer/dummy',
     modulePrefix: 'dummy',
