@@ -21,13 +21,6 @@ class SignalRConnection {
       .configureLogging(signalR.LogLevel.Information)
       .build();
 
-    /**
-      Indicates whether the connection is established.
-
-      @property connected
-      @type Boolean
-      @default false
-    */
     this.connected = false;
   }
 
@@ -38,7 +31,7 @@ class SignalRConnection {
     @returns {Promise} A promise that resolves when the connection is established.
   */
   start() {
-    if (!this.connected && this.connection) {
+    if (this.connected == false && this.connection) {
       return this.connection.start().then(() => {
         this.connected = true;
       });
