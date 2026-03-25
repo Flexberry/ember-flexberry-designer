@@ -31,6 +31,7 @@
     "test": "ember try:each"
   },
   "dependencies": {
+    "@aspnet/signalr": "^1.0.27",
     "ember-cli-babel": "^6.6.0",
     "ember-cli-htmlbars": "^2.0.1"
   },

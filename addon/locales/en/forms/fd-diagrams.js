@@ -23,5 +23,7 @@ export default {
     'corrector-message': 'Need to reload the project to load the changes:'
   },
   'all-diagrams': 'All diagrams',
-  'systems': 'Catalogs'
+  'systems': 'Catalogs',
+  'diagram-updated-header': 'Diagram Updated',
+  'diagram-updated-message': 'The diagram has been updated by user.'
 };

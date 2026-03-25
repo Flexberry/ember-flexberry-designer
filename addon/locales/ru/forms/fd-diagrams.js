@@ -23,5 +23,7 @@ export default {
     'corrector-message': 'Необходимо перезагрузить проект, чтобы подгрузить внесенные изменения:'
   },
   'all-diagrams': 'Все диаграммы',
-  'systems': 'Каталоги'
+  'systems': 'Каталоги',
+  'diagram-updated-header': 'Диаграмма обновлена',
+  'diagram-updated-message': 'Диаграмма была обновлена пользователем.'
 };
