@@ -34,12 +34,13 @@ export default Service.extend(Evented, {
 
     signalR.start()
       .then(() => {
-        signalR.connection.invoke('JoinProjectAsync', projectId);
+        return signalR.connection.invoke('JoinProjectAsync', projectId);
       })
       .then(() => {
-        signalR.connection.on('diagramUpdated', (payload) => {
-          this.trigger('diagramUpdated', payload);
-        });
+        if (typeof this._diagramUpdatedHandler !== 'function') {
+          this._diagramUpdatedHandler = (payload) => this.trigger('diagramUpdated', payload);
+          signalR.connection.on('diagramUpdated', this._diagramUpdatedHandler);
+        }
       });
   },
 

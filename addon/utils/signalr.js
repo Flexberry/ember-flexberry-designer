@@ -20,8 +20,6 @@ class SignalRConnection {
       // eslint-disable-next-line no-undef
       .configureLogging(signalR.LogLevel.Information)
       .build();
-
-    this.connected = false;
   }
 
   /**
@@ -31,10 +29,8 @@ class SignalRConnection {
     @returns {Promise} A promise that resolves when the connection is established.
   */
   start() {
-    if (this.connected == false && this.connection) {
-      return this.connection.start().then(() => {
-        this.connected = true;
-      });
+    if (this.connection) {
+      return this.connection.start();
     } else {
       return resolve();
     }
