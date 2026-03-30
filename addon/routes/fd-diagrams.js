@@ -165,7 +165,6 @@ export default Route.extend(FdWrapperModel, FdShareLoadData, {
   deactivate() {
     this._super(...arguments);
 
-    const stageId = this.get('currentProjectContext').getCurrentStage();
-    this.get('fdSignalRService').disconnect(stageId);
+    this.get('fdSignalRService').disconnect();
   }
 });

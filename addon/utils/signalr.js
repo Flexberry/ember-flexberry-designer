@@ -19,6 +19,7 @@ class SignalRConnection {
       .withUrl(url)
       // eslint-disable-next-line no-undef
       .configureLogging(signalR.LogLevel.Information)
+      .withAutomaticReconnect()
       .build();
   }
 

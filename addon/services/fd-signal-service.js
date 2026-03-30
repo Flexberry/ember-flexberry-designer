@@ -12,11 +12,21 @@ export default Service.extend(Evented, {
   */
   signalR: null,
 
+  /**
+    Currently joined project ID.
+
+    @property currentProjectId
+    @type String|null
+    @default null
+  */
+  currentProjectId: null,
+
   init() {
     this._super(...arguments);
 
     const app = getOwner(this);
     this.set('signalR', app.lookup('realtime:signalr'));
+    this.set('currentProjectId', null);
   },
 
   /**
@@ -31,34 +41,74 @@ export default Service.extend(Evented, {
     }
 
     const signalR = this.get('signalR');
+    if (isNone(signalR)) {
+      return;
+    }
 
     signalR.start()
       .then(() => {
+        const reconnectHandler = () => {
+          const currentProjectId = this.get('currentProjectId');
+          if (!isNone(currentProjectId)) {
+            return signalR.connection.invoke('JoinProjectAsync', currentProjectId);
+          }
+        }
+
+        signalR.connection.onreconnected(reconnectHandler);
+
+        const diagramUpdatedHandler = (payload) => {
+          this.trigger('diagramUpdated', payload);
+        }
+
+        signalR.connection.on('diagramUpdated', diagramUpdatedHandler);
+
         return signalR.connection.invoke('JoinProjectAsync', projectId);
       })
       .then(() => {
-        if (typeof this._diagramUpdatedHandler !== 'function') {
-          this._diagramUpdatedHandler = (payload) => this.trigger('diagramUpdated', payload);
-          signalR.connection.on('diagramUpdated', this._diagramUpdatedHandler);
-        }
+        this.set('currentProjectId', projectId);
+      })
+      .catch(() => {
+        signalR.connection.offReconnected();
+        signalR.connection.off('diagramUpdated');
       });
   },
 
   /**
-    Disconnect from SignalR.
+    Disconnect from SignalR and clean up resources.
 
     @method disconnect
-    @param {String} projectId Project ID to leave.
   */
-  disconnect(projectId) {
-    if (isNone(projectId)) {
+  disconnect() {
+    const signalR = this.get('signalR');
+    if (isNone(signalR) || isNone(signalR.connection)) {
       return;
     }
 
-    const signalR = this.get('signalR');
+    signalR.connection.offReconnected();
+    signalR.connection.off('diagramUpdated');
 
-    if (signalR.connected === true) {
-      signalR.connection.invoke('LeaveProjectAsync', projectId);
+    const currentProjectId = this.get('currentProjectId');
+
+    if (!isNone(currentProjectId) && signalR.connection.state === 1) {
+      signalR.connection.invoke('LeaveProjectAsync', currentProjectId);
+      this.set('currentProjectId', null);
     }
+  },
+
+  /**
+    Clean up resources when service is destroyed.
+
+    @method willDestroy
+  */
+  willDestroy() {
+    this._super(...arguments);
+
+    const signalR = this.get('signalR');
+    if (!isNone(signalR) && !isNone(signalR.connection)) {
+      signalR.connection.offReconnected();
+      signalR.connection.off('diagramUpdated');
+    }
+
+    this.set('currentProjectId', null);
   }
 });
