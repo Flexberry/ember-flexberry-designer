@@ -29,11 +29,39 @@ class SignalRConnection {
     @returns {Promise} A promise that resolves when the connection is established.
   */
   start() {
-    if (this.connection) {
+    if (this.connection && this.getState() === 2) {
       return this.connection.start();
-    } else {
-      return resolve();
     }
+
+    return resolve();
+  }
+
+  /**
+    Stops the SignalR connection.
+
+    @method stop
+    @returns {Promise} A promise that resolves when the connection is stopped.
+  */
+  stop() {
+    if (this.connection && this.getState() !== 2) {
+      return this.connection.stop();
+    }
+
+    return resolve();
+  }
+
+  /**
+    Gets the current connection state.
+
+    @method getState
+    @returns {Number} The connection state.
+  */
+  getState() {
+    if (!this.connection) {
+      return 2;
+    }
+
+    return this.connection.connection.connectionState;
   }
 }
 

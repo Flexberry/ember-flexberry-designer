@@ -12,11 +12,23 @@ export default Service.extend(Evented, {
   */
   signalR: null,
 
+  /**
+    Currently joined project ID.
+
+    @property currentProjectId
+    @default null
+  */
+  currentProjectId: null,
+
   init() {
     this._super(...arguments);
 
-    const app = getOwner(this);
-    this.set('signalR', app.lookup('realtime:signalr'));
+    const signalR = getOwner(this).lookup('realtime:signalr');
+
+    this.set('signalR', signalR);
+    this.set('currentProjectId', null);
+
+    signalR.connection.on('diagramUpdated', (payload) => this.trigger('diagramUpdated', payload));
   },
 
   /**
@@ -32,15 +44,12 @@ export default Service.extend(Evented, {
 
     const signalR = this.get('signalR');
 
-    signalR.start()
+    return signalR.start()
       .then(() => {
         return signalR.connection.invoke('JoinProjectAsync', projectId);
       })
       .then(() => {
-        if (typeof this._diagramUpdatedHandler !== 'function') {
-          this._diagramUpdatedHandler = (payload) => this.trigger('diagramUpdated', payload);
-          signalR.connection.on('diagramUpdated', this._diagramUpdatedHandler);
-        }
+        this.set('currentProjectId', projectId);
       });
   },
 
@@ -48,17 +57,35 @@ export default Service.extend(Evented, {
     Disconnect from SignalR.
 
     @method disconnect
-    @param {String} projectId Project ID to leave.
   */
-  disconnect(projectId) {
-    if (isNone(projectId)) {
+  disconnect() {
+    const service = this.get('signalR');
+    const currentProjectId = this.get('currentProjectId');
+
+    if (isNone(currentProjectId)) {
       return;
     }
 
-    const signalR = this.get('signalR');
-
-    if (signalR.connected === true) {
-      signalR.connection.invoke('LeaveProjectAsync', projectId);
+    // eslint-disable-next-line no-undef
+    if (service.getState() !== signalR.HubConnection.Disconnected) {
+      return service.connection.invoke('LeaveProjectAsync', currentProjectId)
+        .finally(() => {
+          this.set('currentProjectId', null);
+        });
     }
+  },
+
+  /**
+    Clean up resources when service is destroyed.
+
+    @method willDestroy
+  */
+  willDestroy() {
+    this._super(...arguments);
+
+    const signalR = this.get('signalR');
+    signalR.connection.off('diagramUpdated');
+
+    signalR.stop();
   }
 });
