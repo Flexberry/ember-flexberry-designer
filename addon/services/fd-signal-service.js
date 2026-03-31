@@ -66,8 +66,7 @@ export default Service.extend(Evented, {
       return;
     }
 
-    // eslint-disable-next-line no-undef
-    if (service.getState() !== signalR.HubConnection.Disconnected) {
+    if (service.getState() !== 2) {
       return service.connection.invoke('LeaveProjectAsync', currentProjectId)
         .finally(() => {
           this.set('currentProjectId', null);
