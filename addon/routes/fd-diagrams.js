@@ -18,8 +18,8 @@ export default Route.extend(FdWrapperModel, FdShareLoadData, {
   /**
     Service for managing SignalR events.
 
-    @property signalREvents
-    @type SignalREvents
+    @property fdSignalRService
+    @type {Class}
     @default Ember.inject.service()
   */
   fdSignalRService: service('fd-signal-service'),
