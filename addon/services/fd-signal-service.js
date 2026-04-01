@@ -29,6 +29,12 @@ export default Service.extend(Evented, {
     this.set('currentProjectId', null);
 
     signalR.connection.on('diagramUpdated', (payload) => this.trigger('diagramUpdated', payload));
+    signalR.connection.onreconnected(() => {
+      const currentProjectId = this.get('currentProjectId');
+      if (!isNone(currentProjectId)) {
+        return signalR.connection.invoke('JoinProjectAsync', currentProjectId);
+      }
+    });
   },
 
   /**
@@ -66,7 +72,8 @@ export default Service.extend(Evented, {
       return;
     }
 
-    if (service.getState() !== 2) {
+    // eslint-disable-next-line no-undef
+    if (service.getState() !== signalR.HubConnectionState.Disconnected) {
       return service.connection.invoke('LeaveProjectAsync', currentProjectId)
         .finally(() => {
           this.set('currentProjectId', null);
@@ -84,6 +91,7 @@ export default Service.extend(Evented, {
 
     const signalR = this.get('signalR');
 
+    signalR.connection.offReconnected();
     signalR.connection.off('diagramUpdated');
 
     signalR.stop();

@@ -5,6 +5,7 @@ All notable changes to this project will be documented in this file.
 ### Added
 * Added SignalR service for real-time notifications about diagram updates
 * Added diagram updated notification popup
+* Added automatic reconnect functionality for SignalR service
 
 ## [1.1.2-beta.9] - 2026-03-24
 ### Fixed
