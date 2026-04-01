@@ -2,6 +2,10 @@
 All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
+### Added
+* Added SignalR service for real-time notifications about diagram updates
+* Added diagram updated notification popup
+
 ### Fixed
 * Fixed diagram class edit
 * Fixed logo shrink
