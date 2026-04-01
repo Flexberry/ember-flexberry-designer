@@ -440,8 +440,8 @@ export default Controller.extend(FdSheetCloseConfirm, FdReadonlyProjectMixin, Fd
         const { validationMessages, isEmptyProject } = JSON.parse(result.value);
         if(isEmptyProject) {
           this.get('fdDialogService').showCustomMessage(
-            i18n.t('forms.fd-navigation.custom-message.validate-empty-message'),
-            i18n.t('forms.fd-navigation.custom-message.validate-empty-header'),
+            i18n.t('forms.fd-setting.custom-message.validate-empty-message'),
+            i18n.t('forms.fd-setting.custom-message.validate-empty-header'),
             false);
         } else if (isBlank(validationMessages)) {
           const validateOkHeader = i18n.t('forms.fd-setting.custom-message.validate-ok-header');

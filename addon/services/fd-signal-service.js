@@ -16,7 +16,6 @@ export default Service.extend(Evented, {
     Currently joined project ID.
 
     @property currentProjectId
-    @type String|null
     @default null
   */
   currentProjectId: null,
@@ -24,9 +23,12 @@ export default Service.extend(Evented, {
   init() {
     this._super(...arguments);
 
-    const app = getOwner(this);
-    this.set('signalR', app.lookup('realtime:signalr'));
+    const signalR = getOwner(this).lookup('realtime:signalr');
+
+    this.set('signalR', signalR);
     this.set('currentProjectId', null);
+
+    signalR.connection.on('diagramUpdated', (payload) => this.trigger('diagramUpdated', payload));
   },
 
   /**
@@ -41,57 +43,34 @@ export default Service.extend(Evented, {
     }
 
     const signalR = this.get('signalR');
-    if (isNone(signalR)) {
-      return;
-    }
 
-    signalR.start()
+    return signalR.start()
       .then(() => {
-        const reconnectHandler = () => {
-          const currentProjectId = this.get('currentProjectId');
-          if (!isNone(currentProjectId)) {
-            return signalR.connection.invoke('JoinProjectAsync', currentProjectId);
-          }
-        }
-
-        signalR.connection.onreconnected(reconnectHandler);
-
-        const diagramUpdatedHandler = (payload) => {
-          this.trigger('diagramUpdated', payload);
-        }
-
-        signalR.connection.on('diagramUpdated', diagramUpdatedHandler);
-
         return signalR.connection.invoke('JoinProjectAsync', projectId);
       })
       .then(() => {
         this.set('currentProjectId', projectId);
-      })
-      .catch(() => {
-        signalR.connection.offReconnected();
-        signalR.connection.off('diagramUpdated');
       });
   },
 
   /**
-    Disconnect from SignalR and clean up resources.
+    Disconnect from SignalR.
 
     @method disconnect
   */
   disconnect() {
-    const signalR = this.get('signalR');
-    if (isNone(signalR) || isNone(signalR.connection)) {
+    const service = this.get('signalR');
+    const currentProjectId = this.get('currentProjectId');
+
+    if (isNone(currentProjectId)) {
       return;
     }
 
-    signalR.connection.offReconnected();
-    signalR.connection.off('diagramUpdated');
-
-    const currentProjectId = this.get('currentProjectId');
-
-    if (!isNone(currentProjectId) && signalR.connection.state === 1) {
-      signalR.connection.invoke('LeaveProjectAsync', currentProjectId);
-      this.set('currentProjectId', null);
+    if (service.getState() !== 2) {
+      return service.connection.invoke('LeaveProjectAsync', currentProjectId)
+        .finally(() => {
+          this.set('currentProjectId', null);
+        });
     }
   },
 
@@ -104,11 +83,9 @@ export default Service.extend(Evented, {
     this._super(...arguments);
 
     const signalR = this.get('signalR');
-    if (!isNone(signalR) && !isNone(signalR.connection)) {
-      signalR.connection.offReconnected();
-      signalR.connection.off('diagramUpdated');
-    }
 
-    this.set('currentProjectId', null);
+    signalR.connection.off('diagramUpdated');
+
+    signalR.stop();
   }
 });

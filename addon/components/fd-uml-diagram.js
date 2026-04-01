@@ -456,6 +456,10 @@ export default Component.extend(
 
     const highlightedElements = this.get('highlightedElements');
     highlightedElements.forEach((highlightedElement) => {
+      if (highlightedElement.model.isLink()) {
+        highlightedElement.$el.addClass('linktools-disabled');
+      }
+
       highlightedElement.unhighlight();
     });
     highlightedElements.clear();
