@@ -69,6 +69,14 @@ export default Controller.extend(FdShareFunctionMixin, {
   router: service(),
 
   /**
+    Service for managing SignalR events.
+
+    @property fdSignalRService
+    @type FdSignalService
+  */
+  fdSignalRService: service('fd-signal-service'),
+
+  /**
     Current project name from stageModel
 
     @property currentProjectName
@@ -232,12 +240,16 @@ export default Controller.extend(FdShareFunctionMixin, {
     }
 
     this.get('currentContext').on('NeedSyncStageTriggered', this, this._informSyncStage);
+
+    this.get('fdSignalRService').on('diagramUpdated', this, this._informDiagramUpdated);
   },
 
   willDestroy() {
     this._super(...arguments);
 
     this.get('currentContext').off('NeedSyncStageTriggered', this, this._informSyncStage);
+
+    this.get('fdSignalRService').off('diagramUpdated', this, this._informDiagramUpdated);
   },
 
   /**
@@ -287,6 +299,35 @@ export default Controller.extend(FdShareFunctionMixin, {
         });
       }), 5000);
     }
+  },
+
+  /**
+    Show diagram updated popup.
+
+    @method _informDiagramUpdated
+  */
+  _informDiagramUpdated() {
+    let i18n = this.get('i18n');
+    if (isNone(i18n)) {
+      return;
+    }
+
+    const message = i18n.t('forms.fd-diagrams.diagram-updated-message').toString();
+    const header = i18n.t('forms.fd-diagrams.diagram-updated-header').toString();
+
+    const notification = $('#sync-notification');
+    notification.popup({
+      on: 'manual',
+      variation: 'mini',
+      position: 'bottom center',
+      title: header,
+      content: message,
+      target: '.fd-sync-stage'
+    }).popup('show');
+
+      later(this, () => {
+        notification.popup('hide');
+      }, 5000);
   },
 
   actions: {

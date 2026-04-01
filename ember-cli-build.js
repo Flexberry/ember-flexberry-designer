@@ -69,20 +69,20 @@ module.exports = function(defaults) {
   app.import('vendor/fonts/icons.ttf', { destDir: 'assets/fonts' });
   app.import('vendor/fonts/icons.woff', { destDir: 'assets/fonts' });
   app.import('vendor/fonts/icons.woff2', { destDir: 'assets/fonts' });
-  
+
   app.import('vendor/fonts/outline-icons.eot', { destDir: 'assets/fonts' });
   app.import('vendor/fonts/outline-icons.otf', { destDir: 'assets/fonts' });
   app.import('vendor/fonts/outline-icons.svg', { destDir: 'assets/fonts' });
   app.import('vendor/fonts/outline-icons.ttf', { destDir: 'assets/fonts' });
   app.import('vendor/fonts/outline-icons.woff', { destDir: 'assets/fonts' });
   app.import('vendor/fonts/outline-icons.woff2', { destDir: 'assets/fonts' });
-  
+
   app.import('vendor/fonts/crim.eot', { destDir: 'assets/fonts' });
   app.import('vendor/fonts/crim.svg', { destDir: 'assets/fonts' });
   app.import('vendor/fonts/crim.ttf', { destDir: 'assets/fonts' });
   app.import('vendor/fonts/crim.woff', { destDir: 'assets/fonts' });
   app.import('vendor/fonts/crim.woff2', { destDir: 'assets/fonts' });
-  
+
   app.import('vendor/fonts/fd-icons.eot', { destDir: 'assets/fonts' });
   app.import('vendor/fonts/fd-icons.ttf', { destDir: 'assets/fonts' });
   app.import('vendor/fonts/fd-icons.woff', { destDir: 'assets/fonts' });
@@ -96,5 +96,8 @@ module.exports = function(defaults) {
   app.import(`${ghostThemeAssetsDir}/fonts/guideline-icons/guideline-icons.woff`, { destDir: 'assets/fonts/guideline-icons'});
   app.import(`${ghostThemeAssetsDir}/fonts/guideline-icons/guideline-icons.woff2`, { destDir: 'assets/fonts/guideline-icons'});
   app.import(`${ghostThemeAssetsDir}/fonts/guideline-icons/guideline-icons.svg`, { destDir: 'assets/fonts/guideline-icons'});
+
+  app.import('node_modules/@aspnet/signalr/dist/browser/signalr.js');
+
   return app.toTree();
 };

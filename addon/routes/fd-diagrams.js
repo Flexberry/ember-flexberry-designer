@@ -16,6 +16,15 @@ export default Route.extend(FdWrapperModel, FdShareLoadData, {
   currentProjectContext: service('fd-current-project-context'),
 
   /**
+    Service for managing SignalR events.
+
+    @property fdSignalRService
+    @type {Class}
+    @default Ember.inject.service()
+  */
+  fdSignalRService: service('fd-signal-service'),
+
+  /**
     Service for managing the state of the sheet component.
 
     @property fdSheetService
@@ -134,5 +143,28 @@ export default Route.extend(FdWrapperModel, FdShareLoadData, {
 
       this._super(...arguments);
     }
+  },
+
+  /**
+    A hook you can implement to do work after the model hook has resolved.
+
+    @method afterModel
+  */
+  afterModel() {
+    this._super(...arguments);
+
+    const stageId = this.get('currentProjectContext').getCurrentStage();
+    return this.get('fdSignalRService').connect(stageId);
+  },
+
+  /**
+    A hook you can use to do work when the route is being exited.
+
+    @method deactivate
+  */
+  deactivate() {
+    this._super(...arguments);
+
+    this.get('fdSignalRService').disconnect();
   }
 });
