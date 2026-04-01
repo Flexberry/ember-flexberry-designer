@@ -6,9 +6,15 @@ All notable changes to this project will be documented in this file.
 * Added SignalR service for real-time notifications about diagram updates
 * Added diagram updated notification popup
 
+## [1.1.2-beta.9] - 2026-03-24
+### Fixed
+* Fix share
+
+## [1.1.2-beta.8] - 2026-03-17
 ### Fixed
 * Fixed diagram class edit
 * Fixed logo shrink
+* Changed card on generation page
 
 ## [1.1.2-beta.7] - 2026-03-05
 ### Added
