@@ -19,6 +19,7 @@ class SignalRConnection {
       .withUrl(url)
       // eslint-disable-next-line no-undef
       .configureLogging(signalR.LogLevel.Information)
+      .withAutomaticReconnect()
       .build();
   }
 
@@ -29,7 +30,8 @@ class SignalRConnection {
     @returns {Promise} A promise that resolves when the connection is established.
   */
   start() {
-    if (this.connection && this.getState() === 2) {
+    // eslint-disable-next-line no-undef
+    if (this.connection && this.getState() === signalR.HubConnectionState.Disconnected) {
       return this.connection.start();
     }
 
@@ -43,7 +45,8 @@ class SignalRConnection {
     @returns {Promise} A promise that resolves when the connection is stopped.
   */
   stop() {
-    if (this.connection && this.getState() !== 2) {
+    // eslint-disable-next-line no-undef
+    if (this.connection && this.getState() !== signalR.HubConnectionState.Disconnected) {
       return this.connection.stop();
     }
 
@@ -58,10 +61,11 @@ class SignalRConnection {
   */
   getState() {
     if (!this.connection) {
-      return 2;
+      // eslint-disable-next-line no-undef
+      return signalR.HubConnectionState.Disconnected;
     }
 
-    return this.connection.connection.connectionState;
+    return this.connection.state;
   }
 }
 

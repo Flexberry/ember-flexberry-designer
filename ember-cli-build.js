@@ -97,7 +97,7 @@ module.exports = function(defaults) {
   app.import(`${ghostThemeAssetsDir}/fonts/guideline-icons/guideline-icons.woff2`, { destDir: 'assets/fonts/guideline-icons'});
   app.import(`${ghostThemeAssetsDir}/fonts/guideline-icons/guideline-icons.svg`, { destDir: 'assets/fonts/guideline-icons'});
 
-  app.import('node_modules/@aspnet/signalr/dist/browser/signalr.js');
+  app.import('node_modules/@microsoft/signalr/dist/browser/signalr.js');
 
   return app.toTree();
 };
