@@ -104,6 +104,7 @@ export default Service.extend(Evented, {
     const signalR = this.get('signalR');
 
     signalR.connection.offReconnected();
+
     signalR.connection.off('Diagram');
     signalR.connection.off('Aggregation');
     signalR.connection.off('Association');
