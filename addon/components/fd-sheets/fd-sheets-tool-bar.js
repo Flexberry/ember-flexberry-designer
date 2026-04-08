@@ -186,6 +186,21 @@ export default Component.extend(FdReadonlyProjectMixin, FdShareFunctionMixin, {
   contentSheetValue: undefined,
 
   /**
+    Computed property that returns true if contentSheetValue is locked.
+
+    @property contentSheetAcquired
+    @type Boolean
+  */
+  contentSheetAcquired: computed('contentSheetValue.acquired', function() {
+    const contentSheetAcquired = this.get('contentSheetValue.acquired');
+    if (isNone(contentSheetAcquired)) {
+      return false;
+    }
+
+    return contentSheetAcquired === true;
+  }),
+
+  /**
     Table headers for dependencies popup.
 
     @property tableViewDiagrams
@@ -238,6 +253,28 @@ export default Component.extend(FdReadonlyProjectMixin, FdShareFunctionMixin, {
   }),
 
   /**
+    Observer for contentSheetAcquired property.
+    Creates or destroys popup based on the value.
+
+    @method contentSheetAcquiredObserver
+  */
+  contentSheetAcquiredObserver: observer('contentSheetAcquired', function() {
+    const contentSheetAcquired = this.get('contentSheetAcquired');
+    const editButton = this.$('#edit-button-wrapper');
+
+    if (contentSheetAcquired) {
+      editButton.popup({
+        on: 'hover',
+        position: 'bottom center',
+        variation: 'mini',
+        content: this.get('i18n').t('components.fd-sheets-tool-bar.object-locked') + this.get('contentSheetValue.acquiredBy')
+      });
+    } else {
+      editButton.popup('destroy');
+    }
+  }),
+
+  /**
     Callback success save item.
 
      @method successSaveModel
@@ -260,6 +297,9 @@ export default Component.extend(FdReadonlyProjectMixin, FdShareFunctionMixin, {
   willDestroyElement() {
     this._super(...arguments);
     this.set('readonlyMode', true);
+
+    this.$('#edit-button-wrapper').popup('destroy');
+
     const sheetComponentName = this.get('sheetComponentName');
     const contentSheetValue = this.get('contentSheetValue');
     this.get('fdLockService').deleteLock(contentSheetValue, sheetComponentName);
@@ -373,7 +413,7 @@ export default Component.extend(FdReadonlyProjectMixin, FdShareFunctionMixin, {
 
       classDiagrams.pushObjects(cadDiagramsCurrentStage.filter(function (diagram) {
         if (!isNone(diagram.caseObjectsString)) {
-          return diagram.caseObjectsString.includes("Class:(" + currentClassName + ")") || 
+          return diagram.caseObjectsString.includes("Class:(" + currentClassName + ")") ||
                  diagram.caseObjectsString.includes("Class:(" + currentClassNameStr + ")");
         }
       }));

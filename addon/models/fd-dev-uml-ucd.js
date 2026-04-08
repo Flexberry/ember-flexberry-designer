@@ -1,6 +1,7 @@
 import { computed } from '@ember/object';
 import { A } from '@ember/array';
 import { isNone } from '@ember/utils';
+import FdLockFieldsMixin from '../mixins/fd-lock-fields';
 import {
   Model as DevUMLUCDMixin,
   defineBaseModel
@@ -18,7 +19,7 @@ import FdUmlUnDirectedAssociation from '../objects/uml-primitives/fd-uml-usecase
 import FdUmlDirectedAssociation from '../objects/uml-primitives/fd-uml-usecase-directed-association';
 import FdUmlPartition from '../objects/uml-primitives/fd-uml-partition';
 
-let Model = UCDModel.extend(DevUMLUCDMixin, {
+let Model = UCDModel.extend(DevUMLUCDMixin, FdLockFieldsMixin, {
   /**
       The array of primitives of this diagram.
 

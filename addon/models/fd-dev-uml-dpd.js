@@ -1,6 +1,7 @@
 import { computed } from '@ember/object';
 import { A } from '@ember/array';
 import { isNone } from '@ember/utils';
+import FdLockFieldsMixin from '../mixins/fd-lock-fields';
 import { Model as DevUMLDPDMixin, defineBaseModel  } from
   '../mixins/regenerated/models/fd-dev-uml-dpd';
 import DPDModel from './fd-dpd';
@@ -14,7 +15,7 @@ import FdUmlInstance from '../objects/uml-primitives/fd-uml-instance';
 import FdUmlComponent from '../objects/uml-primitives/fd-uml-component';
 import FdUmlNode from '../objects/uml-primitives/fd-uml-node';
 
-let Model = DPDModel.extend(DevUMLDPDMixin, {
+let Model = DPDModel.extend(DevUMLDPDMixin, FdLockFieldsMixin, {
   /**
     The array of primitives of this diagram.
 

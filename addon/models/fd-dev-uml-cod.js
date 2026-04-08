@@ -1,5 +1,6 @@
 import { computed } from '@ember/object';
 import { A } from '@ember/array';
+import FdLockFieldsMixin from '../mixins/fd-lock-fields';
 import { Model as DevUMLCODMixin, defineBaseModel  } from
   '../mixins/regenerated/models/fd-dev-uml-cod';
 import CODModel from './fd-cod';
@@ -28,7 +29,7 @@ import FdUmlBackwardNestedMessage from '../objects/uml-primitives/fd-uml-backwar
 import FdUmlBackwardFlatMessage from '../objects/uml-primitives/fd-uml-backward-flat-message';
 import FdUmlBackwardAsyncMessage from '../objects/uml-primitives/fd-uml-backward-async-message';
 
-let Model = CODModel.extend(DevUMLCODMixin, {
+let Model = CODModel.extend(DevUMLCODMixin, FdLockFieldsMixin, {
 
   /**
     The array of primitives of this diagram.

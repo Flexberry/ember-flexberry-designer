@@ -5,6 +5,7 @@
 
 import { computed } from '@ember/object';
 import { A } from '@ember/array';
+import FdLockFieldsMixin from '../mixins/fd-lock-fields';
 
 import StageModel from './fd-stage';
 import {
@@ -22,7 +23,7 @@ import { deserialize, serialize } from '../utils/transforms-utils/fd-type-map-fu
   @extends FdStageModel
   @uses FdDevStageModelMixin
 */
-let Model = StageModel.extend(DevStageMixin, {
+let Model = StageModel.extend(DevStageMixin, FdLockFieldsMixin, {
   /**
     Deserialized type map for C#.
 
