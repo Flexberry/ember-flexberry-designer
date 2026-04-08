@@ -294,6 +294,22 @@ export default Component.extend(FdReadonlyProjectMixin, FdShareFunctionMixin, {
     this.get('fdSheetService').on('successSaveModelTrigger', this, this.successSaveModel);
   },
 
+  didInsertElement() {
+    this._super(...arguments);
+
+    const contentSheetAcquired = this.get('contentSheetAcquired');
+    const editButton = this.$('#edit-button-wrapper');
+
+    if (contentSheetAcquired) {
+      editButton.popup({
+        on: 'hover',
+        position: 'bottom center',
+        variation: 'mini',
+        content: this.get('i18n').t('components.fd-sheets-tool-bar.object-locked') + this.get('contentSheetValue.acquiredBy')
+      });
+    }
+  },
+
   willDestroyElement() {
     this._super(...arguments);
     this.set('readonlyMode', true);

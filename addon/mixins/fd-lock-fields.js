@@ -48,9 +48,9 @@ export default Mixin.create({
   /**
     Initializes the mixin and sets up SignalR event listeners.
 
-    @method init
+    @method didLoad
   */
-  init() {
+  didLoad() {
     this._super(...arguments);
 
     this.get('fdSignalService').on(`${this.get('constructor.modelName')}:Lock:${this.get('id')}`, this, this._onLockEvent);
