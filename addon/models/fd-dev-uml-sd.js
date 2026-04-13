@@ -1,6 +1,7 @@
 import { computed } from '@ember/object';
 import { A } from '@ember/array';
 import { isNone } from '@ember/utils';
+import FdLockFieldsMixin from '../mixins/fd-lock-fields';
 import {
   Model as DevUMLSDMixin,
   defineBaseModel
@@ -20,7 +21,7 @@ import FdUmlReturnMsg from '../objects/uml-primitives/fd-uml-return-message';
 import FdUmlInScope from '../objects/uml-primitives/fd-uml-sequence-in-scope';
 import FdUmlTimeConstraint from '../objects/uml-primitives/fd-uml-time-constraint';
 
-let Model = SDModel.extend(DevUMLSDMixin, {
+let Model = SDModel.extend(DevUMLSDMixin, FdLockFieldsMixin, {
   /**
       The array of primitives of this diagram.
 
@@ -79,7 +80,7 @@ let Model = SDModel.extend(DevUMLSDMixin, {
 
       case 'STORMCASE.UML.sd.ReturnMessage, UMLSD':
         return FdUmlReturnMsg.create({ primitive });
-      
+
       case 'STORMCASE.UML.sd.InScope, UMLSD':
         return FdUmlInScope.create({ primitive });
 

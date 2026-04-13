@@ -2,12 +2,13 @@
 import { computed } from '@ember/object';
 import { A } from '@ember/array';
 import ClassModel from './fd-class';
+import FdLockFieldsMixin from '../mixins/fd-lock-fields';
 import { Model as DevClassMixin, defineProjections, defineBaseModel  } from
   '../mixins/regenerated/models/fd-dev-class';
 
 import { deserialize, serialize } from '../utils/transforms-utils/fd-storeinstancesintype';
 
-let Model = ClassModel.extend(DevClassMixin, {
+let Model = ClassModel.extend(DevClassMixin, FdLockFieldsMixin, {
 
   /**
     Deserialized storeInstancesInType.

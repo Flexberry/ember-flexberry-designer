@@ -27,9 +27,11 @@
   {{#if toolbarVisible}}
     {{#if (and readonlyMode (not isNewModel))}}
       {{#if (not readonlyModeProject)}}
-        <button class="ui positive button fd-edit" {{action "edit"}}>
-          {{t "components.fd-sheets-tool-bar.edit-caption"}}
-        </button>
+        <span id="edit-button-wrapper" style="display: inline-flex;">
+          <button class="ui positive button fd-edit" disabled={{contentSheetAcquired}} {{action "edit"}}>
+            {{t "components.fd-sheets-tool-bar.edit-caption"}}
+          </button>
+        </span>
       {{/if}}
     {{else}}
       {{#if buttonVisible.save}}
