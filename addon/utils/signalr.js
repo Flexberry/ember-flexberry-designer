@@ -16,7 +16,7 @@ class SignalRConnection {
   constructor(url) {
     // eslint-disable-next-line no-undef
     this.connection = new signalR.HubConnectionBuilder()
-      .withUrl(url)
+      .withUrl(url, { withCredentials: true })
       // eslint-disable-next-line no-undef
       .configureLogging(signalR.LogLevel.Information)
       .withAutomaticReconnect()
