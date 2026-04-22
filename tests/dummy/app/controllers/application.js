@@ -241,7 +241,7 @@ export default Controller.extend(FdShareFunctionMixin, {
 
     this.get('currentContext').on('NeedSyncStageTriggered', this, this._informSyncStage);
 
-    this.get('fdSignalRService').on('diagramUpdated', this, this._informDiagramUpdated);
+    this.get('fdSignalRService').on('Diagram', this, this._informDiagram);
   },
 
   willDestroy() {
@@ -249,7 +249,7 @@ export default Controller.extend(FdShareFunctionMixin, {
 
     this.get('currentContext').off('NeedSyncStageTriggered', this, this._informSyncStage);
 
-    this.get('fdSignalRService').off('diagramUpdated', this, this._informDiagramUpdated);
+    this.get('fdSignalRService').off('Diagram', this, this._informDiagram);
   },
 
   /**
@@ -304,9 +304,9 @@ export default Controller.extend(FdShareFunctionMixin, {
   /**
     Show diagram updated popup.
 
-    @method _informDiagramUpdated
+    @method _informDiagram
   */
-  _informDiagramUpdated() {
+  _informDiagram() {
     let i18n = this.get('i18n');
     if (isNone(i18n)) {
       return;

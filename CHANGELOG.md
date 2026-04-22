@@ -5,6 +5,11 @@ All notable changes to this project will be documented in this file.
 ### Added
 * Added SignalR service for real-time notifications about diagram updates
 * Added diagram updated notification popup
+* Added automatic reconnect functionality for SignalR service
+* Added FdLockFieldsMixin for managing object lock state (acquired, acquiredAt, acquiredBy)
+* Added lock state support for all UML diagrams (AD, CAD, COD, DPD, SD, STD, UCD) and related models
+* Added content sheet lock indication in sheets toolbar with popup notification
+* Added event subscriptions for all SignalR events (Diagram, Aggregation, Association, Class, Stage, UMLAD, UMLCAD, UMLCOD, UMLDPD, UMLSD, UMLSTD, UMLUCD)
 
 ## [1.1.2-beta.9] - 2026-03-24
 ### Fixed

@@ -3,6 +3,7 @@ import { A } from '@ember/array';
 import { isBlank } from '@ember/utils';
 
 import CADModel from './fd-cad';
+import FdLockFieldsMixin from '../mixins/fd-lock-fields';
 import {
   Model as DevUMLCADMixin,
   defineProjections,
@@ -33,7 +34,7 @@ import FdUmlRealization from '../objects/uml-primitives/fd-uml-realization';
 import FdUmlObjectAssociation from '../objects/uml-primitives/fd-uml-object-association';
 import FdUmlNAryAssociationConnector from '../objects/uml-primitives/fd-uml-naryassociation-connector';
 
-let Model = CADModel.extend(DevUMLCADMixin, {
+let Model = CADModel.extend(DevUMLCADMixin, FdLockFieldsMixin, {
 
   /**
     The array of primitives of this diagram.
