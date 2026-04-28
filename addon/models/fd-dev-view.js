@@ -1,5 +1,5 @@
 /* eslint-disable ember/no-side-effects */
-import { computed, observer } from '@ember/object';
+import { computed } from '@ember/object';
 import { A } from '@ember/array';
 import { Model as DevViewMixin, defineProjections, defineBaseModel  } from
   '../mixins/regenerated/models/fd-dev-view';
@@ -23,36 +23,18 @@ let Model = RepositoryDataObjectModel.extend(DevViewMixin, {
     @property definitionArray
     @type Ember.NativeArray
   */
-  definitionArray: computed('_definition', 'definition', {
-    get() {
-      let definition = this.get('_definition');
-      if (!definition) {
-        definition = A(deserialize(this.get('definition')));
-        this.set('_definition', definition);
-      }
-      return definition;
-    },
-    set(key, value) {
-      this.set('_definition', value);
-      return value;
+  definitionArray: computed('_definition.@each.{name,caption,path,visible,lookupType,masterPropertyName,masterCustomizationString,detailViewName,loadOnLoadAgregator}', function() {
+    let definition = this.get('_definition');
+    if (definition) {
+      this.set('definition', serialize(definition.toArray()));
+    } else {
+      definition = A(deserialize(this.get('definition')));
+      this.set('_definition', definition);
     }
+
+    return definition;
   }),
 
-
-  _definitionSyncObserver: observer(
-    '_definition',
-    '_definition.[]',
-    '_definition.@each.{name,caption,path,visible,lookupType,masterPropertyName,masterCustomizationString,detailViewName,loadOnLoadAgregator}',
-    function() {
-      let definitionArray = this.get('_definition');
-      if (definitionArray) {
-        let serialized = serialize(definitionArray.toArray());
-        if (this.get('definition') !== serialized) {
-          this.set('definition', serialized);
-        }
-      }
-    }
-  ),
   /**
     See [EmberJS API](https://emberjs.com/).
 
