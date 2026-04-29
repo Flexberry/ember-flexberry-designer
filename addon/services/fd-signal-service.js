@@ -2,8 +2,18 @@ import Service from '@ember/service';
 import Evented from '@ember/object/evented';
 import { getOwner } from '@ember/application';
 import { isNone } from '@ember/utils';
+import { inject as service } from '@ember/service';
+import { camelize } from '@ember/string';
 
 export default Service.extend(Evented, {
+  /**
+    Store of current application.
+
+    @property store
+    @type DS.Store or subclass
+  */
+  store: service('store'),
+
   /**
     SignalR connection.
 
@@ -28,18 +38,18 @@ export default Service.extend(Evented, {
     this.set('signalR', signalR);
     this.set('currentProjectId', null);
 
-    signalR.connection.on('Diagram', (payload) => this.trigger('Diagram', payload));
-    signalR.connection.on('Aggregation', (payload) => this.trigger(`fd-dev-aggregation:${payload.messageType}:${payload.objectId}`, payload));
-    signalR.connection.on('Association', (payload) => this.trigger(`fd-dev-association:${payload.messageType}:${payload.objectId}`, payload));
-    signalR.connection.on('Class', (payload) => this.trigger(`fd-dev-class:${payload.messageType}:${payload.objectId}`, payload));
-    signalR.connection.on('Stage', (payload) => this.trigger(`fd-dev-stage:${payload.messageType}:${payload.objectId}`, payload));
-    signalR.connection.on('UMLAD', (payload) => this.trigger(`fd-dev-uml-ad:${payload.messageType}:${payload.objectId}`, payload));
-    signalR.connection.on('UMLCAD', (payload) => this.trigger(`fd-dev-uml-cad:${payload.messageType}:${payload.objectId}`, payload));
-    signalR.connection.on('UMLCOD', (payload) => this.trigger(`fd-dev-uml-cod:${payload.messageType}:${payload.objectId}`, payload));
-    signalR.connection.on('UMLDPD', (payload) => this.trigger(`fd-dev-uml-dpd:${payload.messageType}:${payload.objectId}`, payload));
-    signalR.connection.on('UMLSD', (payload) => this.trigger(`fd-dev-uml-sd:${payload.messageType}:${payload.objectId}`, payload));
-    signalR.connection.on('UMLSTD', (payload) => this.trigger(`fd-dev-uml-std:${payload.messageType}:${payload.objectId}`, payload));
-    signalR.connection.on('UMLUCD', (payload) => this.trigger(`fd-dev-uml-ucd:${payload.messageType}:${payload.objectId}`, payload));
+    signalR.connection.on('Diagram', (payload) => this.handlingEventSignalR('Diagram', payload));
+    signalR.connection.on('Aggregation', (payload) => this.handlingEventSignalR('fd-dev-aggregation', payload));
+    signalR.connection.on('Association', (payload) => this.handlingEventSignalR('fd-dev-association', payload));
+    signalR.connection.on('Class', (payload) => this.handlingEventSignalR('fd-dev-class', payload));
+    signalR.connection.on('Stage', (payload) => this.handlingEventSignalR('fd-dev-stage', payload));
+    signalR.connection.on('UMLAD', (payload) => this.handlingEventSignalR('fd-dev-uml-ad', payload));
+    signalR.connection.on('UMLCAD', (payload) => this.handlingEventSignalR('fd-dev-uml-cad', payload));
+    signalR.connection.on('UMLCOD', (payload) => this.handlingEventSignalR('fd-dev-uml-cod', payload));
+    signalR.connection.on('UMLDPD', (payload) => this.handlingEventSignalR('fd-dev-uml-dpd', payload));
+    signalR.connection.on('UMLSD', (payload) => this.handlingEventSignalR('fd-dev-uml-sd', payload));
+    signalR.connection.on('UMLSTD', (payload) => this.handlingEventSignalR('fd-dev-uml-std', payload));
+    signalR.connection.on('UMLUCD', (payload) => this.handlingEventSignalR('fd-dev-uml-ucd', payload));
 
     signalR.connection.onreconnected(() => {
       const currentProjectId = this.get('currentProjectId');
@@ -47,6 +57,72 @@ export default Service.extend(Evented, {
         return signalR.connection.invoke('JoinProjectAsync', currentProjectId);
       }
     });
+  },
+
+  handlingEventSignalR(modelName, payload) {
+    if (payload.messageType !== 'Lock') {
+      let store = this.get('store');
+
+      const model = this.store.modelFor(modelName);
+      const rels = model.relationshipsByName;
+
+
+      switch (payload.operationType) {
+        case 'Created':
+        case 'Altered': {
+          const attributes = {};
+          const relationships = {};
+
+          for (const change of payload.delta) {
+            const propName = camelize(change.propertyName);
+            const newValue = change.newValue;
+
+            // Проверяем, является ли поле связью
+            const relMeta = rels.get(propName);
+
+            if (relMeta) {
+              if (relMeta.kind === 'belongsTo') {
+                relationships[propName] = {
+                  data: newValue ? { id: newValue, type: relMeta.type } : null
+                };
+              }
+              /*else if (relMeta.kind === 'hasMany') {
+                const ids = Array.isArray(newValue) ? newValue : (newValue ? [newValue] : []);
+
+                relationships[propName] = {
+                  data: ids.map(v => ({
+                    id: String(typeof v === 'object' ? v.id : v),
+                    type: relMeta.type
+                  }))
+                };
+              }*/
+            } else {
+              attributes[propName] = newValue;
+            }
+          }
+
+          const pushPayload = { data: { id: payload.objectId, type: modelName, attributes } };
+          if (Object.keys(relationships).length > 0) {
+            pushPayload.data.relationships = relationships;
+          }
+
+          let record = store.push(pushPayload);
+          Object.keys(relationships).forEach(key => delete record._canonicalBelongsTo[key]);
+
+          break;
+        }
+        case 'Deleted': {
+          const record = store.peekRecord(modelName, payload.objectId);
+          if (record) {
+            store.unloadRecord(record);
+          }
+
+          break;
+        }
+      }
+    }
+
+    this.trigger(`${modelName}:${payload.messageType}`, payload)
   },
 
   /**

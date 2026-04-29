@@ -32,6 +32,15 @@ export default FdBaseSheet.extend({
   nestedSheetName: 'view-sheet',
 
   /**
+    Sheet signalR action trigger.
+
+    @property signalRActionTriggered
+    @type String
+    @default 'fd-dev-class:Class'
+  */
+  signalRActionTriggered: 'fd-dev-class:Class',
+
+  /**
     Data.
 
     @property model
@@ -122,6 +131,10 @@ export default FdBaseSheet.extend({
     if (!isNone(currentItem)) {
       this.set('isAddMode', false);
     }
+  },
+
+  updateSheetSignalR() {
+    this.notifyPropertyChange('selectedValue');
   },
 
   /**
