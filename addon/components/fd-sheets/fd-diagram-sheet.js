@@ -54,6 +54,15 @@ export default FdBaseSheet.extend(
   nestedSheetName: 'edit-diagram-object-sheet',
 
   /**
+    Sheet signalR action trigger.
+
+    @property signalRActionTriggered
+    @type String
+    @default 'fd-dev-class:Class'
+  */
+  signalRActionTriggered: 'fd-dev-uml-cad:UMLCAD',
+
+  /**
     Data.
 
     @property model
@@ -269,6 +278,10 @@ export default FdBaseSheet.extend(
     this.deactivateListItem();
     this.set('readonlyMode', true);
     this.set('selectedValue', undefined);
+  },
+
+  updateSheetSignalR() {
+    this.notifyPropertyChange('selectedValue');
   },
 
   /**

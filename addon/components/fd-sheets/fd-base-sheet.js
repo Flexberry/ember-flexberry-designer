@@ -47,6 +47,23 @@ export default Component.extend(FdSaveHasManyRelationshipsMixin, {
   fdDialogService: service('fd-dialog-service'),
 
   /**
+    Service for managing SignalR events.
+
+    @property fdSignalRService
+    @type FdSignalService
+  */
+  fdSignalRService: service('fd-signal-service'),
+
+  /**
+    SignalR action triggered.
+
+    @property signalRActionTriggered
+    @type String
+    @default ''
+  */
+  signalRActionTriggered: '',
+
+  /**
     Sheet component name.
 
     @property sheetComponentName
@@ -101,6 +118,10 @@ export default Component.extend(FdSaveHasManyRelationshipsMixin, {
     this.get('fdSheetService').on('openSheetTriggered', this, this.openSheetBase);
     this.get('fdSheetService').on('closeSheetTriggered', this, this.closeSheetBase);
     this.get('fdSheetService').on('saveCurrentItemTrigger', this, this.saveCurrentItemSheetBase);
+
+    if (!isBlank(this.get('signalRActionTriggered'))) {
+      this.get('fdSignalRService').on(`${this.get('signalRActionTriggered')}`, this, this.updateSheetSignalR);
+    }
   },
 
   willDestroy() {
@@ -109,6 +130,9 @@ export default Component.extend(FdSaveHasManyRelationshipsMixin, {
     this.get('fdSheetService').off('openSheetTriggered', this, this.openSheetBase);
     this.get('fdSheetService').off('closeSheetTriggered', this, this.closeSheetBase);
     this.get('fdSheetService').off('saveCurrentItemTrigger', this, this.saveCurrentItemSheetBase);
+    if (!isBlank(this.get('signalRActionTriggered'))) {
+      this.get('fdSignalRService').off(`${this.get('signalRActionTriggered')}`, this, this.updateSheetSignalR);
+    }
   },
 
   /**
@@ -172,6 +196,13 @@ export default Component.extend(FdSaveHasManyRelationshipsMixin, {
   closeSheet(sheetName) {
     assert(`Please specify 'closeSheet' method for '${sheetName}' sheet compoenent`);
   },
+
+  /**
+    Update sheet.
+
+     @method updateSheetSignalR
+  */
+  updateSheetSignalR() {},
 
     /**
       Save currentItem.
