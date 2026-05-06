@@ -464,19 +464,18 @@ export default Component.extend(FdReadonlyModeMixin, {
 
       if (up) {
         selectedIndices.forEach(index => {
-          let item = definitionArray.objectAt(index);
+          const item = definitionArray.objectAt(index);
           definitionArray.removeAt(index);
           definitionArray.insertAt(index - 1, item);
         });
       } else {
         for (let i = selectedIndices.length - 1; i >= 0; i--) {
-          let index = selectedIndices[i];
-          let item = definitionArray.objectAt(index);
+          const index = selectedIndices[i];
+          const item = definitionArray.objectAt(index);
           definitionArray.removeAt(index);
           definitionArray.insertAt(index + 1, item);
         }
       }
-
     }
   }
 });
