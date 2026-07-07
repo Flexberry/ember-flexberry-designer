@@ -24,6 +24,20 @@ export default Component.extend({
   classNames: ['fd-generation-settings'],
 
   /**
+    Array text field.
+
+    @property textFields
+  */
+  textFields: undefined,
+
+  /**
+    Array readonly field.
+
+    @property readonlyFields
+  */
+  readonlyFields: undefined,
+
+  /**
    * Handles changes in i18n.locale.
    *
    * @method localeObserver
@@ -153,7 +167,8 @@ export default Component.extend({
    */
   didInsertElement() {
     this._super(...arguments);
-    this.set('newGenerationItems', {})
+    this.set('textFields', ['ConnectionString', 'TemplateDirectoryPath']);
+    this.set('newGenerationItems', {});
     this.setGenerationItems(this.get('genSettingsFile'));
   },
 
@@ -190,7 +205,7 @@ export default Component.extend({
       let propName = getKeyInObj(generationItemsTitles, label, false) || label;
       let settings = get(generationItems, keyGroup);
 
-      if (propName === "ConnectionString" || propName === "TemplateDirectoryPath") {
+      if (this.get('textFields').includes(propName)) {
         set(settings, propName, value.target.value);
       } else {
         set(settings, propName, value.checked);

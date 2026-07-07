@@ -91,6 +91,7 @@ moduleForModel('fd-dev-uml-sd', 'Unit | Serializer | fd-dev-uml-sd', {
     'model:fd-view',
     'model:i-c-s-soft-s-t-o-r-m-n-e-t-security-agent',
 
+    'service:fd-signal-service',
     'service:syncer'
   ]
 });
