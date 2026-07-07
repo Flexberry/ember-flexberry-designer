@@ -28,25 +28,28 @@ export default Service.extend(Evented, {
     this.set('signalR', signalR);
     this.set('currentProjectId', null);
 
-    signalR.connection.on('Diagram', (payload) => this.trigger('Diagram', payload));
-    signalR.connection.on('Aggregation', (payload) => this.trigger(`fd-dev-aggregation:${payload.messageType}:${payload.objectId}`, payload));
-    signalR.connection.on('Association', (payload) => this.trigger(`fd-dev-association:${payload.messageType}:${payload.objectId}`, payload));
-    signalR.connection.on('Class', (payload) => this.trigger(`fd-dev-class:${payload.messageType}:${payload.objectId}`, payload));
-    signalR.connection.on('Stage', (payload) => this.trigger(`fd-dev-stage:${payload.messageType}:${payload.objectId}`, payload));
-    signalR.connection.on('UMLAD', (payload) => this.trigger(`fd-dev-uml-ad:${payload.messageType}:${payload.objectId}`, payload));
-    signalR.connection.on('UMLCAD', (payload) => this.trigger(`fd-dev-uml-cad:${payload.messageType}:${payload.objectId}`, payload));
-    signalR.connection.on('UMLCOD', (payload) => this.trigger(`fd-dev-uml-cod:${payload.messageType}:${payload.objectId}`, payload));
-    signalR.connection.on('UMLDPD', (payload) => this.trigger(`fd-dev-uml-dpd:${payload.messageType}:${payload.objectId}`, payload));
-    signalR.connection.on('UMLSD', (payload) => this.trigger(`fd-dev-uml-sd:${payload.messageType}:${payload.objectId}`, payload));
-    signalR.connection.on('UMLSTD', (payload) => this.trigger(`fd-dev-uml-std:${payload.messageType}:${payload.objectId}`, payload));
-    signalR.connection.on('UMLUCD', (payload) => this.trigger(`fd-dev-uml-ucd:${payload.messageType}:${payload.objectId}`, payload));
+    // In test environment signalR may be null or undefined
+    if (signalR && signalR.connection) {
+      signalR.connection.on('Diagram', (payload) => this.trigger('Diagram', payload));
+      signalR.connection.on('Aggregation', (payload) => this.trigger(`fd-dev-aggregation:${payload.messageType}:${payload.objectId}`, payload));
+      signalR.connection.on('Association', (payload) => this.trigger(`fd-dev-association:${payload.messageType}:${payload.objectId}`, payload));
+      signalR.connection.on('Class', (payload) => this.trigger(`fd-dev-class:${payload.messageType}:${payload.objectId}`, payload));
+      signalR.connection.on('Stage', (payload) => this.trigger(`fd-dev-stage:${payload.messageType}:${payload.objectId}`, payload));
+      signalR.connection.on('UMLAD', (payload) => this.trigger(`fd-dev-uml-ad:${payload.messageType}:${payload.objectId}`, payload));
+      signalR.connection.on('UMLCAD', (payload) => this.trigger(`fd-dev-uml-cad:${payload.messageType}:${payload.objectId}`, payload));
+      signalR.connection.on('UMLCOD', (payload) => this.trigger(`fd-dev-uml-cod:${payload.messageType}:${payload.objectId}`, payload));
+      signalR.connection.on('UMLDPD', (payload) => this.trigger(`fd-dev-uml-dpd:${payload.messageType}:${payload.objectId}`, payload));
+      signalR.connection.on('UMLSD', (payload) => this.trigger(`fd-dev-uml-sd:${payload.messageType}:${payload.objectId}`, payload));
+      signalR.connection.on('UMLSTD', (payload) => this.trigger(`fd-dev-uml-std:${payload.messageType}:${payload.objectId}`, payload));
+      signalR.connection.on('UMLUCD', (payload) => this.trigger(`fd-dev-uml-ucd:${payload.messageType}:${payload.objectId}`, payload));
 
-    signalR.connection.onreconnected(() => {
-      const currentProjectId = this.get('currentProjectId');
-      if (!isNone(currentProjectId)) {
-        return signalR.connection.invoke('JoinProjectAsync', currentProjectId);
-      }
-    });
+      signalR.connection.onreconnected(() => {
+        // Check if service is destroyed before getting property
+        if (!this.isDestroyed && !isNone(this.get('currentProjectId'))) {
+          return signalR.connection.invoke('JoinProjectAsync', this.get('currentProjectId'));
+        }
+      });
+    }
   },
 
   /**
@@ -62,12 +65,19 @@ export default Service.extend(Evented, {
 
     const signalR = this.get('signalR');
 
+    if (!signalR) {
+      return;
+    }
+
     return signalR.start()
       .then(() => {
         return signalR.connection.invoke('JoinProjectAsync', projectId);
       })
       .then(() => {
-        this.set('currentProjectId', projectId);
+        // Check if service is destroyed before setting property
+        if (!this.isDestroyed) {
+          this.set('currentProjectId', projectId);
+        }
       });
   },
 
@@ -80,7 +90,7 @@ export default Service.extend(Evented, {
     const service = this.get('signalR');
     const currentProjectId = this.get('currentProjectId');
 
-    if (isNone(currentProjectId)) {
+    if (isNone(currentProjectId) || !service) {
       return;
     }
 
@@ -88,7 +98,10 @@ export default Service.extend(Evented, {
     if (service.getState() !== signalR.HubConnectionState.Disconnected) {
       return service.connection.invoke('LeaveProjectAsync', currentProjectId)
         .finally(() => {
-          this.set('currentProjectId', null);
+          // Check if service is destroyed before setting property
+          if (!this.isDestroyed) {
+            this.set('currentProjectId', null);
+          }
         });
     }
   },
@@ -103,21 +116,23 @@ export default Service.extend(Evented, {
 
     const signalR = this.get('signalR');
 
-    signalR.connection.offReconnected();
+    if (signalR && signalR.connection) {
+      signalR.connection.offReconnected();
 
-    signalR.connection.off('Diagram');
-    signalR.connection.off('Aggregation');
-    signalR.connection.off('Association');
-    signalR.connection.off('Class');
-    signalR.connection.off('Stage');
-    signalR.connection.off('UMLAD');
-    signalR.connection.off('UMLCAD');
-    signalR.connection.off('UMLCOD');
-    signalR.connection.off('UMLDPD');
-    signalR.connection.off('UMLSD');
-    signalR.connection.off('UMLSTD');
-    signalR.connection.off('UMLUCD');
+      signalR.connection.off('Diagram');
+      signalR.connection.off('Aggregation');
+      signalR.connection.off('Association');
+      signalR.connection.off('Class');
+      signalR.connection.off('Stage');
+      signalR.connection.off('UMLAD');
+      signalR.connection.off('UMLCAD');
+      signalR.connection.off('UMLCOD');
+      signalR.connection.off('UMLDPD');
+      signalR.connection.off('UMLSD');
+      signalR.connection.off('UMLSTD');
+      signalR.connection.off('UMLUCD');
 
-    signalR.stop();
+      signalR.stop();
+    }
   }
 });

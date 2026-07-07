@@ -2,6 +2,8 @@
 All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
+
+## [1.1.2-beta.10] - 2026-07-07
 ### Added
 * Added SignalR service for real-time notifications about diagram updates
 * Added diagram updated notification popup

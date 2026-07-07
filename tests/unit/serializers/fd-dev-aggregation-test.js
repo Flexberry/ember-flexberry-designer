@@ -91,6 +91,7 @@ moduleForModel('fd-dev-aggregation', 'Unit | Serializer | fd-dev-aggregation', {
     'model:fd-view',
     'model:i-c-s-soft-s-t-o-r-m-n-e-t-security-agent',
 
+    'service:fd-signal-service',
     'service:syncer'
   ]
 });

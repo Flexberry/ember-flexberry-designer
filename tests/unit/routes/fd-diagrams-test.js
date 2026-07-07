@@ -5,6 +5,7 @@ moduleFor('route:fd-diagrams', 'Unit | Route | fd diagrams', {
   // needs: ['controller:foo']
   needs: [
     'service:fd-current-project-context',
+    'service:fd-signal-service',
     'service:fdSheetService',
     'service:appState'
   ]
