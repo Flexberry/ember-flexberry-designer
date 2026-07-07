@@ -163,12 +163,21 @@ export default Component.extend({
   /**
    * See [EmberJS API](https://emberjs.com/).
    *
+   * @method init
+   */
+  init() {
+    this._super(...arguments);
+    this.set('textFields', ['ConnectionString', 'TemplateDirectoryPath']);
+    this.set('readonlyFields', []);
+  },
+
+  /**
+   * See [EmberJS API](https://emberjs.com/).
+   *
    * @method didInsertElement
    */
   didInsertElement() {
     this._super(...arguments);
-    this.set('textFields', ['ConnectionString', 'TemplateDirectoryPath']);
-    this.set('readonlyFields', []);
     this.set('newGenerationItems', {});
     this.setGenerationItems(this.get('genSettingsFile'));
   },
