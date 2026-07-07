@@ -168,6 +168,7 @@ export default Component.extend({
   didInsertElement() {
     this._super(...arguments);
     this.set('textFields', ['ConnectionString', 'TemplateDirectoryPath']);
+    this.set('readonlyFields', []);
     this.set('newGenerationItems', {});
     this.setGenerationItems(this.get('genSettingsFile'));
   },
