@@ -462,29 +462,20 @@ export default Component.extend(FdReadonlyModeMixin, {
         return;
       }
 
-      let newArray = definitionArray.slice();
-
       if (up) {
-        // Двигаем вверх: обрабатываем от первого к последнему
-        for (let i = 0; i < selectedIndices.length; i++) {
-          let currentIndex = selectedIndices[i];
-          let element = newArray[currentIndex];
-
-          newArray.splice(currentIndex, 1);
-          newArray.splice(currentIndex - 1, 0, element);
-        }
+        selectedIndices.forEach(index => {
+          const item = definitionArray.objectAt(index);
+          definitionArray.removeAt(index);
+          definitionArray.insertAt(index - 1, item);
+        });
       } else {
-        // Двигаем вниз: обрабатываем от последнего к первому
         for (let i = selectedIndices.length - 1; i >= 0; i--) {
-          let currentIndex = selectedIndices[i];
-          let element = newArray[currentIndex];
-
-          newArray.splice(currentIndex, 1);
-          newArray.splice(currentIndex + 1, 0, element);
+          const index = selectedIndices[i];
+          const item = definitionArray.objectAt(index);
+          definitionArray.removeAt(index);
+          definitionArray.insertAt(index + 1, item);
         }
       }
-
-      this.set('view.definitionArray', A(newArray));
     }
   }
 });
