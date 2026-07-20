@@ -3,6 +3,11 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+## [1.1.2-beta.11] - 2026-07-20
+
+### Fixed
+* Fixed attributes order change at view edit
+
 ## [1.1.2-beta.10] - 2026-07-07
 ### Added
 * Added SignalR service for real-time notifications about diagram updates
@@ -13,8 +18,6 @@ All notable changes to this project will be documented in this file.
 * Added content sheet lock indication in sheets toolbar with popup notification
 * Added event subscriptions for all SignalR events (Diagram, Aggregation, Association, Class, Stage, UMLAD, UMLCAD, UMLCOD, UMLDPD, UMLSD, UMLSTD, UMLUCD)
 
-### Fixed
-* Fixed attributes order change at view edit
 
 ## [1.1.2-beta.9] - 2026-03-24
 ### Fixed
