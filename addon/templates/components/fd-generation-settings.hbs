@@ -13,20 +13,22 @@
           <div class="content">
             {{#each-in items as |label value|}}
               {{#if (and (not-eq label "className") (not-eq label "caption"))}}
-                {{#if (and (not-eq label "ConnectionString") (not-eq label "TemplateDirectoryPath"))}}
+                {{#if (includes textFields label)}}
+                  {{flexberry-field
+                    value=value
+                    readonly=(includes readonlyFields label)
+                    label=(t (concat "components.fd-generation-settings." label))
+                    change=(action 'selectGenSetting' label items)
+                  }}
+                {{else}}
                   <div class="field">
                     {{flexberry-checkbox
                       value=value
+                      readonly=(includes readonlyFields label)
                       label=label
                       onChange=(action 'selectGenSetting' label items bubbles=false)
                     }}
                   </div>
-                {{else}}
-                  {{flexberry-field
-                    value=value
-                    label=(t (concat "components.fd-generation-settings." label))
-                    change=(action 'selectGenSetting' label items)
-                  }}
                 {{/if}}
               {{/if}}
             {{/each-in}}

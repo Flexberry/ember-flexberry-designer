@@ -75,6 +75,7 @@ moduleForModel('fd-dev-uml-ucd', 'Unit | Model | fd-dev-uml-ucd', {
     'model:fd-user-in-stage',
     'model:fd-view',
     'model:i-c-s-soft-s-t-o-r-m-n-e-t-security-agent',
+    'service:fd-signal-service',
     'service:syncer'
   ]
 });
