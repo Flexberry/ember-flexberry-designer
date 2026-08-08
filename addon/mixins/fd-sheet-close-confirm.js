@@ -58,6 +58,16 @@ export default Mixin.create({
   show: false,
 
   /**
+    Flag activate error message modal window.
+
+    @private
+    @property isErrorMessageShown
+    @type Boolean
+    @default false
+  */
+  isErrorMessageShown: false,
+
+  /**
     Visible button message box.
 
     @property visibleButtons
@@ -172,7 +182,7 @@ export default Mixin.create({
       this.set('denyButtonAction', undefined);
       this.set('context', undefined);
 
-      this.set('show', true);
+      this.set('isErrorMessageShown', true);
     }
   },
 

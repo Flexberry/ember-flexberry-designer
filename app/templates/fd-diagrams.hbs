@@ -96,3 +96,11 @@
     hide=(action set "show" false)
   }}
 {{/if}}
+
+{{#if isErrorMessageShown}}
+  {{fd-modal-message-box
+    headerCaption=headerCaption
+    messageText=messageText
+    hide=(action set "isErrorMessageShown" false)
+  }}
+{{/if}}
