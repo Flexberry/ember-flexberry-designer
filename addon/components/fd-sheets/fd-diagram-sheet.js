@@ -158,18 +158,6 @@ export default FdBaseSheet.extend(
     const diagramType = this.get('diagramType');
     return [
       {
-        buttonTitle: i18n.t('components.fd-diagram-editing-panel.uml-validator-title'),
-        buttonVisible: diagramType === 'cad' && !this.get('selectedValue.data.isNew') && !this.get('isAddMode') && this.get('readonlyMode'),
-        iconClasses: 'icon-fd-uml-valid icon',
-        buttonAction: this.get('umlValidator').bind(this)
-      },
-      {
-        buttonTitle: i18n.t('components.fd-diagram-editing-panel.uml-corrector-title'),
-        buttonVisible: diagramType === 'cad' && !this.get('selectedValue.data.isNew') && !this.get('isAddMode') && this.get('readonlyMode'),
-        iconClasses: ' icon-fd-uml-edit icon',
-        buttonAction: this.get('umlСorrector').bind(this)
-      },
-      {
         buttonTitle: i18n.t('components.fd-diagram-editing-panel.toggler-caption'),
         buttonVisible: this.get('selectedValue.data.isNew') || (!this.get('isAddMode') && !this.get('readonlyMode')),
         iconClasses: 'icon-guideline-setting icon',
@@ -269,85 +257,6 @@ export default FdBaseSheet.extend(
     this.deactivateListItem();
     this.set('readonlyMode', true);
     this.set('selectedValue', undefined);
-  },
-
-  /**
-    Check uml on validate.
-
-     @method umlValidator
-  */
-  umlValidator() {
-    let selectedDiagramId = this.get('selectedValue.data.id');
-
-    const store = this.get('store');
-    const adapter = store.adapterFor('application');
-    const data = { diagramId: selectedDiagramId };
-
-    this.get('appState').loading();
-    adapter.callFunction('ValidateUmlDiagram', data, null, { withCredentials: true }).then((result) => {
-      const i18n = this.get('i18n');
-      let message = i18n.t('forms.fd-diagrams.custom-message.no-errors').toString();
-      if (!isBlank(result.value)) {
-        message = result.value;
-      }
-
-      this.get('fdDialogService').showCustomMessage(message, i18n.t('forms.fd-diagrams.custom-message.validate-header').toString());
-    }).catch((error) => {
-      this.get('fdDialogService').showErrorMessage(error.message);
-    }).finally(() => {
-      this.get('appState').reset();
-    });
-  },
-
-  /**
-    Update uml errors.
-
-     @method umlСorrector
-  */
-  umlСorrector() {
-    const fdLockService = this.get('fdLockService');
-    const context = this.get('currentProjectContext');
-    let selectedDiagram = this.get('selectedValue.data');
-    let sheetComponentName = this.get('sheetComponentName');
-
-    this.get('appState').loading();
-    fdLockService.checkLock(selectedDiagram, sheetComponentName).then(result => {
-      return result && !result.Acquired ? resolve() : reject({ message: this.get('i18n').t('components.fd-sheets-tool-bar.object-locked').toString() + (result ? result.UseName : '') });
-    })
-    .then(() => {
-      const store = this.get('store');
-      const adapter = store.adapterFor('application');
-      const data = { diagramId: selectedDiagram.get('id') };
-
-      return adapter.callFunction('CorrectUmlDiagram', data, null, { withCredentials: true });
-    })
-    .then((result) => {
-      if (!isBlank(result.value)) {
-        this.get('appState').reset();
-        const i18n = this.get('i18n');
-        let pageContext = this.get('targetObject');
-        let message = i18n.t('forms.fd-diagrams.custom-message.corrector-message').toString() + `\n ${result.value}`;
-
-        this.get('fdDialogService').showCustomMessage(
-          message,
-          i18n.t('forms.fd-diagrams.custom-message.corrector-header').toString(),
-          false
-        );
-
-        let transitionFunction = function() {
-          pageContext.removeObserver('show', this, transitionFunction);
-          let stageId = context.getCurrentStage();
-          context.resetCurrentStage();
-          pageContext.transitionToRoute('fd-diagrams', { queryParams: { gotostage: stageId, gototype: 'fd-dev-uml-cad', gotoobj: selectedDiagram.get('id') } });
-        };
-
-        pageContext.addObserver('show', this, transitionFunction);
-      }
-    }).catch((error) => {
-      this.get('fdDialogService').showErrorMessage(error.message);
-    }).finally(() => {
-      this.get('appState').reset();
-    });
   },
 
   /**
