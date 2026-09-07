@@ -3,6 +3,11 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+## [1.1.2-beta.12] - 2026-09-07
+
+### Added
+* Added "PlantUML" in Metadata of ".fdg" file.
+
 ## [1.1.2-beta.11] - 2026-07-20
 
 ### Fixed
