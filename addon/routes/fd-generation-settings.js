@@ -97,7 +97,8 @@ export default Route.extend(FdShareLoadData, {
         "Crp": false,
         "Json": false,
         "Jdl": false,
-        "PlantUML": false
+        "PlantUML": false,
+        "Yaml": false
       },
     }
   }),
