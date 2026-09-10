@@ -200,14 +200,20 @@ let updateAttributesStr = function(classObject) {
         }
 
         let attrDefaultValue = attribute.get('defaultValue');
-        if (!isNone(attrDefaultValue) && !isBlank(attrDefaultValue.trim())) {
-          newAttributesStr += "=" + attrDefaultValue.trim();
+        if (!isNone(attrDefaultValue)) {
+          attrDefaultValue = String(attrDefaultValue).trim();
+          if (!isBlank(attrDefaultValue)) {
+            newAttributesStr += "=" + attrDefaultValue;
+          }
         }
       } else {
         newAttributesStr += attrName;
         let attrDefaultValue = attribute.get('defaultValue');
-        if (!isNone(attrDefaultValue) && !isBlank(attrDefaultValue.trim())) {
-          newAttributesStr += "=" + attrDefaultValue.trim();
+        if (!isNone(attrDefaultValue)) {
+          attrDefaultValue = String(attrDefaultValue).trim();
+          if (!isBlank(attrDefaultValue)) {
+            newAttributesStr += "=" + attrDefaultValue;
+          }
         }
       }
     }

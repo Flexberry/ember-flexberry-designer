@@ -3,6 +3,11 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+## [1.1.2-beta.13] - 2026-09-10
+
+### Fixed
+* Fixed bool defaultValue in fd-update-str-value.
+
 ## [1.1.2-beta.12] - 2026-09-07
 
 ### Added
