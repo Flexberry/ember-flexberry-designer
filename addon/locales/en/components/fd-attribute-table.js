@@ -16,6 +16,7 @@ export default {
     'description-placeholder': 'Enter description',
     'stored': 'Stored',
     'order': 'Order',
+    'trim': 'Trim',
     'storage': 'Storage',
     'storage-placeholder': 'Storage name',
     'dataServiceExpression': 'DataService Expression',

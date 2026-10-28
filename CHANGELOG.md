@@ -3,6 +3,9 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+### Added
+* Added "Trim" in attribute edit panel.
+
 ## [1.1.2-beta.13] - 2026-09-10
 
 ### Fixed

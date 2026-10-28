@@ -90,6 +90,11 @@ export default Mixin.create({
           isCheckBox: true,
         },
         {
+          columnCaption: 'components.fd-attribute-table.attribute.trim',
+          columnProperty: 'trim',
+          isCheckBox: true,
+        },
+        {
           columnCaption: 'components.fd-attribute-table.attribute.autoincrement',
           columnProperty: 'autoincrement',
           isCheckBox: true,
