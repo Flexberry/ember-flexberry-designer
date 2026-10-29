@@ -16,6 +16,7 @@ export default {
     'not-null': 'Не пустое',
     'stored': 'Хранимый',
     'order': 'Order',
+    'trim': 'Trim',
     'storage': 'Хранилище',
     'storage-placeholder': 'Наименование хранилища',
     'dataServiceExpression': 'DataService Expression',
