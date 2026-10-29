@@ -1,6 +1,11 @@
 # Ember Flexberry Designer Changelog
 All notable changes to this project will be documented in this file.
 
+## [1.1.2-beta.15] - 2026-10-29
+
+### Fixed
+* "Trim" checkbox in attribute edit panel.
+
 ## [1.1.2-beta.14] - 2026-10-28
 
 ### Added
