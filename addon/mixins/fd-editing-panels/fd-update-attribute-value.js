@@ -136,6 +136,7 @@ export default Mixin.create({
       store.createRecord('fd-dev-attribute', {
         class: model,
         stored: true,
+        trim: true,
         accessModifier: RepositoryAccessModifier.Public
       });
     },
