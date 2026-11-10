@@ -1,6 +1,11 @@
 # Ember Flexberry Designer Changelog
 All notable changes to this project will be documented in this file.
 
+## [1.1.2-beta.16] - 2026-11-10
+
+### Fixed
+* Fixed rename class.
+
 ## [1.1.2-beta.15] - 2026-10-29
 
 ### Fixed

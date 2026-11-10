@@ -148,6 +148,17 @@ function updateDependencysOfClassName(store, currentProjectContext, devClass) {
 
     let diagramPrimitives = JSON.parse(diagram.get('primitivesJsonString')) || A();
 
+    // Update diagram class.
+    diagramPrimitives.forEach((primitive) => {
+      if (!isNone(primitive.RepositoryObject) &&
+        primitive.RepositoryObject === `{${devClass.get('id')}}`) {
+        primitive.CaseName = nameNew;
+        primitive.Name.Text = nameNew;
+      }
+    });
+
+    diagram.set('primitivesJsonString', JSON.stringify(diagramPrimitives));
+
     // Update views.
     let updatedViews = getUpdatedViews(store, diagramPrimitives, nameOrigin, nameNew);
     promises.pushObjects(updatedViews);
