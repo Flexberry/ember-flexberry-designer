@@ -94,3 +94,15 @@
 .fd-logo {
   background-image: url(images/fd-logo-light.svg);
 }
+
+.flexberry-uml-header-rect,
+.flexberry-uml-body-rect,
+.flexberry-uml-footer-rect {
+  filter: brightness(0.5);
+}
+.uml-link-inputs input,
+.uml-link-inputs textarea {
+  color: var(--uml-text, #e8e8e8) !important;
+  background-color: var(--uml-box-fill, #3e3e3e) !important;
+}
+

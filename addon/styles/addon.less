@@ -418,6 +418,22 @@ i.icon.chevron.down:before {
   background-position-y: 50%;
 }
 
+@media (max-width: 1199px) {
+    @mainCintainerPaddingTop: 3em;
+
+  .ui.main.container.fluid {
+    padding: @mainCintainerPaddingTop 1em 0;
+
+    .settings-form {
+      margin-top: -@mainCintainerPaddingTop;
+    }
+  }
+
+  .ui.vertical.footer.segment > .flex-container > .ui.text.menu {
+    padding: 0px;
+  }
+}
+
 /* Mobile */
 #mobile {
   @mainCintainerPaddingTop: 3em;
@@ -445,12 +461,11 @@ i.icon.chevron.down:before {
 }
 
 .ui.card.custom.table.dse {
-  position: absolute;
+  position: fixed;
   width: 600px;
-  background: #fff;
-  right: 0;
-  z-index: 1;
+  z-index: 2000;
   max-width: none;
+  visibility: hidden;
 }
 
 .ui.secondary.menu.no-margin.flexberry-olv-toolbar {

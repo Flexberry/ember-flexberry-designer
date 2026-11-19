@@ -83,6 +83,12 @@
   margin-left: calc(~'-@{leftIndent}');
 }
 
+@media (max-width: 1199px) {
+  .pusher:not(.mobile) .ui.grid.fd-view-table-attr {
+      margin-left: -1em;
+  }
+}
+
 .ui.grid.fd-view-table-attr {
   .row.active {
     .column {

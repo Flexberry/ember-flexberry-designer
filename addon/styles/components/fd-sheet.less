@@ -61,6 +61,17 @@
   padding-bottom: 1rem;
 }
 
+@media (max-width: 1199px) {
+  .fd-sheet.visible {
+    -webkit-transform: translate3d(0, 0, 0) !important;
+    transform: translate3d(0, 0, 0) !important;
+  }
+
+  .fd-sheet.visible .content-mini {
+    width: ~'calc(100% - var(--fd-sidebar-width, 0px))' !important;
+  }
+}
+
 /* Mobile */
 #mobile {
   .fd-sheet {

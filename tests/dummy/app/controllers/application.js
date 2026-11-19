@@ -366,6 +366,8 @@ export default Controller.extend(FdShareFunctionMixin, {
       this.set('_sidebarVisible', !sidebarVisible);
       let currentSidebarWidth = sidebarVisible ? this.sidebarMiniWidth : this.sidebarWidth;
       let contentWidth = `calc(100% - ${currentSidebarWidth})`;
+
+      this.get('fdSheetService').setSidebarWidthVariable(parseInt(currentSidebarWidth));
       if (!sidebarVisible) {
         $('.toggle-sidebar').css({ transition: 'opacity 500ms step-start' });
       } else {

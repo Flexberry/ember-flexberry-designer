@@ -82,6 +82,7 @@
 @fdToolbarButtonBackground: fade(@fdPrimaryColor, 50%);
 
 /* Цвет основных кнопок */
+@buttonColor: #3B4256;
 @basicButtonColor: fade(@textColor, 85%);
 @basicButtonBoxShadow: fade(@textColor, 35%);
 @basicButtonSelectedBorderColor: fade(@textColor, 70%);
