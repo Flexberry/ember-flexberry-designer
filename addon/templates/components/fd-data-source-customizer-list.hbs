@@ -6,7 +6,7 @@
     readonly=true
   }}
   {{#if (not readonly)}}
-    <button class="ui icon button dse {{if isOpenTable "active"}}" onclick={{action "openTable"}}>
+    <button class="ui basic icon button dse {{if isOpenTable "active"}}" onclick={{action "openTable"}}>
       <i class="icon icon-guideline-edit"></i>
     </button>
   {{/if}}

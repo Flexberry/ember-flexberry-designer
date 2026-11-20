@@ -28,10 +28,63 @@ export default Service.extend(Evented, {
    */
   fdLockService: service(),
 
+  /**
+    Flag: indicates whether the current viewport is below the large-screen
+    breakpoint (~1200px), where sheets open at full width and the attribute
+    tables show their full column set. Updated on window resize.
+
+    @property smallScreen
+    @type Boolean
+    @default false
+  */
+  smallScreen: false,
+
   init() {
     this._super(...arguments);
 
     this.set('sheetSettings', { visibility: { }, expanded: { }, currentItem: { } });
+    this.set('_onResizeBound', this._onResize.bind(this));
+
+    this._onResize();
+    $(window).on('resize.fdSheetService', this.get('_onResizeBound'));
+  },
+
+  willDestroy() {
+    $(window).off('resize.fdSheetService', this.get('_onResizeBound'));
+    this._super(...arguments);
+  },
+
+  /**
+    Handles the window resize without touching open sheets on every pixel (to
+    stay smooth): refreshes only the small-screen flag so the attribute tables
+    show their full column set below the breakpoint. The `--fd-sidebar-width`
+    CSS variable is updated on sidebar open/close instead of on resize (see
+    `setSidebarWidthVariable`).
+
+     @method _onResize
+    @private
+  */
+  _onResize() {
+    this.set('smallScreen', window.innerWidth < 1200);
+  },
+
+  /**
+    Keeps CSS up to date with the current sidebar width (`--fd-sidebar-width`),
+    used by the small-screen media query to subtract the sidebar from full-width
+    sheets. A single variable on `<html>`, cheap and reactive. Called when the
+    sidebar opens/closes (e.g. from the sidebar toggle action); `sidebarWidth`
+    is measured from the DOM when omitted.
+
+     @method setSidebarWidthVariable
+     @param {Number} [sidebarWidth] Sidebar width in px; measured from the DOM
+       when omitted.
+  */
+  setSidebarWidthVariable(sidebarWidth) {
+    if (isNone(sidebarWidth)) {
+      sidebarWidth = $('.ui.sidebar.main.menu').width();
+    }
+
+    document.documentElement.style.setProperty('--fd-sidebar-width', `${sidebarWidth}px`);
   },
 
   /**
@@ -72,12 +125,11 @@ export default Service.extend(Evented, {
       $('.fd-sheet.visible.expand .content-mini').addClass('fade');
 
       let sidebarWidth = $('.ui.sidebar.main.menu').width();
-
-      let sheetTranslate = `translate3d(calc(50% - ${sidebarWidth}px), 0, 0)`;
-      $(`.fd-sheet.${sheetName}`).css({ 'transform': sheetTranslate });
+      $(`.fd-sheet.${sheetName}`).css({ 'transform': `translate3d(calc(50% - ${sidebarWidth}px), 0, 0)` });
 
       // Сбрасываем стиль с кнопки сайдбара.
       $('.toggle-sidebar').removeClass('expanded');
+      this.setSidebarWidthVariable();
     }
   },
 

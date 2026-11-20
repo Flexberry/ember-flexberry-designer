@@ -1,6 +1,15 @@
 # Ember Flexberry Designer Changelog
 All notable changes to this project will be documented in this file.
 
+## [1.1.2-beta.17] - 2026-11-19
+
+### Added
+* Added adaptation for medium screen widths (for use in the VS Code plugin): sheets open at full width, attribute tables show the full set of columns with horizontal scrolling.
+
+### Fixed
+* Fixed dark theme styles for UML blocks and link inputs (UMLLink).
+* Fixed positioning and clipping of the DSE (Data Service Expression) edit table, including behavior on scroll and when removing rows.
+
 ## [1.1.2-beta.16] - 2026-11-10
 
 ### Fixed

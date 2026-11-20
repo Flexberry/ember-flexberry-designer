@@ -2,6 +2,7 @@ import Component from '@ember/component';
 import layout from '../templates/components/fd-data-source-customizer-list';
 import $ from 'jquery';
 import { computed } from '@ember/object';
+import { scheduleOnce } from '@ember/runloop';
 import FdClassExternalStoreInstancesInType from '../objects/fd-storeinstancesintype';
 import { deserialize, serialize } from '../utils/transforms-utils/fd-storeinstancesintype';
 import { isNone, isEmpty } from '@ember/utils';
@@ -105,19 +106,91 @@ export default Component.extend({
   },
 
   /**
+    Removes document-level handlers if the component is destroyed while the
+    DSE card is still open (e.g. a table row is removed).
+
+    @method willDestroy
+  */
+  willDestroy() {
+    this._super(...arguments);
+    this._clearDseHandlers();
+  },
+
+  /**
+    Removes document-level handlers registered while the DSE card is open.
+
+    @method _clearDseHandlers
+  */
+  _clearDseHandlers() {
+    if (this._onDocumentMousedown) {
+      $(document).off('mousedown.dse', this._onDocumentMousedown);
+    }
+    if (this._onScrollCapture) {
+      document.removeEventListener('scroll', this._onScrollCapture, true);
+    }
+    this._onDocumentMousedown = null;
+    this._onScrollCapture = null;
+  },
+
+  /**
+    Performs the actual close: persists the model and removes the handlers.
+
+    @method performClose
+  */
+  performClose() {
+    this.setActualModel();
+    this.set('isOpenTable', false);
+    this._clearDseHandlers();
+  },
+
+  /**
     Close DSE table.
 
     @method closeTable
     @param {jQuery.Event} e
+    @param {Boolean} close Force closing regardless of the click position.
   */
   closeTable(e, close) {
     e.stopPropagation();
 
-    if ((($(e.target).closest(`.custom.table.dse`).length === 0) && ($(e.target).closest(`.button.dse.active`).length === 0)) || close) {
-      this.setActualModel();
-      this.set('isOpenTable', false);
-      $(document).off(`mousedown.dse`);
+    const insideCard = $(e.target).closest(`.custom.table.dse`).length > 0;
+    const onTrigger = $(e.target).closest(`.button.dse.active`).length > 0;
+    if ((!insideCard && !onTrigger) || close) {
+      this.performClose();
     }
+  },
+
+  /**
+    Positions the opened DSE card. The node stays in its Ember-managed place
+    (so closing/removing works normally) and uses `position: fixed`. Because
+    `.fd-sheet` has a `transform`, the fixed containing block becomes the sheet
+    itself — which sits above the horizontally scrolled `.fd-table` and the
+    `overflow: auto` `.fd-sheet-body` — so they neither clip the card nor add
+    it to their scroll area. Each row keeps its own card (its own instance data).
+
+    @method positionTable
+    @param {HTMLElement} trigger Button that opened the card.
+  */
+  positionTable(trigger) {
+    const $trigger = $(trigger);
+    const $dse = $trigger.closest('.ui.action.input').parent().find('.ui.card.custom.table.dse').first();
+
+    if ($dse.length === 0) {
+      return;
+    }
+
+    const $sheet = $trigger.closest('.fd-sheet');
+    const rect = $trigger[0].getBoundingClientRect();
+    const sheetRect = $sheet.length > 0 ? $sheet[0].getBoundingClientRect() : { top: 0, left: 0 };
+    const top = (rect.bottom - sheetRect.top) + 8;
+    const left = Math.max(8, (rect.right - sheetRect.left) - 600 - 8);
+
+    $dse.css({
+      top: top + 'px',
+      left: left + 'px',
+      zIndex: 2000,
+      visibility: 'visible'
+    });
   },
 
   actions: {
@@ -130,13 +203,27 @@ export default Component.extend({
     */
     openTable(e) {
       e.stopPropagation();
-      let isOpenTable = this.get('isOpenTable');
-      if (!isOpenTable) {
-        this.setActualModel();
-        this.set('isOpenTable', true);
-
-        $(document).on(`mousedown.dse`, this.closeTable.bind(this));
+      if (this.get('isOpenTable')) {
+        return;
       }
+
+      this.setActualModel();
+      this.set('isOpenTable', true);
+      scheduleOnce('afterRender', this, this.positionTable, e.currentTarget);
+
+      this._onDocumentMousedown = (event) => this.closeTable(event, false);
+      $(document).on('mousedown.dse', this._onDocumentMousedown);
+
+      this._onScrollCapture = (event) => {
+        let target = event.target;
+        if ($(target).closest(`.custom.table.dse`).length > 0) {
+          return;
+        }
+        if (this.get('isOpenTable')) {
+          this.performClose();
+        }
+      };
+      document.addEventListener('scroll', this._onScrollCapture, true);
     },
 
     /**

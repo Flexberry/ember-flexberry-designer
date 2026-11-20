@@ -10,8 +10,41 @@
 .table-toggler .flexberry-toggler-caption {
  font-size: 1.25rem;
 }
+@fd-table-column-min-width: 8.5rem;
+
 .ui.grid.fd-table {
   width: 100%;
+  overflow-x: auto;
+
+  /* Обходим отрицательные поля сетки Semantic UI, чтобы у вертикально
+     расположенных контролов (чекбокс, кнопки) оставалось место при скролле. */
+  padding-left: 2.5em;
+  padding-right: 2em;
+
+  > .row {
+    position: relative;
+
+    /* Запрещаем перенос колонок на новые строки и не сжимаем ряд уже контейнера. */
+    flex-wrap: nowrap;
+    width: max-content;
+    min-width: 100%;
+
+    > .column {
+      min-width: @fd-table-column-min-width;
+    }
+
+    &:nth-child(2) > .column {
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    /* Для узких колонок (чекбоксы, "one wide") минимальная ширина не нужна. */
+    > .column[class*="one wide"],
+    > .column.fd-table-checkbox {
+      min-width: 0;
+    }
+  }
 
   > .row .column.fd-table-checkbox {
     position: absolute;

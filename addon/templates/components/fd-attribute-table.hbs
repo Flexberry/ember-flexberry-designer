@@ -14,7 +14,7 @@
 
   <div class="row">
     {{#each tableView as |tableView|}}
-      <div class="{{if tableView.isCheckBox "one wide"}} column light-text fd-table-header">
+      <div class="column light-text fd-table-header">
         {{t tableView.columnCaption}}
       </div>
     {{/each}}
@@ -32,7 +32,7 @@
           </div>
         {{/if}}
         {{#each tableView as |tableView|}}
-          <div class="{{if tableView.isCheckBox "one wide"}} column light-text">
+          <div class="column light-text">
             {{#if tableView.isDropDown}}
               {{flexberry-dropdown
                 items=dropdownItemsObject
